@@ -619,6 +619,329 @@
             }, 50);
         }
         animateNepseTicker();
+        // Unit Converter Functions
+function updateUnits() {
+    const unitType = document.getElementById('unit-type').value;
+    const fromUnit = document.getElementById('from-unit');
+    const toUnit = document.getElementById('to-unit');
+    
+    let units = {};
+    
+    switch(unitType) {
+        case 'length':
+            units = {m: 'Meters', cm: 'Centimeters', ft: 'Feet', in: 'Inches'};
+            break;
+        case 'area':
+            units = {m2: 'Square Meters', cm2: 'Square Centimeters', ft2: 'Square Feet'};
+            break;
+        case 'weight':
+            units = {kg: 'Kilograms', g: 'Grams', lb: 'Pounds', oz: 'Ounces'};
+            break;
+        case 'temperature':
+            units = {c: 'Celsius', f: 'Fahrenheit', k: 'Kelvin'};
+            break;
+    }
+    
+    fromUnit.innerHTML = '';
+    toUnit.innerHTML = '';
+    
+    for (let unit in units) {
+        fromUnit.innerHTML += `<option value="${unit}">${units[unit]}</option>`;
+        toUnit.innerHTML += `<option value="${unit}">${units[unit]}</option>`;
+    }
+}
+
+function convertUnits() {
+    const fromValue = parseFloat(document.getElementById('from-value').value);
+    const fromUnit = document.getElementById('from-unit').value;
+    const toUnit = document.getElementById('to-unit').value;
+    const unitType = document.getElementById('unit-type').value;
+    
+    if (!fromValue) return;
+    
+    let result = 0;
+    
+    // Simple conversion logic (add more conversions as needed)
+    if (unitType === 'length') {
+        const meters = convertToMeters(fromValue, fromUnit);
+        result = convertFromMeters(meters, toUnit);
+    }
+    
+    document.getElementById('to-value').value = result.toFixed(4);
+}
+
+function convertToMeters(value, unit) {
+    switch(unit) {
+        case 'm': return value;
+        case 'cm': return value / 100;
+        case 'ft': return value * 0.3048;
+        case 'in': return value * 0.0254;
+        default: return value;
+    }
+}
+
+function convertFromMeters(value, unit) {
+    switch(unit) {
+        case 'm': return value;
+        case 'cm': return value * 100;
+        case 'ft': return value / 0.3048;
+        case 'in': return value / 0.0254;
+        default: return value;
+    }
+}
+
+// Enhanced Weather Function
+function getWeather() {
+    const city = document.getElementById('city-input').value;
+    
+    // Simulate different weather conditions
+    const weatherConditions = [
+        { icon: 'fas fa-sun', condition: 'Sunny', temp: 28 },
+        { icon: 'fas fa-cloud-sun', condition: 'Partly Cloudy', temp: 24 },
+        { icon: 'fas fa-cloud', condition: 'Cloudy', temp: 20 },
+        { icon: 'fas fa-cloud-rain', condition: 'Rainy', temp: 18 },
+        { icon: 'fas fa-snowflake', condition: 'Snowy', temp: 2 }
+    ];
+    
+    const randomWeather = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+    const humidity = Math.floor(Math.random() * 40) + 40;
+    const windSpeed = Math.floor(Math.random() * 20) + 5;
+    const feelsLike = randomWeather.temp + Math.floor(Math.random() * 6) - 3;
+    
+    document.getElementById('weather-icon').className = randomWeather.icon;
+    document.getElementById('temperature').textContent = randomWeather.temp + '°';
+    document.getElementById('condition').textContent = randomWeather.condition;
+    document.getElementById('location').textContent = city + ', Nepal';
+    document.getElementById('humidity').textContent = humidity + '%';
+    document.getElementById('wind').textContent = windSpeed + ' km/h';
+    document.getElementById('feels-like').textContent = feelsLike + '°';
+}
+
+// Enhanced Tap Target Game
+let gameRunning = false;
+let gameScore = 0;
+let gameTime = 30;
+let gameLevel = 1;
+let gameInterval;
+let targets = [];
+
+function startTapGame() {
+    if (gameRunning) return;
+    
+    gameRunning = true;
+    gameScore = 0;
+    gameTime = 30;
+    gameLevel = 1;
+    
+    document.getElementById('game-score').textContent = gameScore;
+    document.getElementById('game-time').textContent = gameTime;
+    document.getElementById('game-level').textContent = gameLevel;
+    
+    document.getElementById('start-game-btn').style.display = 'none';
+    document.getElementById('pause-game-btn').style.display = 'inline-flex';
+    
+    const gameArea = document.getElementById('game-area');
+    gameArea.innerHTML = '';
+    
+    // Start game timer
+    gameInterval = setInterval(() => {
+        gameTime--;
+        document.getElementById('game-time').textContent = gameTime;
+        
+        if (gameTime <= 0) {
+            endTapGame();
+        }
+        
+        // Level up every 15 points
+        if (gameScore > 0 && gameScore % 15 === 0) {
+            gameLevel = Math.floor(gameScore / 15) + 1;
+            document.getElementById('game-level').textContent = gameLevel;
+        }
+    }, 1000);
+    
+    // Create first target
+    createGameTarget();
+}
+
+function createGameTarget() {
+    if (!gameRunning) return;
+    
+    const gameArea = document.getElementById('game-area');
+    const target = document.createElement('div');
+    target.className = 'game-target';
+    
+    // Random target type
+    const types = ['red', 'blue', 'golden'];
+    const weights = [0.6, 0.3, 0.1]; // 60% red, 30% blue, 10% golden
+    const randomType = getRandomWeighted(types, weights);
+    target.classList.add(randomType);
+    
+    // Random position
+    const maxX = gameArea.offsetWidth - 60;
+    const maxY = gameArea.offsetHeight - 60;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+    
+    target.style.left = x + 'px';
+    target.style.top = y + 'px';
+    
+    // Click handler
+    target.addEventListener('click', () => {
+        let points = 10;
+        if (randomType === 'blue') points = 15;
+        if (randomType === 'golden') points = 25;
+        
+        gameScore += points;
+        document.getElementById('game-score').textContent = gameScore;
+        
+        gameArea.removeChild(target);
+        targets = targets.filter(t => t !== target);
+        
+        // Create explosion effect
+        createExplosion(x + 30, y + 30, randomType);
+        
+        // Create next target
+        setTimeout(createGameTarget, Math.max(300 - (gameLevel * 30), 100));
+    });
+    
+    gameArea.appendChild(target);
+    targets.push(target);
+    
+    // Auto-remove target after time
+    setTimeout(() => {
+        if (gameArea.contains(target)) {
+            gameArea.removeChild(target);
+            targets = targets.filter(t => t !== target);
+            setTimeout(createGameTarget, Math.max(500 - (gameLevel * 50), 150));
+        }
+    }, Math.max(2000 - (gameLevel * 100), 800));
+}
+
+function getRandomWeighted(items, weights) {
+    const random = Math.random();
+    let weightSum = 0;
+    
+    for (let i = 0; i < items.length; i++) {
+        weightSum += weights[i];
+        if (random <= weightSum) {
+            return items[i];
+        }
+    }
+}
+
+function createExplosion(x, y, type) {
+    const gameArea = document.getElementById('game-area');
+    const explosion = document.createElement('div');
+    explosion.style.position = 'absolute';
+    explosion.style.left = x + 'px';
+    explosion.style.top = y + 'px';
+    explosion.style.width = '20px';
+    explosion.style.height = '20px';
+    explosion.style.borderRadius = '50%';
+    explosion.style.pointerEvents = 'none';
+    explosion.style.animation = 'explode 0.5s ease-out forwards';
+    
+    const colors = {
+        red: '#e74c3c',
+        blue: '#3498db',
+        golden: '#f1c40f'
+    };
+    
+    explosion.style.background = colors[type] || '#fff';
+    gameArea.appendChild(explosion);
+    
+    setTimeout(() => {
+        if (gameArea.contains(explosion)) {
+            gameArea.removeChild(explosion);
+        }
+    }, 500);
+}
+
+function pauseGame() {
+    if (gameRunning) {
+        gameRunning = false;
+        clearInterval(gameInterval);
+        document.getElementById('pause-game-btn').innerHTML = '<i class="fas fa-play"></i> Resume';
+        document.getElementById('pause-game-btn').onclick = resumeTapGame;
+    }
+}
+
+function resumeTapGame() {
+    gameRunning = true;
+    gameInterval = setInterval(() => {
+        gameTime--;
+        document.getElementById('game-time').textContent = gameTime;
+        if (gameTime <= 0) {
+            endTapGame();
+        }
+    }, 1000);
+    document.getElementById('pause-game-btn').innerHTML = '<i class="fas fa-pause"></i> Pause';
+    document.getElementById('pause-game-btn').onclick = pauseGame;
+}
+
+function resetGame() {
+    endTapGame();
+    gameScore = 0;
+    gameTime = 30;
+    gameLevel = 1;
+    document.getElementById('game-score').textContent = gameScore;
+    document.getElementById('game-time').textContent = gameTime;
+    document.getElementById('game-level').textContent = gameLevel;
+}
+
+function endTapGame() {
+    gameRunning = false;
+    clearInterval(gameInterval);
+    
+    // Clear all targets
+    targets.forEach(target => {
+        if (target.parentNode) {
+            target.parentNode.removeChild(target);
+        }
+    });
+    targets = [];
+    
+    // Show game over
+    const gameArea = document.getElementById('game-area');
+    gameArea.innerHTML = `
+        <div class="game-instructions">
+            <div class="instruction-icon">
+                <i class="fas fa-trophy"></i>
+            </div>
+            <h4>Game Over!</h4>
+            <p>Final Score: <strong>${gameScore}</strong> points</p>
+            <p>Level Reached: <strong>${gameLevel}</strong></p>
+            <div class="game-tips">
+                <li><i class="fas fa-star"></i> Great job! Click Start to play again</li>
+            </div>
+        </div>
+    `;
+    
+    document.getElementById('start-game-btn').style.display = 'inline-flex';
+    document.getElementById('pause-game-btn').style.display = 'none';
+}
+
+// Add explosion animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes explode {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(3);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize unit converter on page load
+document.addEventListener('DOMContentLoaded', function() {
+    updateUnits();
+});
+
     </script>
 </body>
 </html>
