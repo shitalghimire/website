@@ -169,4 +169,649 @@
                                 <div class="weather-details">
                                     <div class="detail-item">
                                         <i class="fas fa-tint"></i>
-                                        <span
+                                        <span>Humidity</span>
+                                        <span id="humidity">65%</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-wind"></i>
+                                        <span>Wind</span>
+                                        <span id="wind">12 km/h</span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fas fa-thermometer-half"></i>
+                                        <span>Feels Like</span>
+                                        <span id="feels-like">28°</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unit Converter Tool -->
+                <div class="tool-card converter-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Unit Converter</h3>
+                        <p>Convert between different units for engineering calculations</p>
+                        <div class="converter-widget">
+                            <div class="conversion-type">
+                                <select id="unit-type" onchange="updateUnits()">
+                                    <option value="length">Length</option>
+                                    <option value="area">Area</option>
+                                    <option value="weight">Weight</option>
+                                    <option value="temperature">Temperature</option>
+                                </select>
+                            </div>
+                            <div class="conversion-inputs">
+                                <div class="input-group">
+                                    <input type="number" id="from-value" placeholder="Enter value" oninput="convertUnits()">
+                                    <select id="from-unit">
+                                        <option value="m">Meters</option>
+                                        <option value="cm">Centimeters</option>
+                                        <option value="ft">Feet</option>
+                                        <option value="in">Inches</option>
+                                    </select>
+                                </div>
+                                <div class="converter-icon">
+                                    <i class="fas fa-arrows-alt-h"></i>
+                                </div>
+                                <div class="input-group">
+                                    <input type="number" id="to-value" placeholder="Result" readonly>
+                                    <select id="to-unit">
+                                        <option value="cm">Centimeters</option>
+                                        <option value="m">Meters</option>
+                                        <option value="in">Inches</option>
+                                        <option value="ft">Feet</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="games">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-gamepad"></i> Interactive Games</h2>
+                <div class="section-line"></div>
+                <p>Challenge yourself with fun and engaging games</p>
+            </div>
+            
+            <!-- Tap Target Game -->
+            <div class="game-card tap-game-card">
+                <div class="game-header">
+                    <div class="game-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>Tap the Target Challenge</h3>
+                        <p>Test your reflexes by tapping colorful targets as fast as you can!</p>
+                    </div>
+                </div>
+                
+                <div class="game-stats">
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="game-score">0</div>
+                            <div class="stat-label">Score</div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="game-time">30</div>
+                            <div class="stat-label">Time</div>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-icon">
+                            <i class="fas fa-level-up-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="game-level">1</div>
+                            <div class="stat-label">Level</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-area-container">
+                    <div id="game-area" class="game-area">
+                        <div class="game-instructions">
+                            <div class="instruction-icon">
+                                <i class="fas fa-hand-pointer"></i>
+                            </div>
+                            <h4>Ready to Play?</h4>
+                            <p>Tap the colorful targets as quickly as possible!</p>
+                            <p>Each level gets faster and more challenging</p>
+                            <ul class="game-tips">
+                                <li><i class="fas fa-star"></i> Red targets = 10 points</li>
+                                <li><i class="fas fa-star"></i> Blue targets = 15 points</li>
+                                <li><i class="fas fa-star"></i> Golden targets = 25 points</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="game-controls">
+                        <button id="start-game-btn" onclick="startTapGame()" class="game-btn start-btn">
+                            <i class="fas fa-play"></i>
+                            Start Game
+                        </button>
+                        <button id="pause-game-btn" onclick="pauseGame()" class="game-btn pause-btn" style="display:none;">
+                            <i class="fas fa-pause"></i>
+                            Pause
+                        </button>
+                        <button onclick="resetGame()" class="game-btn reset-btn">
+                            <i class="fas fa-redo"></i>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section id="chat" class="chat">
+        <div class="container">
+            <h2>Chat with Shital</h2>
+            <div id="chat-box">
+                <div class="message bot-message">Hello! I'm Shital. Feel free to ask me about civil engineering or anything else!</div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="chat-send" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEPSE Section -->
+    <section id="nepse" class="nepse">
+        <div class="container">
+            <h2>NEPSE - Nepal Stock Exchange</h2>
+            <div id="nepse-ticker" class="nepse-ticker">
+                <div class="ticker-content">
+                    📈 NEPSE INDEX: 2,847.32 (+2.15%) | BANKING: +1.8% | HYDROPOWER: +3.2% | INSURANCE: -0.5% | FINANCE: +2.7% 📊
+                </div>
+            </div>
+            <div class="nepse-info">
+                <div class="nepse-stats">
+                    <div class="stat-box">
+                        <h4>Market Cap</h4>
+                        <p>NPR 4.2 Trillion</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>Total Turnover</h4>
+                        <p>NPR 8.5 Billion</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>Total Shares</h4>
+                        <p>45.2 Million</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="calendar" class="calendar">
+        <div class="container">
+            <h2>Nepali Calendar</h2>
+            <div class="calendar-widget">
+                <iframe src="https://www.ashesh.com.np/nepali-calendar/widget.php?theme=blue&header_title=Nepali%20Calendar&font_size=12&width=100%25&height=400" 
+                        style="border:none; width:100%; height:400px; border-radius: 10px;">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p><a href="mailto:shitalghimire817@gmail.com">shitalghimire817@gmail.com</a></p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Location</h3>
+                        <p>Tandi, Chitwan, Nepal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Shital Ghimire. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Real-time clock
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            const dateString = now.toLocaleDateString();
+            document.getElementById('clock').innerHTML = `<i class="fas fa-clock"></i> ${timeString} | ${dateString}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Geolocation
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                document.getElementById('location').innerHTML = "<i class='fas fa-map-marker-alt'></i> Geolocation not supported";
+            }
+        }
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            document.getElementById('location').innerHTML = `<i class="fas fa-map-marker-alt"></i> Lat: ${lat.toFixed(2)}, Lon: ${lon.toFixed(2)}`;
+        }
+        getLocation();
+
+        // Calculator functions
+        function appendToCalc(value) {
+            document.getElementById('calc-display').value += value;
+        }
+
+        function clearCalc() {
+            document.getElementById('calc-display').value = '';
+        }
+
+        function deleteLast() {
+            let display = document.getElementById('calc-display');
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                let result = eval(document.getElementById('calc-display').value.replace('×', '*').replace('÷', '/').replace('−', '-'));
+                document.getElementById('calc-display').value = result;
+            } catch (error) {
+                document.getElementById('calc-display').value = 'Error';
+            }
+        }
+
+        // Unit Converter Functions
+        function updateUnits() {
+            const unitType = document.getElementById('unit-type').value;
+            const fromUnit = document.getElementById('from-unit');
+            const toUnit = document.getElementById('to-unit');
+            
+            let units = {};
+            
+            switch(unitType) {
+                case 'length':
+                    units = {m: 'Meters', cm: 'Centimeters', ft: 'Feet', in: 'Inches'};
+                    break;
+                case 'area':
+                    units = {m2: 'Square Meters', cm2: 'Square Centimeters', ft2: 'Square Feet'};
+                    break;
+                case 'weight':
+                    units = {kg: 'Kilograms', g: 'Grams', lb: 'Pounds', oz: 'Ounces'};
+                    break;
+                case 'temperature':
+                    units = {c: 'Celsius', f: 'Fahrenheit', k: 'Kelvin'};
+                    break;
+            }
+            
+            fromUnit.innerHTML = '';
+            toUnit.innerHTML = '';
+            
+            for (let unit in units) {
+                fromUnit.innerHTML += `<option value="${unit}">${units[unit]}</option>`;
+                toUnit.innerHTML += `<option value="${unit}">${units[unit]}</option>`;
+            }
+        }
+
+        function convertUnits() {
+            const fromValue = parseFloat(document.getElementById('from-value').value);
+            const fromUnit = document.getElementById('from-unit').value;
+            const toUnit = document.getElementById('to-unit').value;
+            const unitType = document.getElementById('unit-type').value;
+            
+            if (!fromValue) return;
+            
+            let result = 0;
+            
+            if (unitType === 'length') {
+                const meters = convertToMeters(fromValue, fromUnit);
+                result = convertFromMeters(meters, toUnit);
+            }
+            
+            document.getElementById('to-value').value = result.toFixed(4);
+        }
+
+        function convertToMeters(value, unit) {
+            switch(unit) {
+                case 'm': return value;
+                case 'cm': return value / 100;
+                case 'ft': return value * 0.3048;
+                case 'in': return value * 0.0254;
+                default: return value;
+            }
+        }
+
+        function convertFromMeters(value, unit) {
+            switch(unit) {
+                case 'm': return value;
+                case 'cm': return value * 100;
+                case 'ft': return value / 0.3048;
+                case 'in': return value / 0.0254;
+                default: return value;
+            }
+        }
+
+        // Enhanced Weather Function
+        function getWeather() {
+            const city = document.getElementById('city-input').value;
+            
+            const weatherConditions = [
+                { icon: 'fas fa-sun', condition: 'Sunny', temp: 28 },
+                { icon: 'fas fa-cloud-sun', condition: 'Partly Cloudy', temp: 24 },
+                { icon: 'fas fa-cloud', condition: 'Cloudy', temp: 20 },
+                { icon: 'fas fa-cloud-rain', condition: 'Rainy', temp: 18 },
+                { icon: 'fas fa-snowflake', condition: 'Snowy', temp: 2 }
+            ];
+            
+            const randomWeather = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+            const humidity = Math.floor(Math.random() * 40) + 40;
+            const windSpeed = Math.floor(Math.random() * 20) + 5;
+            const feelsLike = randomWeather.temp + Math.floor(Math.random() * 6) - 3;
+            
+            document.getElementById('weather-icon').className = randomWeather.icon;
+            document.getElementById('temperature').textContent = randomWeather.temp + '°';
+            document.getElementById('condition').textContent = randomWeather.condition;
+            document.getElementById('location').textContent = city + ', Nepal';
+            document.getElementById('humidity').textContent = humidity + '%';
+            document.getElementById('wind').textContent = windSpeed + ' km/h';
+            document.getElementById('feels-like').textContent = feelsLike + '°';
+        }
+
+        // Enhanced Tap Target Game
+        let gameRunning = false;
+        let gameScore = 0;
+        let gameTime = 30;
+        let gameLevel = 1;
+        let gameInterval;
+        let targets = [];
+
+        function startTapGame() {
+            if (gameRunning) return;
+            
+            gameRunning = true;
+            gameScore = 0;
+            gameTime = 30;
+            gameLevel = 1;
+            
+            document.getElementById('game-score').textContent = gameScore;
+            document.getElementById('game-time').textContent = gameTime;
+            document.getElementById('game-level').textContent = gameLevel;
+            
+            document.getElementById('start-game-btn').style.display = 'none';
+            document.getElementById('pause-game-btn').style.display = 'inline-flex';
+            
+            const gameArea = document.getElementById('game-area');
+            gameArea.innerHTML = '';
+            
+            gameInterval = setInterval(() => {
+                gameTime--;
+                document.getElementById('game-time').textContent = gameTime;
+                
+                if (gameTime <= 0) {
+                    endTapGame();
+                }
+                
+                if (gameScore > 0 && gameScore % 15 === 0) {
+                    gameLevel = Math.floor(gameScore / 15) + 1;
+                    document.getElementById('game-level').textContent = gameLevel;
+                }
+            }, 1000);
+            
+            createGameTarget();
+        }
+
+        function createGameTarget() {
+            if (!gameRunning) return;
+            
+            const gameArea = document.getElementById('game-area');
+            const target = document.createElement('div');
+            target.className = 'game-target';
+            
+            const types = ['red', 'blue', 'golden'];
+            const weights = [0.6, 0.3, 0.1];
+            const randomType = getRandomWeighted(types, weights);
+            target.classList.add(randomType);
+            
+            const maxX = gameArea.offsetWidth - 60;
+            const maxY = gameArea.offsetHeight - 60;
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+            
+            target.style.left = x + 'px';
+            target.style.top = y + 'px';
+            
+            target.addEventListener('click', () => {
+                let points = 10;
+                if (randomType === 'blue') points = 15;
+                if (randomType === 'golden') points = 25;
+                
+                gameScore += points;
+                document.getElementById('game-score').textContent = gameScore;
+                
+                gameArea.removeChild(target);
+                targets = targets.filter(t => t !== target);
+                
+                createExplosion(x + 30, y + 30, randomType);
+                
+                setTimeout(createGameTarget, Math.max(300 - (gameLevel * 30), 100));
+            });
+            
+            gameArea.appendChild(target);
+            targets.push(target);
+            
+            setTimeout(() => {
+                if (gameArea.contains(target)) {
+                    gameArea.removeChild(target);
+                    targets = targets.filter(t => t !== target);
+                    setTimeout(createGameTarget, Math.max(500 - (gameLevel * 50), 150));
+                }
+            }, Math.max(2000 - (gameLevel * 100), 800));
+        }
+
+        function getRandomWeighted(items, weights) {
+            const random = Math.random();
+            let weightSum = 0;
+            
+            for (let i = 0; i < items.length; i++) {
+                weightSum += weights[i];
+                if (random <= weightSum) {
+                    return items[i];
+                }
+            }
+        }
+
+        function createExplosion(x, y, type) {
+            const gameArea = document.getElementById('game-area');
+            const explosion = document.createElement('div');
+            explosion.style.position = 'absolute';
+            explosion.style.left = x + 'px';
+            explosion.style.top = y + 'px';
+            explosion.style.width = '20px';
+            explosion.style.height = '20px';
+            explosion.style.borderRadius = '50%';
+            explosion.style.pointerEvents = 'none';
+            explosion.style.animation = 'explode 0.5s ease-out forwards';
+            
+            const colors = {
+                red: '#e74c3c',
+                blue: '#3498db',
+                golden: '#f1c40f'
+            };
+            
+            explosion.style.background = colors[type] || '#fff';
+            gameArea.appendChild(explosion);
+            
+            setTimeout(() => {
+                if (gameArea.contains(explosion)) {
+                    gameArea.removeChild(explosion);
+                }
+            }, 500);
+        }
+
+        function pauseGame() {
+            if (gameRunning) {
+                gameRunning = false;
+                clearInterval(gameInterval);
+                document.getElementById('pause-game-btn').innerHTML = '<i class="fas fa-play"></i> Resume';
+                document.getElementById('pause-game-btn').onclick = resumeTapGame;
+            }
+        }
+
+        function resumeTapGame() {
+            gameRunning = true;
+            gameInterval = setInterval(() => {
+                gameTime--;
+                document.getElementById('game-time').textContent = gameTime;
+                if (gameTime <= 0) {
+                    endTapGame();
+                }
+            }, 1000);
+            document.getElementById('pause-game-btn').innerHTML = '<i class="fas fa-pause"></i> Pause';
+            document.getElementById('pause-game-btn').onclick = pauseGame;
+        }
+
+        function resetGame() {
+            endTapGame();
+            gameScore = 0;
+            gameTime = 30;
+            gameLevel = 1;
+            document.getElementById('game-score').textContent = gameScore;
+            document.getElementById('game-time').textContent = gameTime;
+            document.getElementById('game-level').textContent = gameLevel;
+        }
+
+        function endTapGame() {
+            gameRunning = false;
+            clearInterval(gameInterval);
+            
+            targets.forEach(target => {
+                if (target.parentNode) {
+                    target.parentNode.removeChild(target);
+                }
+            });
+            targets = [];
+            
+            const gameArea = document.getElementById('game-area');
+            gameArea.innerHTML = `
+                <div class="game-instructions">
+                    <div class="instruction-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h4>Game Over!</h4>
+                    <p>Final Score: <strong>${gameScore}</strong> points</p>
+                    <p>Level Reached: <strong>${gameLevel}</strong></p>
+                    <div class="game-tips">
+                        <li><i class="fas fa-star"></i> Great job! Click Start to play again</li>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('start-game-btn').style.display = 'inline-flex';
+            document.getElementById('pause-game-btn').style.display = 'none';
+        }
+
+        // Chat functionality
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const chatBox = document.getElementById('chat-box');
+            const message = input.value.trim();
+            
+            if (message) {
+                chatBox.innerHTML += `<div class="message user-message">${message}</div>`;
+                input.value = '';
+                
+                setTimeout(() => {
+                    let response = "Thanks for your message! As a civil engineering student, I'm always happy to discuss infrastructure, sustainable design, or any technical questions you might have.";
+                    
+                    if (message.toLowerCase().includes('engineering')) {
+                        response = "Great question about engineering! I'm passionate about civil engineering and sustainable infrastructure development.";
+                    } else if (message.toLowerCase().includes('project')) {
+                        response = "I'd love to share my projects with you! I've worked on various civil engineering designs and AutoCAD drawings.";
+                    }
+                    
+                    chatBox.innerHTML += `<div class="message bot-message">${response}</div>`;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 1000);
+                
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+
+        // Enter key for chat
+        document.getElementById('chat-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // NEPSE ticker animation
+        function animateNepseTicker() {
+            const ticker = document.querySelector('.ticker-content');
+            let position = 100;
+            
+            setInterval(() => {
+                position -= 0.5;
+                if (position < -100) position = 100;
+                ticker.style.transform = `translateX(${position}%)`;
+            }, 50);
+        }
+        animateNepseTicker();
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUnits();
+            getWeather();
+        });
+
+        // Add explosion animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes explode {
+                0% {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(3);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
