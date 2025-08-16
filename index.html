@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shital Ghimire - Portfolio</title>
+    <title>Shital Ghimire - Civil Engineering Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -22,6 +22,7 @@
                 <li><a href="#games">Games</a></li>
                 <li><a href="#chat">Chat</a></li>
                 <li><a href="#nepse">NEPSE</a></li>
+                <li><a href="#calendar">Calendar</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -56,7 +57,9 @@
     <section id="about" class="about">
         <div class="container">
             <h2>About Me</h2>
-            <p>Hello! I'm a fourth-year civil engineering student from Tandi, Chitwan, currently pursuing my degree at Kathmandu University. My passion for civil engineering started with a fascination for the structures and infrastructure that shape our world. I believe that good engineering is about more than just building things—it's about creating sustainable and functional spaces that serve communities. I'm excited to share my journey, projects, and insights with you here.</p>
+            <div class="about-content">
+                <p>Hello! I'm a fourth-year civil engineering student from Tandi, Chitwan, currently pursuing my degree at Kathmandu University. My passion for civil engineering started with a fascination for the structures and infrastructure that shape our world. I believe that good engineering is about more than just building things—it's about creating sustainable and functional spaces that serve communities. I'm excited to share my journey, projects, and insights with you here.</p>
+            </div>
         </div>
     </section>
 
@@ -79,869 +82,91 @@
         </div>
     </section>
 
-   <!-- Tools Section -->
-<section id="tools" class="tools">
-    <div class="container">
-        <div class="section-header">
-            <h2><i class="fas fa-tools"></i> Engineering Tools</h2>
-            <div class="section-line"></div>
-            <p>Professional tools for calculations and productivity</p>
-        </div>
-        <div class="tools-container">
-            <!-- Calculator Tool -->
-            <div class="tool-card calculator-card">
-                <div class="tool-icon">
-                    <i class="fas fa-calculator"></i>
-                </div>
-                <div class="tool-content">
-                    <h3>Smart Calculator</h3>
-                    <p>Advanced scientific calculator with memory functions</p>
-                    <div class="calculator-widget">
-                        <div class="calc-screen">
-                            <input type="text" id="calc-display" readonly placeholder="0" class="calc-display">
-                        </div>
-                        <div class="calc-keypad">
-                            <div class="calc-row">
-                                <button onclick="clearCalc()" class="calc-btn function">C</button>
-                                <button onclick="deleteLast()" class="calc-btn function">⌫</button>
-                                <button onclick="appendToCalc('/')" class="calc-btn operator">÷</button>
-                                <button onclick="appendToCalc('*')" class="calc-btn operator">×</button>
-                            </div>
-                            <div class="calc-row">
-                                <button onclick="appendToCalc('7')" class="calc-btn number">7</button>
-                                <button onclick="appendToCalc('8')" class="calc-btn number">8</button>
-                                <button onclick="appendToCalc('9')" class="calc-btn number">9</button>
-                                <button onclick="appendToCalc('-')" class="calc-btn operator">−</button>
-                            </div>
-                            <div class="calc-row">
-                                <button onclick="appendToCalc('4')" class="calc-btn number">4</button>
-                                <button onclick="appendToCalc('5')" class="calc-btn number">5</button>
-                                <button onclick="appendToCalc('6')" class="calc-btn number">6</button>
-                                <button onclick="appendToCalc('+')" class="calc-btn operator">+</button>
-                            </div>
-                            <div class="calc-row">
-                                <button onclick="appendToCalc('1')" class="calc-btn number">1</button>
-                                <button onclick="appendToCalc('2')" class="calc-btn number">2</button>
-                                <button onclick="appendToCalc('3')" class="calc-btn number">3</button>
-                                <button onclick="calculate()" class="calc-btn equals" rowspan="2">=</button>
-                            </div>
-                            <div class="calc-row">
-                                <button onclick="appendToCalc('0')" class="calc-btn number zero">0</button>
-                                <button onclick="appendToCalc('.')" class="calc-btn number">.</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Tools Section -->
+    <section id="tools" class="tools">
+        <div class="container">
+            <div class="section-header">
+                <h2><i class="fas fa-tools"></i> Engineering Tools</h2>
+                <div class="section-line"></div>
+                <p>Professional tools for calculations and productivity</p>
             </div>
-
-            <!-- Weather Tool -->
-            <div class="tool-card weather-card">
-                <div class="tool-icon">
-                    <i class="fas fa-cloud-sun"></i>
-                </div>
-                <div class="tool-content">
-                    <h3>Weather Forecast</h3>
-                    <p>Get current weather conditions for any city worldwide</p>
-                    <div class="weather-widget">
-                        <div class="weather-search">
-                            <div class="search-box">
-                                <i class="fas fa-search"></i>
-                                <input type="text" id="city-input" placeholder="Enter city name..." value="Kathmandu">
-                                <button onclick="getWeather()" class="search-btn">
-                                    <i class="fas fa-arrow-right"></i>
-                                </button>
+            <div class="tools-container">
+                <!-- Calculator Tool -->
+                <div class="tool-card calculator-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Smart Calculator</h3>
+                        <p>Advanced scientific calculator with memory functions</p>
+                        <div class="calculator-widget">
+                            <div class="calc-screen">
+                                <input type="text" id="calc-display" readonly placeholder="0" class="calc-display">
                             </div>
-                        </div>
-                        <div id="weather-display" class="weather-display">
-                            <div class="weather-main">
-                                <div class="weather-icon">
-                                    <i class="fas fa-sun" id="weather-icon"></i>
+                            <div class="calc-keypad">
+                                <div class="calc-row">
+                                    <button onclick="clearCalc()" class="calc-btn function">C</button>
+                                    <button onclick="deleteLast()" class="calc-btn function">⌫</button>
+                                    <button onclick="appendToCalc('/')" class="calc-btn operator">÷</button>
+                                    <button onclick="appendToCalc('*')" class="calc-btn operator">×</button>
                                 </div>
-                                <div class="weather-info">
-                                    <div class="temperature" id="temperature">25°</div>
-                                    <div class="condition" id="condition">Sunny</div>
-                                    <div class="location" id="location">Kathmandu, Nepal</div>
+                                <div class="calc-row">
+                                    <button onclick="appendToCalc('7')" class="calc-btn number">7</button>
+                                    <button onclick="appendToCalc('8')" class="calc-btn number">8</button>
+                                    <button onclick="appendToCalc('9')" class="calc-btn number">9</button>
+                                    <button onclick="appendToCalc('-')" class="calc-btn operator">−</button>
                                 </div>
-                            </div>
-                            <div class="weather-details">
-                                <div class="detail-item">
-                                    <i class="fas fa-tint"></i>
-                                    <span>Humidity</span>
-                                    <span id="humidity">65%</span>
+                                <div class="calc-row">
+                                    <button onclick="appendToCalc('4')" class="calc-btn number">4</button>
+                                    <button onclick="appendToCalc('5')" class="calc-btn number">5</button>
+                                    <button onclick="appendToCalc('6')" class="calc-btn number">6</button>
+                                    <button onclick="appendToCalc('+')" class="calc-btn operator">+</button>
                                 </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-wind"></i>
-                                    <span>Wind</span>
-                                    <span id="wind">12 km/h</span>
+                                <div class="calc-row">
+                                    <button onclick="appendToCalc('1')" class="calc-btn number">1</button>
+                                    <button onclick="appendToCalc('2')" class="calc-btn number">2</button>
+                                    <button onclick="appendToCalc('3')" class="calc-btn number">3</button>
+                                    <button onclick="calculate()" class="calc-btn equals" rowspan="2">=</button>
                                 </div>
-                                <div class="detail-item">
-                                    <i class="fas fa-thermometer-half"></i>
-                                    <span>Feels Like</span>
-                                    <span id="feels-like">28°</span>
+                                <div class="calc-row">
+                                    <button onclick="appendToCalc('0')" class="calc-btn number zero">0</button>
+                                    <button onclick="appendToCalc('.')" class="calc-btn number">.</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Unit Converter Tool -->
-            <div class="tool-card converter-card">
-                <div class="tool-icon">
-                    <i class="fas fa-exchange-alt"></i>
-                </div>
-                <div class="tool-content">
-                    <h3>Unit Converter</h3>
-                    <p>Convert between different units for engineering calculations</p>
-                    <div class="converter-widget">
-                        <div class="conversion-type">
-                            <select id="unit-type" onchange="updateUnits()">
-                                <option value="length">Length</option>
-                                <option value="area">Area</option>
-                                <option value="weight">Weight</option>
-                                <option value="temperature">Temperature</option>
-                            </select>
-                        </div>
-                        <div class="conversion-inputs">
-                            <div class="input-group">
-                                <input type="number" id="from-value" placeholder="Enter value" oninput="convertUnits()">
-                                <select id="from-unit">
-                                    <option value="m">Meters</option>
-                                    <option value="cm">Centimeters</option>
-                                    <option value="ft">Feet</option>
-                                    <option value="in">Inches</option>
-                                </select>
+                <!-- Weather Tool -->
+                <div class="tool-card weather-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-cloud-sun"></i>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Weather Forecast</h3>
+                        <p>Get current weather conditions for any city worldwide</p>
+                        <div class="weather-widget">
+                            <div class="weather-search">
+                                <div class="search-box">
+                                    <i class="fas fa-search"></i>
+                                    <input type="text" id="city-input" placeholder="Enter city name..." value="Kathmandu">
+                                    <button onclick="getWeather()" class="search-btn">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <div class="converter-icon">
-                                <i class="fas fa-arrows-alt-h"></i>
-                            </div>
-                            <div class="input-group">
-                                <input type="number" id="to-value" placeholder="Result" readonly>
-                                <select id="to-unit">
-                                    <option value="cm">Centimeters</option>
-                                    <option value="m">Meters</option>
-                                    <option value="in">Inches</option>
-                                    <option value="ft">Feet</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Games Section -->
-<section id="games" class="games">
-    <div class="container">
-        <div class="section-header">
-            <h2><i class="fas fa-gamepad"></i> Interactive Games</h2>
-            <div class="section-line"></div>
-            <p>Challenge yourself with fun and engaging games</p>
-        </div>
-        
-        <!-- Tap Target Game -->
-        <div class="game-card tap-game-card">
-            <div class="game-header">
-                <div class="game-icon">
-                    <i class="fas fa-bullseye"></i>
-                </div>
-                <div class="game-info">
-                    <h3>Tap the Target Challenge</h3>
-                    <p>Test your reflexes by tapping colorful targets as fast as you can!</p>
-                </div>
-            </div>
-            
-            <div class="game-stats">
-                <div class="stat-box">
-                    <div class="stat-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="stat-info">
-                        <div class="stat-value" id="game-score">0</div>
-                        <div class="stat-label">Score</div>
-                    </div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-icon">
-                        <i class="fas fa-clock"></i>
-                    </div>
-                    <div class="stat-info">
-                        <div class="stat-value" id="game-time">30</div>
-                        <div class="stat-label">Time</div>
-                    </div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-icon">
-                        <i class="fas fa-level-up-alt"></i>
-                    </div>
-                    <div class="stat-info">
-                        <div class="stat-value" id="game-level">1</div>
-                        <div class="stat-label">Level</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="game-area-container">
-                <div id="game-area" class="game-area">
-                    <div class="game-instructions">
-                        <div class="instruction-icon">
-                            <i class="fas fa-hand-pointer"></i>
-                        </div>
-                        <h4>Ready to Play?</h4>
-                        <p>Tap the colorful targets as quickly as possible!</p>
-                        <p>Each level gets faster and more challenging</p>
-                        <ul class="game-tips">
-                            <li><i class="fas fa-star"></i> Red targets = 10 points</li>
-                            <li><i class="fas fa-star"></i> Blue targets = 15 points</li>
-                            <li><i class="fas fa-star"></i> Golden targets = 25 points</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="game-controls">
-                    <button id="start-game-btn" onclick="startTapGame()" class="game-btn start-btn">
-                        <i class="fas fa-play"></i>
-                        Start Game
-                    </button>
-                    <button id="pause-game-btn" onclick="pauseGame()" class="game-btn pause-btn" style="display:none;">
-                        <i class="fas fa-pause"></i>
-                        Pause
-                    </button>
-                    <button onclick="resetGame()" class="game-btn reset-btn">
-                        <i class="fas fa-redo"></i>
-                        Reset
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-    <!-- Games Section -->
-    <section id="games" class="games">
-        <div class="container">
-            <h2>Games</h2>
-            <div class="games-grid">
-                <div class="game-item">
-                    <h3>Tic Tac Toe</h3>
-                    <div class="tic-tac-toe">
-                        <div class="game-board" id="tic-board">
-                            <div class="cell" onclick="makeMove(0)"></div>
-                            <div class="cell" onclick="makeMove(1)"></div>
-                            <div class="cell" onclick="makeMove(2)"></div>
-                            <div class="cell" onclick="makeMove(3)"></div>
-                            <div class="cell" onclick="makeMove(4)"></div>
-                            <div class="cell" onclick="makeMove(5)"></div>
-                            <div class="cell" onclick="makeMove(6)"></div>
-                            <div class="cell" onclick="makeMove(7)"></div>
-                            <div class="cell" onclick="makeMove(8)"></div>
-                        </div>
-                        <button onclick="resetTicTacToe()">Reset Game</button>
-                    </div>
-                </div>
-                <div class="game-item">
-                    <h3>Number Guessing Game</h3>
-                    <div class="guess-game">
-                        <p>Guess a number between 1 and 100!</p>
-                        <input type="number" id="guess-input" min="1" max="100">
-                        <button onclick="makeGuess()">Submit Guess</button>
-                        <div id="guess-result"></div>
-                        <button onclick="resetGuessGame()">New Game</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chat Section -->
-    <section id="chat" class="chat">
-        <div class="container">
-            <h2>Chat with Shital</h2>
-            <div id="chat-box">
-                <div class="message bot-message">Hello! I'm Shital. Feel free to ask me about civil engineering or anything else!</div>
-            </div>
-            <div class="chat-input-container">
-                <input type="text" id="chat-input" placeholder="Type your message...">
-                <button id="chat-send" onclick="sendMessage()">Send</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- NEPSE Section -->
-    <section id="nepse" class="nepse">
-        <div class="container">
-            <h2>NEPSE - Nepal Stock Exchange</h2>
-            <div id="nepse-ticker" class="nepse-ticker">
-                <div class="ticker-content">
-                    📈 NEPSE INDEX: 2,847.32 (+2.15%) | BANKING: +1.8% | HYDROPOWER: +3.2% | INSURANCE: -0.5% | FINANCE: +2.7% 📊
-                </div>
-            </div>
-            <div class="nepse-info">
-                <div class="nepse-stats">
-                    <div class="stat-box">
-                        <h4>Market Cap</h4>
-                        <p>NPR 4.2 Trillion</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>Total Turnover</h4>
-                        <p>NPR 8.5 Billion</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>Total Shares</h4>
-                        <p>45.2 Million</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h3>Email</h3>
-                        <p><a href="mailto:shitalghimire817@gmail.com">shitalghimire817@gmail.com</a></p>
-                    </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h3>Location</h3>
-                        <p>Tandi, Chitwan, Nepal</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Shital Ghimire. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Real-time clock
-        function updateClock() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            const dateString = now.toLocaleDateString();
-            document.getElementById('clock').innerHTML = `<i class="fas fa-clock"></i> ${timeString} | ${dateString}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // Geolocation
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                document.getElementById('location').innerHTML = "<i class='fas fa-map-marker-alt'></i> Geolocation not supported";
-            }
-        }
-
-        function showPosition(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            document.getElementById('location').innerHTML = `<i class="fas fa-map-marker-alt"></i> Lat: ${lat.toFixed(2)}, Lon: ${lon.toFixed(2)}`;
-        }
-        getLocation();
-
-        // Calculator functions
-        function appendToCalc(value) {
-            document.getElementById('calc-display').value += value;
-        }
-
-        function clearCalc() {
-            document.getElementById('calc-display').value = '';
-        }
-
-        function deleteLast() {
-            let display = document.getElementById('calc-display');
-            display.value = display.value.slice(0, -1);
-        }
-
-        function calculate() {
-            try {
-                let result = eval(document.getElementById('calc-display').value);
-                document.getElementById('calc-display').value = result;
-            } catch (error) {
-                document.getElementById('calc-display').value = 'Error';
-            }
-        }
-
-        // Weather function
-        async function getWeather() {
-            const city = document.getElementById('city-input').value;
-            const resultDiv = document.getElementById('weather-result');
-            
-            if (!city) {
-                resultDiv.innerHTML = 'Please enter a city name';
-                return;
-            }
-            
-            // Simulated weather data (replace with real API)
-            const weatherData = {
-                temperature: Math.floor(Math.random() * 30) + 10,
-                condition: ['Sunny', 'Cloudy', 'Rainy', 'Snowy'][Math.floor(Math.random() * 4)],
-                humidity: Math.floor(Math.random() * 50) + 30
-            };
-            
-            resultDiv.innerHTML = `
-                <h4>Weather in ${city}</h4>
-                <p>Temperature: ${weatherData.temperature}°C</p>
-                <p>Condition: ${weatherData.condition}</p>
-                <p>Humidity: ${weatherData.humidity}%</p>
-            `;
-        }
-
-        // Tic Tac Toe game
-        let ticBoard = ['', '', '', '', '', '', '', '', ''];
-        let currentPlayer = 'X';
-        let gameActive = true;
-
-        function makeMove(index) {
-            if (ticBoard[index] === '' && gameActive) {
-                ticBoard[index] = currentPlayer;
-                document.getElementsByClassName('cell')[index].innerText = currentPlayer;
-                
-                if (checkWinner()) {
-                    setTimeout(() => alert(`Player ${currentPlayer} wins!`), 100);
-                    gameActive = false;
-                    return;
-                }
-                
-                if (ticBoard.every(cell => cell !== '')) {
-                    setTimeout(() => alert('It\'s a tie!'), 100);
-                    gameActive = false;
-                    return;
-                }
-                
-                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            }
-        }
-
-        function checkWinner() {
-            const winPatterns = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8],
-                [0, 3, 6], [1, 4, 7], [2, 5, 8],
-                [0, 4, 8], [2, 4, 6]
-            ];
-            
-            return winPatterns.some(pattern => {
-                return pattern.every(index => ticBoard[index] === currentPlayer);
-            });
-        }
-
-        function resetTicTacToe() {
-            ticBoard = ['', '', '', '', '', '', '', '', ''];
-            currentPlayer = 'X';
-            gameActive = true;
-            document.querySelectorAll('.cell').forEach(cell => cell.innerText = '');
-        }
-
-        // Number guessing game
-        let randomNumber = Math.floor(Math.random() * 100) + 1;
-        let guessCount = 0;
-
-        function makeGuess() {
-            const guess = parseInt(document.getElementById('guess-input').value);
-            const resultDiv = document.getElementById('guess-result');
-            guessCount++;
-            
-            if (guess === randomNumber) {
-                resultDiv.innerHTML = `🎉 Congratulations! You guessed it in ${guessCount} tries!`;
-            } else if (guess < randomNumber) {
-                resultDiv.innerHTML = `📈 Too low! Try a higher number. (Attempt ${guessCount})`;
-            } else {
-                resultDiv.innerHTML = `📉 Too high! Try a lower number. (Attempt ${guessCount})`;
-            }
-        }
-
-        function resetGuessGame() {
-            randomNumber = Math.floor(Math.random() * 100) + 1;
-            guessCount = 0;
-            document.getElementById('guess-input').value = '';
-            document.getElementById('guess-result').innerHTML = '';
-        }
-
-        // Chat functionality
-        function sendMessage() {
-            const input = document.getElementById('chat-input');
-            const chatBox = document.getElementById('chat-box');
-            const message = input.value.trim();
-            
-            if (message) {
-                chatBox.innerHTML += `<div class="message user-message">${message}</div>`;
-                input.value = '';
-                
-                // Simple auto-responses
-                setTimeout(() => {
-                    let response = "Thanks for your message! As a civil engineering student, I'm always happy to discuss infrastructure, sustainable design, or any technical questions you might have.";
-                    
-                    if (message.toLowerCase().includes('engineering')) {
-                        response = "Great question about engineering! I'm passionate about civil engineering and sustainable infrastructure development.";
-                    } else if (message.toLowerCase().includes('project')) {
-                        response = "I'd love to share my projects with you! I've worked on various civil engineering designs and AutoCAD drawings.";
-                    }
-                    
-                    chatBox.innerHTML += `<div class="message bot-message">${response}</div>`;
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                }, 1000);
-                
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }
-        }
-
-        // Enter key for chat
-        document.getElementById('chat-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        // NEPSE ticker animation
-        function animateNepseTicker() {
-            const ticker = document.querySelector('.ticker-content');
-            let position = 100;
-            
-            setInterval(() => {
-                position -= 0.5;
-                if (position < -100) position = 100;
-                ticker.style.transform = `translateX(${position}%)`;
-            }, 50);
-        }
-        animateNepseTicker();
-        // Unit Converter Functions
-function updateUnits() {
-    const unitType = document.getElementById('unit-type').value;
-    const fromUnit = document.getElementById('from-unit');
-    const toUnit = document.getElementById('to-unit');
-    
-    let units = {};
-    
-    switch(unitType) {
-        case 'length':
-            units = {m: 'Meters', cm: 'Centimeters', ft: 'Feet', in: 'Inches'};
-            break;
-        case 'area':
-            units = {m2: 'Square Meters', cm2: 'Square Centimeters', ft2: 'Square Feet'};
-            break;
-        case 'weight':
-            units = {kg: 'Kilograms', g: 'Grams', lb: 'Pounds', oz: 'Ounces'};
-            break;
-        case 'temperature':
-            units = {c: 'Celsius', f: 'Fahrenheit', k: 'Kelvin'};
-            break;
-    }
-    
-    fromUnit.innerHTML = '';
-    toUnit.innerHTML = '';
-    
-    for (let unit in units) {
-        fromUnit.innerHTML += `<option value="${unit}">${units[unit]}</option>`;
-        toUnit.innerHTML += `<option value="${unit}">${units[unit]}</option>`;
-    }
-}
-
-function convertUnits() {
-    const fromValue = parseFloat(document.getElementById('from-value').value);
-    const fromUnit = document.getElementById('from-unit').value;
-    const toUnit = document.getElementById('to-unit').value;
-    const unitType = document.getElementById('unit-type').value;
-    
-    if (!fromValue) return;
-    
-    let result = 0;
-    
-    // Simple conversion logic (add more conversions as needed)
-    if (unitType === 'length') {
-        const meters = convertToMeters(fromValue, fromUnit);
-        result = convertFromMeters(meters, toUnit);
-    }
-    
-    document.getElementById('to-value').value = result.toFixed(4);
-}
-
-function convertToMeters(value, unit) {
-    switch(unit) {
-        case 'm': return value;
-        case 'cm': return value / 100;
-        case 'ft': return value * 0.3048;
-        case 'in': return value * 0.0254;
-        default: return value;
-    }
-}
-
-function convertFromMeters(value, unit) {
-    switch(unit) {
-        case 'm': return value;
-        case 'cm': return value * 100;
-        case 'ft': return value / 0.3048;
-        case 'in': return value / 0.0254;
-        default: return value;
-    }
-}
-
-// Enhanced Weather Function
-function getWeather() {
-    const city = document.getElementById('city-input').value;
-    
-    // Simulate different weather conditions
-    const weatherConditions = [
-        { icon: 'fas fa-sun', condition: 'Sunny', temp: 28 },
-        { icon: 'fas fa-cloud-sun', condition: 'Partly Cloudy', temp: 24 },
-        { icon: 'fas fa-cloud', condition: 'Cloudy', temp: 20 },
-        { icon: 'fas fa-cloud-rain', condition: 'Rainy', temp: 18 },
-        { icon: 'fas fa-snowflake', condition: 'Snowy', temp: 2 }
-    ];
-    
-    const randomWeather = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
-    const humidity = Math.floor(Math.random() * 40) + 40;
-    const windSpeed = Math.floor(Math.random() * 20) + 5;
-    const feelsLike = randomWeather.temp + Math.floor(Math.random() * 6) - 3;
-    
-    document.getElementById('weather-icon').className = randomWeather.icon;
-    document.getElementById('temperature').textContent = randomWeather.temp + '°';
-    document.getElementById('condition').textContent = randomWeather.condition;
-    document.getElementById('location').textContent = city + ', Nepal';
-    document.getElementById('humidity').textContent = humidity + '%';
-    document.getElementById('wind').textContent = windSpeed + ' km/h';
-    document.getElementById('feels-like').textContent = feelsLike + '°';
-}
-
-// Enhanced Tap Target Game
-let gameRunning = false;
-let gameScore = 0;
-let gameTime = 30;
-let gameLevel = 1;
-let gameInterval;
-let targets = [];
-
-function startTapGame() {
-    if (gameRunning) return;
-    
-    gameRunning = true;
-    gameScore = 0;
-    gameTime = 30;
-    gameLevel = 1;
-    
-    document.getElementById('game-score').textContent = gameScore;
-    document.getElementById('game-time').textContent = gameTime;
-    document.getElementById('game-level').textContent = gameLevel;
-    
-    document.getElementById('start-game-btn').style.display = 'none';
-    document.getElementById('pause-game-btn').style.display = 'inline-flex';
-    
-    const gameArea = document.getElementById('game-area');
-    gameArea.innerHTML = '';
-    
-    // Start game timer
-    gameInterval = setInterval(() => {
-        gameTime--;
-        document.getElementById('game-time').textContent = gameTime;
-        
-        if (gameTime <= 0) {
-            endTapGame();
-        }
-        
-        // Level up every 15 points
-        if (gameScore > 0 && gameScore % 15 === 0) {
-            gameLevel = Math.floor(gameScore / 15) + 1;
-            document.getElementById('game-level').textContent = gameLevel;
-        }
-    }, 1000);
-    
-    // Create first target
-    createGameTarget();
-}
-
-function createGameTarget() {
-    if (!gameRunning) return;
-    
-    const gameArea = document.getElementById('game-area');
-    const target = document.createElement('div');
-    target.className = 'game-target';
-    
-    // Random target type
-    const types = ['red', 'blue', 'golden'];
-    const weights = [0.6, 0.3, 0.1]; // 60% red, 30% blue, 10% golden
-    const randomType = getRandomWeighted(types, weights);
-    target.classList.add(randomType);
-    
-    // Random position
-    const maxX = gameArea.offsetWidth - 60;
-    const maxY = gameArea.offsetHeight - 60;
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-    
-    target.style.left = x + 'px';
-    target.style.top = y + 'px';
-    
-    // Click handler
-    target.addEventListener('click', () => {
-        let points = 10;
-        if (randomType === 'blue') points = 15;
-        if (randomType === 'golden') points = 25;
-        
-        gameScore += points;
-        document.getElementById('game-score').textContent = gameScore;
-        
-        gameArea.removeChild(target);
-        targets = targets.filter(t => t !== target);
-        
-        // Create explosion effect
-        createExplosion(x + 30, y + 30, randomType);
-        
-        // Create next target
-        setTimeout(createGameTarget, Math.max(300 - (gameLevel * 30), 100));
-    });
-    
-    gameArea.appendChild(target);
-    targets.push(target);
-    
-    // Auto-remove target after time
-    setTimeout(() => {
-        if (gameArea.contains(target)) {
-            gameArea.removeChild(target);
-            targets = targets.filter(t => t !== target);
-            setTimeout(createGameTarget, Math.max(500 - (gameLevel * 50), 150));
-        }
-    }, Math.max(2000 - (gameLevel * 100), 800));
-}
-
-function getRandomWeighted(items, weights) {
-    const random = Math.random();
-    let weightSum = 0;
-    
-    for (let i = 0; i < items.length; i++) {
-        weightSum += weights[i];
-        if (random <= weightSum) {
-            return items[i];
-        }
-    }
-}
-
-function createExplosion(x, y, type) {
-    const gameArea = document.getElementById('game-area');
-    const explosion = document.createElement('div');
-    explosion.style.position = 'absolute';
-    explosion.style.left = x + 'px';
-    explosion.style.top = y + 'px';
-    explosion.style.width = '20px';
-    explosion.style.height = '20px';
-    explosion.style.borderRadius = '50%';
-    explosion.style.pointerEvents = 'none';
-    explosion.style.animation = 'explode 0.5s ease-out forwards';
-    
-    const colors = {
-        red: '#e74c3c',
-        blue: '#3498db',
-        golden: '#f1c40f'
-    };
-    
-    explosion.style.background = colors[type] || '#fff';
-    gameArea.appendChild(explosion);
-    
-    setTimeout(() => {
-        if (gameArea.contains(explosion)) {
-            gameArea.removeChild(explosion);
-        }
-    }, 500);
-}
-
-function pauseGame() {
-    if (gameRunning) {
-        gameRunning = false;
-        clearInterval(gameInterval);
-        document.getElementById('pause-game-btn').innerHTML = '<i class="fas fa-play"></i> Resume';
-        document.getElementById('pause-game-btn').onclick = resumeTapGame;
-    }
-}
-
-function resumeTapGame() {
-    gameRunning = true;
-    gameInterval = setInterval(() => {
-        gameTime--;
-        document.getElementById('game-time').textContent = gameTime;
-        if (gameTime <= 0) {
-            endTapGame();
-        }
-    }, 1000);
-    document.getElementById('pause-game-btn').innerHTML = '<i class="fas fa-pause"></i> Pause';
-    document.getElementById('pause-game-btn').onclick = pauseGame;
-}
-
-function resetGame() {
-    endTapGame();
-    gameScore = 0;
-    gameTime = 30;
-    gameLevel = 1;
-    document.getElementById('game-score').textContent = gameScore;
-    document.getElementById('game-time').textContent = gameTime;
-    document.getElementById('game-level').textContent = gameLevel;
-}
-
-function endTapGame() {
-    gameRunning = false;
-    clearInterval(gameInterval);
-    
-    // Clear all targets
-    targets.forEach(target => {
-        if (target.parentNode) {
-            target.parentNode.removeChild(target);
-        }
-    });
-    targets = [];
-    
-    // Show game over
-    const gameArea = document.getElementById('game-area');
-    gameArea.innerHTML = `
-        <div class="game-instructions">
-            <div class="instruction-icon">
-                <i class="fas fa-trophy"></i>
-            </div>
-            <h4>Game Over!</h4>
-            <p>Final Score: <strong>${gameScore}</strong> points</p>
-            <p>Level Reached: <strong>${gameLevel}</strong></p>
-            <div class="game-tips">
-                <li><i class="fas fa-star"></i> Great job! Click Start to play again</li>
-            </div>
-        </div>
-    `;
-    
-    document.getElementById('start-game-btn').style.display = 'inline-flex';
-    document.getElementById('pause-game-btn').style.display = 'none';
-}
-
-// Add explosion animation
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes explode {
-        0% {
-            transform: scale(1);
-            opacity: 1;
-        }
-        100% {
-            transform: scale(3);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// Initialize unit converter on page load
-document.addEventListener('DOMContentLoaded', function() {
-    updateUnits();
-});
-
-    </script>
-</body>
-</html>
+                            <div id="weather-display" class="weather-display">
+                                <div class="weather-main">
+                                    <div class="weather-icon">
+                                        <i class="fas fa-sun" id="weather-icon"></i>
+                                    </div>
+                                    <div class="weather-info">
+                                        <div class="temperature" id="temperature">25°</div>
+                                        <div class="condition" id="condition">Sunny</div>
+                                        <div class="location" id="location">Kathmandu, Nepal</div>
+                                    </div>
+                                </div>
+                                <div class="weather-details">
+                                    <div class="detail-item">
+                                        <i class="fas fa-tint"></i>
+                                        <span
