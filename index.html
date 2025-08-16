@@ -1,53 +1,80 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shital Ghimire - Portfolio</title>
+    <title>Shital Ghimire - Civil Engineering Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation Menu -->
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">Shital Ghimire</div>
+            <div class="nav-logo">
+                <i class="fas fa-hard-hat"></i>
+                <span>Shital Ghimire</span>
+            </div>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#tools">Tools</a></li>
                 <li><a href="#games">Games</a></li>
-                <li><a href="#chat">Chat</a></li>
-                <li><a href="#nepse">NEPSE</a></li>
+                <li><a href="#nepse">NEPSE Live</a></li>
+                <li><a href="#calendar">Calendar</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-bg-overlay"></div>
         <div class="hero-container">
             <div class="hero-content">
                 <div class="social-links">
-                    <a href="https://www.facebook.com/sital.ghimire.229969" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.youtube.com/@sehack" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.facebook.com/sital.ghimire.229969" target="_blank" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@sehack" target="_blank" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
                 </div>
                 <div class="hero-text">
-                    <h1>I am Shital Ghimire</h1>
-                    <p>Fourth-year civil engineering student passionate about building sustainable infrastructure.</p>
+                    <h1>I'm Shital Ghimire</h1>
+                    <p class="hero-subtitle">Civil Engineering Student</p>
+                    <p class="hero-description">Building sustainable infrastructure for tomorrow's world</p>
                     <div class="hero-buttons">
-                        <a href="#tools" class="btn-primary">Useful Tools</a>
-                        <a href="#chat" class="btn-secondary">Chat with Shital</a>
+                        <a href="#tools" class="btn-primary">
+                            <i class="fas fa-tools"></i>
+                            Engineering Tools
+                        </a>
+                        <a href="#games" class="btn-secondary">
+                            <i class="fas fa-gamepad"></i>
+                            Interactive Games
+                        </a>
                     </div>
-                    <div id="clock" class="clock"></div>
-                    <div id="location" class="location"></div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div id="live-time" class="stat-value">00:00:00</div>
+                            <div class="stat-label">Current Time</div>
+                        </div>
+                        <div class="stat">
+                            <div id="location-info" class="stat-value">Nepal</div>
+                            <div class="stat-label">Location</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="hero-image">
                 <img src="your-photo.jpg" alt="Shital Ghimire">
+                <div class="hero-image-bg"></div>
             </div>
         </div>
     </section>
@@ -55,25 +82,32 @@
     <!-- About Section -->
     <section id="about" class="about">
         <div class="container">
-            <h2>About Me</h2>
-            <p>Hello! I'm a fourth-year civil engineering student from Tandi, Chitwan, currently pursuing my degree at Kathmandu University. My passion for civil engineering started with a fascination for the structures and infrastructure that shape our world. I believe that good engineering is about more than just building things—it's about creating sustainable and functional spaces that serve communities. I'm excited to share my journey, projects, and insights with you here.</p>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2>My Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <i class="fas fa-drafting-compass"></i>
-                    <h3>AutoCAD</h3>
-                    <p>Professional engineering drafting and design.</p>
-                </div>
-                <div class="skill-item">
-                    <i class="fas fa-paint-brush"></i>
-                    <h3>Graphic Designing</h3>
-                    <p>Creative visual design and branding.</p>
+            <div class="section-header">
+                <h2>About Me</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm a fourth-year civil engineering student from Tandi, Chitwan, currently pursuing my degree at Kathmandu University. My passion for civil engineering started with a fascination for the structures and infrastructure that shape our world.</p>
+                    <p>I believe that good engineering is about more than just building things—it's about creating sustainable and functional spaces that serve communities. I'm excited to share my journey, projects, and insights with you here.</p>
+                    <div class="skills-list">
+                        <div class="skill-tag">
+                            <i class="fas fa-drafting-compass"></i>
+                            AutoCAD
+                        </div>
+                        <div class="skill-tag">
+                            <i class="fas fa-paint-brush"></i>
+                            Graphic Design
+                        </div>
+                        <div class="skill-tag">
+                            <i class="fas fa-calculator"></i>
+                            Structural Analysis
+                        </div>
+                        <div class="skill-tag">
+                            <i class="fas fa-building"></i>
+                            Construction Management
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,40 +116,72 @@
     <!-- Tools Section -->
     <section id="tools" class="tools">
         <div class="container">
-            <h2>Useful Tools</h2>
+            <div class="section-header">
+                <h2>Engineering Tools</h2>
+                <div class="section-line"></div>
+                <p>Professional calculators and utilities for engineering work</p>
+            </div>
             <div class="tools-grid">
-                <div class="tool-item">
-                    <h3><i class="fas fa-calculator"></i> Calculator</h3>
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <i class="fas fa-calculator"></i>
+                        <h3>Advanced Calculator</h3>
+                    </div>
                     <div class="calculator">
-                        <input type="text" id="calc-display" readonly>
+                        <div class="calc-display">
+                            <input type="text" id="calc-result" readonly placeholder="0">
+                        </div>
                         <div class="calc-buttons">
-                            <button onclick="clearCalc()">C</button>
-                            <button onclick="deleteLast()">⌫</button>
-                            <button onclick="appendToCalc('/')">/</button>
-                            <button onclick="appendToCalc('*')">×</button>
-                            <button onclick="appendToCalc('7')">7</button>
-                            <button onclick="appendToCalc('8')">8</button>
-                            <button onclick="appendToCalc('9')">9</button>
-                            <button onclick="appendToCalc('-')">-</button>
-                            <button onclick="appendToCalc('4')">4</button>
-                            <button onclick="appendToCalc('5')">5</button>
-                            <button onclick="appendToCalc('6')">6</button>
-                            <button onclick="appendToCalc('+')">+</button>
-                            <button onclick="appendToCalc('1')">1</button>
-                            <button onclick="appendToCalc('2')">2</button>
-                            <button onclick="appendToCalc('3')">3</button>
-                            <button onclick="calculate()" rowspan="2">=</button>
-                            <button onclick="appendToCalc('0')" colspan="2">0</button>
-                            <button onclick="appendToCalc('.')">.</button>
+                            <button onclick="clearCalc()" class="btn-clear">C</button>
+                            <button onclick="deleteLast()" class="btn-delete">⌫</button>
+                            <button onclick="appendCalc('/')" class="btn-operator">÷</button>
+                            <button onclick="appendCalc('*')" class="btn-operator">×</button>
+                            
+                            <button onclick="appendCalc('7')" class="btn-number">7</button>
+                            <button onclick="appendCalc('8')" class="btn-number">8</button>
+                            <button onclick="appendCalc('9')" class="btn-number">9</button>
+                            <button onclick="appendCalc('-')" class="btn-operator">−</button>
+                            
+                            <button onclick="appendCalc('4')" class="btn-number">4</button>
+                            <button onclick="appendCalc('5')" class="btn-number">5</button>
+                            <button onclick="appendCalc('6')" class="btn-number">6</button>
+                            <button onclick="appendCalc('+')" class="btn-operator">+</button>
+                            
+                            <button onclick="appendCalc('1')" class="btn-number">1</button>
+                            <button onclick="appendCalc('2')" class="btn-number">2</button>
+                            <button onclick="appendCalc('3')" class="btn-number">3</button>
+                            <button onclick="calculate()" class="btn-equals" rowspan="2">=</button>
+                            
+                            <button onclick="appendCalc('0')" class="btn-number zero">0</button>
+                            <button onclick="appendCalc('.')" class="btn-number">.</button>
                         </div>
                     </div>
                 </div>
-                <div class="tool-item">
-                    <h3><i class="fas fa-cloud-sun"></i> Weather Forecast</h3>
-                    <div class="weather">
-                        <input type="text" id="city-input" placeholder="Enter city name...">
-                        <button onclick="getWeather()">Get Weather</button>
-                        <div id="weather-result"></div>
+
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <i class="fas fa-cloud-sun"></i>
+                        <h3>Weather Forecast</h3>
+                    </div>
+                    <div class="weather-tool">
+                        <div class="weather-input">
+                            <input type="text" id="city-input" placeholder="Enter city name..." value="Kathmandu">
+                            <button onclick="getWeather()" class="btn-weather">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                        <div id="weather-display" class="weather-display">
+                            <div class="weather-info">
+                                <div class="weather-main">
+                                    <span class="temperature">25°C</span>
+                                    <span class="condition">Sunny</span>
+                                </div>
+                                <div class="weather-details">
+                                    <span>Humidity: 65%</span>
+                                    <span>Wind: 12 km/h</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,49 +191,46 @@
     <!-- Games Section -->
     <section id="games" class="games">
         <div class="container">
-            <h2>Games</h2>
-            <div class="games-grid">
-                <div class="game-item">
-                    <h3>Tic Tac Toe</h3>
-                    <div class="tic-tac-toe">
-                        <div class="game-board" id="tic-board">
-                            <div class="cell" onclick="makeMove(0)"></div>
-                            <div class="cell" onclick="makeMove(1)"></div>
-                            <div class="cell" onclick="makeMove(2)"></div>
-                            <div class="cell" onclick="makeMove(3)"></div>
-                            <div class="cell" onclick="makeMove(4)"></div>
-                            <div class="cell" onclick="makeMove(5)"></div>
-                            <div class="cell" onclick="makeMove(6)"></div>
-                            <div class="cell" onclick="makeMove(7)"></div>
-                            <div class="cell" onclick="makeMove(8)"></div>
+            <div class="section-header">
+                <h2>Tap the Target Challenge</h2>
+                <div class="section-line"></div>
+                <p>Test your reflexes with this exciting target-tapping game</p>
+            </div>
+            <div class="game-container">
+                <div class="game-header">
+                    <div class="game-stats">
+                        <div class="stat-item">
+                            <span class="stat-value" id="game-score">0</span>
+                            <span class="stat-label">Score</span>
                         </div>
-                        <button onclick="resetTicTacToe()">Reset Game</button>
+                        <div class="stat-item">
+                            <span class="stat-value" id="game-time">30</span>
+                            <span class="stat-label">Time</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value" id="game-level">1</span>
+                            <span class="stat-label">Level</span>
+                        </div>
+                    </div>
+                    <div class="game-controls">
+                        <button id="start-game-btn" onclick="startTapGame()" class="btn-game-start">
+                            <i class="fas fa-play"></i>
+                            Start Game
+                        </button>
+                        <button id="pause-game-btn" onclick="pauseGame()" class="btn-game-pause" style="display:none;">
+                            <i class="fas fa-pause"></i>
+                            Pause
+                        </button>
                     </div>
                 </div>
-                <div class="game-item">
-                    <h3>Number Guessing Game</h3>
-                    <div class="guess-game">
-                        <p>Guess a number between 1 and 100!</p>
-                        <input type="number" id="guess-input" min="1" max="100">
-                        <button onclick="makeGuess()">Submit Guess</button>
-                        <div id="guess-result"></div>
-                        <button onclick="resetGuessGame()">New Game</button>
+                <div id="game-area" class="game-area">
+                    <div class="game-instructions">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>Ready to Start?</h3>
+                        <p>Tap the colorful targets as fast as you can!</p>
+                        <p>Each level gets faster and more challenging</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chat Section -->
-    <section id="chat" class="chat">
-        <div class="container">
-            <h2>Chat with Shital</h2>
-            <div id="chat-box">
-                <div class="message bot-message">Hello! I'm Shital. Feel free to ask me about civil engineering or anything else!</div>
-            </div>
-            <div class="chat-input-container">
-                <input type="text" id="chat-input" placeholder="Type your message...">
-                <button id="chat-send" onclick="sendMessage()">Send</button>
             </div>
         </div>
     </section>
@@ -175,27 +238,89 @@
     <!-- NEPSE Section -->
     <section id="nepse" class="nepse">
         <div class="container">
-            <h2>NEPSE - Nepal Stock Exchange</h2>
-            <div id="nepse-ticker" class="nepse-ticker">
-                <div class="ticker-content">
-                    📈 NEPSE INDEX: 2,847.32 (+2.15%) | BANKING: +1.8% | HYDROPOWER: +3.2% | INSURANCE: -0.5% | FINANCE: +2.7% 📊
+            <div class="section-header">
+                <h2>NEPSE Live Market</h2>
+                <div class="section-line"></div>
+                <p>Real-time Nepal Stock Exchange data</p>
+            </div>
+            
+            <!-- Market Status -->
+            <div class="market-status">
+                <div class="status-indicator" id="market-status">
+                    <i class="fas fa-circle"></i>
+                    <span>Market Closed</span>
+                </div>
+                <div class="last-updated" id="last-updated">
+                    Last Updated: --
                 </div>
             </div>
-            <div class="nepse-info">
-                <div class="nepse-stats">
-                    <div class="stat-box">
-                        <h4>Market Cap</h4>
-                        <p>NPR 4.2 Trillion</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>Total Turnover</h4>
-                        <p>NPR 8.5 Billion</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>Total Shares</h4>
-                        <p>45.2 Million</p>
-                    </div>
+
+            <!-- NEPSE Index -->
+            <div class="nepse-index">
+                <div class="index-main">
+                    <span class="index-label">NEPSE INDEX</span>
+                    <span class="index-value" id="nepse-index">2,847.32</span>
+                    <span class="index-change positive" id="nepse-change">+25.18 (+0.89%)</span>
                 </div>
+            </div>
+
+            <!-- Scrolling Ticker -->
+            <div class="market-ticker">
+                <div class="ticker-content" id="ticker-content">
+                    <span class="ticker-item">📈 NABIL: 1,215.00 (+2.5%)</span>
+                    <span class="ticker-item">📊 NICA: 875.50 (+1.8%)</span>
+                    <span class="ticker-item">📉 UPPER: 645.25 (-0.8%)</span>
+                    <span class="ticker-item">📈 HIDCL: 425.75 (+3.2%)</span>
+                    <span class="ticker-item">📊 NMB: 385.00 (+1.1%)</span>
+                </div>
+            </div>
+
+            <!-- Market Summary -->
+            <div class="market-summary">
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Market Cap</span>
+                    </div>
+                    <div class="summary-value" id="market-cap">NPR 4.2T</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span>Turnover</span>
+                    </div>
+                    <div class="summary-value" id="turnover">NPR 8.5B</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Volume</span>
+                    </div>
+                    <div class="summary-value" id="volume">45.2M</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <i class="fas fa-building"></i>
+                        <span>Companies</span>
+                    </div>
+                    <div class="summary-value">298</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calendar Section -->
+    <section id="calendar" class="calendar">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nepali Calendar</h2>
+                <div class="section-line"></div>
+                <p>Traditional Nepali calendar with festivals and events</p>
+            </div>
+            <div class="calendar-widget">
+                <iframe src="https://www.ashesh.com.np/nepali-calendar/widget.php?theme=blue&header_title=Nepali%20Calendar&font_size=12&width=100%25&height=400" 
+                        style="border:none; width:100%; height:400px; border-radius: 10px;">
+                </iframe>
             </div>
         </div>
     </section>
@@ -203,20 +328,39 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Contact Me</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h3>Email</h3>
-                        <p><a href="mailto:shitalghimire817@gmail.com">shitalghimire817@gmail.com</a></p>
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <div class="section-line"></div>
+                <p>Let's discuss engineering projects and opportunities</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email Address</h4>
+                            <p><a href="mailto:shitalghimire817@gmail.com">shitalghimire817@gmail.com</a></p>
+                        </div>
                     </div>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <h3>Location</h3>
-                        <p>Tandi, Chitwan, Nepal</p>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Tandi, Chitwan, Nepal</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>University</h4>
+                            <p>Kathmandu University</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -226,202 +370,273 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Shital Ghimire. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2025 Shital Ghimire. All rights reserved.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/sital.ghimire.229969" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@sehack" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
-        // Real-time clock
-        function updateClock() {
+        // Live Time Update
+        function updateTime() {
             const now = new Date();
             const timeString = now.toLocaleTimeString();
-            const dateString = now.toLocaleDateString();
-            document.getElementById('clock').innerHTML = `<i class="fas fa-clock"></i> ${timeString} | ${dateString}`;
+            document.getElementById('live-time').textContent = timeString;
         }
-        setInterval(updateClock, 1000);
-        updateClock();
+        setInterval(updateTime, 1000);
+        updateTime();
 
-        // Geolocation
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                document.getElementById('location').innerHTML = "<i class='fas fa-map-marker-alt'></i> Geolocation not supported";
-            }
-        }
-
-        function showPosition(position) {
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude;
-            document.getElementById('location').innerHTML = `<i class="fas fa-map-marker-alt"></i> Lat: ${lat.toFixed(2)}, Lon: ${lon.toFixed(2)}`;
-        }
-        getLocation();
-
-        // Calculator functions
-        function appendToCalc(value) {
-            document.getElementById('calc-display').value += value;
+        // Calculator Functions
+        function appendCalc(value) {
+            document.getElementById('calc-result').value += value;
         }
 
         function clearCalc() {
-            document.getElementById('calc-display').value = '';
+            document.getElementById('calc-result').value = '';
         }
 
         function deleteLast() {
-            let display = document.getElementById('calc-display');
+            const display = document.getElementById('calc-result');
             display.value = display.value.slice(0, -1);
         }
 
         function calculate() {
             try {
-                let result = eval(document.getElementById('calc-display').value);
-                document.getElementById('calc-display').value = result;
+                const result = eval(document.getElementById('calc-result').value.replace('×', '*').replace('÷', '/').replace('−', '-'));
+                document.getElementById('calc-result').value = result;
             } catch (error) {
-                document.getElementById('calc-display').value = 'Error';
+                document.getElementById('calc-result').value = 'Error';
             }
         }
 
-        // Weather function
-        async function getWeather() {
+        // Weather Function
+        function getWeather() {
             const city = document.getElementById('city-input').value;
-            const resultDiv = document.getElementById('weather-result');
+            // Simulate weather data
+            const temperatures = [15, 18, 22, 25, 28, 30, 32];
+            const conditions = ['Sunny', 'Cloudy', 'Partly Cloudy', 'Rainy', 'Clear'];
+            const humidity = Math.floor(Math.random() * 40) + 40;
+            const wind = Math.floor(Math.random() * 20) + 5;
             
-            if (!city) {
-                resultDiv.innerHTML = 'Please enter a city name';
-                return;
-            }
+            const temp = temperatures[Math.floor(Math.random() * temperatures.length)];
+            const condition = conditions[Math.floor(Math.random() * conditions.length)];
             
-            // Simulated weather data (replace with real API)
-            const weatherData = {
-                temperature: Math.floor(Math.random() * 30) + 10,
-                condition: ['Sunny', 'Cloudy', 'Rainy', 'Snowy'][Math.floor(Math.random() * 4)],
-                humidity: Math.floor(Math.random() * 50) + 30
-            };
-            
-            resultDiv.innerHTML = `
-                <h4>Weather in ${city}</h4>
-                <p>Temperature: ${weatherData.temperature}°C</p>
-                <p>Condition: ${weatherData.condition}</p>
-                <p>Humidity: ${weatherData.humidity}%</p>
+            document.querySelector('.temperature').textContent = temp + '°C';
+            document.querySelector('.condition').textContent = condition;
+            document.querySelector('.weather-details').innerHTML = `
+                <span>Humidity: ${humidity}%</span>
+                <span>Wind: ${wind} km/h</span>
             `;
         }
 
-        // Tic Tac Toe game
-        let ticBoard = ['', '', '', '', '', '', '', '', ''];
-        let currentPlayer = 'X';
-        let gameActive = true;
+        // Tap Target Game
+        let gameActive = false;
+        let gameScore = 0;
+        let gameTime = 30;
+        let gameLevel = 1;
+        let gameInterval;
+        let targets = [];
+        let targetColors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff'];
 
-        function makeMove(index) {
-            if (ticBoard[index] === '' && gameActive) {
-                ticBoard[index] = currentPlayer;
-                document.getElementsByClassName('cell')[index].innerText = currentPlayer;
-                
-                if (checkWinner()) {
-                    setTimeout(() => alert(`Player ${currentPlayer} wins!`), 100);
-                    gameActive = false;
-                    return;
-                }
-                
-                if (ticBoard.every(cell => cell !== '')) {
-                    setTimeout(() => alert('It\'s a tie!'), 100);
-                    gameActive = false;
-                    return;
-                }
-                
-                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-            }
-        }
-
-        function checkWinner() {
-            const winPatterns = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8],
-                [0, 3, 6], [1, 4, 7], [2, 5, 8],
-                [0, 4, 8], [2, 4, 6]
-            ];
+        function startTapGame() {
+            if (gameActive) return;
             
-            return winPatterns.some(pattern => {
-                return pattern.every(index => ticBoard[index] === currentPlayer);
-            });
-        }
-
-        function resetTicTacToe() {
-            ticBoard = ['', '', '', '', '', '', '', '', ''];
-            currentPlayer = 'X';
             gameActive = true;
-            document.querySelectorAll('.cell').forEach(cell => cell.innerText = '');
+            gameScore = 0;
+            gameTime = 30;
+            gameLevel = 1;
+            targets = [];
+            
+            updateGameDisplay();
+            
+            document.getElementById('start-game-btn').style.display = 'none';
+            document.getElementById('pause-game-btn').style.display = 'inline-block';
+            
+            const gameArea = document.getElementById('game-area');
+            gameArea.innerHTML = '';
+            
+            // Start game loop
+            gameInterval = setInterval(() => {
+                gameTime--;
+                updateGameDisplay();
+                
+                if (gameTime <= 0) {
+                    endGame();
+                }
+                
+                // Level progression
+                if (gameScore > 0 && gameScore % 10 === 0 && gameScore / 10 === gameLevel) {
+                    gameLevel++;
+                    updateGameDisplay();
+                }
+            }, 1000);
+            
+            // Create first target
+            createTarget();
         }
 
-        // Number guessing game
-        let randomNumber = Math.floor(Math.random() * 100) + 1;
-        let guessCount = 0;
-
-        function makeGuess() {
-            const guess = parseInt(document.getElementById('guess-input').value);
-            const resultDiv = document.getElementById('guess-result');
-            guessCount++;
+        function createTarget() {
+            if (!gameActive) return;
             
-            if (guess === randomNumber) {
-                resultDiv.innerHTML = `🎉 Congratulations! You guessed it in ${guessCount} tries!`;
-            } else if (guess < randomNumber) {
-                resultDiv.innerHTML = `📈 Too low! Try a higher number. (Attempt ${guessCount})`;
+            const gameArea = document.getElementById('game-area');
+            const target = document.createElement('div');
+            target.className = 'game-target';
+            
+            // Random position
+            const maxX = gameArea.offsetWidth - 60;
+            const maxY = gameArea.offsetHeight - 60;
+            const x = Math.random() * maxX;
+            const y = Math.random() * maxY;
+            
+            target.style.left = x + 'px';
+            target.style.top = y + 'px';
+            target.style.backgroundColor = targetColors[Math.floor(Math.random() * targetColors.length)];
+            
+            // Add click handler
+            target.addEventListener('click', () => {
+                gameScore++;
+                updateGameDisplay();
+                gameArea.removeChild(target);
+                targets = targets.filter(t => t !== target);
+                
+                // Play sound effect (you can add actual sound file)
+                playClickSound();
+                
+                // Create new target after short delay
+                setTimeout(createTarget, Math.max(500 - (gameLevel * 50), 100));
+            });
+            
+            gameArea.appendChild(target);
+            targets.push(target);
+            
+            // Remove target after delay (gets faster with level)
+            setTimeout(() => {
+                if (gameArea.contains(target)) {
+                    gameArea.removeChild(target);
+                    targets = targets.filter(t => t !== target);
+                    setTimeout(createTarget, Math.max(800 - (gameLevel * 80), 200));
+                }
+            }, Math.max(2000 - (gameLevel * 200), 800));
+        }
+
+        function playClickSound() {
+            // Create audio context for click sound
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(400, audioContext.currentTime + 0.1);
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+
+        function endGame() {
+            gameActive = false;
+            clearInterval(gameInterval);
+            
+            // Clear targets
+            targets.forEach(target => {
+                if (target.parentNode) {
+                    target.parentNode.removeChild(target);
+                }
+            });
+            targets = [];
+            
+            // Show game over
+            const gameArea = document.getElementById('game-area');
+            gameArea.innerHTML = `
+                <div class="game-over">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Game Over!</h3>
+                    <p>Final Score: <strong>${gameScore}</strong></p>
+                    <p>Level Reached: <strong>${gameLevel}</strong></p>
+                    <button onclick="startTapGame()" class="btn-game-restart">
+                        <i class="fas fa-redo"></i>
+                        Play Again
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('start-game-btn').style.display = 'inline-block';
+            document.getElementById('pause-game-btn').style.display = 'none';
+        }
+
+        function updateGameDisplay() {
+            document.getElementById('game-score').textContent = gameScore;
+            document.getElementById('game-time').textContent = gameTime;
+            document.getElementById('game-level').textContent = gameLevel;
+        }
+
+        function pauseGame() {
+            if (gameActive) {
+                gameActive = false;
+                clearInterval(gameInterval);
+                document.getElementById('pause-game-btn').innerHTML = '<i class="fas fa-play"></i> Resume';
+                document.getElementById('pause-game-btn').onclick = resumeGame;
+            }
+        }
+
+        function resumeGame() {
+            gameActive = true;
+            gameInterval = setInterval(() => {
+                gameTime--;
+                updateGameDisplay();
+                if (gameTime <= 0) {
+                    endGame();
+                }
+            }, 1000);
+            document.getElementById('pause-game-btn').innerHTML = '<i class="fas fa-pause"></i> Pause';
+            document.getElementById('pause-game-btn').onclick = pauseGame;
+        }
+
+        // NEPSE Market Data Simulation
+        function updateMarketData() {
+            // Simulate market hours (9:00 AM to 3:00 PM Nepal Time)
+            const now = new Date();
+            const nepaliTime = new Date(now.getTime() + (5.75 * 60 * 60 * 1000)); // UTC+5:45
+            const hours = nepaliTime.getHours();
+            const isMarketOpen = hours >= 9 && hours < 15;
+            
+            const statusEl = document.getElementById('market-status');
+            const lastUpdatedEl = document.getElementById('last-updated');
+            
+            if (isMarketOpen) {
+                statusEl.innerHTML = '<i class="fas fa-circle" style="color: #4CAF50;"></i><span>Market Open</span>';
+                statusEl.className = 'status-indicator open';
+                
+                // Simulate live data updates
+                const baseIndex = 2847.32;
+                const randomChange = (Math.random() - 0.5) * 50;
+                const newIndex = (baseIndex + randomChange).toFixed(2);
+                const changePercent = (randomChange / baseIndex * 100).toFixed(2);
+                const changeClass = randomChange >= 0 ? 'positive' : 'negative';
+                const changeSymbol = randomChange >= 0 ? '+' : '';
+                
+                document.getElementById('nepse-index').textContent = newIndex;
+                document.getElementById('nepse-change').textContent = `${changeSymbol}${randomChange.toFixed(2)} (${changeSymbol}${changePercent}%)`;
+                document.getElementById('nepse-change').className = `index-change ${changeClass}`;
+                
+                lastUpdatedEl.textContent = `Last Updated: ${nepaliTime.toLocaleTimeString()}`;
             } else {
-                resultDiv.innerHTML = `📉 Too high! Try a lower number. (Attempt ${guessCount})`;
-            }
-        }
-
-        function resetGuessGame() {
-            randomNumber = Math.floor(Math.random() * 100) + 1;
-            guessCount = 0;
-            document.getElementById('guess-input').value = '';
-            document.getElementById('guess-result').innerHTML = '';
-        }
-
-        // Chat functionality
-        function sendMessage() {
-            const input = document.getElementById('chat-input');
-            const chatBox = document.getElementById('chat-box');
-            const message = input.value.trim();
-            
-            if (message) {
-                chatBox.innerHTML += `<div class="message user-message">${message}</div>`;
-                input.value = '';
-                
-                // Simple auto-responses
-                setTimeout(() => {
-                    let response = "Thanks for your message! As a civil engineering student, I'm always happy to discuss infrastructure, sustainable design, or any technical questions you might have.";
-                    
-                    if (message.toLowerCase().includes('engineering')) {
-                        response = "Great question about engineering! I'm passionate about civil engineering and sustainable infrastructure development.";
-                    } else if (message.toLowerCase().includes('project')) {
-                        response = "I'd love to share my projects with you! I've worked on various civil engineering designs and AutoCAD drawings.";
-                    }
-                    
-                    chatBox.innerHTML += `<div class="message bot-message">${response}</div>`;
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                }, 1000);
-                
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }
-        }
-
-        // Enter key for chat
-        document.getElementById('chat-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendMessage();
-            }
-        });
-
-        // NEPSE ticker animation
-        function animateNepseTicker() {
-            const ticker = document.querySelector('.ticker-content');
-            let position = 100;
-            
-            setInterval(() => {
-                position -= 0.5;
-                if (position < -100) position = 100;
-                ticker.style.transform = `translateX(${position}%)`;
-            }, 50);
-        }
-        animateNepseTicker();
-    </script>
-</body>
-</html>
+                statusEl.innerHTML = '<i class="fas fa-circle" style="color: #f44336;"></i><span>Market Closed</span>';
+                statusEl.className = 'status-indicator closed';
+                lastUpdatedEl.textContent =
