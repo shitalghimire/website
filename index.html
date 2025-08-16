@@ -79,48 +79,245 @@
         </div>
     </section>
 
-    <!-- Tools Section -->
-    <section id="tools" class="tools">
-        <div class="container">
-            <h2>Useful Tools</h2>
-            <div class="tools-grid">
-                <div class="tool-item">
-                    <h3><i class="fas fa-calculator"></i> Calculator</h3>
-                    <div class="calculator">
-                        <input type="text" id="calc-display" readonly>
-                        <div class="calc-buttons">
-                            <button onclick="clearCalc()">C</button>
-                            <button onclick="deleteLast()">⌫</button>
-                            <button onclick="appendToCalc('/')">/</button>
-                            <button onclick="appendToCalc('*')">×</button>
-                            <button onclick="appendToCalc('7')">7</button>
-                            <button onclick="appendToCalc('8')">8</button>
-                            <button onclick="appendToCalc('9')">9</button>
-                            <button onclick="appendToCalc('-')">-</button>
-                            <button onclick="appendToCalc('4')">4</button>
-                            <button onclick="appendToCalc('5')">5</button>
-                            <button onclick="appendToCalc('6')">6</button>
-                            <button onclick="appendToCalc('+')">+</button>
-                            <button onclick="appendToCalc('1')">1</button>
-                            <button onclick="appendToCalc('2')">2</button>
-                            <button onclick="appendToCalc('3')">3</button>
-                            <button onclick="calculate()" rowspan="2">=</button>
-                            <button onclick="appendToCalc('0')" colspan="2">0</button>
-                            <button onclick="appendToCalc('.')">.</button>
+   <!-- Tools Section -->
+<section id="tools" class="tools">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-tools"></i> Engineering Tools</h2>
+            <div class="section-line"></div>
+            <p>Professional tools for calculations and productivity</p>
+        </div>
+        <div class="tools-container">
+            <!-- Calculator Tool -->
+            <div class="tool-card calculator-card">
+                <div class="tool-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Smart Calculator</h3>
+                    <p>Advanced scientific calculator with memory functions</p>
+                    <div class="calculator-widget">
+                        <div class="calc-screen">
+                            <input type="text" id="calc-display" readonly placeholder="0" class="calc-display">
+                        </div>
+                        <div class="calc-keypad">
+                            <div class="calc-row">
+                                <button onclick="clearCalc()" class="calc-btn function">C</button>
+                                <button onclick="deleteLast()" class="calc-btn function">⌫</button>
+                                <button onclick="appendToCalc('/')" class="calc-btn operator">÷</button>
+                                <button onclick="appendToCalc('*')" class="calc-btn operator">×</button>
+                            </div>
+                            <div class="calc-row">
+                                <button onclick="appendToCalc('7')" class="calc-btn number">7</button>
+                                <button onclick="appendToCalc('8')" class="calc-btn number">8</button>
+                                <button onclick="appendToCalc('9')" class="calc-btn number">9</button>
+                                <button onclick="appendToCalc('-')" class="calc-btn operator">−</button>
+                            </div>
+                            <div class="calc-row">
+                                <button onclick="appendToCalc('4')" class="calc-btn number">4</button>
+                                <button onclick="appendToCalc('5')" class="calc-btn number">5</button>
+                                <button onclick="appendToCalc('6')" class="calc-btn number">6</button>
+                                <button onclick="appendToCalc('+')" class="calc-btn operator">+</button>
+                            </div>
+                            <div class="calc-row">
+                                <button onclick="appendToCalc('1')" class="calc-btn number">1</button>
+                                <button onclick="appendToCalc('2')" class="calc-btn number">2</button>
+                                <button onclick="appendToCalc('3')" class="calc-btn number">3</button>
+                                <button onclick="calculate()" class="calc-btn equals" rowspan="2">=</button>
+                            </div>
+                            <div class="calc-row">
+                                <button onclick="appendToCalc('0')" class="calc-btn number zero">0</button>
+                                <button onclick="appendToCalc('.')" class="calc-btn number">.</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="tool-item">
-                    <h3><i class="fas fa-cloud-sun"></i> Weather Forecast</h3>
-                    <div class="weather">
-                        <input type="text" id="city-input" placeholder="Enter city name...">
-                        <button onclick="getWeather()">Get Weather</button>
-                        <div id="weather-result"></div>
+            </div>
+
+            <!-- Weather Tool -->
+            <div class="tool-card weather-card">
+                <div class="tool-icon">
+                    <i class="fas fa-cloud-sun"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Weather Forecast</h3>
+                    <p>Get current weather conditions for any city worldwide</p>
+                    <div class="weather-widget">
+                        <div class="weather-search">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="city-input" placeholder="Enter city name..." value="Kathmandu">
+                                <button onclick="getWeather()" class="search-btn">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div id="weather-display" class="weather-display">
+                            <div class="weather-main">
+                                <div class="weather-icon">
+                                    <i class="fas fa-sun" id="weather-icon"></i>
+                                </div>
+                                <div class="weather-info">
+                                    <div class="temperature" id="temperature">25°</div>
+                                    <div class="condition" id="condition">Sunny</div>
+                                    <div class="location" id="location">Kathmandu, Nepal</div>
+                                </div>
+                            </div>
+                            <div class="weather-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-tint"></i>
+                                    <span>Humidity</span>
+                                    <span id="humidity">65%</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-wind"></i>
+                                    <span>Wind</span>
+                                    <span id="wind">12 km/h</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-thermometer-half"></i>
+                                    <span>Feels Like</span>
+                                    <span id="feels-like">28°</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unit Converter Tool -->
+            <div class="tool-card converter-card">
+                <div class="tool-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="tool-content">
+                    <h3>Unit Converter</h3>
+                    <p>Convert between different units for engineering calculations</p>
+                    <div class="converter-widget">
+                        <div class="conversion-type">
+                            <select id="unit-type" onchange="updateUnits()">
+                                <option value="length">Length</option>
+                                <option value="area">Area</option>
+                                <option value="weight">Weight</option>
+                                <option value="temperature">Temperature</option>
+                            </select>
+                        </div>
+                        <div class="conversion-inputs">
+                            <div class="input-group">
+                                <input type="number" id="from-value" placeholder="Enter value" oninput="convertUnits()">
+                                <select id="from-unit">
+                                    <option value="m">Meters</option>
+                                    <option value="cm">Centimeters</option>
+                                    <option value="ft">Feet</option>
+                                    <option value="in">Inches</option>
+                                </select>
+                            </div>
+                            <div class="converter-icon">
+                                <i class="fas fa-arrows-alt-h"></i>
+                            </div>
+                            <div class="input-group">
+                                <input type="number" id="to-value" placeholder="Result" readonly>
+                                <select id="to-unit">
+                                    <option value="cm">Centimeters</option>
+                                    <option value="m">Meters</option>
+                                    <option value="in">Inches</option>
+                                    <option value="ft">Feet</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+<!-- Games Section -->
+<section id="games" class="games">
+    <div class="container">
+        <div class="section-header">
+            <h2><i class="fas fa-gamepad"></i> Interactive Games</h2>
+            <div class="section-line"></div>
+            <p>Challenge yourself with fun and engaging games</p>
+        </div>
+        
+        <!-- Tap Target Game -->
+        <div class="game-card tap-game-card">
+            <div class="game-header">
+                <div class="game-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div class="game-info">
+                    <h3>Tap the Target Challenge</h3>
+                    <p>Test your reflexes by tapping colorful targets as fast as you can!</p>
+                </div>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="game-score">0</div>
+                        <div class="stat-label">Score</div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="game-time">30</div>
+                        <div class="stat-label">Time</div>
+                    </div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-level-up-alt"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="game-level">1</div>
+                        <div class="stat-label">Level</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-area-container">
+                <div id="game-area" class="game-area">
+                    <div class="game-instructions">
+                        <div class="instruction-icon">
+                            <i class="fas fa-hand-pointer"></i>
+                        </div>
+                        <h4>Ready to Play?</h4>
+                        <p>Tap the colorful targets as quickly as possible!</p>
+                        <p>Each level gets faster and more challenging</p>
+                        <ul class="game-tips">
+                            <li><i class="fas fa-star"></i> Red targets = 10 points</li>
+                            <li><i class="fas fa-star"></i> Blue targets = 15 points</li>
+                            <li><i class="fas fa-star"></i> Golden targets = 25 points</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="game-controls">
+                    <button id="start-game-btn" onclick="startTapGame()" class="game-btn start-btn">
+                        <i class="fas fa-play"></i>
+                        Start Game
+                    </button>
+                    <button id="pause-game-btn" onclick="pauseGame()" class="game-btn pause-btn" style="display:none;">
+                        <i class="fas fa-pause"></i>
+                        Pause
+                    </button>
+                    <button onclick="resetGame()" class="game-btn reset-btn">
+                        <i class="fas fa-redo"></i>
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
     <!-- Games Section -->
     <section id="games" class="games">
