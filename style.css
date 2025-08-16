@@ -724,3 +724,674 @@ body {
         flex-direction: column;
     }
 }
+/* Enhanced Tools Section */
+.tools {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.tools::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g fill="%23ffffff" fill-opacity="0.05"><polygon points="36,34 24,34 24,26 36,26"/></g></g></svg>') repeat;
+    animation: movePattern 20s linear infinite;
+}
+
+@keyframes movePattern {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(60px) translateY(60px); }
+}
+
+.tools-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.tool-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.tool-card:hover::before {
+    left: 100%;
+}
+
+.tool-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.calculator-card {
+    border-left: 5px solid #ff6b6b;
+}
+
+.weather-card {
+    border-left: 5px solid #4ecdc4;
+}
+
+.converter-card {
+    border-left: 5px solid #45b7d1;
+}
+
+.tool-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.calculator-card .tool-icon {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    color: white;
+}
+
+.weather-card .tool-icon {
+    background: linear-gradient(135deg, #4ecdc4, #26d0ce);
+    color: white;
+}
+
+.converter-card .tool-icon {
+    background: linear-gradient(135deg, #45b7d1, #2d98da);
+    color: white;
+}
+
+.tool-content h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.tool-content p {
+    color: #7f8c8d;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* Enhanced Calculator */
+.calculator-widget {
+    background: #2c3e50;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.calc-screen {
+    margin-bottom: 1rem;
+}
+
+.calc-display {
+    width: 100%;
+    padding: 1rem;
+    font-size: 2rem;
+    background: #34495e;
+    border: none;
+    border-radius: 8px;
+    color: #ecf0f1;
+    text-align: right;
+    font-family: 'Courier New', monospace;
+}
+
+.calc-keypad {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.calc-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.calc-row:last-child {
+    grid-template-columns: 2fr 1fr 1fr;
+}
+
+.calc-btn {
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calc-btn.number {
+    background: #ecf0f1;
+    color: #2c3e50;
+}
+
+.calc-btn.number:hover {
+    background: #bdc3c7;
+    transform: scale(0.95);
+}
+
+.calc-btn.operator {
+    background: #e74c3c;
+    color: white;
+}
+
+.calc-btn.operator:hover {
+    background: #c0392b;
+    transform: scale(0.95);
+}
+
+.calc-btn.function {
+    background: #f39c12;
+    color: white;
+}
+
+.calc-btn.function:hover {
+    background: #e67e22;
+    transform: scale(0.95);
+}
+
+.calc-btn.equals {
+    background: #27ae60;
+    color: white;
+    grid-row: span 2;
+}
+
+.calc-btn.equals:hover {
+    background: #229954;
+    transform: scale(0.95);
+}
+
+/* Enhanced Weather Widget */
+.weather-widget {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    color: white;
+}
+
+.weather-search {
+    margin-bottom: 1.5rem;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 0.5rem 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.search-box i {
+    color: rgba(255, 255, 255, 0.8);
+    margin-right: 0.5rem;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.search-btn {
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.search-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+.weather-display {
+    text-align: center;
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.weather-icon i {
+    font-size: 4rem;
+    color: #f39c12;
+    text-shadow: 0 0 20px rgba(243, 156, 18, 0.5);
+}
+
+.temperature {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.condition {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.location {
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.detail-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+.detail-item i {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #f39c12;
+}
+
+/* Unit Converter */
+.converter-widget {
+    background: #34495e;
+    border-radius: 15px;
+    padding: 1.5rem;
+    color: white;
+}
+
+.conversion-type {
+    margin-bottom: 1.5rem;
+}
+
+.conversion-type select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    background: #2c3e50;
+    color: white;
+    font-size: 1rem;
+}
+
+.conversion-inputs {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    background: #2c3e50;
+    color: white;
+    font-size: 1rem;
+}
+
+.input-group select {
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    background: #2c3e50;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.converter-icon {
+    color: #3498db;
+    font-size: 1.5rem;
+}
+
+/* Enhanced Games Section */
+.games {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    position: relative;
+}
+
+.game-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.game-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.3);
+}
+
+.game-info h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.game-info p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+}
+
+.game-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f39c12;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.game-area-container {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-area {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-instructions {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+}
+
+.instruction-icon {
+    font-size: 4rem;
+    color: #f39c12;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+.game-instructions h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.game-instructions p {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.game-tips {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 0;
+    text-align: left;
+    display: inline-block;
+}
+
+.game-tips li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.game-tips i {
+    color: #f39c12;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.game-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.start-btn {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: white;
+    box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+.start-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+}
+
+.pause-btn {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+}
+
+.reset-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.reset-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+}
+
+/* Game Targets */
+.game-target {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid white;
+    transition: transform 0.1s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: targetPulse 1.5s ease-in-out infinite;
+}
+
+.game-target:hover {
+    transform: scale(1.1);
+}
+
+.game-target.red {
+    background: radial-gradient(circle, #e74c3c, #c0392b);
+}
+
+.game-target.blue {
+    background: radial-gradient(circle, #3498db, #2980b9);
+}
+
+.game-target.golden {
+    background: radial-gradient(circle, #f1c40f, #f39c12);
+}
+
+@keyframes targetPulse {
+    0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    50% { 
+        transform: scale(1.05); 
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+}
+
+/* Responsive Design for Tools and Games */
+@media (max-width: 768px) {
+    .tools-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .tool-card {
+        margin-bottom: 2rem;
+    }
+    
+    .game-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .conversion-inputs {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .weather-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .calc-row {
+        gap: 0.3rem;
+    }
+    
+    .calc-btn {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+}
