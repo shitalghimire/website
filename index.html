@@ -6,9 +6,6 @@
     <title>Shital Ghimire - Civil Engineering Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Navigation Menu -->
@@ -363,14 +360,49 @@
         </div>
     </section>
 
-    <!-- Calendar Section -->
+    <!-- Custom Nepali Calendar Section -->
     <section id="calendar" class="calendar">
         <div class="container">
-            <h2>Nepali Calendar</h2>
-            <div class="calendar-widget">
-                <iframe src="https://www.ashesh.com.np/nepali-calendar/widget.php?theme=blue&header_title=Nepali%20Calendar&font_size=12&width=100%25&height=400" 
-                        style="border:none; width:100%; height:400px; border-radius: 10px;">
-                </iframe>
+            <div class="section-header">
+                <h2><i class="fas fa-calendar-alt"></i> Nepali Calendar</h2>
+                <div class="section-line"></div>
+                <p>Traditional Nepali calendar with festivals and events</p>
+            </div>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button onclick="previousMonth()" class="nav-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="calendar-title">
+                        <h3 id="nepali-month-year">साउन २०८२</h3>
+                        <p id="english-month-year">August 2025</p>
+                    </div>
+                    <button onclick="nextMonth()" class="nav-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="calendar-grid">
+                    <div class="day-header">आइत</div>
+                    <div class="day-header">सोम</div>
+                    <div class="day-header">मंगल</div>
+                    <div class="day-header">बुध</div>
+                    <div class="day-header">बिही</div>
+                    <div class="day-header">शुक्र</div>
+                    <div class="day-header">शनि</div>
+                    <!-- Calendar days will be populated by JavaScript -->
+                </div>
+                <div class="calendar-footer">
+                    <div class="today-info">
+                        <div class="today-date">
+                            <span class="nepali-date" id="today-nepali">२०८२ साउन १७</span>
+                            <span class="english-date" id="today-english">August 16, 2025</span>
+                        </div>
+                        <div class="festival-info" id="festival-info">
+                            <i class="fas fa-star"></i>
+                            <span>Today: No special events</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -406,6 +438,125 @@
     </footer>
 
     <script>
+        // Nepali Calendar Data
+        const nepaliMonths = [
+            { name: 'बैशाख', days: 31, english: 'April-May' },
+            { name: 'जेष्ठ', days: 32, english: 'May-June' },
+            { name: 'आषाढ', days: 32, english: 'June-July' },
+            { name: 'साउन', days: 32, english: 'July-August' },
+            { name: 'भदौ', days: 32, english: 'August-September' },
+            { name: 'आश्विन', days: 30, english: 'September-October' },
+            { name: 'कार्तिक', days: 30, english: 'October-November' },
+            { name: 'मंसिर', days: 30, english: 'November-December' },
+            { name: 'पौष', days: 30, english: 'December-January' },
+            { name: 'माघ', days: 30, english: 'January-February' },
+            { name: 'फाल्गुन', days: 30, english: 'February-March' },
+            { name: 'चैत', days: 30, english: 'March-April' }
+        ];
+
+        const nepaliDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+        
+        let currentNepaliYear = 2082;
+        let currentNepaliMonth = 3; // Saun (0-indexed)
+
+        function convertToNepaliDigits(num) {
+            return num.toString().split('').map(digit => nepaliDigits[parseInt(digit)]).join('');
+        }
+
+        function generateCalendar() {
+            const calendarGrid = document.querySelector('.calendar-grid');
+            const dayHeaders = calendarGrid.querySelectorAll('.day-header');
+            
+            // Clear existing calendar days
+            const existingDays = calendarGrid.querySelectorAll('.calendar-day');
+            existingDays.forEach(day => day.remove());
+            
+            const month = nepaliMonths[currentNepaliMonth];
+            const daysInMonth = month.days;
+            
+            // Update header
+            document.getElementById('nepali-month-year').textContent = 
+                `${month.name} ${convertToNepaliDigits(currentNepaliYear)}`;
+            document.getElementById('english-month-year').textContent = 
+                `${month.english} ${currentNepaliYear - 57}`;
+            
+            // Generate calendar days (simplified - starting from Sunday)
+            let startDay = 1; // Start from Sunday for simplicity
+            
+            // Add empty cells for days before month starts
+            for (let i = 0; i < startDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Add days of the month
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.innerHTML = `
+                    <span class="nepali-day">${convertToNepaliDigits(day)}</span>
+                    <span class="english-day">${day}</span>
+                `;
+                
+                // Highlight today (example: day 17)
+                if (day === 17) {
+                    dayElement.classList.add('today');
+                }
+                
+                // Add festivals (example data)
+                if (day === 15) {
+                    dayElement.classList.add('festival');
+                    dayElement.innerHTML += '<div class="festival-marker">जन्माष्टमी</div>';
+                }
+                
+                calendarGrid.appendChild(dayElement);
+            }
+            
+            // Update today's date
+            updateTodayInfo();
+        }
+
+        function updateTodayInfo() {
+            const todayNepali = document.getElementById('today-nepali');
+            const todayEnglish = document.getElementById('today-english');
+            const festivalInfo = document.getElementById('festival-info');
+            
+            todayNepali.textContent = `${convertToNepaliDigits(currentNepaliYear)} ${nepaliMonths[currentNepaliMonth].name} ${convertToNepaliDigits(17)}`;
+            todayEnglish.textContent = 'August 16, 2025';
+            
+            // Example festival info
+            const festivals = [
+                'Today: No special events',
+                'Today: जन्माष्टमी (Krishna Janmashtami)',
+                'Today: गणेश चतुर्थी (Ganesh Chaturthi)',
+                'Today: तीज (Teej Festival)'
+            ];
+            
+            festivalInfo.innerHTML = `
+                <i class="fas fa-star"></i>
+                <span>${festivals[Math.floor(Math.random() * festivals.length)]}</span>
+            `;
+        }
+
+        function previousMonth() {
+            currentNepaliMonth--;
+            if (currentNepaliMonth < 0) {
+                currentNepaliMonth = 11;
+                currentNepaliYear--;
+            }
+            generateCalendar();
+        }
+
+        function nextMonth() {
+            currentNepaliMonth++;
+            if (currentNepaliMonth > 11) {
+                currentNepaliMonth = 0;
+                currentNepaliYear++;
+            }
+            generateCalendar();
+        }
+
         // Real-time clock
         function updateClock() {
             const now = new Date();
@@ -791,12 +942,6 @@
         }
         animateNepseTicker();
 
-        // Initialize on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            updateUnits();
-            getWeather();
-        });
-
         // Add explosion animation
         const style = document.createElement('style');
         style.textContent = `
@@ -812,6 +957,13 @@
             }
         `;
         document.head.appendChild(style);
+
+        // Initialize everything on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUnits();
+            getWeather();
+            generateCalendar();
+        });
     </script>
 </body>
 </html>
