@@ -1,22 +1,27 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Professional Portfolio</title>
+    <title>Shital Ghimire - Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Navigation Menu -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">Your Name</div>
+            <div class="nav-logo">Shital Ghimire</div>
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#chat">Chat</a></li>
+                <li><a href="#nepse">NEPSE</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -27,23 +32,22 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="https://www.facebook.com/sital.ghimire.229969" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/@sehack" class="social-link" target="_blank"><i class="fab fa-youtube"></i></a>
                 </div>
                 <div class="hero-text">
-                    <h1>I am Your Name</h1>
-                    <p>I'm a passionate web developer with experience in creating beautiful and functional websites.</p>
+                    <h1>I am Shital Ghimire</h1>
+                    <p>Fourth-year civil engineering student passionate about building sustainable infrastructure.</p>
                     <div class="hero-buttons">
-                        <a href="#portfolio" class="btn-primary">My Portfolio</a>
-                        <a href="#contact" class="btn-secondary">Get In Touch</a>
+                        <a href="#tools" class="btn-primary">Useful Tools</a>
+                        <a href="#chat" class="btn-secondary">Chat with Shital</a>
                     </div>
+                    <div id="clock" class="clock"></div>
+                    <div id="location" class="location"></div>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="your-photo.jpg" alt="Your Name">
+                <img src="your-photo.jpg" alt="Shital Ghimire">
             </div>
         </div>
     </section>
@@ -52,26 +56,7 @@
     <section id="about" class="about">
         <div class="container">
             <h2>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Hello! I'm a web developer passionate about creating amazing digital experiences. I love learning new technologies and building projects that make a difference.</p>
-                    <p>When I'm not coding, you can find me exploring new technologies, reading tech blogs, or working on personal projects.</p>
-                </div>
-                <div class="about-stats">
-                    <div class="stat">
-                        <h3>10+</h3>
-                        <p>Projects Completed</p>
-                    </div>
-                    <div class="stat">
-                        <h3>2+</h3>
-                        <p>Years Experience</p>
-                    </div>
-                    <div class="stat">
-                        <h3>50+</h3>
-                        <p>Happy Clients</p>
-                    </div>
-                </div>
-            </div>
+            <p>Hello! I'm a fourth-year civil engineering student from Tandi, Chitwan, currently pursuing my degree at Kathmandu University. My passion for civil engineering started with a fascination for the structures and infrastructure that shape our world. I believe that good engineering is about more than just building things—it's about creating sustainable and functional spaces that serve communities. I'm excited to share my journey, projects, and insights with you here.</p>
         </div>
     </section>
 
@@ -81,24 +66,135 @@
             <h2>My Skills</h2>
             <div class="skills-grid">
                 <div class="skill-item">
-                    <i class="fab fa-html5"></i>
-                    <h3>HTML5</h3>
-                    <p>Creating semantic and accessible web structures</p>
+                    <i class="fas fa-drafting-compass"></i>
+                    <h3>AutoCAD</h3>
+                    <p>Professional engineering drafting and design.</p>
                 </div>
                 <div class="skill-item">
-                    <i class="fab fa-css3-alt"></i>
-                    <h3>CSS3</h3>
-                    <p>Designing beautiful and responsive layouts</p>
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Graphic Designing</h3>
+                    <p>Creative visual design and branding.</p>
                 </div>
-                <div class="skill-item">
-                    <i class="fab fa-js-square"></i>
-                    <h3>JavaScript</h3>
-                    <p>Adding interactivity and dynamic functionality</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="tools">
+        <div class="container">
+            <h2>Useful Tools</h2>
+            <div class="tools-grid">
+                <div class="tool-item">
+                    <h3><i class="fas fa-calculator"></i> Calculator</h3>
+                    <div class="calculator">
+                        <input type="text" id="calc-display" readonly>
+                        <div class="calc-buttons">
+                            <button onclick="clearCalc()">C</button>
+                            <button onclick="deleteLast()">⌫</button>
+                            <button onclick="appendToCalc('/')">/</button>
+                            <button onclick="appendToCalc('*')">×</button>
+                            <button onclick="appendToCalc('7')">7</button>
+                            <button onclick="appendToCalc('8')">8</button>
+                            <button onclick="appendToCalc('9')">9</button>
+                            <button onclick="appendToCalc('-')">-</button>
+                            <button onclick="appendToCalc('4')">4</button>
+                            <button onclick="appendToCalc('5')">5</button>
+                            <button onclick="appendToCalc('6')">6</button>
+                            <button onclick="appendToCalc('+')">+</button>
+                            <button onclick="appendToCalc('1')">1</button>
+                            <button onclick="appendToCalc('2')">2</button>
+                            <button onclick="appendToCalc('3')">3</button>
+                            <button onclick="calculate()" rowspan="2">=</button>
+                            <button onclick="appendToCalc('0')" colspan="2">0</button>
+                            <button onclick="appendToCalc('.')">.</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-item">
-                    <i class="fab fa-react"></i>
-                    <h3>React</h3>
-                    <p>Building modern web applications</p>
+                <div class="tool-item">
+                    <h3><i class="fas fa-cloud-sun"></i> Weather Forecast</h3>
+                    <div class="weather">
+                        <input type="text" id="city-input" placeholder="Enter city name...">
+                        <button onclick="getWeather()">Get Weather</button>
+                        <div id="weather-result"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="games">
+        <div class="container">
+            <h2>Games</h2>
+            <div class="games-grid">
+                <div class="game-item">
+                    <h3>Tic Tac Toe</h3>
+                    <div class="tic-tac-toe">
+                        <div class="game-board" id="tic-board">
+                            <div class="cell" onclick="makeMove(0)"></div>
+                            <div class="cell" onclick="makeMove(1)"></div>
+                            <div class="cell" onclick="makeMove(2)"></div>
+                            <div class="cell" onclick="makeMove(3)"></div>
+                            <div class="cell" onclick="makeMove(4)"></div>
+                            <div class="cell" onclick="makeMove(5)"></div>
+                            <div class="cell" onclick="makeMove(6)"></div>
+                            <div class="cell" onclick="makeMove(7)"></div>
+                            <div class="cell" onclick="makeMove(8)"></div>
+                        </div>
+                        <button onclick="resetTicTacToe()">Reset Game</button>
+                    </div>
+                </div>
+                <div class="game-item">
+                    <h3>Number Guessing Game</h3>
+                    <div class="guess-game">
+                        <p>Guess a number between 1 and 100!</p>
+                        <input type="number" id="guess-input" min="1" max="100">
+                        <button onclick="makeGuess()">Submit Guess</button>
+                        <div id="guess-result"></div>
+                        <button onclick="resetGuessGame()">New Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Section -->
+    <section id="chat" class="chat">
+        <div class="container">
+            <h2>Chat with Shital</h2>
+            <div id="chat-box">
+                <div class="message bot-message">Hello! I'm Shital. Feel free to ask me about civil engineering or anything else!</div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Type your message...">
+                <button id="chat-send" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEPSE Section -->
+    <section id="nepse" class="nepse">
+        <div class="container">
+            <h2>NEPSE - Nepal Stock Exchange</h2>
+            <div id="nepse-ticker" class="nepse-ticker">
+                <div class="ticker-content">
+                    📈 NEPSE INDEX: 2,847.32 (+2.15%) | BANKING: +1.8% | HYDROPOWER: +3.2% | INSURANCE: -0.5% | FINANCE: +2.7% 📊
+                </div>
+            </div>
+            <div class="nepse-info">
+                <div class="nepse-stats">
+                    <div class="stat-box">
+                        <h4>Market Cap</h4>
+                        <p>NPR 4.2 Trillion</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>Total Turnover</h4>
+                        <p>NPR 8.5 Billion</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4>Total Shares</h4>
+                        <p>45.2 Million</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,29 +203,20 @@
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h3>Email</h3>
-                            <p>your.email@example.com</p>
-                        </div>
+            <h2>Contact Me</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p><a href="mailto:shitalghimire817@gmail.com">shitalghimire817@gmail.com</a></p>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Phone</h3>
-                            <p>+977 98xxxxxxxx</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3>Location</h3>
-                            <p>Nepal</p>
-                        </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Location</h3>
+                        <p>Tandi, Chitwan, Nepal</p>
                     </div>
                 </div>
             </div>
@@ -139,8 +226,202 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Your Name. All rights reserved.</p>
+            <p>&copy; 2025 Shital Ghimire. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Real-time clock
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            const dateString = now.toLocaleDateString();
+            document.getElementById('clock').innerHTML = `<i class="fas fa-clock"></i> ${timeString} | ${dateString}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Geolocation
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                document.getElementById('location').innerHTML = "<i class='fas fa-map-marker-alt'></i> Geolocation not supported";
+            }
+        }
+
+        function showPosition(position) {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            document.getElementById('location').innerHTML = `<i class="fas fa-map-marker-alt"></i> Lat: ${lat.toFixed(2)}, Lon: ${lon.toFixed(2)}`;
+        }
+        getLocation();
+
+        // Calculator functions
+        function appendToCalc(value) {
+            document.getElementById('calc-display').value += value;
+        }
+
+        function clearCalc() {
+            document.getElementById('calc-display').value = '';
+        }
+
+        function deleteLast() {
+            let display = document.getElementById('calc-display');
+            display.value = display.value.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                let result = eval(document.getElementById('calc-display').value);
+                document.getElementById('calc-display').value = result;
+            } catch (error) {
+                document.getElementById('calc-display').value = 'Error';
+            }
+        }
+
+        // Weather function
+        async function getWeather() {
+            const city = document.getElementById('city-input').value;
+            const resultDiv = document.getElementById('weather-result');
+            
+            if (!city) {
+                resultDiv.innerHTML = 'Please enter a city name';
+                return;
+            }
+            
+            // Simulated weather data (replace with real API)
+            const weatherData = {
+                temperature: Math.floor(Math.random() * 30) + 10,
+                condition: ['Sunny', 'Cloudy', 'Rainy', 'Snowy'][Math.floor(Math.random() * 4)],
+                humidity: Math.floor(Math.random() * 50) + 30
+            };
+            
+            resultDiv.innerHTML = `
+                <h4>Weather in ${city}</h4>
+                <p>Temperature: ${weatherData.temperature}°C</p>
+                <p>Condition: ${weatherData.condition}</p>
+                <p>Humidity: ${weatherData.humidity}%</p>
+            `;
+        }
+
+        // Tic Tac Toe game
+        let ticBoard = ['', '', '', '', '', '', '', '', ''];
+        let currentPlayer = 'X';
+        let gameActive = true;
+
+        function makeMove(index) {
+            if (ticBoard[index] === '' && gameActive) {
+                ticBoard[index] = currentPlayer;
+                document.getElementsByClassName('cell')[index].innerText = currentPlayer;
+                
+                if (checkWinner()) {
+                    setTimeout(() => alert(`Player ${currentPlayer} wins!`), 100);
+                    gameActive = false;
+                    return;
+                }
+                
+                if (ticBoard.every(cell => cell !== '')) {
+                    setTimeout(() => alert('It\'s a tie!'), 100);
+                    gameActive = false;
+                    return;
+                }
+                
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            }
+        }
+
+        function checkWinner() {
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+            
+            return winPatterns.some(pattern => {
+                return pattern.every(index => ticBoard[index] === currentPlayer);
+            });
+        }
+
+        function resetTicTacToe() {
+            ticBoard = ['', '', '', '', '', '', '', '', ''];
+            currentPlayer = 'X';
+            gameActive = true;
+            document.querySelectorAll('.cell').forEach(cell => cell.innerText = '');
+        }
+
+        // Number guessing game
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        let guessCount = 0;
+
+        function makeGuess() {
+            const guess = parseInt(document.getElementById('guess-input').value);
+            const resultDiv = document.getElementById('guess-result');
+            guessCount++;
+            
+            if (guess === randomNumber) {
+                resultDiv.innerHTML = `🎉 Congratulations! You guessed it in ${guessCount} tries!`;
+            } else if (guess < randomNumber) {
+                resultDiv.innerHTML = `📈 Too low! Try a higher number. (Attempt ${guessCount})`;
+            } else {
+                resultDiv.innerHTML = `📉 Too high! Try a lower number. (Attempt ${guessCount})`;
+            }
+        }
+
+        function resetGuessGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            guessCount = 0;
+            document.getElementById('guess-input').value = '';
+            document.getElementById('guess-result').innerHTML = '';
+        }
+
+        // Chat functionality
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const chatBox = document.getElementById('chat-box');
+            const message = input.value.trim();
+            
+            if (message) {
+                chatBox.innerHTML += `<div class="message user-message">${message}</div>`;
+                input.value = '';
+                
+                // Simple auto-responses
+                setTimeout(() => {
+                    let response = "Thanks for your message! As a civil engineering student, I'm always happy to discuss infrastructure, sustainable design, or any technical questions you might have.";
+                    
+                    if (message.toLowerCase().includes('engineering')) {
+                        response = "Great question about engineering! I'm passionate about civil engineering and sustainable infrastructure development.";
+                    } else if (message.toLowerCase().includes('project')) {
+                        response = "I'd love to share my projects with you! I've worked on various civil engineering designs and AutoCAD drawings.";
+                    }
+                    
+                    chatBox.innerHTML += `<div class="message bot-message">${response}</div>`;
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                }, 1000);
+                
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        }
+
+        // Enter key for chat
+        document.getElementById('chat-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // NEPSE ticker animation
+        function animateNepseTicker() {
+            const ticker = document.querySelector('.ticker-content');
+            let position = 100;
+            
+            setInterval(() => {
+                position -= 0.5;
+                if (position < -100) position = 100;
+                ticker.style.transform = `translateX(${position}%)`;
+            }, 50);
+        }
+        animateNepseTicker();
+    </script>
 </body>
 </html>
