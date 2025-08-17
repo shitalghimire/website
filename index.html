@@ -335,33 +335,62 @@
 </section>
 
 
-    <!-- NEPSE Section -->
-    <section id="nepse" class="nepse">
-        <div class="container">
-            <h2>NEPSE - Nepal Stock Exchange</h2>
-            <div id="nepse-ticker" class="nepse-ticker">
-                <div class="ticker-content">
-                    📈 NEPSE INDEX: 2,847.32 (+2.15%) | BANKING: +1.8% | HYDROPOWER: +3.2% | INSURANCE: -0.5% | FINANCE: +2.7% 📊
+   <!-- Live NEPSE Section -->
+<section id="nepse" class="nepse">
+    <div class="container">
+        <h2>NEPSE - Live Nepal Stock Exchange</h2>
+        
+        <!-- Status Indicator -->
+        <div id="nepse-status" class="status-indicator">
+            <span class="status-dot loading"></span>
+            <span id="status-text">Loading market data...</span>
+            <span id="last-update"></span>
+        </div>
+
+        <!-- Live Ticker -->
+        <div id="nepse-ticker" class="nepse-ticker">
+            <div class="ticker-content" id="ticker-content">
+                <span class="loading-text">📈 Loading live NEPSE data...</span>
+            </div>
+        </div>
+
+        <!-- Market Stats -->
+        <div class="nepse-info">
+            <div class="nepse-stats" id="nepse-stats">
+                <div class="stat-box">
+                    <h4>NEPSE Index</h4>
+                    <p id="nepse-index">Loading...</p>
+                    <span id="nepse-change" class="change-indicator">--</span>
+                </div>
+                <div class="stat-box">
+                    <h4>Total Turnover</h4>
+                    <p id="total-turnover">Loading...</p>
+                </div>
+                <div class="stat-box">
+                    <h4>Market Status</h4>
+                    <p id="market-status">Loading...</p>
+                </div>
+                <div class="stat-box">
+                    <h4>Active Stocks</h4>
+                    <p id="active-stocks">Loading...</p>
                 </div>
             </div>
-            <div class="nepse-info">
-                <div class="nepse-stats">
-                    <div class="stat-box">
-                        <h4>Market Cap</h4>
-                        <p>NPR 4.2 Trillion</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>Total Turnover</h4>
-                        <p>NPR 8.5 Billion</p>
-                    </div>
-                    <div class="stat-box">
-                        <h4>Total Shares</h4>
-                        <p>45.2 Million</p>
-                    </div>
+
+            <!-- Top Movers -->
+            <div class="market-movers">
+                <div class="gainers">
+                    <h4>📈 Top Gainers</h4>
+                    <div id="top-gainers">Loading...</div>
+                </div>
+                <div class="losers">
+                    <h4>📉 Top Losers</h4>
+                    <div id="top-losers">Loading...</div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Custom Nepali Calendar Section -->
     <section id="calendar" class="calendar">
