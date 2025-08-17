@@ -571,13 +571,10 @@
         updateClock();
 
         // Geolocation
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else {
-                document.getElementById('location').innerHTML = "<i class='fas fa-map-marker-alt'></i> Geolocation not supported";
-            }
-        }
+       function getLocation() {
+    document.getElementById('location').innerHTML = "<i class='fas fa-map-marker-alt'></i> Chitwan, Nepal";
+}
+
 
         function showPosition(position) {
             const lat = position.coords.latitude;
