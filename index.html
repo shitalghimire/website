@@ -989,61 +989,92 @@
 
                 // ===== LIVE NEPSE DATA MANAGER =====
         class NepseLiveData {
-            constructor() {
-                this.updateInterval = 45000; // Update every 45 seconds
-                this.apiUrl = 'https://nepalstock.onrender.com/nepse-data';
-                this.backupApis = [
-                    'https://nepse-api.herokuapp.com/api/v1/market-summary'
-                ];
-                this.currentApiIndex = 0;
-                this.isUpdating = false;
-                this.retryCount = 0;
-                this.maxRetries = 3;
-            }
+          constructor() {
+    this.updateInterval = 15000; // Update every 15 seconds (faster)
+    this.initialTimeout = 5000; // Give up after 5 seconds on first load
+    this.regularTimeout = 8000; // 8 seconds for regular updates
+    this.apiUrl = 'https://nepalstock.onrender.com/nepse-data';
+    this.backupApis = [
+        'https://nepse-api.herokuapp.com/api/v1/market-summary'
+    ];
+    this.currentApiIndex = 0;
+    this.isUpdating = false;
+    this.retryCount = 0;
+    this.maxRetries = 2; // Reduced retries for speed
+    this.isInitialLoad = true;
+}
 
-            async init() {
-                console.log('🚀 Initializing NEPSE Live Data...');
-                await this.updateNepseData();
-                this.startAutoUpdate();
-            }
 
-            async fetchNepseData() {
-                const apis = [this.apiUrl, ...this.backupApis];
-                const api = apis[this.currentApiIndex];
-                
-                try {
-                    console.log('📡 Fetching from: ' + api);
-                    
-                    const response = await fetch(api, {
-                        method: 'GET',
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    });
+          async init() {
+    console.log('🚀 Initializing NEPSE Live Data...');
+    
+    // Show sample data immediately, then try to get live data
+    setTimeout(() => {
+        this.showInstantFallback();
+    }, 100); // Show fallback almost immediately
+    
+    await this.updateNepseData();
+    this.startAutoUpdate();
+}
 
-                    if (!response.ok) {
-                        throw new Error('HTTP ' + response.status + ': ' + response.statusText);
-                    }
 
-                    const data = await response.json();
-                    console.log('✅ Data received:', data);
-                    
-                    this.retryCount = 0;
-                    return this.normalizeData(data);
-                    
-                } catch (error) {
-                    console.warn('⚠️ API failed:', error.message);
-                    this.retryCount++;
-                    
-                    if (this.retryCount < this.maxRetries) {
-                        this.currentApiIndex = (this.currentApiIndex + 1) % apis.length;
-                        console.log('🔄 Trying next API');
-                        return await this.fetchNepseData();
-                    } else {
-                        throw new Error('All APIs failed');
-                    }
-                }
-            }
+async fetchNepseData() {
+    const apis = [this.apiUrl, ...this.backupApis];
+    const api = apis[this.currentApiIndex];
+    const timeout = this.isInitialLoad ? this.initialTimeout : this.regularTimeout;
+    
+    try {
+        console.log('📡 Fetching from: ' + api + ' (timeout: ' + timeout + 'ms)');
+        
+        // Create timeout controller
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => {
+            controller.abort();
+            console.warn('⏰ Request timed out after ' + timeout + 'ms');
+        }, timeout);
+        
+        const response = await fetch(api, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            },
+            signal: controller.signal
+        });
+
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+            throw new Error('HTTP ' + response.status + ': ' + response.statusText);
+        }
+
+        const data = await response.json();
+        console.log('✅ Data received in ' + (Date.now() - this.fetchStartTime) + 'ms');
+        
+        this.retryCount = 0;
+        this.isInitialLoad = false; // Mark initial load as complete
+        return this.normalizeData(data);
+        
+    } catch (error) {
+        clearTimeout(timeoutId);
+        
+        if (error.name === 'AbortError') {
+            console.warn('⏰ Request aborted due to timeout');
+        } else {
+            console.warn('⚠️ API failed:', error.message);
+        }
+        
+        this.retryCount++;
+        
+        if (this.retryCount < this.maxRetries) {
+            this.currentApiIndex = (this.currentApiIndex + 1) % apis.length;
+            console.log('🔄 Trying next API (attempt ' + this.retryCount + '/' + this.maxRetries + ')');
+            return await this.fetchNepseData();
+        } else {
+            throw new Error('All APIs failed or timed out');
+        }
+    }
+}
+
 
             normalizeData(rawData) {
                 return {
@@ -1076,24 +1107,50 @@
                 return sampleStocks;
             }
 
-            async updateNepseData() {
-                if (this.isUpdating) return;
-                
-                this.isUpdating = true;
-                this.updateStatus('loading', 'Fetching live market data...');
-
-                try {
-                    const data = await this.fetchNepseData();
-                    this.displayNepseData(data);
-                    this.updateStatus('live', '✅ Live data updated');
-                } catch (error) {
-                    console.error('❌ Failed to update NEPSE data:', error);
-                    this.updateStatus('error', '⚠️ Using fallback data');
-                    this.displayFallbackData();
-                } finally {
-                    this.isUpdating = false;
-                }
+         async updateNepseData() {
+    if (this.isUpdating) return;
+    
+    this.isUpdating = true;
+    this.fetchStartTime = Date.now();
+    
+    if (this.isInitialLoad) {
+        this.updateStatus('loading', 'Loading market data...');
+        // Show fallback data immediately if first load takes too long
+        setTimeout(() => {
+            if (this.isInitialLoad) {
+                console.log('⚡ Fast fallback activated - showing sample data');
+                this.displayFallbackData();
+                this.updateStatus('error', '⚡ Fast mode - showing sample data');
             }
+        }, 3000); // Show fallback after just 3 seconds
+    } else {
+        this.updateStatus('loading', 'Updating...');
+    }
+
+    try {
+        const data = await this.fetchNepseData();
+        this.displayNepseData(data);
+        this.updateStatus('live', '✅ Live data (updated in ' + (Date.now() - this.fetchStartTime) + 'ms)');
+    } catch (error) {
+        console.error('❌ Failed to update NEPSE data:', error);
+        if (!this.isInitialLoad) {
+            this.updateStatus('error', '⚠️ Using cached data');
+            this.displayFallbackData();
+        }
+        // Initial load fallback is handled by setTimeout above
+    } finally {
+        this.isUpdating = false;
+        this.isInitialLoad = false;
+    }
+}
+
+                showInstantFallback() {
+    console.log('⚡ Instant fallback activated');
+    this.displayFallbackData();
+    this.updateStatus('live', '⚡ Sample data loaded instantly');
+    this.isInitialLoad = false;
+}
+
 
             displayNepseData(data) {
                 try {
