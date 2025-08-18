@@ -1264,6 +1264,7 @@
             setTimeout(() => {
                 startLiveSimulation();
             }, 10000); // Start simulation after 10 seconds
+            displayLeaderboard();
         });
 
         // Add click handler for manual refresh
@@ -1273,6 +1274,205 @@
                 refreshNepseData();
             }
         });
+                // ===== MONTHLY LEADERBOARD SYSTEM =====
+        let currentGameScore = 0;
+        let playerIP = 'Unknown';
+
+        // Get user's approximate IP (or generate a unique identifier)
+        async function getUserIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                // Fallback: generate a unique identifier based on browser fingerprint
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                ctx.textBaseline = 'top';
+                ctx.font = '14px Arial';
+                ctx.fillText('Fingerprint', 2, 2);
+                const fingerprint = canvas.toDataURL().slice(-50);
+                return 'User-' + fingerprint.slice(-8);
+            }
+        }
+
+        // Initialize IP on page load
+        getUserIP().then(ip => {
+            playerIP = ip;
+            const playerIPElement = document.getElementById('player-ip');
+            if (playerIPElement) {
+                playerIPElement.textContent = ip;
+            }
+        });
+
+        // Get current month key for leaderboard
+        function getCurrentMonthKey() {
+            const now = new Date();
+            return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+        }
+
+        // Get current month display name
+        function getCurrentMonthDisplay() {
+            const now = new Date();
+            return now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+        }
+
+        // Load leaderboard from localStorage
+        function loadLeaderboard() {
+            const monthKey = getCurrentMonthKey();
+            const stored = localStorage.getItem(`leaderboard-${monthKey}`);
+            return stored ? JSON.parse(stored) : [];
+        }
+
+        // Save leaderboard to localStorage
+        function saveLeaderboard(leaderboard) {
+            const monthKey = getCurrentMonthKey();
+            localStorage.setItem(`leaderboard-${monthKey}`, JSON.stringify(leaderboard));
+        }
+
+        // Check if score qualifies for leaderboard (top 10)
+        function isHighScore(score) {
+            const leaderboard = loadLeaderboard();
+            return leaderboard.length < 10 || score > leaderboard[leaderboard.length - 1].score;
+        }
+
+        // Add score to leaderboard
+        function addScoreToLeaderboard(playerName, score, ip) {
+            const leaderboard = loadLeaderboard();
+            const now = new Date();
+            
+            const newEntry = {
+                name: playerName || ip,
+                score: score,
+                ip: ip,
+                date: now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+                timestamp: now.getTime()
+            };
+            
+            // Check if player already exists (same IP)
+            const existingIndex = leaderboard.findIndex(entry => entry.ip === ip);
+            
+            if (existingIndex !== -1) {
+                // Update if new score is higher
+                if (score > leaderboard[existingIndex].score) {
+                    leaderboard[existingIndex] = newEntry;
+                }
+            } else {
+                // Add new entry
+                leaderboard.push(newEntry);
+            }
+            
+            // Sort by score (descending) and keep top 10
+            leaderboard.sort((a, b) => b.score - a.score);
+            const topLeaderboard = leaderboard.slice(0, 10);
+            
+            saveLeaderboard(topLeaderboard);
+            displayLeaderboard();
+        }
+
+        // Display leaderboard
+        function displayLeaderboard() {
+            const leaderboard = loadLeaderboard();
+            const container = document.getElementById('leaderboard-table');
+            const noScores = document.getElementById('no-scores');
+            const monthDisplay = document.getElementById('current-month');
+            
+            // Update month display
+            if (monthDisplay) {
+                monthDisplay.textContent = getCurrentMonthDisplay();
+            }
+            
+            if (leaderboard.length === 0) {
+                if (noScores) noScores.style.display = 'block';
+                // Hide all leaderboard rows except header
+                const rows = container.querySelectorAll('.leaderboard-row:not(.header)');
+                rows.forEach(row => row.remove());
+                return;
+            }
+            
+            if (noScores) noScores.style.display = 'none';
+            
+            // Remove existing rows (except header)
+            const existingRows = container.querySelectorAll('.leaderboard-row:not(.header)');
+            existingRows.forEach(row => row.remove());
+            
+            // Add leaderboard entries
+            leaderboard.forEach((entry, index) => {
+                const row = document.createElement('div');
+                row.className = `leaderboard-row ${index < 3 ? 'top-' + (index + 1) : ''}`;
+                
+                row.innerHTML = `
+                    <span class="rank">${index + 1}</span>
+                    <span class="name" title="${entry.name}">${entry.name}</span>
+                    <span class="score">${entry.score}</span>
+                    <span class="date">${entry.date}</span>
+                `;
+                
+                container.appendChild(row);
+            });
+        }
+
+        // Show name input modal
+        function showNameModal(score) {
+            currentGameScore = score;
+            const modalScoreElement = document.getElementById('modal-score');
+            const playerNameElement = document.getElementById('player-name');
+            const nameModal = document.getElementById('name-modal');
+            
+            if (modalScoreElement) modalScoreElement.textContent = score;
+            if (playerNameElement) playerNameElement.value = '';
+            if (nameModal) nameModal.style.display = 'flex';
+            
+            // Focus on input
+            setTimeout(() => {
+                if (playerNameElement) playerNameElement.focus();
+            }, 300);
+        }
+
+        // Save score from modal
+        function saveScore() {
+            const playerNameElement = document.getElementById('player-name');
+            const playerName = playerNameElement ? playerNameElement.value.trim() : '';
+            const displayName = playerName || playerIP;
+            
+            addScoreToLeaderboard(displayName, currentGameScore, playerIP);
+            closeModal();
+            
+            // Show celebration message
+            setTimeout(() => {
+                alert('🎉 Score saved! You\'re now on the leaderboard as "' + displayName + '"!');
+            }, 500);
+        }
+
+        // Close modal
+        function closeModal() {
+            const nameModal = document.getElementById('name-modal');
+            if (nameModal) nameModal.style.display = 'none';
+        }
+
+        // Clear leaderboard (admin function)
+        function clearLeaderboard() {
+            if (confirm('Are you sure you want to clear the monthly leaderboard? This cannot be undone.')) {
+                const monthKey = getCurrentMonthKey();
+                localStorage.removeItem(`leaderboard-${monthKey}`);
+                displayLeaderboard();
+                alert('✅ Leaderboard cleared!');
+            }
+        }
+
+        // Handle Enter key in modal and Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                const nameModal = document.getElementById('name-modal');
+                if (nameModal && nameModal.style.display === 'flex') {
+                    saveScore();
+                }
+            }
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
     </script>
 </body>
 </html>
