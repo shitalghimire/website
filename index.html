@@ -932,35 +932,59 @@
             document.getElementById('game-level').textContent = gameLevel;
         }
 
-        function endTapGame() {
-            gameRunning = false;
-            clearInterval(gameInterval);
-            
-            targets.forEach(target => {
-                if (target.parentNode) {
-                    target.parentNode.removeChild(target);
-                }
-            });
-            targets = [];
-            
-            const gameArea = document.getElementById('game-area');
-            gameArea.innerHTML = `
-                <div class="game-instructions">
-                    <div class="instruction-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h4>Game Over!</h4>
-                    <p>Final Score: <strong>${gameScore}</strong> points</p>
-                    <p>Level Reached: <strong>${gameLevel}</strong></p>
-                    <div class="game-tips">
-                        <li><i class="fas fa-star"></i> Great job! Click Start to play again</li>
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('start-game-btn').style.display = 'inline-flex';
-            document.getElementById('pause-game-btn').style.display = 'none';
+      function endTapGame() {
+    gameRunning = false;
+    clearInterval(gameInterval);
+    
+    targets.forEach(target => {
+        if (target.parentNode) {
+            target.parentNode.removeChild(target);
         }
+    });
+    targets = [];
+    
+    const gameArea = document.getElementById('game-area');
+    
+    // Check if it's a high score
+    if (isHighScore(gameScore)) {
+        gameArea.innerHTML = `
+            <div class="game-instructions">
+                <div class="instruction-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h4>🎉 New High Score! 🎉</h4>
+                <p>Amazing! You scored <strong>${gameScore}</strong> points!</p>
+                <p>Level Reached: <strong>${gameLevel}</strong></p>
+                <div class="game-tips">
+                    <li><i class="fas fa-trophy"></i> You made it to the leaderboard!</li>
+                </div>
+            </div>
+        `;
+        
+        // Show name input modal after a short delay
+        setTimeout(() => {
+            showNameModal(gameScore);
+        }, 1500);
+    } else {
+        gameArea.innerHTML = `
+            <div class="game-instructions">
+                <div class="instruction-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h4>Game Over!</h4>
+                <p>Final Score: <strong>${gameScore}</strong> points</p>
+                <p>Level Reached: <strong>${gameLevel}</strong></p>
+                <div class="game-tips">
+                    <li><i class="fas fa-star"></i> Great job! Try to beat the leaderboard!</li>
+                </div>
+            </div>
+        `;
+    }
+    
+    document.getElementById('start-game-btn').style.display = 'inline-flex';
+    document.getElementById('pause-game-btn').style.display = 'none';
+}
+
 
         // Add explosion animation
         const style = document.createElement('style');
