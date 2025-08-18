@@ -312,6 +312,54 @@
                             <i class="fas fa-redo"></i>
                             Reset
                         </button>
+                                        <!-- Monthly Leaderboard -->
+                <div class="leaderboard-section">
+                    <div class="leaderboard-header">
+                        <h4><i class="fas fa-crown"></i> Monthly Leaderboard</h4>
+                        <div class="leaderboard-month" id="current-month"></div>
+                        <button onclick="clearLeaderboard()" class="clear-btn">
+                            <i class="fas fa-trash"></i> Reset
+                        </button>
+                    </div>
+                    
+                    <div class="leaderboard-container">
+                        <div class="leaderboard-table" id="leaderboard-table">
+                            <div class="leaderboard-row header">
+                                <span class="rank">#</span>
+                                <span class="name">Player</span>
+                                <span class="score">Score</span>
+                                <span class="date">Date</span>
+                            </div>
+                            <div class="no-scores" id="no-scores">
+                                <i class="fas fa-trophy"></i>
+                                <p>No scores yet this month!</p>
+                                <p>Be the first to make it to the leaderboard!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Player Name Modal -->
+                    <div class="name-modal" id="name-modal" style="display: none;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4><i class="fas fa-star"></i> New High Score!</h4>
+                                <p>Your score: <span id="modal-score"></span> points</p>
+                            </div>
+                            <div class="modal-body">
+                                <label for="player-name">Enter your name (optional):</label>
+                                <input type="text" id="player-name" placeholder="Your name or leave blank for IP">
+                                <p class="ip-info">Your IP: <span id="player-ip"></span></p>
+                            </div>
+                            <div class="modal-actions">
+                                <button onclick="saveScore()" class="save-btn">
+                                    <i class="fas fa-save"></i> Save Score
+                                </button>
+                                <button onclick="closeModal()" class="skip-btn">Skip</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                     </div>
                 </div>
             </div>
