@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SeHack — Adaptive Typing Trainer</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="typing.css"/>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="t-loader">
+  <div class="tl-inner">
+    <div class="tl-logo">SeHack</div>
+    <div class="tl-bar"><div class="tl-fill"></div></div>
+    <div class="tl-sub">Adaptive Typing Trainer</div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="t-header">
+  <a href="index.html" class="t-back"><span class="t-back-arrow">←</span> Portfolio</a>
+  <div class="t-logo">Se<span>Hack</span></div>
+  <div class="t-header-right">
+    <button class="t-icon-btn" id="settingsToggle" title="Settings">⚙</button>
+    <button class="t-icon-btn" id="resetBtn" title="Reset">↺</button>
+  </div>
+</header>
+
+<!-- SETTINGS PANEL -->
+<div class="settings-panel" id="settingsPanel">
+  <div class="sp-inner">
+    <h3>Settings</h3>
+    <div class="sp-section">
+      <label>Theme</label>
+      <div class="sp-row">
+        <button class="theme-btn active" data-theme="hacker">Hacker</button>
+        <button class="theme-btn" data-theme="midnight">Midnight</button>
+        <button class="theme-btn" data-theme="retro">Retro</button>
+        <button class="theme-btn" data-theme="ocean">Ocean</button>
+      </div>
+    </div>
+    <div class="sp-section">
+      <label>Mode</label>
+      <div class="sp-row">
+        <button class="mode-btn active" data-mode="adaptive">Adaptive</button>
+        <button class="mode-btn" data-mode="words">Words</button>
+        <button class="mode-btn" data-mode="quote">Quote</button>
+        <button class="mode-btn" data-mode="code">Code</button>
+      </div>
+    </div>
+    <div class="sp-section">
+      <label>Duration</label>
+      <div class="sp-row">
+        <button class="dur-btn active" data-dur="30">30s</button>
+        <button class="dur-btn" data-dur="60">60s</button>
+        <button class="dur-btn" data-dur="120">120s</button>
+      </div>
+    </div>
+    <div class="sp-section">
+      <label>Sound</label>
+      <div class="sp-row">
+        <button class="sound-btn active" data-sound="off">Off</button>
+        <button class="sound-btn" data-sound="click">Click</button>
+        <button class="sound-btn" data-sound="soft">Soft</button>
+      </div>
+    </div>
+    <div class="sp-section">
+      <label>God Mode — Manual Letter Control</label>
+      <div id="letterToggleGrid" class="letter-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main id="t-main">
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="si-val" id="statWPM">0</div>
+      <div class="si-label">WPM</div>
+    </div>
+    <div class="stat-item">
+      <div class="si-val" id="statAcc">100%</div>
+      <div class="si-label">Accuracy</div>
+    </div>
+    <div class="stat-item">
+      <div class="si-val" id="statTime">30</div>
+      <div class="si-label">Time</div>
+    </div>
+    <div class="stat-item">
+      <div class="si-val" id="statStreak">0</div>
+      <div class="si-label">Streak</div>
+    </div>
+    <div class="stat-item">
+      <div class="si-val" id="statXP">0</div>
+      <div class="si-label">XP</div>
+    </div>
+  </div>
+
+  <!-- COMBO METER -->
+  <div class="combo-bar-wrap" id="comboBar">
+    <div class="combo-fill" id="comboFill"></div>
+    <span class="combo-label" id="comboLabel"></span>
+  </div>
+
+  <!-- TYPING AREA -->
+  <div class="typing-zone" id="typingZone" tabindex="0">
+    <div class="tz-words" id="tzWords"></div>
+    <div class="tz-cursor" id="tzCursor"></div>
+  </div>
+
+  <!-- HIDDEN INPUT -->
+  <input type="text" id="hiddenInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-hidden="true"/>
+
+  <!-- START OVERLAY -->
+  <div class="start-overlay" id="startOverlay">
+    <div class="so-inner">
+      <div class="so-logo">SeHack</div>
+      <p class="so-sub">Adaptive touch-typing trainer</p>
+      <p class="so-hint">Click anywhere or start typing to begin</p>
+    </div>
+  </div>
+
+  <!-- RESULT OVERLAY -->
+  <div class="result-overlay hidden" id="resultOverlay">
+    <div class="ro-inner">
+      <div class="ro-title">Session Complete</div>
+      <div class="ro-stats">
+        <div class="ros-item">
+          <div class="ros-val" id="roWPM">—</div>
+          <div class="ros-label">WPM</div>
+        </div>
+        <div class="ros-item">
+          <div class="ros-val" id="roAcc">—</div>
+          <div class="ros-label">Accuracy</div>
+        </div>
+        <div class="ros-item">
+          <div class="ros-val" id="roXP">—</div>
+          <div class="ros-label">XP Earned</div>
+        </div>
+        <div class="ros-item">
+          <div class="ros-val" id="roBest">—</div>
+          <div class="ros-label">Best WPM</div>
+        </div>
+      </div>
+      <div class="ro-heatmap">
+        <div class="roh-title">Key Performance</div>
+        <div id="roHeatmap" class="roh-grid"></div>
+      </div>
+      <div class="ro-btns">
+        <button class="ro-btn-primary" onclick="restartSession()">Try Again</button>
+        <button class="ro-btn-outline" onclick="window.location.href='index.html'">← Portfolio</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- KEYBOARD DISPLAY -->
+<div class="keyboard-wrap" id="keyboardWrap">
+  <div class="keyboard" id="keyboard"></div>
+  <div class="kb-legend">
+    <span class="kbl-item"><span class="kbl-dot kbl-error"></span>Errors</span>
+    <span class="kbl-item"><span class="kbl-dot kbl-good"></span>Mastered</span>
+    <span class="kbl-item"><span class="kbl-dot kbl-active"></span>Active Key</span>
+  </div>
+</div>
+
+<!-- PROGRESS / UNLOCK SECTION -->
+<div class="progress-section" id="progressSection">
+  <div class="ps-inner">
+    <div class="ps-title">Letter Progress</div>
+    <div id="letterProgress" class="lp-grid"></div>
+  </div>
+</div>
+
+<script src="typing.js"></script>
+</body>
+</html>
