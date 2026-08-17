@@ -117,7 +117,7 @@
           <span>AutoCAD</span>
           <span>QGIS</span>
         </div>
-        <a href="cv.pdf" download="Shital_Ghimire_CV.pdf" class="ac-btn">
+        <a href="CV.pdf" download="Shital_Ghimire_CV.pdf" class="ac-btn">
           <i class="fas fa-download"></i> Download CV
         </a>
       </div>
@@ -395,11 +395,11 @@
       </div>
       <form class="contact-form" onsubmit="submitForm(event)">
         <div class="form-row">
-          <input type="text" placeholder="Your Name" required/>
-          <input type="email" placeholder="Your Email" required/>
+          <input type="text" name="name" placeholder="Your Name" required/>
+          <input type="email" name="email" placeholder="Your Email" required/>
         </div>
-        <input type="text" placeholder="Subject"/>
-        <textarea placeholder="Your message..." rows="5" required></textarea>
+        <input type="text" name="subject" placeholder="Subject"/>
+        <textarea name="message" placeholder="Your message..." rows="5" required></textarea>
         <button type="submit" class="btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
         <div id="formMsg"></div>
       </form>

@@ -342,9 +342,18 @@ document.getElementById('gameTarget').addEventListener('click', function () {
 // ===== CONTACT FORM =====
 function submitForm(e) {
   e.preventDefault();
+  const form = e.target;
+  const name = form.elements['name'].value;
+  const email = form.elements['email'].value;
+  const subject = form.elements['subject'].value || 'Portfolio Contact';
+  const message = form.elements['message'].value;
+
+  const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+  const mailtoLink = `mailto:shitalghimire817@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  window.location.href = mailtoLink;
+
   const msg = document.getElementById('formMsg');
-  msg.textContent = '✓ Message sent! I\'ll get back to you soon.';
-  e.target.reset();
+  msg.textContent = '✓ Opening your email app to send the message...';
   setTimeout(() => msg.textContent = '', 4000);
 }
 
