@@ -1,182 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SeHack — Adaptive Typing Trainer</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="typing.css"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SeHack — Adaptive Typing Trainer</title>
+<meta name="description" content="An adaptive touch-typing trainer that finds your weakest keys and drills them. Live WPM, accuracy, key heatmap and error analysis."/>
+<meta name="theme-color" content="#14150F"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="assets/icon-180.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/typing.css"/>
 </head>
-<body>
+<body class="hack">
 
-<!-- LOADER -->
-<div id="t-loader">
-  <div class="tl-inner">
-    <div class="tl-logo">SeHack</div>
-    <div class="tl-bar"><div class="tl-fill"></div></div>
-    <div class="tl-sub">Adaptive Typing Trainer</div>
+<header class="hbar">
+  <div class="hbar__grp">
+    <a class="hbtn" href="index.html">← Portfolio</a>
   </div>
-</div>
-
-<!-- HEADER -->
-<header id="t-header">
-  <a href="index.html" class="t-back"><span class="t-back-arrow">←</span> Portfolio</a>
-  <div class="t-logo">Se<span>Hack</span></div>
-  <div class="t-header-right">
-    <button class="t-icon-btn" id="settingsToggle" title="Settings">⚙</button>
-    <button class="t-icon-btn" id="resetBtn" title="Reset">↺</button>
+  <p class="hlogo">Se<i>Hack</i></p>
+  <div class="hbar__grp">
+    <button class="hbtn" id="themeBtn" title="Toggle theme">◐ Theme</button>
+    <button class="hbtn" id="setBtn">⚙ Settings</button>
   </div>
 </header>
 
-<!-- SETTINGS PANEL -->
-<div class="settings-panel" id="settingsPanel">
-  <div class="sp-inner">
-    <h3>Settings</h3>
-    <div class="sp-section">
-      <label>Theme</label>
-      <div class="sp-row">
-        <button class="theme-btn active" data-theme="hacker">Hacker</button>
-        <button class="theme-btn" data-theme="midnight">Midnight</button>
-        <button class="theme-btn" data-theme="retro">Retro</button>
-        <button class="theme-btn" data-theme="ocean">Ocean</button>
+<div class="hwrap">
+
+  <dl class="metrics">
+    <div class="metric"><dt>Speed</dt><dd id="mWpm">0<small> wpm</small></dd></div>
+    <div class="metric"><dt>Accuracy</dt><dd id="mAcc">100<small>%</small></dd></div>
+    <div class="metric"><dt>Streak</dt><dd id="mStreak">0</dd></div>
+    <div class="metric"><dt>Rank</dt><dd id="mRank" style="font-size:1.05rem">Novice</dd></div>
+    <div class="metric"><dt>Unlocked</dt><dd id="mKeys">0<small>/26</small></dd></div>
+    <div class="metric metric--goal">
+      <svg class="ring" viewBox="0 0 40 40" aria-hidden="true">
+        <circle class="bg" cx="20" cy="20" r="16"/>
+        <circle class="fg" cx="20" cy="20" r="16" id="goalRing"
+                stroke-dasharray="100.5" stroke-dashoffset="100.5"
+                transform="rotate(-90 20 20)"/>
+      </svg>
+      <div><dt>Daily goal</dt><dd id="mGoal" style="font-size:1.05rem">0<small>/10 min</small></dd></div>
+    </div>
+  </dl>
+
+  <div class="modes" role="group" aria-label="Practice mode">
+    <button class="mode" data-mode="adaptive" aria-pressed="true">◆ Adaptive</button>
+    <button class="mode" data-mode="words" aria-pressed="false">Words</button>
+    <button class="mode" data-mode="code" aria-pressed="false">{ Code }</button>
+    <button class="mode" data-mode="prose" aria-pressed="false">Prose</button>
+    <button class="mode" data-mode="numbers" aria-pressed="false">123 · Symbols</button>
+    <button class="mode" data-mode="custom" aria-pressed="false">Custom</button>
+  </div>
+
+  <div class="surface" id="surface" tabindex="0" role="textbox" aria-label="Typing area">
+    <div class="stream" id="stream"></div>
+    <div class="surface__veil" id="startVeil">
+      <p>Click here, or just start typing</p>
+      <p><kbd>Esc</kbd> restart · <kbd>Tab</kbd> new drill</p>
+    </div>
+  </div>
+
+  <div class="kb" id="kb" aria-hidden="true"></div>
+  <div class="kb__legend">
+    <span><i style="background:var(--vis)"></i> Mastered</span>
+    <span><i style="background:var(--signal)"></i> Error</span>
+    <span><i style="opacity:.32"></i> Not yet unlocked</span>
+    <span>Bar under each key = mastery</span>
+  </div>
+
+  <section class="report" id="report" hidden>
+    <div class="report__hd">
+      <h2>Session <i>report</i></h2>
+      <p id="repMeta">—</p>
+    </div>
+    <div class="report__grid">
+      <div class="report__cell">
+        <h3>Result</h3>
+        <p id="repResult">—</p>
+      </div>
+      <div class="report__cell">
+        <h3>Weakest keys</h3>
+        <div class="chips" id="repKeys"></div>
+      </div>
+      <div class="report__cell">
+        <h3>Slowest transitions</h3>
+        <div class="chips" id="repDigrams"></div>
+      </div>
+      <div class="report__cell">
+        <h3>Coaching</h3>
+        <p id="repCoach">—</p>
+      </div>
+      <div class="report__cell">
+        <h3>Badges</h3>
+        <div class="badges" id="repBadges"></div>
+      </div>
+      <div class="report__cell">
+        <h3>Next</h3>
+        <p id="repNext">—</p>
       </div>
     </div>
-    <div class="sp-section">
-      <label>Mode</label>
-      <div class="sp-row">
-        <button class="mode-btn active" data-mode="adaptive">Adaptive</button>
-        <button class="mode-btn" data-mode="words">Words</button>
-        <button class="mode-btn" data-mode="quote">Quote</button>
-        <button class="mode-btn" data-mode="code">Code</button>
+  </section>
+
+</div>
+
+<!-- ══════ SETTINGS ══════ -->
+<div class="sheetdrawer" id="settings" hidden>
+  <div class="sheetdrawer__in">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem">
+      <h2>Settings</h2>
+      <button class="hbtn" id="setClose">✕ Close</button>
+    </div>
+
+    <label class="optrow"><span>Keyboard layout</span>
+      <select id="optLayout">
+        <option value="qwerty">QWERTY</option>
+        <option value="dvorak">Dvorak</option>
+        <option value="colemak">Colemak</option>
+      </select>
+    </label>
+
+    <div class="optrow"><span>Sound</span>
+      <div class="opts" id="optSound">
+        <button class="hbtn" data-v="off">Off</button>
+        <button class="hbtn" data-v="soft" aria-pressed="true">Soft click</button>
+        <button class="hbtn" data-v="mech">Mechanical</button>
       </div>
     </div>
-    <div class="sp-section">
-      <label>Duration</label>
-      <div class="sp-row">
-        <button class="dur-btn active" data-dur="30">30s</button>
-        <button class="dur-btn" data-dur="60">60s</button>
-        <button class="dur-btn" data-dur="120">120s</button>
+
+    <div class="optrow"><span>Drill length</span>
+      <div class="opts" id="optLen">
+        <button class="hbtn" data-v="18">Short</button>
+        <button class="hbtn" data-v="30" aria-pressed="true">Standard</button>
+        <button class="hbtn" data-v="50">Long</button>
       </div>
     </div>
-    <div class="sp-section">
-      <label>Sound</label>
-      <div class="sp-row">
-        <button class="sound-btn active" data-sound="off">Off</button>
-        <button class="sound-btn" data-sound="click">Click</button>
-        <button class="sound-btn" data-sound="soft">Soft</button>
+
+    <label class="optrow"><span>Daily goal (minutes)</span>
+      <input type="number" id="optGoal" min="1" max="180" value="10"/>
+    </label>
+
+    <label class="optrow"><span>Custom practice text</span>
+      <textarea id="optCustom" rows="5" placeholder="Paste any text here, then choose the Custom mode."></textarea>
+    </label>
+
+    <div class="optrow"><span>Data</span>
+      <div class="opts">
+        <button class="hbtn danger" id="optReset">Reset all progress</button>
       </div>
-    </div>
-    <div class="sp-section">
-      <label>God Mode — Manual Letter Control</label>
-      <div id="letterToggleGrid" class="letter-grid"></div>
     </div>
   </div>
 </div>
 
-<!-- MAIN -->
-<main id="t-main">
-
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="stat-item">
-      <div class="si-val" id="statWPM">0</div>
-      <div class="si-label">WPM</div>
-    </div>
-    <div class="stat-item">
-      <div class="si-val" id="statAcc">100%</div>
-      <div class="si-label">Accuracy</div>
-    </div>
-    <div class="stat-item">
-      <div class="si-val" id="statTime">30</div>
-      <div class="si-label">Time</div>
-    </div>
-    <div class="stat-item">
-      <div class="si-val" id="statStreak">0</div>
-      <div class="si-label">Streak</div>
-    </div>
-    <div class="stat-item">
-      <div class="si-val" id="statXP">0</div>
-      <div class="si-label">XP</div>
-    </div>
-  </div>
-
-  <!-- COMBO METER -->
-  <div class="combo-bar-wrap" id="comboBar">
-    <div class="combo-fill" id="comboFill"></div>
-    <span class="combo-label" id="comboLabel"></span>
-  </div>
-
-  <!-- TYPING AREA -->
-  <div class="typing-zone" id="typingZone" tabindex="0">
-    <div class="tz-words" id="tzWords"></div>
-    <div class="tz-cursor" id="tzCursor"></div>
-  </div>
-
-  <!-- HIDDEN INPUT -->
-  <input type="text" id="hiddenInput" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-hidden="true"/>
-
-  <!-- START OVERLAY -->
-  <div class="start-overlay" id="startOverlay">
-    <div class="so-inner">
-      <div class="so-logo">SeHack</div>
-      <p class="so-sub">Adaptive touch-typing trainer</p>
-      <p class="so-hint">Click anywhere or start typing to begin</p>
-    </div>
-  </div>
-
-  <!-- RESULT OVERLAY -->
-  <div class="result-overlay hidden" id="resultOverlay">
-    <div class="ro-inner">
-      <div class="ro-title">Session Complete</div>
-      <div class="ro-stats">
-        <div class="ros-item">
-          <div class="ros-val" id="roWPM">—</div>
-          <div class="ros-label">WPM</div>
-        </div>
-        <div class="ros-item">
-          <div class="ros-val" id="roAcc">—</div>
-          <div class="ros-label">Accuracy</div>
-        </div>
-        <div class="ros-item">
-          <div class="ros-val" id="roXP">—</div>
-          <div class="ros-label">XP Earned</div>
-        </div>
-        <div class="ros-item">
-          <div class="ros-val" id="roBest">—</div>
-          <div class="ros-label">Best WPM</div>
-        </div>
-      </div>
-      <div class="ro-heatmap">
-        <div class="roh-title">Key Performance</div>
-        <div id="roHeatmap" class="roh-grid"></div>
-      </div>
-      <div class="ro-btns">
-        <button class="ro-btn-primary" onclick="restartSession()">Try Again</button>
-        <button class="ro-btn-outline" onclick="window.location.href='index.html'">← Portfolio</button>
-      </div>
-    </div>
-  </div>
-
-</main>
-
-<!-- KEYBOARD DISPLAY -->
-<div class="keyboard-wrap" id="keyboardWrap">
-  <div class="keyboard" id="keyboard"></div>
-  <div class="kb-legend">
-    <span class="kbl-item"><span class="kbl-dot kbl-error"></span>Errors</span>
-    <span class="kbl-item"><span class="kbl-dot kbl-good"></span>Mastered</span>
-    <span class="kbl-item"><span class="kbl-dot kbl-active"></span>Active Key</span>
-  </div>
-</div>
-
-<!-- PROGRESS / UNLOCK SECTION -->
-<div class="progress-section" id="progressSection">
-  <div class="ps-inner">
-    <div class="ps-title">Letter Progress</div>
-    <div id="letterProgress" class="lp-grid"></div>
-  </div>
-</div>
-
-<script src="typing.js"></script>
+<script src="js/typing.js"></script>
 </body>
 </html>

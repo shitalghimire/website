@@ -1,0 +1,330 @@
+/* =============================================================
+   DRAWING SET — design system
+   A portfolio built in the visual language of a construction
+   drawing set: drafting paper, hairline rules, sheet numbers,
+   dimension annotations, hi-vis marker highlights.
+   ============================================================= */
+
+:root {
+  /* --- ground: warm drafting paper --- */
+  --paper:      #F2F0EA;
+  --paper-2:    #EAE7DF;
+  --paper-3:    #E1DDD3;
+
+  /* --- ink --- */
+  --ink:        #16170F;
+  --ink-2:      #3A3C33;
+  --graphite:   #6B6D62;
+  --graphite-2: #9B9C92;
+
+  /* --- hi-vis: lifted straight off the safety vest --- */
+  --vis:        #C9E82A;
+  --vis-deep:   #A6C511;
+  --vis-wash:   rgba(201, 232, 42, 0.30);
+
+  /* --- signal: revision clouds, critical path --- */
+  --signal:     #D4402A;
+  --water:      #2E5C7A;
+
+  /* --- lines --- */
+  --rule:       rgba(22, 23, 15, 0.14);
+  --rule-soft:  rgba(22, 23, 15, 0.07);
+  --rule-firm:  rgba(22, 23, 15, 0.32);
+
+  /* --- dark plate (full-bleed photo sections + games/typing) --- */
+  --plate:      #14150F;
+  --plate-2:    #1D1F16;
+  --plate-3:    #282A1F;
+  --on-plate:   #F2F0EA;
+  --on-plate-dim: rgba(242, 240, 234, 0.62);
+  --plate-rule: rgba(242, 240, 234, 0.16);
+
+  /* --- type --- */
+  --display: 'Archivo', 'Arial Black', system-ui, sans-serif;
+  --body:    'Instrument Sans', 'Segoe UI', Helvetica, Arial, sans-serif;
+  --mono:    'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+
+  /* --- metrics --- */
+  --rail:    76px;          /* left sheet-rail width on desktop */
+  --gutter:  clamp(1.25rem, 4vw, 4rem);
+  --measure: 68ch;
+  --shell:   1240px;
+
+  --ease:      cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-firm: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ===================== reset ===================== */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  line-height: 1.62;
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* the paper itself: a faint drafting grid + tooth */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--rule-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule-soft) 1px, transparent 1px);
+  background-size: 88px 88px, 88px 88px;
+  opacity: 0.85;
+}
+body > * { position: relative; z-index: 1; }
+
+/* clear the fixed sheet rail */
+@media (min-width: 901px) {
+  body { padding-left: var(--rail); }
+}
+
+img, svg, canvas, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+ul, ol { list-style: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { background: none; border: none; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+::selection { background: var(--vis); color: var(--ink); }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ===================== typography ===================== */
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  font-stretch: 112%;
+  text-wrap: balance;
+}
+
+.t-display {
+  font-family: var(--display);
+  font-weight: 800;
+  font-stretch: 118%;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+  font-size: clamp(3.2rem, 11vw, 8.5rem);
+}
+
+.t-section {
+  font-family: var(--display);
+  font-weight: 800;
+  font-stretch: 115%;
+  letter-spacing: -0.032em;
+  line-height: 0.98;
+  font-size: clamp(2.1rem, 5.2vw, 4.1rem);
+}
+.t-section em {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 1.2px var(--ink);
+  paint-order: stroke fill;
+}
+
+.t-lead {
+  font-size: clamp(1.08rem, 1rem + 0.5vw, 1.38rem);
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+/* the drawing-lettering voice: labels, sheet numbers, data */
+.t-label {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.t-mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* hi-vis marker sweep — as if someone highlighted the drawing */
+.mark {
+  background-image: linear-gradient(var(--vis-wash), var(--vis-wash));
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 0% 0.62em;
+  padding: 0 0.08em;
+  transition: background-size 0.7s var(--ease) 0.15s;
+}
+.is-in .mark, .mark.is-lit { background-size: 100% 0.62em; }
+
+/* ===================== layout ===================== */
+.shell {
+  width: min(100% - (var(--gutter) * 2), var(--shell));
+  margin-inline: auto;
+}
+
+.sheet {
+  position: relative;
+  padding-block: clamp(4.5rem, 11vh, 8.5rem);
+}
+.sheet + .sheet { border-top: 1px solid var(--rule); }
+
+/* section header: sheet designation + title, drawing-style */
+.sheet-head {
+  display: grid;
+  gap: 1.1rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.sheet-id {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.sheet-id::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.sheet-id b {
+  font-weight: 500;
+  color: var(--ink);
+  border: 1px solid var(--rule-firm);
+  padding: 0.18rem 0.5rem;
+}
+
+/* ===================== controls ===================== */
+.btn {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.82rem 1.5rem;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 1px solid var(--ink);
+  transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease),
+              background-color 0.22s var(--ease), color 0.22s var(--ease);
+}
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.btn:active { transform: translate(0, 0); box-shadow: 0 0 0 var(--ink); }
+
+.btn--vis { --btn-bg: var(--vis); --btn-fg: var(--ink); }
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  border-color: var(--rule-firm);
+}
+.btn--ghost:hover { background: var(--ink); color: var(--paper); }
+
+.btn--sm { padding: 0.55rem 1rem; font-size: 0.6875rem; }
+
+/* form fields, drawn like schedule inputs */
+.field { display: grid; gap: 0.4rem; }
+.field > span {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+input, select, textarea {
+  width: 100%;
+  padding: 0.68rem 0.85rem;
+  background: var(--paper);
+  border: 1px solid var(--rule-firm);
+  border-radius: 0;
+  font-family: var(--mono);
+  font-size: 0.875rem;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+  box-shadow: inset 0 -2px 0 var(--vis);
+}
+textarea { resize: vertical; min-height: 7rem; line-height: 1.6; }
+select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+    linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 50%, calc(100% - 12px) 50%;
+  background-size: 5px 5px, 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 2.2rem;
+}
+
+/* ===================== reveal ===================== */
+.rise {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+}
+.rise.is-in { opacity: 1; transform: none; }
+
+/* ===================== a11y ===================== */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 9999;
+  padding: 0.9rem 1.4rem;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.skip:focus { left: 1rem; top: 1rem; }
+
+.sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

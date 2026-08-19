@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="4" fill="#14150F"/>
+  <!-- impounded water (hi-vis) -->
+  <path d="M4 20 L14 20 L14 9 Z" fill="#C9E82A"/>
+  <!-- dam section -->
+  <path d="M14 6 L20 6 L23 26 L14 26 Z" fill="#F4F2ED"/>
+  <!-- tailwater line -->
+  <rect x="22" y="22" width="7" height="1.6" fill="#C9E82A"/>
+</svg>

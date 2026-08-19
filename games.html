@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Arcade — Shital Ghimire</title>
+<meta name="description" content="Three original browser games built from scratch: Reflex Rig, Circuit and Stack."/>
+<meta name="theme-color" content="#14150F"/>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="assets/icon-180.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/games.css"/>
+</head>
+<body class="arcade">
+
+<header class="abar">
+  <a class="abar__back" href="index.html">← Portfolio</a>
+  <p class="abar__title">The <i>Arcade</i></p>
+  <button class="abar__act" id="soundBtn" aria-pressed="true">♪ Sound on</button>
+</header>
+
+<div class="awrap">
+
+  <!-- ══════ MENU ══════ -->
+  <section class="amenu__view" id="menu">
+    <header class="amenu__head">
+      <h1>Three <i>games</i>,<br/>built from nothing</h1>
+      <p>No engine, no library — just canvas, arithmetic and a lot of tuning.
+         Pick one. Your best scores stay in this browser.</p>
+    </header>
+
+    <div class="amenu">
+      <button class="acard" data-game="reflex">
+        <canvas class="acard__art" data-art="reflex" width="320" height="200"></canvas>
+        <div>
+          <p class="acard__n">GAME 01</p>
+          <h2>Reflex Rig</h2>
+          <p>Targets drift across the rig and shrink as they age. Hit them before they close. Miss three and it's over.</p>
+        </div>
+        <div class="acard__foot"><span>Best <b data-best="reflex">—</b></span><span class="acard__go">Play →</span></div>
+      </button>
+
+      <button class="acard" data-game="circuit">
+        <canvas class="acard__art" data-art="circuit" width="320" height="200"></canvas>
+        <div>
+          <p class="acard__n">GAME 02</p>
+          <h2>Circuit</h2>
+          <p>Watch the sequence, then repeat it. Every round adds a step and the circuit runs a little faster.</p>
+        </div>
+        <div class="acard__foot"><span>Best <b data-best="circuit">—</b></span><span class="acard__go">Play →</span></div>
+      </button>
+
+      <button class="acard" data-game="stack">
+        <canvas class="acard__art" data-art="stack" width="320" height="200"></canvas>
+        <div>
+          <p class="acard__n">GAME 03</p>
+          <h2>Stack</h2>
+          <p>Drop each slab on the one below. Whatever hangs over gets cut away. Build as high as your timing holds.</p>
+        </div>
+        <div class="acard__foot"><span>Best <b data-best="stack">—</b></span><span class="acard__go">Play →</span></div>
+      </button>
+    </div>
+  </section>
+
+  <!-- ══════ STAGE ══════ -->
+  <section class="stage" id="stage" hidden>
+    <div class="stage__top">
+      <h1 id="stageTitle">—</h1>
+      <p id="stageSub">—</p>
+    </div>
+
+    <dl class="hud" id="hud"></dl>
+
+    <div class="play" id="play">
+      <canvas id="cv" width="900" height="540"></canvas>
+      <div class="pads" id="pads" hidden>
+        <button class="pad" data-k="0">Q</button>
+        <button class="pad" data-k="1">W</button>
+        <button class="pad" data-k="2">A</button>
+        <button class="pad" data-k="3">S</button>
+      </div>
+      <div class="veil" id="veil">
+        <h2 id="veilTitle">Ready<i>.</i></h2>
+        <p id="veilBody">—</p>
+        <button class="abtn" id="veilBtn">Start</button>
+      </div>
+    </div>
+
+    <div class="stage__foot">
+      <button class="abtn abtn--ghost" id="backBtn">← All games</button>
+      <button class="abtn abtn--ghost" id="restartBtn">Restart</button>
+      <span class="stage__hint" id="hint"></span>
+    </div>
+
+    <dl class="scores" id="scores"></dl>
+  </section>
+
+</div>
+
+<script src="js/games.js"></script>
+</body>
+</html>

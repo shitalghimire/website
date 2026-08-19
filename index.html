@@ -1,471 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Shital Ghimire | Civil Engineer</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@300;400;500;600&family=Space+Mono:ital@0;1&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Shital Ghimire — Civil Engineer, Hydropower</title>
+<meta name="description" content="Civil engineer specialising in hydropower, trained at Kathmandu University. Planning and project controls on hydropower construction in Nepal — Primavera P6, scheduling and site delivery."/>
+<meta name="author" content="Shital Ghimire"/>
+<meta name="theme-color" content="#F2F0EA"/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Shital Ghimire — Civil Engineer, Hydropower"/>
+<meta property="og:description" content="Civil engineer specialising in hydropower, trained at Kathmandu University. Planning and project controls on hydropower construction in Nepal."/>
+<meta property="og:image" content="assets/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Shital Ghimire, Planning Engineer — Tamakoshi V Hydropower Project"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Shital Ghimire — Civil Engineer, Hydropower"/>
+<meta name="twitter:description" content="Civil engineer specialising in hydropower, trained at Kathmandu University."/>
+<meta name="twitter:image" content="assets/twitter-image.png"/>
+
+<link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+<link rel="icon" href="assets/icon-32.png" sizes="32x32" type="image/png"/>
+<link rel="apple-touch-icon" href="assets/icon-180.png"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/site.css"/>
+<link rel="stylesheet" href="css/tools.css"/>
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="loader-inner">
-    <svg class="loader-svg" viewBox="0 0 100 100">
-      <circle class="loader-ring" cx="50" cy="50" r="40"/>
-    </svg>
-    <span class="loader-initials">SG</span>
-  </div>
-</div>
+<a class="skip" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav id="navbar">
-  <a class="nav-logo" href="#hero">Shital<span class="dot">.</span></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#tools">Tools</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="typing.html" target="_blank" class="nav-typing-btn">⌨ SeHack Typing</a></li>
-  </ul>
-  <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+<!-- ══════════ SHEET RAIL ══════════ -->
+<aside class="rail" aria-hidden="true">
+  <svg class="rail__mark" viewBox="0 0 32 32">
+    <path d="M4 20 L14 20 L14 9 Z" fill="#A6C511"/>
+    <path d="M14 6 L20 6 L23 26 L14 26 Z" fill="#16170F"/>
+    <rect x="22" y="22" width="7" height="1.6" fill="#A6C511"/>
+  </svg>
+  <div class="rail__ticks" id="railTicks"></div>
+  <div class="rail__rev">Rev · C</div>
+</aside>
+
+<!-- ══════════ TOP BAR ══════════ -->
+<header class="topbar" id="topbar">
+  <a class="wordmark" href="#top">Shital Ghimire<i>.</i></a>
+
+  <nav class="nav" id="nav" aria-label="Sections">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#instruments">Tools</a>
+    <a href="#contact">Contact</a>
+    <span class="nav__apps">
+      <a class="applink" href="games.html">◈ Arcade</a>
+      <a class="applink applink--vis" href="typing.html">⌨ SeHack</a>
+    </span>
+  </nav>
+
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ══════════ MOBILE DRAWER ══════════ -->
+<nav class="drawer" id="drawer" aria-label="Menu">
+  <a href="#about"><em>01</em> About</a>
+  <a href="#skills"><em>02</em> Skills</a>
+  <a href="#experience"><em>03</em> Experience</a>
+  <a href="#projects"><em>04</em> Projects</a>
+  <a href="#education"><em>05</em> Education</a>
+  <a href="#instruments"><em>06</em> Tools</a>
+  <a href="#contact"><em>07</em> Contact</a>
+  <a href="typing.html"><em>▸</em> SeHack Typing</a>
+  <a href="games.html"><em>▸</em> Arcade</a>
 </nav>
 
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="close-menu" id="closeMenu"><i class="fas fa-times"></i></button>
-  <ul>
-    <li><a href="#about" class="mob-link">About</a></li>
-    <li><a href="#skills" class="mob-link">Skills</a></li>
-    <li><a href="#experience" class="mob-link">Experience</a></li>
-    <li><a href="#projects" class="mob-link">Projects</a></li>
-    <li><a href="#education" class="mob-link">Education</a></li>
-    <li><a href="#tools" class="mob-link">Tools</a></li>
-    <li><a href="#contact" class="mob-link">Contact</a></li>
-    <li><a href="typing.html" target="_blank" class="mob-link mob-typing">⌨ SeHack Typing</a></li>
-  </ul>
+<main id="main">
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero" id="top">
+  <canvas id="topo" aria-hidden="true"></canvas>
+  <div class="shell hero__grid">
+    <div>
+      <p class="hero__tag">Civil Engineer</p>
+
+      <h1 class="t-display hero__name">
+        <span>Shital</span>
+        <span class="n2">Ghimire</span>
+      </h1>
+
+      <div class="hero__role">
+        <b>B.E. Civil Engineering</b>
+        <s>/</s>
+        <b>Kathmandu University</b>
+        <s>/</s>
+        <b>Nepal</b>
+      </div>
+
+      <p class="t-lead hero__blurb">
+        A civil engineer <span class="mark">specialising in hydropower</span>, trained at
+        Kathmandu University. I work on the structures that turn Nepal's rivers into power —
+        and on the planning that gets them built.
+      </p>
+
+      <div class="hero__acts">
+        <a class="btn" href="#experience">See the work</a>
+        <a class="btn btn--ghost" href="CV.pdf" download="Shital_Ghimire_CV.pdf">Download CV</a>
+      </div>
+    </div>
+
+    <figure class="figure">
+      <div class="figure__frame" aria-hidden="true"></div>
+      <img class="figure__img" src="assets/images/portrait-hero.jpg"
+           alt="Portrait of Shital Ghimire"
+           width="960" height="594" loading="eager" fetchpriority="high"/>
+      <svg class="figure__dim" viewBox="0 0 32 400" preserveAspectRatio="none" aria-hidden="true">
+        <line x1="16" y1="0" x2="16" y2="400" stroke="#16170F" stroke-width="1" opacity="0.45"/>
+        <path d="M11 6 L16 0 L21 6" fill="none" stroke="#16170F" stroke-width="1" opacity="0.45"/>
+        <path d="M11 394 L16 400 L21 394" fill="none" stroke="#16170F" stroke-width="1" opacity="0.45"/>
+      </svg>
+    </figure>
+  </div>
+
+  <div class="hero__scroll"><span>Scroll</span><i></i></div>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="strip" aria-hidden="true">
+  <div class="strip__run" id="strip"></div>
 </div>
 
-<!-- HERO -->
-<section id="hero">
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero-noise"></div>
-  <div class="hero-content">
-    <div class="hero-badge">Civil Engineer · Hydropower</div>
-    <h1 class="hero-title">
-      <span class="hero-first">Shital</span>
-      <span class="hero-last">Ghimire</span>
-    </h1>
-    <p class="hero-sub">Building resilient infrastructure — from mountain rivers to engineered structures.</p>
-    <div class="hero-btns">
-      <a href="#projects" class="btn-primary">View Projects</a>
-      <a href="#contact" class="btn-outline">Get in Touch</a>
-    </div>
-  </div>
-  <div class="hero-photo-wrap" id="photoWrap">
-    <img src="photo.png" alt="Shital Ghimire" class="hero-photo" id="heroPhoto" onerror="this.parentElement.style.display='none'"/>
-    <div class="photo-ring"></div>
-  </div>
-  <div class="hero-scroll-ind">
-    <span>scroll</span>
-    <div class="scroll-track"><div class="scroll-thumb"></div></div>
-  </div>
-</section>
+<!-- ══════════ 01 ABOUT ══════════ -->
+<section class="sheet" id="about">
+  <div class="shell">
+    <header class="sheet-head">
+      <p class="sheet-id"><b>SHT 01</b> Profile</p>
+      <h2 class="t-section">Schedules are<br/>promises in <em>time</em></h2>
+    </header>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="sec-label">01 — About</div>
-    <div class="about-grid">
-      <div class="about-text">
-        <h2 class="sec-title">Designing <em>Structures</em> That Last</h2>
-        <p>I'm a Civil Engineering graduate from <strong>Kathmandu University</strong>, with academic focus on <strong>hydropower engineering</strong>. My journey has taken me from classrooms to construction sites — including hands-on training at the <strong>100 MW Super Trishuli Hydropower Project</strong>.</p>
-        <p>Good engineering is more than calculations and drawings — it's about creating infrastructure that serves communities, stands the test of time, and respects the environment.</p>
-        <div class="about-stats">
-          <div class="stat-box">
-            <span class="stat-num">100</span>
-            <span class="stat-label">MW Project<br/>Training</span>
-          </div>
-          <div class="stat-box">
-            <span class="stat-num">2</span>
-            <span class="stat-label">Academic<br/>Projects</span>
-          </div>
-          <div class="stat-box">
-            <span class="stat-num">KU</span>
-            <span class="stat-label">Kathmandu<br/>University</span>
-          </div>
-        </div>
+    <div class="about">
+      <div class="about__body rise">
+        <p class="t-lead" style="max-width:56ch">
+          I'm a civil engineer working in <strong>project planning and controls</strong> on
+          hydropower construction in Nepal.
+        </p>
+        <p>
+          Today I'm a Planning Engineer with <strong>Sinohydro Corporation Limited</strong> on the
+          <strong>Tamakoshi V Hydropower Project</strong>, a 99.8 MW scheme in Dolakha. My work is the
+          schedule: building and maintaining it in <span class="mark">Primavera P6</span>, measuring
+          real progress against the baseline, reporting where the project actually stands, and keeping
+          the plan and the site talking to each other.
+        </p>
+        <p>
+          I came to planning from the field. Before this I trained at
+          <strong>CDRC</strong> on planning, project controls and construction claims, and spent an
+          internship on the barrage, intake and powerhouse works of a 100 MW run-of-river project —
+          watching concrete get placed, grouting go in, and drawings meet ground.
+        </p>
+        <p>
+          That order matters to me. A schedule written by someone who has stood in the formwork is a
+          different document than one written from a desk. I want to keep building both:
+          <span class="mark">the plan, and the thing the plan describes</span>.
+        </p>
+
+        <dl class="stats">
+          <div class="stat"><b>99.8</b><span>MW project<br/>in delivery</span></div>
+          <div class="stat"><b>100</b><span>MW site<br/>internship</span></div>
+          <div class="stat"><b>P6</b><span>Primavera<br/>scheduling</span></div>
+          <div class="stat"><b>KU</b><span>Kathmandu<br/>University</span></div>
+        </dl>
       </div>
-      <div class="about-card reveal">
-        <div class="ac-avatar" id="acAvatar">
-          <img src="photo.png" alt="SG" onerror="this.style.display='none'; document.getElementById('acInitials').style.display='block'"/>
-          <span id="acInitials" style="display:none">SG</span>
+
+      <aside class="vcard rise">
+        <div class="vcard__top">
+          <img src="assets/images/portrait.jpg" alt="Portrait of Shital Ghimire" width="800" height="799" loading="lazy"/>
+          <div class="vcard__who">
+            <h3>Shital Ghimire</h3>
+            <p>Planning Engineer<br/>B.E. Civil, 2026</p>
+          </div>
         </div>
-        <div class="ac-info">
-          <h3>Shital Ghimire</h3>
-          <p>B.E. Civil Engineering (2026)</p>
-          <p>Ratnanagar-15, Chitwan, Nepal</p>
+        <dl class="vcard__rows">
+          <div class="vcard__row"><dt>Employer</dt><dd>Sinohydro Corp. Ltd.</dd></div>
+          <div class="vcard__row"><dt>Project</dt><dd>Tamakoshi V — 99.8 MW</dd></div>
+          <div class="vcard__row"><dt>Based</dt><dd>Dolakha · Chitwan, NP</dd></div>
+          <div class="vcard__row"><dt>Focus</dt><dd>Planning · Project controls</dd></div>
+          <div class="vcard__row"><dt>Email</dt><dd><a href="mailto:shitalghimire817@gmail.com">shitalghimire817@gmail.com</a></dd></div>
+          <div class="vcard__row"><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/shital-ghimire-3658721b8/" target="_blank" rel="noopener">/shital-ghimire</a></dd></div>
+        </dl>
+        <div class="vcard__cta">
+          <a class="btn btn--vis" href="CV.pdf" download="Shital_Ghimire_CV.pdf">↓ Curriculum Vitae</a>
         </div>
-        <div class="ac-tags">
-          <span>Hydropower</span>
-          <span>Structural</span>
-          <span>AutoCAD</span>
-          <span>QGIS</span>
-        </div>
-        <a href="CV.pdf" download="Shital_Ghimire_CV.pdf" class="ac-btn">
-          <i class="fas fa-download"></i> Download CV
-        </a>
-      </div>
+      </aside>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="container">
-    <div class="sec-label">02 — Skills</div>
-    <h2 class="sec-title">Core <em>Competencies</em></h2>
-    <div class="skills-grid">
-      <div class="skill-card reveal" data-delay="0">
-        <div class="sk-icon"><i class="fas fa-hard-hat"></i></div>
-        <h3>Construction Supervision</h3>
-        <p>Practical exposure to site supervision, drawing interpretation, and execution monitoring on live hydropower projects.</p>
-      </div>
-      <div class="skill-card reveal" data-delay="100">
-        <div class="sk-icon"><i class="fas fa-flask"></i></div>
-        <h3>Quality Control</h3>
-        <p>Familiar with concrete cube testing, material checks, batching, vibration, curing, and site QC documentation.</p>
-      </div>
-      <div class="skill-card reveal" data-delay="200">
-        <div class="sk-icon"><i class="fas fa-file-alt"></i></div>
-        <h3>Technical Documentation</h3>
-        <p>Able to prepare engineering reports, interpret DPR concepts, and maintain project documentation records.</p>
-      </div>
-      <div class="skill-card reveal" data-delay="300">
-        <div class="sk-icon"><i class="fas fa-drafting-compass"></i></div>
-        <h3>Drawing Interpretation</h3>
-        <p>Skilled in reading construction and structural drawings, relating site conditions to approved design plans.</p>
-      </div>
-      <div class="skill-card reveal" data-delay="400">
-        <div class="sk-icon"><i class="fas fa-water"></i></div>
+<!-- ══════════ 02 SKILLS ══════════ -->
+<section class="sheet" id="skills">
+  <div class="shell">
+    <header class="sheet-head">
+      <p class="sheet-id"><b>SHT 02</b> Capability</p>
+      <h2 class="t-section">What I'm <em>for</em></h2>
+    </header>
+
+    <div class="skills rise">
+      <article class="skill">
+        <i class="skill__bar" aria-hidden="true"></i>
+        <p class="skill__n">2.01</p>
+        <h3>Planning &amp; Scheduling</h3>
+        <p>Building and maintaining CPM schedules in Primavera P6 — WBS structure, activity logic, durations, resource and progress updates.</p>
+        <div class="skill__tags"><span>Primavera P6</span><span>CPM</span><span>WBS</span></div>
+      </article>
+
+      <article class="skill">
+        <i class="skill__bar" aria-hidden="true"></i>
+        <p class="skill__n">2.02</p>
+        <h3>Project Controls</h3>
+        <p>Tracking actual progress against baseline, measuring variance, and producing progress reports that tell stakeholders where the job really is.</p>
+        <div class="skill__tags"><span>Baseline</span><span>Variance</span><span>Reporting</span></div>
+      </article>
+
+      <article class="skill">
+        <i class="skill__bar" aria-hidden="true"></i>
+        <p class="skill__n">2.03</p>
+        <h3>Site Coordination</h3>
+        <p>Working between the plan and the field — aligning planned sequence with what crews, plant and access can actually deliver on the ground.</p>
+        <div class="skill__tags"><span>Sequencing</span><span>Interfaces</span></div>
+      </article>
+
+      <article class="skill">
+        <i class="skill__bar" aria-hidden="true"></i>
+        <p class="skill__n">2.04</p>
         <h3>Hydraulic Structures</h3>
-        <p>Knowledge of barrage, intake, trashrack, spillway, draft tube, and grouting operations from field experience.</p>
-      </div>
-      <div class="skill-card reveal" data-delay="500">
-        <div class="sk-icon"><i class="fas fa-laptop-code"></i></div>
-        <h3>Software Tools</h3>
-        <p>Proficient in AutoCAD, QGIS, MS Office (Excel, Word, PowerPoint), ProjectLibre, and Primavera P6 for project planning.</p>
-      </div>
+        <p>Field knowledge of barrage, intake, trashrack, spillway and draft tube works, plus grouting and foundation treatment from live project exposure.</p>
+        <div class="skill__tags"><span>Barrage</span><span>Intake</span><span>Grouting</span></div>
+      </article>
+
+      <article class="skill">
+        <i class="skill__bar" aria-hidden="true"></i>
+        <p class="skill__n">2.05</p>
+        <h3>Construction Supervision</h3>
+        <p>Site supervision against approved drawings — pre-concreting checks, formwork and reinforcement, batching, placement, vibration and curing.</p>
+        <div class="skill__tags"><span>Supervision</span><span>Concrete</span></div>
+      </article>
+
+      <article class="skill">
+        <i class="skill__bar" aria-hidden="true"></i>
+        <p class="skill__n">2.06</p>
+        <h3>Quality Control</h3>
+        <p>Concrete cube testing, material checks and QC documentation as part of routine site quality procedure.</p>
+        <div class="skill__tags"><span>Cube tests</span><span>QC records</span></div>
+      </article>
+
+      <article class="skill">
+        <i class="skill__bar" aria-hidden="true"></i>
+        <p class="skill__n">2.07</p>
+        <h3>Claims &amp; Contracts</h3>
+        <p>Exposure to construction claims, disputes and resolution consultancy — how delay, entitlement and record-keeping connect back to the programme.</p>
+        <div class="skill__tags"><span>Delay</span><span>Records</span></div>
+      </article>
+
+      <article class="skill">
+        <i class="skill__bar" aria-hidden="true"></i>
+        <p class="skill__n">2.08</p>
+        <h3>Technical Software</h3>
+        <p>Primavera P6, AutoCAD, QGIS, ProjectLibre and MS Office — drawing interpretation, mapping, reporting and documentation.</p>
+        <div class="skill__tags"><span>AutoCAD</span><span>QGIS</span><span>Excel</span></div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="container">
-    <div class="sec-label">03 — Experience</div>
-    <h2 class="sec-title">Field <em>Experience</em></h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">July — Present</div>
-        <div class="tl-card reveal">
-          <div class="tl-header">
-            <h3>Planning Engineer</h3>
-            <span class="tl-company">Sinohydro Corporation Limited</span>
-          </div>
-          <p class="tl-proj">Tamakoshi V Hydropower Project — 99.8 MW, Dolakha, Nepal</p>
-          <ul class="tl-list">
-            <li>Working as Planning Engineer on a 99.8 MW hydropower project under Sinohydro Corporation</li>
-            <li>Tracking project schedules and monitoring progress against baseline plans</li>
-            <li>Preparing progress reports for project stakeholders</li>
-            <li>Coordinating with site teams to align planning with on-ground execution</li>
-          </ul>
-          <div class="tl-tags">
-            <span>Planning</span><span>Project Controls</span><span>Primavera P6</span><span>Hydropower</span>
-          </div>
+<!-- ══════════ 03 EXPERIENCE (Gantt) ══════════ -->
+<section class="sheet" id="experience">
+  <div class="shell">
+    <header class="sheet-head">
+      <p class="sheet-id"><b>SHT 03</b> Programme</p>
+      <h2 class="t-section">Career, read as a <em>schedule</em></h2>
+      <p class="t-lead" style="max-width:52ch">Click any activity bar to expand its detail.</p>
+    </header>
+
+    <div class="gantt rise" id="gantt">
+      <div class="gantt__head">
+        <div>Activity / WBS</div>
+        <div class="gantt__scale">
+          <span>2025 H1</span><span>2025 H2</span><span>2026 H1</span><span>2026 H2</span>
         </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Internship — June</div>
-        <div class="tl-card reveal">
-          <div class="tl-header">
-            <h3>Planning Engineer Trainee</h3>
-            <span class="tl-company">CDRC Claims, Disputes, Resolution and Consultancy Pvt. Ltd.</span>
-          </div>
-          <ul class="tl-list">
-            <li>Built a strong foundation in planning and project controls</li>
-            <li>Learned and worked hands-on with <strong>Primavera P6</strong> for project scheduling and tracking</li>
-            <li>Gained practical exposure to claims, disputes, and resolution consultancy work</li>
-          </ul>
-          <div class="tl-tags">
-            <span>Planning</span><span>Primavera P6</span><span>Project Controls</span>
-          </div>
+
+      <!-- Sinohydro -->
+      <div class="gantt__row is-open" role="button" tabindex="0" aria-expanded="true" aria-controls="d-sino">
+        <div class="gantt__wbs">
+          <b>Planning Engineer</b>
+          <span>Sinohydro Corporation Ltd.</span>
+          <span>WBS 1.30 · Jul — Present</span>
+        </div>
+        <div class="gantt__track">
+          <i class="gantt__today" aria-hidden="true"></i>
+          <div class="gantt__bar gantt__bar--live" style="margin-left:75%;width:25%">IN PROGRESS</div>
         </div>
       </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">Internship</div>
-        <div class="tl-card reveal">
-          <div class="tl-header">
-            <h3>Trainee Engineer</h3>
-            <span class="tl-company">Blue Energy Pvt. Ltd.</span>
-          </div>
-          <p class="tl-proj">Super Trishuli Hydropower Project — 100 MW Run-of-River</p>
-          <ul class="tl-list">
-            <li>Assisted in site supervision and execution of works per approved drawings</li>
-            <li>Observed grouting operations — consolidation, contact grouting &amp; foundation treatment</li>
-            <li>Learned pre-concreting procedures including inspection and documentation</li>
-            <li>Observed construction of hydraulic structures: barrage, intake, trashrack, spillway, draft tube</li>
+      <div class="gantt__detail" id="d-sino"><div><div class="gantt__detail__in">
+        <div>
+          <p class="t-label" style="margin-bottom:.7rem">Tamakoshi V Hydropower Project — 99.8 MW · Dolakha</p>
+          <ul>
+            <li>Maintain the project schedule in Primavera P6 and track progress against the baseline</li>
+            <li>Measure and report actual site progress to project stakeholders</li>
+            <li>Coordinate with site teams so the programme reflects on-ground execution</li>
+            <li>Support project controls on a large-scale hydropower construction contract</li>
+          </ul>
+        </div>
+        <figure class="gantt__shot">
+          <img src="assets/images/site-sinohydro.jpg" alt="Shital Ghimire at the Tamakoshi V project site in Dolakha, Nepal" loading="lazy"/>
+          <figcaption>Tamakoshi V · Dolakha</figcaption>
+        </figure>
+      </div></div></div>
+
+      <!-- CDRC -->
+      <div class="gantt__row" role="button" tabindex="0" aria-expanded="false" aria-controls="d-cdrc">
+        <div class="gantt__wbs">
+          <b>Planning Engineer Trainee</b>
+          <span>CDRC Claims, Disputes, Resolution &amp; Consultancy</span>
+          <span>WBS 1.20 · Internship · Jun</span>
+        </div>
+        <div class="gantt__track">
+          <i class="gantt__today" aria-hidden="true"></i>
+          <div class="gantt__bar" style="margin-left:68%;width:7%">TRAINING</div>
+        </div>
+      </div>
+      <div class="gantt__detail" id="d-cdrc"><div><div class="gantt__detail__in">
+        <div>
+          <p class="t-label" style="margin-bottom:.7rem">Planning &amp; project controls · Claims consultancy</p>
+          <ul>
+            <li>Built the foundation in planning and project controls that my current role runs on</li>
+            <li>Learned and worked hands-on with <strong>Primavera P6</strong> for scheduling and progress tracking</li>
+            <li>Gained practical exposure to construction claims, disputes and resolution consultancy</li>
+          </ul>
+        </div>
+      </div></div></div>
+
+      <!-- Blue Energy -->
+      <div class="gantt__row" role="button" tabindex="0" aria-expanded="false" aria-controls="d-blue">
+        <div class="gantt__wbs">
+          <b>Trainee Engineer</b>
+          <span>Blue Energy Pvt. Ltd.</span>
+          <span>WBS 1.10 · Site internship</span>
+        </div>
+        <div class="gantt__track">
+          <i class="gantt__today" aria-hidden="true"></i>
+          <div class="gantt__bar" style="margin-left:8%;width:26%">SITE EXPOSURE</div>
+        </div>
+      </div>
+      <div class="gantt__detail" id="d-blue"><div><div class="gantt__detail__in">
+        <div>
+          <p class="t-label" style="margin-bottom:.7rem">Super Trishuli Hydropower Project — 100 MW run-of-river</p>
+          <ul>
+            <li>Assisted site supervision and execution of works against approved drawings</li>
+            <li>Observed grouting operations — consolidation, contact grouting and foundation treatment</li>
+            <li>Learned pre-concreting procedure, inspection practice and documentation</li>
+            <li>Observed construction of barrage, intake, trashrack, spillway and draft tube</li>
             <li>Assisted with formwork systems and reinforcement placement</li>
-            <li>Gained exposure to concreting: batching, placement, vibration, and curing</li>
+            <li>Gained exposure to concreting: batching, placement, vibration and curing</li>
             <li>Learned coordination between civil and hydro-mechanical works</li>
-            <li>Observed quality control practices: cube testing and material checks</li>
+            <li>Observed quality control practice — cube testing and material checks</li>
           </ul>
-          <div class="tl-tags">
-            <span>Hydropower</span><span>Site Supervision</span><span>Concrete Works</span><span>QC</span>
-          </div>
         </div>
-      </div>
+        <figure class="gantt__shot">
+          <img src="assets/images/site-trishuli.jpg" alt="Barrage construction works at the Super Trishuli Hydropower Project" loading="lazy"/>
+          <figcaption>Super Trishuli · Barrage works</figcaption>
+        </figure>
+      </div></div></div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="container">
-    <div class="sec-label">04 — Projects</div>
-    <h2 class="sec-title">Academic <em>Projects</em></h2>
-    <div class="proj-grid">
-      <div class="proj-card reveal">
-        <div class="proj-num">01</div>
-        <div class="proj-badge">Rehabilitation</div>
-        <h3>Sunkoshi Small Hydropower Project</h3>
-        <p>Rehabilitation, Upgradation &amp; Maintenance study of an existing hydropower facility.</p>
-        <ul class="proj-list">
-          <li>Assessed existing infrastructure and proposed upgrade measures</li>
-          <li>Suggested improvements in hydraulic structures and mechanical systems</li>
-          <li>Prepared technical report with maintenance schedule and cost plan</li>
-        </ul>
-        <div class="proj-skills">
-          <span>Rehabilitation</span><span>Maintenance</span><span>Hydraulics</span>
+<!-- ══════════ 04 PROJECTS ══════════ -->
+<section class="sheet" id="projects">
+  <div class="shell">
+    <header class="sheet-head">
+      <p class="sheet-id"><b>SHT 04</b> Studies</p>
+      <h2 class="t-section">Academic <em>projects</em></h2>
+    </header>
+
+    <div class="projects rise">
+      <article class="project">
+        <p class="project__n">01</p>
+        <div>
+          <span class="project__kind">Rehabilitation</span>
+          <h3>Sunkoshi Small Hydropower Project</h3>
+          <p>Rehabilitation, upgradation and maintenance study of an existing hydropower facility.</p>
+          <ul>
+            <li>Assessed existing structures and identified issues affecting performance</li>
+            <li>Proposed upgrade measures to improve efficiency and extend service life</li>
+            <li>Analysed maintenance requirements and practical solutions for sustained operation</li>
+          </ul>
         </div>
-      </div>
-      <div class="proj-card reveal" data-delay="150">
-        <div class="proj-num">02</div>
-        <div class="proj-badge">Feasibility Study</div>
-        <h3>Upper Modi 'A' Hydropower Project</h3>
-        <p>Comprehensive feasibility study for a new hydropower development.</p>
-        <ul class="proj-list">
-          <li>Performed preliminary hydrological and site analysis</li>
-          <li>Evaluated technical &amp; economic aspects including basic design and cost estimation</li>
-          <li>Prepared a feasibility report covering project viability and development potential</li>
-        </ul>
-        <div class="proj-skills">
-          <span>Hydrology</span><span>Cost Estimation</span><span>Feasibility</span>
+        <div class="project__meta"><span>Hydraulics</span><span>Maintenance</span><span>Reporting</span></div>
+      </article>
+
+      <article class="project">
+        <p class="project__n">02</p>
+        <div>
+          <span class="project__kind">Feasibility</span>
+          <h3>Upper Modi ‘A’ Hydropower Project</h3>
+          <p>Full feasibility study for a new hydropower development.</p>
+          <ul>
+            <li>Performed preliminary hydrological and site analysis</li>
+            <li>Evaluated technical and economic aspects including basic design and cost estimation</li>
+            <li>Prepared a structured feasibility report on viability and development potential</li>
+          </ul>
         </div>
-      </div>
+        <div class="project__meta"><span>Hydrology</span><span>Cost estimation</span><span>Feasibility</span></div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="container">
-    <div class="sec-label">05 — Education</div>
-    <h2 class="sec-title">Academic <em>Background</em></h2>
-    <div class="edu-grid">
-      <div class="edu-card reveal">
-        <div class="edu-year">2021 – 2026</div>
-        <div class="edu-body">
-          <h3>B.E. in Civil Engineering</h3>
-          <p class="edu-school">Kathmandu University (KU, SOE)</p>
-          <p>Focus in Hydropower Engineering. Strong foundation in structural analysis, hydraulics, hydrology, and construction management.</p>
+<!-- ══════════ 05 EDUCATION ══════════ -->
+<section class="sheet" id="education">
+  <div class="shell">
+    <header class="sheet-head">
+      <p class="sheet-id"><b>SHT 05</b> Record</p>
+      <h2 class="t-section">Where it was <em>learned</em></h2>
+    </header>
+
+    <div class="edu rise">
+      <article class="plate">
+        <img src="assets/images/edu-ku.jpg" alt="Aerial view of Kathmandu University campus, Dhulikhel, Nepal" loading="lazy"/>
+        <span class="plate__yr">2021 — 2026</span>
+        <div>
+          <h3>B.E. Civil Engineering</h3>
+          <p class="plate__where">Kathmandu University · School of Engineering</p>
+          <p>Specialisation in hydropower engineering. Grounding in structural analysis, hydraulics, hydrology and construction management.</p>
         </div>
-      </div>
-      <div class="edu-card reveal" data-delay="150">
-        <div class="edu-year">2019 – 2021</div>
-        <div class="edu-body">
-          <h3>Higher Secondary Level (+2 Science)</h3>
-          <p class="edu-school">Xavier International College</p>
-          <p>Completed higher secondary education with focus on Physics, Chemistry, and Mathematics.</p>
+      </article>
+
+      <article class="plate">
+        <img src="assets/images/edu-xavier.jpg" alt="Xavier International College campus life" loading="lazy"/>
+        <span class="plate__yr">2019 — 2021</span>
+        <div>
+          <h3>Higher Secondary (+2 Science)</h3>
+          <p class="plate__where">Xavier International College</p>
+          <p>Physics, Chemistry and Mathematics — the groundwork that pointed toward engineering.</p>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- TOOLS / INTERACTIVE -->
-<section id="tools">
-  <div class="container">
-    <div class="sec-label">06 — Interactive</div>
-    <h2 class="sec-title">Tools &amp; <em>Features</em></h2>
-    <div class="tools-tabs">
-      <button class="tab-btn active" data-tab="calculator">⚙ Civil Calc</button>
-      <button class="tab-btn" data-tab="converter">📐 Unit Converter</button>
-      <button class="tab-btn" data-tab="calendar">📅 Calendar</button>
-      <button class="tab-btn" data-tab="game">🎮 Reaction Game</button>
-    </div>
+<!-- ══════════ 06 INSTRUMENTS ══════════ -->
+<section class="sheet" id="instruments">
+  <div class="shell">
+    <header class="sheet-head">
+      <p class="sheet-id"><b>SHT 06</b> Instruments</p>
+      <h2 class="t-section">Field <em>tools</em></h2>
+      <p class="t-lead" style="max-width:54ch">
+        Eleven working calculators and utilities I built for the kind of arithmetic that
+        actually comes up on site. Everything runs in your browser — nothing is sent anywhere.
+      </p>
+    </header>
 
-    <!-- Calculator -->
-    <div class="tab-content active" id="tab-calculator">
-      <div class="tool-card">
-        <h3>Civil Engineering Calculator</h3>
-        <div class="calc-selector">
-          <label>Select Calculation:</label>
-          <select id="calcType">
-            <option value="concrete">Concrete Mix Volume</option>
-            <option value="beam">Simple Beam Bending Stress</option>
-            <option value="unit_weight">Unit Weight of Concrete</option>
-            <option value="discharge">Discharge (Q = A × V)</option>
-          </select>
-        </div>
-        <div id="calcInputs" class="calc-inputs"></div>
-        <button class="btn-primary" onclick="calculate()">Calculate</button>
-        <div id="calcResult" class="calc-result"></div>
-      </div>
-    </div>
-
-    <!-- Converter -->
-    <div class="tab-content" id="tab-converter">
-      <div class="tool-card">
-        <h3>Unit Converter</h3>
-        <div class="converter-grid">
-          <div class="conv-group">
-            <label>Category</label>
-            <select id="convCategory" onchange="updateConvUnits()">
-              <option value="length">Length</option>
-              <option value="area">Area</option>
-              <option value="volume">Volume</option>
-              <option value="force">Force</option>
-              <option value="pressure">Pressure</option>
-            </select>
-          </div>
-          <div class="conv-group">
-            <label>From</label>
-            <select id="convFrom" onchange="convertUnit()"></select>
-          </div>
-          <div class="conv-group">
-            <label>To</label>
-            <select id="convTo" onchange="convertUnit()"></select>
-          </div>
-        </div>
-        <div class="conv-input-row">
-          <input type="number" id="convValue" placeholder="Enter value" oninput="convertUnit()"/>
-          <div class="conv-result" id="convResult">—</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Calendar -->
-    <div class="tab-content" id="tab-calendar">
-      <div class="tool-card">
-        <h3>Calendar &amp; Notes</h3>
-        <div class="cal-header">
-          <button onclick="changeMonth(-1)"><i class="fas fa-chevron-left"></i></button>
-          <span id="calMonthYear"></span>
-          <button onclick="changeMonth(1)"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        <div class="cal-grid" id="calGrid"></div>
-        <div class="cal-note-area">
-          <label>Note for: <span id="selectedDateLabel">—</span></label>
-          <textarea id="calNote" placeholder="Add a note..." oninput="saveNote()"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- Game -->
-    <div class="tab-content" id="tab-game">
-      <div class="tool-card">
-        <h3>Reaction Speed Test</h3>
-        <p style="margin-bottom:1rem;opacity:.6;font-size:.9rem">Click the target as fast as you can! 5 rounds.</p>
-        <div id="gameArea" class="game-area">
-          <div id="gameTarget" class="game-target" style="display:none"></div>
-          <div id="gameMsg" class="game-msg">Press Start to play!</div>
-        </div>
-        <div class="game-stats">
-          <div>Round: <strong id="gameRound">0/5</strong></div>
-          <div>Last: <strong id="gameLast">—</strong></div>
-          <div>Best: <strong id="gameBest">—</strong></div>
-          <div>Avg: <strong id="gameAvg">—</strong></div>
-        </div>
-        <button class="btn-primary" id="gameStartBtn" onclick="startGame()">Start Game</button>
-      </div>
+    <div class="bay rise">
+      <div class="bay__index" role="tablist" aria-label="Instruments" id="bayTabs"></div>
+      <div id="bayPanels"></div>
     </div>
   </div>
 </section>
 
-<!-- SEHACK TYPING CTA -->
-<section id="sehack-cta">
-  <div class="container">
-    <div class="sehack-banner reveal">
-      <div class="sehack-text">
-        <div class="sehack-label">⌨ Built by Shital</div>
-        <h2>SeHack <em>Typing</em></h2>
-        <p>An adaptive touch-typing trainer. Beat your personal best. Learn without looking.</p>
-      </div>
-      <a href="typing.html" target="_blank" class="sehack-launch-btn">
-        Launch SeHack <i class="fas fa-arrow-right"></i>
+<!-- ══════════ APP TEASERS ══════════ -->
+<section class="sheet">
+  <div class="shell">
+    <div class="teasers">
+      <a class="teaser rise" href="typing.html">
+        <span class="teaser__glyph" aria-hidden="true">⌨</span>
+        <div>
+          <h3>SeHack <i>Typing</i></h3>
+          <p>An adaptive touch-typing trainer that finds your weakest keys and drills them until they stop being weak.</p>
+        </div>
+        <div>
+          <div class="teaser__stats"><span>Adaptive engine</span><span>Live heatmap</span><span>Code mode</span></div>
+          <p class="teaser__go" style="margin-top:.9rem">Launch trainer <span>→</span></p>
+        </div>
+      </a>
+
+      <a class="teaser rise" href="games.html">
+        <span class="teaser__glyph" aria-hidden="true">◈</span>
+        <div>
+          <h3>The <i>Arcade</i></h3>
+          <p>Three small games built from scratch — reaction, memory and precision. A break, and a demo of what plain canvas can do.</p>
+        </div>
+        <div>
+          <div class="teaser__stats"><span>Reflex Rig</span><span>Circuit</span><span>Stack</span></div>
+          <p class="teaser__go" style="margin-top:.9rem">Enter arcade <span>→</span></p>
+        </div>
       </a>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="sec-label">07 — Contact</div>
-    <h2 class="sec-title">Get in <em>Touch</em></h2>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <p>Interested in collaboration, internship opportunities, or just want to connect? Feel free to reach out.</p>
-        <div class="ci-list">
-          <div class="ci"><i class="fas fa-map-marker-alt"></i><span>Ratnanagar-15, Chitwan, Nepal</span></div>
-          <div class="ci"><i class="fas fa-envelope"></i><a href="mailto:shitalghimire817@gmail.com">shitalghimire817@gmail.com</a></div>
-          <div class="ci"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/shital-ghimire-3658721b8/" target="_blank">LinkedIn Profile</a></div>
+<!-- ══════════ 07 CONTACT ══════════ -->
+<section class="sheet" id="contact">
+  <div class="shell">
+    <header class="sheet-head">
+      <p class="sheet-id"><b>SHT 07</b> Transmittal</p>
+      <h2 class="t-section">Send it <em>through</em></h2>
+    </header>
+
+    <div class="contact">
+      <div class="rise">
+        <p class="t-lead">
+          Open to conversations about planning, project controls and hydropower delivery —
+          collaboration, roles, or just comparing notes on a schedule.
+        </p>
+        <div class="contact__lines">
+          <a class="contact__line" href="mailto:shitalghimire817@gmail.com">
+            <span>Email</span><span>shitalghimire817@gmail.com</span>
+          </a>
+          <a class="contact__line" href="https://www.linkedin.com/in/shital-ghimire-3658721b8/" target="_blank" rel="noopener">
+            <span>LinkedIn</span><span>/in/shital-ghimire</span>
+          </a>
+          <div class="contact__line">
+            <span>Site</span><span>Dolakha, Nepal</span>
+          </div>
+          <div class="contact__line">
+            <span>Home</span><span>Ratnanagar-15, Chitwan</span>
+          </div>
         </div>
       </div>
-      <form class="contact-form" onsubmit="submitForm(event)">
-        <div class="form-row">
-          <input type="text" name="name" placeholder="Your Name" required/>
-          <input type="email" name="email" placeholder="Your Email" required/>
+
+      <form class="form rise" id="contactForm" novalidate>
+        <div class="form__pair">
+          <label class="field"><span>Name</span><input type="text" name="name" required autocomplete="name"/></label>
+          <label class="field"><span>Email</span><input type="email" name="email" required autocomplete="email"/></label>
         </div>
-        <input type="text" name="subject" placeholder="Subject"/>
-        <textarea name="message" placeholder="Your message..." rows="5" required></textarea>
-        <button type="submit" class="btn-primary">Send Message <i class="fas fa-paper-plane"></i></button>
-        <div id="formMsg"></div>
+        <label class="field"><span>Subject</span><input type="text" name="subject"/></label>
+        <label class="field"><span>Message</span><textarea name="message" required rows="6"></textarea></label>
+        <div class="row">
+          <button class="btn" type="submit">Compose message →</button>
+        </div>
+        <p class="form__note">
+          This opens your own email client with the message pre-filled — no form data
+          touches a server, and nothing is stored.
+        </p>
+        <p id="formMsg" role="status" aria-live="polite"></p>
       </form>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div class="footer-logo">Shital Ghimire</div>
-      <p>Civil Engineer · Kathmandu University · Nepal</p>
-      <div class="footer-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <a href="typing.html" target="_blank">SeHack Typing</a>
-      </div>
-      <div class="footer-social">
-        <a href="mailto:shitalghimire817@gmail.com"><i class="fas fa-envelope"></i></a>
-        <a href="https://www.linkedin.com/in/shital-ghimire-3658721b8/" target="_blank"><i class="fab fa-linkedin"></i></a>
-      </div>
-      <p class="footer-copy">© 2026 Shital Ghimire. All rights reserved.</p>
+</main>
+
+<!-- ══════════ TITLE BLOCK ══════════ -->
+<footer class="titleblock">
+  <div class="shell">
+    <div class="titleblock__grid">
+      <div class="tb"><dt>Drawn by</dt><dd>Shital Ghimire</dd></div>
+      <div class="tb"><dt>Discipline</dt><dd>Civil / Planning</dd></div>
+      <div class="tb"><dt>Project</dt><dd>Tamakoshi V — 99.8 MW</dd></div>
+      <div class="tb"><dt>Location</dt><dd>Dolakha, Nepal</dd></div>
+      <div class="tb"><dt>Contact</dt><dd><a href="mailto:shitalghimire817@gmail.com">Email</a></dd></div>
+      <div class="tb"><dt>Profile</dt><dd><a href="https://www.linkedin.com/in/shital-ghimire-3658721b8/" target="_blank" rel="noopener">LinkedIn</a></dd></div>
+      <div class="tb"><dt>Apps</dt><dd><a href="typing.html">SeHack</a> · <a href="games.html">Arcade</a></dd></div>
+      <div class="tb"><dt>Sheet</dt><dd>SG-00 · Rev C</dd></div>
+    </div>
+
+    <div class="titleblock__sign">
+      <h2>Shital Ghimire<i>.</i></h2>
+      <p class="titleblock__meta">
+        Planning Engineer · Hydropower<br/>
+        Built and coded by hand<br/>
+        © <span id="yr">2026</span> — All rights reserved
+      </p>
     </div>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="js/site.js"></script>
+<script src="js/tools.js"></script>
 </body>
 </html>
