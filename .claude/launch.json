@@ -1,0 +1,15 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "site",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "C:/Users/sital/AppData/Local/Temp/claude/C--Users-sital-OneDrive-Documents-GitHub/758dd5f8-975a-4364-9615-e4e69dd29e72/scratchpad/serve.mjs",
+        "C:/Users/sital/OneDrive/Documents/GitHub/website",
+        "4321"
+      ],
+      "port": 4321
+    }
+  ]
+}

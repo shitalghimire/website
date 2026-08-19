@@ -131,6 +131,10 @@
 .applink--vis { background: var(--vis); border-color: var(--ink); }
 .applink--vis:hover { background: var(--ink); color: var(--vis); }
 
+/* course link — hover reveals the FLOORSHEET ground it opens into */
+.applink--course { border-color: var(--ink); }
+.applink--course:hover { background: #07090C; color: #31D0AA; border-color: #07090C; }
+
 .burger {
   display: none;
   position: relative;

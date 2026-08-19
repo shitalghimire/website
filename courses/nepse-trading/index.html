@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+  NEPSE TRADING ACADEMY
+  © 2026 Shital Ghimire. All rights reserved.
+
+  This course — its curriculum, lesson text, worked examples, quiz bank,
+  games, design system and source code — is the original work of
+  Shital Ghimire, created and owned by him. It may not be copied,
+  reproduced, republished or redistributed, in whole or in part,
+  without his express written permission.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NEPSE Trading Academy — Shital Ghimire</title>
+<meta name="description" content="An interactive, gamified course on trading the Nepal Stock Exchange. 16 modules, 78 lessons, 6 games. Educational content only — not investment advice."/>
+<meta name="theme-color" content="#07090C"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="Shital Ghimire"/>
+<meta name="copyright" content="© 2026 Shital Ghimire. All rights reserved."/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="NEPSE Trading Academy"/>
+<meta property="og:description" content="Learn to trade the Nepal Stock Exchange. Properly. 16 modules, 78 lessons, 6 games — with real 2026 rules, fees and tax."/>
+
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="../../assets/icon-180.png"/>
+
+<link rel="preload" href="assets/fonts/martian.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin/>
+
+<link rel="stylesheet" href="css/tokens.css"/>
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/course.css"/>
+<link rel="stylesheet" href="css/chart.css"/>
+<link rel="stylesheet" href="css/games.css"/>
+</head>
+<body>
+
+<a class="skip" href="#view">Skip to content</a>
+
+<div class="shell">
+
+  <header class="chead">
+    <div class="wrap chead__bar">
+      <a class="chead__home" href="../../index.html" title="Back to shitalghimire.com.np">← Site</a>
+
+      <a class="wordmark" href="#/">
+        <em>NEPSE</em> Trading Academy
+      </a>
+
+      <span class="chead__spacer"></span>
+
+      <nav class="chead__nav" id="cnav" aria-label="Course sections">
+        <a href="#/">Dashboard</a>
+        <a href="#/games">Games</a>
+        <a href="#/glossary">Glossary</a>
+        <a href="#/resources">Resources</a>
+        <a href="#/settings">Settings</a>
+      </nav>
+
+      <span class="chead__xp" id="xpChip" title="Experience points and rank">
+        <b class="num" id="xpVal">0</b> <i>XP</i>
+      </span>
+    </div>
+  </header>
+
+  <!-- ticker runs edge to edge, so it reads as a fragment of something continuous -->
+  <div class="ticker" id="ticker" aria-hidden="true">
+    <div class="ticker__run" id="tickerRun"></div>
+  </div>
+
+  <main class="view wrap" id="view" tabindex="-1">
+    <div class="msg">
+      <h2>Loading the floor…</h2>
+      <p class="dim">Reading the curriculum, the fee schedule and the market rules.</p>
+    </div>
+  </main>
+
+  <footer class="cfoot">
+    <div class="wrap cfoot__grid">
+      <p class="cfoot__disc">
+        Educational content only. Not investment advice.<br/>
+        Not affiliated with NEPSE, SEBON, or CDSC.<br/>
+        <span id="footAsOf" class="dim"></span>
+      </p>
+      <p class="cfoot__own">
+        <b>© 2026 Shital Ghimire. All rights reserved.</b><br/>
+        NEPSE Trading Academy is the original work of Shital Ghimire —
+        curriculum, lesson text, games and design.<br/>
+        Not to be reproduced or redistributed without permission.
+      </p>
+      <p>
+        <a href="#/resources">Resources</a> ·
+        <a href="#/glossary">Glossary</a> ·
+        <a href="#/settings">Settings &amp; progress</a> ·
+        <a href="../../index.html">Shital Ghimire</a>
+      </p>
+    </div>
+  </footer>
+
+</div>
+
+<noscript>
+  <div class="wrap" style="padding:48px 0">
+    <div class="msg">
+      <h2>This course needs JavaScript</h2>
+      <p>Every lesson, chart and game runs in your browser — there is no server. Please enable JavaScript and reload.</p>
+    </div>
+  </div>
+</noscript>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

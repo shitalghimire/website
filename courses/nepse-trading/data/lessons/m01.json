@@ -1,0 +1,295 @@
+{
+  "module": 1,
+  "title": "What a Share Actually Is",
+  "lessons": [
+    {
+      "id": "1.1",
+      "module": 1,
+      "index": 1,
+      "title": "You are buying a slice of a business, not a lottery ticket",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Ask ten people at a broker's office in Putalisadak what they own and most will name a symbol — NABIL, UPPER, API. Ask what the company does and the room gets quieter. One of those two answers is what actually pays you."
+        },
+        {
+          "type": "core",
+          "md": "A [[share]] is a fractional ownership of a business. Not a betting slip on a number, not a token that moves because people want it to. A slice of a company with a building, staff, customers, a balance sheet and — if it is any good — profits.\n\nNabil Bank has roughly 8.5 crore shares outstanding. Buy 100 of them and you own about one 850-thousandth of a commercial bank: its branches, its loan book, its deposit base, and a proportional claim on whatever it earns after paying everyone else.\n\nThat claim reaches you in exactly two ways, and it is worth being blunt about how few they are.\n\n### One — the company hands you cash or shares\n\nA profitable Nepali company distributes part of its earnings as a dividend. Some of it is cash, taxed at 5% and deducted before it reaches you. Much of it, especially from banks and microfinance, arrives as [[bonus_share|bonus shares]] instead — more pieces of the same pie, which is not the same thing as more pie. Lesson 8.5 takes that apart properly.\n\n### Two — someone else pays you more than you paid\n\nThe [[secondary_market|secondary market]] price is whatever the last buyer and the last seller agreed on. It moves on earnings, on interest rates, on the credit-to-deposit ratio at Nepal Rastra Bank, and — a great deal of the time on NEPSE — on what people believe other people are about to do.\n\nThat second channel is where almost all the drama lives, and it is why the distinction in this lesson matters. If you own a slice of a business, a falling price is a question: *has the business changed, or has the mood changed?* If you own a symbol on a screen, a falling price is just fear, and fear is a bad advisor.\n\nOne more thing that is specific to Nepal. NEPSE is an order-driven **cash equity market**. There is no short selling, there are no options, there are no futures, and the exchange lends you nothing. The only way you make money is for a company you own to become worth more, or to pay you. Every YouTube strategy involving shorting, options premium or intraday scalping is not available to you here — which, as constraints go, removes most of the ways retail traders destroy themselves elsewhere."
+        },
+        {
+          "type": "visual",
+          "widget": "sector-treemap",
+          "caption": "271 listed companies, grouped by sector. Each one of these is a real business — and a third of them generate electricity."
+        },
+        {
+          "type": "nepse",
+          "md": "Nepali ordinary shares carry a [[face_value]] of Rs. 100. That number is an accounting convention printed on the share, not a valuation — a bank trading at Rs. 496.10 is not \"five times too expensive\", and one trading at Rs. 89 is not \"cheap\". Mutual fund units use a Rs. 10 face value instead. Lesson 1.4 deals with why this single number misleads more new Nepali investors than any other.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Two people each put **Rs. 1,00,000** into the market in January 2019, and neither sells until today.\n\nThe first buys a broad basket tracking the index. The second buys a single hydropower counter on a tip, at a price that had already tripled.",
+          "table": {
+            "head": ["", "Bought", "Index / price then", "Today", "Value now", "Result"],
+            "numeric": [4],
+            "rows": [
+              ["Broad basket", "Jan 2019", "1,150", "2,643.83", "Rs. 2,29,899", "+129.9%"],
+              ["Bought at the 2021 peak instead", "Aug 2021", "3,198.60", "2,643.83", "Rs. 82,655", "−17.3%"]
+            ],
+            "caption": "Same market, same seven years. The only variable is when you pressed buy."
+          },
+          "after": "The person who bought at the peak was not unintelligent. They had watched the index triple and had personal evidence that every dip got bought. What they did not have was any view on what the underlying businesses were worth — and when the mood changed, that was the only thing that would have helped."
+        },
+        {
+          "type": "check",
+          "qids": ["q-1-1-a", "q-1-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "A share is fractional ownership of a real business, and it pays you through dividends or through another investor paying more than you did.",
+            "NEPSE is cash-only and long-only — no shorting, no derivatives, no leverage from the exchange.",
+            "Face value of Rs. 100 is an accounting convention, not a measure of what a share is worth."
+          ]
+        }
+      ],
+      "glossary": ["share", "dhitopatra", "secondary_market", "bonus_share", "face_value"]
+    },
+
+    {
+      "id": "1.2",
+      "module": 1,
+      "index": 2,
+      "title": "Where shares come from: promoters, paid-up capital, and the public",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Two people own shares in the same Nepali bank. One paid Rs. 100 at incorporation and cannot sell for years. The other paid Rs. 496.10 this morning and could sell in the next four minutes. They own the same thing and they do not own the same thing at all."
+        },
+        {
+          "type": "core",
+          "md": "Every Nepali company starts with founders — **promoters** — who put up the initial capital. Their holdings are [[promoter_share|promoter shares]]. Later, the company sells shares to the public through an [[ipo|IPO]], and those become [[public_share|public shares]]. Both are ownership. They are not interchangeable.\n\n### Paid-up capital\n\n[[paid_up_capital|Paid-up capital]] is what shareholders have actually paid into the company: share count × face value. A bank with 8.5 crore shares at Rs. 100 face value has Rs. 850 crore of paid-up capital.\n\nThis matters in Nepal in a way it does not everywhere, because **Nepal Rastra Bank sets minimum paid-up capital by licence class**. A commercial bank must hold far more than a development bank, which holds more than a finance company. When NRB raised those minimums in the 2015–2017 cycle, banks had to find capital fast — and the cheapest way to raise paid-up capital without asking shareholders for cash is to issue bonus shares out of reserves. That single regulatory fact is most of the reason Nepali banks pay so much of their dividend in bonus shares, and it is why your share count keeps rising while your holding does not necessarily become more valuable.\n\n### What separates the two classes\n\n- **Lock-in.** Promoter shares carry holding restrictions after listing. They cannot simply be sold the morning the price looks good.\n- **A separate market.** Promoter shares trade in their own segment, usually at a discount to the public price, because the buyer inherits the restrictions.\n- **Conversion is regulated.** Promoter shares can become public shares only under SEBON rules, and a conversion is disclosed — because it changes the free float, and sometimes the control of the company.\n\n### Why you should care\n\nRead the ownership split before you buy. A company where promoters hold 51% and the public holds 49% behaves differently from one where promoters hold 15%. And a promoter block coming out of lock-in is genuine supply arriving on a market that may not have the depth to absorb it — a real and predictable event that shows up in the price."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Promoter shares vs public shares",
+            "sub": "Same company, two different instruments",
+            "sides": [
+              {
+                "k": "Class A",
+                "t": "Promoter share",
+                "rows": [
+                  ["Who holds it", "Founders, institutions"],
+                  ["Lock-in", "Yes, after listing"],
+                  ["Where it trades", "Separate segment"],
+                  ["Typical price", "Below the public price"],
+                  ["Convertible", "Only under SEBON rules"]
+                ]
+              },
+              {
+                "k": "Class B",
+                "t": "Public share",
+                "rows": [
+                  ["Who holds it", "You"],
+                  ["Lock-in", "None"],
+                  ["Where it trades", "The main NEPSE board"],
+                  ["Typical price", "The quoted LTP"],
+                  ["Convertible", "Not applicable"]
+                ]
+              }
+            ],
+            "verdict": "The discount on promoter shares is not a bargain — it is the price of the restrictions attached. You are being compensated for illiquidity, and illiquidity is a real cost, as Module 13 shows."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Nepal Rastra Bank mandates minimum paid-up capital by licence class, and companies raise it largely through bonus issues rather than cash calls. That is the mechanical reason Nepali bank share counts grow year after year — and the reason you must restate historical [[eps|EPS]] before comparing two years. Lesson 12.2 shows the arithmetic, and it catches almost everyone the first time.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A commercial bank raising paid-up capital from Rs. 800 crore to Rs. 960 crore, entirely through a 20% bonus issue:",
+          "calc": [
+            { "l": "Shares before (crore)", "v": "8.00" },
+            { "l": "Face value", "v": "Rs. 100" },
+            { "l": "Paid-up capital before", "v": "Rs. 800 crore" },
+            { "l": "Bonus issue", "v": "20%" },
+            { "l": "Shares after (crore)", "v": "9.60" },
+            { "l": "Paid-up capital after", "v": "Rs. 960 crore", "total": true },
+            { "l": "New money raised from shareholders", "v": "Rs. 0", "total": true }
+          ],
+          "after": "The regulator's requirement is satisfied and not one rupee of new capital came through the door. Reserves moved into the capital column, your share count rose 20%, and the market price adjusted down by roughly the same proportion on the ex-bonus date. If your portfolio value looked unchanged, that is because it was."
+        },
+        {
+          "type": "check",
+          "qids": ["q-1-2-a", "q-1-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Promoter shares and public shares are both ownership, but only one of them is what you buy on the main board.",
+            "Paid-up capital is share count × Rs. 100 face value, and NRB sets minimums by licence class.",
+            "Nepali banks raise paid-up capital largely through bonus issues, which is why share counts — and reported EPS — keep shifting."
+          ]
+        }
+      ],
+      "glossary": ["promoter_share", "public_share", "paid_up_capital", "ipo", "eps"]
+    },
+
+    {
+      "id": "1.3",
+      "module": 1,
+      "index": 3,
+      "title": "Primary vs secondary market — the two doors into NEPSE",
+      "minutes": 3,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "When you are allotted 10 kitta in a hydropower IPO, your Rs. 1,000 goes to the company and helps pour concrete. When you buy 10 kitta of the same company a year later at Rs. 300, your Rs. 3,000 goes to whoever sold them, and the company never sees a paisa. Same shares. Completely different transaction."
+        },
+        {
+          "type": "core",
+          "md": "There are two doors into NEPSE, and confusing them leads to bad reasoning about what your money is doing.\n\n### The primary market — you pay the company\n\nThe [[primary_market]] is where shares are created and sold for the first time: an [[ipo|IPO]], an [[fpo|FPO]], or a [[hakprad|rights issue]]. Your money goes to the issuer. It funds a tunnel, a powerhouse, a branch network, a capital requirement.\n\nOn NEPSE this door has a distinctly Nepali shape. Fixed-price IPOs are priced at the Rs. 100 face value with a minimum of 10 units — Rs. 1,000, deliberately small enough that ordinary people can participate. Allotment is by computerised lottery in which every valid application has identical odds. It is close to the most egalitarian mechanism in Nepali finance, and it is why IPO application is a national pastime.\n\n### The secondary market — you pay another investor\n\nThe [[secondary_market]] is NEPSE proper: the order book, the price you see quoted, the floorsheet. Here you buy from another investor at a price the two of you agree. The company is not a party to it and receives nothing.\n\nWhat the secondary market provides is not capital — it is **liquidity and a price**. Because you can sell tomorrow, you were willing to buy today. Because thousands of people are doing that, a price exists at all. Without a functioning secondary market the primary market would barely work, because nobody wants to buy something they can never exit.\n\n### The practical consequence\n\n\"The company raised Rs. 50 crore\" refers to the primary market. \"The company gained Rs. 50 crore in market value today\" refers to the secondary market and puts nothing in the company's bank account. Financial news in Nepal blurs these constantly. Keep them apart."
+        },
+        {
+          "type": "visual",
+          "widget": "flow",
+          "props": {
+            "title": "Where your money actually goes",
+            "sub": "Two doors, two destinations",
+            "steps": [
+              { "t": "PRIMARY · You apply for an IPO through C-ASBA", "d": "Funds are blocked in your own bank account — not debited — until allotment.", "meta": "→ the company" },
+              { "t": "PRIMARY · Allotment by computerised lottery", "d": "Every valid application has equal probability, regardless of how many units you applied for.", "meta": "→ the company" },
+              { "t": "Shares are credited to your Demat and the company lists on NEPSE", "d": "Typically 2–3 business days for credit; 3–6 weeks from issue close to listing.", "meta": "—" },
+              { "t": "SECONDARY · You buy 200 kitta at Rs. 300 in the order book", "d": "You pay another investor who wanted out. The company is not involved.", "meta": "→ the seller" },
+              { "t": "SECONDARY · You sell at Rs. 340 two years later", "d": "Another investor pays you. The company is still not involved.", "meta": "→ you" }
+            ],
+            "note": "IPO money builds the project. Secondary money changes hands between investors. Both are useful; only one funds anything."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "IPO money funds the project; secondary money does not. This is why the \"objectives of the issue\" section of a Nepali prospectus is worth reading before you apply — it tells you what your rupees are actually going to build, and whether the company needs them for a powerhouse or to repay promoter loans. SEBON publishes every approved prospectus at sebon.gov.np.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A 10 MW hydropower company issues 30,00,000 units at the Rs. 100 face value.",
+          "calc": [
+            { "l": "Units offered", "v": "30,00,000" },
+            { "l": "Price per unit (fixed price, face value)", "v": "Rs. 100.00" },
+            { "l": "Gross raised by the company", "v": "Rs. 30,00,00,000", "total": true },
+            { "l": "Minimum application", "v": "10 units = Rs. 1,000" },
+            { "l": "Maximum applicants who can be allotted the minimum", "v": "3,00,000" }
+          ],
+          "after": "Now the shares list and trade at Rs. 300. The market says the company is worth three times its paid-up capital, and daily turnover in the counter runs to crores. **None of that reaches the company.** Its bank balance still reflects the Rs. 30 crore it raised at listing. The Rs. 300 price affects the company only if it comes back to the primary market later — through an FPO or a rights issue — and can raise money at a better price than before."
+        },
+        {
+          "type": "check",
+          "qids": ["q-1-3-a", "q-1-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Primary market: you pay the company, and the money funds the business.",
+            "Secondary market: you pay another investor, and the company receives nothing.",
+            "The secondary market's job is not to raise capital — it is to provide a price and an exit, which is what makes the primary market possible."
+          ]
+        }
+      ],
+      "glossary": ["primary_market", "secondary_market", "ipo", "fpo", "hakprad", "casba"]
+    },
+
+    {
+      "id": "1.4",
+      "module": 1,
+      "index": 4,
+      "title": "Face value, market price, and why Rs. 100 is not Rs. 100",
+      "minutes": 3,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "\"This share is only Rs. 89 — it is below face value, so it must be cheap.\" That sentence has cost Nepali retail investors more money than almost any other, and it takes about four minutes to stop believing it."
+        },
+        {
+          "type": "core",
+          "md": "Three numbers attach to every share, and they measure completely different things.\n\n### Face value — an accounting convention\n\n[[face_value|Face value]] is Rs. 100 for Nepali ordinary shares and Rs. 10 for [[mutual_fund|mutual fund]] units. It is the figure used to compute paid-up capital and to price a fixed-price IPO. It is **not** a valuation, a floor, or a target. A company does not become cheap by trading below it or expensive by trading above it. Face value never changes unless the company splits its stock.\n\n### Book value — arithmetic\n\n[[book_value|Book value per share]] is net assets divided by shares outstanding: what the accounts say each share is backed by after every liability is paid. It is a real measurement, computed from the balance sheet, and it moves as the company earns or loses money. For a bank it is the most stable of the three numbers, which is why [[pb|P/B]] is often more useful for Nepali banks than [[pe|P/E]].\n\n### Market price — an opinion\n\n[[market_price|Market price]] is what the last buyer and last seller agreed on. It is a continuously updated opinion about future earnings, held by a crowd that is sometimes right. It can sit at a fraction of book value or at many multiples of it.\n\n### Why the confusion is expensive\n\nThe Rs. 100 face value creates a psychological anchor that has no business being there. Two specific errors follow from it:\n\n1. **\"Below Rs. 100 is cheap.\"** A share trades below face value when the market thinks the company is worth less than the capital put into it — which is usually correct, and often generous. Laxmi Sunrise reported an EPS of −Rs. 2.04 in Q2 2082/83. Nothing about Rs. 100 makes that a bargain.\n2. **\"Rs. 670 is expensive.\"** Everest Bank at Rs. 670 with EPS of Rs. 30.86 is on a P/E of 18.53×. NIC Asia at Rs. 326 with EPS of Rs. 1.76 is on 343.16×. The Rs. 326 share is the vastly more expensive one, and the price tag says the opposite. You are not buying a share — you are buying a claim on earnings, and Lesson 12.3 makes that concrete.\n\nLesson 15.3 returns to this as a psychology problem, because knowing the arithmetic and still feeling the pull of the round number are two different things."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Three numbers, one bank",
+            "sub": "Nabil Bank, Q2 FY 2082/83",
+            "sides": [
+              {
+                "k": "The anchor",
+                "t": "Face value",
+                "rows": [
+                  ["Value", "Rs. 100.00"],
+                  ["What it measures", "Nothing about worth"],
+                  ["Changes when", "Only on a stock split"],
+                  ["Used for", "Paid-up capital, IPO pricing"]
+                ]
+              },
+              {
+                "k": "The measurement",
+                "t": "Market price & earnings",
+                "rows": [
+                  ["Market price", "Rs. 496.10"],
+                  ["EPS", "Rs. 29.69"],
+                  ["P/E", "18.40×"],
+                  ["ROE", "14.86%"]
+                ]
+              }
+            ],
+            "verdict": "Nabil trades at nearly five times face value and is one of the more sensibly-priced banks on the exchange — 18.40× earnings against a sector median of 14.92×, with the best ROE in the table. The Rs. 100 tells you none of that."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Mutual fund units have a [[face_value]] of Rs. 10, not Rs. 100, with a minimum application of 100 units. Closed-end funds also publish a monthly [[nav|NAV]] and routinely trade **below** it — a persistent discount that has its own reasons, covered in Lesson 8.6. Do not read a fund's Rs. 8.40 price as \"cheap\" any more than you would read a bank's Rs. 89.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Two real banks. A beginner buys \"the cheaper one\" by looking at the price tag.",
+          "table": {
+            "head": ["", "NMB Bank", "Citizens Bank Intl."],
+            "numeric": [1, 2],
+            "rows": [
+              ["Market price", "Rs. 233.00", "Rs. 194.60"],
+              ["EPS", "Rs. 17.10", "Rs. 4.63"],
+              ["P/E", "15.35×", "30.45×"],
+              ["ROE", "10.34%", "3.14%"],
+              ["Earnings bought per Rs. 1,000 invested", "Rs. 73.39", "Rs. 23.80"]
+            ],
+            "caption": "Fundamentals as at FY 2082/83 Q2. Prices illustrative — check NepseAlpha or Merolagani for live data."
+          },
+          "after": "CZBIL costs Rs. 38 less per share. For every Rs. 1,000 you invest, it buys you **Rs. 23.80** of annual earnings against NMB's **Rs. 73.39** — a third as much, from a business generating a third of the return on its capital. The share price alone told you exactly the wrong thing.\n\nAnd the honest other half: NMB is not therefore a recommendation. It is a coherent set of numbers. A bank can look coherent on P/E and ROE and still be carrying rising non-performing loans that have not reached the earnings line yet, which is what Lesson 12.5 is about."
+        },
+        {
+          "type": "check",
+          "qids": ["q-1-4-a", "q-1-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Face value is an accounting convention — Rs. 100 for shares, Rs. 10 for mutual fund units — and says nothing about worth.",
+            "Book value is arithmetic from the balance sheet; market price is a continuously updated opinion.",
+            "You are buying earnings, not a price tag: NMB at Rs. 233 is far cheaper than CZBIL at Rs. 194.60."
+          ]
+        }
+      ],
+      "glossary": ["face_value", "book_value", "market_price", "pe", "pb", "nav", "mutual_fund"]
+    }
+  ]
+}

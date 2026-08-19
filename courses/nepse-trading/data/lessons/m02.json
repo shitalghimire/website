@@ -1,0 +1,334 @@
+{
+  "module": 2,
+  "title": "The NEPSE Machine",
+  "lessons": [
+    {
+      "id": "2.1",
+      "module": 2,
+      "index": 1,
+      "title": "A short, honest history of NEPSE (1994 → 2,644 today)",
+      "minutes": 6,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "On 18 August 2021 the NEPSE index closed at **3,198.60** — its highest level ever. Investors who bought in January that year had roughly doubled their money in eight months. Brokers' offices had queues down the street. Two years later the same index sat at 1,615. Half the wealth was gone. Nobody rang a bell at the top. Nobody ever does."
+        },
+        {
+          "type": "core",
+          "md": "NEPSE opened its trading floor in January 1994. For its first decade it was a slow, small, largely institutional market: the index spent years between 150 and 400 points, and a busy day was a few hundred trades shouted across a room.\n\nThree things transformed it. Dematerialisation, completed by [[cdsc|CDSC]], killed the physical share certificate. Online trading through [[tms|TMS]] in 2018 meant you no longer had to sit in a broker's office. And [[meroshare|MeroShare]] made applying for an IPO something you did on your phone in ninety seconds.\n\nThe result was a market whose shape changed. NEPSE has had four full boom-and-bust cycles, and each was driven by the same three ingredients in different proportions: **interest rates**, **liquidity in the banking system**, and **how easy it was for a new person to open an account**.\n\n### The cycles, honestly\n\n- **2003/04 → 2007/08:** index from 205 to 963. A +370% run, roughly 36% a year. Ended with a three-year, 62% collapse.\n- **2011/12 → 2015/16:** 363 → 1,718, another +373%. Post-earthquake reconstruction money and falling interest rates.\n- **2019 → Aug 2021:** roughly 1,100 → 3,198.60. The COVID-era run. Bank interest rates near historic lows, remittance inflows strong, and hundreds of thousands of new Demat accounts opened by people who had never bought a share.\n- **2021 → 2023:** 3,198.60 → 1,615. Down ~50%. Nepal Rastra Bank tightened, the [[cd_ratio|credit-to-deposit ratio]] was already stretched, fixed deposit rates rose above 11%, and margin lending unwound.\n\nSince then the market has ground upward in three phases: 1,615 → 2,120 (blue-chip banks leading), 2,120 → 2,594 (broader participation), and 2,594 → the 2,900s and back. As of the week ending 15 August 2026 the index sits at **2,643.83**, with total market capitalisation of Rs. 4.547 trillion and average daily turnover around Rs. 3.68 billion.\n\nNotice what that means. It has been five years since the 2021 peak, and the index is still **~17% below it**. Anyone who bought at the top and told themselves \"I'm a long-term investor\" has now been long-term for half a decade."
+        },
+        {
+          "type": "visual",
+          "widget": "index-history",
+          "caption": "Hover any milestone. The 2021 peak is marked in red — it has not been reclaimed in five years."
+        },
+        {
+          "type": "nepse",
+          "md": "NEPSE is an order-driven equity **cash** market. There are no options, no futures, no short selling, and no leverage from the exchange. The only way to make money is for a share you own to go up, or for it to pay you a dividend. Every strategy you read about involving shorting, options premium or intraday scalping is not available to you here. This constraint is not a weakness — it removes about 90% of the ways retail traders destroy themselves elsewhere.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A learner puts **Rs. 1,00,000** into a broad basket at each of three moments and holds to today.",
+          "table": {
+            "head": ["Bought at", "Index then", "Index now", "Value now", "Result"],
+            "numeric": [1, 2, 3, 4],
+            "rows": [
+              ["Jan 2019", "1,150", "2,643.83", "Rs. 2,29,899", "+129.9%"],
+              ["Peak, Aug 2021", "3,198.60", "2,643.83", "Rs. 82,655", "−17.3%"],
+              ["Trough, 2023", "1,615", "2,643.83", "Rs. 1,63,704", "+63.7%"]
+            ],
+            "caption": "Same market. Same seven years. The only variable is when you pressed buy."
+          },
+          "after": "This is the entire argument for the rest of this course. Not that timing is everything — you cannot time a market, and Module 15 is about people who thought they could. The argument is that **the price you pay determines your return**, and the price you pay is the one decision that is fully yours."
+        },
+        {
+          "type": "check",
+          "qids": ["q-2-1-a", "q-2-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "NEPSE has run in roughly five-year boom/bust cycles driven by interest rates, banking liquidity, and new-account growth.",
+            "The all-time high is 3,198.60 (18 Aug 2021); the index has not reclaimed it in five years.",
+            "It is a cash-only, long-only, order-driven market — no shorting, no derivatives, no exchange leverage."
+          ]
+        }
+      ],
+      "glossary": ["nepse", "cdsc", "tms", "meroshare", "cd_ratio", "market_cap"]
+    },
+
+    {
+      "id": "2.2",
+      "module": 2,
+      "index": 2,
+      "title": "Who's who: SEBON, NEPSE, CDSC, brokers, RTAs — and who protects you",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Your broker will not answer the phone. Your shares are missing from MeroShare. An IPO you applied for has not refunded your blocked money. Three problems, three different institutions — and complaining to the wrong one costs you weeks."
+        },
+        {
+          "type": "core",
+          "md": "Nepal's securities market is split across five kinds of institution, and the split is deliberate: the body that runs the market does not hold your shares, and the body that holds your shares cannot execute a trade.\n\n### The five\n\n- **[[sebon|SEBON]]** — Securities Board of Nepal. The *regulator*. It licenses brokers and issuers, approves every prospectus, writes the directives, and takes enforcement action. **This is where a complaint goes.**\n- **[[nepse|NEPSE]]** — the *exchange*. It operates the market: matching, the order book, the [[floorsheet]], the indices, circulars, and the holiday calendar. It does not regulate anyone and it does not hold your money.\n- **[[cdsc|CDSC]]** — CDS and Clearing Ltd. The *depository*. Every dematerialised share in Nepal sits in its system, and it runs MeroShare and the clearing process.\n- **[[dp|DP]]** — Depository Participant. Usually a bank or a broker, this is the institution that holds *your* [[demat|Demat account]] on CDSC's behalf, and charges the Rs. 25 per-settlement [[dp_charge|DP fee]].\n- **[[broker]]** — a NEPSE-licensed firm. Every order must route through one. Brokers are numbered, and their numbers are what you see on the floorsheet.\n- **[[rta|RTA]]** — Registrar to the Issue. Manages a company's shareholder register and runs the IPO allotment lottery.\n\n### Why the separation matters to you\n\nNepal separates **trading** (NEPSE, through your broker's TMS) from **custody** (CDSC, through your Demat and MeroShare). They are two institutions holding two halves of every transaction. That separation is what protects your shares if a broker fails — your shares are not in the broker's custody, they are in yours at CDSC.\n\nIt is also the reason [[edis|EDIS]] exists, and EDIS is the single step that catches more new Nepali sellers than anything else in this course. Lesson 6.2 is devoted to it.\n\n### Who to go to\n\nA broker who will not execute or settle → escalate to the broker's compliance officer, then **SEBON**. Shares missing from your Demat → your **DP** first, then CDSC. An IPO refund that has not arrived → the **RTA** named in the prospectus, then SEBON. A question about why the market halted → **NEPSE**'s circulars."
+        },
+        {
+          "type": "visual",
+          "widget": "org-map",
+          "props": {
+            "title": "Click any institution",
+            "nodes": [
+              { "k": "SEBON", "t": "The regulator", "does": "Licenses brokers and issuers, approves every prospectus, writes the directives, investigates manipulation, and takes enforcement action. Publishes everything at sebon.gov.np. This is where you file a complaint about a broker.", "cannot": "executing your trade, recovering a loss you made by choice, or telling you what to buy." },
+              { "k": "NEPSE", "t": "The exchange", "does": "Operates the market: matching engine, order book, price bands, circuit breakers, the 13 sectoral indices, the daily floorsheet, and the official holiday calendar.", "cannot": "regulating brokers, holding your shares, or holding your money." },
+              { "k": "CDSC", "t": "The depository", "does": "Holds every dematerialised share in Nepal, runs MeroShare, operates C-ASBA for IPO applications and EDIS for delivery, and clears every settlement.", "cannot": "placing an order for you — MeroShare has no buy button, and never will." },
+              { "k": "Your DP", "t": "Depository participant", "does": "Holds your Demat account under CDSC, opens it, maintains it, charges the annual fee and the Rs. 25 per-settlement DP charge, and is your first call if a holding looks wrong.", "cannot": "executing trades, unless the same institution is also your broker." },
+              { "k": "Broker", "t": "Execution", "does": "Routes your orders to NEPSE through TMS, holds your trading funds in a collection account, issues your contract note, and pays your sale proceeds to your bank.", "cannot": "holding your shares — those are in your Demat, not with them. That is the protection." },
+              { "k": "RTA", "t": "Registrar", "does": "Maintains the shareholder register for an issuer and runs the computerised allotment lottery for its IPO.", "cannot": "changing your odds, or telling you in advance whether you were allotted." }
+            ],
+            "note": "Trading and custody are deliberately held by different institutions. That is a protection, and it is also why EDIS exists."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Complaints go to **SEBON**, not NEPSE. This catches people constantly, because NEPSE is the name everyone knows. SEBON is the regulator with enforcement powers; NEPSE operates the market and cannot discipline a broker. File at sebon.gov.np, in writing, with your client code, the trade date, and the contract note.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You sold 300 kitta of NABIL on Thursday 20 August 2026 at Rs. 496.10. Four things go wrong in sequence. Who do you call?",
+          "calc": [
+            { "l": "The sale executed but the shares never left your Demat", "v": "Your DP → CDSC" },
+            { "l": "Your broker has not paid the proceeds a week later", "v": "Broker compliance → SEBON" },
+            { "l": "The contract note shows commission you do not recognise", "v": "Broker first — the rate is regulated" },
+            { "l": "You want to know why trading halted for 15 minutes", "v": "NEPSE circulars" },
+            { "l": "An IPO you applied for has not unblocked your funds", "v": "The RTA in the prospectus → SEBON", "total": true }
+          ],
+          "after": "Every one of these has a first stop and an escalation. Going straight to the escalation wastes weeks; complaining to the wrong institution entirely wastes more. Keep your client code, your Demat number (the 16-digit BOID) and your contract notes somewhere you can find them in two minutes."
+        },
+        {
+          "type": "check",
+          "qids": ["q-2-2-a", "q-2-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "SEBON regulates, NEPSE operates the market, CDSC holds the shares, your DP holds your account, brokers execute, RTAs run allotment.",
+            "Trading and custody are deliberately separate institutions — your shares are not in your broker's hands.",
+            "Complaints about a broker go to SEBON, not NEPSE."
+          ]
+        }
+      ],
+      "glossary": ["sebon", "nepse", "cdsc", "dp", "broker", "rta", "demat", "edis", "floorsheet", "dp_charge"]
+    },
+
+    {
+      "id": "2.3",
+      "module": 2,
+      "index": 3,
+      "title": "The 13 sectoral indices, and why hydropower is now a third of the market",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Ninety-one of the 271 companies listed on NEPSE generate electricity. One in three. No other stock exchange in the world looks like this, and it changes what \"diversifying\" means for you."
+        },
+        {
+          "type": "core",
+          "md": "NEPSE groups its listed companies into [[sectoral_index|sectoral indices]]. The composition is not evenly spread and has shifted sharply over the last decade.\n\n### The shape of the exchange\n\nHydropower is 91 companies — 33.6% of the count. Microfinance is 50, another 18.5%. Between them, two sectors are more than half the exchange by company count. The 19 commercial banks are only 7.0%.\n\nThat last number is the trap, because **company count is not market weight**. The headline NEPSE index is capitalisation-weighted, and the 19 commercial banks dominate it. When the news says \"NEPSE rose 1.2% today\", it is mostly telling you what a handful of large banks did. The 91 hydropower companies can move together all day and barely register.\n\n### Why hydropower exploded\n\nNepal has developed roughly 2,800 MW against an estimated technical potential in the tens of thousands. A generation of project companies raised equity through IPOs at the Rs. 100 face value, which is a genuinely accessible entry point, and listed. The growth story is real.\n\nThe way it is valued usually is not, and Lesson 13.2 takes that apart: installed capacity in megawatts is a licence, not a revenue, and the number that actually determines earnings is [[plf|Plant Load Factor]].\n\n### What this means for your portfolio\n\nTwo practical consequences:\n\n1. **Sector concentration is easier than you think.** Buying \"five different companies\" on NEPSE very often means buying five hydropower counters, or five banks — which correlate at 0.86 to 0.91 and respond to the same NRB circular on the same morning. Lesson 14.5 has the heatmap.\n2. **Liquidity is wildly uneven.** A commercial bank trades in crores daily. A small hydropower counter may trade a few hundred kitta. The sector with the most companies has the least depth per company, which is where the [[liquidity_trap|liquidity trap]] in Lesson 10.4 lives."
+        },
+        {
+          "type": "visual",
+          "widget": "sector-treemap"
+        },
+        {
+          "type": "nepse",
+          "md": "Company count is not market weight. Hydropower is 33.6% of listed companies and nowhere near a third of market capitalisation; the 19 commercial banks are 7.0% of the count and dominate the cap-weighted index. When you read \"the market was up today\", check *which* index — Lesson 2.4 covers the three that exist and why they diverge.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You decide to diversify across five companies and pick, without much thought: NABIL, NMB, SANIMA, GBIME, PCBL.",
+          "calc": [
+            { "l": "Number of companies", "v": "5" },
+            { "l": "Number of sectors", "v": "1 — Commercial Banks" },
+            { "l": "Typical pairwise correlation, Nepali commercial banks", "v": "~0.90" },
+            { "l": "Effective number of independent positions", "v": "Close to 1", "total": true }
+          ],
+          "after": "All five fund themselves the same way, lend into the same economy, and reprice together the morning Nepal Rastra Bank changes a rule. In the 2021–2023 drawdown they fell together. Five names is not five positions — a point Lesson 14.5 makes with an actual correlation matrix.\n\nAnd the honest counterweight: the genuine diversifier on NEPSE is hydropower, at a correlation nearer 0.62 — which is awkward, because it is also the least liquid part of the exchange. Diversification here costs you something real. It is still usually worth paying."
+        },
+        {
+          "type": "check",
+          "qids": ["q-2-3-a", "q-2-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "271 listed companies across 13 sectors; hydropower is 91 of them (33.6%) and microfinance 50 (18.5%).",
+            "Company count is not market weight — the 19 commercial banks dominate the cap-weighted index.",
+            "Five Nepali banks is close to one position, because they correlate at roughly 0.90."
+          ]
+        }
+      ],
+      "glossary": ["sectoral_index", "market_cap", "plf", "liquidity_trap", "correlation"]
+    },
+
+    {
+      "id": "2.4",
+      "module": 2,
+      "index": 4,
+      "title": "NEPSE, Sensitive, Float — three indices that mean different things",
+      "minutes": 3,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "One newspaper says the market rose 0.8% today. Another says it rose 1.4%. A third says it fell. All three are reporting honestly. They are quoting three different indices."
+        },
+        {
+          "type": "core",
+          "md": "NEPSE publishes several headline measures. Three matter, and they answer different questions.\n\n### The NEPSE index\n\nEvery listed company, weighted by market capitalisation. This is the number in the headlines. Because it is cap-weighted, a 2% move in a large commercial bank shifts it more than a 10% move across a dozen small hydropower counters.\n\n### The [[sensitive_index|Sensitive Index]]\n\nGroup A companies only — the larger, better-disclosed names that meet NEPSE's criteria on paid-up capital, profitability, book value and disclosure record. It is a quality filter. It moves less violently than the headline index, because the speculative tail is excluded.\n\n### The [[float_index|Float Index]]\n\nWeighted only by shares actually available to trade — free float — excluding promoter holdings and locked-in shares. This is the most honest measure of what the *investable* market did, because it does not give weight to shares nobody can buy.\n\n### Why they diverge, and what the divergence tells you\n\nWhen the headline NEPSE index rises faster than the Sensitive Index, the move is being led by smaller, lower-quality names — which is a genuine warning sign, and one of the three in Lesson 15.1. When the Sensitive Index leads, large, well-disclosed companies are doing the work, which historically has been the healthier configuration.\n\nThis is not a trading signal. It is a way of reading what kind of market you are in, and it costs you nothing to check both numbers instead of one."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Three indices, three questions",
+            "sub": "Same market, different lenses",
+            "sides": [
+              {
+                "k": "Headline",
+                "t": "NEPSE Index",
+                "rows": [
+                  ["Covers", "All listed companies"],
+                  ["Weighting", "Market capitalisation"],
+                  ["Answers", "What did the whole market do?"],
+                  ["Dominated by", "The 19 commercial banks"],
+                  ["Today", "2,643.83"]
+                ]
+              },
+              {
+                "k": "Filtered",
+                "t": "Sensitive & Float",
+                "rows": [
+                  ["Sensitive covers", "Group A companies only"],
+                  ["Float covers", "Free-float shares only"],
+                  ["Sensitive answers", "What did the quality names do?"],
+                  ["Float answers", "What did investable shares do?"],
+                  ["Excludes", "Promoter and locked-in shares"]
+                ]
+              }
+            ],
+            "verdict": "When the headline index outruns the Sensitive Index, low-quality names are leading. That is one of the three reliable warning signs in Lesson 15.1 — it says the good ideas ran out and the money is now buying whatever is left."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Check which index a headline is quoting before you act on it. Nepali financial media use \"NEPSE\" loosely for all three, and the divergence between them is often the most informative part of the day. NEPSE publishes all of them, along with the 13 sectoral indices, at nepalstock.com.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A stylised day that shows why the three numbers separate.",
+          "table": {
+            "head": ["Index", "Move today", "What is driving it"],
+            "numeric": [1],
+            "rows": [
+              ["NEPSE (all, cap-weighted)", "+1.40%", "Broad buying, including many small counters"],
+              ["Sensitive (Group A only)", "+0.35%", "The large, well-disclosed names barely moved"],
+              ["Float (free float only)", "+1.10%", "Between the two"]
+            ],
+            "caption": "Illustrative. The pattern — headline well ahead of Sensitive — is the part that matters."
+          },
+          "after": "A day like this says the money is going into the tail, not the leaders. That is the configuration that preceded the 2021 top, and it is also the configuration of many perfectly ordinary weeks that led nowhere. One day tells you nothing. **A month of days like this tells you to reduce position size and stop adding**, which is the only actionable form this signal ever takes."
+        },
+        {
+          "type": "check",
+          "qids": ["q-2-4-a", "q-2-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "NEPSE index = all companies, cap-weighted. Sensitive = Group A only. Float = free-float shares only.",
+            "Divergence is the information: headline outrunning Sensitive means low-quality names are leading.",
+            "Check which index a headline quotes before you act on it."
+          ]
+        }
+      ],
+      "glossary": ["nepse", "sensitive_index", "float_index", "market_cap"]
+    },
+
+    {
+      "id": "2.5",
+      "module": 2,
+      "index": 5,
+      "title": "The trading calendar: Sunday–Thursday is dead; it's Monday–Friday now",
+      "minutes": 3,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Almost every NEPSE guide online tells you the market trades Sunday to Thursday. Every one of them is now wrong. The week changed in April 2026, and if you are counting settlement days from an old guide you will be wrong about when your money arrives."
+        },
+        {
+          "type": "core",
+          "md": "### The week\n\nNEPSE trades **Monday to Friday**. It traded Sunday to Thursday for its entire prior history, following Nepal's traditional government working week, and the change followed the shift in government office days. Saturday and Sunday are now market holidays.\n\nThis matters far beyond trivia, because **settlement counts trading days, not calendar days**. A sale executed on Thursday settles on Monday. A sale on Friday settles on Tuesday. If you need cash by a specific date, count backwards using trading days — and check the holiday calendar, because Dashain and Tihar close the market for extended runs.\n\n### The day\n\nContinuous trading runs **11:00 to 15:00**, with a [[pre_open|pre-open session]] before it in which orders are collected without matching and a single opening price is calculated. Lesson 5.3 covers the mechanics.\n\nSince April 2026 you can **place orders round the clock**. They queue and execute only inside the session. This is genuinely useful: you can decide your price the night before, calmly, rather than at 11:04 with the market moving.\n\n### The circuit breakers\n\nThe index-level [[circuit_breaker|circuit breaker]] was simplified in April 2026 from three tiers to two:\n\n- **±5% within the first two hours** → trading halts for 15 minutes.\n- **±8% at any time** → the market closes for the day.\n\nThese are index-wide halts, and they are distinct from the ±15% daily limit on an individual stock, which Lesson 5.1 covers. Two different mechanisms, both live at once."
+        },
+        {
+          "type": "visual",
+          "widget": "table",
+          "props": {
+            "title": "What changed in 2026",
+            "sub": "Everything on this page postdates most guides online",
+            "head": ["Item", "Before", "Now", "Effective"],
+            "numeric": [],
+            "rows": [
+              ["Trading week", "Sunday – Thursday", "**Monday – Friday**", "April 2026"],
+              ["Order placement", "Session hours only", "**Round the clock** (executes 11:00–15:00)", "April 2026"],
+              ["Daily limit, single stock", "±10%", "**±15%** of previous close", "21 April 2026"],
+              ["Order price band", "±2%", "**±3%** of last traded price", "2026"],
+              ["Pre-open band", "±2%", "**±5%** of previous close", "2026"],
+              ["Index circuit breaker", "Three tiers", "**Two** — 5% halts 15 min, 8% closes the day", "21 April 2026"],
+              ["Short-term CGT, individual", "7.5%", "**10%**", "17 July 2026"],
+              ["Long-term CGT, individual", "5%", "**7.5%**", "17 July 2026"]
+            ],
+            "caption": "Regulatory basis: Securities Trading Operations (Fourth Amendment) Bylaws, 2082, approved by SEBON."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "This changed recently, and most guides online are wrong about it. If a tutorial, blog post or chatbot tells you NEPSE trades Sunday to Thursday, or that short-term capital gains tax is 7.5%, or that a stock can move at most 10% in a day, it was written before 2026 and you should distrust the rest of it too. The definitive holiday calendar is published by NEPSE at nepalstock.com.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You sell 300 kitta of NABIL at Rs. 496.10 on **Thursday 20 August 2026** and need the cash for a payment.",
+          "calc": [
+            { "l": "Thu 20 Aug — T", "v": "Order executes. Gross Rs. 1,48,830." },
+            { "l": "Fri 21 Aug — T+1", "v": "You must authorise EDIS in MeroShare." },
+            { "l": "Sat 22 / Sun 23", "v": "Market closed. Nothing happens." },
+            { "l": "Mon 24 Aug — T+2", "v": "Shares delivered, funds settled, CGT withheld." },
+            { "l": "Mon 24 / Tue 25", "v": "Broker releases the net amount to your bank.", "total": true }
+          ],
+          "after": "If you were counting on that money for a payment on Saturday, you were wrong by three days — and if you were using an old guide that says the week runs Sunday to Thursday, you would have counted the weekend as trading days and been wrong by more.\n\nCount in trading days. Check the holiday calendar. During Dashain the gap can run to a week or more."
+        },
+        {
+          "type": "check",
+          "qids": ["q-2-5-a", "q-2-5-b", "q-2-5-c"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "NEPSE trades Monday to Friday, 11:00–15:00, since April 2026 — Sunday–Thursday is dead.",
+            "Orders can be placed round the clock but execute only inside the session.",
+            "Index circuit breakers: ±5% in the first two hours halts 15 minutes; ±8% closes the day."
+          ]
+        }
+      ],
+      "glossary": ["pre_open", "circuit_breaker", "settlement", "t_plus_two", "cgt"]
+    }
+  ]
+}

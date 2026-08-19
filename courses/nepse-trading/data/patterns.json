@@ -1,0 +1,194 @@
+{
+  "marubozu_bull": {
+    "name": "Bullish Marubozu", "np": "बुलिश मारुबोजु", "candles": 1, "bias": "bullish", "reliability": 3,
+    "requires": "any",
+    "rule": "Body ≥ 90% of the total range. Both wicks ≤ 5% of range each. Close above open.",
+    "means": "One side controlled the session from the first minute to the last. Buyers opened at the low and closed at the high without ever giving ground.",
+    "trap": "On a NEPSE counter that hit the +15% circuit, a marubozu is manufactured — price stopped because it was not allowed to move, not because buyers won an argument. Check whether the close equals the circuit price before reading anything into it.",
+    "detect": "marubozuBull"
+  },
+  "marubozu_bear": {
+    "name": "Bearish Marubozu", "np": "बेयरिश मारुबोजु", "candles": 1, "bias": "bearish", "reliability": 3,
+    "requires": "any",
+    "rule": "Body ≥ 90% of the total range. Both wicks ≤ 5% of range each. Close below open.",
+    "means": "Sellers opened at the high and closed at the low. At no point in the day did buyers hold anything back.",
+    "trap": "Same circuit caveat as its bullish twin, and one more: on a thin hydropower counter a marubozu can be a single seller clearing a shallow book. Check the volume against the 20-day average.",
+    "detect": "marubozuBear"
+  },
+  "doji": {
+    "name": "Doji", "np": "दोजी", "candles": 1, "bias": "indecision", "reliability": 2,
+    "requires": "any",
+    "rule": "Body ≤ 5% of the total range. Wicks on both sides.",
+    "means": "Open and close finished at essentially the same price. Whatever happened in between, the session settled nothing.",
+    "trap": "A doji is not a reversal signal. It is the absence of a signal. It becomes meaningful only after an extended trend, where it says the trend has stopped making progress — and only if the next candle confirms.",
+    "detect": "doji"
+  },
+  "long_legged_doji": {
+    "name": "Long-legged Doji", "np": "लामो खुट्टे दोजी", "candles": 1, "bias": "indecision", "reliability": 2,
+    "requires": "any",
+    "rule": "Body ≤ 5% of range. Both wicks long, each ≥ 30% of the total range.",
+    "means": "Price travelled a long way in both directions and came back to where it started. Maximum disagreement, zero resolution.",
+    "trap": "Beginners read the size of the range as importance. The range is the argument; the body is the verdict. A long-legged doji is a loud argument with no verdict.",
+    "detect": "longLeggedDoji"
+  },
+  "dragonfly": {
+    "name": "Dragonfly Doji", "np": "ड्र्यागनफ्लाई दोजी", "candles": 1, "bias": "bullish", "reliability": 3,
+    "requires": "downtrend",
+    "rule": "Body ≤ 5% of range. Lower wick ≥ 60% of range. Upper wick ≤ 10% of range.",
+    "means": "Sellers drove price far below the open and buyers returned every rupee of it before the close. The low was rejected outright.",
+    "trap": "Needs a downtrend behind it and volume beneath it. At the top of an advance the identical silhouette carries the opposite meaning — read the context, not the shape.",
+    "detect": "dragonfly"
+  },
+  "gravestone": {
+    "name": "Gravestone Doji", "np": "ग्रेभस्टोन दोजी", "candles": 1, "bias": "bearish", "reliability": 3,
+    "requires": "uptrend",
+    "rule": "Body ≤ 5% of range. Upper wick ≥ 60% of range. Lower wick ≤ 10% of range.",
+    "means": "Buyers pushed price well above the open and lost all of it. Every rupee of the advance was sold into.",
+    "trap": "On NEPSE this frequently marks the day a tip-driven move ran out of new buyers. It is worth more when the volume is high — a gravestone on 400 shares is one nervous seller, not a crowd.",
+    "detect": "gravestone"
+  },
+  "spinning_top": {
+    "name": "Spinning Top", "np": "स्पिनिङ टप", "candles": 1, "bias": "indecision", "reliability": 1,
+    "requires": "any",
+    "rule": "Body between 5% and 30% of range, sitting near the middle. Both wicks visible and roughly comparable.",
+    "means": "A small net result after a session of pushing in both directions. Neither side finished with anything to show.",
+    "trap": "These are the most common candle on any chart and carry almost no information alone. Treat a spinning top as punctuation, never as a sentence.",
+    "detect": "spinningTop"
+  },
+  "hammer": {
+    "name": "Hammer", "np": "हथौडा", "candles": 1, "bias": "bullish", "reliability": 3,
+    "requires": "downtrend",
+    "rule": "Lower wick ≥ 2× body. Upper wick ≤ 10% of range. Body in the upper third.",
+    "means": "Sellers drove price down hard, buyers took it all back before the close.",
+    "trap": "Identical in shape to a Hanging Man. The difference is entirely what came before: a Hammer follows a decline, a Hanging Man follows an advance.",
+    "detect": "hammer"
+  },
+  "inverted_hammer": {
+    "name": "Inverted Hammer", "np": "उल्टो हथौडा", "candles": 1, "bias": "bullish", "reliability": 2,
+    "requires": "downtrend",
+    "rule": "Upper wick ≥ 2× body. Lower wick ≤ 10% of range. Body in the lower third. Occurs after a decline.",
+    "means": "After a fall, buyers found enough conviction to run price well above the open. They could not hold it, but the attempt is the information.",
+    "trap": "Weaker than a hammer and requires confirmation the following day. Without a higher close after it, an inverted hammer is just a failed rally.",
+    "detect": "invertedHammer"
+  },
+  "hanging_man": {
+    "name": "Hanging Man", "np": "झुण्डिएको मान्छे", "candles": 1, "bias": "bearish", "reliability": 2,
+    "requires": "uptrend",
+    "rule": "Lower wick ≥ 2× body. Upper wick ≤ 10% of range. Body in the upper third. Occurs after an advance.",
+    "means": "Mid-session, sellers were able to break price sharply below the open for the first time in the trend. Buyers repaired it, but the crack showed.",
+    "trap": "This is the hammer's twin and the single most instructive pair in the course. The candle is drawn identically. Only the preceding trend separates a buy signal from a sell signal — which is why Lesson 9.5 exists.",
+    "detect": "hangingMan"
+  },
+  "shooting_star": {
+    "name": "Shooting Star", "np": "उल्कापिण्ड", "candles": 1, "bias": "bearish", "reliability": 3,
+    "requires": "uptrend",
+    "rule": "Upper wick ≥ 2× body. Lower wick ≤ 10% of range. Body in the lower third. Occurs after an advance.",
+    "means": "Buyers pushed to a new high and were comprehensively sold into. The close near the low says the sellers finished in control.",
+    "trap": "Requires the advance. The same shape after a decline is an inverted hammer, and it is bullish. Shape without context tells you nothing.",
+    "detect": "shootingStar"
+  },
+  "bullish_engulfing": {
+    "name": "Bullish Engulfing", "np": "बुलिश एन्गल्फिङ", "candles": 2, "bias": "bullish", "reliability": 4,
+    "requires": "downtrend",
+    "rule": "Candle 1 bearish. Candle 2 bullish, and its body fully covers candle 1's body.",
+    "means": "Sentiment reversed inside a single session and buyers overwhelmed the prior day entirely.",
+    "trap": "Wicks do not need to be engulfed — only bodies. Beginners reject valid signals over this.",
+    "detect": "bullishEngulfing"
+  },
+  "bearish_engulfing": {
+    "name": "Bearish Engulfing", "np": "बेयरिश एन्गल्फिङ", "candles": 2, "bias": "bearish", "reliability": 4,
+    "requires": "uptrend",
+    "rule": "Candle 1 bullish. Candle 2 bearish, and its body fully covers candle 1's body.",
+    "means": "A day of gains was erased and exceeded in the following session. Everyone who bought on day 1 is now underwater.",
+    "trap": "Size matters. A bearish engulfing where candle 2 is barely larger than candle 1 is noise; one where candle 2 is twice the size is a genuine change of hands.",
+    "detect": "bearishEngulfing"
+  },
+  "bullish_harami": {
+    "name": "Bullish Harami", "np": "बुलिश हरामी", "candles": 2, "bias": "bullish", "reliability": 2,
+    "requires": "downtrend",
+    "rule": "Candle 1 a large bearish body. Candle 2 a small body contained entirely within candle 1's body.",
+    "means": "The selling stopped. Not reversed — stopped. After a decisive down day, the next session went nowhere, which is itself a change.",
+    "trap": "Harami means pregnant in Japanese, and the pattern is about containment, not direction. It signals a pause; it needs a third candle to become a reversal.",
+    "detect": "bullishHarami"
+  },
+  "bearish_harami": {
+    "name": "Bearish Harami", "np": "बेयरिश हरामी", "candles": 2, "bias": "bearish", "reliability": 2,
+    "requires": "uptrend",
+    "rule": "Candle 1 a large bullish body. Candle 2 a small body contained entirely within candle 1's body.",
+    "means": "The buying stopped. After a strong advance, the market failed to add anything.",
+    "trap": "On thin NEPSE counters a harami often means nobody traded, not that anybody decided anything. Check volume before you call it a signal.",
+    "detect": "bearishHarami"
+  },
+  "harami_cross": {
+    "name": "Harami Cross", "np": "हरामी क्रस", "candles": 2, "bias": "reversal", "reliability": 3,
+    "requires": "any",
+    "rule": "Candle 1 a large body. Candle 2 a doji contained entirely within candle 1's body.",
+    "means": "The stronger form of the harami — the second session settled nothing at all, inside the range of a decisive day.",
+    "trap": "Direction comes from candle 1 and the trend, not from the doji. A harami cross after a decline is bullish; the identical shape after an advance is bearish.",
+    "detect": "haramiCross"
+  },
+  "piercing_line": {
+    "name": "Piercing Line", "np": "पियर्सिङ लाइन", "candles": 2, "bias": "bullish", "reliability": 3,
+    "requires": "downtrend",
+    "rule": "Candle 1 bearish. Candle 2 opens below candle 1's low, then closes above the midpoint of candle 1's body but below its open.",
+    "means": "The session opened in panic and finished having recovered more than half of the previous day's loss. The gap down was bought.",
+    "trap": "The close must clear the 50% line. A close at 40% of the prior body is a failed piercing line, and failures here tend to resolve downward.",
+    "detect": "piercingLine"
+  },
+  "dark_cloud_cover": {
+    "name": "Dark Cloud Cover", "np": "डार्क क्लाउड कभर", "candles": 2, "bias": "bearish", "reliability": 3,
+    "requires": "uptrend",
+    "rule": "Candle 1 bullish. Candle 2 opens above candle 1's high, then closes below the midpoint of candle 1's body but above its open.",
+    "means": "The gap up was sold. Everyone who bought the opening enthusiasm finished the day in loss.",
+    "trap": "NEPSE gaps are frequently mechanical — book closure and ex-bonus dates create them artificially. Check the corporate action calendar before reading a dark cloud into an ex-bonus gap.",
+    "detect": "darkCloudCover"
+  },
+  "tweezer_top": {
+    "name": "Tweezer Top", "np": "ट्विजर टप", "candles": 2, "bias": "bearish", "reliability": 2,
+    "requires": "uptrend",
+    "rule": "Two consecutive candles with near-identical highs (within 0.3% of each other), the first bullish, the second bearish.",
+    "means": "Price reached the same ceiling twice and was refused twice. A resistance level just proved itself.",
+    "trap": "Round numbers on NEPSE — Rs. 100, Rs. 500, Rs. 1,000 — manufacture tweezers through pure psychology. That does not make them fake, but it does mean they break easily once crossed.",
+    "detect": "tweezerTop"
+  },
+  "tweezer_bottom": {
+    "name": "Tweezer Bottom", "np": "ट्विजर बटम", "candles": 2, "bias": "bullish", "reliability": 2,
+    "requires": "downtrend",
+    "rule": "Two consecutive candles with near-identical lows (within 0.3% of each other), the first bearish, the second bullish.",
+    "means": "The same floor held twice in two sessions. Buyers defended one specific price and were not tested past it.",
+    "trap": "Two touches is the minimum for a level and the weakest version of one. A tweezer bottom at a price that has held four times before is worth far more than one at a price nobody has defended.",
+    "detect": "tweezerBottom"
+  },
+  "morning_star": {
+    "name": "Morning Star", "np": "बिहानीको तारा", "candles": 3, "bias": "bullish", "reliability": 4,
+    "requires": "downtrend",
+    "rule": "Candle 1 a long bearish body. Candle 2 a small body, gapped down. Candle 3 bullish, closing above the midpoint of candle 1's body.",
+    "means": "Capitulation, then a pause, then recovery. Three sessions telling one complete story: the sellers exhausted themselves and buyers stepped into the vacuum.",
+    "trap": "The middle candle must be small. If it is a full-sized body, this is not a morning star — it is a downtrend with a bounce, and it is worth much less.",
+    "detect": "morningStar"
+  },
+  "evening_star": {
+    "name": "Evening Star", "np": "साँझको तारा", "candles": 3, "bias": "bearish", "reliability": 4,
+    "requires": "uptrend",
+    "rule": "Candle 1 a long bullish body. Candle 2 a small body, gapped up. Candle 3 bearish, closing below the midpoint of candle 1's body.",
+    "means": "Enthusiasm, then hesitation, then abandonment. The final push failed and the sellers took the level back.",
+    "trap": "This is the classic top of a NEPSE retail run. It usually arrives with a volume spike on candle 2 — the last buyers arriving — and lower volume on candle 3, because nobody is left to buy.",
+    "detect": "eveningStar"
+  },
+  "three_white_soldiers": {
+    "name": "Three White Soldiers", "np": "तीन सेता सिपाही", "candles": 3, "bias": "bullish", "reliability": 4,
+    "requires": "downtrend",
+    "rule": "Three consecutive bullish candles, each with a substantial body, each opening within the previous body and closing above the previous close, with small upper wicks.",
+    "means": "Sustained, orderly accumulation across three sessions. Not a spike — a march.",
+    "trap": "If the third candle's body is markedly smaller with a long upper wick, the advance is already tiring, and the pattern has warned you at the same moment it confirmed.",
+    "detect": "threeWhiteSoldiers"
+  },
+  "three_black_crows": {
+    "name": "Three Black Crows", "np": "तीन काला कागहरू", "candles": 3, "bias": "bearish", "reliability": 4,
+    "requires": "uptrend",
+    "rule": "Three consecutive bearish candles, each with a substantial body, each opening within the previous body and closing below the previous close, with small lower wicks.",
+    "means": "Three sessions of steady distribution. Every intraday bounce was sold.",
+    "trap": "By the time you can see all three, much of the move is behind you. This is a pattern for managing a position you already hold, not for entering a short — which you cannot do on NEPSE anyway.",
+    "detect": "threeBlackCrows"
+  }
+}

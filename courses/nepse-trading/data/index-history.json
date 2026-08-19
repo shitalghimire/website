@@ -1,0 +1,32 @@
+{
+  "milestones": [
+    { "date": "1994-01",   "value": 226,     "note": "NEPSE trading floor opens" },
+    { "date": "2003-07",   "value": 205,     "note": "Start of the first modern bull run" },
+    { "date": "2008-07",   "value": 963,     "note": "Peak — +370% over five years" },
+    { "date": "2011-07",   "value": 363,     "note": "Bottom — a 62% three-year bear market" },
+    { "date": "2016-07-27","value": 1881.45, "note": "Post-earthquake reconstruction peak" },
+    { "date": "2019-03",   "value": 1103,    "note": "Bottom, −40% from 2016" },
+    { "date": "2021-08-18","value": 3198.60, "note": "ALL-TIME HIGH. Low rates, COVID liquidity, retail flood" },
+    { "date": "2023-01",   "value": 1615,    "note": "Trough. −49.5%. NRB tightening, FD rates above 11%" },
+    { "date": "2024-06",   "value": 2120,    "note": "Phase 1 recovery — blue-chip banks lead" },
+    { "date": "2025-06",   "value": 2594,    "note": "Phase 2 — broader sector participation" },
+    { "date": "2026-08-15","value": 2643.83, "note": "Today. Still −17.3% from the 2021 high" }
+  ],
+  "stages": [
+    { "from": "2019-03",    "to": "2020-06",    "label": "1 · Displacement", "note": "NRB cuts rates. Banking system flush with liquidity. Online trading and MeroShare remove the friction from opening an account." },
+    { "from": "2020-06",    "to": "2021-02",    "label": "2 · Boom",         "note": "Prices rise on real reasons. Early buyers make real money. Indistinguishable from a healthy bull market — because it is one." },
+    { "from": "2021-02",    "to": "2021-07",    "label": "3 · Euphoria",     "note": "New participants arrive who cannot name what the company does. Margin lending expands. Analysis becomes a screenshot in a Viber group." },
+    { "from": "2021-07",    "to": "2021-11",    "label": "4 · Distribution", "note": "The index goes sideways at a high level while individual stocks quietly stop making new highs. It feels like consolidation." },
+    { "from": "2021-11",    "to": "2023-01",    "label": "5 · Panic",        "note": "NRB tightening. CD ratio past sustainable levels. FD rates above 11%. Margin unwound. −49.5%." }
+  ],
+  "current": {
+    "index": 2643.83,
+    "asOf": "2026-08-15",
+    "marketCapNPR": 4547000000000,
+    "avgDailyTurnoverNPR": 3680000000,
+    "weeklyTurnoverNPR": 18400000000,
+    "allTimeHigh": 3198.60,
+    "allTimeHighDate": "2021-08-18",
+    "belowHighPct": -0.173
+  }
+}

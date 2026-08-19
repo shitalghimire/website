@@ -1,0 +1,1180 @@
+{
+ "asOf": "2026-08-19",
+ "note": "Every answer carries an explanation, including correct ones.",
+ "questions": [
+  {
+   "id": "q-1-1-a",
+   "module": 1,
+   "lesson": "1.1",
+   "tags": [
+    "market-structure",
+    "shares"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "You own 100 shares of a commercial bank. In what two ways can that holding actually pay you?",
+   "options": [
+    {
+     "t": "Dividends from the company, and a higher price paid by another investor",
+     "correct": true
+    },
+    {
+     "t": "Interest paid monthly by NEPSE, and dividends",
+     "correct": false
+    },
+    {
+     "t": "Rent from the bank's branches, and capital gains",
+     "correct": false
+    },
+    {
+     "t": "Dividends, and a guaranteed buyback at face value",
+     "correct": false
+    }
+   ],
+   "explain": "Only two channels exist. The company distributes part of its profit to you as a cash dividend or bonus shares; or another investor buys your shares for more than you paid. NEPSE pays no interest — it operates the market, it does not hold your money. There is no guaranteed buyback, and nothing about Rs. 100 face value creates a floor under the price.",
+   "hintOnFirstWrong": "Think about who can actually send money in your direction: the company, or another investor."
+  },
+  {
+   "id": "q-1-1-b",
+   "module": 1,
+   "lesson": "1.1",
+   "tags": [
+    "market-structure",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "multi",
+   "stem": "Which of these are genuinely unavailable to a retail investor on NEPSE? (Select all that apply)",
+   "options": [
+    {
+     "t": "Short selling a share you do not own",
+     "correct": true
+    },
+    {
+     "t": "Buying a call option on a listed bank",
+     "correct": true
+    },
+    {
+     "t": "Buying and selling the same share within one day",
+     "correct": true
+    },
+    {
+     "t": "Placing an order outside market hours",
+     "correct": false
+    }
+   ],
+   "explain": "NEPSE is an order-driven cash equity market. There is no short selling, no options or futures, and no intraday trading — the last one follows structurally from T+2 settlement, because you cannot sell shares that have not yet reached your Demat account. Placing an order outside market hours IS possible since April 2026: orders can be entered round the clock, they simply queue and execute only between 11:00 and 15:00.",
+   "hintOnFirstWrong": "Three of these are structural absences on NEPSE. One of them changed in April 2026."
+  },
+  {
+   "id": "q-1-2-a",
+   "module": 1,
+   "lesson": "1.2",
+   "tags": [
+    "shares",
+    "capital"
+   ],
+   "difficulty": 2,
+   "type": "numeric",
+   "stem": "A bank has 8.6 crore shares outstanding at the standard Nepali face value. What is its paid-up capital, in crore rupees?",
+   "answer": 860,
+   "tolerance": 1,
+   "unit": "Rs. crore",
+   "explain": "Paid-up capital = share count × face value = 8.6 crore × Rs. 100 = Rs. 860 crore. Face value for Nepali ordinary shares is Rs. 100 (mutual fund units are Rs. 10). Note what this figure is not: it has no relationship to the market price. The same bank could trade at Rs. 200 or Rs. 600 and its paid-up capital would be unchanged.",
+   "hintOnFirstWrong": "Paid-up capital uses face value, not market price. What is face value for a Nepali ordinary share?"
+  },
+  {
+   "id": "q-1-2-b",
+   "module": 1,
+   "lesson": "1.2",
+   "tags": [
+    "shares",
+    "bonus"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why do Nepali banks pay so much of their dividend as bonus shares rather than cash?",
+   "options": [
+    {
+     "t": "It raises paid-up capital to meet NRB minimums without asking shareholders for new money",
+     "correct": true
+    },
+    {
+     "t": "Bonus shares are taxed at a lower rate than cash dividends for the company",
+     "correct": false
+    },
+    {
+     "t": "SEBON requires at least half of any dividend to be paid in shares",
+     "correct": false
+    },
+    {
+     "t": "It increases the market value of the shareholders' holding",
+     "correct": false
+    }
+   ],
+   "explain": "Nepal Rastra Bank sets minimum paid-up capital by licence class. A bonus issue moves money from reserves into the capital column, satisfying the requirement without a cash call on shareholders. The other options are wrong in instructive ways: there is no such SEBON rule; and a bonus issue does not increase the value of your holding — your share count rises and the price adjusts down by roughly the same proportion on the ex-bonus date. You own more pieces of the same pie.",
+   "hintOnFirstWrong": "Ask what problem the bank is solving. Who requires it to hold a certain amount of capital?"
+  },
+  {
+   "id": "q-1-3-a",
+   "module": 1,
+   "lesson": "1.3",
+   "tags": [
+    "market-structure",
+    "ipo"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "You buy 200 kitta of a hydropower company on NEPSE at Rs. 300. Where does your Rs. 60,000 go?",
+   "options": [
+    {
+     "t": "To the investor who sold you the shares — the company receives nothing",
+     "correct": true
+    },
+    {
+     "t": "To the company, to fund construction of the project",
+     "correct": false
+    },
+    {
+     "t": "Split between the company and the selling investor",
+     "correct": false
+    },
+    {
+     "t": "To NEPSE, which passes it to the company at settlement",
+     "correct": false
+    }
+   ],
+   "explain": "This is a secondary-market transaction. The shares already exist and you are buying them from another investor, who receives your money less their own costs. The company is not a party to the trade and its bank balance is unaffected. Money reaches the company only through the primary market — an IPO, FPO or rights issue. This distinction matters when you read that a company 'gained Rs. 50 crore in market value': that phrase describes an opinion changing, not a rupee moving into the business.",
+   "hintOnFirstWrong": "Were these shares newly created by the company, or did they already exist in someone else's Demat account?"
+  },
+  {
+   "id": "q-1-3-b",
+   "module": 1,
+   "lesson": "1.3",
+   "tags": [
+    "ipo",
+    "market-structure"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "The main purpose of the secondary market is to raise capital for listed companies.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. The secondary market raises no capital for companies at all — it provides two other things: a price, and an exit. Those are what make the primary market work. You are willing to buy at an IPO partly because you know you can sell later; without a functioning secondary market almost nobody would fund the primary one. So the secondary market is essential to capital formation without itself forming any capital.",
+   "hintOnFirstWrong": "Think about who receives the money in a secondary-market trade."
+  },
+  {
+   "id": "q-1-4-a",
+   "module": 1,
+   "lesson": "1.4",
+   "tags": [
+    "pe",
+    "psychology",
+    "shares"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "NMB trades at Rs. 233.00 with EPS of Rs. 17.10. Citizens Bank trades at Rs. 194.60 with EPS of Rs. 4.63. Which is the more expensive share?",
+   "options": [
+    {
+     "t": "Citizens Bank — you pay 30.45× earnings versus NMB's 15.35×",
+     "correct": true
+    },
+    {
+     "t": "NMB — it costs Rs. 38.40 more per share",
+     "correct": false
+    },
+    {
+     "t": "They are equally priced once you account for face value",
+     "correct": false
+    },
+    {
+     "t": "Citizens Bank, because it trades further above its Rs. 100 face value",
+     "correct": false
+    }
+   ],
+   "explain": "You are buying earnings, not a price tag. CZBIL at Rs. 194.60 on EPS of Rs. 4.63 is a P/E of 30.45×; NMB at Rs. 233.00 on EPS of Rs. 17.10 is 15.35×. Per Rs. 1,000 invested, NMB buys you Rs. 73.39 of annual earnings against CZBIL's Rs. 23.80 — and NMB's ROE of 10.34% against CZBIL's 3.14% says the business is far better at using capital too. The lower sticker price belongs to the more expensive share.",
+   "hintOnFirstWrong": "Divide the price by the earnings per share for each, and compare those two numbers instead of the prices."
+  },
+  {
+   "id": "q-1-4-b",
+   "module": 1,
+   "lesson": "1.4",
+   "tags": [
+    "shares",
+    "psychology"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "A share is trading at Rs. 89, below its Rs. 100 face value. What does that tell you?",
+   "options": [
+    {
+     "t": "That the market values the company below the capital put into it — which is usually a judgement, not a bargain",
+     "correct": true
+    },
+    {
+     "t": "That the share is cheap, because it is below face value",
+     "correct": false
+    },
+    {
+     "t": "That the company must buy the shares back at Rs. 100",
+     "correct": false
+    },
+    {
+     "t": "Nothing at all — face value and market price are unrelated in every way",
+     "correct": false
+    }
+   ],
+   "explain": "Trading below face value tells you the market thinks the company is worth less than the paid-in capital — often because earnings have collapsed or are negative, as with Laxmi Sunrise at an EPS of −Rs. 2.04. That is a judgement about the business, not a discount. No buyback obligation exists at face value. The last option overcorrects: the two numbers are genuinely different measures, but the relationship between price and paid-in capital does carry information — it just is not the information beginners read into it.",
+   "hintOnFirstWrong": "If a company earns nothing, is a low price a bargain or an assessment?"
+  },
+  {
+   "id": "q-2-1-a",
+   "module": 2,
+   "lesson": "2.1",
+   "tags": [
+    "market-structure",
+    "psychology"
+   ],
+   "difficulty": 1,
+   "type": "numeric",
+   "stem": "The NEPSE index peaked at 3,198.60 on 18 August 2021 and fell to 1,615 by early 2023. What was the drawdown, as a percentage? Enter a positive number.",
+   "answer": 49.5,
+   "tolerance": 0.3,
+   "unit": "%",
+   "explain": "(3,198.60 − 1,615) ÷ 3,198.60 = 49.5%. That is the diversified index — a basket of every listed company. Individual stocks in the same period fell considerably further. Recovering a 49.5% loss requires a gain of 98.1%, which is the arithmetic of Lesson 14.4: G = L ÷ (1 − L).",
+   "hintOnFirstWrong": "Measure the fall against the peak, not against the trough."
+  },
+  {
+   "id": "q-2-1-b",
+   "module": 2,
+   "lesson": "2.1",
+   "tags": [
+    "market-structure",
+    "psychology"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Someone who invested Rs. 1,00,000 at the August 2021 peak and held to today (index 2,643.83) is:",
+   "options": [
+    {
+     "t": "Down about 17%, five years later",
+     "correct": true
+    },
+    {
+     "t": "Roughly back to break-even",
+     "correct": false
+    },
+    {
+     "t": "Up about 64%, because the market recovered from the 2023 trough",
+     "correct": false
+    },
+    {
+     "t": "Down about 50%, because that was the size of the crash",
+     "correct": false
+    }
+   ],
+   "explain": "2,643.83 ÷ 3,198.60 = 0.827, so the holding is worth about Rs. 82,655 — down 17.3%. The +63.7% figure is real but belongs to someone who bought at the 1,615 trough, not the peak. And the −49.5% was the maximum drawdown, from which the index has partly recovered. The lesson underneath: the price you pay determines your return, and 'long-term investor' has meant five years and counting for whoever bought the top.",
+   "hintOnFirstWrong": "Compare today's index directly against the index level on the day they bought."
+  },
+  {
+   "id": "q-2-1-c",
+   "module": 2,
+   "lesson": "2.1",
+   "tags": [
+    "market-structure"
+   ],
+   "difficulty": 2,
+   "type": "multi",
+   "stem": "Which factors have driven every NEPSE boom-and-bust cycle? (Select all that apply)",
+   "options": [
+    {
+     "t": "Interest rates",
+     "correct": true
+    },
+    {
+     "t": "Liquidity in the banking system",
+     "correct": true
+    },
+    {
+     "t": "How easy it was for new people to open accounts",
+     "correct": true
+    },
+    {
+     "t": "Changes to the capital gains tax rate",
+     "correct": false
+    }
+   ],
+   "explain": "The same three ingredients appear in different proportions in each cycle: interest rates, banking-system liquidity, and the ease of new-account opening. The 2019–2021 run had all three at maximum — NRB had cut rates, the system was flush, and MeroShare plus online trading had removed the friction from opening an account. Capital gains tax changed in July 2026, well after all four cycles, and has never been a cycle driver.",
+   "hintOnFirstWrong": "Three of these are macro and structural. One is a tax change that happened in 2026."
+  },
+  {
+   "id": "q-2-2-a",
+   "module": 2,
+   "lesson": "2.2",
+   "tags": [
+    "market-structure",
+    "regulation"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "Your broker has not paid your sale proceeds three weeks after settlement and has stopped responding. Where does your complaint go?",
+   "options": [
+    {
+     "t": "SEBON — the regulator, which licenses brokers and takes enforcement action",
+     "correct": true
+    },
+    {
+     "t": "NEPSE — it operates the market the broker trades on",
+     "correct": false
+    },
+    {
+     "t": "CDSC — it holds the shares that were sold",
+     "correct": false
+    },
+    {
+     "t": "Nepal Rastra Bank — it regulates financial institutions",
+     "correct": false
+    }
+   ],
+   "explain": "SEBON licenses brokers and has enforcement powers over them; complaints go there, in writing, with your client code, trade date and contract note. NEPSE operates the market but does not discipline brokers. CDSC is the depository and holds shares, not money. NRB regulates banks and monetary policy, not securities brokers. This catches people constantly because NEPSE is the name everyone knows.",
+   "hintOnFirstWrong": "Which of these four bodies licenses brokers and can take enforcement action against one?"
+  },
+  {
+   "id": "q-2-2-b",
+   "module": 2,
+   "lesson": "2.2",
+   "tags": [
+    "market-structure",
+    "edis"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Nepal deliberately separates trading (NEPSE/TMS) from custody (CDSC/MeroShare). What does that separation buy you, and what does it cost you?",
+   "options": [
+    {
+     "t": "It protects your shares if a broker fails — and it costs you the EDIS step on every sale",
+     "correct": true
+    },
+    {
+     "t": "It makes settlement faster — and it costs you a higher DP charge",
+     "correct": false
+    },
+    {
+     "t": "It lowers commission — and it costs you the ability to trade intraday",
+     "correct": false
+    },
+    {
+     "t": "It is purely historical and has no practical consequence today",
+     "correct": false
+    }
+   ],
+   "explain": "Your shares sit in your own Demat account at CDSC, not in your broker's custody — so a broker failure does not put your holdings at risk. The price of that protection is that nobody, not even the exchange, can move shares out of your account without your authorisation. That authorisation is EDIS, submitted in MeroShare on T+1, and skipping it fails the sale. Intraday is impossible because of T+2 settlement, not because of this separation.",
+   "hintOnFirstWrong": "If nobody else can reach into your Demat account, who has to authorise a delivery when you sell?"
+  },
+  {
+   "id": "q-2-2-c",
+   "module": 2,
+   "lesson": "2.2",
+   "tags": [
+    "market-structure"
+   ],
+   "difficulty": 2,
+   "type": "order",
+   "stem": "Put these five institutions in the order your money and shares encounter them when you buy shares for the first time.",
+   "items": [
+    "Your bank — you transfer funds via ConnectIPS",
+    "Your broker — receives the funds and routes your order",
+    "NEPSE — matches your order against a seller",
+    "CDSC — clears the trade and moves the shares",
+    "Your DP — the Demat account where the shares are credited"
+   ],
+   "explain": "Money starts at your bank, moves to the broker's collection account, and the broker routes your order to NEPSE, which matches it. CDSC then clears the trade, and the shares are credited to your Demat account, which your DP maintains on CDSC's behalf. Notice that the broker never holds your shares at any point — that is the custody separation doing its job.",
+   "hintOnFirstWrong": "Follow the money first, then follow the shares back."
+  },
+  {
+   "id": "q-2-3-a",
+   "module": 2,
+   "lesson": "2.3",
+   "tags": [
+    "market-structure",
+    "hydropower"
+   ],
+   "difficulty": 1,
+   "type": "numeric",
+   "stem": "How many of NEPSE's 271 listed companies are hydropower companies?",
+   "answer": 91,
+   "tolerance": 0,
+   "unit": "companies",
+   "explain": "91 of 271, or 33.6% — a third of the exchange by company count, and by far the largest sector. Microfinance is second with 50 (18.5%). But company count is not market weight: the 19 commercial banks are only 7.0% of the count and dominate the capitalisation-weighted index, which is why the headline NEPSE number mostly reflects what the banks did.",
+   "hintOnFirstWrong": "It is roughly a third of the 271 listed companies."
+  },
+  {
+   "id": "q-2-3-b",
+   "module": 2,
+   "lesson": "2.3",
+   "tags": [
+    "market-structure",
+    "correlation",
+    "risk"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "You buy NABIL, NMB, SANIMA, GBIME and PCBL, reasoning that five companies is diversified. What have you actually built?",
+   "options": [
+    {
+     "t": "Close to a single position — Nepali commercial banks correlate at roughly 0.90",
+     "correct": true
+    },
+    {
+     "t": "A well-diversified portfolio, since these are five separate companies",
+     "correct": false
+    },
+    {
+     "t": "A hedged portfolio, because some banks gain when others lose",
+     "correct": false
+    },
+    {
+     "t": "A diversified portfolio, because they have different P/E ratios",
+     "correct": false
+    }
+   ],
+   "explain": "All five fund themselves the same way, lend into the same economy and reprice together the morning NRB changes a rule. Nepali commercial banks correlate at roughly 0.86–0.91, so five names behave close to one position. Different P/E ratios reflect different earnings, not different risk drivers. The genuine diversifier on NEPSE is hydropower at around 0.62 — which is awkward, because it is also the least liquid part of the exchange.",
+   "hintOnFirstWrong": "Ask what would happen to all five on the morning Nepal Rastra Bank tightens the credit-to-deposit ratio."
+  },
+  {
+   "id": "q-2-4-a",
+   "module": 2,
+   "lesson": "2.4",
+   "tags": [
+    "market-structure"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "The headline NEPSE index rises 1.4% while the Sensitive Index rises only 0.35%. What is that telling you?",
+   "options": [
+    {
+     "t": "Smaller, lower-quality names are leading the move",
+     "correct": true
+    },
+    {
+     "t": "The Group A companies are being accumulated by institutions",
+     "correct": false
+    },
+    {
+     "t": "One of the two indices has a calculation error",
+     "correct": false
+    },
+    {
+     "t": "Promoter shares are being converted to public shares",
+     "correct": false
+    }
+   ],
+   "explain": "The Sensitive Index covers Group A companies only — the larger, better-disclosed names. When the all-company index outruns it, the money is going into the tail rather than the leaders. That is one of the three reliable warning signs in Lesson 15.1, alongside accelerating new-account growth and rising leverage. One day of it means nothing; a month of it is a reason to reduce position size and stop adding.",
+   "hintOnFirstWrong": "What does the Sensitive Index include that the headline index does not restrict itself to?"
+  },
+  {
+   "id": "q-2-4-b",
+   "module": 2,
+   "lesson": "2.4",
+   "tags": [
+    "market-structure"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What does the Float Index exclude that the headline NEPSE index does not?",
+   "options": [
+    {
+     "t": "Promoter and locked-in shares — it weights only shares actually available to trade",
+     "correct": true
+    },
+    {
+     "t": "Companies outside Group A",
+     "correct": false
+    },
+    {
+     "t": "Hydropower companies, because of their thin volume",
+     "correct": false
+    },
+    {
+     "t": "Companies with negative earnings",
+     "correct": false
+    }
+   ],
+   "explain": "The Float Index weights by free float — the shares genuinely available for trading — so it excludes promoter holdings and locked-in shares. It is arguably the most honest measure of what the investable market did, because it gives no weight to shares nobody can buy. Restricting to Group A is what the Sensitive Index does; neither index filters by sector or by earnings.",
+   "hintOnFirstWrong": "The clue is in the word 'float'. Which shares are not actually floating?"
+  },
+  {
+   "id": "q-2-5-a",
+   "module": 2,
+   "lesson": "2.5",
+   "tags": [
+    "market-structure",
+    "rules-2026"
+   ],
+   "difficulty": 1,
+   "type": "truefalse",
+   "stem": "NEPSE trades Sunday through Thursday.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. Since April 2026 NEPSE trades Monday to Friday, 11:00–15:00, following the change in government office days. It ran Sunday–Thursday for its entire prior history, which is why nearly every tutorial published before 2026 says so — and why this catches people. Saturday and Sunday are now market holidays. This matters practically: settlement counts trading days, so a Thursday sale settles on Monday.",
+   "hintOnFirstWrong": "Something about the trading week changed in April 2026."
+  },
+  {
+   "id": "q-2-5-b",
+   "module": 2,
+   "lesson": "2.5",
+   "tags": [
+    "rules-2026",
+    "circuit"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "The NEPSE index falls 5.2% ninety minutes after the open. What happens?",
+   "options": [
+    {
+     "t": "Trading halts for 15 minutes",
+     "correct": true
+    },
+    {
+     "t": "The market closes for the day",
+     "correct": false
+    },
+    {
+     "t": "Nothing — 5% only triggers a halt in the final hour",
+     "correct": false
+    },
+    {
+     "t": "Trading halts for 15 minutes and reopens with a ±5% band",
+     "correct": false
+    }
+   ],
+   "explain": "Since 21 April 2026 the index circuit breaker has two tiers, not three: a 5% move within the first two hours halts trading for 15 minutes, and an 8% move at any time closes the market for the day. Ninety minutes is inside the first two hours, so this is the Level 1 halt. Note this is entirely separate from the ±15% daily limit on an individual stock — two different mechanisms, both live at once.",
+   "hintOnFirstWrong": "There are two tiers since April 2026. Which one applies within the first two hours?"
+  },
+  {
+   "id": "q-2-5-c",
+   "module": 2,
+   "lesson": "2.5",
+   "tags": [
+    "rules-2026",
+    "orders"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "Since April 2026 you can place an order on NEPSE at 22:00 and it will execute immediately.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "Half true, which is why it is worth asking. You genuinely can place orders round the clock since April 2026 — that part is new and useful. But they only queue; execution happens exclusively during the 11:00–15:00 session. The practical benefit is real: you can decide your maximum price calmly the night before rather than at 11:04 with the market moving, which is precisely the discipline Lesson 5.1 asks for.",
+   "hintOnFirstWrong": "Placing and executing are two different things. Which one is round the clock?"
+  },
+  {
+   "id": "q-3-1-a",
+   "module": 3,
+   "lesson": "3.1",
+   "tags": [
+    "accounts",
+    "ipo"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "An IPO closes in two days and you have a bank account but nothing else. Can you apply?",
+   "options": [
+    {
+     "t": "No — you need a Demat account first, and it takes days to open",
+     "correct": true
+    },
+    {
+     "t": "Yes — you can apply through your bank's C-ASBA counter directly",
+     "correct": false
+    },
+    {
+     "t": "Yes — a broker can apply on your behalf using your citizenship certificate",
+     "correct": false
+    },
+    {
+     "t": "Yes, but only for the minimum 10 units",
+     "correct": false
+    }
+   ],
+   "explain": "The Demat account is the gating step: C-ASBA applications go through MeroShare, which exists only once you have a Demat with a DP, and opening one typically takes several days. No broker or bank can apply on your behalf without it, and there is no minimum-lot exception. This is the practical reason to open your accounts in a quiet week rather than when you have a reason to hurry.",
+   "hintOnFirstWrong": "Where do allotted shares get credited? You need that thing to exist first."
+  },
+  {
+   "id": "q-3-1-b",
+   "module": 3,
+   "lesson": "3.1",
+   "tags": [
+    "accounts"
+   ],
+   "difficulty": 1,
+   "type": "order",
+   "stem": "Put the four accounts in the order you must set them up.",
+   "items": [
+    "Bank account with ConnectIPS enabled",
+    "Demat account with a DP — you receive a 16-digit BOID",
+    "MeroShare credentials from your DP",
+    "Broker account and TMS login"
+   ],
+   "explain": "Each step depends on the one before. The bank account funds everything. The Demat must exist before MeroShare credentials can be issued for it. And while a broker account can technically be opened in parallel, you cannot fund it or use it meaningfully without the rest. Total realistic time from nothing to your first order: one to two weeks.",
+   "hintOnFirstWrong": "Which account do the others all reference?"
+  },
+  {
+   "id": "q-3-2-a",
+   "module": 3,
+   "lesson": "3.2",
+   "tags": [
+    "costs",
+    "accounts"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Which of these is a genuine reason to prefer one DP over another?",
+   "options": [
+    {
+     "t": "How responsive they are when an EDIS authorisation fails on a T+1 afternoon",
+     "correct": true
+    },
+    {
+     "t": "How safely they hold your shares",
+     "correct": false
+    },
+    {
+     "t": "The DP charge they levy per settlement",
+     "correct": false
+    },
+    {
+     "t": "Whether they can get you better prices on NEPSE",
+     "correct": false
+    }
+   ],
+   "explain": "Every DP holds your shares in exactly the same place — CDSC's system — so safety is not a differentiator. The Rs. 25 DP charge is regulated and identical everywhere. No DP influences execution prices; that is NEPSE's matching engine. What genuinely differs is the annual maintenance charge and, far more importantly, whether someone answers when a delivery authorisation fails on the one afternoon it matters.",
+   "hintOnFirstWrong": "Three of these are identical at every DP by regulation or by design."
+  },
+  {
+   "id": "q-3-2-b",
+   "module": 3,
+   "lesson": "3.2",
+   "tags": [
+    "costs",
+    "dp"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You buy 100 kitta of NABIL in the morning and another 150 kitta of NABIL in the afternoon of the same day. How much DP charge do you pay?",
+   "options": [
+    {
+     "t": "Rs. 25 — it is per company per settlement date, not per trade",
+     "correct": true
+    },
+    {
+     "t": "Rs. 50 — two separate trades",
+     "correct": false
+    },
+    {
+     "t": "Rs. 25 per 100 kitta, so Rs. 62.50",
+     "correct": false
+    },
+    {
+     "t": "Nothing — DP charge applies only when you sell",
+     "correct": false
+    }
+   ],
+   "explain": "The DP charge is Rs. 25 per company per settlement date. Both purchases are the same company on the same day, so they settle together and attract one charge. This has a real consequence in the other direction: if a single order fills partially across two days, it settles twice and you pay Rs. 25 twice — which is a small but genuine argument for placing orders you expect to fill completely.",
+   "hintOnFirstWrong": "Read the basis carefully: per what, per what?"
+  },
+  {
+   "id": "q-3-3-a",
+   "module": 3,
+   "lesson": "3.3",
+   "tags": [
+    "meroshare",
+    "wacc",
+    "cgt"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What is the WACC figure shown in your MeroShare portfolio?",
+   "options": [
+    {
+     "t": "Your average per-share purchase cost — the basis your capital gains tax is computed against",
+     "correct": true
+    },
+    {
+     "t": "The current market value of your holding",
+     "correct": false
+    },
+    {
+     "t": "The weighted average price the stock traded at today",
+     "correct": false
+    },
+    {
+     "t": "An estimate of what the shares are worth, updated monthly",
+     "correct": false
+    }
+   ],
+   "explain": "WACC is your weighted average cost across all lots — what you paid, on average, per share. It is the official cost basis for capital gains tax, which is withheld at source on the difference between your net sale proceeds and WACC × quantity. People routinely misread it as market value and reach exactly the wrong conclusion about whether they are up or down. If your WACC looks wrong after a bonus, rights issue or transfer, fix it with your DP before you sell.",
+   "hintOnFirstWrong": "The C in WACC stands for cost. Whose cost, and when was it incurred?"
+  },
+  {
+   "id": "q-3-3-b",
+   "module": 3,
+   "lesson": "3.3",
+   "tags": [
+    "meroshare",
+    "bonus",
+    "wacc"
+   ],
+   "difficulty": 3,
+   "type": "numeric",
+   "stem": "You hold 200 kitta with a WACC of Rs. 498.02. You receive a 15% bonus issue. What is your new WACC, in rupees?",
+   "answer": 433.06,
+   "tolerance": 0.5,
+   "unit": "Rs.",
+   "explain": "Your total cost is unchanged at 200 × 498.02 = Rs. 99,604. A 15% bonus gives you 230 shares. New WACC = 99,604 ÷ 230 = Rs. 433.06. You are not richer — the same money now sits across more shares, and the market price adjusted down on the ex-bonus date by roughly the same proportion. What has changed is your future tax bill: sell at Rs. 500 later and the gain is computed against Rs. 433.06, not Rs. 498.02. Bonus shares defer tax; they do not avoid it.",
+   "hintOnFirstWrong": "Your total cost does not change. Only the number of shares it is divided by."
+  },
+  {
+   "id": "q-3-4-a",
+   "module": 3,
+   "lesson": "3.4",
+   "tags": [
+    "tms",
+    "orders"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "Your order shows in the TMS order book with status 'Open'. What do you own?",
+   "options": [
+    {
+     "t": "Nothing yet — an open order has not executed",
+     "correct": true
+    },
+    {
+     "t": "The full quantity you ordered",
+     "correct": false
+    },
+    {
+     "t": "Half the quantity, pending settlement",
+     "correct": false
+    },
+    {
+     "t": "The shares, but they are locked until T+2",
+     "correct": false
+    }
+   ],
+   "explain": "The order book shows what you have submitted; the trade book shows what has actually executed. An 'Open' order is sitting in the queue at your price and may never fill at all — which is not a bug, it is you refusing to overpay. Only rows in the trade book mean shares. Confusing the two books is the most common TMS mistake, and it leads people to miscount their position.",
+   "hintOnFirstWrong": "Which of the two books lists trades that actually happened?"
+  },
+  {
+   "id": "q-3-4-b",
+   "module": 3,
+   "lesson": "3.4",
+   "tags": [
+    "tms",
+    "orders",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "multi",
+   "stem": "Which statements about TMS orders are true? (Select all that apply)",
+   "options": [
+    {
+     "t": "Every order must name a price — there is no market order",
+     "correct": true
+    },
+    {
+     "t": "Orders are day orders and expire at the close",
+     "correct": true
+    },
+    {
+     "t": "Orders can be entered outside session hours and will queue",
+     "correct": true
+    },
+    {
+     "t": "You can set a good-till-cancelled order that stays live for a week",
+     "correct": false
+    }
+   ],
+   "explain": "NEPSE offers limit orders only, and they are day orders — an order you placed on Monday is gone by Tuesday morning and it is on you to place it again. There is no good-till-cancelled. What did change in April 2026 is that orders can be entered round the clock; they simply queue and execute only between 11:00 and 15:00.",
+   "hintOnFirstWrong": "Three of these are true. The false one describes an order type NEPSE does not offer."
+  },
+  {
+   "id": "q-3-5-a",
+   "module": 3,
+   "lesson": "3.5",
+   "tags": [
+    "settlement",
+    "accounts"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You see a price you want at 11:02 and start a ConnectIPS transfer to your broker at 11:03. Can you buy at 11:04?",
+   "options": [
+    {
+     "t": "No — funds must be cleared in the broker's account before you can place a buy order",
+     "correct": true
+    },
+    {
+     "t": "Yes — the broker extends intraday credit against a pending transfer",
+     "correct": false
+    },
+    {
+     "t": "Yes, up to 50% of the transfer value as margin",
+     "correct": false
+    },
+    {
+     "t": "Yes, but only for Group A companies",
+     "correct": false
+    }
+   ],
+   "explain": "NEPSE gives you no margin, no overdraft and no credit — funds must be in and cleared before you can buy. This is a genuine constraint on how you operate: fund the account at the start of the week you intend to buy. It is also a real protection. You cannot lose more than you have committed, and there is no margin call to force you out at the worst possible moment.",
+   "hintOnFirstWrong": "Does the exchange lend you anything at all?"
+  },
+  {
+   "id": "q-3-5-b",
+   "module": 3,
+   "lesson": "3.5",
+   "tags": [
+    "ipo",
+    "casba"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "When you apply for an IPO through C-ASBA, the application money leaves your bank account immediately.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False, and this is one of the genuinely well-designed parts of the Nepali system. C-ASBA means Centralised Application Supported by Blocked Amount: the money is blocked in your own bank account, not debited. If you are not allotted, the block is simply released — the money never left, and you keep any interest it earned. It is only debited if and when shares are actually allotted to you.",
+   "hintOnFirstWrong": "What does the 'BA' in ASBA stand for?"
+  },
+  {
+   "id": "q-4-1-a",
+   "module": 4,
+   "lesson": "4.1",
+   "tags": [
+    "circuit",
+    "orders",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "UPPER closed yesterday at Rs. 230.00 and is trading at Rs. 236.00 now. Which reference price does the ±15% daily circuit use?",
+   "options": [
+    {
+     "t": "The previous close of Rs. 230.00 — giving Rs. 195.50 to Rs. 264.50",
+     "correct": true
+    },
+    {
+     "t": "The last traded price of Rs. 236.00 — giving Rs. 200.60 to Rs. 271.40",
+     "correct": false
+    },
+    {
+     "t": "The day's opening price",
+     "correct": false
+    },
+    {
+     "t": "The weighted average of today's trades so far",
+     "correct": false
+    }
+   ],
+   "explain": "The daily circuit is measured from the previous close and is fixed for the whole day: Rs. 230 × 0.85 = Rs. 195.50 and Rs. 230 × 1.15 = Rs. 264.50. The LTP is the reference for the other limit — the ±3% order price band, which moves as the stock moves. Two limits, two reference prices, both live at once, and mixing them up is the most common reason a beginner's order gets rejected.",
+   "hintOnFirstWrong": "One limit is fixed for the day and one moves with the price. Which is which?"
+  },
+  {
+   "id": "q-4-1-b",
+   "module": 4,
+   "lesson": "4.1",
+   "tags": [
+    "market-structure"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why does NEPSE compute its closing price as a weighted average of late trades rather than taking the final tick?",
+   "options": [
+    {
+     "t": "So a single small trade in the last seconds cannot set tomorrow's circuit reference",
+     "correct": true
+    },
+    {
+     "t": "To make the index easier to compute",
+     "correct": false
+    },
+    {
+     "t": "Because the final tick is often a block trade",
+     "correct": false
+    },
+    {
+     "t": "To smooth the index for reporting purposes",
+     "correct": false
+    }
+   ],
+   "explain": "The close sets tomorrow's ±15% circuit reference, so it is a consequential number. Using a weighted average of the last portion of the session's trades means one small order in the final seconds cannot move it — which would otherwise be a cheap way to manipulate the following day's permitted range. On a liquid bank the difference from the LTP is trivial; on a thin counter it can matter.",
+   "hintOnFirstWrong": "What important thing does tomorrow depend on the close for?"
+  },
+  {
+   "id": "q-4-2-a",
+   "module": 4,
+   "lesson": "4.2",
+   "tags": [
+    "spread",
+    "costs",
+    "liquidity"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A hydropower stock shows a best bid of Rs. 296.00 and a best ask of Rs. 305.00. You buy at the ask and immediately sell at the bid. Ignoring commission, what is your loss?",
+   "options": [
+    {
+     "t": "2.95%",
+     "correct": true
+    },
+    {
+     "t": "3.04%",
+     "correct": false
+    },
+    {
+     "t": "0%",
+     "correct": false
+    },
+    {
+     "t": "9%",
+     "correct": false
+    }
+   ],
+   "explain": "You buy at 305 and sell at 296, losing Rs. 9 on a Rs. 305 outlay = 2.95%. The 3.04% answer computes the same Rs. 9 against the bid of Rs. 296 instead of against what you actually paid — your loss is always measured against your outlay. This spread alone is roughly nine times the buy-side commission: on thin NEPSE counters the spread, not the commission, is your dominant cost.",
+   "hintOnFirstWrong": "Divide the Rs. 9 loss by the price you actually paid, not by the price you sold at."
+  },
+  {
+   "id": "q-4-2-b",
+   "module": 4,
+   "lesson": "4.2",
+   "tags": [
+    "spread",
+    "liquidity"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You are choosing between two counters with identical charts. One has a 0.1% spread, the other 3%. What does that difference mean in practice?",
+   "options": [
+    {
+     "t": "The 3% counter costs you 3% in round-trip damage before the price has moved at all",
+     "correct": true
+    },
+    {
+     "t": "The 3% counter is more volatile and therefore more profitable",
+     "correct": false
+    },
+    {
+     "t": "Nothing — the spread is a fee that goes to the broker either way",
+     "correct": false
+    },
+    {
+     "t": "The 3% counter has higher commission",
+     "correct": false
+    }
+   ],
+   "explain": "The spread is not a fee anyone charges you — it is the cost of insisting on trading immediately, and it is paid once getting in and once getting out. A 3% spread means the price must move 3% in your favour before you are level, on top of commission, SEBON fee and DP charge. Commission rates are regulated and identical across counters. A wide spread signals thin liquidity, which is also what makes any technical signal on that counter less reliable.",
+   "hintOnFirstWrong": "You pay the spread twice — once entering, once leaving."
+  },
+  {
+   "id": "q-4-3-a",
+   "module": 4,
+   "lesson": "4.3",
+   "tags": [
+    "liquidity",
+    "volume"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A stock shows Rs. 2 crore of turnover today across just 3 transactions. What does that most likely indicate?",
+   "options": [
+    {
+     "t": "A block trade between institutions, not market interest",
+     "correct": true
+    },
+    {
+     "t": "Very strong retail demand for the stock",
+     "correct": false
+    },
+    {
+     "t": "A data error, since turnover that high needs more trades",
+     "correct": false
+    },
+    {
+     "t": "That the stock hit its circuit limit",
+     "correct": false
+    }
+   ],
+   "explain": "Rs. 2 crore across 3 transactions means an average trade of about Rs. 66.7 lakh — that is two or three institutions agreeing a block, not a market. The same Rs. 2 crore across 4,000 transactions would mean hundreds of participants and genuine depth you could trade into. Turnover alone hides the shape of the day, which is why you read volume, turnover and transaction count together.",
+   "hintOnFirstWrong": "Divide the turnover by the number of transactions and ask who trades in that size."
+  },
+  {
+   "id": "q-4-3-b",
+   "module": 4,
+   "lesson": "4.3",
+   "tags": [
+    "liquidity",
+    "risk"
+   ],
+   "difficulty": 3,
+   "type": "numeric",
+   "stem": "A counter averages Rs. 2,00,000 of daily turnover. You hold a Rs. 2,00,000 position and assume you can be at most 10% of a day's turnover when exiting. How many trading days to get out?",
+   "answer": 10,
+   "tolerance": 0.2,
+   "unit": "trading days",
+   "explain": "10% of Rs. 2,00,000 is Rs. 20,000 you can realistically sell per day. Rs. 2,00,000 ÷ Rs. 20,000 = 10 trading days — two full weeks. Any bad news reaches the price long before you reach the door, which means your stop loss on this counter is a wish rather than a plan. Nothing on the chart tells you this; the volume column is where the risk is written down, and it is the column most people skip.",
+   "hintOnFirstWrong": "First work out how much you can sell in one day, then divide."
+  },
+  {
+   "id": "q-4-3-c",
+   "module": 4,
+   "lesson": "4.3",
+   "tags": [
+    "volume",
+    "liquidity"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "Which is measured in rupees rather than shares?",
+   "options": [
+    {
+     "t": "Turnover",
+     "correct": true
+    },
+    {
+     "t": "Volume",
+     "correct": false
+    },
+    {
+     "t": "Transactions",
+     "correct": false
+    },
+    {
+     "t": "Kitta",
+     "correct": false
+    }
+   ],
+   "explain": "Turnover is the rupee value traded — price × volume. Volume is the number of shares, expressed in kitta. Transactions is a count of separate trades. The distinction matters because the same volume means very different amounts of money at different price levels: 10,000 kitta of a Rs. 89 share is Rs. 8.9 lakh, while 10,000 kitta of Everest Bank at Rs. 670 is Rs. 67 lakh.",
+   "hintOnFirstWrong": "One of these four words is the Nepali term for a single share."
+  },
+  {
+   "id": "q-4-4-a",
+   "module": 4,
+   "lesson": "4.4",
+   "tags": [
+    "floorsheet"
+   ],
+   "difficulty": 2,
+   "type": "multi",
+   "stem": "What can the floorsheet genuinely tell you? (Select all that apply)",
+   "options": [
+    {
+     "t": "Whether a day's buying was concentrated in one broker or spread widely",
+     "correct": true
+    },
+    {
+     "t": "Whether a price move had broad participation",
+     "correct": true
+    },
+    {
+     "t": "Which individual person bought the shares",
+     "correct": false
+    },
+    {
+     "t": "What the buyer intends to do next",
+     "correct": false
+    }
+   ],
+   "explain": "The floorsheet lists buying broker, selling broker, quantity and rate for every executed trade, so concentration and participation are directly readable. What it cannot give you is identity or intent: one broker has thousands of clients, so heavy buying through broker 58 tells you about a broker, not a person. And concentrated accumulation looks identical whether it is a coordinated pump or an institution building a legitimate position.",
+   "hintOnFirstWrong": "Look at the four columns the floorsheet actually publishes. What is not in them?"
+  },
+  {
+   "id": "q-4-4-b",
+   "module": 4,
+   "lesson": "4.4",
+   "tags": [
+    "floorsheet",
+    "scams"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "A counter runs 20% in nine sessions, turnover rises sixfold, and three brokers account for 78% of the buying. What is the correct response?",
+   "options": [
+    {
+     "t": "Treat it as a reason for scepticism about any tip that arrives next — not as a trade signal",
+     "correct": true
+    },
+    {
+     "t": "Buy, because concentrated accumulation means informed money is entering",
+     "correct": false
+    },
+    {
+     "t": "Report it to SEBON immediately as market manipulation",
+     "correct": false
+    },
+    {
+     "t": "Ignore it — broker concentration is meaningless",
+     "correct": false
+    }
+   ],
+   "explain": "Concentration is real information, but it shows you concentration and not intent. This is the shape of the accumulation phase of a pump; it is also the exact shape of one institution building a legitimate position or a fund rebalancing. You cannot tell from the sheet, and you are always reading it after the fact. Its honest value is defensive: when a tip about this counter arrives three days later, you already know the buying was concentrated — and that scepticism is worth more than any trade you would make from it.",
+   "hintOnFirstWrong": "Does the floorsheet distinguish a pump from a fund rebalancing?"
+  },
+  {
+   "id": "q-4-4-c",
+   "module": 4,
+   "lesson": "4.4",
+   "tags": [
+    "floorsheet",
+    "market-structure"
+   ],
+   "difficulty": 1,
+   "type": "truefalse",
+   "stem": "The NEPSE floorsheet is privileged information available only to brokers.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. The floorsheet is published daily and publicly on nepalstock.com, and Sharesansar and Merolagani aggregate it by broker into a far more readable form. Nothing in it is privileged — everyone can see it, including the people whose trades are in it. That is worth remembering when someone offers you 'inside information' derived from it.",
+   "hintOnFirstWrong": "Where does NEPSE publish it?"
+  }
+ ]
+}

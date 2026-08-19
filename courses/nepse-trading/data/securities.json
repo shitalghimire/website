@@ -1,0 +1,54 @@
+{
+  "asOf": "FY 2082/83 Q2 (banks) / 2026 (hydropower prices)",
+  "sectorMedianPE": 14.92,
+  "totalListedCompanies": 271,
+  "sectors": [
+    { "id": "hydropower",    "name": "Hydropower",                 "count": 91, "share": 0.336 },
+    { "id": "microfinance",  "name": "Microfinance",               "count": 50, "share": 0.185 },
+    { "id": "manufacturing", "name": "Manufacturing & Processing", "count": 22, "share": 0.081 },
+    { "id": "finance",       "name": "Finance Company",            "count": 20, "share": 0.074 },
+    { "id": "commercial",    "name": "Commercial Bank",            "count": 19, "share": 0.070 },
+    { "id": "devbank",       "name": "Development Bank",           "count": 16, "share": 0.059 },
+    { "id": "life",          "name": "Life Insurance",             "count": 14, "share": 0.052 },
+    { "id": "nonlife",       "name": "Non-life Insurance",         "count": 13, "share": 0.048 },
+    { "id": "hotel",         "name": "Hotel & Tourism",            "count": 7,  "share": 0.026 },
+    { "id": "investment",    "name": "Investment",                 "count": 7,  "share": 0.026 },
+    { "id": "others",        "name": "Others",                     "count": 7,  "share": 0.026 },
+    { "id": "trading",       "name": "Trading",                    "count": 4,  "share": 0.015 }
+  ],
+  "banks": [
+    { "s": "NBL",    "n": "Nepal Bank",               "pe": 7.67,   "ltp": 241.00, "eps": 17.76, "roe": 0.0676 },
+    { "s": "PRVU",   "n": "Prabhu Bank",              "pe": 8.46,   "ltp": 184.00, "eps": 8.62,  "roe": 0.0592 },
+    { "s": "KBL",    "n": "Kumari Bank",              "pe": 10.59,  "ltp": 184.10, "eps": 20.74, "roe": 0.1456 },
+    { "s": "PCBL",   "n": "Prime Commercial Bank",    "pe": 11.77,  "ltp": 235.80, "eps": 19.50, "roe": 0.1232 },
+    { "s": "NIMB",   "n": "Nepal Investment Mega",    "pe": 11.81,  "ltp": 191.50, "eps": 9.45,  "roe": 0.0496 },
+    { "s": "MBL",    "n": "Machhapuchchhre Bank",     "pe": 12.23,  "ltp": 224.20, "eps": 16.73, "roe": 0.1078 },
+    { "s": "GBIME",  "n": "Global IME Bank",          "pe": 13.44,  "ltp": 225.80, "eps": 17.06, "roe": 0.0988 },
+    { "s": "SBL",    "n": "Siddhartha Bank",          "pe": 13.44,  "ltp": 380.80, "eps": 17.93, "roe": 0.0894 },
+    { "s": "ADBL",   "n": "Agricultural Dev. Bank",   "pe": 14.92,  "ltp": 295.10, "eps": 7.17,  "roe": 0.0386 },
+    { "s": "NMB",    "n": "NMB Bank",                 "pe": 15.35,  "ltp": 233.00, "eps": 17.10, "roe": 0.1034 },
+    { "s": "SANIMA", "n": "Sanima Bank",              "pe": 16.18,  "ltp": 330.00, "eps": 20.48, "roe": 0.1240 },
+    { "s": "NABIL",  "n": "Nabil Bank",               "pe": 18.40,  "ltp": 496.10, "eps": 29.69, "roe": 0.1486 },
+    { "s": "EBL",    "n": "Everest Bank",             "pe": 18.53,  "ltp": 670.00, "eps": 30.86, "roe": 0.1376 },
+    { "s": "LSL",    "n": "Laxmi Sunrise Bank",       "pe": 20.84,  "ltp": 208.60, "eps": -2.04, "roe": -0.0126 },
+    { "s": "SBI",    "n": "Nepal SBI Bank",           "pe": 22.55,  "ltp": 400.00, "eps": 18.93, "roe": 0.1012 },
+    { "s": "SCB",    "n": "Standard Chartered Nepal", "pe": 22.95,  "ltp": 631.00, "eps": 27.35, "roe": 0.1320 },
+    { "s": "CZBIL",  "n": "Citizens Bank Intl.",      "pe": 30.45,  "ltp": 194.60, "eps": 4.63,  "roe": 0.0314 },
+    { "s": "HBL",    "n": "Himalayan Bank",           "pe": 33.16,  "ltp": 189.00, "eps": 11.45, "roe": 0.0666 },
+    { "s": "NICA",   "n": "NIC Asia Bank",            "pe": 343.16, "ltp": 326.00, "eps": 1.76,  "roe": 0.0088 }
+  ],
+  "hydropower": [
+    { "s": "SMHL",  "n": "Siddhartha Hydropower",         "ltp": 556.20 },
+    { "s": "API",   "n": "Api Power Company",             "ltp": 359.00 },
+    { "s": "RIDI",  "n": "Ridi Hydropower",               "ltp": 356.90 },
+    { "s": "NHPC",  "n": "National Hydropower",           "ltp": 301.20 },
+    { "s": "HIDCL", "n": "Hydroelectricity Inv. & Dev.",  "ltp": 301.00, "note": "Investment company, not a single project — behaves like a sector fund" },
+    { "s": "AKPL",  "n": "Arun Kabeli Power",             "ltp": 299.00 },
+    { "s": "UPPER", "n": "Upper Tamakoshi Hydropower",    "ltp": 230.00 }
+  ],
+  "sectorContext": {
+    "hydropowerDevelopedMW": 2800,
+    "hydropowerPotentialMW": 83000
+  },
+  "freshnessNote": "Fundamentals as at FY 2082/83 Q2. Prices are illustrative — check NepseAlpha, Merolagani or Sharesansar for live data."
+}

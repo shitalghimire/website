@@ -1,0 +1,39 @@
+{
+  "asOf": "2026-08-19",
+  "currency": "NPR",
+  "commissionSlabs": [
+    { "max": 50000,    "rate": 0.0036, "label": "Up to Rs. 50,000" },
+    { "max": 500000,   "rate": 0.0033, "label": "Rs. 50,001 – 5,00,000" },
+    { "max": 2000000,  "rate": 0.0031, "label": "Rs. 5,00,001 – 20,00,000" },
+    { "max": 10000000, "rate": 0.0027, "label": "Rs. 20,00,001 – 1,00,00,000" },
+    { "max": null,     "rate": 0.0024, "label": "Above Rs. 1,00,00,000" }
+  ],
+  "commissionSplit": { "broker": 0.794, "nepse": 0.20, "sebon": 0.006 },
+  "sebonEquity": 0.00015,
+  "sebonCorporateDebenture": 0.00010,
+  "sebonOtherBonds": 0.00005,
+  "dpCharge": 25,
+  "dpChargeBasis": "per company per settlement date",
+  "cgt": {
+    "individualShort": 0.10,
+    "individualLong": 0.075,
+    "institution": 0.10,
+    "longTermThresholdDays": 365,
+    "effectiveFrom": "2026-07-17",
+    "isFinalTax": true,
+    "previous": {
+      "individualShort": 0.075,
+      "individualLong": 0.05,
+      "until": "2026-07-16"
+    }
+  },
+  "dividendTaxIndividual": 0.05,
+  "ipo": {
+    "fixedPriceFaceValue": 100,
+    "fixedPriceMinUnits": 10,
+    "bookBuildingMinUnits": 50,
+    "bookBuildingRetailDiscount": 0.10,
+    "mutualFundFaceValue": 10,
+    "mutualFundMinUnits": 100
+  }
+}

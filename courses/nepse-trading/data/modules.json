@@ -1,0 +1,219 @@
+{
+  "id": "nepse-trading",
+  "title": "NEPSE Trading Academy",
+  "tagline": "Learn to trade the Nepal Stock Exchange. Properly.",
+  "asOf": "2026-08-19",
+  "levels": [
+    { "n": 1, "roman": "I",   "name": "Ground",     "rank": "Retail",            "rankXp": 0,    "modules": [1, 2, 3, 4],       "focus": "What a share is, what NEPSE is, and how to get set up" },
+    { "n": 2, "roman": "II",  "name": "Execution",  "rank": "Broker's Client",   "rankXp": 1500, "modules": [5, 6, 7, 8],       "focus": "Actually placing, settling, costing, and applying for shares" },
+    { "n": 3, "roman": "III", "name": "Analysis",   "rank": "Chartist",          "rankXp": 4000, "modules": [9, 10, 11, 12, 13], "focus": "Reading price, reading balance sheets, reading sectors" },
+    { "n": 4, "roman": "IV",  "name": "Discipline", "rank": "Portfolio Manager", "rankXp": 8000, "modules": [14, 15, 16],       "focus": "Risk, psychology, systems, and not getting scammed" }
+  ],
+  "modules": [
+    {
+      "n": 1, "level": 1, "title": "What a Share Actually Is", "minutes": 14,
+      "blurb": "Ownership, not lottery tickets. Where shares come from and what the numbers on them mean.",
+      "lessons": [
+        { "id": "1.1", "index": 1, "title": "You are buying a slice of a business, not a lottery ticket", "minutes": 4, "xp": 50 },
+        { "id": "1.2", "index": 2, "title": "Where shares come from: promoters, paid-up capital, and the public", "minutes": 4, "xp": 50 },
+        { "id": "1.3", "index": 3, "title": "Primary vs secondary market — the two doors into NEPSE", "minutes": 3, "xp": 50 },
+        { "id": "1.4", "index": 4, "title": "Face value, market price, and why Rs. 100 is not Rs. 100", "minutes": 3, "xp": 50 }
+      ]
+    },
+    {
+      "n": 2, "level": 1, "title": "The NEPSE Machine", "minutes": 20, "unlocksGame": "circuit-breaker",
+      "blurb": "The exchange, its regulators, its indices, and the calendar that changed in 2026.",
+      "lessons": [
+        { "id": "2.1", "index": 1, "title": "A short, honest history of NEPSE (1994 → 2,644 today)", "minutes": 6, "xp": 60 },
+        { "id": "2.2", "index": 2, "title": "Who's who: SEBON, NEPSE, CDSC, brokers, RTAs — and who protects you", "minutes": 4, "xp": 50 },
+        { "id": "2.3", "index": 3, "title": "The 13 sectoral indices, and why hydropower is now a third of the market", "minutes": 4, "xp": 50 },
+        { "id": "2.4", "index": 4, "title": "NEPSE, Sensitive, Float — three indices that mean different things", "minutes": 3, "xp": 50 },
+        { "id": "2.5", "index": 5, "title": "The trading calendar: Sunday–Thursday is dead; it's Monday–Friday now", "minutes": 3, "xp": 50 }
+      ]
+    },
+    {
+      "n": 3, "level": 1, "title": "Your Trading Toolkit", "minutes": 22, "unlocksGame": "terminal-drill",
+      "blurb": "The four accounts you need, in the order you need them, and what each one is actually for.",
+      "lessons": [
+        { "id": "3.1", "index": 1, "title": "The four accounts you need, in the order you need them", "minutes": 5, "xp": 50 },
+        { "id": "3.2", "index": 2, "title": "Opening a Demat with a DP — documents, fees, and what to check", "minutes": 4, "xp": 50 },
+        { "id": "3.3", "index": 3, "title": "MeroShare: your share passbook, not your trading screen", "minutes": 5, "xp": 50 },
+        { "id": "3.4", "index": 4, "title": "TMS: your trading screen, not your portfolio", "minutes": 4, "xp": 50 },
+        { "id": "3.5", "index": 5, "title": "ConnectIPS, bank linkage, and getting money in and out", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 4, "level": 1, "title": "Reading the Market Screen", "minutes": 16, "bossQuizAfter": true,
+      "blurb": "Every number on a NEPSE quote page, and which three of them are lying to you.",
+      "lessons": [
+        { "id": "4.1", "index": 1, "title": "LTP, open, high, low, close, and previous close", "minutes": 4, "xp": 50 },
+        { "id": "4.2", "index": 2, "title": "Bid, ask, spread — and why the spread is your first cost", "minutes": 4, "xp": 50 },
+        { "id": "4.3", "index": 3, "title": "Volume, turnover, and transaction count: three different truths", "minutes": 4, "xp": 50 },
+        { "id": "4.4", "index": 4, "title": "The floorsheet: watching brokers, not prices", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 5, "level": 2, "title": "Your First Order", "minutes": 22, "unlocksGame": "paper-floor",
+      "blurb": "NEPSE has no market orders. Everything that follows from that one fact.",
+      "lessons": [
+        { "id": "5.1", "index": 1, "title": "NEPSE has no market orders. Everything is a limit order.", "minutes": 6, "xp": 60 },
+        { "id": "5.2", "index": 2, "title": "Anatomy of an order: symbol, quantity, rate, validity", "minutes": 4, "xp": 50 },
+        { "id": "5.3", "index": 3, "title": "The pre-open session and the 5% band", "minutes": 4, "xp": 50 },
+        { "id": "5.4", "index": 4, "title": "Order book, trade book, and what \"partially executed\" means", "minutes": 4, "xp": 50 },
+        { "id": "5.5", "index": 5, "title": "Modifying and cancelling: what you can and can't undo", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 6, "level": 2, "title": "Settlement and the T+2 Clock", "minutes": 18,
+      "blurb": "The three days between pressing sell and seeing money — and the step in the middle that fails people.",
+      "lessons": [
+        { "id": "6.1", "index": 1, "title": "T, T+1, T+2 — what happens on each day", "minutes": 4, "xp": 50 },
+        { "id": "6.2", "index": 2, "title": "EDIS: the step that trips up every new seller", "minutes": 6, "xp": 60 },
+        { "id": "6.3", "index": 3, "title": "Why intraday trading does not exist on NEPSE", "minutes": 4, "xp": 50 },
+        { "id": "6.4", "index": 4, "title": "What happens if you fail to deliver or fail to pay", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 7, "level": 2, "title": "The True Cost of a Trade", "minutes": 24, "unlocksGame": "brokers-cut",
+      "blurb": "Commission, SEBON fee, DP charge, capital gains tax — and the price you must reach just to be level.",
+      "lessons": [
+        { "id": "7.1", "index": 1, "title": "The five-slab broker commission, with the arithmetic", "minutes": 5, "xp": 60 },
+        { "id": "7.2", "index": 2, "title": "SEBON fee and DP charge — small, flat, and easy to forget", "minutes": 4, "xp": 50 },
+        { "id": "7.3", "index": 3, "title": "Capital gains tax: the July 2026 change nobody told you about", "minutes": 6, "xp": 60 },
+        { "id": "7.4", "index": 4, "title": "Break-even: the price you must reach just to be level", "minutes": 5, "xp": 60 },
+        { "id": "7.5", "index": 5, "title": "The round-trip calculator, built by hand", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 8, "level": 2, "title": "The Primary Market", "minutes": 26, "bossQuizAfter": true,
+      "blurb": "IPOs, C-ASBA, the allotment lottery, rights and bonus shares, and closed-end funds.",
+      "lessons": [
+        { "id": "8.1", "index": 1, "title": "IPO: what you are actually applying for", "minutes": 4, "xp": 50 },
+        { "id": "8.2", "index": 2, "title": "C-ASBA and MeroShare — applying without losing your money", "minutes": 5, "xp": 50 },
+        { "id": "8.3", "index": 3, "title": "Fixed price vs book building: the 2026 rules", "minutes": 4, "xp": 50 },
+        { "id": "8.4", "index": 4, "title": "Allotment: the lottery, the odds, and the maths of 10 kitta", "minutes": 4, "xp": 50 },
+        { "id": "8.5", "index": 5, "title": "FPO, rights shares, bonus shares, and stock splits", "minutes": 5, "xp": 50 },
+        { "id": "8.6", "index": 6, "title": "Mutual funds: closed-end NAV, discount, and why they trade below NAV", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 9, "level": 3, "title": "Candlestick Grammar", "minutes": 28, "unlocksGame": "candle-sensei",
+      "blurb": "Four numbers, one candle, and the twenty-four shapes worth knowing — plus why context outranks all of them.",
+      "lessons": [
+        { "id": "9.1", "index": 1, "title": "What one candle tells you: body, wick, and the fight inside", "minutes": 6, "xp": 60 },
+        { "id": "9.2", "index": 2, "title": "Single-candle signals: marubozu, doji, hammer, shooting star", "minutes": 5, "xp": 50 },
+        { "id": "9.3", "index": 3, "title": "Two-candle signals: engulfing, harami, piercing, dark cloud", "minutes": 5, "xp": 50 },
+        { "id": "9.4", "index": 4, "title": "Three-candle signals: morning star, evening star, three soldiers", "minutes": 4, "xp": 50 },
+        { "id": "9.5", "index": 5, "title": "Context is everything: the same candle at support and at resistance", "minutes": 5, "xp": 60 },
+        { "id": "9.6", "index": 6, "title": "NEPSE-specific candle behaviour: circuit days, gaps, and thin volume", "minutes": 3, "xp": 50 }
+      ]
+    },
+    {
+      "n": 10, "level": 3, "title": "Structure: Trend, Support, Resistance", "minutes": 22,
+      "blurb": "Defining a trend without an indicator, and drawing levels that actually hold.",
+      "lessons": [
+        { "id": "10.1", "index": 1, "title": "Higher highs and higher lows — defining a trend without an indicator", "minutes": 5, "xp": 50 },
+        { "id": "10.2", "index": 2, "title": "Drawing support and resistance that actually hold", "minutes": 5, "xp": 50 },
+        { "id": "10.3", "index": 3, "title": "Breakouts, fakeouts, and the retest", "minutes": 4, "xp": 50 },
+        { "id": "10.4", "index": 4, "title": "Volume as confirmation — and the NEPSE liquidity trap", "minutes": 4, "xp": 50 },
+        { "id": "10.5", "index": 5, "title": "Trendlines, channels, and round numbers in Nepali psychology", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 11, "level": 3, "title": "Indicators That Earn Their Place", "minutes": 24,
+      "blurb": "Four indicators, honestly assessed — including why most of them mislead on a thin NEPSE counter.",
+      "lessons": [
+        { "id": "11.1", "index": 1, "title": "Moving averages: SMA 20/50/200 and the golden cross myth", "minutes": 5, "xp": 50 },
+        { "id": "11.2", "index": 2, "title": "RSI: overbought is not a sell signal", "minutes": 5, "xp": 50 },
+        { "id": "11.3", "index": 3, "title": "MACD: what the histogram is really showing you", "minutes": 5, "xp": 50 },
+        { "id": "11.4", "index": 4, "title": "Why most indicators mislead on illiquid NEPSE stocks", "minutes": 5, "xp": 50 },
+        { "id": "11.5", "index": 5, "title": "Building a two-indicator system and stopping there", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 12, "level": 3, "title": "Reading a Nepali Balance Sheet", "minutes": 30, "unlocksGame": "ratio-rush",
+      "blurb": "Where the numbers live, what they mean, and the bonus-share adjustment everyone gets wrong.",
+      "lessons": [
+        { "id": "12.1", "index": 1, "title": "Where to find the numbers: quarterly reports and the NEPSE disclosure page", "minutes": 4, "xp": 50 },
+        { "id": "12.2", "index": 2, "title": "EPS, and the bonus-share adjustment everyone gets wrong", "minutes": 6, "xp": 60 },
+        { "id": "12.3", "index": 3, "title": "P/E, P/B, and what a \"cheap\" Nepali bank actually looks like", "minutes": 5, "xp": 50 },
+        { "id": "12.4", "index": 4, "title": "ROE, ROA, and net interest margin for banks", "minutes": 5, "xp": 50 },
+        { "id": "12.5", "index": 5, "title": "NPL, CD ratio, and provisioning — the three numbers that kill banks", "minutes": 5, "xp": 50 },
+        { "id": "12.6", "index": 6, "title": "Intrinsic value: a simple, honest DDM for a dividend-paying bank", "minutes": 5, "xp": 50 }
+      ]
+    },
+    {
+      "n": 13, "level": 3, "title": "Sector Playbooks", "minutes": 26, "bossQuizAfter": true,
+      "blurb": "Banks, hydropower, microfinance, insurance, and the thin-volume sectors you may not be able to exit.",
+      "lessons": [
+        { "id": "13.1", "index": 1, "title": "Commercial banks: the P/E table, and why NICA traded at 343×", "minutes": 6, "xp": 60 },
+        { "id": "13.2", "index": 2, "title": "Hydropower: installed capacity is a lie, PLF is the truth", "minutes": 6, "xp": 60 },
+        { "id": "13.3", "index": 3, "title": "Microfinance: high ROE, high risk, and regulatory whiplash", "minutes": 5, "xp": 50 },
+        { "id": "13.4", "index": 4, "title": "Life and non-life insurance: reading a business you can't see", "minutes": 5, "xp": 50 },
+        { "id": "13.5", "index": 5, "title": "Hotels, manufacturing, trading: the thin-volume sectors", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 14, "level": 4, "title": "Risk and Position Sizing", "minutes": 22,
+      "blurb": "The only rule that matters, the arithmetic of ruin, and why size comes from your stop.",
+      "lessons": [
+        { "id": "14.1", "index": 1, "title": "The only rule that matters: how much can you lose on this trade?", "minutes": 4, "xp": 50 },
+        { "id": "14.2", "index": 2, "title": "Position sizing from a stop loss, in rupees", "minutes": 5, "xp": 50 },
+        { "id": "14.3", "index": 3, "title": "Risk-reward, win rate, and why 40% winners can be profitable", "minutes": 4, "xp": 50 },
+        { "id": "14.4", "index": 4, "title": "The maths of ruin: why a 50% loss needs a 100% gain", "minutes": 5, "xp": 60 },
+        { "id": "14.5", "index": 5, "title": "Diversification in a market where everything is a bank", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 15, "level": 4, "title": "Psychology and the NEPSE Retail Trap", "minutes": 18,
+      "blurb": "The shape of a bubble, the excuses that keep losers open, and how a pump actually works.",
+      "lessons": [
+        { "id": "15.1", "index": 1, "title": "Fear, greed, and the shape of a bubble — NEPSE 2021 as a case study", "minutes": 6, "xp": 60 },
+        { "id": "15.2", "index": 2, "title": "Loss aversion, averaging down, and the \"long-term investor\" excuse", "minutes": 4, "xp": 50 },
+        { "id": "15.3", "index": 3, "title": "Anchoring to your buy price and to Rs. 100", "minutes": 4, "xp": 50 },
+        { "id": "15.4", "index": 4, "title": "The Viber group, the tip, and the pump — how it actually works", "minutes": 4, "xp": 50 }
+      ]
+    },
+    {
+      "n": 16, "level": 4, "title": "Building a System", "minutes": 20, "bossQuizAfter": true,
+      "blurb": "Rules you can follow, a journal with seven columns, and a concrete plan for your first 90 days.",
+      "lessons": [
+        { "id": "16.1", "index": 1, "title": "Writing rules you can actually follow", "minutes": 5, "xp": 50 },
+        { "id": "16.2", "index": 2, "title": "The trade journal: seven columns, no more", "minutes": 5, "xp": 50 },
+        { "id": "16.3", "index": 3, "title": "Reviewing a month of trades without lying to yourself", "minutes": 5, "xp": 50 },
+        { "id": "16.4", "index": 4, "title": "Your first 90 days: a concrete plan", "minutes": 5, "xp": 50 }
+      ]
+    }
+  ],
+  "games": [
+    { "id": "circuit-breaker", "title": "Circuit Breaker", "blurb": "Sixty seconds. True or false. Three wrong and you are out.",        "unlockedByModule": 2 },
+    { "id": "terminal-drill",  "title": "Terminal Drill",  "blurb": "Six missions through a simulated TMS and depository portal.",     "unlockedByModule": 3 },
+    { "id": "paper-floor",     "title": "Paper Floor",     "blurb": "Rs. 1,00,000 of virtual capital, real fees, real T+2, real EDIS.", "unlockedByModule": 5 },
+    { "id": "brokers-cut",     "title": "Broker's Cut",    "blurb": "Four rounds of cost and tax arithmetic against the clock.",       "unlockedByModule": 7 },
+    { "id": "candle-sensei",   "title": "Candle Sensei",   "blurb": "Read the candle. Beat the clock.",                                "unlockedByModule": 9 },
+    { "id": "ratio-rush",      "title": "Ratio Rush",      "blurb": "Match, compute and judge real NEPSE fundamentals.",               "unlockedByModule": 12 }
+  ],
+  "badges": [
+    { "id": "first-kitta",       "name": "First Kitta",        "criterion": "Complete your first lesson" },
+    { "id": "terminal-native",   "name": "Terminal Native",    "criterion": "Finish all six Terminal Drill missions under target time" },
+    { "id": "the-edis-lesson",   "name": "The EDIS Lesson",    "criterion": "Fail EDIS once in Terminal Drill, then complete it correctly" },
+    { "id": "tax-collector",     "name": "Tax Collector",      "criterion": "Score 100% on Broker's Cut Round 3" },
+    { "id": "rs-1000-trap",      "name": "The Rs. 1,000 Trap", "criterion": "Answer the Broker's Cut bonus question correctly on the first try" },
+    { "id": "pattern-recognition","name": "Pattern Recognition","criterion": "90%+ accuracy over 50 Candle Sensei questions" },
+    { "id": "context-matters",   "name": "Context Matters",    "criterion": "Perfect score on the \"Is this pattern valid here?\" question type" },
+    { "id": "paper-hands",       "name": "Paper Hands",        "criterion": "Complete a Paper Floor scenario without a single loss over 10%" },
+    { "id": "survived-euphoria", "name": "Survived Euphoria",  "criterion": "Finish the Euphoria scenario above starting capital" },
+    { "id": "diamond-discipline","name": "Diamond Discipline", "criterion": "Reach a 7-day study streak" },
+    { "id": "sector-analyst",    "name": "Sector Analyst",     "criterion": "Perfect the Module 13 quiz" },
+    { "id": "full-float",        "name": "Full Float",         "criterion": "100% course completion" }
+  ],
+  "resources": [
+    { "name": "nepalstock.com",     "url": "https://www.nepalstock.com",        "good": "The exchange itself. Official floorsheet, circulars, listed-company master list, and the definitive holiday calendar." },
+    { "name": "sebon.gov.np",       "url": "https://www.sebon.gov.np",          "good": "The regulator. Prospectuses, directives, enforcement actions, and the place to file a complaint." },
+    { "name": "MeroShare (CDSC)",   "url": "https://meroshare.cdsc.com.np",     "good": "Depository. Your Demat, WACC, ASBA and EDIS all live here." },
+    { "name": "NepseAlpha",         "url": "https://nepsealpha.com",            "good": "Best free charting for NEPSE — indicators, drawing tools, screeners." },
+    { "name": "Merolagani",         "url": "https://merolagani.com",            "good": "Company pages, dividend and bonus history, datewise index tables." },
+    { "name": "Sharesansar",        "url": "https://www.sharesansar.com",       "good": "Fastest news, floorsheet analysis, quarterly result aggregation." },
+    { "name": "Nepal Rastra Bank",  "url": "https://www.nrb.org.np",            "good": "Monetary policy, CD ratio and interest-rate data — the upstream driver of every NEPSE cycle." }
+  ]
+}

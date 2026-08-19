@@ -1,0 +1,277 @@
+{
+  "module": 4,
+  "title": "Reading the Market Screen",
+  "lessons": [
+    {
+      "id": "4.1",
+      "module": 4,
+      "index": 1,
+      "title": "LTP, open, high, low, close, and previous close",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A stock's screen shows six prices at once. Five of them describe today. One of them — the one nobody looks at — decides how far the stock is allowed to move tomorrow."
+        },
+        {
+          "type": "core",
+          "md": "Six numbers, and they are not interchangeable.\n\n- **Open** — the first traded price of the session, discovered in the [[pre_open|pre-open]] auction.\n- **High / Low** — the extremes of the day. On a circuit day, one of them is not a price the market found; it is a wall the market hit.\n- **[[ltp|LTP]]** — the last traded price, updating continuously. This is what people mean by \"the price\".\n- **Close** — the session's final reference price.\n- **[[previous_close|Previous close]]** — yesterday's close.\n\n### The two that control your orders\n\nThis is the part that has practical consequences every single time you place an order:\n\n- The **[[order_band|order price band]] is ±3% of the LTP**. It moves as the stock moves.\n- The **[[circuit|daily circuit]] is ±15% of the previous close**. It is fixed for the whole day.\n\nTwo limits, two different reference prices, both live at once. Lesson 5.1 works through what that means when you try to place an order at a price that is inside one and outside the other.\n\n### The weighted-average subtlety\n\nNEPSE computes a closing price using a **weighted average of the last portion of the session's trades**, not simply the final tick. This is deliberate: a single small trade in the last seconds cannot set the reference price for tomorrow's circuit limits.\n\nSo the LTP you saw at 14:59 and the official close can differ slightly. On a liquid bank the difference is trivial. On a thin counter it can matter, because it is the close — not the LTP — that sets tomorrow's ±15% band.\n\n### Where people go wrong\n\nThey compute the circuit from the LTP instead of the previous close, conclude an order is valid, and get it rejected. Or they read a wide high–low range as \"volatile and interesting\" without checking whether the body of the candle was tiny — which Lesson 9.1 shows is a completely different story."
+        },
+        {
+          "type": "visual",
+          "widget": "candle-chart",
+          "props": { "symbol": "UPPER", "bars": 60 },
+          "caption": "Hover any session: open, high, low, close, volume, and the change against the previous close."
+        },
+        {
+          "type": "nepse",
+          "md": "Circuit limits are measured off the **previous close**, not the LTP. NEPSE also uses a weighted-average close rather than the final tick, so a single last-second trade cannot set tomorrow's band. The daily limit has been ±15% since 21 April 2026, raised from ±10% — if a source tells you 10%, it predates the change.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "One full session on a Rs. 230 hydropower counter.",
+          "table": {
+            "head": ["Field", "Value", "What it controls"],
+            "numeric": [1],
+            "rows": [
+              ["Previous close", "230.00", "Today's circuit: Rs. 195.50 – 264.50"],
+              ["Open", "231.50", "Discovered in the pre-open auction"],
+              ["High", "238.00", "Reached at 12:40"],
+              ["Low", "229.00", "Reached at 11:15"],
+              ["LTP (now, 13:30)", "236.00", "Order band right now: Rs. 228.92 – 243.08"],
+              ["Close (weighted average)", "236.90", "Tomorrow's circuit reference"]
+            ],
+            "caption": "Two limits, two reference prices, both active at once."
+          },
+          "after": "You want to place a patient bid at Rs. 210 in case the stock falls. Rs. 210 is comfortably inside the day's circuit range of Rs. 195.50–264.50 — but it is **outside** the ±3% order band around the LTP of Rs. 236.00, which runs Rs. 228.92 to Rs. 243.08. The order is rejected.\n\nIf the stock actually falls to Rs. 216, the band moves with it and your Rs. 210 becomes placeable. **The band follows the price; the circuit does not.**"
+        },
+        {
+          "type": "check",
+          "qids": ["q-4-1-a", "q-4-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "The ±3% order band is measured from the LTP and moves during the day; the ±15% circuit is measured from the previous close and is fixed.",
+            "NEPSE closes on a weighted average of late trades, not the final tick, so a single trade cannot set tomorrow's band.",
+            "A wide high–low range tells you far less than where the body of the candle finished."
+          ]
+        }
+      ],
+      "glossary": ["ltp", "previous_close", "circuit", "order_band", "pre_open"]
+    },
+
+    {
+      "id": "4.2",
+      "module": 4,
+      "index": 2,
+      "title": "Bid, ask, spread — and why the spread is your first cost",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You buy a hydropower stock at Rs. 305 and immediately change your mind. You sell. You get Rs. 296. You have lost 2.95% in four seconds without the price moving at all, and you have not yet paid a rupee of commission."
+        },
+        {
+          "type": "core",
+          "md": "The order book has two sides.\n\n- The **[[bid]]** is the highest price a buyer is currently willing to pay. **You sell into the bid.**\n- The **[[ask]]** is the lowest price a seller will accept. **You buy at the ask.**\n- The **[[spread]]** is the gap between them.\n\nThe spread is not a fee anyone charges you. It is the cost of immediacy — the price of insisting on trading *right now* rather than waiting for someone to meet your price.\n\n### Why this is the dominant cost on NEPSE\n\nOn a liquid commercial bank, the spread might be Rs. 0.50 on a Rs. 496 share — about 0.10%, smaller than the 0.33% commission.\n\nOn a thinly-traded hydropower or hotel counter, a spread of **2–3% is normal**. That dwarfs the commission by a factor of eight or more. And the round-trip damage is the full spread, because you pay it once getting in and once getting out.\n\nThis is why Module 7's careful arithmetic about commission slabs, while entirely correct, is not the whole story of what a trade costs you. On a thin counter the spread is the story.\n\n### What you can actually do about it\n\n1. **Look at the depth before you place anything.** TMS shows several levels on each side. A book with 200 kitta at the top and nothing behind it is not a price, it is a suggestion.\n2. **Place a limit inside the spread and be patient.** You may not fill. Not filling is a legitimate outcome — Lesson 5.1 makes that case properly.\n3. **Treat a wide spread as information about liquidity**, and read Lesson 10.4 before you trade any pattern on a counter that has one.\n4. **Never cross a 3% spread to chase a tip.** You start 3% behind, and the tip has to be right by more than that before you make anything."
+        },
+        {
+          "type": "visual",
+          "widget": "order-book-demo",
+          "caption": "Watch the spread. Then try placing an order at Rs. 210 and read which rule stops you."
+        },
+        {
+          "type": "nepse",
+          "md": "On thin hydropower counters, spreads of 2–3% are routine and **dwarf the commission**. A 0.33% commission on a Rs. 3,00,000 trade is Rs. 990; a 3% spread on the same trade is Rs. 9,000 of round-trip damage. Check the bid–ask gap and the depth behind it before you decide a counter is tradeable at all.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The hook, in full. A hydropower stock shows a best bid of **Rs. 296.00** and a best ask of **Rs. 305.00**. You buy at the ask and immediately sell at the bid.",
+          "calc": [
+            { "l": "You buy at the ask", "v": "Rs. 305.00" },
+            { "l": "You sell at the bid", "v": "Rs. 296.00" },
+            { "l": "Loss per share", "v": "Rs. 9.00" },
+            { "l": "As a share of what you paid", "v": "2.95%", "total": true },
+            { "l": "Buy-side commission for comparison (0.33%)", "v": "0.33%" },
+            { "l": "The spread is larger by a factor of", "v": "≈ 9×", "total": true }
+          ],
+          "after": "A common wrong answer here is 3.04% — that computes the Rs. 9 against the bid of Rs. 296 rather than against the Rs. 305 you actually paid. Your loss is always measured against your outlay.\n\nAnd the comparison that matters: this spread alone is roughly nine times the buy-side commission. Everything Module 7 teaches about slab boundaries is real and worth knowing — and on a counter like this it is a rounding error next to the spread."
+        },
+        {
+          "type": "check",
+          "qids": ["q-4-2-a", "q-4-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "You buy at the ask and sell into the bid; the spread between them is the cost of trading immediately.",
+            "On thin NEPSE counters a 2–3% spread is normal and dwarfs the 0.24–0.36% commission.",
+            "Measure spread loss against what you paid, not against the bid."
+          ]
+        }
+      ],
+      "glossary": ["bid", "ask", "spread", "liquidity_trap", "commission"]
+    },
+
+    {
+      "id": "4.3",
+      "module": 4,
+      "index": 3,
+      "title": "Volume, turnover, and transaction count: three different truths",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Three stocks each did Rs. 2 crore of turnover today. One had 4,000 transactions, one had 80, and one had 3. Only one of those is a market."
+        },
+        {
+          "type": "core",
+          "md": "Three numbers sit next to each other on every NEPSE screen and measure genuinely different things.\n\n- **[[volume|Volume]]** — the number of *shares* traded, in kitta.\n- **[[turnover|Turnover]]** — the *rupee value* traded: price × volume.\n- **Transactions** — the *number of separate trades*.\n\n### Why you need all three\n\nTurnover alone hides the shape of the day. Rs. 2 crore of turnover in 4,000 transactions means hundreds of people participated, and you could probably buy or sell without moving the price much. The same Rs. 2 crore in 3 transactions means two institutions agreed a block trade. That is not interest in the stock. It is one negotiation, and it tells you almost nothing about whether *you* could get filled tomorrow.\n\nVolume alone misleads across price levels. 10,000 kitta of a Rs. 89 share is Rs. 8.9 lakh; 10,000 kitta of Everest Bank at Rs. 670 is Rs. 67 lakh. The same volume, seven and a half times the money.\n\n### The number that actually protects you\n\n**Average daily turnover** — not one day's figure, the average over twenty sessions or so. One day's spike is noise; a twenty-day average tells you whether a counter has a market at all.\n\nThis is the check that gates everything in Modules 9 to 11. A candlestick pattern on 400 shares traded is not a signal, it is one person with a small order. An indicator computed from stale prices is arithmetic performed on nothing. And a position you cannot exit in two days is a position whose stop loss is a wish — which is what the days-to-exit calculator in Lesson 13.5 makes concrete."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Same turnover, three different days",
+            "sub": "Rs. 2 crore traded in each",
+            "sides": [
+              {
+                "k": "A real market",
+                "t": "4,000 transactions",
+                "rows": [
+                  ["Turnover", "Rs. 2 crore"],
+                  ["Transactions", "4,000"],
+                  ["Average trade size", "Rs. 5,000"],
+                  ["Who traded", "Hundreds of retail investors"],
+                  ["Could you exit Rs. 2 lakh?", "Comfortably"]
+                ]
+              },
+              {
+                "k": "A negotiation",
+                "t": "3 transactions",
+                "rows": [
+                  ["Turnover", "Rs. 2 crore"],
+                  ["Transactions", "3"],
+                  ["Average trade size", "Rs. 66.7 lakh"],
+                  ["Who traded", "Two or three institutions"],
+                  ["Could you exit Rs. 2 lakh?", "Unknown — nobody else was there"]
+                ]
+              }
+            ],
+            "verdict": "High turnover with three transactions is a **block trade**, not interest. The turnover column looked identical and the two days have nothing in common. Read transactions alongside turnover, always."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "High turnover with a handful of transactions is a block trade, not demand. NEPSE publishes the full [[floorsheet|floorsheet]] daily — every executed trade with buying broker, selling broker, quantity and rate — so you can check this directly rather than inferring it. Sharesansar and Merolagani aggregate it into a readable form. Lesson 4.4 shows what to look for.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Three counters on the same session.",
+          "table": {
+            "head": ["", "Liquid bank", "Mid hydropower", "Thin counter"],
+            "numeric": [1, 2, 3],
+            "rows": [
+              ["Price", "Rs. 496.10", "Rs. 230.00", "Rs. 168.00"],
+              ["Volume (kitta)", "40,314", "86,957", "1,190"],
+              ["Turnover", "Rs. 2.00 crore", "Rs. 2.00 crore", "Rs. 2.00 lakh"],
+              ["Transactions", "3,120", "812", "4"],
+              ["Average trade size", "Rs. 6,410", "Rs. 24,631", "Rs. 50,000"],
+              ["Days to exit Rs. 2,00,000 at 10% of turnover", "0.1", "0.1", "10.0"]
+            ],
+            "caption": "Illustrative figures; the relationships are what matter."
+          },
+          "after": "The thin counter needs **ten trading days** to exit a Rs. 2,00,000 position without being most of the volume yourself. Two weeks. Any bad news reaches the price long before you reach the door.\n\nThis is the honest loss case for this module. Nothing about the thin counter's chart tells you this — the candles may look beautiful. The volume column is where the risk is written down, and it is the column most people skip."
+        },
+        {
+          "type": "check",
+          "qids": ["q-4-3-a", "q-4-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Volume is shares, turnover is rupees, transactions is the number of separate trades — read all three.",
+            "High turnover on very few transactions is a block trade, not market interest.",
+            "Average daily turnover over about twenty sessions is the number that tells you whether you can get out."
+          ]
+        }
+      ],
+      "glossary": ["volume", "turnover", "floorsheet", "liquidity_trap"]
+    },
+
+    {
+      "id": "4.4",
+      "module": 4,
+      "index": 4,
+      "title": "The floorsheet: watching brokers, not prices",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "NEPSE publishes, every single day, a record of every trade executed on the exchange: who bought, who sold, how many, at what price. It is the rawest data in Nepali finance, it is free, and almost nobody reads it."
+        },
+        {
+          "type": "core",
+          "md": "The **[[floorsheet]]** is NEPSE's published record of every executed trade. Four columns matter: **buying broker**, **selling broker**, **quantity**, **rate**. No narrative, no opinion — just the marks left behind by thousands of decisions. It is also where this course's design language gets its name.\n\n### What it can tell you\n\n**Concentration.** If one broker number accounts for 60% of the day's buying in a counter, that is one client — or one coordinated group — accumulating. That is a materially different day from the same volume spread across forty brokers.\n\n**Whether a move had participation.** A stock up 8% on 3,000 kitta across four trades is not the same event as a stock up 8% on 90,000 kitta across 600 trades, even though the price change is identical.\n\n**The shape of distribution.** Repeated large sells from one broker into steady retail buying is the classic distribution pattern, and it is exactly what Lesson 15.1 describes as Stage 4 of a bubble and Lesson 15.4 describes as the exit phase of a pump.\n\n### What it cannot tell you\n\nBe honest about the limits, because floorsheet analysis attracts overconfidence:\n\n- **Broker numbers are not client identities.** One broker has thousands of clients. Heavy buying through broker 58 tells you about a broker, not a person.\n- **A single day proves nothing.** Concentration over two or three weeks is a pattern; one day is a coincidence.\n- **You are always looking backwards.** The floorsheet is published after the session. Whatever it shows, you are seeing it after the people who did it.\n\n### How to actually use it\n\nUse it to *check* a story you already have, not to generate one. If a counter has run 20% in a week and you want to know whether that was broad buying or three brokers, the floorsheet answers precisely that. That is a good use. Reading the floorsheet each morning looking for something to trade is not."
+        },
+        {
+          "type": "visual",
+          "widget": "table",
+          "props": {
+            "title": "A day's floorsheet, aggregated by broker",
+            "sub": "The raw sheet lists every trade; this is the summary you want",
+            "head": ["Buying broker", "Kitta bought", "Share of day", "Selling broker", "Kitta sold", "Share of day"],
+            "numeric": [1, 2, 4, 5],
+            "rows": [
+              ["Broker 58", "52,400", "58.2%", "Broker 34", "18,900", "21.0%"],
+              ["Broker 45", "11,200", "12.4%", "Broker 58", "14,600", "16.2%"],
+              ["Broker 12", "8,900", "9.9%", "Broker 07", "12,300", "13.7%"],
+              ["Broker 34", "6,100", "6.8%", "Broker 45", "11,800", "13.1%"],
+              ["38 others", "11,400", "12.7%", "41 others", "32,400", "36.0%"]
+            ],
+            "caption": "Illustrative. One broker took 58.2% of the buy side — that is the row worth a second look."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "The floorsheet is **public** and published daily on nepalstock.com. Sharesansar and Merolagani aggregate it by broker, which is far more readable than the raw file. Nothing in it is privileged information — everybody can see it, including the people whose trades are in it.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A mid-cap hydropower counter runs from Rs. 268 to Rs. 322 over nine sessions — up 20.1%. You want to know what kind of move it was before deciding anything.",
+          "calc": [
+            { "l": "Price move over nine sessions", "v": "+20.1%" },
+            { "l": "Average daily turnover, prior 20 sessions", "v": "Rs. 41 lakh" },
+            { "l": "Average daily turnover, these 9 sessions", "v": "Rs. 2.6 crore" },
+            { "l": "Share of buying by the top broker", "v": "54%" },
+            { "l": "Share of buying by the top three brokers", "v": "78%" },
+            { "l": "Distinct brokers on the buy side", "v": "19", "total": true }
+          ],
+          "after": "Turnover rose sixfold and three brokers did 78% of the buying. That is not broad participation — it is concentrated accumulation, and it is the shape Lesson 15.4 describes as the first stage of a pump.\n\nBut hold the conclusion. It is *also* the exact shape of a single institution building a legitimate position, or a fund rebalancing. **The floorsheet shows you concentration; it does not show you intent.** What it gives you is a reason to be sceptical of the tip that arrives three days later — and that scepticism is worth more than any trade you might make from it."
+        },
+        {
+          "type": "check",
+          "qids": ["q-4-4-a", "q-4-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "The floorsheet lists every executed trade with buying broker, selling broker, quantity and rate — free, daily, public.",
+            "Use it to check whether a move had broad participation or was three brokers; concentration over weeks is the signal, not one day.",
+            "Broker numbers are not client identities, and you are always reading it after the fact."
+          ]
+        }
+      ],
+      "glossary": ["floorsheet", "broker", "turnover", "volume", "pump_and_dump"]
+    }
+  ]
+}

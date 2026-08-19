@@ -1,0 +1,22 @@
+{
+  "asOf": "2026-08-19",
+  "tradingDays": ["Mon","Tue","Wed","Thu","Fri"],
+  "tradingDaysChangedFrom": { "days": ["Sun","Mon","Tue","Wed","Thu"], "changedOn": "2026-04-06" },
+  "sessionOpen": "11:00",
+  "sessionClose": "15:00",
+  "preOpen": { "band": 0.05, "previousBand": 0.02, "note": "Single equilibrium price maximising executable volume" },
+  "orderPriceBand": { "band": 0.03, "previousBand": 0.02, "basis": "last traded price" },
+  "dailyCircuit": { "limit": 0.15, "previousLimit": 0.10, "basis": "previous close", "effectiveFrom": "2026-04-21" },
+  "indexCircuitBreaker": [
+    { "level": 1, "move": 0.05, "window": "first 2 hours", "action": "15-minute halt" },
+    { "level": 2, "move": 0.08, "window": "any time", "action": "market closed for the day" }
+  ],
+  "orderPlacement": { "roundTheClock": true, "executionWindowOnly": true },
+  "settlementCycle": "T+2",
+  "settlementBasis": "trading days",
+  "orderTypes": ["limit"],
+  "shortSelling": false,
+  "derivatives": false,
+  "intradayPossible": false,
+  "regulatoryBasis": "Securities Trading Operations (Fourth Amendment) Bylaws, 2082"
+}

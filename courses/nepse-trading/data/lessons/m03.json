@@ -1,0 +1,368 @@
+{
+  "module": 3,
+  "title": "Your Trading Toolkit",
+  "lessons": [
+    {
+      "id": "3.1",
+      "module": 3,
+      "index": 1,
+      "title": "The four accounts you need, in the order you need them",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A friend tells you an IPO closes on Friday. You open your phone, find MeroShare, and discover you cannot apply — because you do not have a Demat account, and you cannot open one by Friday. The order these accounts come in is not a formality."
+        },
+        {
+          "type": "core",
+          "md": "You need four things before you can buy a single share, and they must be set up in sequence because each depends on the one before it.\n\n### 1 · A bank account\n\nWith a bank that supports **[[connectips|ConnectIPS]]**. Almost all commercial banks do. This is where your money starts and where your sale proceeds return.\n\n### 2 · A [[demat|Demat account]] with a [[dp|DP]]\n\nThis is where your shares live, held under [[cdsc|CDSC]]. You open it with a Depository Participant — usually a bank or a broker. You need a photograph, citizenship certificate, your bank details and a thumbprint. It typically takes a few days.\n\nYou receive a 16-digit **BOID** (Beneficiary Owner Identification). Write it down. You will be asked for it constantly.\n\n**You cannot apply for any IPO without this.** It is the gating step, and it is why the friend's Friday deadline was unreachable.\n\n### 3 · [[meroshare|MeroShare]] credentials\n\nCDSC's portal, accessed through your DP. This is where you apply for IPOs ([[casba|C-ASBA]]), see your holdings and your [[wacc|WACC]], and — critically — authorise [[edis|EDIS]] when you sell.\n\n### 4 · A broker account and [[tms|TMS]] access\n\nA NEPSE-licensed broker gives you a client code and TMS login. **This is the only place orders are placed.** MeroShare has no buy button and never will.\n\n### The costs, honestly\n\nAccount opening runs to a few hundred rupees at most, plus a small annual Demat maintenance charge. None of it is the real cost. The real cost is the Rs. 25 [[dp_charge|DP charge]] per company per settlement and the commission on every trade — which is why Lesson 7.4 concludes that positions below roughly Rs. 25,000 are structurally unprofitable."
+        },
+        {
+          "type": "visual",
+          "widget": "flow",
+          "props": {
+            "title": "Set up in this order",
+            "sub": "Each step depends on the one before",
+            "steps": [
+              { "t": "Bank account with ConnectIPS enabled", "d": "Where your money starts and where sale proceeds return. Almost every commercial bank supports it.", "meta": "days" },
+              { "t": "Demat account with a DP", "d": "Photograph, citizenship certificate, bank details, thumbprint. You receive a 16-digit BOID. Nothing else can happen before this.", "meta": "2–5 days" },
+              { "t": "MeroShare credentials from your DP", "d": "Custody portal: holdings, WACC, My ASBA for IPOs, My EDIS for sales. No buy button.", "meta": "same week" },
+              { "t": "Broker account + TMS login", "d": "A NEPSE-licensed broker issues your client code. This is where orders are actually placed.", "meta": "2–5 days" },
+              { "t": "Fund the broker's collection account via ConnectIPS", "d": "Funds must clear before you can buy. There is no margin from the exchange.", "meta": "same day" }
+            ],
+            "note": "Total: roughly one to two weeks from nothing to your first order. Start before you have a reason to hurry."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "You need the [[demat|Demat account]] before you can apply for any IPO — there is no shortcut, and no broker can apply on your behalf without it. Open it in a quiet week. Applications get rejected for mismatched names between citizenship certificate and bank account, so check that the spelling matches exactly before you submit.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "What it realistically costs to be ready to trade, and what the first year looks like:",
+          "calc": [
+            { "l": "Demat account opening (varies by DP)", "v": "Rs. 100 – 200" },
+            { "l": "Annual Demat maintenance", "v": "Rs. 100 – 150" },
+            { "l": "Broker account opening", "v": "Usually free" },
+            { "l": "Setup total", "v": "≈ Rs. 250", "total": true },
+            { "l": "One Rs. 50,000 buy — commission at 0.36%", "v": "Rs. 180.00" },
+            { "l": "SEBON fee 0.015%", "v": "Rs. 7.50" },
+            { "l": "DP charge", "v": "Rs. 25.00" },
+            { "l": "Cost of that single trade", "v": "Rs. 212.50", "total": true }
+          ],
+          "after": "One trade costs roughly what the entire account setup cost. That is the correct way to think about it: the accounts are nearly free, and **the trading is where the money goes**. Someone placing forty small trades a year pays more in friction than they will notice, and Module 7 exists to make that visible before it happens rather than afterwards on a contract note."
+        },
+        {
+          "type": "check",
+          "qids": ["q-3-1-a", "q-3-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Order matters: bank → Demat with a DP → MeroShare → broker and TMS → funds via ConnectIPS.",
+            "You cannot apply for any IPO without a Demat account, and it takes days to open.",
+            "Setup costs a few hundred rupees; the real cost is per-trade friction, which Module 7 quantifies."
+          ]
+        }
+      ],
+      "glossary": ["demat", "dp", "meroshare", "tms", "connectips", "cdsc", "casba", "edis", "wacc", "dp_charge"]
+    },
+
+    {
+      "id": "3.2",
+      "module": 3,
+      "index": 2,
+      "title": "Opening a Demat with a DP — documents, fees, and what to check",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Every DP in Nepal holds your shares in exactly the same place — CDSC's system. So the choice between them is not about safety. It is about the annual fee, whether they answer the phone in the four hours that matter, and whether they are also your broker."
+        },
+        {
+          "type": "core",
+          "md": "A [[dp|Depository Participant]] is your access point to [[cdsc|CDSC]]. Your shares are recorded in CDSC's system either way; the DP maintains your account within it.\n\n### What you need to open one\n\n- Citizenship certificate (original and a copy)\n- Two passport-size photographs\n- Your bank account details and a cheque leaf or statement\n- Thumbprint and signature specimen\n- A completed account-opening form\n\nFor a minor, add the birth certificate and the guardian's citizenship. For a joint account, all holders attend.\n\n**Check the name spelling.** The single most common cause of rejection and of later payment problems is a mismatch between the citizenship certificate, the bank account and the Demat. Get all three identical.\n\n### What you receive\n\nA 16-digit **BOID**. It identifies your Demat account everywhere — IPO applications, EDIS, transfers. Store it where you can find it.\n\n### What to actually compare\n\n1. **Annual maintenance charge.** A recurring cost, typically Rs. 100–150. Not large, but it is the only fee the DP controls.\n2. **Whether they are also your broker.** Same institution for both means one login journey and one relationship. It also means one point of failure. Reasonable people choose differently.\n3. **Service responsiveness.** This is the one that matters and the one you cannot see in advance. When an [[edis|EDIS]] authorisation fails at 14:50 on T+1, you need someone to answer. Ask people who have actually sold, not people who have only bought.\n\n### The fee you will pay far more often\n\nThe [[dp_charge|DP charge]] of **Rs. 25 per company per settlement date**. Not per trade — per company, per settlement. Buy the same stock twice on one day and you pay it once. Have one order fill across two days and you pay it twice. It is flat, which makes it brutal on small trades, and Lesson 7.4 shows exactly how brutal."
+        },
+        {
+          "type": "visual",
+          "widget": "table",
+          "props": {
+            "title": "What to check before you choose a DP",
+            "sub": "Your shares are equally safe at all of them",
+            "head": ["Check", "Why it matters", "Typical"],
+            "rows": [
+              ["Annual maintenance charge", "The only recurring fee the DP sets", "Rs. 100 – 150"],
+              ["Account opening charge", "One-off, small", "Rs. 100 – 200"],
+              ["Also your broker?", "One relationship vs one point of failure", "Your choice"],
+              ["EDIS support hours", "You will need help on a T+1 afternoon", "Ask before you sign"],
+              ["Branch or online onboarding", "Whether you must attend in person", "Varies"],
+              ["DP charge per settlement", "Regulated — the same everywhere", "Rs. 25"]
+            ],
+            "caption": "The DP charge is not a differentiator; it is Rs. 25 per company per settlement date at every DP."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "The **DP fee** (Rs. 25 per company per settlement date) and the **annual maintenance charge** are two separate things, and people conflate them constantly. The first is charged when you settle a trade; the second once a year, whether or not you trade at all. Neither is negotiable — the Rs. 25 is regulated, and the annual charge is published on your DP's rate card.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Two learners open Demats in the same week. One trades four times a year; the other trades forty.",
+          "table": {
+            "head": ["", "Four trades a year", "Forty trades a year"],
+            "numeric": [1, 2],
+            "rows": [
+              ["Annual maintenance", "Rs. 150", "Rs. 150"],
+              ["DP charges at Rs. 25 each", "Rs. 100", "Rs. 1,000"],
+              ["Commission on Rs. 50,000 trades at 0.36%", "Rs. 720", "Rs. 7,200"],
+              ["SEBON fee at 0.015%", "Rs. 30", "Rs. 300"],
+              ["Total friction for the year", "Rs. 1,000", "Rs. 8,650"],
+              ["As a share of a Rs. 2,00,000 account", "0.50%", "4.33%"]
+            ],
+            "caption": "Assumes Rs. 50,000 per trade. Commission is charged on both legs of a round trip."
+          },
+          "after": "The frequent trader starts each year 4.33% behind. On a market whose long-run return is nothing like guaranteed, that is a large handicap chosen voluntarily.\n\nThis is the loss-making case the spec asks every module to carry, and it is worth being blunt: the forty-trade learner did not lose money by picking bad companies. They lost it by trading, and the fee schedule did the rest."
+        },
+        {
+          "type": "check",
+          "qids": ["q-3-2-a", "q-3-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Every DP holds your shares in the same place — CDSC — so compare fees and service, not safety.",
+            "The DP charge is Rs. 25 per company per settlement date; the annual maintenance charge is separate.",
+            "Match the name spelling across citizenship certificate, bank account and Demat exactly."
+          ]
+        }
+      ],
+      "glossary": ["dp", "cdsc", "demat", "dp_charge", "edis"]
+    },
+
+    {
+      "id": "3.3",
+      "module": 3,
+      "index": 3,
+      "title": "MeroShare: your share passbook, not your trading screen",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "New investors open MeroShare and look for the buy button. There isn't one. There never has been. Understanding why MeroShare cannot place a trade is the fastest way to understand how Nepal's market is actually wired."
+        },
+        {
+          "type": "core",
+          "md": "[[meroshare|MeroShare]] is [[cdsc|CDSC]]'s portal, and CDSC is the **depository** — it holds shares. It is not the exchange and it is not a broker. So MeroShare shows you what you own and lets you move it. It cannot buy or sell, because buying and selling happens at NEPSE through a broker's [[tms|TMS]].\n\n### What MeroShare is for\n\n- **My Portfolio** — every holding, with quantity, [[wacc|WACC]], last traded price and current value.\n- **My ASBA** — [[casba|C-ASBA]] IPO applications, and the reports showing whether you were allotted.\n- **My EDIS** — the authorisation you must submit on T+1 when you sell. Lesson 6.2 is entirely about this.\n- **Transaction history** — every credit and debit to your Demat.\n- **Purchase Source / WACC entry** — where you record cost basis for shares that arrived outside a normal purchase.\n\n### The WACC field is not decoration\n\nYour **[[wacc|WACC]]** in MeroShare is your official per-share cost basis, and it is the number your capital gains tax is computed against. It updates as you buy more, and it falls when you receive [[bonus_share|bonus shares]] — because the same total cost is spread across more shares.\n\nTwo consequences people miss:\n\n1. **A falling WACC after a bonus issue is not a gain.** Your cost per share dropped because your share count rose. When you eventually sell, the gain is computed against the lower WACC, so the tax deferred at issue arrives later, in full.\n2. **WACC is not market price.** People read the WACC column as \"what it is worth\" and reach exactly the wrong conclusion. It is what you paid, on average.\n\n### The security point\n\nMeroShare holds your Demat PIN and your shares. Your broker holds your money. Neither will ever ask for the other's credentials, and neither will ask for a password by phone, Viber or email. Lesson 15.4 covers how the tips arrive; the same people also send login pages."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "MeroShare vs TMS",
+            "sub": "Two systems, two institutions, two jobs",
+            "sides": [
+              {
+                "k": "Custody",
+                "t": "MeroShare (CDSC)",
+                "rows": [
+                  ["Holdings and quantity", "Yes"],
+                  ["WACC / cost basis", "Yes — the tax figure"],
+                  ["IPO application (C-ASBA)", "Yes"],
+                  ["EDIS authorisation", "Yes — required on T+1"],
+                  ["Place a buy or sell order", "No — and never will"]
+                ]
+              },
+              {
+                "k": "Execution",
+                "t": "TMS (your broker)",
+                "rows": [
+                  ["Market watch and depth", "Yes"],
+                  ["Place / modify / cancel orders", "Yes"],
+                  ["Order book and trade book", "Yes"],
+                  ["Your official cost basis", "No — that is MeroShare"],
+                  ["Apply for an IPO", "No"]
+                ]
+              }
+            ],
+            "verdict": "Nepal separates custody from trading deliberately, and that separation is a protection: your shares sit in your Demat at CDSC, not in your broker's hands. The price of the protection is EDIS — you must personally authorise every delivery."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Your MeroShare **WACC is your official tax cost basis**. Capital gains tax is computed on the difference between your net sale proceeds and WACC × quantity, and it is withheld at source. If your WACC looks wrong — because shares arrived from an IPO, a bonus, a rights issue or a transfer — fix it with your DP *before* you sell, not after the tax has already been deducted.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You buy NABIL in two lots, then receive a 15% bonus. Watch the WACC move.",
+          "calc": [
+            { "l": "Lot 1 — 100 kitta at Rs. 480, total cost incl. fees", "v": "Rs. 48,206.20" },
+            { "l": "Lot 2 — 100 kitta at Rs. 512, total cost incl. fees", "v": "Rs. 51,398.10" },
+            { "l": "Total cost, 200 kitta", "v": "Rs. 99,604.30" },
+            { "l": "WACC after two lots", "v": "Rs. 498.02" },
+            { "l": "15% bonus received — new share count", "v": "230 kitta" },
+            { "l": "WACC after the bonus", "v": "Rs. 433.06", "total": true }
+          ],
+          "after": "Your WACC fell by Rs. 64.96 and you gained nothing. The same Rs. 99,604.30 now sits across 230 shares instead of 200, and the market price adjusted down on the ex-bonus date by roughly the same proportion.\n\nWhat *has* changed is your future tax bill. Sell at Rs. 500 later and the gain is computed against Rs. 433.06, not Rs. 498.02 — so the tax you did not pay when the bonus arrived is collected when you finally sell. Bonus shares defer tax; they do not avoid it."
+        },
+        {
+          "type": "check",
+          "qids": ["q-3-3-a", "q-3-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "MeroShare is custody — holdings, WACC, IPO applications and EDIS. It cannot place a trade.",
+            "Your MeroShare WACC is the official cost basis your capital gains tax is computed against.",
+            "A bonus issue lowers your WACC without making you richer, and defers tax rather than avoiding it."
+          ]
+        }
+      ],
+      "glossary": ["meroshare", "cdsc", "tms", "wacc", "casba", "edis", "bonus_share", "cgt"]
+    },
+
+    {
+      "id": "3.4",
+      "module": 3,
+      "index": 4,
+      "title": "TMS: your trading screen, not your portfolio",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "TMS shows you a portfolio. It is not your portfolio of record. The difference is invisible until the day it costs you — usually when you are computing tax from the wrong cost basis."
+        },
+        {
+          "type": "core",
+          "md": "[[tms|TMS]] — the Trade Management System — is the web platform your broker gives you. It is where orders happen, and only where orders happen. Every broker runs the same underlying system with a slightly different skin, so screenshots vary but the parts do not.\n\n### The five parts\n\n- **Market Watch.** Symbols you follow, with [[ltp|LTP]], change, open/high/low, volume and market depth. This is where you check the price band before placing anything.\n- **Order Entry.** Symbol, buy/sell, quantity, rate. Every NEPSE order is a [[limit_order|limit order]] — you always name a price. Lesson 5.1 explains why there is no market order and why you will stop wanting one.\n- **[[order_book|Order Book]].** Your live, pending, partially filled and cancelled orders.\n- **[[trade_book|Trade Book]].** Your *executed* trades. An order appears here only once it has actually filled. Confusing these two is the most common TMS mistake.\n- **Portfolio / Collateral.** What the broker's system believes you hold, and your available funds.\n\n### Why TMS's portfolio is not the record\n\nYour authoritative holdings and cost basis live in **[[meroshare|MeroShare]]**, because CDSC is the depository. TMS shows a working view: it may not reflect a bonus issue, a transfer in, or shares bought through a different broker. Your **[[wacc|WACC]] for tax comes from MeroShare**. Always.\n\n### Practical habits worth forming now\n\n1. **Check the band before you type a price.** The order band is ±3% of LTP and the daily circuit is ±15% of the previous close. Both apply. Lesson 5.1 has the arithmetic.\n2. **Read the order book after every submission.** \"Submitted\" is not \"executed\".\n3. **Decide your maximum price before you log in.** The chasing problem in Lesson 5.1 is a TMS problem: the modify button is right there, and using it three times in a rising market is how you pay a price you would have refused an hour earlier.\n4. **Never enter your TMS password anywhere that is not your broker's own domain.** Terminal Drill drills this deliberately, watermarked as a simulation throughout."
+        },
+        {
+          "type": "visual",
+          "widget": "table",
+          "props": {
+            "title": "Order book vs trade book",
+            "sub": "The distinction that catches everyone once",
+            "head": ["", "Order book", "Trade book"],
+            "rows": [
+              ["Shows", "Orders you have submitted", "Trades that actually executed"],
+              ["An order appears when", "You submit it", "It fills, wholly or partly"],
+              ["Statuses you will see", "Open, partially executed, executed, cancelled, expired", "Executed only"],
+              ["Can you modify from here", "Yes, while it is open", "No — it already happened"],
+              ["Used for", "Managing live orders", "Reconciling against your contract note"],
+              ["End of day", "Unfilled day orders expire", "Rows persist"]
+            ],
+            "caption": "An order sitting in the order book has not bought you anything. Only the trade book means you own shares."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "TMS is web-based and every broker's skin differs slightly, but the mechanics are identical because the system is common. Two things are constant everywhere: **limit orders only**, and orders are **day orders** that expire at the close. There is no good-till-cancelled on NEPSE — an order you placed on Monday is gone by Tuesday morning, and it is on you to place it again.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You place one order and read the two books correctly.\n\nUPPER previous close Rs. 230.00, currently trading at Rs. 236.00. You want 500 kitta at no more than Rs. 234.00.",
+          "calc": [
+            { "l": "Daily circuit range (±15% of previous close)", "v": "Rs. 195.50 – 264.50" },
+            { "l": "Order band right now (±3% of LTP)", "v": "Rs. 228.92 – 243.08" },
+            { "l": "Your order: BUY 500 UPPER @ 234.00", "v": "Valid — inside both" },
+            { "l": "Order book, 11:06", "v": "Open · 500 · 0 filled" },
+            { "l": "Order book, 13:20", "v": "Partially executed · 180 filled" },
+            { "l": "Trade book, 13:20", "v": "1 trade · 180 @ 234.00" },
+            { "l": "Order book at close", "v": "320 expired unfilled", "total": true }
+          ],
+          "after": "You own 180 kitta, not 500. The order book told you that at 13:20 and the trade book confirmed what actually happened. If you had glanced only at the order book's \"500\" line and assumed you were filled, you would have miscounted your position — and if you re-enter the remaining 320 tomorrow and they fill, you settle on a second date and pay the Rs. 25 DP charge a second time."
+        },
+        {
+          "type": "check",
+          "qids": ["q-3-4-a", "q-3-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "TMS is execution only — market watch, order entry, order book, trade book.",
+            "Order book = what you submitted; trade book = what actually executed. They are not the same.",
+            "Your authoritative holdings and WACC live in MeroShare, not in TMS's portfolio view."
+          ]
+        }
+      ],
+      "glossary": ["tms", "ltp", "limit_order", "order_book", "trade_book", "meroshare", "wacc", "circuit", "order_band"]
+    },
+
+    {
+      "id": "3.5",
+      "module": 3,
+      "index": 5,
+      "title": "ConnectIPS, bank linkage, and getting money in and out",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You see the price you want at 11:02. You transfer money to your broker at 11:03. You cannot buy at 11:04. Money on NEPSE moves on a schedule, and the schedule does not care what the chart is doing."
+        },
+        {
+          "type": "core",
+          "md": "### Money in\n\nYou fund your broker's **collection account** — usually through [[connectips|ConnectIPS]], Nepal's interbank payment rail, from your linked bank account. Funds must be **in and cleared before you can buy**. There is no margin from the exchange, no overdraft, no buying against a sale that has not settled.\n\nThis is a real constraint on how you operate. If you intend to buy this week, fund the account at the start of the week. Deciding to buy and then starting a transfer is how people miss the price they wanted.\n\n### Money out\n\nWhen you sell, the money takes a defined path and every step is a delay:\n\n1. **T** — the sale executes.\n2. **T+1** — you authorise [[edis|EDIS]] in MeroShare. Without this the sale fails.\n3. **T+2** — settlement. Shares leave your Demat; funds settle to your broker net of commission, SEBON fee, DP charge and [[cgt|capital gains tax]] withheld at source.\n4. **T+2 onward** — your broker transfers the net amount to your bank.\n\nSo \"I sold it\" and \"the money is in my account\" are three to five working days apart, and more across a weekend or a festival.\n\n### C-ASBA is different, and better\n\nFor IPO applications through [[casba|C-ASBA]], your money is **blocked in your own bank account** — not debited. If you are not allotted, the block is released and the money never left. You even keep any interest. It is one of the genuinely well-designed parts of the Nepali system.\n\n### The security rule\n\nConnectIPS, your bank, your broker and MeroShare are four different credentials. **None of them will ever ask you for another's.** Anyone who does is running a phishing attempt, and Lesson 15.4 describes the same people from the other direction."
+        },
+        {
+          "type": "visual",
+          "widget": "flow",
+          "props": {
+            "title": "The money loop",
+            "sub": "In on your schedule, out on the market's",
+            "steps": [
+              { "t": "Bank → broker collection account (ConnectIPS)", "d": "Must be cleared before you can place a buy order. No exchange margin exists.", "meta": "same day" },
+              { "t": "You buy — cash debited from your broker balance", "d": "Commission, SEBON fee and DP charge are added to the cost.", "meta": "T" },
+              { "t": "Shares credited to your Demat", "d": "Now they are yours, held at CDSC.", "meta": "T+2" },
+              { "t": "You sell — then authorise EDIS in MeroShare", "d": "The step people miss. Without it the sale fails to auction settlement.", "meta": "T+1" },
+              { "t": "Settlement — CGT withheld at source", "d": "Funds settle to your broker, net of every charge and the tax.", "meta": "T+2" },
+              { "t": "Broker transfers the net amount to your bank", "d": "Timing varies by broker; a day or two is normal.", "meta": "T+2 → T+4" }
+            ],
+            "note": "From pressing sell to money in your bank is realistically three to five working days — longer across a weekend or Dashain."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Funds must be in your broker's account **before** you can buy — unlike margin markets, NEPSE gives you no leverage and no credit. This is a real protection: you cannot lose more than you have committed, and there is no margin call to force you out at the worst moment. It is also why the 2021–2023 unwind, which involved margin lending from banks rather than from the exchange, hurt the people who had borrowed against their portfolios rather than everyone.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You sell 300 NABIL at Rs. 496.10 on Thursday 20 August 2026, with a WACC of Rs. 412.50 and an 18-month holding.",
+          "calc": [
+            { "l": "Gross sale (300 × 496.10)", "v": "Rs. 1,48,830.00" },
+            { "l": "Less commission (0.33%)", "v": "− Rs. 491.14" },
+            { "l": "Less SEBON fee (0.015%)", "v": "− Rs. 22.32" },
+            { "l": "Less DP charge", "v": "− Rs. 25.00" },
+            { "l": "Net before tax", "v": "Rs. 1,48,291.54" },
+            { "l": "Cost basis (300 × 412.50)", "v": "Rs. 1,23,750.00" },
+            { "l": "Taxable gain", "v": "Rs. 24,541.54" },
+            { "l": "CGT at 7.5% (long-term, held >365 days)", "v": "− Rs. 1,840.62" },
+            { "l": "Net proceeds to your bank", "v": "Rs. 1,46,450.92", "total": true }
+          ],
+          "after": "Rs. 1,48,830 of gross became Rs. 1,46,450.92 in your hand — Rs. 2,379.08 of friction and tax, or 1.6% of the sale. And the timeline: sold Thursday, EDIS Friday, settled Monday, in your bank Monday or Tuesday.\n\nHad you sold six months earlier, the same gain would have been taxed at 10% rather than 7.5% — Rs. 2,454.15 instead of Rs. 1,840.62. Six months of patience was worth Rs. 613.53 on this one trade."
+        },
+        {
+          "type": "check",
+          "qids": ["q-3-5-a", "q-3-5-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Funds must clear into your broker's account before you can buy — NEPSE offers no margin or credit.",
+            "Selling to cash-in-bank is realistically three to five working days, and EDIS on T+1 is mandatory.",
+            "C-ASBA blocks IPO money in your own account rather than debiting it — you keep it if you are not allotted."
+          ]
+        }
+      ],
+      "glossary": ["connectips", "edis", "casba", "cgt", "settlement", "t_plus_two", "wacc"]
+    }
+  ]
+}

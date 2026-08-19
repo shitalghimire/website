@@ -1,0 +1,100 @@
+/* ═══════════════════════════════════════════════════════════════
+   FLOORSHEET — design tokens
+   NEPSE Trading Academy. Copied verbatim from the build spec §3.1.
+   If something needs a colour, it is one of these. Do not invent more.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Ground ─────────────────────────────────────────── */
+  --ink-900: #07090C;   /* page background                     */
+  --ink-850: #0B0F14;   /* deep panel                          */
+  --ink-800: #10161D;   /* surface / card                      */
+  --ink-750: #161E27;   /* raised surface, hover               */
+  --ink-700: #1E2833;   /* hairline borders                    */
+  --ink-600: #2B3846;   /* strong border, chart gridlines      */
+
+  /* ── Type ───────────────────────────────────────────── */
+  --paper:   #ECF1F6;   /* primary text                        */
+  --paper-2: #A9B7C5;   /* secondary text                      */
+  --paper-3: #6C7C8C;   /* captions, axis labels               */
+  --paper-4: #43515F;   /* disabled                            */
+
+  /* ── Market signals (ONLY these two, ever) ──────────── */
+  --bull:      #31D0AA; /* up candle, gain, correct            */
+  --bull-dim:  #1B7A63;
+  --bull-wash: rgba(49, 208, 170, 0.10);
+  --bear:      #F0526D; /* down candle, loss, wrong            */
+  --bear-dim:  #8E2F3F;
+  --bear-wash: rgba(240, 82, 109, 0.10);
+
+  /* ── Learner progress (amber is reserved for the user) ─ */
+  --signal:      #FFB627;
+  --signal-dim:  #96690E;
+  --signal-wash: rgba(255, 182, 39, 0.12);
+
+  /* ── Nepal crimson: EXACTLY three uses.
+        1) the NEPSE wordmark  2) the certificate seal
+        3) the "NEPSE-specific" module badge               */
+  --crimson: #DC143C;
+
+  /* ── Chart-specific ─────────────────────────────────── */
+  --grid:     rgba(43, 56, 70, 0.55);
+  --axis:     #6C7C8C;
+  --volume:   rgba(169, 183, 197, 0.22);
+  --ma-fast:  #FFB627;
+  --ma-slow:  #7AA5D2;
+  --rsi-line: #C084F0;   /* indicator-only; never a UI colour */
+
+  /* ── Type scale (fluid, 360px → 1440px) ─────────────── */
+  --t-mega: clamp(4rem, 12vw, 11rem);
+  --t-xxl:  clamp(2.4rem, 6vw, 4.2rem);
+  --t-xl:   clamp(1.8rem, 3.6vw, 2.6rem);
+  --t-lg:   clamp(1.3rem, 2.2vw, 1.6rem);
+  --t-md:   1.0625rem;
+  --t-sm:   0.9375rem;
+  --t-xs:   0.8125rem;
+  --t-cap:  0.6875rem;   /* uppercase, 0.14em tracking          */
+
+  /* ── Space (4px base) ───────────────────────────────── */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+
+  --measure: 64ch;       /* reading width — enforce it         */
+  --radius:  3px;        /* the ONLY radius; pills use 999px   */
+  --hairline: 1px solid var(--ink-700);
+
+  /* ── Typefaces ──────────────────────────────────────── */
+  --f-display: 'Bricolage Grotesque', 'Arial Black', sans-serif;
+  --f-read:    'Newsreader', Georgia, serif;
+  --f-data:    'Martian Mono', ui-monospace, monospace;
+  --f-np:      'Mukta', sans-serif;
+
+  /* ── Motion ─────────────────────────────────────────── */
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --dur:  320ms;
+}
+
+/* Colour-blind-safe alternative. Toggled in settings.
+   Bull becomes blue, bear stays red — the classic safe pair. */
+:root[data-cb="1"] {
+  --bull: #4EA8F5; --bull-dim: #1F5C90;
+  --bull-wash: rgba(78, 168, 245, 0.10);
+}
+
+/* Only three animations exist. Reduced motion removes all of them. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .ticker__run { animation: none !important; }
+}
+:root[data-motion="0"] *,
+:root[data-motion="0"] *::before,
+:root[data-motion="0"] *::after {
+  animation-duration: .01ms !important;
+  transition-duration: .01ms !important;
+  animation-iteration-count: 1 !important;
+}
+:root[data-motion="0"] .ticker__run { animation: none !important; }
