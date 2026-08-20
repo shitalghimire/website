@@ -12,15 +12,6 @@ export function module(n) {
   const mod = M.modules.find(m => m.n === n);
   if (!mod) return notFound(n);
 
-  if (!state.moduleUnlocked(M.modules, n)) {
-    return el('div.msg', [
-      el('h2', `Module ${String(n).padStart(2, '0')} is not open yet`),
-      el('p', `It opens once Module ${n - 1} is at least 80% complete and its quiz is passed at 70% or better. ` +
-              `That sequencing is deliberate — each module assumes the one before it.`),
-      el('p', el('a.btn', { href: `#/m/${n - 1}` }, `Go to Module ${n - 1}`))
-    ]);
-  }
-
   const p = state.moduleProgress(mod);
   const lv = M.levels.find(l => l.n === mod.level);
   const wrap = el('div');
@@ -67,20 +58,15 @@ export function module(n) {
   /* module quiz */
   const q = state.load().quizScores['m' + mod.n];
   const passed = state.quizPassed('m' + mod.n);
-  const ready = p.pct >= 0.5;
   wrap.append(el('div', { style: { marginTop: 'var(--s6)' } }, [
     el('a', {
-      class: 'btn ' + (passed ? 'btn--bull' : ready ? 'btn--primary' : ''),
-      href: ready ? `#/quiz/m${mod.n}` : null,
-      style: { width: '100%' },
-      'aria-disabled': ready ? null : 'true',
-      onclick: ready ? null : (e => e.preventDefault())
+      class: 'btn ' + (passed ? 'btn--bull' : 'btn--primary'),
+      href: `#/quiz/m${mod.n}`,
+      style: { width: '100%' }
     }, passed
       ? `✓ Module ${mod.n} quiz passed — best ${pctPlain(q.best)}`
-      : ready
-        ? `Take the Module ${mod.n} quiz` + (q ? ` — best so far ${pctPlain(q.best)}` : '')
-        : 'Finish half the lessons to unlock the module quiz'),
-    !passed && ready && el('p.dim', { style: { fontSize: 'var(--t-xs)', marginTop: 'var(--s2)', textAlign: 'center' } },
+      : `Take the Module ${mod.n} quiz` + (q ? ` — best so far ${pctPlain(q.best)}` : '')),
+    !passed && el('p.dim', { style: { fontSize: 'var(--t-xs)', marginTop: 'var(--s2)', textAlign: 'center' } },
       'Pass mark 70%. A failed attempt costs XP and prints a red candle — that is the point.')
   ]));
 
@@ -92,7 +78,7 @@ export function module(n) {
         href: `#/game/${g.id}`,
         style: { marginTop: 'var(--s4)', display: 'block' }
       }, [
-        el('span.kicker', 'Unlocked by this module'),
+        el("span.kicker", "Suggested after this module"),
         el('h3', { style: { marginTop: '6px' } }, g.title),
         el('p', g.blurb)
       ]));
@@ -104,7 +90,7 @@ export function module(n) {
     mod.n > 1
       ? el('a.btn', { href: `#/m/${mod.n - 1}` }, `← Module ${mod.n - 1}`)
       : el('a.btn', { href: '#/' }, '← Dashboard'),
-    mod.n < M.modules.length && state.moduleUnlocked(M.modules, mod.n + 1)
+    mod.n < M.modules.length
       ? el('a.btn', { href: `#/m/${mod.n + 1}` }, `Module ${mod.n + 1} →`)
       : el('span')
   ]));

@@ -1,0 +1,298 @@
+{
+  "module": 15,
+  "title": "Psychology and the NEPSE Retail Trap",
+  "lessons": [
+    {
+      "id": "15.1",
+      "module": 15,
+      "index": 1,
+      "title": "Fear, greed, and the shape of a bubble — NEPSE 2021 as a case study",
+      "minutes": 6,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "In mid-2021 the queue outside a Kathmandu broker's office ran down the street. People who had never owned a share were opening Demat accounts to get into IPOs. Fixed deposit rates had fallen. Remittances were strong. Everyone knew someone who had doubled their money. On 18 August 2021 the index printed **3,198.60**. It has not seen that number since."
+        },
+        {
+          "type": "core",
+          "md": "Bubbles have a shape, and it repeats. Not because markets are mystical, but because the same human sequence runs each time.\n\n### Stage 1 — Displacement\n\nSomething real changes. In 2020–21 it was genuinely real: Nepal Rastra Bank cut rates, the banking system was flush with liquidity, remittances held up through COVID, and online trading plus MeroShare had just removed the friction from opening an account. Money had nowhere better to go.\n\n### Stage 2 — Boom\n\nPrices rise on real reasons. Early buyers make real money. **This stage is indistinguishable from a healthy bull market — because it is one.**\n\n### Stage 3 — Euphoria\n\nThe reasons stop mattering. New participants arrive who cannot name what the company does. Margin lending expands. \"Analysis\" becomes a screenshot in a Viber group. Volume explodes across the worst-quality names, because the good ones already moved. Anyone urging caution is called a pessimist who missed it.\n\n### Stage 4 — Distribution\n\nThe index goes sideways at a high level while individual stocks quietly stop making new highs. Insiders and institutions sell into retail demand. **This stage is invisible from inside it** — it feels like consolidation, and everyone is still bullish.\n\n### Stage 5 — Panic\n\nA trigger arrives. In Nepal's case: NRB tightening, a credit-to-deposit ratio already past sustainable levels, fixed deposit rates climbing above 11% and making cash genuinely attractive, and margin positions being unwound. **Down 49.5% over roughly two years, to 1,615.**\n\n### What should stay with you\n\nAt every stage, the crowd was **rational given what it believed**. Nobody was stupid. The buyer at 3,198 had watched the index triple and had personal evidence that dips got bought. The failure was not intelligence. It was the absence of a rule written down before the emotion arrived.\n\n### Three warning signs, in order of reliability\n\n1. **New account growth accelerating** — the last buyers are arriving.\n2. **Low-quality names outperforming leaders** — the good ideas ran out. Lesson 2.4 showed how to see this in the NEPSE index against the Sensitive Index.\n3. **Leverage rising** — margin lending expanding faster than the index.\n\nNone of these tell you the exact top. All of them tell you to **reduce position size and stop adding**."
+        },
+        {
+          "type": "visual",
+          "widget": "index-history",
+          "props": { "mode": "bubble" },
+          "caption": "The five stages, shaded in sequence. Hover any milestone."
+        },
+        {
+          "type": "nepse",
+          "md": "NEPSE's structure amplifies all of this. **There is no short selling**, so there is no mechanism for sceptics to express a view and dampen the rise. Sentiment can only be expressed by buying or by staying out. Combined with a heavy retail base and 91 thinly-traded hydropower counters, this makes NEPSE structurally more prone to overshoot in both directions than markets with two-sided participation.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "**Rs. 5,00,000** invested at the peak, 18 August 2021, index 3,198.60.",
+          "table": {
+            "head": ["Date", "Index", "Value", "From peak"],
+            "numeric": [1, 2, 3],
+            "rows": [
+              ["Aug 2021", "3,198.60", "Rs. 5,00,000", "—"],
+              ["2023 trough", "1,615.00", "Rs. 2,52,485", "−49.5%"],
+              ["2024", "2,120.00", "Rs. 3,31,414", "−33.7%"],
+              ["2025", "2,594.00", "Rs. 4,05,502", "−18.9%"],
+              ["Aug 2026", "2,643.83", "Rs. 4,13,292", "−17.3%"]
+            ],
+            "caption": "A diversified index basket. Individual stocks fell considerably further."
+          },
+          "after": "Five years. Still down **Rs. 86,708**.\n\nAnd the number that matters more than the loss: a fixed deposit at 8% over the same five years would have produced roughly **Rs. 7,34,664**. The gap is not Rs. 86,708 — it is **Rs. 3,21,372**.\n\nThat is the true cost of buying at a top, and it is almost never counted, because people compare where they are against what they paid rather than against what the money could have done. Lesson 15.3 is about why that comparison is so hard to make honestly."
+        },
+        {
+          "type": "check",
+          "qids": ["q-15-1-a", "q-15-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Bubbles run displacement → boom → euphoria → distribution → panic; NEPSE 2019–2023 ran the full sequence.",
+            "The reliable warning signs are new-account acceleration, junk outperforming leaders, and rising leverage.",
+            "Write your rules before the emotion arrives — during euphoria, everyone is rational and everyone is wrong."
+          ]
+        }
+      ],
+      "glossary": ["drawdown", "cd_ratio", "sensitive_index", "leverage", "psychology"]
+    },
+
+    {
+      "id": "15.2",
+      "module": 15,
+      "index": 2,
+      "title": "Loss aversion, averaging down, and the \"long-term investor\" excuse",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Nobody decides to become a long-term investor while a stock is rising. The phrase appears at a very specific moment: after a position has fallen far enough that selling would mean admitting a mistake."
+        },
+        {
+          "type": "core",
+          "md": "### Loss aversion\n\nA loss feels roughly **twice as strong** as an equivalent gain. That asymmetry produces a predictable behaviour: people sell winners early to lock in the good feeling, and hold losers to avoid the bad one.\n\nThis is exactly backwards. It produces the Trader B profile from Lesson 14.3 — a high win rate and a shrinking account, because the average loss is far larger than the average win.\n\n### Averaging down\n\nBuying more of a falling position lowers your average cost. It also **increases your total exposure to a position that is going against you**, which is the opposite of what your risk rules said before you entered.\n\nAveraging down is not always wrong. It is wrong when:\n\n- The reason you bought has changed and you are buying anyway.\n- It takes the position past your size limit.\n- You are doing it because the price fell, rather than because the value improved.\n\nThat last one is the tell. **\"It is cheaper now\" is not a thesis** — it is the same thesis you already had, at a lower price, after the market disagreed with you.\n\n### The \"long-term investor\" excuse\n\nBeing a long-term investor is a legitimate strategy, chosen **in advance**, with a horizon and a rationale.\n\nBecoming one **after** a position has fallen 40% is a different thing wearing the same words. The test is simple and uncomfortable: *did you decide the horizon before you bought, or after it went against you?*\n\n### The question that cuts through it\n\n**If you did not already own this, would you buy it today at this price?**\n\nIf yes, holding is a real decision. If no, you are not holding — you are avoiding the act of selling. And the market does not know or care what you paid.\n\n### What to do instead\n\nDecide the exit before entry. Write it down. When it triggers, act — and if you genuinely think the thesis improved, that is a **new trade** requiring the same five checks from Lesson 14.1, including the size limit."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Same picks, different behaviour",
+            "sub": "Ten trades, six winners, on a Rs. 5,00,000 account",
+            "sides": [
+              {
+                "k": "Rules",
+                "t": "Cuts at the stop",
+                "rows": [
+                  ["Six wins at +2R", "+Rs. 1,20,000"],
+                  ["Four losses at −1R", "−Rs. 40,000"],
+                  ["Net", "+Rs. 80,000"],
+                  ["Return", "+16%"],
+                  ["Capital tied in losers", "None"]
+                ]
+              },
+              {
+                "k": "No rules",
+                "t": "Waits for recovery",
+                "rows": [
+                  ["Six wins at +2R", "+Rs. 1,20,000"],
+                  ["Two small losses", "−Rs. 20,000"],
+                  ["Two losers down 45%", "−Rs. 90,000"],
+                  ["Net", "+Rs. 10,000"],
+                  ["Return", "+2%"]
+                ]
+              }
+            ],
+            "verdict": "Identical stock selection and an identical win rate. Eight times the result, decided entirely by what each did when wrong — and the second still holds two positions needing +81.8% each just to break even."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "The \"long-term investor\" line has a specific meaning on NEPSE. Someone who bought at the 2021 peak of 3,198.60 has now been long-term for **five years** and is still down 17.3%. That is the diversified index — not a single mistimed stock. Before adopting the label, check whether you chose the horizon or the horizon chose you.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Averaging down on a hydropower counter, three times.",
+          "calc": [
+            { "l": "Buy 1 — 300 kitta at Rs. 340", "v": "Rs. 1,02,000" },
+            { "l": "Falls to Rs. 290. Buy 2 — 300 more", "v": "Rs. 87,000" },
+            { "l": "Falls to Rs. 245. Buy 3 — 400 more", "v": "Rs. 98,000" },
+            { "l": "Total invested, 1,000 kitta", "v": "Rs. 2,87,000" },
+            { "l": "Average cost", "v": "Rs. 287.00" },
+            { "l": "Price now", "v": "Rs. 218.00" },
+            { "l": "Position value", "v": "Rs. 2,18,000" },
+            { "l": "Unrealised loss", "v": "− Rs. 69,000", "total": true },
+            { "l": "As % of a Rs. 5,00,000 account", "v": "−13.8%", "total": true }
+          ],
+          "after": "The original position was Rs. 1,02,000 — about 20% of the account, risking maybe 1.5% if there had been a stop. After three averages it is **Rs. 2,87,000 committed, 57% of the account**, in one counter, with no stop and a Rs. 69,000 loss.\n\nEvery individual purchase felt reasonable. Each one lowered the average cost, which felt like progress. And at no point did anyone decide to put 57% of their account into one hydropower company — that decision was made in three pieces, each of which was easier than the whole.\n\nRecovering to break-even now needs **+31.7%** on a position that has fallen 36% and may need ten days to exit. The single stop at Rs. 320 that risked Rs. 6,000 looks very different in hindsight."
+        },
+        {
+          "type": "check",
+          "qids": ["q-15-2-a", "q-15-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Loss aversion makes people sell winners early and hold losers, producing a high win rate and a shrinking account.",
+            "Averaging down because the price fell is the same thesis at a lower price, and it grows a position that is going against you.",
+            "Ask: if I did not own this, would I buy it today at this price? If no, you are avoiding selling, not holding."
+          ]
+        }
+      ],
+      "glossary": ["psychology", "stop_loss", "position_size", "drawdown"]
+    },
+
+    {
+      "id": "15.3",
+      "module": 15,
+      "index": 3,
+      "title": "Anchoring to your buy price and to Rs. 100",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Two people own the identical share of the identical company at the identical price today. One bought at Rs. 180 and feels clever. One bought at Rs. 420 and feels trapped. The company does not know either of them exist."
+        },
+        {
+          "type": "core",
+          "md": "**Anchoring** is the tendency to fix on a reference number and judge everything relative to it, even when the number carries no information about the decision at hand.\n\nNepali investors face two anchors, and one of them is printed on the share.\n\n### Anchor 1 — your entry price\n\nYour buy price is a fact about your history. It is **not** a fact about the company, and the market has no idea what it is.\n\nYet it drives behaviour relentlessly: holding until break-even, selling the moment you are back to level, feeling that a stock \"owes\" you something. All of it is a comparison against a number that only exists in your account.\n\nThe corrective is the question from Lesson 15.2: *would I buy this today at this price?* It removes the anchor by removing your history from the decision.\n\n### Anchor 2 — the Rs. 100 face value\n\nEvery Nepali ordinary share carries a **Rs. 100 face value**. Lesson 1.4 established that it is an accounting convention used for paid-up capital and IPO pricing, with no bearing on value.\n\nIt anchors anyway. People buy below Rs. 100 because it feels cheap and sell at Rs. 100 because it feels like getting their money back. Lesson 10.5 showed the order-book evidence: a wall of orders at the round number that nothing in the accounts justifies.\n\nMutual fund units anchor at **Rs. 10** for the same reason.\n\n### Why knowing this does not fix it\n\nAnchoring is not a knowledge problem. You can understand it completely and still feel the pull, because the feeling is produced before the reasoning arrives.\n\nWhat works is **procedural, not intellectual**: write the exit before entry, evaluate positions on their current merits in a monthly review, and use a journal whose columns do not include your entry price prominently. Module 16 builds exactly that."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Same share, same day, two owners",
+            "sub": "Both hold 500 kitta, currently Rs. 300",
+            "sides": [
+              {
+                "k": "Anchored low",
+                "t": "Bought at Rs. 180",
+                "rows": [
+                  ["Position value today", "Rs. 1,50,000"],
+                  ["Feels", "+66% — clever"],
+                  ["Likely behaviour", "Holds, may add"],
+                  ["Question that matters", "Would I buy at Rs. 300 today?"]
+                ]
+              },
+              {
+                "k": "Anchored high",
+                "t": "Bought at Rs. 420",
+                "rows": [
+                  ["Position value today", "Rs. 1,50,000"],
+                  ["Feels", "−29% — trapped"],
+                  ["Likely behaviour", "Waits for Rs. 420"],
+                  ["Question that matters", "Would I buy at Rs. 300 today?"]
+                ]
+              }
+            ],
+            "verdict": "Identical holdings, identical value, identical future. The only difference is a number in each person's past — and it is the main thing driving what each will do next."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "The **Rs. 100 face value** is the strongest anchor in the Nepali market, and it is printed on the instrument itself. Watch a struggling counter approach it from above: selling often accelerates, because holders who bought at issue treat Rs. 100 as \"getting my money back\". Nothing in the accounts changes at Rs. 100 — Lesson 1.4 took that apart — but the order book does.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The same decision, evaluated with and without the entry price visible.",
+          "table": {
+            "head": ["", "With entry price shown", "Entry price hidden"],
+            "numeric": [],
+            "rows": [
+              ["Current price", "Rs. 300", "Rs. 300"],
+              ["EPS", "Rs. 4.10", "Rs. 4.10"],
+              ["P/E", "73.2×", "73.2×"],
+              ["ROE", "2.9%", "2.9%"],
+              ["NPL trend, four quarters", "Rising", "Rising"],
+              ["Your entry", "Rs. 420", "—"],
+              ["Typical decision", "Hold and wait for Rs. 420", "Sell — the fundamentals are deteriorating"]
+            ],
+            "caption": "Every row that describes the company is identical."
+          },
+          "after": "A P/E of 73.2× on an ROE of 2.9% with rising non-performing loans is the pattern Lesson 12.5 described: earnings collapsing, price not yet repriced. Nobody looking at the right-hand column would buy it.\n\nThe left-hand column contains one extra row, about the past, and it reverses the decision.\n\nThe practical fix is not willpower. It is **the order in which you look at things**. Evaluate the company first, on its current numbers, and only then look at what you paid — and look at that solely to compute tax and position size, which are the only two things it is genuinely relevant to."
+        },
+        {
+          "type": "check",
+          "qids": ["q-15-3-a", "q-15-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Your entry price is a fact about your history, not about the company — the market does not know it.",
+            "The Rs. 100 face value anchors Nepali investors even though it carries no information about value.",
+            "Evaluate the company on current numbers first; your entry price is relevant only to tax and sizing."
+          ]
+        }
+      ],
+      "glossary": ["psychology", "face_value", "pe", "roe", "npl"]
+    },
+
+    {
+      "id": "15.4",
+      "module": 15,
+      "index": 4,
+      "title": "The Viber group, the tip, and the pump — how it actually works",
+      "minutes": 5,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "The message arrives with a target price, an urgent tone, and no scenario in which it fails. By the time you read it, the people who sent it have already bought. Your purchase is their exit, and that is not a metaphor — it is the mechanism."
+        },
+        {
+          "type": "core",
+          "md": "A coordinated pump has five stages, and they run in order.\n\n### 1 · Quiet accumulation\n\nOrganisers buy a **thin counter** over days or weeks, avoiding attention. Thin matters: on a stock trading Rs. 2 lakh a day, a modest amount of buying moves the price a great deal. NEPSE has 91 hydropower and 50 microfinance companies, many thin enough to qualify.\n\nThis stage is visible in the **[[floorsheet]]** afterwards — concentrated buying across a handful of brokers — which is what Lesson 4.4 taught you to check.\n\n### 2 · Seeding the tip\n\nThe message goes out. It has a recognisable shape:\n\n- A **target price**, stated with confidence.\n- **Urgency** — \"before it's too late\", \"loading now\".\n- **No downside case**. Nothing about what would make it wrong.\n- A **story** rather than a number: a merger rumour, a project announcement, \"insider news\".\n\n### 3 · Retail buys\n\nThe price rises, which appears to confirm the tip. That confirmation is circular — it is the buying itself — but it is extremely persuasive, and it recruits more buyers.\n\n### 4 · Distribution\n\nOrganisers sell into the demand they created. The price stalls at a high level while volume stays elevated. This is Stage 4 of Lesson 15.1's bubble, compressed into days.\n\n### 5 · Silence\n\nThe group goes quiet on that counter and moves to the next one. The price drifts back, often below where it started, and the retail buyers are holding a thin stock they need days to exit.\n\n### The tell\n\n**A tip with no downside case is not analysis.** Anyone who has genuinely done the work can tell you what would make them wrong. Someone who cannot is not sharing research; they are recruiting.\n\n### What to do\n\nStay out, and report it. **SEBON prohibits market manipulation** and is where it goes. Do not try to \"ride the pump and exit early\" — the organisers are ahead of you by construction, they know the timetable and you do not, and the counter is thin precisely so that you cannot leave quickly."
+        },
+        {
+          "type": "visual",
+          "widget": "candle-chart",
+          "props": { "symbol": "THIN", "bars": 90 },
+          "caption": "A thin counter. Note how little volume it takes to move the price — that is what makes this shape possible."
+        },
+        {
+          "type": "nepse",
+          "md": "**SEBON prohibits market manipulation**, and sebon.gov.np is where you report it — not NEPSE, which operates the market but does not regulate conduct. And the tell is worth repeating: if a tip arrives with a target price and no scenario in which it fails, that absence is the information. Lesson 4.4 shows how to check the floorsheet for the accumulation that preceded it.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A textbook pump, day by day.",
+          "table": {
+            "head": ["Phase", "Sessions", "Price", "Daily turnover", "Who is buying"],
+            "numeric": [2, 3],
+            "rows": [
+              ["Accumulation", "1–12", "Rs. 168 → 186", "Rs. 2–6 lakh", "3 brokers, 78% of volume"],
+              ["The tip circulates", "13", "Rs. 190", "Rs. 14 lakh", "Retail arrives"],
+              ["Retail buying", "14–18", "Rs. 190 → 249", "Rs. 40–90 lakh", "Broad retail"],
+              ["Distribution", "19–22", "Rs. 249 → 244", "Rs. 80 lakh", "Organisers selling"],
+              ["Silence", "23–40", "Rs. 244 → 151", "Rs. 3 lakh", "Nobody"]
+            ],
+            "caption": "Illustrative, and the shape is the standard one."
+          },
+          "after": "Someone buying at Rs. 240 during the excitement is now holding at Rs. 151 — down **37%** — on a counter back to Rs. 3 lakh of daily turnover.\n\nRun the days-to-exit arithmetic from Lesson 13.5 on a Rs. 2,00,000 position: at 10% of Rs. 3 lakh, that is **roughly seven trading days** to get out, and their own selling pushes the price down further as they go.\n\nAnd the part that makes this specifically cruel: **the exit is hardest exactly when everyone wants it.** The thin liquidity that made the pump possible in stage 1 is the same thin liquidity that traps buyers in stage 5. It was never an accident that a thin counter was chosen.\n\nThe defence is not cleverness about timing. It is the rule from Lesson 10.4 — check average daily turnover before acting on anything — applied before the excitement, not during it."
+        },
+        {
+          "type": "check",
+          "qids": ["q-15-4-a", "q-15-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "A pump runs accumulate → seed the tip → retail buys → distribute → silence, and thin counters are chosen deliberately.",
+            "A tip with a target price and no downside case is recruitment, not analysis.",
+            "Do not try to ride it — the organisers know the timetable and the thin liquidity is what traps you. Report it to SEBON."
+          ]
+        }
+      ],
+      "glossary": ["pump_and_dump", "floorsheet", "sebon", "liquidity_trap", "turnover"]
+    }
+  ]
+}

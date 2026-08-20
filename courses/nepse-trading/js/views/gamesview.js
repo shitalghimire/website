@@ -23,20 +23,13 @@ export function games() {
 
   const grid = el('div.gamegrid');
   for (const g of M.games) {
-    const unlocked = state.gameUnlocked(g, M.modules);
     const high = s.gameHighs[g.id];
-    const node = el(unlocked ? 'a' : 'div', {
-      class: 'gcard' + (unlocked ? '' : ' gcard--locked'),
-      href: unlocked ? `#/game/${g.id}` : null,
-      'aria-disabled': unlocked ? null : 'true'
-    }, [
+    const node = el("a.gcard", { href: `#/game/${g.id}` }, [
       el('h3', g.title),
       el('p', g.blurb),
-      unlocked
-        ? (high
-          ? el('div.gcard__best', `Best ${num(high.score, 0)}${high.accuracy != null ? ` · ${pctPlain(high.accuracy)} accuracy` : ''} · ${high.plays} play${high.plays === 1 ? '' : 's'}`)
-          : el('div.gcard__best', 'Not played yet'))
-        : el('div', { style: { marginTop: 'var(--s3)' } }, el('span.pill', `Unlocks in Module ${g.unlockedByModule}`))
+      high
+        ? el("div.gcard__best", `Best ${num(high.score, 0)}${high.accuracy != null ? ` · ${pctPlain(high.accuracy)} accuracy` : ""} · ${high.plays} play${high.plays === 1 ? "" : "s"}`)
+        : el("div.gcard__best", `Best paired with Module ${g.unlockedByModule} · not played yet`)
     ]);
     grid.append(node);
   }
@@ -63,15 +56,6 @@ export async function game(id) {
   const { modules: M } = ctx;
   const meta = M.games.find(g => g.id === id);
   if (!meta) return el('div.msg', [el('h2', 'No such game'), el('p', el('a.btn', { href: '#/games' }, 'All games'))]);
-
-  if (!state.gameUnlocked(meta, M.modules)) {
-    return el('div.msg', [
-      el('h2', `${meta.title} is locked`),
-      el('p', `It unlocks when you start Module ${meta.unlockedByModule}. The game assumes what that module teaches — ` +
-              `playing it earlier would just be guessing.`),
-      el('p', el('a.btn', { href: `#/m/${meta.unlockedByModule}` }, `Go to Module ${meta.unlockedByModule}`))
-    ]);
-  }
 
   const load = LOADERS[id];
   if (!load) return el('div.msg', el('h2', 'That game is not available.'));

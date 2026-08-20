@@ -1,0 +1,398 @@
+{
+  "module": 12,
+  "title": "Reading a Nepali Balance Sheet",
+  "lessons": [
+    {
+      "id": "12.1",
+      "module": 12,
+      "index": 1,
+      "title": "Where to find the numbers: quarterly reports and the disclosure page",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Every figure you need about a Nepali listed company is published, free, by the company itself, four times a year. Almost nobody reads it, which is precisely why reading it is worth something."
+        },
+        {
+          "type": "core",
+          "md": "### The primary source\n\nEvery listed Nepali company publishes **unaudited quarterly financial results** on its own website, usually under a heading like \"Investor Relations\" or \"Financial Reports\". This is the source. Everything else is a copy of it.\n\nQuarters follow the Nepali fiscal year, which begins in Shrawan (mid-July). So Q1 covers Shrawan–Ashwin, Q2 Kartik–Poush, and so on. **Q2 FY 2082/83** — the source of every bank figure in this course — covers roughly October 2025 to January 2026.\n\n### What to open first\n\nOn page one of the results you will find: net profit, EPS, net worth per share, and for a bank the ratios that matter — [[npl|NPL]], [[cd_ratio|CD ratio]], capital adequacy and [[nim|net interest margin]].\n\nThat single page answers most questions. The notes behind it answer the rest, and the note on **provisioning** is usually the most informative thing in the document.\n\n### The aggregators, and what they are for\n\n**Sharesansar**, **Merolagani** and **NepseAlpha** collect these numbers into comparable tables. They are genuinely useful for screening and for history.\n\nThey are also **copies**. They can be stale, they can transcribe wrongly, and they do not verify anything. Use them to find candidates; open the company's own PDF before committing money.\n\n### NEPSE's disclosure page\n\nnepalstock.com carries company disclosures: board meeting notices, dividend announcements, book-closure dates, auditor changes. This is where you learn a bonus is coming, which matters for every chart you draw across that date.\n\n### The habit worth building\n\nWhen a number matters — when you are about to commit money to it — **open the company's own quarterly report**. It takes five minutes. Almost nobody does it, and that is the entire edge available to a careful retail investor in this market."
+        },
+        {
+          "type": "visual",
+          "widget": "flow",
+          "props": {
+            "title": "Where each number lives",
+            "sub": "Primary sources first, aggregators second",
+            "steps": [
+              { "t": "The company's own website — Unaudited Financial Results", "d": "Net profit, EPS, net worth, NPL, CD ratio, NIM, capital adequacy. Published quarterly. This is the source.", "meta": "primary" },
+              { "t": "NEPSE disclosures — nepalstock.com", "d": "Board meetings, dividend announcements, book-closure dates, auditor changes.", "meta": "primary" },
+              { "t": "SEBON — sebon.gov.np", "d": "Prospectuses, directives, enforcement actions.", "meta": "primary" },
+              { "t": "Sharesansar / Merolagani / NepseAlpha", "d": "Comparable tables, dividend history, screeners, charting. Fast and useful — and a copy.", "meta": "secondary" },
+              { "t": "Nepal Rastra Bank — nrb.org.np", "d": "Monetary policy, system-wide CD ratio, interest rates. The upstream driver of every NEPSE cycle.", "meta": "primary" }
+            ],
+            "note": "Aggregators find candidates. The company's own PDF confirms them before you commit money."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Nepali quarters follow the **fiscal year beginning in Shrawan** (mid-July), so Q1 is Shrawan–Ashwin and Q4 carries most of the year's provisioning. Q4 results for a bank are routinely much weaker than Q1–Q3 for that reason alone — which is why Lesson 12.4 insists on year-on-year rather than sequential comparison, and why an \"annualised\" Q1 EPS is systematically optimistic.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The same bank, read three ways on the same afternoon.",
+          "table": {
+            "head": ["Source", "EPS reported", "Why it differs"],
+            "numeric": [],
+            "rows": [
+              ["Aggregator A", "Rs. 29.69", "Q2 2082/83 trailing figure"],
+              ["Aggregator B", "Rs. 34.12", "Q1 annualised — Q1 profit × 4"],
+              ["The company's own Q2 report", "Rs. 29.69", "The actual figure"],
+              ["A Viber message", "Rs. 41.00", "Unsourced"]
+            ],
+            "caption": "Three of these are on a public website. One is not."
+          },
+          "after": "Aggregator B is not wrong exactly — it has annualised a single quarter, which is a legitimate calculation and a misleading one. For a bank whose fourth quarter carries most of the year's loan-loss provisioning, annualising Q1 systematically overstates earnings.\n\nAt Rs. 496.10 the difference matters: a P/E of **16.71×** on the annualised figure against **18.40×** on the real one. Not enormous, but it is the difference between a stock looking cheaper than the sector median and looking slightly above it.\n\nThe Viber figure is the one that costs people money, and Lesson 15.4 is about the people who send it. **The company's own PDF is free, takes five minutes, and settles the question.**"
+        },
+        {
+          "type": "check",
+          "qids": ["q-12-1-a", "q-12-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Every listed Nepali company publishes unaudited quarterly results on its own site — that is the source, everything else is a copy.",
+            "Nepali quarters start in Shrawan, and Q4 carries most of a bank's provisioning, so annualised Q1 figures flatter.",
+            "Use aggregators to find candidates and the company's own PDF before committing money."
+          ]
+        }
+      ],
+      "glossary": ["eps", "npl", "cd_ratio", "nim", "sebon", "provisioning"]
+    },
+
+    {
+      "id": "12.2",
+      "module": 12,
+      "index": 2,
+      "title": "EPS, and the bonus-share adjustment everyone gets wrong",
+      "minutes": 6,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A bank reports EPS of Rs. 30. Last year the site says it was Rs. 36. Earnings are down 17%, so you avoid the stock. Except earnings are **up 20%**, and you have just been fooled by a bonus share issue that nobody adjusted for."
+        },
+        {
+          "type": "core",
+          "md": "**[[eps|EPS]] = net profit ÷ number of shares outstanding.**\n\nNepali listed companies — especially banks and microfinance — pay a large part of their dividend as [[bonus_share|bonus shares]] rather than cash. A bonus share is **not new value**. The company issues more shares to existing holders in proportion to what they hold. You own more pieces of the same pie.\n\nBecause the denominator grows, **EPS mechanically falls even when profit rises**. And the share price is adjusted downward on the ex-bonus date by the same proportion. Nothing has been created or destroyed — but every historical number in your spreadsheet is now on a different scale.\n\n### The adjustment\n\nTo compare EPS across years you must restate the older figures:\n\n```\nAdjusted prior EPS   = prior EPS   ÷ (1 + bonus ratio)\nAdjusted prior price = prior price ÷ (1 + bonus ratio)\n```\n\nApply it to **every year before the bonus**, cumulatively, if there were multiple issues.\n\n### The same trap on price charts\n\nA stock that appears to have \"crashed 20% overnight\" three years ago very often just went ex-bonus. Good data portals adjust for this; some do not. **Always check whether the chart you are reading is bonus-adjusted before you draw a support line across a bonus gap** — Lesson 10.2 made the same point from the other direction.\n\n### Two further EPS cautions specific to Nepal\n\n**Annualised vs actual.** Quarterly reports often show \"annualised EPS\" — the quarter's profit multiplied by four. For a bank whose fourth quarter carries most of the year's loan-loss provisioning, annualised Q1 EPS is systematically optimistic. Use trailing twelve months where you can.\n\n**Distributable vs accounting profit.** Nepali banks must maintain regulatory reserves before profit becomes distributable. A bank can report healthy EPS and still be unable to pay much of a dividend. Read the reserve note, not just the headline."
+        },
+        {
+          "type": "visual",
+          "widget": "ratio-explorer",
+          "props": { "mode": "bonus" },
+          "caption": "Two charts of the same company. One tells you to sell."
+        },
+        {
+          "type": "nepse",
+          "md": "Bonus shares are **not a taxable event** when you receive them, but they reduce your [[wacc|WACC]] across your whole holding. If you bought 100 kitta at Rs. 600 (WACC Rs. 600) and receive a 20% bonus, you now hold 120 kitta with a WACC of Rs. 500. When you eventually sell, your capital gain is computed against Rs. 500 — so the tax deferred at issue arrives later, in full.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A commercial bank over three years.",
+          "table": {
+            "head": ["Year", "Net profit (Rs. crore)", "Shares (crore)", "Reported EPS", "Bonus that year", "Adjusted EPS"],
+            "numeric": [1, 2, 3, 5],
+            "rows": [
+              ["2079/80", "216.0", "6.00", "Rs. 36.00", "—", "Rs. 25.00"],
+              ["2080/81", "237.6", "7.20", "Rs. 33.00", "20%", "Rs. 27.50"],
+              ["2081/82", "259.2", "8.64", "Rs. 30.00", "20%", "Rs. 30.00"]
+            ],
+            "caption": "Adjusted to today's share count of 8.64 crore."
+          },
+          "after": "Reported EPS: **36 → 33 → 30**. Looks like a company in decline, and a screener sorting on EPS growth would rank it near the bottom.\n\nAdjusted EPS: **25 → 27.50 → 30**. Profit grew 10% a year, every year — which the net profit column said all along.\n\nYour WACC, if you had bought at the start: Rs. 600 → Rs. 500 → **Rs. 416.67**, with your 100 kitta becoming **144**.\n\nAnd the part that is easy to miss: your holding is worth what 144 shares are worth. If the price fell from Rs. 600 to Rs. 450 over those three years, that is **not** a 25% loss — it is 144 × Rs. 450 = Rs. 64,800 against Rs. 60,000 invested, a **gain of 8%**. Unadjusted price charts mislead in both directions, and this one happened to mislead pessimistically."
+        },
+        {
+          "type": "check",
+          "qids": ["q-12-2-a", "q-12-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Bonus shares grow the share count, so reported EPS falls even when profits rise.",
+            "Always restate prior EPS and prior price by ÷(1 + bonus ratio) before comparing years.",
+            "Check whether your chart is bonus-adjusted before drawing any line across a bonus gap."
+          ]
+        }
+      ],
+      "glossary": ["eps", "bonus_share", "wacc", "provisioning", "cgt"]
+    },
+
+    {
+      "id": "12.3",
+      "module": 12,
+      "index": 3,
+      "title": "P/E, P/B, and what a \"cheap\" Nepali bank actually looks like",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Nineteen commercial banks are listed on NEPSE. Their price-to-earnings ratios run from 7.67× to 343.16×. That is not a range of opinions about quality. That is a signal that P/E, used carelessly, will tell you nothing at all."
+        },
+        {
+          "type": "core",
+          "md": "### P/E — price divided by earnings per share\n\nIt answers: *how many rupees do I pay for one rupee of annual earnings?* A P/E of 15 means fifteen.\n\nThe **sector median for Nepali commercial banks was 14.92×** in Q2 2082/83. That is your reference point.\n\n### Why an extreme P/E in Nepal usually means the opposite of what people assume\n\nIn a developed market, a high P/E often means investors expect rapid growth. In Nepali banking it almost always means **the E collapsed**.\n\nNIC Asia at **343.16×** is not the market pricing spectacular future earnings. It is a bank whose EPS fell to **Rs. 1.76** and whose ROE is **0.88%**, while the price has not fully repriced. Same story at HBL (33.16×, ROE 6.66%) and CZBIL (30.45×, ROE 3.14%).\n\nAnd a low P/E is not automatically a bargain. **NBL at 7.67× has an ROE of 6.76%** — below what a fixed deposit was paying during the tightening cycle. Cheap because it earns poorly.\n\n### P/B — price divided by book value per share\n\nOften **steadier and more useful for banks**, because book value moves slowly while earnings can swing violently. A bank trading below book value is being priced as though its loan book is worth less than the accounts say — which is sometimes correct.\n\n### The rule that makes both useful\n\n**Never read P/E without [[roe|ROE]] beside it.** P/E tells you what you pay; ROE tells you what the business does with capital. Together they mean something; separately neither does.\n\nAnd when EPS is negative — Laxmi Sunrise reported **−Rs. 2.04** — P/E is arithmetically meaningless. Ignore it entirely rather than reading a large positive number into it."
+        },
+        {
+          "type": "visual",
+          "widget": "ratio-explorer",
+          "caption": "P/E against ROE for all nineteen banks. NICA sits alone, far right and at the bottom."
+        },
+        {
+          "type": "nepse",
+          "md": "Three ratios matter more for a Nepali bank than P/E, and none appear on most price-tracking sites: **[[npl|NPL]]** (rising non-performing loans precede falling EPS by two to four quarters), **[[cd_ratio|CD ratio]]** (how stretched lending is against funding), and **[[nim|net interest margin]]** (the actual spread earned). Find them in the quarterly report PDF on the bank's own website, under \"Unaudited Financial Results\".",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Four banks at four very different P/E ratios.",
+          "table": {
+            "head": ["Bank", "P/E", "LTP", "EPS", "ROE", "What the pair says"],
+            "numeric": [1, 2, 3, 4],
+            "rows": [
+              ["KBL", "10.59×", "184.10", "20.74", "14.56%", "Cheap and profitable — coherent"],
+              ["NABIL", "18.40×", "496.10", "29.69", "14.86%", "Above median, best ROE — coherent"],
+              ["NBL", "7.67×", "241.00", "17.76", "6.76%", "Cheap because it earns poorly"],
+              ["NICA", "343.16×", "326.00", "1.76", "0.88%", "Earnings collapsed, price has not"]
+            ],
+            "caption": "Fundamentals as at FY 2082/83 Q2. Prices illustrative — check NepseAlpha or Merolagani for live data."
+          },
+          "after": "Read left to right and the P/E column tells you almost nothing useful. Read P/E **beside** ROE and the four rows separate cleanly.\n\nKBL at 10.59× with a 14.56% ROE is the interesting kind of cheap. NBL at 7.67× with a 6.76% ROE is the other kind — priced low because the business returns less than a fixed deposit paid during the tightening cycle.\n\nAnd the honest limit, which matters more than any of the above: **none of this is a recommendation.** These are worked examples of a method. A bank can look entirely coherent on P/E and ROE and still be carrying rising non-performing loans that have not reached the earnings line yet — which is exactly what Lesson 12.5 is about, and why NPL matters more than either ratio here."
+        },
+        {
+          "type": "check",
+          "qids": ["q-12-3-a", "q-12-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "An extreme P/E in Nepali banking almost always means collapsed earnings, not priced-in growth.",
+            "Never read P/E without ROE beside it, and ignore P/E entirely when EPS is negative.",
+            "P/B is often steadier than P/E for banks, because book value moves slowly while earnings swing."
+          ]
+        }
+      ],
+      "glossary": ["pe", "pb", "roe", "eps", "book_value", "npl"]
+    },
+
+    {
+      "id": "12.4",
+      "module": 12,
+      "index": 4,
+      "title": "ROE, ROA, and net interest margin for banks",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Two banks both report a 14% return on equity. One earns it by running a genuinely profitable business. The other earns it by borrowing more. Decomposing ROE tells you which, and it takes about a minute."
+        },
+        {
+          "type": "core",
+          "md": "### ROE — return on equity\n\nNet profit ÷ shareholders' equity. *How much profit does the business generate from the capital shareholders put in?*\n\nFor Nepali commercial banks, roughly: above 12% is strong, 8–12% is ordinary, below 6% is weak. The best in the Q2 2082/83 table was **NABIL at 14.86%**; the worst positive figure was **NICA at 0.88%**.\n\n### ROA — return on assets\n\nNet profit ÷ total assets. Banks are leveraged institutions, so ROA is much smaller than ROE — often under 2%.\n\n### The decomposition that matters\n\n```\nROE = ROA × (assets ÷ equity)\n```\n\nThat second term is **leverage**. A bank can raise ROE either by earning more on its assets, or simply by holding more assets per rupee of equity.\n\nSo two banks with identical 14% ROE can be completely different: one with ROA 1.4% and leverage 10×, another with ROA 0.7% and leverage 20×. **The second is twice as fragile**, and the ROE column alone will never tell you.\n\nThis is why Nepal Rastra Bank sets capital adequacy requirements — they cap that leverage term.\n\n### NIM — net interest margin\n\nThe spread a bank earns between what it charges borrowers and pays depositors, as a percentage of earning assets. It is the **core engine** of a commercial bank.\n\nNIM compresses when deposit competition intensifies or when NRB tightens — which is exactly what happened through the 2021–2023 cycle, and it is why bank earnings fell across the sector rather than at one bank.\n\n### Reading them together\n\nROE says how much. ROA says how much per rupee of assets. Leverage explains the gap. NIM says whether the core business is healthy. A bank with a falling NIM and a rising ROE is producing its returns from leverage, and that is worth knowing before you buy it."
+        },
+        {
+          "type": "visual",
+          "widget": "ratio-explorer",
+          "caption": "The scatter again — this time read the ROE axis first and the P/E axis second."
+        },
+        {
+          "type": "nepse",
+          "md": "Nepal Rastra Bank sets **capital adequacy** requirements, which cap the leverage term in the ROE decomposition. A bank close to its minimum has little room to grow its loan book without raising capital — which in Nepal usually means another bonus issue, which dilutes EPS again. The capital adequacy ratio is on page one of every bank's quarterly results.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Two banks with the same ROE, decomposed.",
+          "table": {
+            "head": ["", "Bank X", "Bank Y"],
+            "numeric": [1, 2],
+            "rows": [
+              ["ROE", "14.0%", "14.0%"],
+              ["ROA", "1.40%", "0.70%"],
+              ["Assets ÷ equity (leverage)", "10.0×", "20.0×"],
+              ["Net interest margin", "4.2%", "3.1%"],
+              ["Capital adequacy headroom", "Comfortable", "Near the minimum"],
+              ["Effect of a 1% loss on the loan book", "ROE falls to ~4%", "ROE falls to ~−6%"]
+            ],
+            "caption": "Identical ROE. Illustrative, but the arithmetic of the last row is exact."
+          },
+          "after": "Read the last row twice. A **1% loss on the loan book** — an entirely ordinary outcome in a bad credit year — takes Bank X's ROE from 14% to about 4%. It takes Bank Y's to **about −6%**.\n\nBank Y is not a better bank that happens to be leveraged. It is a more fragile bank producing an identical headline number by a different route, and it has less capital headroom to absorb the loss when it comes.\n\nThis is the loss case for this lesson: someone screening on ROE alone ranks these two identically, buys Bank Y because its P/E is lower, and discovers the difference during the next tightening cycle. **The ROE column concealed exactly the thing that mattered**, and one division — assets over equity — would have revealed it."
+        },
+        {
+          "type": "check",
+          "qids": ["q-12-4-a", "q-12-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "ROE = ROA × leverage — two banks with identical ROE can have completely different fragility.",
+            "NIM is the core engine of a commercial bank and compresses when NRB tightens or deposit competition rises.",
+            "A bank with falling NIM and rising ROE is producing returns from leverage, not from its business."
+          ]
+        }
+      ],
+      "glossary": ["roe", "roa", "nim", "leverage", "capital_adequacy"]
+    },
+
+    {
+      "id": "12.5",
+      "module": 12,
+      "index": 5,
+      "title": "NPL, CD ratio, and provisioning — the three numbers that kill banks",
+      "minutes": 5,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A bank's earnings do not collapse suddenly. They collapse two to four quarters after its non-performing loans start rising — and that rise is published, quarterly, for free, on the bank's own website, before the earnings arrive."
+        },
+        {
+          "type": "core",
+          "md": "Three numbers predict a Nepali bank's future earnings better than any current ratio does.\n\n### NPL — non-performing loans\n\nLoans not being repaid, as a percentage of total loans. Below about 2% is healthy; above 4% is a warning; rising quickly matters more than the level.\n\n**NPL leads EPS by roughly two to four quarters.** Loans go bad, the bank must set aside provisions against them, provisions reduce profit, profit reduces EPS. That chain takes time, and the first link is visible long before the last.\n\n### CD ratio — credit to deposit\n\nHow much of the bank's deposits it has lent out. A stretched CD ratio means little room to lend more without raising deposits — and deposit competition raises funding costs, which compresses NIM.\n\nThis was **the** number in the 2021–2023 cycle. The system-wide CD ratio was already stretched when NRB tightened, fixed deposit rates rose above 11%, and the whole sector had to fund itself more expensively at once.\n\n### Provisioning\n\nMoney set aside against loans the bank expects to lose. It reduces reported profit directly, which is why **Q4 results are routinely weaker** — most of the year's provisioning lands there.\n\nThe useful question is not the level but the **coverage**: how much has been provided against the NPL that exists? Under-provisioning flatters current profit and stores up the difference for later.\n\n### Why this beats P/E\n\nP/E tells you what the market thinks about earnings that have **already been reported**. NPL, CD ratio and provisioning tell you about earnings that have **not been reported yet**.\n\nNone of them appear on most price-tracking sites. All three are on page one of the quarterly report."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Two banks, same current EPS",
+            "sub": "The columns that matter are the ones a price site does not show",
+            "sides": [
+              {
+                "k": "Stable",
+                "t": "Bank P",
+                "rows": [
+                  ["EPS", "Rs. 17.10"],
+                  ["P/E", "15.35×"],
+                  ["NPL, four quarters ago", "1.6%"],
+                  ["NPL now", "1.8%"],
+                  ["CD ratio", "82%"],
+                  ["Provision coverage", "Comfortable"]
+                ]
+              },
+              {
+                "k": "Deteriorating",
+                "t": "Bank Q",
+                "rows": [
+                  ["EPS", "Rs. 17.06"],
+                  ["P/E", "13.44×"],
+                  ["NPL, four quarters ago", "1.9%"],
+                  ["NPL now", "4.4%"],
+                  ["CD ratio", "89%"],
+                  ["Provision coverage", "Thin"]
+                ]
+              }
+            ],
+            "verdict": "Nearly identical EPS, and Bank Q looks cheaper on P/E. Its NPL has more than doubled in a year, its CD ratio leaves little room, and its provisioning is thin. The cheapness is the market beginning to price something the earnings line has not yet shown."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "**NPL, CD ratio and provisioning coverage are on page one of the quarterly report and on almost no price-tracking site.** That gap is the entire informational edge available to a careful Nepali retail investor. Nepal Rastra Bank also publishes system-wide CD ratio and interest-rate data at nrb.org.np — the upstream driver of every NEPSE banking cycle.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Bank Q, four quarters later.",
+          "table": {
+            "head": ["Quarter", "NPL", "Provisioning (Rs. crore)", "Net profit (Rs. crore)", "EPS"],
+            "numeric": [1, 2, 3, 4],
+            "rows": [
+              ["Q1 — NPL starts rising", "2.4%", "18.0", "62.0", "Rs. 17.06"],
+              ["Q2", "3.1%", "27.0", "54.0", "Rs. 14.86"],
+              ["Q3", "4.4%", "41.0", "38.0", "Rs. 10.46"],
+              ["Q4 — the year's provisioning lands", "4.9%", "78.0", "6.0", "Rs. 1.65"],
+              ["P/E at an unchanged price of Rs. 225.80", "—", "—", "—", "136.8×"]
+            ],
+            "caption": "Illustrative, and the sequence is the ordinary one."
+          },
+          "after": "EPS went from Rs. 17.06 to Rs. 1.65 across four quarters. At an unchanged price the P/E goes from 13.44× to **136.8×** — and someone screening on P/E in Q4 now sees a \"high P/E growth stock\".\n\nThey are looking at exactly the situation Lesson 12.3 described in NIC Asia's 343.16×: collapsed earnings, not priced-in growth.\n\nThe warning was in Q1, in a row most people never open. **NPL rose from 1.9% to 2.4% before net profit moved at all.** Everything after that was arithmetic working its way through the income statement over a year.\n\nThat is the whole case for reading the quarterly report: the information arrives quarters before the price does."
+        },
+        {
+          "type": "check",
+          "qids": ["q-12-5-a", "q-12-5-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "NPL leads EPS by roughly two to four quarters — rising NPL is the earliest published warning a bank gives.",
+            "A stretched CD ratio leaves no room to lend and raises funding costs, compressing NIM across the sector at once.",
+            "Provision coverage matters more than the provisioning level; under-provisioning flatters today and is paid for later."
+          ]
+        }
+      ],
+      "glossary": ["npl", "cd_ratio", "provisioning", "nim", "eps", "pe"]
+    },
+
+    {
+      "id": "12.6",
+      "module": 12,
+      "index": 6,
+      "title": "Intrinsic value: a simple, honest DDM for a dividend-paying bank",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Every valuation model produces a precise number from imprecise assumptions. The number feels like knowledge. Run the same model as a range instead and it produces something far more useful: a picture of how little you actually know."
+        },
+        {
+          "type": "core",
+          "md": "The **dividend discount model** values a share as the present value of the cash dividends it will pay.\n\nFor a company whose dividend grows at a constant rate:\n\n```\nV = D₁ ÷ (r − g)\n```\n\nWhere **D₁** is next year's cash dividend per share, **r** is your required return, and **g** is the assumed growth rate.\n\n### Why it suits Nepali banks specifically\n\nBanks pay dividends, are mature, and are regulated into relatively predictable behaviour. That is exactly the situation the model was built for. Applying it to a pre-COD hydropower company with no earnings, as people sometimes do, is meaningless.\n\n### The cash-only rule\n\nUse the **actual cash dividend**, not the bonus component. A bonus share is not cash and cannot be spent — Lesson 12.2 established that it is the same pie in more slices. Nepali banks often announce something like \"20% dividend\" that is 15% bonus and 5% cash. **Only the 5% belongs in the model.**\n\nThis single correction changes the answer by a factor of three or four, and it is the most common error people make with this model in Nepal.\n\n### Choosing r and g honestly\n\n**r** — your required return. If a Nepali fixed deposit paid above 8% at times during the tightening cycle, demanding less than that for equity risk makes no sense. Something in the 12–15% range is defensible.\n\n**g** — long-run dividend growth. It cannot exceed the economy's growth forever. Mid single digits is defensible; 15% is not.\n\n### The critical constraint\n\n**r must exceed g**, or the formula returns a negative or infinite value. If your assumptions require g > r, your assumptions are wrong, not the model.\n\n### How to use it\n\nRun it as a **sensitivity table**, never as a single number. If the range of defensible assumptions produces Rs. 240–Rs. 610 and the stock trades at Rs. 496, the model has told you something real: it is inside the range, and this model cannot settle the question."
+        },
+        {
+          "type": "visual",
+          "widget": "ddm",
+          "caption": "Change r and g. The table shows how far the answer moves on assumptions you cannot verify."
+        },
+        {
+          "type": "nepse",
+          "md": "Use the **actual cash dividend**, not the bonus component. A Nepali bank announcing a \"20% dividend\" is often paying 15% bonus and 5% cash — and only the cash belongs in a dividend discount model. Getting this wrong overstates intrinsic value by a factor of three or four, which is more than any other single error you can make with this model.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A bank paying a **Rs. 22 cash dividend** per share, valued across defensible assumptions.",
+          "table": {
+            "head": ["Required return ↓ / growth →", "4%", "5%", "6%", "7%", "8%"],
+            "numeric": [1, 2, 3, 4, 5],
+            "rows": [
+              ["11%", "327", "347", "371", "398", "432"],
+              ["12%", "286", "301", "318", "339", "364"],
+              ["13%", "254", "266", "278", "294", "312"],
+              ["14%", "229", "238", "248", "260", "274"],
+              ["15%", "208", "215", "223", "233", "243"]
+            ],
+            "caption": "V = D₁ ÷ (r − g), with D₁ = Rs. 22 × (1 + g). All figures in rupees."
+          },
+          "after": "The range across entirely defensible assumptions runs from **Rs. 208 to Rs. 432** — the top is more than double the bottom, on two numbers nobody can verify.\n\nThat is not a failure of the model. It is the model telling you the truth about the precision available.\n\nWhat you can do with it: if the stock trades at **Rs. 180**, it is below every cell in the table, and that is worth investigating. If it trades at **Rs. 600**, it is above every cell, and that is worth investigating too. At **Rs. 496** it sits inside the range and the model cannot settle the question — which is a genuine, useful answer, and the one people are least willing to accept.\n\nAnd the loss case worth stating: someone who ran this with a 20% \"dividend\" instead of the 5% cash portion would get roughly Rs. 1,200 and conclude the stock was trading at a 60% discount to value. That is how a model becomes a justification."
+        },
+        {
+          "type": "check",
+          "qids": ["q-12-6-a", "q-12-6-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "V = D₁ ÷ (r − g), and r must exceed g or the assumptions are wrong rather than the model.",
+            "Use the actual cash dividend only — the bonus component is not cash and inflates the answer several-fold.",
+            "Run it as a sensitivity table; if the defensible range brackets the market price, that is a real answer."
+          ]
+        }
+      ],
+      "glossary": ["ddm", "dividend_tax", "bonus_share", "roe", "book_value"]
+    }
+  ]
+}

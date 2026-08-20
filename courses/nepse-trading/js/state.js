@@ -243,22 +243,21 @@ export function quizPassed(key, isBoss = false) {
 }
 
 /**
- * Module n opens when module n−1 is at ≥80% and its quiz is passed at ≥70%.
- * Module 1 is always open.
+ * Every module is open from the start. The course is a reference as much as a
+ * path — someone who already knows how to place an order should be able to go
+ * straight to capital gains tax without grinding through Module 1 first.
+ *
+ * The suggested order still shows in the module tree, and "Continue" still
+ * resolves to your first unfinished lesson, so the path is offered rather
+ * than enforced.
  */
-export function moduleUnlocked(modules, n) {
-  if (n <= 1) return true;
-  const prev = modules.find(m => m.n === n - 1);
-  if (!prev) return true;
-  return moduleProgress(prev).pct >= 0.8 && quizPassed('m' + prev.n);
-}
+export function moduleUnlocked() { return true; }
 
-export function gameUnlocked(game, modules) {
-  const need = game.unlockedByModule;
-  const mod = modules.find(m => m.n === need);
-  if (!mod) return true;
-  return moduleProgress(mod).pct > 0 || moduleUnlocked(modules, need + 1);
-}
+/** Games are open from the start too, for the same reason. */
+export function gameUnlocked() { return true; }
+
+/** The module a game is designed to follow — shown as guidance, not a gate. */
+export function gameSuggestedAfter(game) { return game.unlockedByModule; }
 
 export function courseProgress(modules) {
   const s = load();

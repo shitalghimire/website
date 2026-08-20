@@ -1,0 +1,312 @@
+{
+  "module": 10,
+  "title": "Structure: Trend, Support, Resistance",
+  "lessons": [
+    {
+      "id": "10.1",
+      "module": 10,
+      "index": 1,
+      "title": "Higher highs and higher lows — defining a trend without an indicator",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Ask five people whether a stock is in an uptrend and you will get five answers, most of them based on how the chart makes them feel. There is a definition that removes the feeling entirely, and it needs no indicator, no moving average and no software."
+        },
+        {
+          "type": "core",
+          "md": "A trend is defined by **swing points** — the local peaks and troughs the price makes as it moves.\n\n- **Uptrend**: higher highs **and** higher lows.\n- **Downtrend**: lower highs **and** lower lows.\n- **Anything else is a range.** Not a weak trend, not a forming trend — a range.\n\nThat third category is where most charts spend most of their time, and refusing to call a range a trend is most of the discipline here.\n\n### Finding swing points without arguing\n\nA **swing high** is a session whose high is higher than the *k* sessions on either side of it. A swing low is the mirror. Use k = 3 for daily charts and be consistent — the definition matters less than applying the same one every time.\n\nOnce you can mark swings mechanically, the trend reads itself.\n\n### What breaks a trend, and what does not\n\nAn uptrend is intact while it keeps making higher highs and higher lows. It is **not broken** by a single down day, a scary candle, or a piece of news.\n\nIt **is** broken when price makes a **lower low** — because that is the first time in the sequence that buyers failed to defend a level they had previously defended.\n\nThat single rule replaces an enormous amount of anxious chart-watching.\n\n### Why this comes before indicators\n\nEvery indicator in Module 11 is a function of price. None of them can tell you anything price has not already said, and all of them lag. Structure is the underlying thing; indicators are compressions of it.\n\nIf you can read structure, indicators become confirmation. If you cannot, indicators become a substitute for thinking — and on NEPSE's thin counters they break in ways Lesson 11.4 covers in detail."
+        },
+        {
+          "type": "visual",
+          "widget": "candle-chart",
+          "props": { "symbol": "NABIL", "bars": 120 },
+          "caption": "Mark the swing highs and lows yourself. Then ask: higher, lower, or neither?"
+        },
+        {
+          "type": "nepse",
+          "md": "On NEPSE, a **circuit day** can manufacture a false swing point. If price hits the ±15% limit, the high or low of that session is the limit, not a level the market found. When you mark swings, note circuit days separately — a \"higher high\" that is really an upper-circuit close tells you demand was queued and unfilled, which is different information from a market that traded up to a level and stopped.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "Six swing points on a commercial bank over four months.",
+          "table": {
+            "head": ["Swing", "Type", "Price", "vs previous same type", "Trend status"],
+            "numeric": [2],
+            "rows": [
+              ["1", "Low", "Rs. 214.20", "—", "—"],
+              ["2", "High", "Rs. 238.60", "—", "—"],
+              ["3", "Low", "Rs. 221.40", "Higher than 214.20 ✓", "Uptrend forming"],
+              ["4", "High", "Rs. 249.80", "Higher than 238.60 ✓", "Uptrend confirmed"],
+              ["5", "Low", "Rs. 232.10", "Higher than 221.40 ✓", "Uptrend intact"],
+              ["6", "High", "Rs. 246.30", "LOWER than 249.80 ✗", "Warning — not yet broken"]
+            ],
+            "caption": "Swing points marked with k = 3."
+          },
+          "after": "Swing 6 is a **lower high**. That is a warning, not a break — the uptrend is defined by both higher highs and higher lows, and the lows are still rising.\n\nThe trend breaks only if price now takes out **Rs. 232.10**, the last swing low. Until then, an uptrend that has paused is still an uptrend.\n\nThis is the distinction that keeps people in good positions. Someone reading swing 6 as \"the trend is over\" sells into a pause and pays about 1% round-trip for the privilege. Someone waiting for the lower low has a defined, unambiguous exit that does not depend on how the chart feels."
+        },
+        {
+          "type": "check",
+          "qids": ["q-10-1-a", "q-10-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Uptrend = higher highs and higher lows; downtrend = lower highs and lower lows; anything else is a range.",
+            "A trend breaks on a lower low, not on a scary candle or a single bad session.",
+            "Structure comes before indicators, because every indicator is a lagging function of the price you are already looking at."
+          ]
+        }
+      ],
+      "glossary": ["trend", "swing_high", "swing_low", "range", "circuit"]
+    },
+
+    {
+      "id": "10.2",
+      "module": 10,
+      "index": 2,
+      "title": "Drawing support and resistance that actually hold",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Give ten people the same chart and ask them to draw support. You will get ten different lines, and most of them will be drawn where the person wishes the stock would stop falling. There is a way to draw them that is testable."
+        },
+        {
+          "type": "core",
+          "md": "**[[support|Support]]** is a price where buying has previously overcome selling. **[[resistance|Resistance]]** is where selling has previously overcome buying. Both are memories, not physics.\n\n### Where real levels come from\n\n**Swing points.** A price that produced a swing low is a place buyers stepped in before. Two touches make a level; three or more make a level worth respecting.\n\n**Volume shelves.** Prices where a great deal of volume traded. Lots of people bought there, so lots of people have an opinion about it.\n\n**Prior breakout points.** A resistance level that broke often becomes support, because the people who sold there now want back in at their price.\n\n### Where fake levels come from\n\n- A single touch. One low is a low, not a level.\n- A line drawn through candle bodies to make it fit. Use wicks or bodies consistently; do not switch to suit the conclusion.\n- Any level on a chart spanning an unadjusted **bonus or rights date** — the gap is mechanical and the line means nothing across it.\n\n### Levels are zones\n\nA level of \"Rs. 232\" is really Rs. 230–234. Markets are made of people, and people do not act to the paisa. Treating a level as a precise number produces stops that are hit by noise.\n\n### How to test whether your line is real\n\nCount the touches, and count the times price passed straight through. A line with four respected touches and no violations is a level. A line with two touches and three violations is a line you drew.\n\nThis is testable, which is what separates it from wishing."
+        },
+        {
+          "type": "visual",
+          "widget": "candle-chart",
+          "props": { "symbol": "UPPER", "bars": 150 },
+          "caption": "Find the prices this counter turned at more than twice. Those are the only levels worth drawing."
+        },
+        {
+          "type": "nepse",
+          "md": "Check whether your chart is **bonus-adjusted** before drawing any level. Nepali companies — especially banks and microfinance — issue bonus shares frequently, and on the ex-bonus date the price drops mechanically by the bonus proportion. A support line drawn across an unadjusted bonus gap connects two prices that are not on the same scale. Merolagani and NepseAlpha adjust; verify before you trust a long chart.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Two candidate support lines on the same hydropower counter.",
+          "table": {
+            "head": ["", "Line A — Rs. 268", "Line B — Rs. 292"],
+            "numeric": [],
+            "rows": [
+              ["Touches (price turned within ±1.5%)", "4", "1"],
+              ["Violations (closed clearly below)", "0", "2"],
+              ["Volume at the level", "Above average on 3 of 4 touches", "Average"],
+              ["Age of the oldest touch", "5 months", "3 weeks"],
+              ["Spans an unadjusted corporate action?", "No", "No"],
+              ["Verdict", "A real level", "A line someone drew"]
+            ],
+            "caption": "Same chart, same period. Only one of these is evidence."
+          },
+          "after": "Line A has four touches, no violations, and above-average volume on three of them. Price has repeatedly stopped there and buyers have repeatedly shown up. That is a level.\n\nLine B has one touch and two violations. Price has gone straight through it twice. Somebody drew it because Rs. 292 is where they would like to buy.\n\nAnd the honest limit, because levels attract far too much confidence: **Line A will break too, eventually.** Every level does. Its value is not that it holds — it is that it gives you a defined place to be wrong, which is what Lesson 14.2 turns into a position size. A level you cannot state precisely enough to place a stop against is not doing any work for you."
+        },
+        {
+          "type": "check",
+          "qids": ["q-10-2-a", "q-10-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Real levels come from swing points, volume shelves and prior breakouts — two touches minimum, three is better.",
+            "Treat levels as zones of a few percent, not precise numbers, or noise will take you out.",
+            "A level's value is that it gives you a defined place to be wrong, not that it will hold."
+          ]
+        }
+      ],
+      "glossary": ["support", "resistance", "swing_low", "swing_high", "bonus_share"]
+    },
+
+    {
+      "id": "10.3",
+      "module": 10,
+      "index": 3,
+      "title": "Breakouts, fakeouts, and the retest",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A stock breaks above a level it has failed at four times. You buy. Two sessions later it is back below, and the level that was going to be support is now resistance above your head. This happens often enough to have a name, and there is a way to avoid most of it."
+        },
+        {
+          "type": "core",
+          "md": "A **breakout** is price closing decisively beyond a level that previously held. A **fakeout** is the same move, reversed within a session or two.\n\nThe difference is not visible at the moment of the break. That is the whole problem, and anyone who tells you otherwise is selling something.\n\n### What raises the odds a breakout is real\n\n**Volume.** A break on above-average volume means many participants agreed. A break on thin volume means few did. On NEPSE this is the single most useful filter, and Lesson 10.4 explains why it is also the most treacherous.\n\n**The close, not the touch.** Price poking through intraday and closing back inside is not a breakout; it is a wick. Wait for the close.\n\n**A tight base before it.** A level approached from a narrowing range breaks more reliably than one approached in a single vertical move.\n\n**Where it sits.** A breakout to new highs behaves differently from one into overhead supply where trapped holders are waiting to get out at break-even.\n\n### The retest\n\nOften — not always — price returns to the broken level and holds it from the other side. Resistance becomes support.\n\nEntering on the retest rather than the break gives you two things: **confirmation** that the level flipped, and a **defined stop** just beyond it. The cost is missing the moves that never retest, and there are plenty.\n\n### The honest trade-off\n\nBuying the break catches every real move and every fake one. Buying the retest filters out most fakeouts and misses some genuine runs.\n\nOn a market with roughly 1% round-trip friction, no stop-loss order type, and counters you may need days to exit, **the retest is usually the better trade** — not because it is more accurate, but because being wrong is more expensive here than being late."
+        },
+        {
+          "type": "visual",
+          "widget": "candle-chart",
+          "props": { "symbol": "API", "bars": 130, "overlays": [{ "type": "sma", "n": 20 }] },
+          "caption": "Look for places this counter broke a level. Then check the volume bar on the break."
+        },
+        {
+          "type": "nepse",
+          "md": "A breakout on a NEPSE counter you cannot actually buy is not a trade. Before acting on any break, check the **20-day average turnover** and ask how many days it would take to exit the position you are contemplating. Lesson 10.4 and the days-to-exit calculator in Lesson 13.5 both exist because this is the most common way a technically correct signal turns into a real loss here.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The same Rs. 268 level broken twice on the same counter, months apart.",
+          "table": {
+            "head": ["", "Break 1", "Break 2"],
+            "numeric": [],
+            "rows": [
+              ["Close above the level", "Rs. 271.40", "Rs. 273.90"],
+              ["Volume vs 20-day average", "0.7×", "2.4×"],
+              ["Shape of the approach", "One vertical session", "Nine-session narrowing base"],
+              ["Retest?", "Never returned — went straight back through", "Returned to Rs. 269.10 and held"],
+              ["Outcome after 15 sessions", "Rs. 244.60 — fakeout", "Rs. 301.80 — held"],
+              ["Buying the break", "−9.9%", "+10.4%"],
+              ["Buying the retest", "No entry — no retest", "+9.7%"]
+            ],
+            "caption": "Same level, same counter. The volume column was visible at the time; the outcome column was not."
+          },
+          "after": "Buying both breaks: −9.9% then +10.4%, and roughly 1% of friction on each round trip. Close to nothing, for two decisions and a fortnight of attention.\n\nBuying only the retest: no entry on Break 1, +9.7% on Break 2. One decision, one position, one round trip.\n\nThe retest rule cost 0.7 percentage points of upside on the good trade and **avoided the bad one entirely**. That is the trade-off, and it is the right side of it on a market with this much friction.\n\nBut note what is not claimed: the retest rule does not make you right more often about direction. It makes your losses less frequent, which is a different and more durable advantage — as Lesson 14.3 shows arithmetically."
+        },
+        {
+          "type": "check",
+          "qids": ["q-10-3-a", "q-10-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Volume on the break is the single most useful filter between a breakout and a fakeout.",
+            "Wait for the close beyond the level, not the intraday touch — a poke through is a wick.",
+            "Entering on the retest misses some genuine runs but avoids most fakeouts, which is the right trade on NEPSE's friction."
+          ]
+        }
+      ],
+      "glossary": ["support", "resistance", "breakout", "fakeout", "volume", "turnover"]
+    },
+
+    {
+      "id": "10.4",
+      "module": 10,
+      "index": 4,
+      "title": "Volume as confirmation — and the NEPSE liquidity trap",
+      "minutes": 5,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You find a textbook breakout on a hydropower counter. Volume is four times its average. Every rule says buy. You place an order for Rs. 2,00,000 and discover that four times average volume on this counter is Rs. 8 lakh in total — and you are about to become a quarter of the day's market."
+        },
+        {
+          "type": "core",
+          "md": "Volume confirms a price move because it tells you **how many people agreed**. A move on heavy volume represents many decisions; a move on light volume represents few.\n\nThat much is universal. What is specific to NEPSE is the trap underneath it.\n\n### The liquidity trap\n\nWith 91 hydropower and 50 microfinance companies among 271 listed, a large share of the exchange is thin. On these counters:\n\n- **A 4× volume spike may still be tiny in absolute terms.** Relative volume looks convincing; absolute turnover is Rs. 8 lakh.\n- **You move the price yourself.** Buying Rs. 2,00,000 into a counter that trades Rs. 2,00,000 a day means your own order is the breakout.\n- **You cannot exit.** The days-to-exit arithmetic in Lesson 13.5 is brutal: a Rs. 2,00,000 position in a counter averaging Rs. 2,00,000 of daily turnover takes about **ten trading days** to unwind at 10% of volume.\n- **The spread eats you.** A 2–3% spread is normal on thin counters — nine times the commission, paid twice.\n\n### The check that takes thirty seconds\n\nBefore trading any pattern, compute the **20-day average turnover in rupees**, then ask: *is my intended position more than about 10% of one day's turnover?*\n\nIf yes, the pattern is irrelevant. You have found a signal in a market you cannot participate in at your size.\n\n### Why relative volume misleads here\n\nEvery charting platform shows volume relative to its own history. That is the right framing on a liquid market and the wrong one on a thin counter, where the history being compared against is itself negligible.\n\n**Read absolute turnover in rupees, not the height of the bar.**\n\n### The uncomfortable conclusion\n\nA large part of NEPSE is not tradeable at meaningful size by a retail investor with a stop loss. That is not a failure of your analysis. It is a property of the market, and recognising it early saves you the tuition."
+        },
+        {
+          "type": "visual",
+          "widget": "exit-calc",
+          "caption": "Enter a position size and a counter's daily turnover. The answer is in trading days."
+        },
+        {
+          "type": "nepse",
+          "md": "**Check average daily turnover before trading any pattern.** On thin NEPSE counters your own order is often the volume, your stop is a wish because you cannot exit quickly, and the 2–3% spread costs nine times the commission. NEPSE publishes daily turnover per scrip; Sharesansar and Merolagani aggregate it into a readable 20-day view.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The same Rs. 2,00,000 position in three counters with identical-looking breakout charts.",
+          "table": {
+            "head": ["", "Liquid bank", "Mid hydropower", "Thin counter"],
+            "numeric": [1, 2, 3],
+            "rows": [
+              ["20-day average turnover", "Rs. 2.10 crore", "Rs. 34 lakh", "Rs. 2.00 lakh"],
+              ["Volume on the breakout day", "3.1×", "2.8×", "4.0×"],
+              ["Your position", "Rs. 2,00,000", "Rs. 2,00,000", "Rs. 2,00,000"],
+              ["As % of a normal day", "0.95%", "5.9%", "100%"],
+              ["Days to exit at 10% of turnover", "0.1", "0.6", "10.0"],
+              ["Typical spread", "0.1%", "0.8%", "2.8%"],
+              ["Round-trip spread cost", "Rs. 200", "Rs. 1,600", "Rs. 5,600"],
+              ["Tradeable at this size?", "Yes", "Yes, carefully", "No"]
+            ],
+            "caption": "The breakout looked identical on all three charts."
+          },
+          "after": "The thin counter had the **most convincing relative volume** — 4× average — and is the only one that is untradeable.\n\nThe cost of ignoring this is not theoretical. Rs. 5,600 of spread on entry and exit is 2.8% of the position, before commission, SEBON fee, DP charges or tax. The move needs to exceed roughly **4%** before you see a rupee. And if the trade goes wrong, ten trading days to exit means any bad news reaches the price long before you reach the door.\n\nThis is the loss case for this module, and it is the most common one on NEPSE: **the analysis was correct and the position was still a mistake.**"
+        },
+        {
+          "type": "check",
+          "qids": ["q-10-4-a", "q-10-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Volume confirms a move by telling you how many people agreed — but read absolute turnover in rupees, not the relative bar height.",
+            "If your position exceeds about 10% of a day's turnover, the pattern is irrelevant: you cannot participate at that size.",
+            "A large part of NEPSE is untradeable at meaningful size with a stop, and recognising that is analysis, not defeat."
+          ]
+        }
+      ],
+      "glossary": ["volume", "turnover", "liquidity_trap", "spread", "breakout"]
+    },
+
+    {
+      "id": "10.5",
+      "module": 10,
+      "index": 5,
+      "title": "Trendlines, channels, and round numbers in Nepali psychology",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Rs. 100. Rs. 500. Rs. 1,000. Nothing in any company's accounts makes these prices special. They act as support and resistance anyway, because a market is made of people and people think in round numbers."
+        },
+        {
+          "type": "core",
+          "md": "### Trendlines\n\nA trendline connects successive swing lows in an uptrend, or swing highs in a downtrend. It needs **at least three touches** to be worth drawing — two points define any line at all, so two touches prove nothing.\n\nThe common failure is drawing the line first and finding touches afterwards. Mark the swings, then see whether a line fits. If you have to ignore a swing to make it work, it does not work.\n\n### Channels\n\nA channel is a trendline with a parallel line on the other side of the price. It describes a trend that is moving at a roughly constant rate.\n\nChannels are useful for one specific thing: **noticing when price stops respecting them**. A stock that has held a channel for months and then breaks out of the top of it is doing something different, and \"different\" is information.\n\n### Round numbers, and why they matter more in Nepal\n\nRound-number effects exist everywhere. Nepal has an extra one: the **Rs. 100 face value** printed on every ordinary share.\n\nThat number is an accounting convention with no bearing on value — Lesson 1.4 took it apart. But it functions as a psychological floor anyway. People buy \"below face value\" because it feels cheap and sell at Rs. 100 because it feels like getting their money back.\n\nRs. 500 and Rs. 1,000 do the same work higher up. So do the levels people quote each other in Viber groups, which is Lesson 15.4's territory.\n\n### How to use this without over-reading it\n\nTreat round numbers as **zones where more orders will sit than the chart alone suggests**. Expect a little more resistance approaching Rs. 500 than at Rs. 487. Do not build a thesis on it, and do not place a limit order exactly at a round number where everybody else's order already is — you will be at the back of a very long queue, as Lesson 5.1 explained."
+        },
+        {
+          "type": "visual",
+          "widget": "candle-chart",
+          "props": { "symbol": "NHPC", "bars": 160, "overlays": [{ "type": "sma", "n": 50 }] },
+          "caption": "Look at how this counter behaves approaching each round hundred."
+        },
+        {
+          "type": "nepse",
+          "md": "The **Rs. 100 face value** creates a psychological level that exists nowhere in the accounts. Watch what happens as a struggling counter approaches it from above: selling often accelerates, because holders who bought at issue treat Rs. 100 as \"getting my money back\". It is anchoring, not valuation — Lesson 15.3 covers why knowing that does not stop you feeling it.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Order-book depth on a mid-cap counter approaching Rs. 300.",
+          "table": {
+            "head": ["Price", "Kitta offered", "vs neighbouring levels"],
+            "numeric": [0, 1],
+            "rows": [
+              ["297.00", "1,240", "normal"],
+              ["298.00", "1,610", "normal"],
+              ["299.00", "2,050", "slightly elevated"],
+              ["300.00", "18,400", "9× the neighbours"],
+              ["301.00", "1,180", "normal"],
+              ["305.00", "1,490", "normal"]
+            ],
+            "caption": "Illustrative depth. The shape — a wall at the round number — is the point."
+          },
+          "after": "Eighteen thousand kitta at Rs. 300 and roughly 1,500 at every neighbouring price. Nothing in the company's quarterly report changed between Rs. 299 and Rs. 300.\n\nTwo practical consequences:\n\n**One** — the stock will find it harder to get through Rs. 300 than the chart suggests, because there is nine times as much supply there.\n\n**Two** — and this is the part people miss — **do not put your own sell order at Rs. 300.** You will be behind 18,400 kitta in a price–time queue. Rs. 299.50 gets you filled ahead of all of them, and the fifty paisa costs you Rs. 250 on a 500-share position while the queue position may be worth far more than that.\n\nThe round number is not a level to trade. It is a level to trade **around**."
+        },
+        {
+          "type": "check",
+          "qids": ["q-10-5-a", "q-10-5-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "A trendline needs at least three touches; mark the swings first and see whether a line fits, not the reverse.",
+            "Round numbers — and Rs. 100 face value especially — attract orders for psychological reasons, not accounting ones.",
+            "Place your own orders just inside a round number rather than at it, or you queue behind everyone else."
+          ]
+        }
+      ],
+      "glossary": ["trendline", "channel", "support", "resistance", "face_value", "price_time_priority"]
+    }
+  ]
+}

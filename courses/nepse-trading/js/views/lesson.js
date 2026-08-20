@@ -16,14 +16,6 @@ export async function lesson(modN, lessonIdx) {
   const mod = M.modules.find(m => m.n === modN);
   if (!mod) return notFound();
 
-  if (!state.moduleUnlocked(M.modules, modN)) {
-    return el('div.msg', [
-      el('h2', 'That module is not open yet'),
-      el('p', `Module ${modN} opens once Module ${modN - 1} is 80% complete and its quiz is passed.`),
-      el('p', el('a.btn', { href: '#/' }, 'Back to the dashboard'))
-    ]);
-  }
-
   const meta = mod.lessons.find(l => l.index === lessonIdx);
   if (!meta) return notFound();
 

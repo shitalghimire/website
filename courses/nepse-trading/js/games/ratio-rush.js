@@ -206,20 +206,29 @@ export default {
 
     function roundJudge() {
       const usable = banks.filter(b => b.eps > 0);
-      let a = sample(usable), b = sample(usable);
-      let guard = 0;
-      while ((b.s === a.s || Math.abs(a.pe - b.pe) < 3) && guard++ < 40) b = sample(usable);
 
-      // "better value" = lower P/E with comparable-or-better ROE
-      const scoreOf = x => (x.roe * 100) / Math.max(1, x.pe);
-      const better = scoreOf(a) >= scoreOf(b) ? a : b;
-      const worse = better === a ? b : a;
+      // Only pair banks where one DOMINATES on both P/E and ROE. Otherwise the
+      // question has no defensible answer, and "which is better value" becomes
+      // a matter of taste rather than something the reason can teach.
+      const pairs = [];
+      for (const x of usable) for (const y of usable) {
+        if (x.s === y.s) continue;
+        if (x.pe < y.pe - 2 && x.roe > y.roe + 0.01) pairs.push([x, y]);
+      }
+      if (!pairs.length) return roundCompute();
+      const [better, worse] = sample(pairs);
+
+      // Distractors must be TRUE about the data on screen but wrong as reasons.
+      // A distractor that misstates the table teaches nothing except distrust.
+      const cheaper = better.ltp <= worse.ltp ? better : worse;
+      const higherPE = better.pe >= worse.pe ? better : worse;
+      const closerToFace = Math.abs(better.ltp - 100) <= Math.abs(worse.ltp - 100) ? better : worse;
 
       const reasons = shuffle([
         { t: `${better.s} buys more earnings per rupee and uses its capital more efficiently`, correct: true },
-        { t: `${better.s} has the lower share price`, correct: false },
-        { t: `${worse.s} has the higher P/E, which means the market expects it to grow faster`, correct: false },
-        { t: `${better.s} trades closer to its Rs. 100 face value`, correct: false }
+        { t: `${cheaper.s} has the lower share price`, correct: false },
+        { t: `${higherPE.s} has the higher P/E, which means the market expects it to grow faster`, correct: false },
+        { t: `${closerToFace.s} trades closer to its Rs. 100 face value`, correct: false }
       ]);
 
       let pickedBank = null;
@@ -304,7 +313,8 @@ export default {
         cell('Time', running ? Math.ceil(timeLeft) + 's' : '—')
       );
     }
-    const cell = (l, v) => el('div.hud__cell', [el('span.hud__l', l), el('span.hud__v', v)]);
+    // function declaration, not a const arrow — paintHud() runs before this line
+    function cell(l, v) { return el('div.hud__cell', [el('span.hud__l', l), el('span.hud__v', v)]); }
 
     function end(reason) {
       running = false;

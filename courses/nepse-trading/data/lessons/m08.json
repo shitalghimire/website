@@ -1,0 +1,436 @@
+{
+  "module": 8,
+  "title": "The Primary Market",
+  "lessons": [
+    {
+      "id": "8.1",
+      "module": 8,
+      "index": 1,
+      "title": "IPO: what you are actually applying for",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Applying for an IPO in Nepal costs Rs. 1,000 and takes ninety seconds on your phone. That accessibility is genuinely good. It also means several hundred thousand people apply for issues without ever opening the prospectus that explains what they are funding."
+        },
+        {
+          "type": "core",
+          "md": "An **[[ipo|IPO]]** — Initial Public Offering — is a company selling newly created shares to the public for the first time. Your money goes **to the company**. This is the [[primary_market|primary market]], and it is the only door through which your rupees fund anything.\n\n### Who is selling, and why\n\nThe issuer is the company itself, raising capital. In Nepal the usual reasons are:\n\n- **Project finance.** A hydropower company needs equity alongside its bank debt to build a powerhouse.\n- **Regulatory capital.** Banks and insurers must meet Nepal Rastra Bank or Nepal Insurance Authority minimums.\n- **A licence condition.** Many Nepali licences require public issuance within a set period.\n\nThat last one matters: some companies IPO because they are obliged to, not because they have a compelling use for the money.\n\n### The section to read first\n\nEvery prospectus approved by [[sebon|SEBON]] contains **\"Objectives of the Issue\"** — what the money will be spent on. Read it before you apply. The difference between *\"construction of the 10 MW powerhouse and transmission line\"* and *\"repayment of promoter loans and working capital\"* is the difference between funding an asset and funding someone's exit.\n\n### What you are buying\n\nA fractional claim on a business at a **fixed price** — usually the Rs. 100 face value for a fixed-price issue. You are not buying a discount to a known market value, because there is no market value yet. Whether Rs. 100 is cheap depends entirely on what the company earns later.\n\n### The honest asymmetry\n\nNepali IPOs have historically listed above their issue price far more often than below. That record is real, and it is also why so many people treat IPO application as free money. It is not a guarantee. A company that lists at Rs. 300 and drifts to Rs. 140 over three years has still \"listed at a premium\", and Lesson 13.2 covers the hydropower version of that story."
+        },
+        {
+          "type": "visual",
+          "widget": "flow",
+          "props": {
+            "title": "What happens to your Rs. 1,000",
+            "sub": "Fixed-price IPO, 10 units at the Rs. 100 face value",
+            "steps": [
+              { "t": "You apply through MeroShare — My ASBA", "d": "Choose the issue, your bank, the number of units, and verify your BOID.", "meta": "90 seconds" },
+              { "t": "Rs. 1,000 is BLOCKED in your own bank account", "d": "Not debited. It stays yours, and you keep any interest, until allotment.", "meta": "blocked" },
+              { "t": "The issue closes and the RTA runs the lottery", "d": "Every valid application has equal probability, regardless of how many units you applied for.", "meta": "3–5 days" },
+              { "t": "If allotted — the money is debited and shares credited", "d": "Typically 2–3 business days for the credit to reach your Demat.", "meta": "debited" },
+              { "t": "If not allotted — the block is released", "d": "The money never left your account. This is why C-ASBA is well designed.", "meta": "released" },
+              { "t": "The company lists on NEPSE", "d": "Typically 3–6 weeks from issue close. Now a secondary market price exists.", "meta": "3–6 weeks" }
+            ],
+            "note": "Only the money of allotted applicants ever reaches the company. Everyone else simply gets their block released."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Read the **\"objectives of the issue\"** section before you apply. It is published in every [[sebon|SEBON]]-approved prospectus at sebon.gov.np and tells you what your money will actually build. A company raising Rs. 30 crore to complete a powerhouse is a different proposition from one raising it to repay promoter loans, and the prospectus says which.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A 10 MW hydropower company issues 30,00,000 units at the Rs. 100 face value.",
+          "calc": [
+            { "l": "Units offered", "v": "30,00,000" },
+            { "l": "Price per unit (fixed price, face value)", "v": "Rs. 100.00" },
+            { "l": "Gross raised by the company", "v": "Rs. 30,00,00,000" },
+            { "l": "Minimum application", "v": "10 units = Rs. 1,000" },
+            { "l": "Maximum applicants who can be allotted the minimum", "v": "3,00,000", "total": true }
+          ],
+          "after": "Now suppose 12,00,000 valid applications arrive — four times oversubscribed. Only one applicant in four is allotted, and almost all of them get the 10-unit minimum.\n\nHere is the part worth internalising: your **expected value** from applying is the probability of allotment multiplied by the eventual gain, minus nothing, because unallotted money is simply released. That is a genuinely attractive proposition and it is why so many Nepalis apply.\n\nBut the **eventual gain is not guaranteed**, and it is decided years later by whether the project reaches commercial operation on schedule with a PLF that supports its debt. The lottery is the easy part. Lesson 13.2 is about the hard part."
+        },
+        {
+          "type": "check",
+          "qids": ["q-8-1-a", "q-8-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "An IPO sells newly created shares and the money goes to the company — this is the primary market.",
+            "Read \"objectives of the issue\" in the prospectus: funding a powerhouse and repaying promoter loans are not the same thing.",
+            "Listing above the issue price is common in Nepal but never guaranteed; the outcome is decided by the business, years later."
+          ]
+        }
+      ],
+      "glossary": ["ipo", "primary_market", "sebon", "casba", "rta", "face_value"]
+    },
+
+    {
+      "id": "8.2",
+      "module": 8,
+      "index": 2,
+      "title": "C-ASBA and MeroShare — applying without losing your money",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "In most markets, applying for an IPO means handing over your money and waiting weeks to get it back if you are unlucky. In Nepal your money never leaves your account. This is the single best-designed piece of the Nepali market, and it is worth understanding exactly why."
+        },
+        {
+          "type": "core",
+          "md": "**[[casba|C-ASBA]]** stands for Centralised Application Supported by Blocked Amount. The mechanism is in the name: your application amount is **blocked** in your own bank account, not debited.\n\n### What blocking means\n\nThe money stays in your account. You cannot spend it, but it is yours, it earns whatever interest your account pays, and if you are not allotted, the block is simply released. It is debited only if and when shares are actually allotted to you.\n\nCompare that with paying up front and waiting for a refund: no float lost, no refund to chase, no counterparty risk.\n\n### The click path\n\nMeroShare → **My ASBA** → select the issue → choose the bank where funds will be blocked → enter units → **verify DMAT** → submit.\n\nThe verify-DMAT step matters: it links the application to the account where shares would be credited. Get it wrong and the application fails.\n\n### The rule that voids applications\n\n**One application per person per issue.** Not one per bank account, not one per Demat — one per person. Duplicates are rejected, and submitting a second can void **both**, leaving you with nothing when you would otherwise have had a valid entry.\n\nPeople do this believing it doubles their odds. It does the opposite.\n\n### Checking the outcome\n\nMeroShare → My ASBA → **Application Report** shows whether you were allotted. Allotted shares typically reach your Demat in two to three business days.\n\n### The security note\n\nMeroShare is at **meroshare.cdsc.com.np**. Around every popular issue, messages circulate offering to \"apply on your behalf\" or linking to pages that look like the login. Nobody needs your MeroShare credentials to do anything legitimate. Terminal Drill drills this deliberately."
+        },
+        {
+          "type": "visual",
+          "widget": "table",
+          "props": {
+            "title": "C-ASBA against paying up front",
+            "sub": "The same Rs. 1,000 application, two mechanisms",
+            "head": ["", "C-ASBA (Nepal)", "Pay-up-front (elsewhere)"],
+            "rows": [
+              ["Money leaves your account", "Only if allotted", "Immediately"],
+              ["Interest during the process", "You keep it", "You lose it"],
+              ["If not allotted", "Block released automatically", "Refund must be processed"],
+              ["Refund delay risk", "None", "Days to weeks"],
+              ["Counterparty risk on your cash", "None — it never moved", "Held by the issuer's bankers"],
+              ["Applications per person", "Exactly one", "Varies"]
+            ],
+            "caption": "One application per person per issue. Duplicates can void both."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Only **one application per person per issue**. Duplicates are rejected and both may be voided. And the money is **blocked, not debited** — if a message, a caller or a website tells you to transfer IPO money anywhere, it is a scam. C-ASBA never requires you to send money to anyone.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You apply for the minimum in a fixed-price hydropower issue, and are not allotted.",
+          "calc": [
+            { "l": "Application — 10 units at Rs. 100", "v": "Rs. 1,000.00" },
+            { "l": "Blocked in your bank account", "v": "Rs. 1,000.00" },
+            { "l": "Debited from your account", "v": "Rs. 0.00" },
+            { "l": "Interest you continued to earn", "v": "Yours" },
+            { "l": "Refund you had to chase", "v": "None — the block simply lifted", "total": true },
+            { "l": "Net cost of an unsuccessful application", "v": "Rs. 0.00", "total": true }
+          ],
+          "after": "Zero. That is why IPO application is close to a national pastime, and it is a genuinely well-designed mechanism.\n\nThe honest cost, though, is not zero in one respect: **the blocked amount is unavailable while the issue is open.** If you block Rs. 1,00,000 across ten issues in a month, that is Rs. 1,00,000 you cannot deploy elsewhere for several weeks. For the minimum 10-unit application this is trivial. For someone applying for large quantities across many issues, the opportunity cost is real — and since applying for more units does not improve your odds (Lesson 8.4), it is a cost with no matching benefit."
+        },
+        {
+          "type": "check",
+          "qids": ["q-8-2-a", "q-8-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "C-ASBA blocks your money in your own account rather than debiting it — nothing leaves unless you are allotted.",
+            "One application per person per issue; duplicates can void both.",
+            "MeroShare lives at meroshare.cdsc.com.np, and no legitimate process ever needs your credentials or a transfer."
+          ]
+        }
+      ],
+      "glossary": ["casba", "meroshare", "ipo", "demat", "cdsc"]
+    },
+
+    {
+      "id": "8.3",
+      "module": 8,
+      "index": 3,
+      "title": "Fixed price vs book building: the 2026 rules",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Two IPOs open in the same week. One asks for Rs. 1,000 and gives every applicant identical odds. The other asks for at least Rs. 5,000 at a price nobody has told you yet. They are governed by different rules, and only one of them is genuinely built for small investors."
+        },
+        {
+          "type": "core",
+          "md": "Nepal runs two IPO mechanisms.\n\n### Fixed price\n\nThe issue price is set in advance — normally the **Rs. 100 face value**. The minimum application is **10 units**, so Rs. 1,000. Allotment is by computerised lottery with equal odds per valid application.\n\nThis is the mechanism used by most small hydropower and service companies, and it is deliberately accessible.\n\n### Book building\n\nUsed by larger issuers. Institutional investors bid across a price range and a **cut-off price** is discovered from that book. Retail investors then apply at a **10% discount** to the institutional price.\n\nThe retail minimum is **50 units**, which at any realistic book-built price is several thousand rupees — meaningfully more than Rs. 1,000, and a genuine barrier for small applicants.\n\n### Premium pricing\n\nAn issuer may price above face value only if it meets eligibility: **Rs. 1 arba of paid-up capital** and **two consecutive profitable years**. That threshold exists to stop unproven companies charging a premium on a story.\n\n### Which is better for you\n\nHonestly: it depends on what you can commit.\n\nFixed price gives you the cheapest possible entry and perfectly equal odds. Book building gives you a price discovered by institutions who have done work you have not, with a 10% retail discount — but it costs at least five times as much to enter, and the discovered price can be well above face value.\n\nNeither is a free lunch. The 10% retail discount is real, and it is a discount to a price that institutions were willing to pay, not to the value of the business."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Fixed price against book building",
+            "sub": "2026 rules",
+            "sides": [
+              {
+                "k": "Accessible",
+                "t": "Fixed price",
+                "rows": [
+                  ["Price", "Set in advance — usually Rs. 100"],
+                  ["Retail minimum", "10 units = Rs. 1,000"],
+                  ["Who sets the price", "The issuer, within SEBON rules"],
+                  ["Allotment", "Lottery, equal odds"],
+                  ["Typical issuer", "Small hydropower, services"]
+                ]
+              },
+              {
+                "k": "Institutional",
+                "t": "Book building",
+                "rows": [
+                  ["Price", "Discovered from institutional bids"],
+                  ["Retail minimum", "50 units"],
+                  ["Who sets the price", "The institutional book"],
+                  ["Retail discount", "10% below the institutional price"],
+                  ["Typical issuer", "Larger manufacturing, real estate"]
+                ]
+              }
+            ],
+            "verdict": "The 50-unit minimum raises the retail entry cost roughly fivefold. That is the single most consequential difference for a small investor, and it is why fixed-price issues attract far more applications."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "The **50-unit minimum** meaningfully raises the entry cost for retail in book-built issues. Premium pricing requires **Rs. 1 arba paid-up capital and two consecutive profitable years** — a real eligibility bar, not a formality. Mutual fund units are different again: Rs. 10 face value, minimum 100 units.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The same investor looks at two issues open in the same week.",
+          "table": {
+            "head": ["", "Fixed-price hydropower", "Book-built manufacturer"],
+            "numeric": [1, 2],
+            "rows": [
+              ["Issue price", "Rs. 100.00", "Rs. 342.00 institutional"],
+              ["Retail price", "Rs. 100.00", "Rs. 307.80 (10% discount)"],
+              ["Minimum units", "10", "50"],
+              ["Minimum application", "Rs. 1,000", "Rs. 15,390"],
+              ["Blocked while open", "Rs. 1,000", "Rs. 15,390"],
+              ["Odds per application", "Equal", "Equal"]
+            ],
+            "caption": "Retail discount is 10% below the discovered institutional price, not 10% below face value."
+          },
+          "after": "The book-built application costs **fifteen times more** to enter for the same single lottery ticket.\n\nAnd the discount is worth reading precisely. Rs. 307.80 is 10% below what institutions bid — it is not a statement that the shares are worth more than Rs. 307.80. If the institutional book was enthusiastic about a story that does not deliver, retail buys 10% below an overpaid price.\n\nThe loss case is straightforward: a book-built issue that discovers Rs. 342, lists at Rs. 400 on day one, and settles at Rs. 260 a year later has cost the retail applicant Rs. 2,390 on the minimum application, despite the discount and despite \"listing at a premium\"."
+        },
+        {
+          "type": "check",
+          "qids": ["q-8-3-a", "q-8-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Fixed price: Rs. 100 face value, 10-unit minimum, equal-odds lottery — built for small investors.",
+            "Book building: price discovered by institutions, 50-unit retail minimum, 10% retail discount.",
+            "Premium pricing requires Rs. 1 arba paid-up capital and two consecutive profitable years."
+          ]
+        }
+      ],
+      "glossary": ["ipo", "book_building", "face_value", "sebon", "mutual_fund"]
+    },
+
+    {
+      "id": "8.4",
+      "module": 8,
+      "index": 4,
+      "title": "Allotment: the lottery, the odds, and the maths of 10 kitta",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You apply for 100 units. Your friend applies for 10. The issue is six times oversubscribed. You have exactly the same chance of being allotted as your friend, and you have tied up ten times the money to get it."
+        },
+        {
+          "type": "core",
+          "md": "Nepali fixed-price allotment runs a **computerised lottery** administered by the [[rta|RTA]]. Every **valid application** has **equal probability**, regardless of how many units it is for.\n\nRead that again, because it is the opposite of how most people behave.\n\n### What happens when an issue is oversubscribed\n\nIn a heavily oversubscribed issue — and in Nepal most popular issues are — the allotment is the **minimum lot to as many applicants as possible**. The objective is breadth of ownership, not proportional allocation.\n\nSo applying for 100 units in a six-times-oversubscribed issue usually gets you either 10 units or nothing. It almost never gets you 100.\n\n### The arithmetic of applying for more\n\nApplying for 100 units instead of 10 means:\n\n- **The same probability** of being allotted.\n- **Ten times the money blocked** for the duration of the issue.\n- **The same 10 units** if you win.\n\nThere is no scenario in an oversubscribed fixed-price issue where the larger application is better, and one where it is worse: the opportunity cost of the blocked funds.\n\n### When applying for more does make sense\n\nIf an issue is **undersubscribed** — fewer valid applications than units on offer — everyone gets what they applied for. Undersubscribed issues do occur in Nepal, usually for companies the market is sceptical about. That scepticism is information.\n\n### One person, one application\n\nDuplicate applications are rejected and can void both. Applying through a family member's Demat is that person's application, with their own odds — and their own shares.\n\n### What the odds actually are\n\nProbability of allotment ≈ (units on offer ÷ minimum lot) ÷ number of valid applications. In a popular Nepali issue this is often between 5% and 25%."
+        },
+        {
+          "type": "visual",
+          "widget": "probability",
+          "caption": "Set the units on offer and the number of applications, and read your actual odds."
+        },
+        {
+          "type": "nepse",
+          "md": "Applying for more units **does not raise your chance** of being allotted in an oversubscribed fixed-price issue. Allotment is a computerised lottery with equal probability per valid application, and heavily oversubscribed issues allot the minimum lot to as many applicants as possible. Applying for more simply ties up more money in [[casba|ASBA]] blocking for the same odds.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A fixed-price IPO offers **1,00,000 units**. **5,00,000 valid applications** arrive, all for the 10-unit minimum.",
+          "calc": [
+            { "l": "Units on offer", "v": "1,00,000" },
+            { "l": "Units per allottee (minimum lot)", "v": "10" },
+            { "l": "Applicants who can be allotted", "v": "10,000" },
+            { "l": "Valid applications", "v": "5,00,000" },
+            { "l": "Probability of allotment", "v": "2.00%", "total": true }
+          ],
+          "after": "Now suppose you applied for **100 units** instead of 10, blocking Rs. 10,000 rather than Rs. 1,000.\n\nYour probability is still **2.00%**. If you win, you receive **10 units**, the same as everyone else, because that is how an oversubscribed issue allots. You have blocked nine thousand extra rupees for several weeks for no change in outcome whatsoever.\n\nAcross ten such issues in a year that is Rs. 90,000 of your capital repeatedly immobilised for nothing — which, if you had instead held a position earning even 8%, cost you real money in exchange for zero additional expected value."
+        },
+        {
+          "type": "check",
+          "qids": ["q-8-4-a", "q-8-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Allotment is a computerised lottery: every valid application has equal probability regardless of size.",
+            "Oversubscribed issues allot the minimum lot to as many applicants as possible — applying for 100 units usually gets you 10 or nothing.",
+            "Applying for more blocks more of your money for exactly the same odds."
+          ]
+        }
+      ],
+      "glossary": ["ipo", "rta", "casba", "allotment"]
+    },
+
+    {
+      "id": "8.5",
+      "module": 8,
+      "index": 5,
+      "title": "FPO, rights shares, bonus shares, and stock splits",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Four corporate actions, four different effects on your share count, your cost basis, and your money. Only one of them puts cash in your pocket, only one demands a decision from you, and ignoring that one is how people quietly lose value doing nothing."
+        },
+        {
+          "type": "core",
+          "md": "### FPO — Further Public Offering\n\nThe company issues **new shares to the public** after listing, at a price set by the issuer. Money goes to the company. Your existing holding is diluted unless you buy in.\n\n### Rights — [[hakprad]]\n\nAn offer to **existing shareholders** to buy additional shares at a set price, in proportion to what you hold. A 1:2 rights issue means one new share for every two you own.\n\nRights are usually priced below the market, which is what makes them worth something. **Unexercised rights simply lapse** — you are not compensated, and your holding is diluted by everyone who did exercise. This is the one that requires a decision from you, and doing nothing is a decision with a cost.\n\n### Bonus shares\n\nAdditional shares issued **free** to existing holders out of reserves. No money changes hands in either direction.\n\nYour share count rises, the price adjusts down on the ex-bonus date by roughly the same proportion, and your total value is unchanged. Your [[wacc|WACC]] falls, which raises the taxable gain you eventually book. Bonus shares **defer** tax; they do not avoid it.\n\n### Stock split\n\nThe **face value** is divided — say Rs. 100 into ten shares of Rs. 10 — so the share count rises tenfold and the price falls tenfold. Purely cosmetic, done to improve liquidity at high prices. Rare in Nepal, because the Rs. 100 face value is a strong convention.\n\n### The one that costs you by inaction\n\nRights. Bonus arrives automatically. FPO you can ignore. A split happens to you. But a rights issue you ignore **lapses**, and the value of the right — the gap between the rights price and the market price — is simply gone."
+        },
+        {
+          "type": "visual",
+          "widget": "table",
+          "props": {
+            "title": "Four corporate actions, before and after",
+            "sub": "Starting position: 100 shares, WACC Rs. 600, market Rs. 600",
+            "head": ["Action", "Your shares after", "Your WACC after", "Cash in / out", "Do you decide?"],
+            "numeric": [1, 2],
+            "rows": [
+              ["20% bonus", "120", "Rs. 500.00", "None", "No — automatic"],
+              ["1:2 rights at Rs. 400", "150", "Rs. 533.33", "− Rs. 20,000 out", "**Yes — or it lapses**"],
+              ["10:1 split", "1,000", "Rs. 60.00", "None", "No — automatic"],
+              ["FPO you do not join", "100", "Rs. 600.00", "None", "No — but you are diluted"],
+              ["Cash dividend 15%", "100", "Rs. 600.00", "+ Rs. 1,425 in (net of 5% tax)", "No — automatic"]
+            ],
+            "caption": "Only the rights issue requires action, and only the cash dividend puts money in your pocket."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "**Unexercised [[hakprad|rights]] simply lapse — you lose value by inaction.** If you cannot or do not want to fund the rights, check whether they are renounceable and can be sold; if not, the value of the right is forfeited entirely. Watch your MeroShare notifications around book-closure dates, because the exercise window is short.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You hold **100 shares at Rs. 600** (WACC Rs. 600, value Rs. 60,000). The company announces a **1:2 rights issue at Rs. 400**.",
+          "calc": [
+            { "l": "Rights entitlement (1 for every 2 held)", "v": "50 shares" },
+            { "l": "Cost to exercise (50 × Rs. 400)", "v": "Rs. 20,000.00" },
+            { "l": "Holding if you exercise", "v": "150 shares" },
+            { "l": "Total invested", "v": "Rs. 80,000.00" },
+            { "l": "New WACC (80,000 ÷ 150)", "v": "Rs. 533.33" },
+            { "l": "Theoretical ex-rights price", "v": "Rs. 533.33" },
+            { "l": "Value if you exercise", "v": "Rs. 80,000.00", "total": true }
+          ],
+          "after": "Exercising leaves you exactly level — you paid Rs. 20,000 and now hold Rs. 20,000 more of stock. That is the point: a rights issue is not a gift, it is a capital call at a discount.\n\nNow the version where you **do nothing**. The price still adjusts to roughly Rs. 533.33 ex-rights, because everyone else's shares were issued. You still hold 100 shares.\n\n**100 × Rs. 533.33 = Rs. 53,333.** You began with Rs. 60,000 of value and now have Rs. 53,333. **You lost Rs. 6,667 by taking no action at all** — and nothing appeared on any statement to tell you that is what happened.\n\nThis is the quietest loss in the Nepali market, and it happens to somebody in every rights issue."
+        },
+        {
+          "type": "check",
+          "qids": ["q-8-5-a", "q-8-5-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Bonus and splits change your share count without changing your value; FPO dilutes you if you sit out.",
+            "Rights are a capital call at a discount — exercising leaves you level, ignoring them destroys value.",
+            "Only a cash dividend actually puts money in your pocket, and it is taxed 5% at source."
+          ]
+        }
+      ],
+      "glossary": ["fpo", "hakprad", "bonus_share", "wacc", "face_value", "dividend_tax"]
+    },
+
+    {
+      "id": "8.6",
+      "module": 8,
+      "index": 6,
+      "title": "Mutual funds: closed-end NAV, discount, and why they trade below NAV",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A closed-end fund publishes a net asset value of Rs. 11.40 per unit. It trades on NEPSE at Rs. 9.20. You can buy a rupee of assets for eighty paisa. There are three reasons that is not the free money it appears to be, and one reason it sometimes is."
+        },
+        {
+          "type": "core",
+          "md": "A **[[mutual_fund|closed-end mutual fund]]** raises a fixed pool of money, invests it in listed shares, and lists its **units** on NEPSE. Face value is **Rs. 10**, minimum application 100 units.\n\n### NAV versus market price\n\n**[[nav|NAV]]** — net asset value per unit — is the fund's holdings divided by units outstanding, published monthly. It is arithmetic.\n\nThe **market price** is whatever units change hands for on NEPSE. These two numbers are routinely different, and in Nepal the market price is usually **below** NAV. That gap is the **discount**.\n\n### Why the discount persists\n\n1. **You cannot redeem.** Unlike an open-ended fund, you cannot hand units back for NAV. Your only exit is selling to another investor at whatever they will pay.\n2. **Fees accrue.** Management fees are charged against the assets each year, so a rupee of NAV today is worth less than a rupee of NAV to you.\n3. **Liquidity.** Fund units are thinly traded on NEPSE, so the spread and the difficulty of exiting a position both push the price down.\n\n### Why maturity is the catalyst\n\nNepali closed-end funds have a **fixed maturity** — commonly seven or ten years. At maturity the fund liquidates and distributes NAV.\n\nSo the discount must converge to zero by maturity. A fund at a 19% discount with two years to maturity is a materially different proposition from the same discount with eight years to run — the first has a defined path to closing the gap, the second has eight more years of fees between you and it.\n\n### How to read one honestly\n\nCheck: the discount, the years to maturity, the annual management fee, and what the fund actually holds. A fund at a deep discount holding the same nineteen commercial banks you could buy directly is offering you a discount on something you did not need a fund for."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Two funds at the same discount",
+            "sub": "Both at Rs. 9.20 against an NAV of Rs. 11.40 — a 19.3% discount",
+            "sides": [
+              {
+                "k": "Fund A",
+                "t": "Two years to maturity",
+                "rows": [
+                  ["NAV per unit", "Rs. 11.40"],
+                  ["Market price", "Rs. 9.20"],
+                  ["Discount", "19.3%"],
+                  ["Years to maturity", "2"],
+                  ["Management fee", "1.5% a year"],
+                  ["Fees before maturity", "≈ 3%"]
+                ]
+              },
+              {
+                "k": "Fund B",
+                "t": "Eight years to maturity",
+                "rows": [
+                  ["NAV per unit", "Rs. 11.40"],
+                  ["Market price", "Rs. 9.20"],
+                  ["Discount", "19.3%"],
+                  ["Years to maturity", "8"],
+                  ["Management fee", "1.5% a year"],
+                  ["Fees before maturity", "≈ 12%"]
+                ]
+              }
+            ],
+            "verdict": "Identical discount, very different propositions. Fund A has a defined two-year path to closing the gap and loses about 3% to fees along the way. Fund B loses about 12% to fees before the same catalyst arrives — most of the discount you were buying."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Mutual fund units have a **Rs. 10 face value** — not Rs. 100 — with a minimum application of **100 units**. Closed-end funds persistently trade **below NAV** in Nepal, and the discount is not automatically an opportunity: it reflects the inability to redeem, the fees still to be charged, and thin liquidity. NAV is published monthly by the fund manager.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You buy **10,000 units of Fund A at Rs. 9.20**, with NAV at Rs. 11.40 and two years to maturity.",
+          "calc": [
+            { "l": "Gross (10,000 × Rs. 9.20)", "v": "Rs. 92,000.00" },
+            { "l": "Commission (0.33%) + SEBON + DP", "v": "Rs. 344.40" },
+            { "l": "Total cost", "v": "Rs. 92,344.40" },
+            { "l": "NAV value of the same units today", "v": "Rs. 1,14,000.00" },
+            { "l": "Discount captured if NAV holds to maturity", "v": "Rs. 21,655.60" },
+            { "l": "Less ~3% of NAV in fees over two years", "v": "− Rs. 3,420.00" },
+            { "l": "Indicative gain before market movement", "v": "Rs. 18,235.60", "total": true }
+          ],
+          "after": "That looks excellent — roughly +19.7% over two years, before the underlying portfolio does anything at all.\n\nNow the honest other side, because this is exactly where the analysis usually stops. **NAV is not fixed.** The fund holds shares, and Lesson 2.1 established that the NEPSE index has fallen 49.5% inside a two-year window within living memory. If NAV falls 30% to Rs. 7.98 and the discount stays at 19.3%, the units trade near Rs. 6.44 and your Rs. 92,344 is worth **Rs. 64,400** — a loss of Rs. 27,944.\n\nThe discount is a cushion, not a floor. You are still holding the market, with a fee drag and no ability to redeem."
+        },
+        {
+          "type": "check",
+          "qids": ["q-8-6-a", "q-8-6-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Closed-end fund units have a Rs. 10 face value and routinely trade below NAV in Nepal.",
+            "The discount persists because you cannot redeem, fees still accrue, and units are thinly traded.",
+            "Maturity forces convergence — so years-to-maturity matters as much as the size of the discount."
+          ]
+        }
+      ],
+      "glossary": ["mutual_fund", "nav", "face_value", "commission"]
+    }
+  ]
+}

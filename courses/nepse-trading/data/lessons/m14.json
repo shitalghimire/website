@@ -1,0 +1,299 @@
+{
+  "module": 14,
+  "title": "Risk and Position Sizing",
+  "lessons": [
+    {
+      "id": "14.1",
+      "module": 14,
+      "index": 1,
+      "title": "The only rule that matters: how much can you lose on this trade?",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Ask most people why they bought a stock and they will tell you a story about the company. Ask them how much they will lose if they are wrong and there is usually a pause. The second question is the one that determines whether they are still investing in five years."
+        },
+        {
+          "type": "core",
+          "md": "### Define risk in rupees, before entry, every time\n\nNot \"I think it will go up\". Not \"I'll sell if it drops a lot\". A number, in rupees, decided before you place the order.\n\nThe reason is not discipline for its own sake. It is that **the moment after you buy is the last moment you will think clearly about that position.** From then on you own it, you have a price you paid, and every subsequent decision is contaminated by both — which is Module 15's whole subject.\n\n### The pre-trade checklist\n\nFive questions. If you cannot answer all five, you do not have a trade.\n\n1. **Why am I buying?** One sentence. If it takes a paragraph, it is a hope.\n2. **What price says I am wrong?** A level, from Module 10 — not a percentage plucked from the air.\n3. **How many rupees do I lose at that price?** Entry minus stop, times quantity.\n4. **Is that within my per-trade limit?** 1–2% of the account. If not, the position is too big — reduce the size, never move the stop.\n5. **Can I exit in two days?** The liquidity check from Lesson 13.5.\n\n### Why 1–2%\n\nAt 2% per trade, ten consecutive losses cost about 18% of the account. Unpleasant, entirely survivable, and it leaves you on the flat part of the recovery curve that Lesson 14.4 draws.\n\nAt 10% per trade, ten consecutive losses cost 65%, which needs a **186% gain** to recover. Same ten mistakes, completely different outcome.\n\n### The NEPSE-specific problem\n\nNEPSE has **no stop-loss order type**. You cannot leave a resting instruction that triggers on a price. Your stop is a decision you execute manually, during the 11:00–15:00 session, and if a stock gaps or locks at the −15% circuit you may not get out at your price at all.\n\nThat makes **position size the primary risk control** — it is the only part you fully control."
+        },
+        {
+          "type": "visual",
+          "widget": "position-sizer",
+          "caption": "The pre-trade arithmetic. Note how the position cost and the amount at risk are completely different numbers."
+        },
+        {
+          "type": "nepse",
+          "md": "**NEPSE has no stop-loss order type.** Your stop is a decision you execute manually inside the 11:00–15:00 session. If a stock gaps at the open or locks at the −15% circuit, there may be no price at which you can sell that day at all. This is why size — the one variable fully under your control — carries more of the risk-management load here than in markets with automatic stops.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "Ten consecutive losing trades, at three different risk levels, on a Rs. 5,00,000 account.",
+          "table": {
+            "head": ["Risk per trade", "Loss per trade", "After 10 losses", "Account remaining", "Gain needed to recover"],
+            "numeric": [1, 2, 3, 4],
+            "rows": [
+              ["1%", "Rs. 5,000", "−9.6%", "Rs. 4,52,000", "+10.6%"],
+              ["2%", "Rs. 10,000", "−18.3%", "Rs. 4,08,000", "+22.5%"],
+              ["5%", "Rs. 25,000", "−40.1%", "Rs. 2,99,000", "+67.2%"],
+              ["10%", "Rs. 50,000", "−65.1%", "Rs. 1,74,000", "+186.5%"]
+            ],
+            "caption": "Compounded, so each loss is taken on the reduced balance."
+          },
+          "after": "Ten consecutive losses is not a catastrophe scenario. At a 50% win rate it happens roughly once in a thousand sequences of ten — and any active investor takes hundreds of trades.\n\nAt 1–2% risk, that run costs 10–18% and you continue. At 10% risk, the same ten decisions — **the same analysis, the same skill, the same market** — leave you needing to nearly triple what remains.\n\nThe only variable that changed is the one you set before entering. Nothing about being right more often would have helped, and that is the point of this module."
+        },
+        {
+          "type": "check",
+          "qids": ["q-14-1-a", "q-14-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Define your loss in rupees before entry — the moment after you buy is the last moment you think clearly.",
+            "Risk 1–2% of the account per trade so that no single mistake can be structural.",
+            "NEPSE has no stop-loss order type, which makes position size your primary risk control."
+          ]
+        }
+      ],
+      "glossary": ["stop_loss", "position_size", "risk", "circuit"]
+    },
+
+    {
+      "id": "14.2",
+      "module": 14,
+      "index": 2,
+      "title": "Position sizing from a stop loss, in rupees",
+      "minutes": 5,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Most people decide how much to invest, then look for a place to put a stop. That is backwards, and reversing it is the single highest-value change most retail investors can make."
+        },
+        {
+          "type": "core",
+          "md": "### The formula\n\n```\nRupee risk    = account × risk %\nRisk per share = entry − stop\nPosition size  = rupee risk ÷ risk per share\n```\n\nThat is the whole method. **Size is derived. It is never chosen first.**\n\n### Why the order matters\n\nChoosing the size first means the stop has to fit the size. That produces either a stop so tight that ordinary noise takes you out — and Lesson 10.2 warned that levels are zones, not precise numbers — or a stop so wide that one loss is structural.\n\nDeriving the size from the stop means the **stop sits where the chart says it should**, and the size adjusts to keep the loss constant.\n\n### The consequence people find counter-intuitive\n\n**A tighter stop permits a larger position, not a smaller one.** If your stop is Rs. 8 away you can hold more shares for the same rupee risk than if it is Rs. 24 away.\n\nThis is worth sitting with, because it inverts the instinct that a large position is inherently risky. A large position with a close stop and a small position with a distant stop can carry **identical** risk.\n\n### Exposure is not risk\n\nThe position may cost Rs. 80,000 — 20% of a Rs. 4,00,000 account — while risking only Rs. 6,000, which is 1.5%. Those are different numbers and they answer different questions.\n\n**Exposure** is what you have committed. **Risk** is what you lose if you are wrong. Confusing them leads either to positions that are far too small, or to a false sense of safety about ones that are far too large.\n\n### The NEPSE adjustments\n\n**Round to the lot.** Minimum 10 kitta, in multiples of 10. Round **down**.\n\n**Add the friction.** Your true loss at the stop includes about 1% of round-trip costs. On a tight stop that is a material share of the intended risk, and it is one more reason very small positions do not work.\n\n**Check you can exit.** All of this assumes you can actually sell at your stop. Lesson 13.5's days-to-exit calculation is part of sizing, not separate from it."
+        },
+        {
+          "type": "visual",
+          "widget": "position-sizer",
+          "caption": "Change the stop and watch the quantity change while the rupee risk stays fixed. That is the whole idea."
+        },
+        {
+          "type": "nepse",
+          "md": "Round the computed quantity **down** to a multiple of 10 [[kitta]], and remember that your real loss at the stop includes roughly **1% of round-trip friction** — commission both ways, SEBON fee both ways, two DP charges. On a stop only 5% away, that friction is a fifth of your intended risk, so size for it rather than discovering it afterwards.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A **Rs. 4,00,000** account, risking **1.5%** per trade. Entry Rs. 320, stop Rs. 296.",
+          "calc": [
+            { "l": "Rupee risk = 4,00,000 × 1.5%", "v": "Rs. 6,000.00" },
+            { "l": "Risk per share = 320 − 296", "v": "Rs. 24.00" },
+            { "l": "Position = 6,000 ÷ 24", "v": "250 kitta" },
+            { "l": "Cost of the position = 250 × 320", "v": "Rs. 80,000.00" },
+            { "l": "Account exposure", "v": "20.0%" },
+            { "l": "Account at risk", "v": "1.5%", "total": true }
+          ],
+          "after": "Twenty percent of the account committed, one and a half percent of it at risk. Both statements are true and they are not the same statement.\n\nNow move the stop and hold everything else constant:\n\n- Stop at **Rs. 308** (Rs. 12 away) → 500 kitta, Rs. 1,60,000 committed, still Rs. 6,000 at risk.\n- Stop at **Rs. 272** (Rs. 48 away) → 125 kitta, Rs. 40,000 committed, still Rs. 6,000 at risk.\n\nThe rupee risk never moves. The size does all the adjusting, which is exactly what it is for.\n\nAnd the honest addition: at the Rs. 296 stop, round-trip friction of about 1% on Rs. 80,000 is roughly **Rs. 800** — over 13% of your intended Rs. 6,000 risk. Your real loss if stopped is closer to Rs. 6,800. Size for that, or your 1.5% is quietly 1.7%."
+        },
+        {
+          "type": "check",
+          "qids": ["q-14-2-a", "q-14-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Position size = (account × risk %) ÷ (entry − stop). Size is derived from the stop, never chosen first.",
+            "A tighter stop permits a larger position for the same rupee risk — exposure and risk are different numbers.",
+            "Round down to a multiple of 10 kitta and include roughly 1% of round-trip friction in your real risk."
+          ]
+        }
+      ],
+      "glossary": ["position_size", "stop_loss", "kitta", "risk"]
+    },
+
+    {
+      "id": "14.3",
+      "module": 14,
+      "index": 3,
+      "title": "Risk-reward, win rate, and why 40% winners can be profitable",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Being right most of the time feels like the goal. It is not even close. A trader who is right 40% of the time can comfortably outperform one who is right 70% of the time, and the arithmetic that makes it true takes about two minutes to check."
+        },
+        {
+          "type": "core",
+          "md": "### The R-multiple\n\nExpress every outcome as a multiple of what you risked. Risk Rs. 6,000 and make Rs. 12,000, and that is **+2R**. Lose the full stop and it is **−1R**.\n\nThis single change of units makes trades comparable across positions of different sizes, and it is what lets you evaluate a system rather than a story.\n\n### Expectancy\n\n```\nExpectancy = (win rate × average win) − (loss rate × average loss)\n```\n\nIn R terms, this is the average number of R you make per trade. **Positive expectancy is the only thing that matters.** Win rate on its own tells you nothing.\n\n### The break-even win rate\n\nFor a given reward-to-risk ratio, the win rate you need simply to break even is:\n\n```\nBreak-even win rate = risk ÷ (reward + risk)\n```\n\n- At **1:1**, you need 50%.\n- At **2:1**, you need 33.3%.\n- At **3:1**, you need 25%.\n\nSo at 2:1, being right 40% of the time is comfortably profitable.\n\n### Why the high-win-rate approach usually fails\n\nHigh win rates are easy to manufacture: take profits quickly and let losses run. That produces a delightful-looking record and a shrinking account, because the losses are larger than the wins.\n\nThis is not a hypothetical error. It is **loss aversion**, which Lesson 15.2 covers, and it is the default human behaviour rather than an unusual failure.\n\n### The NEPSE adjustment\n\nEvery round trip costs roughly **1% in friction**, plus 10% capital gains tax on short-term gains. Your gross expectancy must exceed that before you have made anything.\n\nOn a 1:1 system risking 2% of a Rs. 5,00,000 account, the gross edge required is meaningfully larger than it looks — which is another reason wider targets suit this market better than tight ones."
+        },
+        {
+          "type": "visual",
+          "widget": "expectancy",
+          "caption": "Set a win rate and a reward-to-risk ratio. The break-even row is the one worth staring at."
+        },
+        {
+          "type": "nepse",
+          "md": "Your NEPSE expectancy must clear roughly **1% of round-trip friction** and **10% short-term capital gains tax** before you have made anything. A system with a genuine but small gross edge can be net negative here, and that is exactly why Lesson 6.3 argued that short-horizon strategies do not translate to this market.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Two traders, 100 trades each, risking Rs. 6,000 per trade.",
+          "table": {
+            "head": ["", "Trader A", "Trader B"],
+            "numeric": [1, 2],
+            "rows": [
+              ["Win rate", "40%", "70%"],
+              ["Average win", "+2.5R", "+0.6R"],
+              ["Average loss", "−1.0R", "−1.5R"],
+              ["Gross expectancy per trade", "+0.40R", "−0.03R"],
+              ["100 trades, in R", "+40R", "−3R"],
+              ["In rupees at Rs. 6,000 per R", "+Rs. 2,40,000", "−Rs. 18,000"],
+              ["Feels like", "Being wrong constantly", "Being right constantly"]
+            ],
+            "caption": "Trader B wins nearly twice as often and loses money."
+          },
+          "after": "Trader B is right 70% of the time and finishes down. Every individual week feels good; thirty of the hundred trades wipe out the seventy.\n\nTrader A is wrong 60% of the time and makes Rs. 2,40,000. Most weeks feel like failure.\n\n**The emotional experience of the two systems is the exact opposite of their results**, which is why so few people run the profitable one. Trader A has to tolerate being wrong most of the time, which is psychologically much harder than it looks on a spreadsheet.\n\nAnd the honest NEPSE footnote: Trader A's +0.40R gross becomes roughly **+0.33R** after friction and short-term tax on the winners. Still excellent. Trader B's −0.03R becomes about −0.10R. Costs do not change which system works — they widen the gap."
+        },
+        {
+          "type": "check",
+          "qids": ["q-14-3-a", "q-14-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Expectancy, not win rate, determines whether a system makes money — measure everything in R.",
+            "At 2:1 reward-to-risk you need only a 33.3% win rate to break even.",
+            "A high win rate is easy to manufacture by cutting winners and holding losers, and it usually loses money."
+          ]
+        }
+      ],
+      "glossary": ["expectancy", "r_multiple", "win_rate", "stop_loss"]
+    },
+
+    {
+      "id": "14.4",
+      "module": 14,
+      "index": 4,
+      "title": "The maths of ruin: why a 50% loss needs a 100% gain",
+      "minutes": 5,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Losses and gains are not symmetric, and the asymmetry gets worse the deeper you go. A 10% loss needs an 11% gain to recover. A 50% loss needs 100%. A 90% loss needs 900%. This is not psychology or motivation. It is arithmetic, and it is the reason risk management exists."
+        },
+        {
+          "type": "core",
+          "md": "If you lose a fraction **L** of your capital, the gain **G** required to get back to where you started is:\n\n```\nG = L ÷ (1 − L)\n```\n\nRun it out:\n\n| Loss | Gain needed |\n|---|---|\n| 5% | 5.3% |\n| 10% | 11.1% |\n| 20% | 25.0% |\n| 30% | 42.9% |\n| 40% | 66.7% |\n| 50% | 100.0% |\n| 60% | 150.0% |\n| 70% | 233.3% |\n| 80% | 400.0% |\n| 90% | 900.0% |\n\nThe curve is gentle until about 25% and then it turns vertical. **Everything in risk management is an attempt to keep you on the flat part of that curve.**\n\n### This is not theoretical on NEPSE\n\nThe index fell from **3,198.60 to 1,615** — a **49.5% drawdown**. To recover it needed **+98.1%**. Three years later it has managed +63.7%, to 2,643.83, and still needs another **+21.0%** to reclaim the high.\n\nThat is the index — a diversified basket of every listed company. Individual stocks in that period fell far more.\n\n### Three practical rules\n\n**Cap the loss on any single position.** If no position can lose more than 1–2% of total capital, no single mistake moves you onto the steep part of the curve. This is what a stop is for, and why size is derived from it.\n\n**Cap the drawdown on your account.** Decide in advance the total loss at which you stop trading and review — 15% or 20% is common. Write it down before you need it, because you will not think clearly at the moment it triggers.\n\n**Treat recovery time as a real cost.** Money in a 50% drawdown is not just down 50%; it is unavailable for the years it takes to recover. Someone who bought at the 2021 peak has had capital locked in a loss for five years, during which Nepali fixed deposits paid above 8–11% at times. **The opportunity cost exceeded the drawdown.**"
+        },
+        {
+          "type": "visual",
+          "widget": "drawdown-table",
+          "caption": "Drag along the curve. Note where it stops being gentle."
+        },
+        {
+          "type": "nepse",
+          "md": "NEPSE has **no stop-loss order type**. You cannot leave a resting instruction that triggers on a price. Your stop is a decision you execute manually, and if a stock gaps below your level or locks at the −15% circuit, you may not get out at your price at all. This makes position sizing far more important on NEPSE than on markets with automatic stops — the size is the only part you fully control.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "Two traders start with **Rs. 5,00,000**. Both take ten trades. Both are right six times out of ten.",
+          "calc": [
+            { "l": "Trader A — risks 2% (Rs. 10,000) per trade, targets 2:1, cuts at the stop", "v": "" },
+            { "l": "  Six wins × Rs. 20,000", "v": "+ Rs. 1,20,000" },
+            { "l": "  Four losses × Rs. 10,000", "v": "− Rs. 40,000" },
+            { "l": "  Net", "v": "+ Rs. 80,000 (+16%)", "total": true },
+            { "l": "Trader B — no stop, \"waits for recovery\" on losers", "v": "" },
+            { "l": "  Six wins × Rs. 20,000", "v": "+ Rs. 1,20,000" },
+            { "l": "  Two small losses", "v": "− Rs. 20,000" },
+            { "l": "  Two losers fall 45% on Rs. 1,00,000 positions", "v": "− Rs. 90,000" },
+            { "l": "  Net", "v": "+ Rs. 10,000 (+2%)", "total": true }
+          ],
+          "after": "Same market. Same win rate. Same instincts about which stocks to buy. **Trader A made eight times as much**, and the only difference was what she did when she was wrong.\n\nNote what Trader B did not do wrong: she picked the same stocks and was right just as often. Her mistake was entirely in the losers — specifically in deciding, after entry, that a position that had fallen 45% was a long-term investment.\n\nAnd the deeper cost is not in the arithmetic above. Those two 45% losers now need **+81.8%** each to get back to break-even, and they are tying up Rs. 1,10,000 of capital while they try. That capital is unavailable for the next opportunity, which is the part that compounds."
+        },
+        {
+          "type": "check",
+          "qids": ["q-14-4-a", "q-14-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Recovery requirement is L ÷ (1 − L) — it turns vertical past 25% and becomes impractical past 50%.",
+            "NEPSE offers no stop-loss order type, so position size is your primary risk control.",
+            "Being right 60% of the time is worthless if your losers are five times your winners."
+          ]
+        }
+      ],
+      "glossary": ["drawdown", "stop_loss", "position_size", "risk", "circuit"]
+    },
+
+    {
+      "id": "14.5",
+      "module": 14,
+      "index": 5,
+      "title": "Diversification in a market where everything is a bank",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You hold five companies. You feel diversified. All five are commercial banks, they correlate at about 0.90, and they will all reprice on the same morning when Nepal Rastra Bank publishes a circular. You hold one position wearing five names."
+        },
+        {
+          "type": "core",
+          "md": "### Diversification is across risk factors, not tickers\n\nTwo holdings diversify each other only if the things that could go wrong are **different things**. Five banks share: the same regulator, the same funding market, the same borrowers, the same interest-rate cycle and the same credit-to-deposit constraint.\n\nWhen NRB tightened in 2021–2023, every one of them was affected by the same mechanism at the same time.\n\n### What the correlations actually look like\n\nCommercial banks, development banks and finance companies sit at roughly **0.86 to 0.91** with each other. Microfinance is close behind. That is a single factor — Nepali credit — wearing four sector labels.\n\nHydropower is the genuine diversifier at around **0.62**, driven by rainfall, PPA terms and construction timelines rather than the credit cycle. Insurance is another, since insurers hold large fixed-deposit floats and benefit from the rising rates that hurt bank margins.\n\n### The awkward part\n\nThe real diversifiers are the **least liquid** part of the exchange. Hydropower is 91 companies, most of them thin. Insurance is 27, many of them thin.\n\nSo genuine diversification on NEPSE costs you something concrete: wider spreads, longer exit times, and less reliable technical analysis. That is a real trade-off, not a free lunch — and it is still usually worth paying, because the alternative is a portfolio with one risk factor and five names.\n\n### How many positions\n\nPast about eight to ten genuinely different holdings, additional diversification adds little and costs attention. **Five holdings across four risk factors beats twelve holdings across one.**\n\n### The concentration nobody counts\n\nMost Nepali investors have their salary, their family's income, their property and their portfolio all exposed to the same domestic economy. The portfolio is a smaller share of total household risk than it appears, and it is correlated with the rest of it.\n\nThat is not a reason to do anything dramatic. It is a reason to be honest about what \"diversified\" means when everything you own depends on the same economy."
+        },
+        {
+          "type": "visual",
+          "widget": "correlation",
+          "caption": "Read the top-left block first. Those are the sectors most Nepali portfolios are built from."
+        },
+        {
+          "type": "nepse",
+          "md": "**Nineteen commercial banks all move together.** They correlate at roughly 0.86–0.91 with each other and with development banks and finance companies. The genuine diversifiers on NEPSE — hydropower at about 0.62, and insurance — are also the least liquid parts of the exchange, so diversification here has a real cost in spread and exit time.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Two Rs. 5,00,000 portfolios through a hypothetical NRB tightening.",
+          "table": {
+            "head": ["", "Portfolio A — five banks", "Portfolio B — four sectors"],
+            "numeric": [],
+            "rows": [
+              ["Holdings", "NABIL, NMB, SANIMA, GBIME, PCBL", "NABIL, UPPER, a life insurer, a manufacturer, CBBL"],
+              ["Distinct risk factors", "1", "4"],
+              ["Average pairwise correlation", "≈ 0.90", "≈ 0.55"],
+              ["Bank exposure", "100%", "20%"],
+              ["Effect of an NRB tightening circular", "All five fall together", "One of five directly affected"],
+              ["Illustrative portfolio move", "−16%", "−7%"],
+              ["Weighted average spread", "0.1%", "1.4%"],
+              ["Days to exit the whole portfolio", "Under 1", "About 4"]
+            ],
+            "caption": "Illustrative. The trade-off in the last two rows is the honest cost."
+          },
+          "after": "Portfolio B loses less than half as much in the scenario it was built for. It is also **materially harder to trade**: fourteen times the spread cost and four days to exit rather than one.\n\nThat is the real decision, and it is not obvious. Portfolio A is liquid, analysable with the tools in Modules 9 to 11, and exits in an afternoon — and it is one bet on Nepali credit.\n\nPortfolio B is genuinely diversified and drags you into the thin sectors where Lesson 13.5's days-to-exit arithmetic applies.\n\nThe usable middle: **diversify across risk factors, and size the illiquid positions from their liquidity** rather than from conviction. A Rs. 28,000 hotel position you can exit is a real diversifier. A Rs. 3,00,000 one you cannot exit is a new concentration."
+        },
+        {
+          "type": "check",
+          "qids": ["q-14-5-a", "q-14-5-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Diversification is across risk factors, not tickers — five Nepali banks correlate at about 0.90 and are one position.",
+            "The genuine diversifiers on NEPSE are hydropower and insurance, and both are less liquid than banking.",
+            "Five holdings across four risk factors beats twelve across one; size illiquid diversifiers from their liquidity."
+          ]
+        }
+      ],
+      "glossary": ["correlation", "diversification", "liquidity_trap", "cd_ratio", "position_size"]
+    }
+  ]
+}

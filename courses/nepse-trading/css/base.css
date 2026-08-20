@@ -40,23 +40,24 @@ html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
 
 body {
   min-height: 100vh;
-  font-family: var(--f-read);
+  /* The grotesque carries the interface. The serif is reserved for lesson
+     prose only — letting it leak into lists and labels is what made the
+     first pass look mismatched. */
+  font-family: var(--f-display);
   font-size: var(--t-md);
-  line-height: 1.68;
+  font-weight: 400;
+  line-height: 1.6;
   color: var(--paper);
+  /* One warm wash from the top. No texture tile: at low opacity it read as
+     dirt rather than as a survey map, and it muddied every surface above it. */
   background:
-    radial-gradient(1200px 600px at 78% -8%, rgba(49, 208, 170, 0.055), transparent 62%),
-    url('../assets/contour.svg') repeat,
+    linear-gradient(180deg, #17150F 0%, var(--ink-900) 620px),
     var(--ink-900);
-  background-size: auto, 520px 520px, auto;
-  background-attachment: fixed, fixed, fixed;
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-@media (max-width: 900px) {
-  /* fixed attachment is expensive on mobile compositors */
-  body { background-attachment: scroll, scroll, scroll; }
-}
+@media (max-width: 900px) { body { background-attachment: scroll; } }
 
 img, svg, canvas { display: block; max-width: 100%; }
 button, input, select, textarea { font: inherit; color: inherit; background: none; border: 0; }
@@ -123,14 +124,17 @@ em, i { font-style: italic; }
 .wrap   { width: min(1240px, 100% - var(--s6)); margin-inline: auto; }
 .prose  { max-width: var(--measure); }
 .bleed  { width: 100%; }
-.split  { display: grid; grid-template-columns: 38fr 62fr; gap: var(--s7); align-items: start; }
+.split  { display: grid; grid-template-columns: minmax(0, 38fr) minmax(0, 62fr); gap: var(--s7); align-items: start; }
+/* minmax(0, …) rather than a bare fr: an fr track has a min-content floor,
+   so one long lesson title would push the column wider than the viewport. */
+.split > * { min-width: 0; }
 .rule   { border: 0; border-top: var(--hairline); margin: var(--s7) 0; }
 .stack > * + * { margin-top: var(--s4); }
 .row    { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
 .spread { display: flex; align-items: center; justify-content: space-between; gap: var(--s4); }
 
 @media (max-width: 900px) {
-  .split { grid-template-columns: 1fr; gap: var(--s6); }
+  .split { grid-template-columns: minmax(0, 1fr); gap: var(--s6); }
   .wrap  { width: min(1240px, 100% - var(--s4)); }
 }
 
@@ -151,10 +155,10 @@ em, i { font-style: italic; }
   color: var(--signal-dim); font-family: var(--f-data); font-size: var(--t-xs);
 }
 .prose a:not(.btn) {
-  color: var(--paper); border-bottom: 1px solid var(--bull-dim);
+  color: var(--paper); border-bottom: 1px solid var(--gold-dim);
   transition: border-color 160ms var(--ease), color 160ms var(--ease);
 }
-.prose a:not(.btn):hover { color: var(--bull); border-bottom-color: var(--bull); }
+.prose a:not(.btn):hover { color: var(--gold-soft); border-bottom-color: var(--gold); }
 
 /* ── the one radius rule ───────────────────────────────────── */
 .pill {
@@ -194,7 +198,7 @@ em, i { font-style: italic; }
 .btn--primary {
   background: var(--signal); border-color: var(--signal); color: var(--ink-900); font-weight: 600;
 }
-.btn--primary:hover:not(:disabled) { background: #FFC44D; border-color: #FFC44D; color: var(--ink-900); }
+.btn--primary:hover:not(:disabled) { background: var(--gold-soft); border-color: var(--gold-soft); }
 .btn--bull { border-color: var(--bull-dim); color: var(--bull); }
 .btn--bull:hover:not(:disabled) { background: var(--bull-wash); border-color: var(--bull); }
 .btn--bear { border-color: var(--bear-dim); color: var(--bear); }

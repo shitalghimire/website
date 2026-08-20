@@ -1,0 +1,358 @@
+{
+  "module": 13,
+  "title": "Sector Playbooks",
+  "lessons": [
+    {
+      "id": "13.1",
+      "module": 13,
+      "index": 1,
+      "title": "Commercial banks: the P/E table, and why NICA traded at 343×",
+      "minutes": 6,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Nineteen commercial banks are listed on NEPSE. In Q2 of FY 2082/83 their price-to-earnings ratios ran from 7.67× to 343.16×. That is not a range of opinions about quality. That is a signal that P/E, used carelessly, will tell you nothing at all."
+        },
+        {
+          "type": "core",
+          "md": "Commercial banking is the sector most Nepali investors start with, for good reasons: **19 listed names**, deep liquidity, quarterly disclosure, and businesses you can actually understand. It is also where the most misleading ratio in the market lives.\n\n### Read the table properly\n\nA high [[pe|P/E]] in Nepali banking almost never means \"expensive growth stock\". It means **the E collapsed**.\n\nNICA's 343.16× is not the market pricing in spectacular future earnings. It is a bank whose EPS fell to **Rs. 1.76** and whose [[roe|ROE]] is **0.88%**, while the price has not fully repriced. Same story at HBL (33.16×, ROE 6.66%) and CZBIL (30.45×, ROE 3.14%).\n\nAnd a low P/E is not automatically a bargain. **NBL at 7.67×** has an ROE of 6.76% — below what a fixed deposit was paying during the tightening cycle. Cheap because it earns poorly.\n\n### Read P/E next to ROE, always\n\nThe interesting names are the ones where a reasonable P/E sits beside a strong ROE: **KBL** (10.59× / 14.56%), **PCBL** (11.77× / 12.32%), **SANIMA** (16.18× / 12.40%), **NABIL** (18.40× / 14.86%). Those are at least coherent.\n\n**LSL**, with an EPS of −Rs. 2.04, has a P/E that is arithmetically meaningless. Ignore it entirely.\n\n### The sector median\n\n**14.92×.** That is the number to compare against, not some remembered figure from another market.\n\n### What this sector is genuinely good for\n\nLiquidity. These are the counters where the pattern analysis in Modules 9 to 11 actually works, where a Rs. 2,00,000 position is a fraction of a day's turnover, and where you can exit in an afternoon. For a retail investor learning to trade, that matters more than any ratio in the table."
+        },
+        {
+          "type": "visual",
+          "widget": "ratio-explorer",
+          "caption": "All nineteen banks. Hover any dot; the full table sits below the scatter."
+        },
+        {
+          "type": "nepse",
+          "md": "Three ratios matter more for a Nepali bank than P/E, and none appear on most price-tracking sites. **[[npl|NPL]]** as a percentage of total loans — rising NPL precedes falling EPS by two to four quarters. **[[cd_ratio|CD ratio]]** — how stretched the bank's lending is against its funding. **[[nim|Net interest margin]]** — the actual spread the bank earns. Find these in the quarterly report PDF on the bank's own website, under \"Unaudited Financial Results\".",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Two banks at roughly the same price.\n\n**NMB** — Rs. 233.00, EPS Rs. 17.10, P/E 15.35×, ROE 10.34%\n**CZBIL** — Rs. 194.60, EPS Rs. 4.63, P/E 30.45×, ROE 3.14%",
+          "calc": [
+            { "l": "CZBIL is cheaper per share by", "v": "Rs. 38.40" },
+            { "l": "Rs. 1,000 buys you in NMB", "v": "4.29 shares" },
+            { "l": "  × EPS Rs. 17.10 =", "v": "Rs. 73.39 of annual earnings" },
+            { "l": "Rs. 1,000 buys you in CZBIL", "v": "5.14 shares" },
+            { "l": "  × EPS Rs. 4.63 =", "v": "Rs. 23.80 of annual earnings" },
+            { "l": "NMB buys you more earnings per rupee by", "v": "3.1×", "total": true }
+          ],
+          "after": "A beginner buys \"the cheaper one\". But **you are not buying a share, you are buying earnings** — and per rupee invested NMB delivers three times more of them, from a business three times more efficient at using its capital.\n\nShare price alone told you exactly the opposite.\n\nAnd the honest limit: this is not a recommendation to buy NMB. It is a demonstration that the price tag is the wrong comparison. NMB could be carrying rising non-performing loans that have not reached the earnings line yet — Lesson 12.5 showed how that sequence runs, and the P/E and ROE columns would look fine right up until it did."
+        },
+        {
+          "type": "check",
+          "qids": ["q-13-1-a", "q-13-1-b", "q-13-1-c"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "In Nepali banking an extreme P/E usually means collapsed earnings, not priced-in growth.",
+            "Never read P/E without ROE beside it; ignore P/E entirely when EPS is negative.",
+            "NPL, CD ratio and net interest margin predict a bank's future EPS better than its current P/E does."
+          ]
+        }
+      ],
+      "glossary": ["pe", "roe", "eps", "npl", "cd_ratio", "nim"]
+    },
+
+    {
+      "id": "13.2",
+      "module": 13,
+      "index": 2,
+      "title": "Hydropower: installed capacity is a lie, PLF is the truth",
+      "minutes": 6,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Ninety-one hydropower companies are listed on NEPSE — a third of the entire exchange. Their IPO prospectuses all quote a number in megawatts. That number is the single most misleading figure in the Nepali market."
+        },
+        {
+          "type": "core",
+          "md": "Hydropower went from a niche to the largest sector on NEPSE by company count: **91 of 271 listed companies (33.6%)**. Nepal has developed roughly **2,800 MW** against an estimated technical potential in the tens of thousands. The growth story is real. The way retail investors value it is usually not.\n\n### Installed capacity is a licence, not a revenue\n\nA company licensed at 10 MW is licensed to generate **up to** 10 MW when the river is running at design flow. What it actually produces is measured by **[[plf|Plant Load Factor]]** — actual generation divided by theoretical maximum over a period.\n\nNepali **run-of-river** projects — which is most of them — are brutally seasonal. Monsoon months run near full capacity. The dry season, roughly Mangsir through Baisakh, can drop generation to a fraction of that. A project with 10 MW installed might deliver an annual PLF of 50–60%, and the shape of that year is not a flat line; it is a mountain.\n\n### The direct consequence for the financials\n\n**Hydropower quarterly results are seasonal.** Comparing Q2 to Q1 tells you about the weather, not the business. Compare Q2 to the **same quarter last year**. Every time.\n\n### The PPA is the whole business model\n\nA **Power Purchase Agreement** with Nepal Electricity Authority fixes the tariff, usually with different rates for wet and dry season and a defined escalation. Read three things: the tariff rates, the contract term, and the take-or-pay provisions. A project without a signed PPA has **no route to revenue**, whatever its capacity.\n\n### The stage determines everything\n\n- **Construction** — no revenue, heavy capex, interest capitalised. Any \"EPS\" figure is close to meaningless.\n- **Testing / trial generation** — first electricity, partial revenue, costs still elevated.\n- **Post-COD** — steady cash flows, debt repayment begins in earnest.\n\nThe most common retail mistake is buying at IPO on the strength of the megawatt number, years before COD, then holding through several years of no earnings while the construction timeline slips.\n\n### Debt is the hidden variable\n\nThese are project-finance businesses, typically funded at high debt-to-equity. Target **debt-to-equity below 1.0** and **ROE above 10%** for an operating company. During construction, watch the interest burden — a delayed project accrues interest against no revenue, and that gap is what kills equity holders."
+        },
+        {
+          "type": "visual",
+          "widget": "candle-chart",
+          "props": { "symbol": "UPPER", "bars": 120, "seasonality": true },
+          "caption": "Below the chart: monthly plant load factor. The dry season is not a bad business — it is the same business in Magh."
+        },
+        {
+          "type": "nepse",
+          "md": "Names you will encounter, with recent prices: **SMHL Rs. 556.20 · API Rs. 359.00 · RIDI Rs. 356.90 · NHPC Rs. 301.20 · HIDCL Rs. 301.00 · AKPL Rs. 299.00 · UPPER Rs. 230.00**. HIDCL is structurally different — an investment company holding stakes across many projects, so it behaves like a sector fund rather than a single project. If you want hydropower exposure without picking a river, that distinction matters.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Two projects, both quoting \"10 MW\".",
+          "table": {
+            "head": ["", "Project A", "Project B"],
+            "numeric": [1, 2],
+            "rows": [
+              ["Installed capacity", "10 MW", "10 MW"],
+              ["Annual PLF", "62%", "41%"],
+              ["Annual generation", "54.31 GWh", "35.92 GWh"],
+              ["PPA tariff (blended)", "Rs. 8.40 / kWh", "Rs. 8.40 / kWh"],
+              ["Annual revenue", "Rs. 45.62 crore", "Rs. 30.17 crore"],
+              ["Debt-to-equity", "0.9", "1.8"]
+            ],
+            "caption": "Same headline number in every prospectus."
+          },
+          "after": "Same headline. Project A earns **51% more revenue** and carries **half the leverage**. If both IPO'd at Rs. 100 and the market priced them identically on the megawatt number, one of them was badly mispriced — and the prospectus told you which, if you read past page one.\n\nNow the loss case, which is the one that actually happens. Project B's construction slips eighteen months. It has no revenue and Rs. 1.8 of debt for every rupee of equity, accruing interest the whole time. By COD, the interest capitalised during the delay has materially increased the debt the equity has to service.\n\nThe megawatt number never changed. The equity was quietly destroyed by a delay, and the only place that was visible in advance was the debt-to-equity ratio and the project timeline — both in the prospectus, both on page four."
+        },
+        {
+          "type": "check",
+          "qids": ["q-13-2-a", "q-13-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Installed capacity is a licence; PLF is what actually generates revenue. Always ask for PLF.",
+            "Hydropower earnings are seasonal — compare quarters year-on-year, never sequentially.",
+            "Check PPA terms, project stage (pre-COD vs post-COD), and debt-to-equity before capacity."
+          ]
+        }
+      ],
+      "glossary": ["plf", "ppa", "cod", "hydropower", "roe", "leverage"]
+    },
+
+    {
+      "id": "13.3",
+      "module": 13,
+      "index": 3,
+      "title": "Microfinance: high ROE, high risk, and regulatory whiplash",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Fifty microfinance companies are listed on NEPSE — the second largest sector by count. Many report returns on equity above 20%, roughly double the commercial banks. That number is real, and it is not the bargain it looks like."
+        },
+        {
+          "type": "core",
+          "md": "**[[microfinance|Laghubitta]]** institutions lend small, unsecured amounts to borrowers outside the formal banking system, typically through group-liability structures. **50 of 271 listed companies** — 18.5% of the exchange.\n\n### Why ROE is so high\n\nInterest rates on microfinance lending are far above commercial bank rates, reflecting the cost of serving small borrowers and the absence of collateral. High rates on a modest capital base produce high returns on equity.\n\nAn ROE above 20% is common. Against commercial banking's 14.86% best in Q2 2082/83, that looks compelling.\n\n### The three risks that come with it\n\n**1 · Portfolio at risk.** Unsecured lending to borrowers with thin financial records. Repayment depends on local economic conditions, harvests and remittance flows. Deterioration can be fast, and it is not always visible until it is severe.\n\n**2 · Over-indebtedness.** Where several institutions lend to the same borrower or the same group, apparent repayment can be maintained by borrowing from one to repay another — until it cannot. This is a sector-level risk, not a company-level one, which means diversifying across microfinance names does not diversify it away.\n\n**3 · Regulatory whiplash.** This is the one that catches investors. Nepal Rastra Bank has intervened repeatedly in microfinance — interest rate caps, spread caps, restrictions on dividends, merger requirements. **A single circular can reprice the entire sector overnight**, and it applies to every company at once.\n\n### How to read a microfinance company\n\nROE tells you how profitable it has been. **Portfolio at risk and provisioning tell you whether that continues.** The relationship is the same one Lesson 12.5 described for banks, only faster: bad loans in unsecured microfinance turn into losses more quickly than in secured commercial lending.\n\n### The honest position\n\nHigh ROE in this sector is compensation for risks that are real, correlated across the sector, and partly regulatory rather than economic. That is not a reason to avoid it. It is a reason to size it as the risk it is, which is Module 14's subject."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Microfinance against commercial banking",
+            "sub": "Why the ROE gap exists",
+            "sides": [
+              {
+                "k": "Higher return",
+                "t": "Microfinance",
+                "rows": [
+                  ["Listed companies", "50"],
+                  ["Typical ROE", "Often above 20%"],
+                  ["Lending", "Small, unsecured, group-liability"],
+                  ["Main risk", "Portfolio at risk, over-indebtedness"],
+                  ["Regulatory sensitivity", "Very high — one circular repriced the sector"],
+                  ["Correlation within sector", "High"]
+                ]
+              },
+              {
+                "k": "Lower return",
+                "t": "Commercial banks",
+                "rows": [
+                  ["Listed companies", "19"],
+                  ["Typical ROE", "Around 10–15%"],
+                  ["Lending", "Larger, mostly secured"],
+                  ["Main risk", "NPL, CD ratio, NIM compression"],
+                  ["Regulatory sensitivity", "High — capital adequacy, CD ratio"],
+                  ["Correlation within sector", "Very high (~0.90)"]
+                ]
+              }
+            ],
+            "verdict": "The extra ROE is payment for unsecured credit risk and regulatory exposure. Both of those are correlated across the whole sector, so holding five microfinance names diversifies almost nothing — the same problem Lesson 14.5 identifies with holding five banks."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Nepal Rastra Bank has repeatedly intervened in microfinance — interest rate caps, spread caps, dividend restrictions and merger requirements. **A single NRB circular can reprice the entire sector in a day**, and it hits every listed name at once. Follow NRB's circulars at nrb.org.np rather than learning about them from the price.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A microfinance holding through a regulatory intervention.",
+          "calc": [
+            { "l": "Position — Rs. 2,00,000 across four microfinance names", "v": "\"Diversified\"" },
+            { "l": "Sector ROE before", "v": "22%" },
+            { "l": "NRB circular caps the lending spread", "v": "—" },
+            { "l": "Effect on all four holdings", "v": "Simultaneous" },
+            { "l": "Illustrative sector repricing", "v": "−18% in three sessions" },
+            { "l": "Value of the \"diversified\" position", "v": "Rs. 1,64,000", "total": true }
+          ],
+          "after": "Four companies, one risk. The diversification was across ticker symbols, not across risk factors — the same error Lesson 2.3 identified with five commercial banks, and Lesson 14.5 quantifies with a correlation matrix.\n\nAnd the part that makes this sector specifically difficult: **there was no company-level warning to read.** No NPL trend, no CD ratio, no quarterly deterioration. The risk was regulatory, it arrived by circular, and it applied to everyone.\n\nThat is what the extra ROE is paying you for. Whether it pays enough is a judgement — but it should be a judgement made knowingly, with the position sized for a risk that can move 18% in three days and cannot be diversified within the sector."
+        },
+        {
+          "type": "check",
+          "qids": ["q-13-3-a", "q-13-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Microfinance ROE above 20% is real compensation for unsecured credit risk and regulatory exposure.",
+            "A single NRB circular can reprice all 50 listed microfinance names at once — the risk is sector-wide, not company-specific.",
+            "Holding several microfinance names diversifies almost nothing, because the dominant risk is common to all of them."
+          ]
+        }
+      ],
+      "glossary": ["microfinance", "roe", "npl", "provisioning", "correlation"]
+    },
+
+    {
+      "id": "13.4",
+      "module": 13,
+      "index": 4,
+      "title": "Life and non-life insurance: reading a business you can't see",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "An insurer takes your money today and promises to pay claims that may not arrive for thirty years. Every number on its balance sheet is therefore an estimate of the future. Understanding which estimates matter is most of what it takes to read one."
+        },
+        {
+          "type": "core",
+          "md": "**14 life** and **13 non-life** insurers are listed on NEPSE — 27 companies, about 10% of the exchange.\n\n### Why insurance is harder to read than banking\n\nA bank's loan either performs or it does not, and you find out within a few quarters. An insurer's liability may not crystallise for decades, so its reported profit depends on **assumptions about the future** — mortality, claim frequency, investment returns, expenses.\n\nChange the assumptions and you change reported profit without anything happening in the real world.\n\n### The numbers that matter\n\n**Premium growth.** Is the book growing? For a young Nepali insurer in an under-penetrated market, this is the main story.\n\n**Claims ratio** — claims paid as a proportion of premiums earned. The core measure of underwriting. A rising claims ratio means the business is pricing risk badly, or the risk changed.\n\n**Solvency margin** — assets held against liabilities, relative to the regulatory minimum. This is the insurance equivalent of capital adequacy, and it constrains growth the same way.\n\n**Investment income.** Insurers invest the float — premiums received but not yet paid out. In Nepal a large share sits in fixed deposits, which means **insurer earnings are sensitive to interest rates**, and often in the opposite direction to banks.\n\n### Life against non-life\n\n**Life** has a long tail: policies run for decades, so today's pricing errors surface slowly. Growth looks smooth and the risks are deferred.\n\n**Non-life** — motor, property, health — has a short tail. Claims arrive within the year, so the claims ratio is an honest and quick signal. It is also more exposed to single events: one earthquake, one flood season.\n\n### The honest difficulty\n\nInsurance is the sector where the gap between what is disclosed and what you need to know is widest. It is not unreadable — but it demands more reliance on management's assumptions than banking does, and that is a real reason for a retail investor to size positions here smaller rather than larger."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "Life against non-life",
+            "sub": "27 listed insurers, two different businesses",
+            "sides": [
+              {
+                "k": "Long tail",
+                "t": "Life insurance — 14 listed",
+                "rows": [
+                  ["Policy duration", "Decades"],
+                  ["When claims arrive", "Far in the future"],
+                  ["Key signal", "Premium growth, solvency margin"],
+                  ["Pricing errors surface", "Slowly — years"],
+                  ["Interest rate sensitivity", "High — large investment float"],
+                  ["Single-event exposure", "Low"]
+                ]
+              },
+              {
+                "k": "Short tail",
+                "t": "Non-life — 13 listed",
+                "rows": [
+                  ["Policy duration", "Usually one year"],
+                  ["When claims arrive", "Within the year"],
+                  ["Key signal", "Claims ratio"],
+                  ["Pricing errors surface", "Quickly — quarters"],
+                  ["Interest rate sensitivity", "Moderate"],
+                  ["Single-event exposure", "High — flood, earthquake"]
+                ]
+              }
+            ],
+            "verdict": "Non-life gives you a fast, honest feedback loop through the claims ratio. Life gives you a smoother growth story whose risks are deferred — which is more comfortable to hold and harder to verify."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Nepali insurers hold a large part of their investment float in **fixed deposits**, so their earnings move with interest rates — often in the opposite direction to banks, whose net interest margin compresses when deposit rates rise. That makes insurance one of the few genuine diversifiers against a bank-heavy Nepali portfolio, which matters given the correlation problem in Lesson 14.5.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A non-life insurer across two years.",
+          "table": {
+            "head": ["", "Year 1", "Year 2"],
+            "numeric": [1, 2],
+            "rows": [
+              ["Premiums earned (Rs. crore)", "412", "486"],
+              ["Premium growth", "—", "+18.0%"],
+              ["Claims paid (Rs. crore)", "231", "339"],
+              ["Claims ratio", "56.1%", "69.8%"],
+              ["Investment income (Rs. crore)", "58", "71"],
+              ["Reported net profit (Rs. crore)", "94", "82"],
+              ["Solvency margin vs minimum", "1.9×", "1.4×"]
+            ],
+            "caption": "Illustrative. The relationship between rows 2 and 4 is the point."
+          },
+          "after": "Premium growth of **+18%** is the headline, and a growth-focused screener would rank this well.\n\nThe claims ratio went from 56.1% to **69.8%**. The company wrote a great deal more business and priced it worse — or a flood season arrived. Either way, profit fell despite revenue rising 18%, and the solvency margin narrowed from 1.9× to 1.4× of the minimum.\n\nThat last row is the constraint. An insurer approaching its solvency floor cannot keep growing without raising capital, which in Nepal usually means a rights issue — and Lesson 8.5 showed exactly what a rights issue does to a holder who ignores it.\n\n**Growth without the claims ratio beside it is not information.** It is the same error as reading P/E without ROE."
+        },
+        {
+          "type": "check",
+          "qids": ["q-13-4-a", "q-13-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Insurance profit depends on assumptions about the future, so it demands more trust in management than banking does.",
+            "Read premium growth beside the claims ratio, and watch the solvency margin as the growth constraint.",
+            "Nepali insurers hold large fixed-deposit floats, making them one of the few genuine diversifiers against a bank-heavy portfolio."
+          ]
+        }
+      ],
+      "glossary": ["insurance", "claims_ratio", "solvency_margin", "hakprad", "correlation"]
+    },
+
+    {
+      "id": "13.5",
+      "module": 13,
+      "index": 5,
+      "title": "Hotels, manufacturing, trading: the thin-volume sectors",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Manufacturing has 22 listed companies, hotels 7, trading 4. Thirty-three businesses, some of them genuinely good, and most of them impossible for a retail investor to hold at meaningful size with any way out."
+        },
+        {
+          "type": "core",
+          "md": "### The sectors\n\n**Manufacturing & Processing** — 22 companies, 8.1% of the exchange. Cement, food processing, textiles. Real businesses with real products.\n\n**Hotel & Tourism** — 7 companies, 2.6%. Directly geared to Nepal's tourism cycle, which is geared to global travel, exchange rates and events entirely outside anyone's control.\n\n**Trading** — 4 companies, 1.5%. The smallest sector on NEPSE.\n\n### The common problem\n\nThese are the **thin-volume sectors**. Some of these companies trade a few hundred kitta on a normal day. Everything Modules 9 to 11 taught about patterns and indicators becomes unreliable, for all the reasons Lesson 11.4 set out.\n\nBut the deeper problem is not analysis. It is **exit**.\n\n### Days to exit — the only number that matters here\n\n```\nDays to exit = position size ÷ (daily turnover × your realistic share)\n```\n\nUse about 10% as your realistic share — beyond that you are moving the price against yourself.\n\nOn a counter averaging Rs. 2 lakh of daily turnover, a Rs. 2,00,000 position takes **ten trading days** to unwind. Two weeks. Any bad news reaches the price long before you reach the door, and your stop loss — which NEPSE does not offer as an order type anyway — becomes a wish.\n\n### What this means practically\n\nIt does not mean these sectors are uninvestable. It means **position size must be derived from liquidity, not just from your stop**.\n\nIf you cannot exit in about two days, the position is too large for that counter, regardless of what the analysis says. That constraint often makes a genuinely attractive company un-buyable at a size that would matter to your portfolio — and accepting that is more useful than pretending the liquidity is not a problem.\n\n### The one advantage\n\nThinly-traded companies are less analysed. If you are willing to hold for years without a working exit, genuine mispricings can persist here in a way they cannot in the nineteen commercial banks. That is a real edge — available only to someone whose time horizon genuinely matches the illiquidity."
+        },
+        {
+          "type": "visual",
+          "widget": "exit-calc",
+          "caption": "Enter a position and a counter's daily turnover. If the answer is above two days, the position is too big."
+        },
+        {
+          "type": "nepse",
+          "md": "Check **average daily turnover over about twenty sessions** before taking any position in these sectors, and size from it. NEPSE publishes per-scrip turnover daily; Sharesansar and Merolagani aggregate it. A position you cannot exit inside two trading days is a position whose risk you do not control — and NEPSE offers no stop-loss order type to help you.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The same Rs. 3,00,000 conviction, across three counters.",
+          "table": {
+            "head": ["", "Commercial bank", "Manufacturer", "Hotel"],
+            "numeric": [1, 2, 3],
+            "rows": [
+              ["20-day average turnover", "Rs. 2.10 crore", "Rs. 18 lakh", "Rs. 1.4 lakh"],
+              ["Position you want", "Rs. 3,00,000", "Rs. 3,00,000", "Rs. 3,00,000"],
+              ["Sellable per day at 10%", "Rs. 2,10,000", "Rs. 1,80,000", "Rs. 14,000"],
+              ["Days to exit", "1.4", "1.7", "21.4"],
+              ["Typical spread", "0.1%", "1.2%", "3.1%"],
+              ["Round-trip spread cost", "Rs. 300", "Rs. 3,600", "Rs. 9,300"],
+              ["Maximum sensible position (2-day exit)", "Rs. 4,20,000", "Rs. 3,60,000", "Rs. 28,000"]
+            ],
+            "caption": "The last row is the answer the analysis should have started with."
+          },
+          "after": "The bank and the manufacturer both support the position. The hotel supports **Rs. 28,000** — about a tenth of what was intended.\n\nThat is not a reason to dismiss the hotel. It is the honest maximum, and a Rs. 28,000 position that you can actually leave is worth more than a Rs. 3,00,000 position that you cannot.\n\nAnd the loss case, which is common enough to be worth stating plainly: someone takes the full Rs. 3,00,000 in the hotel because the analysis was good. Six months later the tourism season disappoints, the stock falls 25%, and they discover that selling takes **twenty-one trading days** at 10% of volume — during which their own selling pushes the price down further. The Rs. 75,000 paper loss becomes considerably more by the time they are out.\n\n**The analysis was never the problem.** The size was."
+        },
+        {
+          "type": "check",
+          "qids": ["q-13-5-a", "q-13-5-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Manufacturing (22), hotels (7) and trading (4) are the thin sectors, where patterns and indicators are least reliable.",
+            "Days to exit = position ÷ (daily turnover × 10%) — above about two days, the position is too large.",
+            "Illiquidity can create genuine mispricings, but only someone whose horizon matches the illiquidity can collect them."
+          ]
+        }
+      ],
+      "glossary": ["turnover", "liquidity_trap", "spread", "position_size"]
+    }
+  ]
+}

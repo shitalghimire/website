@@ -491,7 +491,7 @@ function orderBookDemo() {
       ]);
     }));
 
-    bookNode.replaceChildren(el('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--s3)' } }, [
+    bookNode.replaceChildren(el('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(210px, 100%), 1fr))', gap: 'var(--s3)' } }, [
       el('div', [el('span.kicker', { style: { display: 'block', marginBottom: '4px' } }, 'Bids — buyers'), side(bids, 'buy')]),
       el('div', [el('span.kicker', { style: { display: 'block', marginBottom: '4px' } }, 'Asks — sellers'), side(asks, 'sell')])
     ]));
@@ -874,7 +874,7 @@ function ratioExplorer(props = {}) {
     };
 
     body.replaceChildren(bar,
-      el('div', { style: { marginTop: 'var(--s4)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--s5)' } }, [
+      el('div', { style: { marginTop: 'var(--s4)', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(210px, 100%), 1fr))', gap: 'var(--s5)' } }, [
         barChart('reported', 'var(--bear-dim)', 'Reported EPS'),
         barChart('adjusted', 'var(--bull-dim)', 'Bonus-adjusted EPS')
       ]),
@@ -1214,7 +1214,7 @@ function flow(props) {
 /** Two things side by side, with a verdict. */
 function compare(props) {
   return frame(props.title, props.sub, [
-    el('div', { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'var(--s4)' } },
+    el('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(210px, 100%), 1fr))', gap: 'var(--s4)' } },
       (props.sides || []).map(s => el('div.panel', { style: { background: 'var(--ink-800)' } }, [
         el('span.kicker', s.k),
         el('h4', { style: { margin: '6px 0 var(--s3)' } }, s.t),

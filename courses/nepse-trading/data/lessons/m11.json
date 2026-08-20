@@ -1,0 +1,312 @@
+{
+  "module": 11,
+  "title": "Indicators That Earn Their Place",
+  "lessons": [
+    {
+      "id": "11.1",
+      "module": 11,
+      "index": 1,
+      "title": "Moving averages: SMA 20/50/200 and the golden cross myth",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "The golden cross — the 50-day moving average crossing above the 200-day — is the most famous signal in technical analysis. It is also, by construction, one of the slowest. By the time it prints, the move it is announcing is usually months old."
+        },
+        {
+          "type": "core",
+          "md": "A **[[sma|simple moving average]]** is the average close over the last *n* sessions. An **[[ema|exponential moving average]]** weights recent sessions more heavily, so it turns sooner and whipsaws more.\n\nThat is the entire trade-off, and it is worth stating plainly: **every moving average lags**. It is an average of the past. It cannot do anything else.\n\n### What the three standard lengths are for\n\n- **SMA 20** — about a month. Tracks the immediate swing.\n- **SMA 50** — about a quarter. The medium trend.\n- **SMA 200** — about a year. The long-term regime. Whether price is above or below it is the crudest useful summary of a chart.\n\n### What a moving average is genuinely good at\n\n**Describing the regime.** Above a rising 200-day is a different world from below a falling one. This single reading is worth more than every crossover signal combined.\n\n**Acting as a dynamic level.** In a strong trend, pullbacks often stall near the 20 or 50. This is partly self-fulfilling — enough people watch it — which does not make it less real.\n\n**Removing noise from your own eyes.** A rising 50-day answers \"is this actually trending?\" without an argument.\n\n### What it is bad at\n\n**Timing entries.** A crossover happens after the move. Every time.\n\n**Ranging markets.** In a range, a moving average sits in the middle and crosses back and forth generating losses in both directions. Most charts are ranging most of the time.\n\n### The honest position\n\nUse moving averages as **confirmation of a trend you identified from structure** in Module 10, never as a trigger. The crossover backtest on the chart below is deliberately unflattering, because the honest number matters more than the famous one."
+        },
+        {
+          "type": "visual",
+          "widget": "indicator-lab",
+          "props": { "symbol": "NABIL", "show": "ma" },
+          "caption": "SMA 20 and 50 on a real series — with an honest count of what the crossover actually produced."
+        },
+        {
+          "type": "nepse",
+          "md": "The SMA 200 needs **200 sessions of clean data**. On a NEPSE counter that listed eighteen months ago, went ex-bonus twice and has circuit days scattered through it, the 200-day average is computed over a series that is partly mechanical adjustment and partly halted trading. Check the chart is bonus-adjusted and note the circuit days before you read anything into a long average.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A 20/50 crossover system on a liquid commercial bank, over about 160 sessions.",
+          "calc": [
+            { "l": "Completed trades (cross up to cross down)", "v": "4" },
+            { "l": "Trades that made money before costs", "v": "2" },
+            { "l": "Win rate before costs", "v": "50%" },
+            { "l": "Average round-trip friction per trade", "v": "≈ 1.0%" },
+            { "l": "Average winning trade", "v": "+6.4%" },
+            { "l": "Average losing trade", "v": "−4.1%" },
+            { "l": "Net expectancy per trade after costs", "v": "≈ +0.15%", "total": true }
+          ],
+          "after": "Four trades in eight months, a 50% win rate, and an expectancy that is barely distinguishable from zero once you pay the commission, SEBON fee, DP charges and short-term capital gains tax.\n\nThat is the honest result, and it is typical. The crossover is not worthless — the winners were larger than the losers, which is where the tiny positive edge comes from — but it is nothing like the signal its reputation suggests.\n\nWhat it *is* good for sits in the same data: for the whole period the price stayed above a rising SMA 50, the trend was intact and a structure-based holder had no reason to sell. **The average was more useful as a description than as a trigger**, and that is the general rule."
+        },
+        {
+          "type": "check",
+          "qids": ["q-11-1-a", "q-11-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Every moving average lags by construction — it is an average of the past and cannot lead price.",
+            "SMA 200 describes the regime, SMA 50 the medium trend, SMA 20 the immediate swing.",
+            "Use crossovers as confirmation of structure you already identified, never as an entry trigger."
+          ]
+        }
+      ],
+      "glossary": ["sma", "ema", "trend", "golden_cross"]
+    },
+
+    {
+      "id": "11.2",
+      "module": 11,
+      "index": 2,
+      "title": "RSI: overbought is not a sell signal",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "RSI crosses 70. Every beginner's checklist says overbought, so they sell. The stock rises another 40% over the following two months with RSI never once dropping below 65. Overbought is a description, not an instruction."
+        },
+        {
+          "type": "core",
+          "md": "**[[rsi|RSI]]** — the Relative Strength Index — compares the size of recent gains with the size of recent losses over 14 sessions, and scales the result from 0 to 100.\n\nAbove 70 is conventionally \"overbought\"; below 30 \"oversold\". Those labels are the most misused words in technical analysis.\n\n### What RSI actually measures\n\n**The character of recent movement, not its extent.** RSI at 78 means recent up-sessions have been much larger than recent down-sessions. It says nothing about whether the price is high relative to the company's earnings, book value or anything else real.\n\nA stock in a genuine, powerful uptrend **should** have a high RSI. That is what a strong trend looks like in this measurement. Selling because RSI is 72 means selling because the trend is strong.\n\n### Overbought can stay overbought\n\nIn a sustained advance, RSI can hold above 70 for weeks. In a sustained decline it can sit below 30 for just as long. \"Extreme\" readings persist precisely when the trend is worth being in.\n\n### Divergence — the one genuinely useful reading\n\n**Bearish divergence**: price makes a higher high, RSI makes a lower high. The new price high was achieved with less momentum than the last one.\n\n**Bullish divergence** is the mirror at lows.\n\nDivergence is a warning that the character of the move is weakening. It is **not** a reversal signal — divergences can persist for a long time, and \"it diverged and kept going\" is an extremely common outcome.\n\n### How to use it without being hurt by it\n\nUse RSI to answer *has this move been one-sided?* and to spot divergence. Do not use 70 and 30 as triggers. And on the thin NEPSE counters covered in Lesson 11.4, be aware that a handful of trades can move RSI dramatically without meaning anything at all."
+        },
+        {
+          "type": "visual",
+          "widget": "indicator-lab",
+          "props": { "symbol": "API", "show": "rsi" },
+          "caption": "RSI 14 with the conventional 30 and 70 guides. Note how long it holds above 70 during the strong stretches."
+        },
+        {
+          "type": "nepse",
+          "md": "RSI is computed from closing prices, and on a NEPSE counter that hit its **±15% circuit** the close is the limit rather than a discovered price. A few circuit days in a row can drive RSI to an extreme that reflects the limit mechanism, not market conviction. Combined with thin volume — Lesson 11.4 — this is how indicators produce confident-looking nonsense on a third of the exchange.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "Two RSI readings of 74 on the same counter, four months apart.",
+          "table": {
+            "head": ["", "Reading A", "Reading B"],
+            "numeric": [],
+            "rows": [
+              ["RSI 14", "74", "74"],
+              ["Price vs 20 sessions ago", "+18.4%", "+19.1%"],
+              ["Higher high in price?", "Yes", "Yes"],
+              ["RSI at the previous price high", "68", "81"],
+              ["Divergence?", "No — RSI confirmed the high", "Yes — bearish divergence"],
+              ["Volume trend over the advance", "Rising", "Falling"],
+              ["Next 20 sessions", "+11.2%", "−13.6%"]
+            ],
+            "caption": "Identical RSI values. The useful information is in the two rows about the previous high."
+          },
+          "after": "Someone selling on \"RSI above 70\" would have sold both. One of those sales cost 11.2% of upside; the other avoided a 13.6% decline. Net of round-trip friction, the rule produced roughly nothing across the two — which is what a coin-flip rule does.\n\nThe rows that actually distinguish them are **divergence** and **volume**. In Reading B the stock made a higher high on *less* momentum and *less* participation than the previous one. That is a genuine deterioration in the character of the move.\n\nAnd the caveat that keeps this honest: divergences fail regularly. Reading B happened to resolve downward. Treat divergence as a reason to tighten a stop or stop adding — not as a reason to short something you cannot short anyway, since NEPSE has no short selling."
+        },
+        {
+          "type": "check",
+          "qids": ["q-11-2-a", "q-11-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "RSI measures the character of recent movement, not whether a price is expensive — overbought can stay overbought for months.",
+            "Divergence between price highs and RSI highs is the one genuinely useful reading, and it is a warning, not a trigger.",
+            "Circuit days and thin volume distort RSI badly on much of NEPSE."
+          ]
+        }
+      ],
+      "glossary": ["rsi", "divergence", "circuit", "momentum"]
+    },
+
+    {
+      "id": "11.3",
+      "module": 11,
+      "index": 3,
+      "title": "MACD: what the histogram is really showing you",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Most people read the MACD histogram as \"green is good, red is bad\". What it actually measures is the rate of change of the rate of change — and once you see that, the bars stop being decoration and start being early information."
+        },
+        {
+          "type": "core",
+          "md": "**[[macd|MACD]]** has three parts, built from two exponential moving averages.\n\n- **MACD line** = EMA(12) − EMA(26). The gap between a fast and a slow average — that is, **momentum**.\n- **Signal line** = EMA(9) of the MACD line. A smoothed version of momentum.\n- **Histogram** = MACD line − signal line. The gap between momentum and smoothed momentum — that is, **the rate at which momentum itself is changing**.\n\nThat third quantity is the interesting one and the reason MACD is worth having when a plain moving average is not.\n\n### Reading the histogram properly\n\nBars **above zero** mean momentum is above its own average — the trend is accelerating.\nBars **shrinking while still above zero** mean momentum is still positive but **decelerating**. The trend is intact and losing steam.\n\nThat second reading is the useful one, and it appears **before** any crossover. A shrinking histogram in an uptrend is the earliest mechanical warning most indicator sets provide.\n\n### The zero line\n\nThe MACD line crossing zero means the 12-EMA crossed the 26-EMA — a genuine change in the medium-term trend, and a slower, more meaningful event than the signal-line crossover.\n\n### What it cannot do\n\nMACD is built entirely from moving averages, so it **lags**. It is unreliable in ranges, where it crosses constantly. And it has no absolute scale — a MACD of 4.2 means something different on a Rs. 670 bank than on a Rs. 89 counter, so never compare the raw value across stocks.\n\n### Where it earns its place\n\nOne trend indicator and one momentum indicator is a complete system, as Lesson 11.5 argues. MACD can serve as either, which is why it is on this short list at all."
+        },
+        {
+          "type": "visual",
+          "widget": "indicator-lab",
+          "props": { "symbol": "SANIMA", "show": "macd" },
+          "caption": "The histogram is the gap between the two lines. Watch it shrink before each crossover."
+        },
+        {
+          "type": "nepse",
+          "md": "MACD has **no absolute scale** — it is a rupee difference between two averages. A MACD of 4.2 on Everest Bank at Rs. 670 and a MACD of 4.2 on a Rs. 89 counter describe completely different situations. Compare MACD only against its own history for the same stock, never across stocks, and never against a figure quoted in a Viber group.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The last twelve sessions of an advance, read through the histogram.",
+          "table": {
+            "head": ["Session", "Close", "MACD line", "Signal", "Histogram", "Reading"],
+            "numeric": [1, 2, 3, 4],
+            "rows": [
+              ["1", "312.40", "4.80", "3.10", "+1.70", "Accelerating"],
+              ["3", "324.10", "5.90", "3.90", "+2.00", "Peak acceleration"],
+              ["5", "331.60", "6.10", "4.60", "+1.50", "Still rising, decelerating"],
+              ["7", "336.20", "6.00", "5.10", "+0.90", "Momentum fading"],
+              ["9", "338.90", "5.70", "5.40", "+0.30", "Nearly stalled"],
+              ["11", "337.10", "5.20", "5.40", "−0.20", "Crossover — after the top"],
+              ["12", "331.40", "4.80", "5.30", "−0.50", "Confirmed down"]
+            ],
+            "caption": "Illustrative values. The pattern in the histogram column is the point."
+          },
+          "after": "The price kept rising until session 9. The histogram peaked at session 3 and shrank every reading after it.\n\nSomeone watching only the **crossover** acted at session 11, after the high, having given back Rs. 7.80 from the peak.\n\nSomeone watching the **histogram** had a warning from session 5 — six sessions and roughly Rs. 7 of price earlier. Not a sell signal, but a reason to stop adding and to tighten a stop.\n\nThe honest limit: a shrinking histogram is extremely common in healthy trends that then resume. It flags **deceleration**, and most decelerations are pauses. Used as a sell trigger it will take you out of good positions repeatedly and cost you about 1% each time. Used as a reason to stop adding, it costs nothing and occasionally saves a great deal."
+        },
+        {
+          "type": "check",
+          "qids": ["q-11-3-a", "q-11-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "MACD line is momentum; the histogram is the rate at which momentum itself is changing.",
+            "A shrinking histogram above zero warns of deceleration well before any crossover.",
+            "MACD has no absolute scale — compare it only against its own history for the same stock."
+          ]
+        }
+      ],
+      "glossary": ["macd", "ema", "momentum", "divergence"]
+    },
+
+    {
+      "id": "11.4",
+      "module": 11,
+      "index": 4,
+      "title": "Why most indicators mislead on illiquid NEPSE stocks",
+      "minutes": 5,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Every indicator in this module is a function of the closing price. That is fine when the closing price represents a market. On roughly half of NEPSE's listed companies, on many days, it represents two people — and an average computed from noise is still noise, drawn very confidently."
+        },
+        {
+          "type": "core",
+          "md": "Indicators assume the input is a **fair, continuously discovered price**. Three features of NEPSE break that assumption.\n\n### 1 · Stale prices\n\nOn a counter that trades a few hundred kitta, the close may reflect a single small order. Several sessions may close at nearly the same price because nobody traded, not because the market agreed.\n\nAn RSI computed over 14 such sessions is measuring the absence of trading, not the balance of buying and selling.\n\n### 2 · Circuit days\n\nWhen a stock closes at exactly ±15% from the previous close, that close is the **limit**, not a discovered price. Two or three circuit days in a row push every momentum indicator to an extreme that reflects the mechanism rather than conviction.\n\n### 3 · Corporate-action gaps\n\nOn an ex-bonus date the price adjusts down mechanically. If the series is not adjusted, every moving average, every RSI reading and every MACD value crossing that date is computed across a discontinuity.\n\n### What this looks like in practice\n\nThe indicator does not fail visibly. It produces a number, the chart draws a smooth line, and everything looks authoritative. **That is precisely the danger** — there is no error message, only a confident-looking curve computed from almost nothing.\n\n### The three checks before trusting any indicator\n\n1. **20-day average turnover.** Under roughly Rs. 10 lakh a day, treat every indicator as unreliable.\n2. **Circuit days in the window.** More than one or two in the lookback and momentum readings are distorted.\n3. **Corporate actions in the window.** If the series is unadjusted, the numbers are meaningless across the gap.\n\nAll three take a minute. Skipping them is how people arrive at a precise, confident, entirely fictional reading of a stock nobody is trading."
+        },
+        {
+          "type": "visual",
+          "widget": "indicator-lab",
+          "props": { "symbol": "THIN", "show": "rsi" },
+          "caption": "The same RSI, on the deliberately thin counter. Look at the volume bars underneath it."
+        },
+        {
+          "type": "nepse",
+          "md": "With **91 hydropower and 50 microfinance companies** among 271 listed, a large share of NEPSE is thin enough for indicators to be unreliable most of the time. This is not a reason to abandon them — it is a reason to apply them only where the turnover supports them, which in practice means the commercial banks and the larger names in each sector.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The same three indicators on the same day, on a liquid bank and a thin counter.",
+          "table": {
+            "head": ["", "Liquid bank", "Thin counter"],
+            "numeric": [1, 2],
+            "rows": [
+              ["20-day average turnover", "Rs. 2.10 crore", "Rs. 1.90 lakh"],
+              ["Sessions with zero volume in the last 20", "0", "6"],
+              ["Circuit days in the last 20", "0", "3"],
+              ["RSI 14", "61", "78"],
+              ["MACD histogram", "+0.42", "+2.90"],
+              ["Price above SMA 50?", "Yes", "Yes"],
+              ["Reading if you trust the numbers", "Healthy uptrend", "Powerful uptrend"],
+              ["Reading once you check the inputs", "Healthy uptrend", "Six days of no trading and three circuit closes"]
+            ],
+            "caption": "The thin counter's indicators look stronger. They are computed from almost nothing."
+          },
+          "after": "The thin counter shows the more exciting readings on every measure. RSI 78, a large positive histogram, price above its 50-day. A screener would surface it and a beginner would buy it.\n\nSix of the last twenty sessions had **no trading at all**, and three closed at the circuit limit. The RSI of 78 is measuring three limit-up closes and six days of nothing.\n\nAnd the compounding problem: this is exactly the counter you would need ten trading days to exit, at a 2.8% spread. **The indicator that attracted you is the least reliable, on the position that is hardest to leave.** That combination is the single most reliable way to lose money on NEPSE with a chart open in front of you."
+        },
+        {
+          "type": "check",
+          "qids": ["q-11-4-a", "q-11-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Indicators assume a continuously discovered price; stale closes, circuit days and unadjusted gaps all break that assumption.",
+            "An indicator never reports an error — it draws a confident curve from whatever it is given.",
+            "Check turnover, circuit days and corporate actions before trusting any indicator reading."
+          ]
+        }
+      ],
+      "glossary": ["rsi", "macd", "sma", "circuit", "liquidity_trap", "turnover", "bonus_share"]
+    },
+
+    {
+      "id": "11.5",
+      "module": 11,
+      "index": 5,
+      "title": "Building a two-indicator system and stopping there",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Adding a third indicator feels like adding a third opinion. Usually it is adding the same opinion in a different colour — and the extra agreement it manufactures is the most expensive kind of confidence there is."
+        },
+        {
+          "type": "core",
+          "md": "### One trend, one momentum. That is the whole system.\n\n**A trend indicator** answers *which way is this going?* — a moving average, or MACD's zero line.\n\n**A momentum indicator** answers *how forcefully?* — RSI, or the MACD histogram.\n\nTwo questions, two answers, done.\n\n### Why a third is usually worse than useless\n\nMost indicators are computed from the same closing prices, so most are **highly correlated**. Adding RSI to Stochastic to Williams %R does not give you three opinions; it gives you one opinion stated three times.\n\nAnd that produces the specific failure mode worth naming: **manufactured confidence**. Three correlated indicators agreeing feels like strong evidence and is not. It is one piece of evidence, triple-counted — which leads to larger positions on weaker reasoning, which is precisely backwards.\n\n### The second failure: paralysis\n\nWith six indicators, some are always disagreeing. So you either wait for perfect alignment, which rarely comes and is usually late, or you pick whichever subset supports the trade you already wanted. Both are worse than having two.\n\n### What actually improves a system\n\nNot more indicators. These:\n\n- **A liquidity filter.** 20-day average turnover above a level you set. This removes more bad trades than any indicator adds.\n- **A structure rule.** Trade only in the direction of the higher-timeframe trend from Module 10.\n- **A position-sizing rule.** Module 14. This affects your returns more than every indicator combined.\n- **A written exit.** Decided before entry.\n\n### The test for any addition\n\nBefore adding anything, ask: **can I name a specific trade this would have changed, and would that change have been right?** If not, it is decoration."
+        },
+        {
+          "type": "visual",
+          "widget": "rule-builder",
+          "caption": "Write your entry rule. It rejects anything it cannot test."
+        },
+        {
+          "type": "nepse",
+          "md": "The single highest-value filter on NEPSE is not an indicator at all — it is **20-day average turnover**. Set a floor, apply it before anything else, and a large share of the market disappears from your universe. That is the correct outcome: those counters are not tradeable at retail size with a stop, as Lesson 10.4 showed.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Two systems, same universe, same twelve months.",
+          "table": {
+            "head": ["", "System A — two indicators", "System B — six indicators"],
+            "numeric": [],
+            "rows": [
+              ["Trend filter", "Price above rising SMA 50", "SMA 20/50/200 all aligned"],
+              ["Momentum filter", "MACD histogram positive", "RSI, Stochastic, Williams %R, CCI"],
+              ["Liquidity filter", "20-day turnover > Rs. 50 lakh", "None"],
+              ["Signals generated", "14", "3"],
+              ["Trades taken", "14", "3"],
+              ["Win rate", "50%", "67%"],
+              ["Average win / average loss", "2.1 : 1", "0.7 : 1"],
+              ["Expectancy per trade", "+0.55R", "+0.14R"],
+              ["Trades on untradeable counters", "0", "2 of 3"]
+            ],
+            "caption": "Illustrative, and deliberately unflattering to the system that looks more thorough."
+          },
+          "after": "System B has the **better win rate** — 67% against 50% — and is much the worse system. Its winners are smaller than its losers — the classic loss-aversion profile from Lesson 15.2, it generated three signals in a year, and two of the three were on counters it could not actually trade at size because it had no liquidity filter.\n\nSystem A takes more trades, is wrong half the time, and makes about four times as much per trade in R terms.\n\nThe lesson is not that two indicators beat six. It is that **the liquidity filter did more work than all six indicators combined** — and it is not an indicator at all. Lesson 14.3 shows why a 50% win rate with 2:1 winners beats 67% with 1.4:1, arithmetically."
+        },
+        {
+          "type": "check",
+          "qids": ["q-11-5-a", "q-11-5-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "One trend indicator and one momentum indicator is a complete system; a third is usually the same opinion recoloured.",
+            "Correlated indicators manufacture confidence, which leads to larger positions on weaker reasoning.",
+            "A liquidity filter, a structure rule and a sizing rule improve results far more than any additional indicator."
+          ]
+        }
+      ],
+      "glossary": ["sma", "rsi", "macd", "turnover", "liquidity_trap", "expectancy"]
+    }
+  ]
+}

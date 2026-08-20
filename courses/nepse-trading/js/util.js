@@ -18,7 +18,9 @@ export function rs(n, dp = 2) {
   const neg = n < 0;
   const v = Math.abs(n).toFixed(dp);
   const [int, frac] = v.split('.');
-  return (neg ? '−Rs. ' : 'Rs. ') + group(int) + (frac ? '.' + frac : '');
+  // non-breaking space so "Rs." never orphans from its figure when a line wraps
+  const NB = ' ';
+  return (neg ? '−Rs.' + NB : 'Rs.' + NB) + group(int) + (frac ? '.' + frac : '');
 }
 
 /** Bare number with Nepali grouping and no currency mark. */
@@ -208,11 +210,17 @@ export function cssVar(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
-/** Every chart carries a hidden data table so it is not colour- or canvas-only. */
+/**
+ * Every chart carries a hidden data table so it is not colour- or canvas-only.
+ * The table sits inside a .sr-only DIV rather than carrying the class itself:
+ * `display: table` treats `width: 1px` as a minimum and expands to fit its
+ * content, which pushed the page wider than the viewport on small screens.
+ * A block wrapper honours the width and clips the table inside it.
+ */
 export function dataTable(rows, headers, caption) {
-  const t = el('table', { class: 'sr-only' });
+  const t = el('table');
   if (caption) t.append(el('caption', caption));
   t.append(el('thead', el('tr', headers.map(h => el('th', { scope: 'col' }, h)))));
   t.append(el('tbody', rows.map(r => el('tr', r.map(c => el('td', String(c)))))));
-  return t;
+  return el('div.sr-only', t);
 }

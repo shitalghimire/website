@@ -133,7 +133,7 @@
 
 /* course link — hover reveals the FLOORSHEET ground it opens into */
 .applink--course { border-color: var(--ink); }
-.applink--course:hover { background: #07090C; color: #31D0AA; border-color: #07090C; }
+.applink--course:hover { background: #100F0D; color: #C9A227; border-color: #100F0D; }
 
 .burger {
   display: none;

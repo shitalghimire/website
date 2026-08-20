@@ -1,0 +1,328 @@
+{
+  "module": 5,
+  "title": "Your First Order",
+  "lessons": [
+    {
+      "id": "5.1",
+      "module": 5,
+      "index": 1,
+      "title": "NEPSE has no market orders. Everything is a limit order.",
+      "minutes": 6,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You've watched a video where someone taps \"Buy\" and the trade fills instantly at whatever the price is. You open TMS looking for that button. It isn't there. It has never been there. And once you understand why, you will stop wanting it."
+        },
+        {
+          "type": "core",
+          "md": "On NEPSE, every order is a [[limit_order|limit order]]. You must name a price. There is no \"buy at market\" that hands your order to whatever the other side is asking.\n\nA limit order is an instruction with a ceiling or a floor:\n\n- **Buy limit at Rs. 240** means: buy for me at Rs. 240 **or less**. Never more.\n- **Sell limit at Rs. 260** means: sell for me at Rs. 260 **or more**. Never less.\n\nYour order goes into the [[order_book|order book]] and sits there, sorted first by price and then by the time it arrived. This is **[[price_time_priority|price–time priority]]**. If you and another buyer both bid Rs. 240 and they got there four seconds earlier, they get filled first. Every share.\n\nThree things follow from this, and they are the difference between a beginner and someone who knows what they are doing.\n\n### Your order may not fill at all\n\nIf you bid Rs. 240 and the stock trades all day between Rs. 243 and Rs. 251, you own nothing. That is not a bug. That is you refusing to overpay, which is the correct behaviour.\n\n### Your order may fill partially\n\nYou want 500 kitta at Rs. 240. Only 180 are offered at Rs. 240 or below. You get 180. The remaining 320 stay live in the book. And here is the part that costs people money: you pay the [[dp_charge|DP charge]] and the commission on **each settlement**, so a badly-planned order that fills across two days costs you two DP charges instead of one.\n\n### Chasing is expensive\n\nThe natural move when your order doesn't fill is to cancel and re-enter higher. Do this three times in a rising market and you have paid a price you would have refused an hour ago. This is why you decide your maximum price **before** you open TMS, and write it down.\n\nThere is one exception worth knowing. During the [[pre_open|pre-open session]], orders are collected without matching and a single opening price is calculated that maximises executable volume. As of the April 2026 rules the pre-open band is ±5% from the previous close (it was ±2% before). Orders placed in pre-open all execute at that one discovered price, which is the closest NEPSE gets to a market order."
+        },
+        {
+          "type": "visual",
+          "widget": "order-book-demo",
+          "caption": "Place an order and watch where it lands in the queue. Then try Rs. 210 and read which of the two rules stops you."
+        },
+        {
+          "type": "nepse",
+          "md": "Order price band during continuous trading is **±3% from the last traded price** (relaxed from ±2% in April 2026), while the daily circuit limit for an individual stock is **±15% from the previous close** (raised from ±10%, effective 21 April 2026). These are two different limits and both apply. The 3% band controls how far from the current price you may place an order; the 15% circuit controls how far the stock may move in the whole day.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "UPPER (Upper Tamakoshi Hydropower) closed yesterday at **Rs. 230.00**. The stock is currently trading at **Rs. 236.00**.",
+          "calc": [
+            { "l": "Daily circuit range (±15% of previous close)", "v": "Rs. 195.50 – 264.50" },
+            { "l": "Order price band right now (±3% of LTP)", "v": "Rs. 228.92 – 243.08" },
+            { "l": "You place: BUY 200 UPPER @ 234.00", "v": "Valid — inside both" },
+            { "l": "You place: BUY 200 UPPER @ 200.00", "v": "REJECTED", "total": true }
+          ],
+          "after": "Rs. 200 is inside the day's circuit range of Rs. 195.50–264.50. It is **more than 3% below the last traded price of Rs. 236.00**, so it is outside the order band and the order is rejected.\n\nIf the stock falls to Rs. 206, the band moves with it and your Rs. 200 order becomes placeable. The band follows the price; the circuit does not.\n\nAnd the loss case, because both directions cost money: suppose you wanted UPPER at Rs. 234 and it never traded below Rs. 236 all day. You own nothing, and you have lost nothing. Now suppose you cancelled and re-entered at Rs. 238, then Rs. 241, then Rs. 244 as it rose. You now own 200 kitta at Rs. 244 — **Rs. 2,000 worse** than the price you originally decided was your maximum, plus Rs. 787.68 in round-trip friction on the way."
+        },
+        {
+          "type": "check",
+          "qids": ["q-5-1-a", "q-5-1-b", "q-5-1-c"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Every NEPSE order is a limit order — you always name a price, and it may not fill.",
+            "Matching is by price–time priority; being early in the queue at the same price matters.",
+            "Two separate limits apply: ±3% order band from the LTP, ±15% daily circuit from the previous close."
+          ]
+        }
+      ],
+      "glossary": ["limit_order", "order_book", "price_time_priority", "pre_open", "dp_charge", "circuit", "order_band"]
+    },
+
+    {
+      "id": "5.2",
+      "module": 5,
+      "index": 2,
+      "title": "Anatomy of an order: symbol, quantity, rate, validity",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Four fields. That is the entire order ticket. People still get it wrong, and the two most common mistakes both cost real money — one in fees, one in a price you did not intend to pay."
+        },
+        {
+          "type": "core",
+          "md": "### Symbol\n\nThe NEPSE ticker: NABIL, UPPER, API. Check it twice. Similar codes exist — NICA and NIMB are different banks, SBI and SBL are different banks — and TMS will happily let you buy the wrong one.\n\n### Side\n\nBuy or sell. Selling requires shares already **settled** in your Demat. You cannot sell what arrives on T+2, which is why intraday trading does not exist here.\n\n### Quantity\n\nExpressed in **[[kitta]]**. The usual minimum lot is **10 kitta**, in multiples of 10. Odd lots — quantities that do not fit the lot size, usually created by bonus issues — trade in a separate odd-lot market with far less liquidity.\n\nQuantity is also where the DP charge arithmetic bites. Placing one order for 500 that fills across two days costs Rs. 50 in DP charges; placing an order you expect to fill completely costs Rs. 25.\n\n### Rate\n\nThe price. Every order is a [[limit_order|limit order]], so this is your ceiling if buying and your floor if selling. It must sit inside **both** the ±3% band from the LTP and the ±15% circuit from the previous close.\n\n### Validity\n\nNEPSE orders are **day orders**. They expire at the close. There is no good-till-cancelled, so an order you placed on Monday is gone by Tuesday morning and it is on you to place it again.\n\nSince April 2026 you can enter orders **round the clock**; they queue and execute only between 11:00 and 15:00. This is genuinely useful — you can set your price the night before, calmly, rather than at 11:04 with the market moving."
+        },
+        {
+          "type": "visual",
+          "widget": "flow",
+          "props": {
+            "title": "The order ticket, field by field",
+            "sub": "What each one does, and what it costs to get wrong",
+            "steps": [
+              { "t": "SYMBOL", "d": "Check it twice. NICA and NIMB are different banks; SBI and SBL are different banks.", "meta": "wrong company" },
+              { "t": "SIDE", "d": "Selling requires settled shares. You cannot sell what arrives on T+2.", "meta": "rejected" },
+              { "t": "QUANTITY", "d": "Minimum 10 kitta, in multiples of 10. An order that fills across two days pays the DP charge twice.", "meta": "Rs. 25 extra" },
+              { "t": "RATE", "d": "Your ceiling when buying, floor when selling. Must sit inside the ±3% band AND the ±15% circuit.", "meta": "rejected" },
+              { "t": "VALIDITY", "d": "Day order. Expires at the close. No good-till-cancelled exists on NEPSE.", "meta": "re-enter tomorrow" }
+            ],
+            "note": "Five fields, two of which can silently cost you money rather than simply rejecting the order."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "The usual minimum lot is **10 [[kitta]]**, and quantities are in multiples of 10. Odd lots — often created when a [[bonus_share|bonus issue]] leaves you with 137 shares instead of 140 — trade in a separate market with much thinner liquidity, so plan to sell the round lot and let the odd remainder sit rather than expecting to clear it at a good price.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The same 500-kitta purchase of UPPER at Rs. 234.00, filled two different ways.",
+          "table": {
+            "head": ["", "Fills in one day", "Fills across two days"],
+            "numeric": [1, 2],
+            "rows": [
+              ["Gross", "Rs. 1,17,000.00", "Rs. 1,17,000.00"],
+              ["Commission (0.33%)", "Rs. 386.10", "Rs. 386.10"],
+              ["SEBON fee (0.015%)", "Rs. 17.55", "Rs. 17.55"],
+              ["DP charge", "Rs. 25.00", "Rs. 50.00"],
+              ["Total cost", "Rs. 1,17,428.65", "Rs. 1,17,453.65"],
+              ["WACC per share", "Rs. 234.86", "Rs. 234.91"]
+            ],
+            "caption": "Commission and SEBON fee are proportional and identical. Only the flat DP charge doubles."
+          },
+          "after": "Rs. 25. Trivial on a Rs. 1,17,000 trade — 0.02%. But run the same pattern on a Rs. 5,000 trade and the second DP charge is 0.5% of the position, and Lesson 7.4 shows what happens when flat charges meet small trades.\n\nThe practical lesson is not \"never let an order fill partially\" — you often cannot control that. It is: **size your order against the counter's actual daily volume**, so a complete fill is realistic. Lesson 10.4 covers how to check that before you place anything."
+        },
+        {
+          "type": "check",
+          "qids": ["q-5-2-a", "q-5-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Five fields: symbol, side, quantity, rate, validity — and rate must satisfy both the ±3% band and the ±15% circuit.",
+            "Minimum lot is 10 kitta in multiples of 10; odd lots trade separately and thinly.",
+            "NEPSE orders are day orders — no good-till-cancelled — though you may now enter them round the clock."
+          ]
+        }
+      ],
+      "glossary": ["kitta", "limit_order", "bonus_share", "dp_charge", "order_band"]
+    },
+
+    {
+      "id": "5.3",
+      "module": 5,
+      "index": 3,
+      "title": "The pre-open session and the 5% band",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "For a few minutes each morning, NEPSE collects orders and matches none of them. Then it computes a single price and executes everything at once. It is the only moment in the Nepali trading day that behaves like an auction — and the only time you get something close to a market order."
+        },
+        {
+          "type": "core",
+          "md": "The **[[pre_open|pre-open session]]** runs before continuous trading starts. Orders are collected but not matched. At the end, NEPSE computes one **equilibrium price** — the price at which the greatest volume can execute — and every crossing order fills at that single price.\n\n### Why an auction at the open\n\nOvernight news arrives while the market is shut. If trading simply started at 11:00, the first few orders would set the price in a thin, chaotic minute, and whoever was fastest would capture the difference. Collecting orders first and discovering one price is fairer and less noisy.\n\n### The band\n\nPre-open orders must sit within **±5% of the previous close**, raised from ±2% in the 2026 rule changes. That is wider than the ±3% continuous-session band and narrower than the ±15% daily circuit — a third limit, applying at a third moment.\n\n### How the equilibrium price is found\n\nFor each candidate price, the exchange computes how much volume could execute if that were the price. The price that maximises executable volume wins. Ties are broken by the smallest order imbalance, and then by proximity to the previous close.\n\n### What this means for you\n\nAn order placed in pre-open executes at the discovered price, **not necessarily at your limit**. If you bid Rs. 240 and the equilibrium comes out at Rs. 236, you buy at Rs. 236 — better than your limit. That is the closest NEPSE gets to a market order, and it is why pre-open is a reasonable way to enter a liquid stock when you care more about getting filled than about a rupee of price.\n\nOn a thin counter it is the opposite: a handful of orders can set an equilibrium price that has nothing to do with where the stock will trade an hour later."
+        },
+        {
+          "type": "visual",
+          "widget": "table",
+          "props": {
+            "title": "Three price limits, three different moments",
+            "sub": "All measured from different reference prices",
+            "head": ["Limit", "Width", "Measured from", "Applies during"],
+            "rows": [
+              ["Pre-open band", "±5%", "Previous close", "The pre-open auction only"],
+              ["Order price band", "±3%", "Last traded price", "Continuous session, 11:00–15:00"],
+              ["Daily circuit", "±15%", "Previous close", "The whole day, all sessions"],
+              ["Index circuit L1", "±5%", "Previous index close", "First two hours — 15-minute halt"],
+              ["Index circuit L2", "±8%", "Previous index close", "Any time — market closes"]
+            ],
+            "caption": "Pre-open and continuous bands were both widened in 2026. Any source quoting ±2% predates the change."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "The pre-open band was raised from ±2% to **±5% of the previous close** in the 2026 rule changes, alongside the continuous-session band going from ±2% to ±3% and the daily circuit from ±10% to ±15%. All three widened at once, which materially changed how far a stock can travel in a day. Any guide quoting the old numbers was written before April 2026.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "A liquid bank closed yesterday at **Rs. 233.00**. In pre-open, orders arrive:",
+          "table": {
+            "head": ["Price", "Buy volume at or above", "Sell volume at or below", "Executable"],
+            "numeric": [0, 1, 2, 3],
+            "rows": [
+              ["228.00", "4,200", "900", "900"],
+              ["231.00", "3,100", "2,400", "2,400"],
+              ["234.00", "2,050", "3,600", "2,050"],
+              ["237.00", "800", "5,100", "800"]
+            ],
+            "caption": "Pre-open band is Rs. 221.35 – 244.65 (±5% of Rs. 233.00). All four prices are inside it."
+          },
+          "after": "The equilibrium price is **Rs. 231.00** — it maximises executable volume at 2,400 kitta. Everyone who bid Rs. 231 or above buys at Rs. 231; everyone who offered Rs. 231 or below sells at Rs. 231.\n\nNotice what happened to the person who bid Rs. 237: they paid Rs. 231, not Rs. 237. Their limit was a ceiling, and the auction found a better price. Notice also the person who offered at Rs. 228 — they sold at Rs. 231, three rupees better than their floor.\n\nAnd the honest warning: on a counter where the whole pre-open book is 400 kitta, this same mechanism can print an equilibrium price that no one would pay ten minutes later."
+        },
+        {
+          "type": "check",
+          "qids": ["q-5-3-a", "q-5-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Pre-open collects orders without matching, then executes everything at one equilibrium price that maximises volume.",
+            "The pre-open band is ±5% of the previous close — a third limit, distinct from the ±3% band and the ±15% circuit.",
+            "Your pre-open limit is a ceiling or floor: you may fill at a better price than you named, but never a worse one."
+          ]
+        }
+      ],
+      "glossary": ["pre_open", "circuit", "order_band", "ltp", "previous_close"]
+    },
+
+    {
+      "id": "5.4",
+      "module": 5,
+      "index": 4,
+      "title": "Order book, trade book, and what \"partially executed\" means",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Your order book says 500. Your trade book says 180. You own 180. The gap between those two numbers has caused more miscounted positions than any other feature of TMS."
+        },
+        {
+          "type": "core",
+          "md": "Two books, two different questions.\n\nThe **[[order_book|order book]]** answers *what have I submitted?* The **[[trade_book|trade book]]** answers *what actually executed?* Only the trade book means you own something.\n\n### The five states an order passes through\n\n- **Open** — resting in the queue at your price. Nothing has happened.\n- **Partially executed** — some quantity filled; the remainder is still live.\n- **Executed** — fully filled. This is the only state that means the whole order is done.\n- **Cancelled** — you withdrew it, or the unfilled remainder was withdrawn.\n- **Expired** — the close arrived and the unfilled quantity died with it, because NEPSE orders are day orders.\n\n### What partial execution actually costs\n\nThis is the part that matters financially. Each **settlement date** attracts its own Rs. 25 [[dp_charge|DP charge]] per company. An order that fills 180 today and 320 tomorrow settles twice:\n\n- Two DP charges instead of one\n- Two entries in your [[wacc|WACC]] calculation, at two different prices\n- Two settlement dates to track for [[edis|EDIS]] if you later sell\n\nThe commission and SEBON fee are proportional, so those do not change. Only the flat charge doubles.\n\n### Reading the book properly\n\nAfter every submission, check the order book once. \"Submitted\" is not \"executed\" — and at the close, check it again, because an unfilled order simply vanishes and it is on you to notice."
+        },
+        {
+          "type": "visual",
+          "widget": "table",
+          "props": {
+            "title": "One order, five states, over two days",
+            "sub": "BUY 500 UPPER @ Rs. 234.00",
+            "head": ["When", "Order book status", "Filled", "Trade book rows", "You own"],
+            "numeric": [2, 3, 4],
+            "rows": [
+              ["Day 1, 11:06", "Open", "0", "0", "0"],
+              ["Day 1, 13:20", "Partially executed", "180", "1", "0 — settles T+2"],
+              ["Day 1, 15:00", "Expired (320 unfilled)", "180", "1", "0"],
+              ["Day 2, 11:15", "Open — you re-entered 320", "0", "1", "0"],
+              ["Day 2, 14:40", "Executed", "320", "2", "0 — both settling"],
+              ["Day 3", "—", "—", "2", "180 settled"],
+              ["Day 4", "—", "—", "2", "500 settled"]
+            ],
+            "caption": "Two settlement dates. Two DP charges: Rs. 50 rather than Rs. 25."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Partial fills across days mean **two DP charges** — Rs. 25 per company per settlement date, not per trade. They also mean two lots in your [[wacc|WACC]], at two different prices, and if you later sell, the lots are consumed first-in-first-out for [[cgt|capital gains tax]] purposes. You do not get to choose which lot you sell.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The two-day fill above, priced out in full. 180 kitta at Rs. 234.00 on day 1, 320 kitta at Rs. 238.00 on day 2.",
+          "calc": [
+            { "l": "Day 1 — 180 × Rs. 234.00", "v": "Rs. 42,120.00" },
+            { "l": "Commission (0.36%) + SEBON + DP", "v": "Rs. 151.63 + Rs. 6.32 + Rs. 25.00" },
+            { "l": "Day 1 total", "v": "Rs. 42,302.95" },
+            { "l": "Day 2 — 320 × Rs. 238.00", "v": "Rs. 76,160.00" },
+            { "l": "Commission (0.33%) + SEBON + DP", "v": "Rs. 251.33 + Rs. 11.42 + Rs. 25.00" },
+            { "l": "Day 2 total", "v": "Rs. 76,447.75" },
+            { "l": "Combined cost, 500 kitta", "v": "Rs. 1,18,750.70", "total": true },
+            { "l": "WACC per share", "v": "Rs. 237.50", "total": true }
+          ],
+          "after": "Compare that with a clean single fill of 500 at Rs. 234.00, which would have cost **Rs. 1,17,428.65** — a WACC of Rs. 234.86.\n\nThe difference is **Rs. 1,322.05**, and almost all of it is not the extra DP charge. It is the Rs. 4 higher price you paid on day two, on 320 shares. The fee is Rs. 25; **chasing the price cost Rs. 1,280**. That ratio is worth remembering every time you are tempted to re-enter higher."
+        },
+        {
+          "type": "check",
+          "qids": ["q-5-4-a", "q-5-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Order book = what you submitted; trade book = what executed. Only the trade book means shares.",
+            "An order that fills across two days settles twice and pays the Rs. 25 DP charge twice.",
+            "The fee from a split fill is small; the price you chase to complete it is usually much larger."
+          ]
+        }
+      ],
+      "glossary": ["order_book", "trade_book", "dp_charge", "wacc", "edis", "cgt"]
+    },
+
+    {
+      "id": "5.5",
+      "module": 5,
+      "index": 5,
+      "title": "Modifying and cancelling: what you can and can't undo",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You are fourth in the queue at Rs. 240 with 620 kitta ahead of you. You nudge your price up by fifty paisa to jump the queue. You have just gone to the back of a different queue — and given up your place in the old one for nothing."
+        },
+        {
+          "type": "core",
+          "md": "### What you can change\n\nWhile an order is **open** or **partially executed**, you can modify its price or quantity, or cancel the unfilled portion entirely.\n\n### What you cannot change\n\nAn **executed** portion is final. If 180 of your 500 filled, those 180 are yours — you cannot cancel them, you can only sell them later as a separate transaction with its own costs and its own capital gains tax.\n\n### The rule that costs people money\n\n**Modifying the price loses your time priority.** Matching is by [[price_time_priority|price then time]]. Change your price and your order re-enters the book at the back of the queue for the new price.\n\nThis matters most in exactly the situation where people reach for the modify button — a fast-moving, well-bid stock, where the queue at each price level is long.\n\nModifying the quantity **downward** generally preserves your place; increasing it does not. The safe assumption is that any modification puts you at the back.\n\n### When cancelling is right\n\n- The reason you wanted the stock has changed — an earnings release, a circular from Nepal Rastra Bank, a disclosure.\n- You need the cash for something else.\n- You realise you sized the position wrong.\n\n### When cancelling is a mistake\n\nWhen the only thing that has changed is that the price moved away from you and you want to chase it. That is the behaviour Lesson 5.1 warns about, and it is the single most expensive habit a new NEPSE trader can form. Decide your maximum before you log in, and let the order live or die at that price."
+        },
+        {
+          "type": "visual",
+          "widget": "order-book-demo",
+          "caption": "Place an order at a price that already has depth, and read your queue position. Then imagine modifying it."
+        },
+        {
+          "type": "nepse",
+          "md": "You cannot cancel an executed portion. If part of your order filled, that part is a completed trade with its own contract note, its own commission, its own [[dp_charge|DP charge]] and — when you eventually sell it — its own [[cgt|capital gains tax]] computed from its own lot. Unwinding it means a fresh sale with a fresh round of costs.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You want 500 UPPER. You bid Rs. 240.00 and are #4 in the queue with 620 kitta ahead of you. The stock is trading at Rs. 241.",
+          "table": {
+            "head": ["Choice", "Queue position", "Outcome that day", "Cost"],
+            "numeric": [],
+            "rows": [
+              ["Leave the order at Rs. 240.00", "#4, 620 ahead", "Filled 500 when the stock dipped to Rs. 239.60", "Rs. 1,20,238.31"],
+              ["Modify to Rs. 240.50", "Back of the Rs. 240.50 queue", "Filled 500 at Rs. 240.50", "Rs. 1,20,689.87"],
+              ["Cancel and chase to Rs. 243.00", "New queue at Rs. 243.00", "Filled 500 at Rs. 243.00", "Rs. 1,21,944.17"]
+            ],
+            "caption": "500 kitta, all-in costs including commission, SEBON fee and DP charge."
+          },
+          "after": "Patience was worth **Rs. 1,705.86** against chasing — 1.42% of the position, on a single decision made in about four seconds.\n\nAnd the honest other outcome, because the losing case matters: on a different day the stock never dips, your Rs. 240 order expires unfilled, and it closes at Rs. 249. You have \"saved\" Rs. 1,706 and missed a Rs. 4,500 gain. Both of these happen. The reason patience still wins over a career is not that it always fills better — it is that **chasing has no upper bound and refusing to overpay does**."
+        },
+        {
+          "type": "check",
+          "qids": ["q-5-5-a", "q-5-5-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Modifying an order's price sends it to the back of the queue for the new price.",
+            "Executed portions cannot be cancelled — unwinding one means a fresh sale with fresh costs and tax.",
+            "Cancel when your reason changed; never cancel merely because the price moved away from you."
+          ]
+        }
+      ],
+      "glossary": ["price_time_priority", "order_book", "dp_charge", "cgt", "limit_order"]
+    }
+  ]
+}

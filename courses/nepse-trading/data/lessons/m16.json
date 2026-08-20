@@ -1,0 +1,258 @@
+{
+  "module": 16,
+  "title": "Building a System",
+  "lessons": [
+    {
+      "id": "16.1",
+      "module": 16,
+      "index": 1,
+      "title": "Writing rules you can actually follow",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "\"Buy good stocks when they are cheap.\" Everyone agrees with it, and no two people reading it would buy the same thing. A rule that cannot be checked against data is not a rule — it is a mood with a verb in it."
+        },
+        {
+          "type": "core",
+          "md": "### A rule is testable or it is decoration\n\nThe standard is simple: **two people reading your rule should take the same action on the same chart.** If they would not, it is not a rule.\n\n\"Buy good stocks\" fails. \"Buy when the 20-day SMA crosses above the 50-day **and** 20-day average turnover exceeds Rs. 50 lakh\" passes — you can check both conditions in a minute, and so can anyone else.\n\n### The words that give it away\n\nGood. Strong. Quality. Promising. Cheap. Undervalued. Soon. Blue-chip.\n\nEvery one of these feels like a criterion and measures nothing. Replace each with **a number and a source**: not \"cheap\" but \"P/E below the sector median of 14.92× with ROE above 10%\".\n\n### Few rules, not many\n\nA system you cannot recall while looking at a chart is one you will not follow at 11:04 with the price moving. **Four to six rules is plenty:**\n\n1. What universe am I allowed to trade? (Liquidity filter — the highest-value rule you will write.)\n2. What must be true to enter?\n3. Where is the stop?\n4. How large is the position?\n5. What takes me out, other than the stop?\n6. What is my maximum account drawdown before I stop and review?\n\n### The three that do the most work\n\nRules 1, 3 and 4 — liquidity, stop and size. Lesson 11.5 showed that the liquidity filter outperformed six indicators, and Module 14 showed that sizing affects returns more than entry selection does.\n\nEntry rules get all the attention and matter least.\n\n### Write them down, literally\n\nOn paper, or in a file you open before each session. A rule you hold in your head is one you will renegotiate the moment it becomes inconvenient — and it becomes inconvenient precisely when it is about to do its job."
+        },
+        {
+          "type": "visual",
+          "widget": "rule-builder",
+          "caption": "Write a rule. It rejects anything it cannot test."
+        },
+        {
+          "type": "nepse",
+          "md": "Your first rule on NEPSE should be the **liquidity filter**, and it should come before every other consideration. Set a floor on 20-day average turnover and apply it before you look at a chart. A large share of the 271 listed companies will disappear from your universe — that is the correct outcome, for the reasons Lesson 10.4 and Lesson 13.5 set out.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The same intention, written twice.",
+          "table": {
+            "head": ["", "Not a rule", "A rule"],
+            "numeric": [],
+            "rows": [
+              ["Universe", "Good companies", "20-day average turnover above Rs. 50 lakh"],
+              ["Entry", "When it looks like it is turning", "Close above a level with 3+ prior touches, on volume above the 20-day average"],
+              ["Stop", "If it drops a lot", "Below the most recent swing low, minus 1%"],
+              ["Size", "A meaningful amount", "(Account × 1.5%) ÷ (entry − stop), rounded down to 10 kitta"],
+              ["Exit", "When I have made enough", "Half at +2R; the rest on a close below the 20-day SMA"],
+              ["Drawdown limit", "—", "Stop and review at −15% on the account"],
+              ["Two people would act", "Differently", "Identically"]
+            ],
+            "caption": "The right-hand column is checkable against data. That is the only difference that matters."
+          },
+          "after": "The left-hand column is not stupid — it describes real intentions, and most people's systems look exactly like it.\n\nIt fails at 11:04 on a moving market, because every line requires a judgement in the moment, and the judgement you make in the moment is the one Module 15 warned you about.\n\nThe right-hand column requires no judgement at all once written. That is the entire benefit. **It is not smarter — it is executable**, and an executable mediocre system beats a brilliant one you cannot follow.\n\nAnd the honest caveat: writing rules does not make them good. The right-hand column could still lose money. What it does is make the system **testable** — you can review a month of trades against it and find out, which is Lesson 16.3."
+        },
+        {
+          "type": "check",
+          "qids": ["q-16-1-a", "q-16-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "A rule is testable when two people reading it would take the same action on the same chart.",
+            "Replace adjectives — good, cheap, strong — with a number and a source.",
+            "Four to six rules is plenty, and the liquidity filter, the stop and the size do most of the work."
+          ]
+        }
+      ],
+      "glossary": ["turnover", "stop_loss", "position_size", "sma", "r_multiple"]
+    },
+
+    {
+      "id": "16.2",
+      "module": 16,
+      "index": 2,
+      "title": "The trade journal: seven columns, no more",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Everyone agrees a trade journal is a good idea. Almost nobody keeps one past three weeks, and the reason is always the same: they designed one with eighteen columns."
+        },
+        {
+          "type": "core",
+          "md": "### Seven columns\n\n**Date · Symbol · Thesis (one line) · Entry · Stop · Size · Exit + outcome**\n\nThat is the whole thing. Add an eighth and you will stop filling it in.\n\n### Why each one earns its place\n\n**Date** — lets you group by month for review, and shows your trading frequency, which is itself diagnostic.\n\n**Symbol** — reveals concentration you did not notice. Five entries, all commercial banks, is the Lesson 14.5 problem showing up in your own handwriting.\n\n**Thesis, one line** — the most valuable column and the one people skip. Forcing yourself to state the reason in one sentence before entering exposes the trades that have no reason. If you cannot write it, do not take it.\n\n**Entry, Stop, Size** — the three numbers from Module 14. Recording them means you can check afterwards whether you followed your own sizing rule, which is a different question from whether the trade worked.\n\n**Exit + outcome** — in **R**, not rupees. R makes trades comparable across position sizes and lets you compute expectancy directly, as Lesson 14.3 showed.\n\n### What not to record\n\nNot your feelings. Not a paragraph of market commentary. Not screenshots. Those are a diary, and a diary is not reviewable — you cannot compute anything from it, and computing is the point.\n\n### The discipline it actually enforces\n\nThe journal's main value is not the review. It is that **writing the thesis before entry stops some trades from happening at all**. A one-line thesis that reads \"it's been going up\" tends not to survive being written down.\n\n### Keep it where you will use it\n\nA notebook, a spreadsheet, whatever you will actually open. The widget below exports to CSV so it can live wherever you keep things."
+        },
+        {
+          "type": "visual",
+          "widget": "journal",
+          "caption": "Seven columns. Fill a row before you place the order, not after."
+        },
+        {
+          "type": "nepse",
+          "md": "Add the **settlement date** to your mental checklist even though it is not a journal column — because on NEPSE a sale needs [[edis|EDIS]] authorised on T+1, and a journal that reminds you when you sold is a journal that reminds you to check MeroShare tomorrow. Lesson 6.2 quantified what forgetting costs.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Four rows from a real-looking month.",
+          "table": {
+            "head": ["Date", "Symbol", "Thesis (one line)", "Entry", "Stop", "Size", "Exit + outcome"],
+            "numeric": [3, 4, 5],
+            "rows": [
+              ["2026-08-03", "NMB", "P/E 15.35 vs ROE 10.34 — cheapest coherent bank", "233.00", "214.00", "250", "268.00 · +1.8R"],
+              ["2026-08-06", "UPPER", "Break above 236 with 3 prior touches, volume 2.4×", "237.50", "228.00", "420", "228.00 · −1.0R"],
+              ["2026-08-11", "API", "It's been going up", "352.00", "—", "300", "319.00 · −2.2R"],
+              ["2026-08-19", "SANIMA", "Retest of 318 breakout held, turnover Rs. 1.2 crore", "321.00", "308.00", "460", "open"]
+            ],
+            "caption": "Four rows. One of them tells you almost everything."
+          },
+          "after": "Row three. The thesis column reads **\"It's been going up\"** and the stop column is **empty**.\n\nThat trade lost −2.2R — more than twice the intended risk — because there was no stop to cap it. It is the largest loss of the month, and it is the only row that broke the rules.\n\nThat is what the journal is for. Without it, the month feels like \"two winners, two losers, roughly flat\". With it, the month reads: **the system produced +1.8R and −1.0R as designed, and one rule-break cost −2.2R.** The system was fine. The discipline was not.\n\nThose are completely different diagnoses, and they lead to completely different fixes. Lesson 16.3 turns this into a monthly number."
+        },
+        {
+          "type": "check",
+          "qids": ["q-16-2-a", "q-16-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Seven columns: date, symbol, one-line thesis, entry, stop, size, exit in R. An eighth column kills the habit.",
+            "Writing the thesis before entry prevents some trades from happening at all — that is most of the value.",
+            "Record outcomes in R so trades are comparable and expectancy can be computed."
+          ]
+        }
+      ],
+      "glossary": ["r_multiple", "expectancy", "stop_loss", "position_size", "edis"]
+    },
+
+    {
+      "id": "16.3",
+      "module": 16,
+      "index": 3,
+      "title": "Reviewing a month of trades without lying to yourself",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "The natural way to review a month is to remember the trades that worked and explain away the ones that did not. Five numbers, computed from the journal, make that impossible."
+        },
+        {
+          "type": "core",
+          "md": "### The five numbers\n\n**1 · Expectancy in R.** Total R divided by the number of trades. This is the headline: positive means the system makes money, negative means it does not, and nothing else in the review overrides it.\n\n**2 · Win rate.** Useful only beside average win and average loss. On its own it is the number that flatters most and informs least — Lesson 14.3 showed a 70% win rate losing money.\n\n**3 · Average win ÷ average loss.** The reward-to-risk you actually achieved, which is usually worse than the one you intended, because winners get taken early.\n\n**4 · Largest loss in R.** If any single loss exceeds −1.2R or so, you either moved a stop, skipped one, or could not exit — and each of those is a different problem with a different fix.\n\n**5 · Rule-break count.** How many trades violated your own written rules. This is the most important number in the review and the one nobody computes.\n\n### The distinction that makes review honest\n\nSeparate **\"the system lost money\"** from **\"I did not follow the system\"**. They look identical on a bank statement and they have opposite remedies:\n\n- The system lost money → change the system.\n- You did not follow it → change nothing about the system; fix the execution.\n\nMost people conclude the first when the truth is the second, and end up rewriting a system that was working.\n\n### Sample size\n\nTwenty trades is not evidence. At a 50% win rate, runs of five losses are entirely ordinary. Look for **patterns across months**, not verdicts within one.\n\n### What to actually change\n\nOne thing at a time. Change two rules simultaneously and you cannot attribute the result to either. Give any change at least twenty trades before judging it — which on NEPSE, at a sensible trading frequency, is several months."
+        },
+        {
+          "type": "visual",
+          "widget": "expectancy",
+          "caption": "Enter last month's win rate and average win/loss. The expectancy row is the review."
+        },
+        {
+          "type": "nepse",
+          "md": "Include **costs and tax** in your R calculations, or your review will be systematically optimistic. Every round trip costs roughly 1% in commission, SEBON fee and two DP charges, and short-term gains are taxed at 10% since 17 July 2026. A system showing +0.15R gross may be near zero net — which is exactly the finding a review exists to surface.",
+          "asOf": "2026-07-17"
+        },
+        {
+          "type": "example",
+          "md": "A month reviewed twice — once by memory, once from the journal.",
+          "table": {
+            "head": ["", "From memory", "From the journal"],
+            "numeric": [],
+            "rows": [
+              ["Overall impression", "\"A flat month\"", "—"],
+              ["Trades", "\"About five\"", "9"],
+              ["Expectancy per trade", "—", "+0.31R"],
+              ["Win rate", "\"Roughly half\"", "44%"],
+              ["Average win ÷ average loss", "—", "2.4 : 1"],
+              ["Largest loss", "\"One bad one\"", "−2.2R"],
+              ["Rule-breaks", "\"None really\"", "2 of 9"],
+              ["Net after costs and tax", "—", "+0.24R per trade"]
+            ],
+            "caption": "Same month, same trades, two very different pictures."
+          },
+          "after": "From memory: a flat month, roughly half right, one bad trade. Nothing to change.\n\nFrom the journal: a system with **+0.31R expectancy** — genuinely good — dragged down by **two rule-breaks out of nine**, one of which lost −2.2R when the maximum should have been −1.0R.\n\nThe correct action is not to change the system. It is to stop taking trades without a stop, which costs nothing and would have converted the month materially.\n\nAnd note the last row: **+0.31R gross becomes +0.24R after friction and short-term tax.** Still positive, still worth running — but a system at +0.10R gross would have been net negative, and only a review that includes costs would ever tell you."
+        },
+        {
+          "type": "check",
+          "qids": ["q-16-3-a", "q-16-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Five numbers: expectancy in R, win rate, average win ÷ average loss, largest loss, and rule-break count.",
+            "Separate \"the system lost money\" from \"I did not follow the system\" — they have opposite remedies.",
+            "Include costs and tax in R, and change one thing at a time with at least twenty trades before judging."
+          ]
+        }
+      ],
+      "glossary": ["expectancy", "r_multiple", "win_rate", "cgt", "commission"]
+    },
+
+    {
+      "id": "16.4",
+      "module": 16,
+      "index": 4,
+      "title": "Your first 90 days: a concrete plan",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You have finished the course. The temptation now is to open TMS and put money to work. Here is a ninety-day plan that costs almost nothing, and that will teach you more than the first ninety days of trading with real money would."
+        },
+        {
+          "type": "core",
+          "md": "### Days 1–30 — paper only\n\nRun **Paper Floor** for thirty days, one scenario at a time. It charges real slab commission, the 0.015% SEBON fee, Rs. 25 DP charges, real capital gains tax and real T+2 settlement, and it will not let you skip EDIS without a penalty.\n\nWrite every trade in the journal from Lesson 16.2 as though it were real. Complete the **Cost of Churn** scenario, because it is the one designed to demonstrate that trading frequently loses to holding, using your own decisions rather than an argument.\n\nAt day 30, compute the five review numbers. If your paper expectancy is negative, do not proceed to real money — repeat the month. Nothing about real money improves decision-making.\n\n### Days 31–60 — three real positions\n\nThree positions, **Rs. 25,000 or more each** so that round-trip friction stays under about 1%, as Lesson 7.4 established.\n\nEach one needs: a written one-line thesis, a stop from an actual level, a size derived from that stop, and a liquidity check confirming you could exit in two days.\n\n**Three.** Not eight. The constraint is deliberate — it forces you to take only the trades you can genuinely justify, and it keeps a beginner's inevitable mistakes small.\n\n### Days 61–90 — hold, observe, review\n\nDo not add positions. Let the three run. Watch what you *want* to do at each moment and write that down too — the urge to average down, the urge to take a small profit, the urge to check the price hourly. Module 15 described all of them; feeling them is different from reading about them.\n\nAt day 90, review properly: the five numbers, and the rule-break count.\n\n### What success looks like at day 90\n\nNot a profit. Ninety days is far too short a sample for profit to mean anything either way.\n\nSuccess is: **a journal with every row filled in, zero rule-breaks, and no position that ever risked more than 2% of the account.** Get those three right and the returns become a question of time and sample size. Get them wrong and no amount of analysis rescues it.\n\n### And the honest closing note\n\nThis course cannot make you a good investor in four hours. What it can do is make sure that when you are wrong — and you will be — you are wrong in a way you survive, and in a way you can learn from because you wrote it down."
+        },
+        {
+          "type": "visual",
+          "widget": "flow",
+          "props": {
+            "title": "The 90-day plan",
+            "sub": "Printable. The constraints are the point.",
+            "steps": [
+              { "t": "Days 1–30 · Paper Floor only", "d": "One scenario at a time, including The Cost of Churn. Journal every trade as though it were real. Compute the five review numbers at day 30.", "meta": "Rs. 0" },
+              { "t": "Gate · Is paper expectancy positive?", "d": "If not, repeat the month. Real money does not improve decisions — it degrades them.", "meta": "checkpoint" },
+              { "t": "Days 31–60 · Three real positions", "d": "Rs. 25,000+ each. Written thesis, stop from a level, size derived from the stop, two-day exit check. Three only.", "meta": "≈ Rs. 75,000" },
+              { "t": "Days 61–90 · Hold and observe", "d": "Add nothing. Record the urges as well as the trades — averaging down, taking small profits, checking hourly.", "meta": "no new trades" },
+              { "t": "Day 90 · Full review", "d": "Expectancy in R, win rate, average win ÷ loss, largest loss, rule-break count. Include costs and tax.", "meta": "checkpoint" }
+            ],
+            "note": "Success at day 90 is a complete journal, zero rule-breaks, and no position that risked more than 2%. Not a profit."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "Keep positions at **roughly Rs. 25,000 or above** so round-trip friction stays under about 1% — Lesson 7.4 showed that a Rs. 1,000 trade needs a 5.77% move just to break even. And check that each counter's 20-day average turnover supports your size, using the days-to-exit arithmetic from Lesson 13.5. Both checks take a minute and both are more valuable than any entry signal.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "What day 90 looks like for two learners with identical results.",
+          "table": {
+            "head": ["", "Learner A", "Learner B"],
+            "numeric": [],
+            "rows": [
+              ["Positions taken", "3", "11"],
+              ["Journal rows completed", "3 of 3", "4 of 11"],
+              ["Rule-breaks", "0", "5"],
+              ["Largest single risk taken", "1.8% of account", "9% of account"],
+              ["Round-trip costs paid", "Rs. 2,240", "Rs. 9,870"],
+              ["Account after 90 days", "−2.1%", "−2.1%"],
+              ["What they can learn from it", "Everything", "Almost nothing"]
+            ],
+            "caption": "Identical returns. Only one of them has data."
+          },
+          "after": "Both are down 2.1%, which at ninety days is noise and means nothing about either approach.\n\nLearner A has three fully documented trades, followed every rule, and paid Rs. 2,240 in friction. They can compute an expectancy, see which rule helped, and carry that forward.\n\nLearner B has eleven trades, four of them recorded, five rule-breaks, one position that risked 9% of the account, and **Rs. 9,870 in costs** — over four times as much, for a result that is identical.\n\nLearner B cannot tell whether their system works, because they did not run one. Ninety days from now they will be in exactly the same position, having paid another Rs. 10,000 to find out nothing.\n\n**The account balance is the least informative number on this table.**"
+        },
+        {
+          "type": "check",
+          "qids": ["q-16-4-a", "q-16-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Thirty days of Paper Floor with a full journal, before any real money — and repeat it if paper expectancy is negative.",
+            "Then three real positions of Rs. 25,000 or more, each with a written thesis, a stop, a derived size and a liquidity check.",
+            "Success at day 90 is a complete journal, zero rule-breaks and no position over 2% risk — not a profit."
+          ]
+        }
+      ],
+      "glossary": ["expectancy", "r_multiple", "position_size", "turnover", "commission", "edis"]
+    }
+  ]
+}

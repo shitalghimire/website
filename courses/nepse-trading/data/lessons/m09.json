@@ -1,0 +1,369 @@
+{
+  "module": 9,
+  "title": "Candlestick Grammar",
+  "lessons": [
+    {
+      "id": "9.1",
+      "module": 9,
+      "index": 1,
+      "title": "What one candle tells you",
+      "minutes": 5,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A candle is a fight. Buyers push up, sellers push down, and after a fixed slice of time — a day, on most NEPSE charts — the candle is the scar left behind. Learn to read the scar and you can tell who won, by how much, and whether they were tired at the end."
+        },
+        {
+          "type": "core",
+          "md": "Four numbers make a candle: **open, high, low, close**.\n\nThe **body** is the distance between open and close. It is the net result — what actually got settled.\n\nThe **wicks** (also called shadows) run from the body to the high and to the low. They are the ground that was taken and then given back.\n\nIf close > open, the candle is **bullish**. Drawn hollow with a green outline in this course.\nIf close < open, the candle is **bearish**. Drawn filled.\n\nThat hollow/filled convention matters: it means the shape carries the signal, so a colour-blind reader loses nothing.\n\n### Three questions, in this order\n\n**1 · How long is the body relative to recent candles?** A long body means one side won decisively. A short body means the day was a stalemate, regardless of how far price travelled intraday.\n\n**2 · Where is the body sitting within the day's range?** A small body at the top of a long lower wick means sellers pushed hard, buyers absorbed it all, and price closed back near the high. That is strength. The same small body at the bottom of a long upper wick is the mirror image, and it is weakness.\n\n**3 · What came before it?** A hammer after five red candles is a potential reversal. The identical hammer in the middle of a sideways drift is noise. **A candle has no meaning without its context.** This is the single most common mistake beginners make, and Lesson 9.5 is devoted entirely to it.\n\n### The NEPSE-specific check\n\nOne more thing that matters more here than on larger exchanges: **check the volume**. A dramatic-looking candle on 400 shares traded is not information. It is one person with a small order and a wide spread. On thinly-traded hydropower and hotel counters this happens constantly, and Lesson 9.6 covers what to do about it."
+        },
+        {
+          "type": "visual",
+          "widget": "candle-chart",
+          "props": { "mode": "anatomy" },
+          "caption": "Change the four numbers and watch the candle redraw. Then hit randomise and answer: who won this day?"
+        },
+        {
+          "type": "nepse",
+          "md": "On a day when a NEPSE stock hits its **±15% circuit limit**, the candle is not telling you what you think. Price stopped moving because it was **not allowed** to move, not because buyers and sellers reached agreement. Circuit-limit candles usually show a long body and a flat close with no wick on the limit side. Mark them mentally and do not read reversal patterns into them.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "Three real-shaped days on a Rs. 230 hydropower counter.",
+          "table": {
+            "head": ["Day", "Open", "High", "Low", "Close", "Reading"],
+            "numeric": [1, 2, 3, 4],
+            "rows": [
+              ["Mon", "230.00", "238.00", "229.00", "237.20", "Long bullish body, tiny wicks. Buyers controlled from open to close."],
+              ["Tue", "237.50", "244.00", "236.00", "238.10", "Long upper wick, small body. Buyers ran it to 244 and could not hold. Exhaustion."],
+              ["Wed", "238.00", "239.00", "226.00", "236.90", "Long lower wick, small body near the top. Sellers broke it to 226; buyers absorbed everything. Strength."]
+            ],
+            "caption": "Illustrative shapes. The readings are what transfer, not the specific numbers."
+          },
+          "after": "Tuesday and Wednesday have **almost the same close** — Rs. 238.10 and Rs. 236.90. If you only tracked closing prices you would call them the same kind of day.\n\nThe candles tell you they were opposites. Tuesday, buyers spent all their energy reaching Rs. 244 and gave it back. Wednesday, sellers broke the stock twelve rupees and buyers took every share of it.\n\nAnd the honest limit on all of this: neither candle tells you what happens on Thursday. What they tell you is **who was in control and how tired they looked**, which is information, not prophecy."
+        },
+        {
+          "type": "check",
+          "qids": ["q-9-1-a", "q-9-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "The body is the settled result; the wicks are ground taken and given back.",
+            "Ask three questions: body length, body position within the range, and what came before.",
+            "On NEPSE, always check volume and check whether the candle hit the ±15% circuit."
+          ]
+        }
+      ],
+      "glossary": ["candle", "body", "wick", "circuit", "volume"]
+    },
+
+    {
+      "id": "9.2",
+      "module": 9,
+      "index": 2,
+      "title": "Single-candle signals: marubozu, doji, hammer, shooting star",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Two candles can be drawn identically — same body, same wicks, same proportions — and mean opposite things. The shape is half the information. The rest of this module is about the other half."
+        },
+        {
+          "type": "core",
+          "md": "Eleven single-candle shapes are worth knowing. They divide into three families.\n\n### Decisive — the marubozu\n\nA **marubozu** is nearly all body: the open is at one extreme and the close at the other, with almost no wick. Bullish marubozu means buyers controlled every minute of the session. Bearish means sellers did. It is the least ambiguous candle there is — and on NEPSE it is also the shape most often produced by a circuit-limit day, so check.\n\n### Indecisive — the doji family\n\nA **doji** has essentially no body: open and close are the same. Nothing was settled.\n\n- **Long-legged doji** — long wicks both ways. Violent disagreement, no resolution.\n- **Dragonfly** — a long lower wick and no upper. Sellers pushed down, buyers took it all back.\n- **Gravestone** — a long upper wick and no lower. The mirror image, and the name is a hint.\n- **Spinning top** — a small but real body with wicks both sides. Mild indecision.\n\nA doji on its own is not a reversal signal. It records indecision, and indecision means something only after an extended trend.\n\n### Reversal-shaped — and this is where context becomes everything\n\nFour shapes, which are really two shapes seen in two contexts:\n\n- **Hammer** — small body at the top, long lower wick, after a **decline**. Sellers broke it, buyers took it all back.\n- **Hanging man** — *the identical drawing*, after an **advance**. Bearish.\n- **Inverted hammer** — small body at the bottom, long upper wick, after a **decline**. Tentatively bullish.\n- **Shooting star** — *the identical drawing*, after an **advance**. Bearish.\n\nA hammer and a hanging man cannot be told apart by looking at the candle. Only what came before separates them, which is why the pattern detectors in this course compute the preceding trend before naming anything."
+        },
+        {
+          "type": "visual",
+          "widget": "pattern-gallery",
+          "props": { "candles": 1 },
+          "caption": "Every single-candle shape, with its rule, what it means, and the trap that catches people."
+        },
+        {
+          "type": "nepse",
+          "md": "A candle that closes exactly at the **±15% circuit** is usually drawn as a marubozu — but it is not one. A marubozu means one side controlled the session; a circuit close means the session was stopped. On thin counters, check both the volume and whether the close sits precisely at 15% from the previous close before you read anything into the shape.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "The same drawing, twice, on the same hydropower counter — five weeks apart.",
+          "table": {
+            "head": ["", "Instance A", "Instance B"],
+            "numeric": [],
+            "rows": [
+              ["Open / High / Low / Close", "212.00 / 213.50 / 196.00 / 211.20", "298.00 / 299.20 / 275.00 / 297.10"],
+              ["Lower wick as % of range", "91%", "95%"],
+              ["Body position", "Top of the range", "Top of the range"],
+              ["Preceding five sessions", "−9.4% decline", "+14.2% advance"],
+              ["Pattern name", "Hammer", "Hanging Man"],
+              ["Bias", "Bullish", "Bearish"]
+            ],
+            "caption": "Identical shape, opposite meaning. The only difference is the row second from the bottom."
+          },
+          "after": "Instance A follows a decline: sellers drove price down nearly 8% intraday, buyers absorbed all of it, and the session closed near the high. Somebody wanted those shares.\n\nInstance B follows a three-week advance. The same absorption happened — but it is the first session in the trend where sellers were able to break price that hard at all. That is new information, and it is not good news for the trend.\n\nThe honest caveat: **neither is reliable alone.** Both need confirmation from the next session, both need volume behind them, and on a counter trading a few hundred kitta neither means anything at all."
+        },
+        {
+          "type": "check",
+          "qids": ["q-9-2-a", "q-9-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Marubozu = decisive, doji family = indecisive, hammer/shooting-star shapes = potential reversal.",
+            "A hammer and a hanging man are drawn identically; only the preceding trend distinguishes them.",
+            "A doji records indecision and means something only after an extended trend."
+          ]
+        }
+      ],
+      "glossary": ["marubozu", "doji", "hammer", "hanging_man", "shooting_star", "candle"]
+    },
+
+    {
+      "id": "9.3",
+      "module": 9,
+      "index": 3,
+      "title": "Two-candle signals: engulfing, harami, piercing, dark cloud",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "One candle tells you about one session. Two candles tell you about a change of mind — and a change of mind is a more reliable thing to trade than a single dramatic day."
+        },
+        {
+          "type": "core",
+          "md": "Two-candle patterns compare today with yesterday. That comparison is what makes them more informative than any single shape.\n\n### Engulfing — the strongest of the group\n\n**Bullish engulfing**: candle 1 is bearish, candle 2 is bullish, and candle 2's **body** fully covers candle 1's body. Sentiment reversed inside a single session and buyers overwhelmed the prior day entirely.\n\n**The trap that costs people valid signals**: the wicks do **not** need to be engulfed. Only the bodies. Beginners reject perfectly good signals over this constantly.\n\n**Bearish engulfing** is the mirror image after an advance.\n\n### Harami — the pause\n\nA large body followed by a small body **entirely inside** it. The Japanese word means \"pregnant\", which describes the drawing well.\n\nA harami is not a reversal, it is a **stall**. Yesterday's conviction did not carry into today. If the small second candle is a doji, it is a **harami cross**, and the stall is more pronounced.\n\n### Piercing line and dark cloud cover — the halfway tests\n\n**Piercing line**: after a decline, a bearish candle, then a bullish candle that opens **below** the prior low and closes **above the midpoint** of the prior body. Buyers took back more than half of a bad day, having started worse.\n\n**Dark cloud cover** is the mirror after an advance.\n\nThe midpoint test is the whole pattern. Close below the midpoint and it is just a bounce.\n\n### Tweezers — the shared level\n\n**Tweezer top**: two sessions with almost identical highs, after an advance. **Tweezer bottom**: identical lows after a decline. They matter because they mark a level the market tested twice and could not pass — which is where Module 10 begins."
+        },
+        {
+          "type": "visual",
+          "widget": "pattern-gallery",
+          "props": { "candles": 2 },
+          "caption": "Every two-candle pattern, with its precise rule and its reliability rating."
+        },
+        {
+          "type": "nepse",
+          "md": "Two-candle patterns need **both** sessions to have real volume. On a NEPSE counter where one day traded 8,000 kitta and the next traded 300, an \"engulfing\" pattern is one small order engulfing nothing. Check average daily turnover over about twenty sessions before you trust any two-candle signal — Lesson 10.4 shows how, and why it matters more here than almost anywhere else.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A bullish engulfing on a commercial bank, and the same shape on a thin hotel counter.",
+          "table": {
+            "head": ["", "Liquid bank", "Thin counter"],
+            "numeric": [1, 2],
+            "rows": [
+              ["Candle 1 — bearish body", "Rs. 6.20", "Rs. 5.80"],
+              ["Candle 2 — bullish body", "Rs. 8.40", "Rs. 7.10"],
+              ["Bodies engulfed?", "Yes", "Yes"],
+              ["Candle 1 volume", "38,400", "410"],
+              ["Candle 2 volume", "62,100", "180"],
+              ["20-day average turnover", "Rs. 2.1 crore", "Rs. 1.9 lakh"],
+              ["Reading", "A genuine change of hands", "Two people and a wide spread"]
+            ],
+            "caption": "Identical pattern by every geometric test. Only one of them is information."
+          },
+          "after": "The pattern textbook says both are bullish engulfing candles, and by the geometry both are. The bank's version involved sixty-two thousand shares changing hands — hundreds of participants collectively deciding the stock was worth more.\n\nThe thin counter's version involved **180 shares**. At Rs. 168 that is about Rs. 30,000 of trading. One person, one order.\n\nThis is the loss case for this lesson, and it is the most common way technical analysis fails on NEPSE: **the pattern was real and the information was not**. Sixty-eight percent of NEPSE's listed companies are hydropower and microfinance names, many of them thinly traded. The patterns will appear. Check the volume first, every time."
+        },
+        {
+          "type": "check",
+          "qids": ["q-9-3-a", "q-9-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "In an engulfing pattern only the bodies must be engulfed — not the wicks.",
+            "A harami is a stall, not a reversal; the piercing line and dark cloud turn on the midpoint test.",
+            "Both sessions of a two-candle pattern need real volume, or the pattern is one person's order."
+          ]
+        }
+      ],
+      "glossary": ["engulfing", "harami", "piercing_line", "dark_cloud", "tweezer", "volume"]
+    },
+
+    {
+      "id": "9.4",
+      "module": 9,
+      "index": 4,
+      "title": "Three-candle signals: morning star, evening star, three soldiers",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Three-candle patterns are the most reliable shapes in candlestick analysis and the rarest. On NEPSE they are rarer still, because a market that closes for Dashain and halts on an 8% index move does not produce clean three-session sequences very often."
+        },
+        {
+          "type": "core",
+          "md": "Three candles describe a **process**: conviction, hesitation, reversal. That structure is why they carry more weight than a single dramatic day.\n\n### Morning star — the reversal after capitulation\n\nThree sessions after a decline:\n\n1. A long **bearish** body. The decline is still running.\n2. A **small** body that gaps down or stalls below. Hesitation — neither side is winning.\n3. A **bullish** candle closing above the **midpoint** of candle 1.\n\nThe story: sellers were in control, ran out of energy, and buyers reclaimed more than half of the damage. That is a genuine handover.\n\n**Evening star** is the mirror after an advance, and it is one of the more reliable topping patterns there is.\n\n### Three white soldiers — the trend confirmation\n\nThree consecutive bullish candles, each with a real body, each opening **inside** the previous body and closing **above** the previous close, with small upper wicks.\n\nThis is not a reversal signal — it is confirmation that a trend has genuine participation. **Three black crows** is the bearish mirror.\n\nThe warning: by the time three soldiers have printed, a good deal of the move has already happened. Treat it as confirmation of a trend you had already identified, not as an entry trigger.\n\n### Why the midpoint rule matters\n\nIn a morning star, candle 3 must close above the midpoint of candle 1. Below that and buyers have not taken back enough to claim a handover — they have produced a bounce. The midpoint is the test that separates the pattern from wishful thinking, and it is why the detectors in this course compute it explicitly rather than eyeballing it."
+        },
+        {
+          "type": "visual",
+          "widget": "pattern-gallery",
+          "props": { "candles": 3 },
+          "caption": "The four three-candle patterns, with the exact rules the detectors apply."
+        },
+        {
+          "type": "nepse",
+          "md": "Three-candle patterns need three consecutive **trading** sessions. NEPSE closes Saturday and Sunday, halts for 15 minutes on a 5% index move in the first two hours, closes entirely on an 8% move, and shuts for extended runs at Dashain and Tihar. A \"three-day\" pattern spanning a festival break is three sessions separated by a week of news you cannot see. Check the dates on the candles, not just their order.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "A morning star that qualifies, and one that does not — same three shapes, one test failed.",
+          "table": {
+            "head": ["", "Valid morning star", "Fails the midpoint test"],
+            "numeric": [1, 2],
+            "rows": [
+              ["Candle 1 open → close", "318.00 → 296.00", "318.00 → 296.00"],
+              ["Candle 1 midpoint", "307.00", "307.00"],
+              ["Candle 2 body", "Small, below 296", "Small, below 296"],
+              ["Candle 3 close", "312.40", "303.10"],
+              ["Above candle 1 midpoint?", "Yes — 312.40 > 307.00", "No — 303.10 < 307.00"],
+              ["Verdict", "Morning star", "A bounce, not a pattern"]
+            ],
+            "caption": "The only difference is candle 3's close. That single test is the pattern."
+          },
+          "after": "Both look encouraging on a chart. Only the first one says buyers took back more than half the damage of the decisive down session.\n\nThe second is what a bounce looks like: enough buying to stop the fall, not enough to claim control. Traded as a reversal it is a position taken on hope, and if the downtrend resumes the stop is a long way below.\n\nThis is why the rules are arithmetic rather than impressions. **A pattern you have to squint at is not a pattern** — and the detectors behind Candle Sensei apply exactly these tests, so the shapes it shows you have genuinely qualified."
+        },
+        {
+          "type": "check",
+          "qids": ["q-9-4-a", "q-9-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Morning and evening stars describe conviction → hesitation → reversal, and turn on the midpoint test.",
+            "Three white soldiers and three black crows confirm a trend rather than signalling a reversal.",
+            "Check that the three sessions are genuinely consecutive trading days, not a sequence spanning a festival break."
+          ]
+        }
+      ],
+      "glossary": ["morning_star", "evening_star", "three_soldiers", "three_crows", "candle"]
+    },
+
+    {
+      "id": "9.5",
+      "module": 9,
+      "index": 5,
+      "title": "Context is everything: the same candle at support and at resistance",
+      "minutes": 5,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Three charts. The identical hammer candle on each — same body, same wick, same proportions to the pixel. On one it is a meaningful bullish signal. On one it is noise. On one it is bearish. Everything that separates them happened before the candle printed."
+        },
+        {
+          "type": "core",
+          "md": "This is the most important lesson in the module, and the one that separates people who use candlesticks from people who collect them.\n\n### A pattern is a sentence fragment\n\nA hammer says: *sellers pushed hard, buyers absorbed all of it, price closed near the high*.\n\nThat sentence is only interesting if you can answer two questions:\n\n- **Why were sellers pushing?** If price had fallen for five sessions into a level that has held before, there were people trapped and motivated. If price was drifting sideways, there was nothing to push against.\n- **Why were buyers waiting there?** A level that has held twice before is a place people remember. Mid-range is not.\n\n### The three contexts\n\n**At support, after a decline.** Highest value. There is a reason sellers were motivated and a reason buyers were waiting. If volume is above average, better still.\n\n**Mid-range, in a sideways drift.** Noise. Nobody was trapped, so nobody has to buy back. The shape occurred; the information did not.\n\n**After an advance.** It is not a hammer at all — it is a **hanging man**, and it is bearish. The identical drawing, inverted meaning, because the population of people the candle describes is completely different.\n\n### What \"confirmation\" actually means\n\nA candlestick pattern is a hypothesis about who is in control. Confirmation is the next session behaving as the hypothesis predicts — a hammer followed by a session that closes above the hammer's high.\n\nWaiting for confirmation costs you some of the move. It also removes a large share of the false signals. On NEPSE, where you cannot exit an illiquid position quickly and every round trip costs about 1%, **that trade is worth making almost every time**.\n\n### The honest summary\n\nCandlestick patterns are not predictive on their own. They are a compact way of describing what happened in a session, and they become useful only when the location, the trend and the volume all agree. Anyone selling you a pattern as a signal is selling you a fragment of a sentence."
+        },
+        {
+          "type": "visual",
+          "widget": "context-drill",
+          "caption": "Three contexts, one candle. Pick the one where it means something."
+        },
+        {
+          "type": "nepse",
+          "md": "Context on NEPSE includes one thing most textbooks never mention: **whether the candle hit a circuit limit**. A hammer whose lower wick stops precisely at −15% from the previous close is not showing you buyers absorbing selling — it is showing you the exchange stopping the fall. The absorption you are reading may simply be the limit. Check the arithmetic before you read the shape.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "The same hammer on a Rs. 300 hydropower counter, in three different places.",
+          "table": {
+            "head": ["", "A — at support", "B — mid-range", "C — after an advance"],
+            "numeric": [],
+            "rows": [
+              ["Preceding 5 sessions", "−8.7%", "−0.4%", "+13.1%"],
+              ["Level below", "Held twice in 4 months", "Nothing nearby", "No level — new highs"],
+              ["Volume vs 20-day average", "1.9×", "0.8×", "1.4×"],
+              ["Correct name", "Hammer", "Hammer (meaningless)", "Hanging Man"],
+              ["Bias", "Bullish", "None", "Bearish"],
+              ["Next session confirmed?", "Closed above the high", "Drifted", "Closed below the low"]
+            ],
+            "caption": "Identical candle geometry in all three columns."
+          },
+          "after": "Column A is the trade. Column B is the one that costs beginners money, because the pattern is real and the setup is not — you buy a hammer in a drift, nothing happens for three weeks, and you pay about 1% round-trip to learn that.\n\nColumn C is the one that costs them more. The candle *looks* bullish, the trend has been kind, and buying it means buying at the top of a run against a signal that was actually warning you.\n\n**The candle did not lie in any of the three cases.** It said the same thing each time: sellers pushed, buyers absorbed. What changed was whether that sentence mattered."
+        },
+        {
+          "type": "check",
+          "qids": ["q-9-5-a", "q-9-5-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "A candle's shape is half the information; the trend, the level and the volume are the other half.",
+            "The same hammer is bullish at support, meaningless mid-range, and bearish after an advance.",
+            "Confirmation costs you part of the move and removes most of the false signals — on NEPSE that trade is worth making."
+          ]
+        }
+      ],
+      "glossary": ["hammer", "hanging_man", "support", "resistance", "candle", "circuit"]
+    },
+
+    {
+      "id": "9.6",
+      "module": 9,
+      "index": 6,
+      "title": "NEPSE-specific candle behaviour: circuit days, gaps, and thin volume",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Candlestick analysis was developed in eighteenth-century Japanese rice markets and refined on modern exchanges with continuous liquidity and no daily price limits. NEPSE has a ±15% circuit, thin counters, and gaps around book-closure dates. Three things behave differently here, and each of them will mislead you if you do not adjust."
+        },
+        {
+          "type": "core",
+          "md": "### 1 · Circuit-limit candles are not what they look like\n\nWhen a stock hits **±15% from the previous close**, trading in it stops moving the price. The resulting candle typically shows a long body and a flat close with **no wick on the limit side**.\n\nThat looks exactly like a marubozu — total control by one side. It is not. It is the exchange saying *no further today*. The demand or supply that was queued behind the limit is invisible, and it is usually still there tomorrow.\n\nHow to check: compute 15% from the previous close. If the close sits at that number to the paisa, it is a circuit day. In this course such candles are drawn with a dashed cap so you can see them.\n\n### 2 · Gaps around corporate actions are not price movements\n\nOn an ex-bonus or ex-rights date the price adjusts down mechanically. A stock that \"fell 17% overnight\" three years ago very often just went ex-bonus.\n\nIf your chart is **not bonus-adjusted**, every support line you draw across that date is meaningless, and every pattern spanning it is an artefact. Good data portals adjust; some do not. Check before you draw anything.\n\n### 3 · Thin volume invalidates almost everything\n\nA pattern is a statement about what a **crowd** did. On a counter trading 400 kitta a day there is no crowd. There are two people and a wide spread.\n\nWith 91 hydropower companies and 50 microfinance companies listed — 141 of 271 — a large share of NEPSE is thin enough for this to matter constantly.\n\n### The working rule\n\nBefore trusting any pattern, check three things: **is it a circuit day, does the chart span a corporate action, and what is the 20-day average turnover?** All three take under a minute, and they eliminate most of the false signals you would otherwise trade."
+        },
+        {
+          "type": "visual",
+          "widget": "candle-chart",
+          "props": { "symbol": "THIN", "bars": 70 },
+          "caption": "A deliberately thin counter. Compare the volume bars with those on any bank chart in this course."
+        },
+        {
+          "type": "nepse",
+          "md": "**Check volume before trusting any pattern on NEPSE.** A shape formed on under about 5,000 kitta, or on a counter whose 20-day average turnover is under roughly Rs. 10 lakh, is not describing a crowd. And check whether the close sits exactly at ±15% of the previous close — circuit candles mimic marubozus and mean the opposite thing.",
+          "asOf": "2026-04-21"
+        },
+        {
+          "type": "example",
+          "md": "Three candles that would each be traded by someone reading shape alone.",
+          "table": {
+            "head": ["", "Candle A", "Candle B", "Candle C"],
+            "numeric": [],
+            "rows": [
+              ["Shape", "Bullish marubozu", "Bearish marubozu", "Bullish engulfing"],
+              ["Previous close", "Rs. 260.00", "Rs. 412.00", "Rs. 168.00"],
+              ["Close", "Rs. 299.00", "Rs. 350.20", "Rs. 174.10"],
+              ["Move", "+15.00%", "−15.00%", "+3.63%"],
+              ["Volume", "84,200", "1,240", "180"],
+              ["20-day avg turnover", "Rs. 1.8 crore", "Rs. 6 lakh", "Rs. 1.9 lakh"],
+              ["What it actually is", "Circuit day — buyers queued and unfilled", "Circuit day on thin volume — worse", "Two people"]
+            ],
+            "caption": "None of these three is the pattern its shape suggests."
+          },
+          "after": "**A** hit the upper circuit. It genuinely is buying pressure — but the candle understates it, because buyers who could not get filled are still waiting. The shape and the reality point the same way, which makes this the least harmful of the three.\n\n**B** hit the lower circuit on 1,240 shares. Almost nobody traded, and the price fell the maximum permitted. This tells you the counter is thin and someone wanted out, not that sellers overwhelmed a market.\n\n**C** is a textbook bullish engulfing on 180 shares — about Rs. 30,000 of turnover. Trading it means buying into a counter you would need **ten trading days to exit**, on the strength of one person's order.\n\nAll three would appear in a pattern scan. Only the volume and the circuit arithmetic tell you not to touch them."
+        },
+        {
+          "type": "check",
+          "qids": ["q-9-6-a", "q-9-6-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "A circuit-limit candle mimics a marubozu but means the price was stopped, not that one side won.",
+            "Gaps on ex-bonus and ex-rights dates are mechanical adjustments — check your chart is adjusted before drawing lines.",
+            "Check the 20-day average turnover before trusting any pattern; much of NEPSE is too thin for patterns to mean anything."
+          ]
+        }
+      ],
+      "glossary": ["circuit", "marubozu", "bonus_share", "hakprad", "liquidity_trap", "turnover"]
+    }
+  ]
+}

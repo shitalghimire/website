@@ -106,7 +106,11 @@ export class CandleChart {
     const d = this.o.data;
     if (!d.length) return { from: 0, to: 0, slice: [] };
     const cap = this.o.maxBars || Math.max(10, Math.floor((this.w - PAD.l - PAD.r) / this.o.barMin / 1.6));
-    const to = Math.max(10, d.length - this.offset);
+    // `to` must never exceed the data length. An earlier Math.max(10, …) here
+    // forced a ten-bar window even on shorter series, so every draw loop read
+    // past the end of the array — which crashed the dashboard for any learner
+    // whose equity curve had fewer than ten sessions, i.e. every new one.
+    const to = Math.min(d.length, Math.max(1, d.length - this.offset));
     const from = Math.max(0, to - cap);
     return { from, to, slice: d.slice(from, to) };
   }

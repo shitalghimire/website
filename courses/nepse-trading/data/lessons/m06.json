@@ -1,0 +1,268 @@
+{
+  "module": 6,
+  "title": "Settlement and the T+2 Clock",
+  "lessons": [
+    {
+      "id": "6.1",
+      "module": 6,
+      "index": 1,
+      "title": "T, T+1, T+2 — what happens on each day",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You bought shares on Monday. On Tuesday you check MeroShare and they are not there. Nothing has gone wrong. The trade is exactly where it should be, and knowing where it is stops you calling your broker in a panic."
+        },
+        {
+          "type": "core",
+          "md": "A NEPSE trade takes three days to complete, and each day has a job.\n\n### Day T — the trade\n\nYour order executes on the exchange. It appears in your [[trade_book|trade book]] and on your contract note. Cash is debited from your broker balance if you bought.\n\n**Nothing has moved in your Demat account yet.** The trade exists; the shares have not.\n\n### Day T+1 — clearing\n\n[[cdsc|CDSC]] works out who owes what to whom. If you **bought**, there is nothing for you to do. If you **sold**, this is the day you must authorise [[edis|EDIS]] in MeroShare — Lesson 6.2 is devoted entirely to it, because it is the step that catches almost every new seller.\n\n### Day T+2 — settlement\n\nShares move. Money moves. If you bought, the shares are credited to your Demat and are now genuinely yours. If you sold, the shares leave your Demat and funds settle to your broker net of commission, SEBON fee, DP charge and [[cgt|capital gains tax]] withheld at source.\n\nYour broker then transfers the net amount to your bank, which takes a further day or two depending on the broker.\n\n### Trading days, not calendar days\n\nThis is the part people get wrong. **T+2 counts trading days.** Since April 2026 NEPSE trades Monday to Friday, so:\n\n- A **Monday** sale settles Wednesday.\n- A **Thursday** sale settles **Monday**.\n- A **Friday** sale settles **Tuesday**.\n\nPublic holidays extend it further, and Dashain and Tihar close the market for extended runs. If you need cash by a specific date, count backwards in trading days and check NEPSE's holiday calendar."
+        },
+        {
+          "type": "visual",
+          "widget": "settlement-timeline",
+          "caption": "Click each day. Toggle to a Thursday sale and watch the weekend push settlement to Monday."
+        },
+        {
+          "type": "nepse",
+          "md": "Settlement counts **trading days, not calendar days**. Since April 2026 the market trades Monday to Friday — it ran Sunday to Thursday for decades, so most older guides are wrong about which days count. A sale executed on Thursday settles on Monday, and a sale on Friday settles on Tuesday.",
+          "asOf": "2026-04-06"
+        },
+        {
+          "type": "example",
+          "md": "You sell 300 kitta of NABIL at Rs. 496.10 on **Thursday 20 August 2026**, needing the money for a payment.",
+          "calc": [
+            { "l": "Thu 20 Aug — T", "v": "Order executes. Gross Rs. 1,48,830.00" },
+            { "l": "Fri 21 Aug — T+1", "v": "You authorise EDIS in MeroShare" },
+            { "l": "Sat 22 / Sun 23 Aug", "v": "Market closed — nothing happens" },
+            { "l": "Mon 24 Aug — T+2", "v": "Shares delivered, funds settled, CGT withheld" },
+            { "l": "Mon 24 / Tue 25 Aug", "v": "Broker releases net proceeds to your bank", "total": true }
+          ],
+          "after": "Four to five calendar days from pressing sell to money in your account. If you were counting on it for a payment on Saturday, you were wrong by three days.\n\nAnd the expensive version of this mistake: someone who sells on Thursday expecting Saturday cash, and then borrows to cover the gap, has paid interest for a delay that was entirely predictable from the calendar."
+        },
+        {
+          "type": "check",
+          "qids": ["q-6-1-a", "q-6-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "T is the trade, T+1 is clearing (and EDIS if you sold), T+2 is settlement.",
+            "T+2 counts trading days — a Thursday sale settles Monday, a Friday sale settles Tuesday.",
+            "Add a further day or two for your broker to move the money to your bank."
+          ]
+        }
+      ],
+      "glossary": ["settlement", "t_plus_two", "trade_book", "cdsc", "edis", "cgt"]
+    },
+
+    {
+      "id": "6.2",
+      "module": 6,
+      "index": 2,
+      "title": "EDIS: the step that trips up every new seller",
+      "minutes": 6,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You sold your shares. The trade shows as executed in TMS. You feel good. Two days later the money isn't in your account, your broker calls you annoyed, and you find out the sale is about to fail — because of a step nobody mentioned."
+        },
+        {
+          "type": "core",
+          "md": "When you buy, the process is mostly passive: you pay the broker, and on T+2 the shares appear in your Demat account.\n\nWhen you sell, you must actively hand the shares over. **The exchange cannot reach into your Demat account and take them.** You have to authorise the transfer, and you do it through **[[edis|EDIS]]** — Electronic Delivery Instruction Slip — inside [[meroshare|MeroShare]].\n\nHere is the sequence, and it is worth memorising.\n\n### Day T — the trade day\n\nYou place a sell order in TMS. It executes. Your trade book shows the sale.\n\n### Day T+1 — you must act\n\nYou log into MeroShare, go to **My EDIS**, and you will see your executed sale waiting. You select it, enter your Demat transaction PIN, and submit. The shares are now blocked and earmarked for delivery.\n\n**This is the step people miss.** If you do not do it, you have sold shares you have not delivered.\n\n### Day T+2 — settlement\n\nShares move out of your Demat to the buyer. Money moves to your broker, minus commission, SEBON fee, DP charge and capital gains tax withheld at source. Your broker then transfers the net amount to your bank.\n\n### Why this exists at all\n\nNepal's system separates **trading** (NEPSE, via your broker's TMS) from **custody** ([[cdsc|CDSC]], via your Demat and MeroShare). They are two different institutions holding two different halves of the transaction. EDIS is the bridge, and you are the one who has to walk across it.\n\nThat separation is a genuine protection — your shares are not in your broker's hands, so a broker failure does not put them at risk. EDIS is the price of that protection.\n\n### What happens if you miss it\n\nYour broker will usually chase you, because a delivery failure is their problem too. If the shares are not delivered, the trade goes to **auction settlement** — NEPSE buys the shares in the market to deliver to the buyer, and the difference plus a penalty is charged to you. In practice most brokers will call you repeatedly on T+1. Do not rely on that."
+        },
+        {
+          "type": "visual",
+          "widget": "settlement-timeline",
+          "caption": "The sell lane has a step the buy lane does not. That amber marker on T+1 is the whole lesson."
+        },
+        {
+          "type": "nepse",
+          "md": "Settlement counts in trading days, not calendar days. Since April 2026 the market trades Monday to Friday (it was Sunday to Thursday for decades — most older guides are wrong about this). So a sale executed on Thursday settles on Monday, and a sale on Friday settles on Tuesday. Public holidays extend it further. If you need cash by a specific date, count backwards using trading days, not the calendar.",
+          "asOf": "2026-04-06"
+        },
+        {
+          "type": "example",
+          "md": "You sell 300 kitta of NABIL at Rs. 496.10 on Thursday 20 August 2026.",
+          "calc": [
+            { "l": "Thu 20 Aug (T)", "v": "Order executes. Gross Rs. 1,48,830.00" },
+            { "l": "Fri 21 Aug (T+1)", "v": "MeroShare → My EDIS → select → PIN → submit" },
+            { "l": "Sat 22 / Sun 23", "v": "Market closed. Nothing happens." },
+            { "l": "Mon 24 Aug (T+2)", "v": "Shares delivered, funds settled, CGT withheld" },
+            { "l": "Mon 24 / Tue 25", "v": "Broker releases the net amount to your bank", "total": true }
+          ],
+          "after": "If you were counting on that money for a payment on Saturday, you were wrong by three days.\n\nNow the version where you forget the EDIS. The sale fails to deliver, and goes to **auction settlement**: NEPSE buys 300 NABIL in the market to give to your buyer. Suppose it has to pay Rs. 508.00 to get them. The difference — 300 × Rs. 11.90 = **Rs. 3,570** — plus a penalty, is charged to you. You still sold at Rs. 496.10, and you have paid Rs. 3,570 for the privilege of forgetting a two-minute task. Your broker may also restrict your account.\n\nThis is the single most avoidable loss in this entire course, and Terminal Drill makes you fail it once on purpose so that you never do it with real money."
+        },
+        {
+          "type": "check",
+          "qids": ["q-6-2-a", "q-6-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Selling requires you to authorise EDIS in MeroShare on T+1 — the trade is not finished without it.",
+            "Settlement is T+2 in trading days; the market now runs Monday–Friday, so Thursday sales settle Monday.",
+            "Failure to deliver triggers auction settlement, and the cost lands on you."
+          ]
+        }
+      ],
+      "glossary": ["edis", "meroshare", "cdsc", "settlement", "t_plus_two", "cgt", "auction_settlement"]
+    },
+
+    {
+      "id": "6.3",
+      "module": 6,
+      "index": 3,
+      "title": "Why intraday trading does not exist on NEPSE",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Every day, somewhere online, a course promises to teach you intraday trading on NEPSE. It is not a difficult skill that you have not mastered. It is a transaction the system cannot process."
+        },
+        {
+          "type": "core",
+          "md": "You cannot sell what you do not have. On NEPSE, shares you buy today arrive in your Demat on **T+2**. Until then they are not in your account, and you cannot deliver them — so you cannot sell them.\n\nThat is the whole argument. Intraday trading is not restricted on NEPSE; it is **structurally impossible**.\n\n### What follows from it\n\n- **No day trading**, in the sense the word is used elsewhere. The shortest possible round trip is buy on day T, sell on day T+2 at the earliest.\n- **No same-day reversal of a mistake.** Buy the wrong stock and you own it for at least two days.\n- **Every position is overnight risk**, whether you like it or not. Overnight is where gaps happen — and where a Nepal Rastra Bank circular published at 18:00 gets priced in before you can act.\n\n### Why this is a protection rather than a limitation\n\nIn markets that permit intraday trading with leverage, the great majority of active retail day traders lose money, and the ones who lose most are the ones who trade most. The costs compound: spread, commission, tax, and the slow erosion of decisions made under time pressure.\n\nNEPSE removes that entire category of loss by construction. Combined with no short selling, no derivatives and no exchange leverage, it eliminates most of the mechanisms through which retail traders destroy capital elsewhere.\n\nThis is worth sitting with, because it reframes what you are doing. You are not a trader who is being held back by an inferior exchange. You are an investor in a **cash, long-only, T+2 market**, and the strategies that work here are the ones that survive a two-day minimum holding period and roughly 1% of round-trip friction.\n\n### What people mean when they say \"intraday\" here\n\nUsually one of two things: watching the price during the session and deciding when to place a limit order — which is fine and is not intraday trading — or a scheme that involves selling shares bought earlier while buying more of the same, which is just ordinary trading with extra steps and extra DP charges."
+        },
+        {
+          "type": "visual",
+          "widget": "compare",
+          "props": {
+            "title": "NEPSE against a T+0 market",
+            "sub": "The same buy, two different systems",
+            "sides": [
+              {
+                "k": "NEPSE",
+                "t": "T+2, cash, long-only",
+                "rows": [
+                  ["Buy Monday, shares arrive", "Wednesday"],
+                  ["Earliest possible sale", "Wednesday"],
+                  ["Sell before you own?", "Not possible"],
+                  ["Leverage from the exchange", "None"],
+                  ["Short selling", "Not available"],
+                  ["Minimum round-trip friction", "≈ 1%"]
+                ]
+              },
+              {
+                "k": "Elsewhere",
+                "t": "T+0 / intraday markets",
+                "rows": [
+                  ["Buy Monday, shares arrive", "Same day"],
+                  ["Earliest possible sale", "Minutes later"],
+                  ["Sell before you own?", "Yes, with margin"],
+                  ["Leverage from the exchange", "Common"],
+                  ["Short selling", "Available"],
+                  ["Minimum round-trip friction", "Often < 0.1%"]
+                ]
+              }
+            ],
+            "verdict": "The friction on NEPSE is roughly ten times higher and the minimum holding period is two days. Any strategy that depends on capturing small moves quickly does not survive the translation — and recognising that early saves you the tuition."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "This is a **structural protection, not a limitation to work around**. Do not go looking for a broker who will let you do it, and treat anyone offering \"NEPSE intraday\" training as a warning sign about everything else they will teach you. The exchange settles T+2; no broker can change that.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Someone attempts the closest available thing to intraday: buying 500 UPPER at Rs. 234.00 and selling the same quantity two days later at Rs. 238.00 — a clean +1.71% move in their favour.",
+          "calc": [
+            { "l": "Buy 500 @ Rs. 234.00 — gross", "v": "Rs. 1,17,000.00" },
+            { "l": "Commission + SEBON + DP", "v": "Rs. 428.65" },
+            { "l": "Total cost", "v": "Rs. 1,17,428.65" },
+            { "l": "Sell 500 @ Rs. 238.00 — gross", "v": "Rs. 1,19,000.00" },
+            { "l": "Commission + SEBON + DP", "v": "− Rs. 435.55" },
+            { "l": "Net before tax", "v": "Rs. 1,18,564.45" },
+            { "l": "Gain over cost basis", "v": "Rs. 1,135.80" },
+            { "l": "CGT at 10% (short-term)", "v": "− Rs. 113.58" },
+            { "l": "Net profit", "v": "Rs. 1,022.22", "total": true },
+            { "l": "Return on capital", "v": "+0.87%", "total": true }
+          ],
+          "after": "The price moved **+1.71%** and the trader kept **+0.87%**. Roughly half the move went to friction and tax.\n\nNow run it on the day the trade goes the other way by the same 1.71%: the loss is Rs. 2,850.40, because the costs are paid in both directions and there is no tax relief on a loss. **Wins are halved and losses are amplified.** That asymmetry is what makes short-horizon trading structurally unattractive on NEPSE, and it is arithmetic, not opinion."
+        },
+        {
+          "type": "check",
+          "qids": ["q-6-3-a", "q-6-3-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Intraday trading is impossible on NEPSE because shares arrive on T+2 — you cannot sell what you do not hold.",
+            "The shortest possible round trip is two trading days, and every position carries overnight risk.",
+            "Friction halves your wins and amplifies your losses, which is why short-horizon strategies do not translate here."
+          ]
+        }
+      ],
+      "glossary": ["t_plus_two", "settlement", "cgt", "commission", "dp_charge"]
+    },
+
+    {
+      "id": "6.4",
+      "module": 6,
+      "index": 4,
+      "title": "What happens if you fail to deliver or fail to pay",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Settlement failure is rare, boring, and expensive. It is rare because the system is designed to prevent it, boring because the process is mechanical, and expensive because every rupee of the cost lands on the person who caused it. That person is you."
+        },
+        {
+          "type": "core",
+          "md": "There are two ways a settlement fails, and they have different consequences.\n\n### Failure to deliver — you sold and did not hand over the shares\n\nAlmost always because [[edis|EDIS]] was not authorised on T+1. The buyer is entitled to their shares, so NEPSE runs **[[auction_settlement|auction settlement]]**: it buys the shares in the open market to deliver to the buyer.\n\nWhatever that costs above your sale price is charged to you, plus a penalty. You have no control over the auction price — if the stock has risen since you sold, or if it is a thin counter where buying 300 kitta moves the price, the difference can be substantial.\n\nYour broker may also restrict your account until the matter is settled.\n\n### Failure to pay — you bought and the funds were not there\n\nRarer, because NEPSE requires cleared funds before you can place a buy order. It happens when a transfer is reversed or a cheque bounces after the order was accepted. Your broker will chase you, may sell the shares to recover, and will charge you the shortfall plus costs.\n\n### Who actually bears the risk\n\nThis is the reassuring part. Nepal's clearing system is designed so that the **counterparty who did nothing wrong is made whole**. The buyer gets their shares; the seller gets their money. The cost is borne by the party who failed, not spread across everyone.\n\nThat is why the penalties are real: they have to be, or the guarantee would be funded by the people who did nothing wrong.\n\n### How to never have this conversation\n\n1. Authorise EDIS the moment you see the sale in MeroShare on T+1 — not at 14:50.\n2. Keep your Demat transaction PIN somewhere you can find it in two minutes.\n3. Do not sell shares you have pledged, transferred, or that are still settling from a purchase.\n4. Fund your account before you place a buy order, not after."
+        },
+        {
+          "type": "visual",
+          "widget": "flow",
+          "props": {
+            "title": "What happens after a failure to deliver",
+            "sub": "Every step is mechanical, and every cost lands on you",
+            "steps": [
+              { "t": "T+1 ends with EDIS unauthorised", "d": "Your shares are not blocked for delivery. The system now knows the sale cannot settle normally.", "meta": "the mistake" },
+              { "t": "T+2 — settlement fails", "d": "The buyer is entitled to their shares regardless of what you did.", "meta": "—" },
+              { "t": "NEPSE runs auction settlement", "d": "It buys the shares in the open market to deliver to the buyer. You do not control the price paid.", "meta": "market price" },
+              { "t": "The difference is charged to you", "d": "Auction price minus your sale price, times quantity. Plus a penalty.", "meta": "your cost" },
+              { "t": "Your broker may restrict the account", "d": "Until the shortfall is paid. Repeated failures escalate.", "meta": "consequence" }
+            ],
+            "note": "The buyer is made whole in every scenario. The system is designed so that the cost sits with whoever caused it."
+          }
+        },
+        {
+          "type": "nepse",
+          "md": "The penalty lands on you, and your broker may restrict your account. Nepal's clearing arrangement guarantees the innocent counterparty, which is why it must charge the failing one — otherwise the guarantee would be paid for by people who did nothing wrong. Report genuine disputes to your broker's compliance officer first, and to [[sebon|SEBON]] if unresolved.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "You sell 300 kitta of a mid-cap hydropower counter at Rs. 356.90 on a Tuesday and forget the EDIS. By Thursday the stock has run to Rs. 372.00 on a sector rally, and the counter is thin.",
+          "calc": [
+            { "l": "Your sale — 300 × Rs. 356.90", "v": "Rs. 1,07,070.00" },
+            { "l": "Auction buys 300 at (average) Rs. 374.50", "v": "Rs. 1,12,350.00" },
+            { "l": "Difference charged to you", "v": "Rs. 5,280.00" },
+            { "l": "Penalty", "v": "Rs. 500.00" },
+            { "l": "Costs on the original sale (still payable)", "v": "Rs. 404.71" },
+            { "l": "Total cost of forgetting EDIS", "v": "Rs. 6,184.71", "total": true }
+          ],
+          "after": "Note the auction price of Rs. 374.50 — **above** the Rs. 372.00 market price. On a thin counter, buying 300 kitta in a hurry moves the price against the buyer, and the buyer here is the auction acting on your behalf. Thin counters make this worse in exactly the situation where you can least afford it.\n\nRs. 6,184.71 for a task that takes two minutes. And it is entirely one-sided: had the stock **fallen** to Rs. 340 instead, the auction would have bought cheaply — and you would not have received the difference. You bear the downside and keep none of the upside."
+        },
+        {
+          "type": "check",
+          "qids": ["q-6-4-a", "q-6-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Failure to deliver triggers auction settlement: NEPSE buys the shares and charges you the difference plus a penalty.",
+            "The innocent counterparty is always made whole, which is precisely why the failing party is charged in full.",
+            "Authorise EDIS as soon as you see the sale on T+1 — not at the end of the day."
+          ]
+        }
+      ],
+      "glossary": ["edis", "auction_settlement", "settlement", "sebon", "broker"]
+    }
+  ]
+}

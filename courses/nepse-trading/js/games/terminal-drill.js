@@ -100,8 +100,9 @@ export default {
         cell('WACC', acct.wacc ? rs(acct.wacc) : '—')
       );
     }
-    const cell = (l, v) => el('div.hud__cell', [el('span.hud__l', l), el('span.hud__v', v)]);
-    const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+    // function declarations, not const arrows — paintHud() runs before this line
+    function cell(l, v) { return el('div.hud__cell', [el('span.hud__l', l), el('span.hud__v', v)]); }
+    function fmt(s) { return `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`; }
 
     function startClock() {
       if (startedAt) return;

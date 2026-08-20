@@ -40,9 +40,12 @@ export function dashboard() {
   ]));
 
   /* ── the split ────────────────────────────────────────── */
-  const left = el('div');
-  const right = el('div');
-  wrap.append(el('div.split', [left, right]));
+  /* The module tree is the primary content and takes the wide column; the
+     curve, rank and badges sit in the narrow rail. Asymmetric either way,
+     but the sixteen module titles need the room more than the chart does. */
+  const left = el('div');      // module tree
+  const right = el('div');     // curve + rank + badges
+  wrap.append(el('div.split.split--wide', [right, left]));
 
   /* right column — the Equity Curve comes first, it is the signature */
   const eq = equityCurve({ height: 300, levels: M.levels });
@@ -115,18 +118,14 @@ export function dashboard() {
     // the boss quiz that closes the level
     const lastMod = M.modules.find(m => m.n === lv.modules[lv.modules.length - 1]);
     if (lastMod?.bossQuizAfter) {
-      const ready = state.moduleProgress(lastMod).pct >= 0.8;
       const passed = state.quizPassed('boss' + lastMod.n, true);
       lvNode.append(el('a', {
-        class: 'btn ' + (passed ? 'btn--bull' : ready ? 'btn--primary' : ''),
-        href: ready ? `#/boss/${lastMod.n}` : null,
-        style: { marginTop: 'var(--s3)', width: '100%' },
-        'aria-disabled': ready ? null : 'true',
-        onclick: ready ? null : (e => e.preventDefault())
+        class: 'btn btn--boss' + (passed ? ' btn--bull' : ''),
+        href: `#/boss/${lastMod.n}`,
+        style: { marginTop: 'var(--s4)', width: '100%' }
       }, passed
         ? `✓ Boss Quiz ${lv.roman} passed — Rank: ${lv.rank}`
-        : ready ? `Boss Quiz ${lv.roman} → Rank: ${lv.rank}`
-        : `Boss Quiz ${lv.roman} — finish Module ${lastMod.n} to unlock`));
+        : `Boss Quiz ${lv.roman} → Rank: ${lv.rank}`));
     }
 
     left.append(lvNode);
@@ -165,7 +164,6 @@ function streakRow() {
 function continueButton() {
   const { modules: M } = ctx;
   for (const mod of M.modules) {
-    if (!state.moduleUnlocked(M.modules, mod.n)) break;
     const next = mod.lessons.find(l => !state.lessonDone(l.id));
     if (next) {
       const started = Object.keys(state.load().lessonsDone).length > 0;
@@ -183,13 +181,11 @@ function continueButton() {
 const short = t => t.length > 34 ? t.slice(0, 33).trimEnd() + '…' : t;
 
 function moduleRow(mod, M) {
-  const unlocked = state.moduleUnlocked(M.modules, mod.n);
   const p = state.moduleProgress(mod);
   const done = p.pct === 1;
   const current = !done && p.done > 0;
 
   const cls = ['mod'];
-  if (!unlocked) cls.push('mod--locked');
   if (done) cls.push('mod--done');
   else if (current) cls.push('mod--current');
 
@@ -202,24 +198,20 @@ function moduleRow(mod, M) {
     if (g) meta.push(el('span.hi', `▸ ${g.title}`));
   }
 
-  const node = el(unlocked ? 'a' : 'div', {
-    class: cls.join(' '),
-    href: unlocked ? `#/m/${mod.n}` : null,
-    'aria-disabled': unlocked ? null : 'true',
-    title: unlocked ? null : `Opens when Module ${mod.n - 1} is 80% complete and its quiz is passed`
-  }, [
+  return el('a', { class: cls.join(' '), href: `#/m/${mod.n}` }, [
     el('span.mod__n.num', String(mod.n).padStart(2, '0')),
     el('div.mod__body', [
       el('h3', mod.title),
       el('div.mod__meta', meta),
       el('p.mod__blurb', mod.blurb)
     ]),
-    el('div.mod__right', unlocked ? [
+    // an empty rail under a "0%" is just two stray marks — show neither
+    // until the module has actually been started
+    el('div.mod__right', p.done > 0 ? [
       el('span.mod__pct.num', pctPlain(p.pct)),
-      el('div.rail.mod__rail', el('div.rail__fill', {
-        style: { width: pctPlain(p.pct, 1) }
-      }))
-    ] : [el('span.pill', 'Locked')])
+      el('div.rail.mod__rail', el('div.rail__fill', { style: { width: pctPlain(p.pct, 1) } }))
+    ] : [
+      el('span.mod__pct.num', { style: { color: 'var(--paper-4)' } }, `${mod.lessons.length}`)
+    ])
   ]);
-  return node;
 }

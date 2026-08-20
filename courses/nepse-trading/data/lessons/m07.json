@@ -1,0 +1,303 @@
+{
+  "module": 7,
+  "title": "The True Cost of a Trade",
+  "lessons": [
+    {
+      "id": "7.1",
+      "module": 7,
+      "index": 1,
+      "title": "The five-slab broker commission, with the arithmetic",
+      "minutes": 5,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Two traders buy shares on the same day. One spends Rs. 4,90,000 and pays Rs. 1,617 in commission. The other spends Rs. 5,10,000 — twenty thousand rupees more — and pays Rs. 1,581. Less commission for a bigger trade. Understanding why is the first step to understanding what trading actually costs you."
+        },
+        {
+          "type": "core",
+          "md": "NEPSE broker [[commission]] is charged on a **five-slab scale**, and the rate is applied to the **whole transaction amount**, not marginally. Cross a slab boundary and the entire trade is charged at the lower rate.\n\nYou pay this on **both legs** — once when you buy, once when you sell.\n\n### Where the money goes\n\nThat commission is not all your broker's. It is split three ways: roughly **79.4% to the broker**, **20% to NEPSE** as exchange commission, and **0.6% to SEBON** as a regulatory share.\n\nThis matters because it explains why brokers cannot discount it — the rate is **regulated, not negotiated**. If someone offers you a lower commission rate, be suspicious about what else they are telling you.\n\n### The anomaly in the hook\n\nBecause slabs are not marginal, sitting just under a boundary means paying the higher rate on everything, and just over it means the lower rate on everything. There is a small band above each boundary where a **larger trade costs less in total commission**.\n\nThis is a curiosity, not a strategy. Do not size a position to game a slab boundary — the position size should come from your risk, as Lesson 14.2 shows. It is here so that when your contract note arrives, the number on it makes sense."
+        },
+        {
+          "type": "visual",
+          "widget": "cost-calculator",
+          "caption": "Drag the slider across a boundary and watch the effective cost step down. The four amber lines are the slab edges."
+        },
+        {
+          "type": "nepse",
+          "md": "Some brokers apply a **minimum commission** (commonly around Rs. 10) on very small trades — confirm yours. The slabs above are for **equity shares**. Government bonds, NRB bonds and corporate debentures carry a different, much lower SEBON fee (0.005% and 0.010% respectively). Mutual fund units follow their own schedule; check your broker's published rate card rather than assuming.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The hook, in full.",
+          "calc": [
+            { "l": "Trade A — Rs. 4,90,000 (slab 2, 0.33%)", "v": "4,90,000 × 0.0033 = Rs. 1,617.00" },
+            { "l": "Trade B — Rs. 5,10,000 (slab 3, 0.31%)", "v": "5,10,000 × 0.0031 = Rs. 1,581.00" },
+            { "l": "Trade B is larger by", "v": "Rs. 20,000" },
+            { "l": "Trade B costs less in commission by", "v": "Rs. 36.00", "total": true }
+          ],
+          "after": "The break-even point where the higher slab actually starts costing more is at Rs. 5,00,000 × (0.0033 ÷ 0.0031) = **Rs. 5,32,258**. So any trade between Rs. 5,00,001 and Rs. 5,32,258 costs less in commission than a Rs. 5,00,000 trade.\n\nAnd here is the honest counterweight, because this is exactly the sort of fact people over-apply: the saving is **Rs. 36**. On the same trade, a single rupee of adverse price movement on 1,000 shares costs Rs. 1,000. Optimising the slab is worth roughly one twenty-eighth of one rupee of price. Spend your attention on the price."
+        },
+        {
+          "type": "check",
+          "qids": ["q-7-1-a", "q-7-1-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Commission runs on five slabs from 0.36% down to 0.24%, applied to the whole amount, on both buy and sell.",
+            "The rate is split roughly 79.4% broker / 20% NEPSE / 0.6% SEBON — it is regulated, not negotiable.",
+            "Because slabs are not marginal, crossing a boundary can lower your total commission — a curiosity, not a strategy."
+          ]
+        }
+      ],
+      "glossary": ["commission", "sebon", "nepse", "broker"]
+    },
+
+    {
+      "id": "7.2",
+      "module": 7,
+      "index": 2,
+      "title": "SEBON fee and DP charge — small, flat, and easy to forget",
+      "minutes": 4,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "One of these two charges is proportional and almost invisible. The other is flat, and on a small trade it is larger than the commission by a factor of seven. Almost nobody notices which is which until they read a contract note carefully."
+        },
+        {
+          "type": "core",
+          "md": "Beyond commission there are two more charges on every equity trade.\n\n### SEBON fee — 0.015%\n\nA regulatory fee on the transaction value, paid to the Securities Board of Nepal. It is proportional, so it scales with your trade and never distorts anything.\n\nDifferent instruments carry different rates: **0.015%** on equity, **0.010%** on corporate debentures, **0.005%** on government and NRB bonds. The lower rates on debt reflect its lower risk and thinner margins.\n\nOn a Rs. 1,00,000 trade the SEBON fee is Rs. 15. It is genuinely small.\n\n### DP charge — Rs. 25, flat\n\nThis is the one that matters. Your [[dp|Depository Participant]] charges **Rs. 25 per company per settlement date**.\n\nRead that basis carefully, because three things follow from it:\n\n- **Per company, not per trade.** Buy the same stock twice on one day and you pay Rs. 25 once.\n- **Per settlement date.** One order that fills across two days settles twice and costs Rs. 50.\n- **Flat, regardless of size.** Rs. 25 on a Rs. 1,000 trade is 2.5%. Rs. 25 on a Rs. 5,00,000 trade is 0.005%.\n\nThat last point is why the DP charge is **regressive**: it punishes small trades far more than large ones, and it is the single biggest reason a Rs. 1,000 \"practice trade\" teaches you almost nothing about real returns.\n\n### The full stack\n\nOn a buy: gross + commission + SEBON fee + DP charge.\nOn a sell: gross − commission − SEBON fee − DP charge − [[cgt|capital gains tax]].\n\nEvery one of those is withheld before the money reaches you."
+        },
+        {
+          "type": "visual",
+          "widget": "cost-calculator",
+          "caption": "Watch the breakdown table as you move the slider. Note how the DP charge line never changes."
+        },
+        {
+          "type": "nepse",
+          "md": "The DP charge is **Rs. 25 per company per settlement date** — not per trade, and not per share. It is flat and therefore regressive against small trades. This is a real argument for placing orders you expect to fill completely, and a decisive argument against very small positions, which Lesson 7.4 quantifies.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "The same three charges, on three very different trade sizes.",
+          "table": {
+            "head": ["", "Rs. 1,000", "Rs. 50,000", "Rs. 5,00,000"],
+            "numeric": [1, 2, 3],
+            "rows": [
+              ["Commission rate", "0.36%", "0.36%", "0.33%"],
+              ["Commission", "Rs. 3.60", "Rs. 180.00", "Rs. 1,650.00"],
+              ["SEBON fee (0.015%)", "Rs. 0.15", "Rs. 7.50", "Rs. 75.00"],
+              ["DP charge (flat)", "Rs. 25.00", "Rs. 25.00", "Rs. 25.00"],
+              ["Total one-way cost", "Rs. 28.75", "Rs. 212.50", "Rs. 1,750.00"],
+              ["As % of the trade", "2.875%", "0.425%", "0.350%"],
+              ["DP charge as % of the trade", "2.500%", "0.050%", "0.005%"]
+            ],
+            "caption": "The last row is the whole lesson."
+          },
+          "after": "On the Rs. 1,000 trade, the DP charge is **seven times the commission**. On the Rs. 5,00,000 trade it is one sixty-sixth of it.\n\nThis is the loss-making case for this module, and it is not hypothetical: someone who makes twenty Rs. 2,000 \"practice trades\" to learn the ropes pays Rs. 1,000 in DP charges alone — half the size of a single one of their positions — and learns nothing about how real returns behave, because at that size the fees dominate everything the market does."
+        },
+        {
+          "type": "check",
+          "qids": ["q-7-2-a", "q-7-2-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "SEBON fee is 0.015% on equity — proportional and small. Bonds and debentures pay less.",
+            "DP charge is Rs. 25 per company per settlement date: flat, and therefore brutal on small trades.",
+            "On a Rs. 1,000 trade the flat DP charge alone is 2.5% — seven times the commission."
+          ]
+        }
+      ],
+      "glossary": ["sebon", "dp", "dp_charge", "commission", "cgt", "settlement"]
+    },
+
+    {
+      "id": "7.3",
+      "module": 7,
+      "index": 3,
+      "title": "Capital gains tax: the July 2026 change nobody told you about",
+      "minutes": 6,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "If you learned about NEPSE taxes from a blog post, a YouTube video, or an AI chatbot, there is a strong chance you are carrying a number that is now wrong. On **17 July 2026** — 1 Shrawan 2083 — Nepal raised capital gains tax on listed shares. Every rate you memorised before that date changed."
+        },
+        {
+          "type": "core",
+          "md": "[[cgt|Capital gains tax]] is charged on your **profit**, not on your sale value. It is **withheld at source** during settlement — your broker or DP deducts it before you see the money — and it is a **final tax**, meaning you do not pay again on that gain when you file your annual return.\n\n### What changed\n\nFor individuals, short-term CGT (holdings of 365 days or fewer) rose from **7.5% to 10%**. Long-term CGT (more than 365 days) rose from **5% to 7.5%**. Institutional CGT remains **10%** throughout.\n\nTwo things follow.\n\n**First**, the gap between short and long is unchanged in shape: you still pay 2.5 percentage points less by holding past 365 days. On a Rs. 1,00,000 gain that is Rs. 2,500 — the difference between selling on day 360 and day 366.\n\n**Second**, short-term trading got **33% more expensive in tax terms**. Going from 7.5% to 10% is a one-third increase in the tax on every short-term gain. If your strategy relied on capturing small moves quickly, its after-tax profitability just dropped materially, and you should recompute your edge.\n\n### How the 365 days are counted\n\nFrom the date the shares were **credited to your Demat account** to the date of sale. Note the threshold carefully: **more than 365 days** is long-term, so exactly 365 days is short-term.\n\nFor shares acquired in tranches, Nepal uses **[[wacc|WACC]]** — weighted average cost — as your cost basis, and the holding period is tracked per lot on a first-in-first-out basis by your DP. If you have been averaging down, some of your holding is long-term and some is short-term, and **you do not get to choose which lot you sell**.\n\n### What is not taxed as a capital gain\n\nCash dividends are taxed separately at source (5% for individuals) and are not part of CGT. [[bonus_share|Bonus shares]] are not a taxable event when received — but they reset your WACC downward, which increases the gain you eventually book."
+        },
+        {
+          "type": "visual",
+          "widget": "tax-comparison-table",
+          "caption": "Enter a gain and a holding period. The difference row is what the July 2026 change costs you on that trade."
+        },
+        {
+          "type": "nepse",
+          "md": "CGT is a **final tax** on listed-share gains. You do not add it to your income and pay again at your slab rate. But this also means losses on listed shares generally **cannot be set off against other income** — you do not get a refund for a bad year. Plan your tax expectations accordingly, and do not assume Indian or US rules apply; they do not.",
+          "asOf": "2026-07-17"
+        },
+        {
+          "type": "example",
+          "md": "You bought 200 kitta of NABIL at Rs. 496.10 and sold at Rs. 560.00.\n\nCost basis from Lesson 7.2 method: **Rs. 99,587.31** — a WACC of Rs. 497.94 per share.",
+          "calc": [
+            { "l": "Gross sale (200 × Rs. 560.00)", "v": "Rs. 1,12,000.00" },
+            { "l": "Less broker commission (0.33%)", "v": "− Rs. 369.60" },
+            { "l": "Less SEBON fee (0.015%)", "v": "− Rs. 16.80" },
+            { "l": "Less DP charge", "v": "− Rs. 25.00" },
+            { "l": "Net before tax", "v": "Rs. 1,11,588.60" },
+            { "l": "Less cost basis", "v": "− Rs. 99,587.31" },
+            { "l": "Taxable gain", "v": "Rs. 12,001.29", "total": true }
+          ],
+          "after": "**Sold at 8 months** (short-term, 10%): tax = Rs. 1,200.13 → you receive Rs. 1,10,388.47, profit Rs. 10,801.16, return **+10.85%**.\n\n**Sold at 14 months** (long-term, 7.5%): tax = Rs. 900.10 → you receive Rs. 1,10,688.50, profit Rs. 11,101.19, return **+11.15%**.\n\nSix extra months of patience is worth **Rs. 300.03** on this trade.\n\nNote also that the price moved **+12.88%** but your return was **+10.85%**. Roughly two percentage points of your gain went to friction — and that is on a well-sized position in a liquid bank. On a small position in a thin counter it would be far worse."
+        },
+        {
+          "type": "check",
+          "qids": ["q-7-3-a", "q-7-3-b", "q-7-3-c"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "From 17 July 2026: individuals pay 10% CGT on gains held 365 days or fewer, and 7.5% above 365 days. Institutions pay 10% throughout.",
+            "CGT is withheld at source, computed on profit over your WACC cost basis, and is a final tax.",
+            "Short-term trading became one third more expensive in tax — recheck whether your strategy still has an edge."
+          ]
+        }
+      ],
+      "glossary": ["cgt", "wacc", "bonus_share", "final_tax", "dividend_tax"]
+    },
+
+    {
+      "id": "7.4",
+      "module": 7,
+      "index": 4,
+      "title": "Break-even: the price you must reach just to be level",
+      "minutes": 6,
+      "xp": 60,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You buy 10 kitta of a Rs. 100 share. A thousand rupees — your first trade, small and safe. The stock rises 5%. You feel clever, sell, and discover you have lost money. Here is why, and here is the formula that stops it happening again."
+        },
+        {
+          "type": "core",
+          "md": "Your break-even is **not your buy price**. It is your buy price plus the cost of getting in and the cost of getting out.\n\nFor a buy of quantity Q at price P, with commission rate c, SEBON fee 0.015%, and a Rs. 25 DP charge on each leg:\n\n```\nTotal cost to buy    = Q·P · (1 + c + 0.00015) + 25\nNet proceeds to sell = Q·S · (1 − c − 0.00015) − 25\n\n                  Q·P·(1 + c + 0.00015) + 50\nBreak-even S =  ─────────────────────────────\n                     Q · (1 − c − 0.00015)\n```\n\nBelow break-even there is no capital gain, so there is **no CGT** — which is the one small mercy in the arithmetic.\n\n### The critical insight\n\nThe Rs. 25 [[dp_charge|DP charge]] is **flat**. On a Rs. 5,00,000 trade it is invisible. On a Rs. 1,000 trade it is 2.5% — larger than the commission by a factor of seven, and you pay it twice over a round trip.\n\nThe flat fee is what makes very small trades structurally unprofitable. Not difficult. Not unlucky. **Structurally unprofitable**, before the market has done anything at all."
+        },
+        {
+          "type": "visual",
+          "widget": "cost-calculator",
+          "props": { "mode": "breakeven" },
+          "caption": "Second tab. Enter a quantity and price, then drag the sell handle and watch the P&L strip cross zero."
+        },
+        {
+          "type": "nepse",
+          "md": "DP charge is Rs. 25 **per company per settlement date** — not per trade. So if you buy the same stock twice on the same day, you pay Rs. 25 once. But if a single order fills partially across two days, you settle twice and pay Rs. 25 twice. This is a real, if small, argument for placing orders you expect to fill completely.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "Three trades, same formula, very different outcomes.",
+          "table": {
+            "head": ["", "Small", "Medium", "Large"],
+            "numeric": [1, 2, 3],
+            "rows": [
+              ["Trade", "10 kitta @ Rs. 100", "200 NABIL @ Rs. 496.10", "1,000 UPPER @ Rs. 230"],
+              ["Gross", "Rs. 1,000.00", "Rs. 99,220.00", "Rs. 2,30,000.00"],
+              ["Slab", "0.36%", "0.33%", "0.33%"],
+              ["Commission", "Rs. 3.60", "Rs. 327.43", "Rs. 759.00"],
+              ["SEBON fee", "Rs. 0.15", "Rs. 14.88", "Rs. 34.50"],
+              ["DP charge", "Rs. 25.00", "Rs. 25.00", "Rs. 25.00"],
+              ["Total cost", "Rs. 1,028.75", "Rs. 99,587.31", "Rs. 2,30,818.50"],
+              ["WACC per share", "Rs. 102.88", "Rs. 497.94", "Rs. 230.82"],
+              ["Break-even price", "Rs. 105.77", "Rs. 499.79", "Rs. 231.64"],
+              ["Move needed", "+5.77%", "+0.74%", "+0.71%"]
+            ],
+            "caption": "All three computed from the same fee schedule. Rs. 2,30,000 sits in the 0.33% slab, which runs to Rs. 5,00,000."
+          },
+          "after": "Read the bottom row again. The **Rs. 1,000 trade needs a 5.77% move** just to break even. The Rs. 2,30,000 trade needs **0.71%**. Same market, same fees, more than eight times the hurdle — entirely because of one flat Rs. 25 charge.\n\nThis is why a \"practice trade\" of Rs. 1,000 teaches you almost nothing about real returns, and why the minimum sensible position on NEPSE is roughly **Rs. 25,000–50,000** if you want round-trip costs under 1%."
+        },
+        {
+          "type": "check",
+          "qids": ["q-7-4-a", "q-7-4-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Break-even = buy price plus round-trip costs. Use the formula; do not estimate.",
+            "The flat Rs. 25 DP charge dominates small trades — Rs. 1,000 needs +5.77%, Rs. 2,30,000 needs +0.71%.",
+            "Keep round-trip friction under about 1% by keeping positions at roughly Rs. 25,000 or above."
+          ]
+        }
+      ],
+      "glossary": ["dp_charge", "wacc", "commission", "sebon", "cgt"]
+    },
+
+    {
+      "id": "7.5",
+      "module": 7,
+      "index": 5,
+      "title": "The round-trip calculator, built by hand",
+      "minutes": 5,
+      "xp": 50,
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "You can use the calculator on this page forever without ever understanding it. Build it once by hand and you will never again be surprised by a contract note, and you will be able to check any broker's arithmetic in about ninety seconds."
+        },
+        {
+          "type": "core",
+          "md": "A complete round trip has **eight steps**. Work through them in order and the answer is exact.\n\n### Buying\n\n1. **Gross** = quantity × buy price\n2. **Commission** = gross × the slab rate for that gross (the whole amount, not marginally)\n3. **SEBON fee** = gross × 0.015%\n4. **DP charge** = Rs. 25\n5. **Total cost** = gross + commission + SEBON + DP\n\nYour **[[wacc|WACC]]** = total cost ÷ quantity. This is the number MeroShare shows, and it is your tax cost basis.\n\n### Selling\n\n6. **Gross sale** = quantity × sell price\n7. **Net before tax** = gross sale − commission − SEBON − DP (note: all subtracted now, not added)\n8. **[[cgt|CGT]]** = (net before tax − total buy cost) × rate, if positive\n\n**Net proceeds** = net before tax − CGT.\n**Profit** = net proceeds − total buy cost.\n\n### The three mistakes people make\n\n**Applying the slab marginally.** It applies to the whole amount. A Rs. 5,10,000 trade is charged 0.31% on all Rs. 5,10,000, not 0.33% on the first five lakh.\n\n**Taxing the sale value instead of the gain.** CGT is on profit. Taxing Rs. 1,12,000 of sale value instead of Rs. 12,001 of gain overstates the tax roughly ninefold, and it is the most common and most expensive misunderstanding in Nepali retail investing.\n\n**Forgetting the second DP charge.** There is one on the buy and one on the sell. A round trip always includes two.\n\n### Checking your contract note\n\nWhen it arrives, the numbers should reconcile to the paisa. If they do not, the usual culprits are a minimum commission your broker applies on small trades, or a partial fill that settled across two dates and attracted a second DP charge."
+        },
+        {
+          "type": "visual",
+          "widget": "cost-calculator",
+          "caption": "Both tabs. Compute a trade by hand first, then check it here — that is the exercise."
+        },
+        {
+          "type": "nepse",
+          "md": "Every figure in this calculator reads from a single data file. When Nepal changes a rate — as it did on 17 July 2026 for [[cgt|CGT]] and on 21 April 2026 for circuit limits — one file is edited and every lesson, widget and game in this course updates together. That is deliberate: a course that hardcodes a tax rate is wrong within a year and does not know it.",
+          "asOf": "2026-08-19"
+        },
+        {
+          "type": "example",
+          "md": "A full round trip, by hand. **Buy 300 SANIMA at Rs. 330.00, sell 14 months later at Rs. 368.00.**",
+          "calc": [
+            { "l": "1 · Gross buy = 300 × 330.00", "v": "Rs. 99,000.00" },
+            { "l": "2 · Commission — slab 2 at 0.33%", "v": "Rs. 326.70" },
+            { "l": "3 · SEBON fee at 0.015%", "v": "Rs. 14.85" },
+            { "l": "4 · DP charge", "v": "Rs. 25.00" },
+            { "l": "5 · Total cost to buy", "v": "Rs. 99,366.55" },
+            { "l": "     WACC = 99,366.55 ÷ 300", "v": "Rs. 331.22" },
+            { "l": "6 · Gross sale = 300 × 368.00", "v": "Rs. 1,10,400.00" },
+            { "l": "7 · Less commission (0.33%), SEBON, DP", "v": "− Rs. 405.88" },
+            { "l": "     Net before tax", "v": "Rs. 1,09,994.12" },
+            { "l": "8 · Gain = 1,09,994.12 − 99,366.55", "v": "Rs. 10,627.57" },
+            { "l": "     CGT at 7.5% (held > 365 days)", "v": "− Rs. 797.07" },
+            { "l": "Net proceeds", "v": "Rs. 1,09,197.05" },
+            { "l": "Profit", "v": "Rs. 9,830.50", "total": true },
+            { "l": "Return on capital committed", "v": "+9.89%", "total": true }
+          ],
+          "after": "The price moved **+11.52%**. You kept **+9.89%**. About 1.6 percentage points went to friction and tax on a well-sized position held long enough to qualify for the lower rate.\n\nNow the same trade sold at **Rs. 300** instead — a 9.09% fall:\n\nNet before tax Rs. 89,664.50, less the cost basis of Rs. 99,366.55, gives a **loss of Rs. 9,702.05**. No CGT is due, because there is no gain. But note what does not happen: **you get no relief for that loss against other income.** CGT on listed shares is a final tax, so a losing year is simply a losing year. Wins are taxed; losses are yours alone."
+        },
+        {
+          "type": "check",
+          "qids": ["q-7-5-a", "q-7-5-b"]
+        },
+        {
+          "type": "takeaway",
+          "bullets": [
+            "Eight steps: gross, commission, SEBON, DP, total cost — then gross sale, net before tax, and CGT on the gain.",
+            "CGT is charged on the gain, never on the sale value — the single most expensive misunderstanding in the market.",
+            "A round trip always carries two DP charges, and a losing trade gets no tax relief."
+          ]
+        }
+      ],
+      "glossary": ["wacc", "cgt", "commission", "sebon", "dp_charge", "final_tax"]
+    }
+  ]
+}

@@ -1175,6 +1175,4127 @@
    ],
    "explain": "False. The floorsheet is published daily and publicly on nepalstock.com, and Sharesansar and Merolagani aggregate it by broker into a far more readable form. Nothing in it is privileged — everyone can see it, including the people whose trades are in it. That is worth remembering when someone offers you 'inside information' derived from it.",
    "hintOnFirstWrong": "Where does NEPSE publish it?"
+  },
+  {
+   "id": "q-5-1-a",
+   "module": 5,
+   "lesson": "5.1",
+   "tags": [
+    "orders"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "You place a buy limit order at Rs. 240. The stock trades between Rs. 243 and Rs. 251 all day. What happens?",
+   "options": [
+    {
+     "t": "Nothing fills — and that is the order working correctly",
+     "correct": true
+    },
+    {
+     "t": "It fills at Rs. 243, the lowest price of the day",
+     "correct": false
+    },
+    {
+     "t": "It fills at Rs. 251, the closing price",
+     "correct": false
+    },
+    {
+     "t": "It converts to a market order at the close",
+     "correct": false
+    }
+   ],
+   "explain": "A buy limit at Rs. 240 means 'buy for me at Rs. 240 or less, never more'. The stock never traded at or below Rs. 240, so nothing filled. That is not a malfunction — it is you refusing to overpay, which is the correct behaviour. NEPSE has no market orders and no mechanism that converts an unfilled limit into one; the order simply expires at the close, because NEPSE orders are day orders.",
+   "hintOnFirstWrong": "What does the word 'limit' actually promise you?"
+  },
+  {
+   "id": "q-5-1-b",
+   "module": 5,
+   "lesson": "5.1",
+   "tags": [
+    "orders",
+    "circuit",
+    "rules-2026"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "UPPER closed yesterday at Rs. 230.00 and is currently trading at Rs. 236.00. Which order will be rejected?",
+   "options": [
+    {
+     "t": "BUY @ 210.00",
+     "correct": true
+    },
+    {
+     "t": "BUY @ 234.00",
+     "correct": false
+    },
+    {
+     "t": "BUY @ 229.50",
+     "correct": false
+    },
+    {
+     "t": "SELL @ 242.00",
+     "correct": false
+    }
+   ],
+   "explain": "Two limits apply at once. The daily circuit is ±15% of the previous close (Rs. 195.50–264.50), so Rs. 210 is inside it. But the order price band is ±3% of the last traded price of Rs. 236.00, giving Rs. 228.92–243.08. Rs. 210 is outside that band and is rejected. Rs. 229.50, Rs. 234.00 and Rs. 242.00 all sit inside both limits. The band follows the price during the day; the circuit does not.",
+   "hintOnFirstWrong": "Work out both ranges: ±15% of Rs. 230, and ±3% of Rs. 236. Which order fails one of them?"
+  },
+  {
+   "id": "q-5-1-c",
+   "module": 5,
+   "lesson": "5.1",
+   "tags": [
+    "orders"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You and another investor both bid Rs. 240 for the same stock. They placed their order four seconds before you. What happens when 200 kitta are offered at Rs. 240?",
+   "options": [
+    {
+     "t": "They fill first — every share — because matching is by price then time",
+     "correct": true
+    },
+    {
+     "t": "The 200 kitta are split equally between you",
+     "correct": false
+    },
+    {
+     "t": "The larger order fills first",
+     "correct": false
+    },
+    {
+     "t": "They are allocated proportionally to order size",
+     "correct": false
+    }
+   ],
+   "explain": "NEPSE matches by price–time priority. At the same price, whoever arrived first fills first — completely, before the next order in the queue gets anything. There is no pro-rata allocation and size confers no advantage. This is why modifying an order's price is expensive: the modified order goes to the back of the queue for its new price, which Lesson 5.5 covers.",
+   "hintOnFirstWrong": "Price first, then what?"
+  },
+  {
+   "id": "q-5-2-a",
+   "module": 5,
+   "lesson": "5.2",
+   "tags": [
+    "orders"
+   ],
+   "difficulty": 1,
+   "type": "numeric",
+   "stem": "What is the usual minimum order quantity on NEPSE, in kitta?",
+   "answer": 10,
+   "tolerance": 0,
+   "unit": "kitta",
+   "explain": "Ten kitta, in multiples of ten. Odd lots — quantities that do not fit the lot size, often created when a bonus issue leaves you with 137 shares instead of 140 — trade in a separate market with much thinner liquidity. Plan to sell the round lot and expect the odd remainder to be difficult to clear at a good price.",
+   "hintOnFirstWrong": "It is the same number as the minimum units in a fixed-price IPO."
+  },
+  {
+   "id": "q-5-2-b",
+   "module": 5,
+   "lesson": "5.2",
+   "tags": [
+    "orders",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You place an order on Monday and it does not fill. What is its status on Tuesday morning?",
+   "options": [
+    {
+     "t": "Gone — NEPSE orders are day orders and expire at the close",
+     "correct": true
+    },
+    {
+     "t": "Still live, until you cancel it",
+     "correct": false
+    },
+    {
+     "t": "Still live for seven days, then it expires",
+     "correct": false
+    },
+    {
+     "t": "Automatically re-entered at the same price",
+     "correct": false
+    }
+   ],
+   "explain": "NEPSE orders are day orders. They expire at the close and nothing re-enters them for you — it is on you to place the order again. There is no good-till-cancelled order type. What did change in April 2026 is that you may now enter orders round the clock; they queue and execute only during the 11:00–15:00 session, which lets you set your price calmly the night before.",
+   "hintOnFirstWrong": "How long does a NEPSE order live?"
+  },
+  {
+   "id": "q-5-3-a",
+   "module": 5,
+   "lesson": "5.3",
+   "tags": [
+    "orders",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "In the pre-open session, you bid Rs. 237 and the equilibrium price is discovered at Rs. 231. What do you pay?",
+   "options": [
+    {
+     "t": "Rs. 231 — every crossing order executes at the single discovered price",
+     "correct": true
+    },
+    {
+     "t": "Rs. 237, the price you bid",
+     "correct": false
+    },
+    {
+     "t": "The average of Rs. 231 and Rs. 237",
+     "correct": false
+    },
+    {
+     "t": "Nothing — your bid was too far above the equilibrium",
+     "correct": false
+    }
+   ],
+   "explain": "Pre-open collects orders without matching, then computes one equilibrium price that maximises executable volume. Every crossing order fills at that single price. Your limit is a ceiling, so bidding Rs. 237 means you were willing to pay up to Rs. 237 — and the auction found Rs. 231, which is better for you. This is the closest NEPSE gets to a market order, and on a liquid stock it is a reasonable way to enter.",
+   "hintOnFirstWrong": "How many prices does a single-price auction produce?"
+  },
+  {
+   "id": "q-5-3-b",
+   "module": 5,
+   "lesson": "5.3",
+   "tags": [
+    "orders",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "How wide is the pre-open price band, and from what is it measured?",
+   "options": [
+    {
+     "t": "±5% of the previous close",
+     "correct": true
+    },
+    {
+     "t": "±3% of the last traded price",
+     "correct": false
+    },
+    {
+     "t": "±15% of the previous close",
+     "correct": false
+    },
+    {
+     "t": "±2% of the previous close",
+     "correct": false
+    }
+   ],
+   "explain": "The pre-open band is ±5% of the previous close, raised from ±2% in the 2026 rule changes. It is a third limit, distinct from the ±3% continuous-session band (measured from the last traded price) and the ±15% daily circuit (measured from the previous close). All three widened at once in 2026, so any source quoting ±2% predates the change.",
+   "hintOnFirstWrong": "Three bands exist. This one is wider than the continuous-session band but much narrower than the daily circuit."
+  },
+  {
+   "id": "q-5-4-a",
+   "module": 5,
+   "lesson": "5.4",
+   "tags": [
+    "orders",
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Your order book shows 'Partially executed — 180 of 500 filled'. Your trade book shows one row. How many shares do you own?",
+   "options": [
+    {
+     "t": "180, and they settle on T+2",
+     "correct": true
+    },
+    {
+     "t": "500 — the order was accepted in full",
+     "correct": false
+    },
+    {
+     "t": "None until the whole order fills",
+     "correct": false
+    },
+    {
+     "t": "320, the unfilled remainder",
+     "correct": false
+    }
+   ],
+   "explain": "Only executed quantity means shares, and only the trade book records executions. 180 filled, so 180 are yours and will settle into your Demat on T+2. The remaining 320 stay live in the order book and will expire at the close if they do not fill. Confusing the two books is the most common TMS mistake and leads people to miscount their position.",
+   "hintOnFirstWrong": "Which of the two books records what actually happened?"
+  },
+  {
+   "id": "q-5-4-b",
+   "module": 5,
+   "lesson": "5.4",
+   "tags": [
+    "costs",
+    "settlement"
+   ],
+   "difficulty": 2,
+   "type": "numeric",
+   "stem": "A single order fills 180 kitta on Monday and 320 kitta on Tuesday, all in the same company. What is the total DP charge, in rupees?",
+   "answer": 50,
+   "tolerance": 0,
+   "unit": "Rs.",
+   "explain": "Rs. 50. The DP charge is Rs. 25 per company per settlement date, and two fill days means two settlement dates. Had the whole order filled on one day it would have been Rs. 25. Note what does not change: commission and SEBON fee are proportional, so they are the same either way. Only the flat charge doubles — which is a real, if small, argument for placing orders you expect to fill completely.",
+   "hintOnFirstWrong": "The charge is per company per settlement date. How many settlement dates are there here?"
+  },
+  {
+   "id": "q-5-5-a",
+   "module": 5,
+   "lesson": "5.5",
+   "tags": [
+    "orders"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "Modifying an open order's price keeps your position in the time queue.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. Matching is by price then time, and a modified order re-enters the book at the back of the queue for its new price. This matters most in exactly the situation where people reach for the modify button — a fast-moving, well-bid stock where the queue at each level is long. Reducing quantity generally preserves your place; the safe assumption is that any modification sends you to the back.",
+   "hintOnFirstWrong": "If changing your price kept your place, everyone would do it constantly. Why would that break the queue?"
+  },
+  {
+   "id": "q-5-5-b",
+   "module": 5,
+   "lesson": "5.5",
+   "tags": [
+    "orders",
+    "psychology"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Which of these is a good reason to cancel a resting buy order?",
+   "options": [
+    {
+     "t": "Nepal Rastra Bank published a circular that changes your view of the sector",
+     "correct": true
+    },
+    {
+     "t": "The price moved away from you and you want to chase it",
+     "correct": false
+    },
+    {
+     "t": "It has been open for two hours without filling",
+     "correct": false
+    },
+    {
+     "t": "Another stock looks like it is moving faster today",
+     "correct": false
+    }
+   ],
+   "explain": "Cancel when the reason you wanted the stock has changed — new information, a change in your circumstances, or a realisation that you sized the position wrong. Do not cancel merely because the price moved away: that is chasing, and it is how you end up paying a price you had already decided was too high. An order open for two hours is simply an order doing its job. Decide your maximum before you log in, and let the order live or die at that price.",
+   "hintOnFirstWrong": "Which option describes new information, and which three describe impatience?"
+  },
+  {
+   "id": "q-5-5-c",
+   "module": 5,
+   "lesson": "5.5",
+   "tags": [
+    "orders"
+   ],
+   "difficulty": 1,
+   "type": "truefalse",
+   "stem": "You can cancel the portion of your order that has already executed.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. An executed portion is a completed trade with its own contract note, its own commission, its own DP charge and — when you eventually sell it — its own capital gains tax computed from its own lot. Only the unfilled remainder can be cancelled. Unwinding an execution means a fresh sale with a fresh round of costs.",
+   "hintOnFirstWrong": "Once a trade has happened, is there anything left to cancel?"
+  },
+  {
+   "id": "q-6-1-a",
+   "module": 6,
+   "lesson": "6.1",
+   "tags": [
+    "settlement",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You sell shares on Thursday 20 August 2026. On which day does the trade settle?",
+   "options": [
+    {
+     "t": "Monday 24 August",
+     "correct": true
+    },
+    {
+     "t": "Saturday 22 August",
+     "correct": false
+    },
+    {
+     "t": "Friday 21 August",
+     "correct": false
+    },
+    {
+     "t": "Tuesday 25 August",
+     "correct": false
+    }
+   ],
+   "explain": "T+2 counts trading days, not calendar days. Since April 2026 NEPSE trades Monday to Friday, so Saturday and Sunday are market holidays. Thursday (T) → Friday (T+1) → Monday (T+2). Add a further day or two for your broker to move the net proceeds to your bank. If you need cash by a specific date, count backwards in trading days and check the holiday calendar — Dashain and Tihar extend it considerably.",
+   "hintOnFirstWrong": "Count two TRADING days forward from Thursday. Which days does NEPSE trade?"
+  },
+  {
+   "id": "q-6-1-b",
+   "module": 6,
+   "lesson": "6.1",
+   "tags": [
+    "settlement"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "You buy shares on Monday. When do they appear in your Demat account?",
+   "options": [
+    {
+     "t": "Wednesday — T+2",
+     "correct": true
+    },
+    {
+     "t": "Immediately on execution",
+     "correct": false
+    },
+    {
+     "t": "Tuesday — T+1",
+     "correct": false
+    },
+    {
+     "t": "When you authorise EDIS",
+     "correct": false
+    }
+   ],
+   "explain": "Shares are credited on T+2, which for a Monday purchase is Wednesday. On T the trade exists but the shares do not; T+1 is clearing. EDIS is a seller's obligation, not a buyer's — when you buy, the process is passive and there is nothing for you to do. This is also why intraday trading is impossible: you cannot sell what has not yet reached your account.",
+   "hintOnFirstWrong": "Which day of the settlement cycle actually moves shares?"
+  },
+  {
+   "id": "q-6-2-a",
+   "module": 6,
+   "lesson": "6.2",
+   "tags": [
+    "edis",
+    "settlement"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You sold shares and the trade shows as executed in TMS. What must you do next, and when?",
+   "options": [
+    {
+     "t": "Authorise EDIS in MeroShare on T+1, using your Demat transaction PIN",
+     "correct": true
+    },
+    {
+     "t": "Nothing — the broker handles delivery",
+     "correct": false
+    },
+    {
+     "t": "Transfer the shares to your broker's account in TMS",
+     "correct": false
+    },
+    {
+     "t": "Confirm the sale in TMS on T+2",
+     "correct": false
+    }
+   ],
+   "explain": "Nepal separates trading (NEPSE, via TMS) from custody (CDSC, via MeroShare), and nobody — not your broker, not the exchange — can move shares out of your Demat without your authorisation. EDIS is that authorisation, submitted in MeroShare on T+1 with your Demat transaction PIN. Your broker cannot do it for you. Skipping it sends the trade to auction settlement, and the cost lands on you.",
+   "hintOnFirstWrong": "Who is the only person who can release shares from your own Demat account?"
+  },
+  {
+   "id": "q-6-2-b",
+   "module": 6,
+   "lesson": "6.2",
+   "tags": [
+    "settlement",
+    "edis"
+   ],
+   "difficulty": 2,
+   "type": "order",
+   "stem": "Put these in the correct order for selling shares on NEPSE.",
+   "items": [
+    "Place the sell order in TMS",
+    "The order executes — visible in your trade book",
+    "On T+1, authorise EDIS in MeroShare with your transaction PIN",
+    "On T+2, shares are delivered and funds settle net of CGT",
+    "Your broker transfers the net proceeds to your bank"
+   ],
+   "explain": "Step 3 is the one people omit. Nepal separates trading (NEPSE/TMS) from custody (CDSC/MeroShare), and EDIS is the bridge between them — nobody can move shares out of your Demat but you. Skipping it leads to auction settlement: NEPSE buys the shares in the market to deliver to your buyer, and charges you the difference plus a penalty.",
+   "hintOnFirstWrong": "Two of these happen in TMS, two involve settlement, and one is the step almost everyone forgets."
+  },
+  {
+   "id": "q-6-2-c",
+   "module": 6,
+   "lesson": "6.2",
+   "tags": [
+    "edis",
+    "settlement"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "You sold 300 kitta at Rs. 356.90 and forgot to authorise EDIS. The auction buys the shares at an average of Rs. 374.50. Roughly what does the failure cost you, before any penalty?",
+   "options": [
+    {
+     "t": "About Rs. 5,280 — the price difference on 300 shares",
+     "correct": true
+    },
+    {
+     "t": "Nothing — the buyer bears the cost",
+     "correct": false
+    },
+    {
+     "t": "Rs. 374.50, a flat auction fee",
+     "correct": false
+    },
+    {
+     "t": "The full sale value of Rs. 1,07,070",
+     "correct": false
+    }
+   ],
+   "explain": "300 × (374.50 − 356.90) = Rs. 5,280, plus a penalty on top. NEPSE buys the shares in the open market to deliver to your buyer, and you pay whatever that costs above your sale price. Note the asymmetry: had the stock fallen instead, the auction would have bought cheaply and you would NOT have received the difference. You bear the downside and keep none of the upside — which is exactly why the two-minute EDIS task matters.",
+   "hintOnFirstWrong": "Multiply the price difference by the quantity the auction had to buy."
+  },
+  {
+   "id": "q-6-3-a",
+   "module": 6,
+   "lesson": "6.3",
+   "tags": [
+    "settlement",
+    "market-structure"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why is intraday trading impossible on NEPSE?",
+   "options": [
+    {
+     "t": "Shares arrive on T+2, so you cannot sell what you do not yet hold",
+     "correct": true
+    },
+    {
+     "t": "SEBON prohibits it by directive",
+     "correct": false
+    },
+    {
+     "t": "Brokers refuse to execute same-day round trips",
+     "correct": false
+    },
+    {
+     "t": "The ±3% order band prevents it",
+     "correct": false
+    }
+   ],
+   "explain": "It is structural, not regulatory. Shares bought today are credited to your Demat on T+2, and you cannot deliver what is not in your account. No broker can change that, and no directive is needed to prohibit a transaction the system cannot process. Treat anyone offering 'NEPSE intraday' training as a warning sign about everything else they will teach you.",
+   "hintOnFirstWrong": "What would you have to deliver, and when does it actually arrive?"
+  },
+  {
+   "id": "q-6-3-b",
+   "module": 6,
+   "lesson": "6.3",
+   "tags": [
+    "costs",
+    "settlement"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "A stock moves +1.71% in your favour over a two-day round trip of 500 kitta at Rs. 234. Roughly what do you keep after all costs and tax?",
+   "options": [
+    {
+     "t": "About +0.87% — roughly half the move",
+     "correct": true
+    },
+    {
+     "t": "The full +1.71%",
+     "correct": false
+    },
+    {
+     "t": "About +1.5%",
+     "correct": false
+    },
+    {
+     "t": "Nothing — costs consume the entire move",
+     "correct": false
+    }
+   ],
+   "explain": "Commission on both legs, SEBON fee on both legs, two DP charges and 10% short-term CGT on the gain reduce a +1.71% price move to about +0.87% of net return. Now run it the other way: a −1.71% move produces a loss of about Rs. 2,850 rather than Rs. 1,022, because costs are paid in both directions and there is no tax relief on a loss. Wins are halved and losses are amplified, which is the arithmetic that makes short-horizon trading unattractive here.",
+   "hintOnFirstWrong": "Costs are charged on both legs, and the gain is taxed. Roughly what fraction survives?"
+  },
+  {
+   "id": "q-6-4-a",
+   "module": 6,
+   "lesson": "6.4",
+   "tags": [
+    "settlement",
+    "edis"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What is auction settlement?",
+   "options": [
+    {
+     "t": "NEPSE buys the shares in the market to deliver to the buyer, and charges you the difference plus a penalty",
+     "correct": true
+    },
+    {
+     "t": "A special session where failed trades are re-matched at the closing price",
+     "correct": false
+    },
+    {
+     "t": "The buyer's order is cancelled and both parties are made whole",
+     "correct": false
+    },
+    {
+     "t": "Your broker sells other shares from your portfolio to cover",
+     "correct": false
+    }
+   ],
+   "explain": "The buyer is entitled to their shares regardless of what the seller did, so NEPSE buys them in the open market to deliver. Whatever that costs above your sale price is charged to you, plus a penalty, and your broker may restrict your account. Nepal's clearing arrangement guarantees the innocent counterparty — which is precisely why it must charge the failing one, or the guarantee would be funded by people who did nothing wrong.",
+   "hintOnFirstWrong": "The buyer must get their shares. Where do those shares come from?"
+  },
+  {
+   "id": "q-6-4-b",
+   "module": 6,
+   "lesson": "6.4",
+   "tags": [
+    "settlement",
+    "liquidity"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Why is a delivery failure usually worse on a thin counter than on a liquid one?",
+   "options": [
+    {
+     "t": "Buying the shares in a hurry moves the price against the auction, and you pay that too",
+     "correct": true
+    },
+    {
+     "t": "Thin counters carry a higher statutory penalty",
+     "correct": false
+    },
+    {
+     "t": "SEBON charges a liquidity surcharge",
+     "correct": false
+    },
+    {
+     "t": "The DP charge is higher on thin counters",
+     "correct": false
+    }
+   ],
+   "explain": "The auction must buy the shares quickly, and on a counter with little depth that purchase itself pushes the price up. You are charged the difference between your sale price and whatever the auction actually paid — so thin liquidity makes the bill larger in exactly the situation where you can least afford it. The penalty and the DP charge are the same everywhere; it is the market impact that differs.",
+   "hintOnFirstWrong": "What happens to the price when someone has to buy 300 kitta immediately on a counter that trades 1,000 a day?"
+  },
+  {
+   "id": "q-6-4-c",
+   "module": 6,
+   "lesson": "6.4",
+   "tags": [
+    "settlement"
+   ],
+   "difficulty": 1,
+   "type": "multi",
+   "stem": "Which of these reduce your risk of a settlement failure? (Select all that apply)",
+   "options": [
+    {
+     "t": "Authorising EDIS as soon as you see the sale on T+1",
+     "correct": true
+    },
+    {
+     "t": "Keeping your Demat transaction PIN somewhere you can find quickly",
+     "correct": true
+    },
+    {
+     "t": "Funding your account before placing a buy order",
+     "correct": true
+    },
+    {
+     "t": "Placing larger orders so they fill in one day",
+     "correct": false
+    }
+   ],
+   "explain": "The first three are the practical defences: act on EDIS early rather than at 14:50, know your PIN, and have cleared funds before you buy. Order size does not affect settlement failure at all — a large order that fills across two days settles twice, but both settlements complete normally provided you authorise each one. Larger orders on a thin counter actually make partial fills MORE likely, not less.",
+   "hintOnFirstWrong": "Three of these are about being prepared. One is about order sizing, which is a different problem."
+  },
+  {
+   "id": "q-7-1-a",
+   "module": 7,
+   "lesson": "7.1",
+   "tags": [
+    "commission",
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A Rs. 4,90,000 trade costs Rs. 1,617 in commission. A Rs. 5,10,000 trade costs Rs. 1,581. Why does the larger trade cost less?",
+   "options": [
+    {
+     "t": "Slabs apply to the whole amount, so crossing a boundary re-prices the entire trade at the lower rate",
+     "correct": true
+    },
+    {
+     "t": "Brokers discount larger trades",
+     "correct": false
+    },
+    {
+     "t": "The SEBON fee falls above Rs. 5,00,000",
+     "correct": false
+    },
+    {
+     "t": "It is a rounding artefact in the broker's system",
+     "correct": false
+    }
+   ],
+   "explain": "Commission slabs are not marginal. Rs. 4,90,000 sits in the 0.33% slab and pays 0.33% on all of it; Rs. 5,10,000 crosses into the 0.31% slab and pays 0.31% on all of it. The break-even is Rs. 5,00,000 × (0.0033 ÷ 0.0031) = Rs. 5,32,258, so any trade between Rs. 5,00,001 and that figure costs less in commission than a Rs. 5,00,000 trade. The rate is regulated, so no broker discounts it, and the SEBON fee is a flat 0.015% on equity at every size.",
+   "hintOnFirstWrong": "Is the slab rate applied only to the amount above the boundary, or to the whole trade?"
+  },
+  {
+   "id": "q-7-1-b",
+   "module": 7,
+   "lesson": "7.1",
+   "tags": [
+    "commission",
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "numeric",
+   "stem": "You buy shares worth exactly Rs. 5,00,000. What is the broker commission, in rupees?",
+   "answer": 1650,
+   "tolerance": 1,
+   "unit": "Rs.",
+   "explain": "Rs. 5,00,000 falls in the second slab (Rs. 50,001–5,00,000) at 0.33%, and slabs apply to the whole amount, not marginally. 5,00,000 × 0.0033 = Rs. 1,650. One rupee more — Rs. 5,00,001 — moves into the 0.31% slab and costs Rs. 1,550, which is Rs. 100 less. This is a curiosity worth understanding when your contract note arrives, not a reason to size positions around slab boundaries.",
+   "hintOnFirstWrong": "Rs. 5,00,000 is the top of the second slab, not the bottom of the third."
+  },
+  {
+   "id": "q-7-1-c",
+   "module": 7,
+   "lesson": "7.1",
+   "tags": [
+    "commission"
+   ],
+   "difficulty": 1,
+   "type": "truefalse",
+   "stem": "You can negotiate a lower commission rate with your broker if you trade frequently.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. The five slabs are regulated, and the commission is split roughly 79.4% to the broker, 20% to NEPSE and 0.6% to SEBON. Your broker keeps under four fifths of it and cannot discount the regulated portion. If someone offers you a lower rate, be sceptical about everything else they are telling you.",
+   "hintOnFirstWrong": "Who actually receives the commission — is it all your broker's to give away?"
+  },
+  {
+   "id": "q-7-2-a",
+   "module": 7,
+   "lesson": "7.2",
+   "tags": [
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "On a Rs. 1,000 trade, how does the DP charge compare with the commission?",
+   "options": [
+    {
+     "t": "The DP charge is about seven times the commission",
+     "correct": true
+    },
+    {
+     "t": "They are roughly equal",
+     "correct": false
+    },
+    {
+     "t": "The commission is about seven times the DP charge",
+     "correct": false
+    },
+    {
+     "t": "There is no DP charge on trades under Rs. 5,000",
+     "correct": false
+    }
+   ],
+   "explain": "Commission on Rs. 1,000 at 0.36% is Rs. 3.60. The DP charge is a flat Rs. 25 — roughly seven times larger. That ratio inverts completely at scale: on a Rs. 5,00,000 trade the commission is Rs. 1,650 and the DP charge is still Rs. 25, one sixty-sixth of it. The flat charge is what makes very small trades structurally unprofitable, and there is no minimum-size exemption.",
+   "hintOnFirstWrong": "Work out 0.36% of Rs. 1,000, then compare it with Rs. 25."
+  },
+  {
+   "id": "q-7-2-b",
+   "module": 7,
+   "lesson": "7.2",
+   "tags": [
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "numeric",
+   "stem": "What is the SEBON fee on a Rs. 2,00,000 equity trade, in rupees?",
+   "answer": 30,
+   "tolerance": 0.5,
+   "unit": "Rs.",
+   "explain": "Rs. 2,00,000 × 0.015% = Rs. 30. The SEBON fee is proportional and genuinely small — it never distorts a decision. Note that different instruments carry different rates: 0.015% on equity, 0.010% on corporate debentures, and 0.005% on government and NRB bonds. The charge that actually distorts small trades is the flat Rs. 25 DP charge, not this one.",
+   "hintOnFirstWrong": "The equity rate is 0.015%. What is 0.015% of Rs. 2,00,000?"
+  },
+  {
+   "id": "q-7-2-c",
+   "module": 7,
+   "lesson": "7.2",
+   "tags": [
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You buy 100 kitta of NABIL in the morning and 150 kitta of NABIL in the afternoon of the same day. What DP charge applies?",
+   "options": [
+    {
+     "t": "Rs. 25 — one company, one settlement date",
+     "correct": true
+    },
+    {
+     "t": "Rs. 50 — two separate trades",
+     "correct": false
+    },
+    {
+     "t": "Rs. 25 per 100 kitta",
+     "correct": false
+    },
+    {
+     "t": "Nothing until you sell",
+     "correct": false
+    }
+   ],
+   "explain": "The DP charge is Rs. 25 per company per settlement date. Both purchases are the same company settling on the same date, so one charge applies. The mirror image is the expensive case: a single order that fills partially across two days settles twice and costs Rs. 50 — which is a real argument for sizing orders you expect to fill completely.",
+   "hintOnFirstWrong": "Read the basis precisely: per what, and per what?"
+  },
+  {
+   "id": "q-7-3-a",
+   "module": 7,
+   "lesson": "7.3",
+   "tags": [
+    "cgt",
+    "tax",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You are an individual investor. You bought shares on 1 March 2026 and sold them on 20 February 2027 for a gain of Rs. 40,000. What capital gains tax is withheld?",
+   "options": [
+    {
+     "t": "Rs. 4,000",
+     "correct": true
+    },
+    {
+     "t": "Rs. 3,000",
+     "correct": false
+    },
+    {
+     "t": "Rs. 2,000",
+     "correct": false
+    },
+    {
+     "t": "Rs. 0 — CGT is paid annually, not withheld",
+     "correct": false
+    }
+   ],
+   "explain": "The holding period is 356 days — fewer than 365 — so it is short-term. Since 17 July 2026 the short-term rate for individuals is 10%. Rs. 40,000 × 10% = Rs. 4,000, withheld at source during settlement. Rs. 3,000 would be the 7.5% long-term rate, which needs MORE than 365 days. Rs. 2,000 is the old 5% long-term rate, replaced in July 2026. CGT on listed shares is a final tax withheld at settlement, not filed annually.",
+   "hintOnFirstWrong": "Count the days carefully, then check which rate applies after July 2026."
+  },
+  {
+   "id": "q-7-3-b",
+   "module": 7,
+   "lesson": "7.3",
+   "tags": [
+    "cgt",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You hold shares for exactly 365 days and sell at a gain. Which rate applies?",
+   "options": [
+    {
+     "t": "10% — the short-term rate, because the threshold is MORE than 365 days",
+     "correct": true
+    },
+    {
+     "t": "7.5% — 365 days qualifies as long-term",
+     "correct": false
+    },
+    {
+     "t": "5% — the historical long-term rate",
+     "correct": false
+    },
+    {
+     "t": "It is prorated between the two rates",
+     "correct": false
+    }
+   ],
+   "explain": "The long-term threshold is more than 365 days, so exactly 365 is short-term and attracts 10%. Day 366 is the first long-term day. On a Rs. 1,00,000 gain that single day is worth Rs. 2,500 — which is why it is worth knowing the boundary precisely rather than approximately. Rates never prorate; one side of the line or the other applies to the whole gain.",
+   "hintOnFirstWrong": "Is the rule '365 or more' or 'more than 365'?"
+  },
+  {
+   "id": "q-7-3-c",
+   "module": 7,
+   "lesson": "7.3",
+   "tags": [
+    "cgt",
+    "wacc",
+    "tax"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Your MeroShare shows 300 kitta with a WACC of Rs. 412.50. You sell all 300 at Rs. 470.00 after 18 months. Net-of-charges sale proceeds are Rs. 1,40,530. What CGT is withheld?",
+   "options": [
+    {
+     "t": "Rs. 1,258.50",
+     "correct": true
+    },
+    {
+     "t": "Rs. 839.00",
+     "correct": false
+    },
+    {
+     "t": "Rs. 1,678.00",
+     "correct": false
+    },
+    {
+     "t": "Rs. 10,539.75",
+     "correct": false
+    }
+   ],
+   "explain": "Cost basis = 300 × 412.50 = Rs. 1,23,750. Gain = 1,40,530 − 1,23,750 = Rs. 16,780. Held 18 months, so long-term: 7.5% since 17 July 2026. 16,780 × 0.075 = Rs. 1,258.50. Rs. 839 applies the old 5% long-term rate replaced in July 2026. Rs. 1,678 applies the 10% short-term rate. Rs. 10,539.75 taxes the gross sale value instead of the gain — a common and expensive misunderstanding.",
+   "hintOnFirstWrong": "CGT is charged on the gain over your cost basis, not on the sale value. And 18 months is which band?"
+  },
+  {
+   "id": "q-7-3-d",
+   "module": 7,
+   "lesson": "7.3",
+   "tags": [
+    "cgt",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "multi",
+   "stem": "Which of these are true of capital gains tax on listed Nepali shares? (Select all that apply)",
+   "options": [
+    {
+     "t": "It is withheld at source during settlement",
+     "correct": true
+    },
+    {
+     "t": "It is a final tax — you do not pay again on that gain",
+     "correct": true
+    },
+    {
+     "t": "Losses on listed shares generally cannot offset your other income",
+     "correct": true
+    },
+    {
+     "t": "Bonus shares are taxed when you receive them",
+     "correct": false
+    }
+   ],
+   "explain": "CGT is deducted before the money reaches you and is final, so you do not add it to your income and pay again at your slab rate. The flip side of finality is that losses generally cannot be set off against other income — a losing year is simply a losing year. Bonus shares are not a taxable event at issue; they reduce your WACC, so the tax is deferred until you sell, not avoided.",
+   "hintOnFirstWrong": "Three of these describe how a final withholding tax behaves. One is about bonus shares."
+  },
+  {
+   "id": "q-7-4-a",
+   "module": 7,
+   "lesson": "7.4",
+   "tags": [
+    "costs"
+   ],
+   "difficulty": 3,
+   "type": "numeric",
+   "stem": "You buy 10 kitta at Rs. 100. What percentage move do you need just to break even? Answer to two decimals.",
+   "answer": 5.77,
+   "tolerance": 0.05,
+   "unit": "%",
+   "explain": "5.77%. Total cost to buy is Rs. 1,028.75 (gross Rs. 1,000, commission Rs. 3.60, SEBON Rs. 0.15, DP Rs. 25), and you pay a second Rs. 25 DP charge plus commission and SEBON on the way out. Break-even is Rs. 105.77. The flat Rs. 25 DP charge alone is 2.5% of a Rs. 1,000 trade — seven times the commission — and you pay it twice. This is why very small trades are structurally unprofitable.",
+   "hintOnFirstWrong": "Work out the flat charges first. On Rs. 1,000, what percentage is the DP charge — and how many times do you pay it?"
+  },
+  {
+   "id": "q-7-4-b",
+   "module": 7,
+   "lesson": "7.4",
+   "tags": [
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why does a Rs. 2,30,000 trade need only about a 0.71% move to break even, while a Rs. 1,000 trade needs 5.77%?",
+   "options": [
+    {
+     "t": "The Rs. 25 DP charge is flat, so it is a much smaller fraction of a large trade",
+     "correct": true
+    },
+    {
+     "t": "The commission rate is far lower on large trades",
+     "correct": false
+    },
+    {
+     "t": "Large trades are exempt from the SEBON fee",
+     "correct": false
+    },
+    {
+     "t": "Capital gains tax is lower on larger positions",
+     "correct": false
+    }
+   ],
+   "explain": "The flat DP charge dominates. On Rs. 1,000 it is 2.5% per settlement; on Rs. 2,30,000 it is 0.01%. Commission does fall across slabs but only from 0.36% to 0.33% between these two trades — nowhere near enough to explain an eight-fold difference in the hurdle. There is no SEBON exemption and CGT does not vary with position size. Keep positions at roughly Rs. 25,000 or above to hold round-trip friction under about 1%.",
+   "hintOnFirstWrong": "One of the three charges does not scale with trade size. Which, and what does that do to a small trade?"
+  },
+  {
+   "id": "q-7-4-c",
+   "module": 7,
+   "lesson": "7.4",
+   "tags": [
+    "costs",
+    "cgt"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "If you sell below your break-even price, you still owe capital gains tax on the sale.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. CGT is charged on the gain over your cost basis. Sell below break-even and there is no gain, so no CGT is due — the one small mercy in the arithmetic. Note the flip side, though: you also get no tax relief for the loss, because CGT on listed shares is a final tax and losses generally cannot offset other income.",
+   "hintOnFirstWrong": "What is capital gains tax charged on — the sale, or the gain?"
+  },
+  {
+   "id": "q-7-5-a",
+   "module": 7,
+   "lesson": "7.5",
+   "tags": [
+    "costs",
+    "cgt"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Which is the most expensive mistake when computing a round trip by hand?",
+   "options": [
+    {
+     "t": "Charging CGT on the sale value rather than on the gain",
+     "correct": true
+    },
+    {
+     "t": "Forgetting the second DP charge",
+     "correct": false
+    },
+    {
+     "t": "Using the wrong commission slab",
+     "correct": false
+    },
+    {
+     "t": "Applying the SEBON fee to only one leg",
+     "correct": false
+    }
+   ],
+   "explain": "Taxing the sale value instead of the gain overstates the tax roughly ninefold on a typical trade — Rs. 11,200 instead of Rs. 1,200 on a Rs. 1,12,000 sale with a Rs. 12,000 gain. The other three are real errors but small: a missed DP charge is Rs. 25, a wrong slab is tens of rupees, and a missed SEBON leg is a few rupees. Get the tax base right first.",
+   "hintOnFirstWrong": "Compare the size of each error in rupees on a Rs. 1,12,000 sale."
+  },
+  {
+   "id": "q-7-5-b",
+   "module": 7,
+   "lesson": "7.5",
+   "tags": [
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "numeric",
+   "stem": "You buy 300 kitta at Rs. 330.00. What is the total cost including commission, SEBON fee and DP charge, in rupees?",
+   "answer": 99366.55,
+   "tolerance": 1,
+   "unit": "Rs.",
+   "explain": "Gross = 300 × 330 = Rs. 99,000. That sits in the 0.33% slab, so commission = Rs. 326.70. SEBON fee at 0.015% = Rs. 14.85. DP charge = Rs. 25. Total = Rs. 99,366.55, giving a WACC of Rs. 331.22 per share. That WACC — not Rs. 330 — is your cost basis for capital gains tax, and it is the figure MeroShare will show you.",
+   "hintOnFirstWrong": "Gross, then commission at the slab rate, then 0.015%, then the flat Rs. 25."
+  },
+  {
+   "id": "q-7-5-c",
+   "module": 7,
+   "lesson": "7.5",
+   "tags": [
+    "costs"
+   ],
+   "difficulty": 1,
+   "type": "numeric",
+   "stem": "How many DP charges does a complete round trip — one buy and one sell, each settling on a single date — incur?",
+   "answer": 2,
+   "tolerance": 0,
+   "unit": "charges",
+   "explain": "Two: one on the buy settlement and one on the sell settlement, at Rs. 25 each. A round trip always carries at least two. If either leg fills partially across two days it settles twice, adding another Rs. 25 — which is why an order sized to fill completely is worth a moment's thought before you place it.",
+   "hintOnFirstWrong": "How many settlements happen in a buy-then-sell round trip?"
+  },
+  {
+   "id": "q-8-1-a",
+   "module": 8,
+   "lesson": "8.1",
+   "tags": [
+    "ipo"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "Which section of an IPO prospectus tells you what the company will actually do with your money?",
+   "options": [
+    {
+     "t": "Objectives of the Issue",
+     "correct": true
+    },
+    {
+     "t": "Risk Factors",
+     "correct": false
+    },
+    {
+     "t": "Capital Structure",
+     "correct": false
+    },
+    {
+     "t": "Auditor's Report",
+     "correct": false
+    }
+   ],
+   "explain": "Objectives of the Issue states the intended use of proceeds, and the difference between 'construction of the powerhouse and transmission line' and 'repayment of promoter loans and working capital' is the difference between funding an asset and funding someone's exit. The other sections are all worth reading, but only this one answers what your rupees will build. Every SEBON-approved prospectus is published at sebon.gov.np.",
+   "hintOnFirstWrong": "The section name says exactly what it contains."
+  },
+  {
+   "id": "q-8-1-b",
+   "module": 8,
+   "lesson": "8.1",
+   "tags": [
+    "ipo",
+    "market-structure"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "When you buy shares of a listed company on NEPSE, the company receives your money.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. That is a secondary-market trade — your money goes to the investor who sold to you, and the company is not a party to it. Money reaches a company only through the primary market: an IPO, FPO or rights issue. This is why the phrase 'the company gained Rs. 50 crore in market value today' describes an opinion changing, not a rupee entering the business.",
+   "hintOnFirstWrong": "Did the company create these shares today, or did they already exist in someone's Demat?"
+  },
+  {
+   "id": "q-8-2-a",
+   "module": 8,
+   "lesson": "8.2",
+   "tags": [
+    "ipo",
+    "casba"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "Under C-ASBA, what happens to your application money while the issue is open?",
+   "options": [
+    {
+     "t": "It is blocked in your own bank account and debited only if you are allotted",
+     "correct": true
+    },
+    {
+     "t": "It is transferred to the issuer and refunded if you are not allotted",
+     "correct": false
+    },
+    {
+     "t": "It is held in escrow by CDSC",
+     "correct": false
+    },
+    {
+     "t": "It is transferred to your broker's collection account",
+     "correct": false
+    }
+   ],
+   "explain": "C-ASBA means Centralised Application Supported by Blocked Amount. The money stays in your account, earning whatever interest your account pays, and is debited only if shares are actually allotted. If you are not allotted, the block simply lifts — no refund to chase, no float lost, no counterparty risk. It is the best-designed part of the Nepali market, and it is why any request to transfer IPO money anywhere is a scam.",
+   "hintOnFirstWrong": "What does the 'BA' in ASBA stand for?"
+  },
+  {
+   "id": "q-8-2-b",
+   "module": 8,
+   "lesson": "8.2",
+   "tags": [
+    "ipo"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You submit a second application for the same issue through a different bank, hoping to double your odds. What happens?",
+   "options": [
+    {
+     "t": "Both applications may be voided — one per person per issue",
+     "correct": true
+    },
+    {
+     "t": "Your odds double, since each application enters the lottery",
+     "correct": false
+    },
+    {
+     "t": "The second is ignored and the first stands",
+     "correct": false
+    },
+    {
+     "t": "Both are accepted but only one can be allotted",
+     "correct": false
+    }
+   ],
+   "explain": "The rule is one application per person per issue — not per bank account, not per Demat. Duplicates are rejected and submitting a second can void both, leaving you with nothing when you would otherwise have had a valid entry. People do this believing it improves their odds; it does the opposite. Applying through a family member's Demat is that person's application, with their own odds and their own shares.",
+   "hintOnFirstWrong": "Is the limit per application, per bank account, or per person?"
+  },
+  {
+   "id": "q-8-3-a",
+   "module": 8,
+   "lesson": "8.3",
+   "tags": [
+    "ipo"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What is the retail minimum in a book-built issue, and why does it matter?",
+   "options": [
+    {
+     "t": "50 units — roughly five times the fixed-price minimum, a real barrier for small applicants",
+     "correct": true
+    },
+    {
+     "t": "10 units, the same as a fixed-price issue",
+     "correct": false
+    },
+    {
+     "t": "100 units, the same as a mutual fund",
+     "correct": false
+    },
+    {
+     "t": "There is no minimum in book building",
+     "correct": false
+    }
+   ],
+   "explain": "The book-building retail minimum is 50 units against 10 for a fixed-price issue. At any realistic discovered price that is several thousand rupees rather than Rs. 1,000, which meaningfully raises the entry cost for retail — for the same single lottery ticket, since odds are equal per valid application either way. Retail does receive a 10% discount to the institutional price, but that is a discount to what institutions bid, not to what the business is worth.",
+   "hintOnFirstWrong": "Fixed price is 10 units. Book building is five times that."
+  },
+  {
+   "id": "q-8-3-b",
+   "module": 8,
+   "lesson": "8.3",
+   "tags": [
+    "ipo"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A company wants to issue shares above the Rs. 100 face value. What must it satisfy?",
+   "options": [
+    {
+     "t": "Rs. 1 arba paid-up capital and two consecutive profitable years",
+     "correct": true
+    },
+    {
+     "t": "Any company may price above face value if SEBON approves the prospectus",
+     "correct": false
+    },
+    {
+     "t": "Three consecutive profitable years and a NEPSE listing",
+     "correct": false
+    },
+    {
+     "t": "A credit rating of at least investment grade",
+     "correct": false
+    }
+   ],
+   "explain": "Premium pricing eligibility requires Rs. 1 arba of paid-up capital and two consecutive profitable years. It is a real bar, not a formality — it exists to stop unproven companies charging a premium on the strength of a story. Companies that do not meet it issue at the Rs. 100 face value, which is why most small hydropower IPOs are fixed-price at par.",
+   "hintOnFirstWrong": "Two conditions: one about size, one about profitability."
+  },
+  {
+   "id": "q-8-4-a",
+   "module": 8,
+   "lesson": "8.4",
+   "tags": [
+    "ipo",
+    "allotment"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A fixed-price IPO offers 1,00,000 units. 5,00,000 valid applications are received, all for the 10-unit minimum. You applied for 100 units instead of 10. Your chance of allotment is:",
+   "options": [
+    {
+     "t": "The same as everyone else's",
+     "correct": true
+    },
+    {
+     "t": "Ten times higher",
+     "correct": false
+    },
+    {
+     "t": "Zero, since the maximum is 10",
+     "correct": false
+    },
+    {
+     "t": "Guaranteed, since you applied for more",
+     "correct": false
+    }
+   ],
+   "explain": "Nepali fixed-price allotment runs a computerised lottery in which each valid application has equal probability regardless of size. In a heavily oversubscribed issue, allotment is typically the minimum lot to as many applicants as possible — so if you win, you receive 10 units, the same as everyone else. Applying for more units simply ties up ten times the money in ASBA blocking for identical odds and an identical outcome.",
+   "hintOnFirstWrong": "Does the lottery draw applications, or units?"
+  },
+  {
+   "id": "q-8-4-b",
+   "module": 8,
+   "lesson": "8.4",
+   "tags": [
+    "ipo",
+    "allotment"
+   ],
+   "difficulty": 3,
+   "type": "numeric",
+   "stem": "An issue offers 2,00,000 units with a 10-unit minimum lot. 4,00,000 valid applications arrive. What is your approximate chance of allotment, as a percentage?",
+   "answer": 5,
+   "tolerance": 0.2,
+   "unit": "%",
+   "explain": "2,00,000 units ÷ 10 units per allottee = 20,000 applicants can be allotted. 20,000 ÷ 4,00,000 = 5%. The general form is (units on offer ÷ minimum lot) ÷ number of valid applications. In popular Nepali issues this typically lands between 5% and 25%. The expected value is attractive because an unsuccessful application costs nothing but the opportunity cost of the blocked funds.",
+   "hintOnFirstWrong": "First work out how many people can be allotted, then divide by the number applying."
+  },
+  {
+   "id": "q-8-5-a",
+   "module": 8,
+   "lesson": "8.5",
+   "tags": [
+    "rights",
+    "bonus"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "You hold 100 shares at Rs. 600. A 1:2 rights issue at Rs. 400 is announced and you do nothing. What happens to your position?",
+   "options": [
+    {
+     "t": "You still hold 100 shares, but the price adjusts to about Rs. 533 — you lose roughly Rs. 6,667 of value",
+     "correct": true
+    },
+    {
+     "t": "Nothing changes — you simply do not participate",
+     "correct": false
+    },
+    {
+     "t": "The rights are sold on your behalf and the proceeds credited",
+     "correct": false
+    },
+    {
+     "t": "You are allotted the shares anyway and billed later",
+     "correct": false
+    }
+   ],
+   "explain": "Unexercised rights lapse. The price still adjusts to roughly the theoretical ex-rights level of Rs. 533.33 because everyone else's shares were issued, and you still hold 100. 100 × 533.33 = Rs. 53,333 against the Rs. 60,000 you started with — about Rs. 6,667 destroyed by inaction, with nothing on any statement to tell you. Some rights are renounceable and can be sold; if yours are not, the value is simply forfeited.",
+   "hintOnFirstWrong": "The price adjusts whether or not you participate. What does that do to someone who did not?"
+  },
+  {
+   "id": "q-8-5-b",
+   "module": 8,
+   "lesson": "8.5",
+   "tags": [
+    "bonus",
+    "wacc"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Which corporate action actually puts cash in your pocket?",
+   "options": [
+    {
+     "t": "A cash dividend, net of 5% tax at source",
+     "correct": true
+    },
+    {
+     "t": "A bonus issue",
+     "correct": false
+    },
+    {
+     "t": "A stock split",
+     "correct": false
+    },
+    {
+     "t": "A rights issue",
+     "correct": false
+    }
+   ],
+   "explain": "Only a cash dividend pays you money, and individuals receive it net of 5% deducted at source. A bonus issue gives you more shares of the same total value and lowers your WACC, deferring tax rather than avoiding it. A split is cosmetic — the face value divides and the price divides with it. A rights issue takes money FROM you; it is a capital call at a discount, and exercising it leaves you exactly level.",
+   "hintOnFirstWrong": "Three of these change your share count. Only one moves cash."
+  },
+  {
+   "id": "q-8-5-c",
+   "module": 8,
+   "lesson": "8.5",
+   "tags": [
+    "bonus",
+    "wacc",
+    "cgt"
+   ],
+   "difficulty": 3,
+   "type": "numeric",
+   "stem": "You hold 100 shares with a WACC of Rs. 600 and receive a 20% bonus. What is your new WACC, in rupees?",
+   "answer": 500,
+   "tolerance": 0.5,
+   "unit": "Rs.",
+   "explain": "Your total cost is unchanged at Rs. 60,000, and a 20% bonus gives you 120 shares. 60,000 ÷ 120 = Rs. 500. You are not richer — the market price adjusts down on the ex-bonus date by roughly the same proportion. What has changed is your future tax: when you sell, the gain is computed against Rs. 500 rather than Rs. 600, so the tax not paid at issue arrives later, in full. Bonus shares defer tax; they do not avoid it.",
+   "hintOnFirstWrong": "Total cost stays the same. Only the number of shares it is spread across changes."
+  },
+  {
+   "id": "q-8-6-a",
+   "module": 8,
+   "lesson": "8.6",
+   "tags": [
+    "mutual-fund"
+   ],
+   "difficulty": 2,
+   "type": "multi",
+   "stem": "Why do Nepali closed-end funds persistently trade below their NAV? (Select all that apply)",
+   "options": [
+    {
+     "t": "You cannot redeem units for NAV — your only exit is selling to another investor",
+     "correct": true
+    },
+    {
+     "t": "Management fees accrue against the assets every year",
+     "correct": true
+    },
+    {
+     "t": "Fund units are thinly traded, so the spread and exit difficulty push the price down",
+     "correct": true
+    },
+    {
+     "t": "SEBON caps the market price of fund units below NAV",
+     "correct": false
+    }
+   ],
+   "explain": "The first three are the real reasons: no redemption right, ongoing fees between you and the NAV, and thin liquidity. There is no regulatory cap on the price — the discount is a market outcome, not a rule. Maturity is what forces convergence, since a closed-end fund liquidates and distributes NAV at the end of its fixed term, which is why years-to-maturity matters as much as the size of the discount.",
+   "hintOnFirstWrong": "Three of these are structural features of a closed-end fund. One invents a rule that does not exist."
+  },
+  {
+   "id": "q-8-6-b",
+   "module": 8,
+   "lesson": "8.6",
+   "tags": [
+    "mutual-fund"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Two funds both trade at Rs. 9.20 against an NAV of Rs. 11.40. One matures in two years, the other in eight. Both charge 1.5% a year. Which is the better proposition, and why?",
+   "options": [
+    {
+     "t": "The two-year fund — the same discount closes sooner, with about 3% lost to fees instead of 12%",
+     "correct": true
+    },
+    {
+     "t": "The eight-year fund — more time for the underlying portfolio to grow",
+     "correct": false
+    },
+    {
+     "t": "They are identical, since the discount is the same",
+     "correct": false
+    },
+    {
+     "t": "The eight-year fund — longer funds trade at wider discounts, so it will re-rate",
+     "correct": false
+    }
+   ],
+   "explain": "Maturity forces the discount to zero, so the catalyst is dated. The two-year fund reaches it after roughly 3% of NAV has gone in fees; the eight-year fund after roughly 12% — most of the discount you were buying. The identical headline discount conceals very different propositions. And in both cases the discount is a cushion, not a floor: NAV itself can fall, as it did roughly 50% across the 2021–2023 drawdown.",
+   "hintOnFirstWrong": "How much of the NAV disappears in fees before the maturity catalyst arrives in each case?"
+  },
+  {
+   "id": "q-8-6-c",
+   "module": 8,
+   "lesson": "8.6",
+   "tags": [
+    "mutual-fund",
+    "ipo"
+   ],
+   "difficulty": 1,
+   "type": "numeric",
+   "stem": "What is the face value of a Nepali mutual fund unit, in rupees?",
+   "answer": 10,
+   "tolerance": 0,
+   "unit": "Rs.",
+   "explain": "Rs. 10, not Rs. 100 — mutual fund units use a different convention from ordinary shares. The minimum application is 100 units, so Rs. 1,000, the same entry cost as a fixed-price share IPO. Do not read a fund's Rs. 8.40 price as 'cheap' any more than you would read a bank trading below Rs. 100; the number to compare against is NAV, not face value.",
+   "hintOnFirstWrong": "Ordinary shares are Rs. 100. Mutual fund units are one tenth of that."
+  },
+  {
+   "id": "q-9-1-a",
+   "module": 9,
+   "lesson": "9.1",
+   "tags": [
+    "candles"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A candle has a small body sitting at the top of its range, with a long lower wick. What does that describe?",
+   "options": [
+    {
+     "t": "Sellers pushed price down hard and buyers absorbed all of it before the close",
+     "correct": true
+    },
+    {
+     "t": "Buyers pushed price up and could not hold the gains",
+     "correct": false
+    },
+    {
+     "t": "Almost no trading took place",
+     "correct": false
+    },
+    {
+     "t": "The session opened and closed at the same price with no movement",
+     "correct": false
+    }
+   ],
+   "explain": "The lower wick is ground that was taken and given back: sellers drove price down, buyers bought all of it, and the close finished near the high. That is strength. The mirror image — a small body at the bottom of a long upper wick — is weakness, where buyers ran price up and could not hold it. Note that this reading is incomplete on its own: whether it matters depends entirely on what came before, which is Lesson 9.5.",
+   "hintOnFirstWrong": "The wick is ground taken and then given back. Which side took it, and who won it back?"
+  },
+  {
+   "id": "q-9-1-b",
+   "module": 9,
+   "lesson": "9.1",
+   "tags": [
+    "candles",
+    "circuit",
+    "rules-2026"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "A stock closes exactly 15% above its previous close, with a long body and no upper wick. What is the honest reading?",
+   "options": [
+    {
+     "t": "It hit the circuit limit — price stopped because it was not allowed to move further",
+     "correct": true
+    },
+    {
+     "t": "A bullish marubozu — buyers controlled every minute of the session",
+     "correct": false
+    },
+    {
+     "t": "A bearish reversal, because there is no upper wick",
+     "correct": false
+    },
+    {
+     "t": "A data error, since 15% moves are not possible",
+     "correct": false
+    }
+   ],
+   "explain": "±15% of the previous close is the daily circuit limit, raised from ±10% on 21 April 2026. A close sitting exactly on it means trading stopped moving the price, not that buyers and sellers reached agreement. The shape mimics a marubozu but means something different: demand that was queued behind the limit is invisible and is usually still there tomorrow. Check the arithmetic before reading the shape.",
+   "hintOnFirstWrong": "What is 15% of the previous close, and what rule sits exactly there?"
+  },
+  {
+   "id": "q-9-2-a",
+   "module": 9,
+   "lesson": "9.2",
+   "tags": [
+    "candles",
+    "context"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What distinguishes a hammer from a hanging man?",
+   "options": [
+    {
+     "t": "Nothing in the drawing — only the trend that preceded it",
+     "correct": true
+    },
+    {
+     "t": "The hammer has a longer lower wick",
+     "correct": false
+    },
+    {
+     "t": "The hanging man has no upper wick at all",
+     "correct": false
+    },
+    {
+     "t": "The hammer is hollow and the hanging man is filled",
+     "correct": false
+    }
+   ],
+   "explain": "They are drawn identically: small body at the top, long lower wick, minimal upper wick. A hammer follows a decline and is bullish; a hanging man follows an advance and is bearish. The candle describes the same event — sellers pushed, buyers absorbed — but the population of people it describes is completely different. This is why the detectors in this course compute the preceding trend before naming anything.",
+   "hintOnFirstWrong": "Try drawing both. What is different about the picture?"
+  },
+  {
+   "id": "q-9-2-b",
+   "module": 9,
+   "lesson": "9.2",
+   "tags": [
+    "candles"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "What does a doji record?",
+   "options": [
+    {
+     "t": "Indecision — the session settled essentially nothing",
+     "correct": true
+    },
+    {
+     "t": "A guaranteed reversal",
+     "correct": false
+    },
+    {
+     "t": "That the stock hit its circuit limit",
+     "correct": false
+    },
+    {
+     "t": "Heavy institutional buying",
+     "correct": false
+    }
+   ],
+   "explain": "A doji has essentially no body: open and close are the same, so nothing was settled however far price travelled intraday. It is not a reversal signal on its own — it records indecision, and indecision means something only after an extended trend. A doji in the middle of a sideways drift is exactly what a sideways drift looks like.",
+   "hintOnFirstWrong": "The body is the settled result. What does it mean when there is essentially no body?"
+  },
+  {
+   "id": "q-9-3-a",
+   "module": 9,
+   "lesson": "9.3",
+   "tags": [
+    "candles"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "In a bullish engulfing pattern, the second candle's wicks must completely engulf the first candle's wicks.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False — only the bodies need to be engulfed. Beginners reject perfectly valid signals over this constantly. The pattern says sentiment reversed inside a single session and buyers overwhelmed the prior day's settled result; the wicks are ground taken and given back, and are not part of the test.",
+   "hintOnFirstWrong": "Which part of a candle is the settled result — the body or the wicks?"
+  },
+  {
+   "id": "q-9-3-b",
+   "module": 9,
+   "lesson": "9.3",
+   "tags": [
+    "candles",
+    "liquidity"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "A textbook bullish engulfing appears on a counter whose two candles traded 410 and 180 kitta, on a 20-day average turnover of Rs. 1.9 lakh. What should you do?",
+   "options": [
+    {
+     "t": "Nothing — the pattern is geometrically real but describes two people, not a crowd",
+     "correct": true
+    },
+    {
+     "t": "Buy, since the pattern is valid by every test",
+     "correct": false
+    },
+    {
+     "t": "Buy a smaller position to reduce the risk",
+     "correct": false
+    },
+    {
+     "t": "Wait for a second engulfing pattern to confirm",
+     "correct": false
+    }
+   ],
+   "explain": "A pattern is a statement about what a crowd did. 180 kitta at around Rs. 168 is roughly Rs. 30,000 of trading — one order. The geometry passed and the information did not. Sizing down does not help, because the problem is that the signal is meaningless, not that the position is large; and a second meaningless pattern is not confirmation. With 141 of 271 listed companies in hydropower and microfinance, much of NEPSE is thin enough for this to matter constantly.",
+   "hintOnFirstWrong": "How many separate decisions does 180 kitta of trading represent?"
+  },
+  {
+   "id": "q-9-4-a",
+   "module": 9,
+   "lesson": "9.4",
+   "tags": [
+    "candles"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "A morning star's third candle closes at Rs. 303.10. Candle one ran from Rs. 318.00 down to Rs. 296.00. Does the pattern qualify?",
+   "options": [
+    {
+     "t": "No — it must close above candle one's midpoint of Rs. 307.00",
+     "correct": true
+    },
+    {
+     "t": "Yes — it closed above candle one's low",
+     "correct": false
+    },
+    {
+     "t": "Yes — three candles in that sequence always qualify",
+     "correct": false
+    },
+    {
+     "t": "No — it must close above candle one's open of Rs. 318.00",
+     "correct": false
+    }
+   ],
+   "explain": "The midpoint of candle one is (318 + 296) ÷ 2 = Rs. 307.00, and the third candle must close above it. At Rs. 303.10 it did not, so buyers took back less than half the damage — that is a bounce, not a handover of control. Requiring a close above the full open would be far too strict and almost no morning star would qualify. Rules like this are arithmetic precisely so patterns do not become a matter of squinting.",
+   "hintOnFirstWrong": "Work out the midpoint of the first candle's body, then compare."
+  },
+  {
+   "id": "q-9-4-b",
+   "module": 9,
+   "lesson": "9.4",
+   "tags": [
+    "candles"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Three white soldiers have printed. What does the pattern tell you?",
+   "options": [
+    {
+     "t": "The trend has genuine participation — it confirms rather than triggers",
+     "correct": true
+    },
+    {
+     "t": "A reversal is beginning",
+     "correct": false
+    },
+    {
+     "t": "The stock is overbought and should be sold",
+     "correct": false
+    },
+    {
+     "t": "Volume has collapsed",
+     "correct": false
+    }
+   ],
+   "explain": "Three consecutive strong bullish candles, each opening inside the previous body and closing above the previous close, confirm that a trend has real participation. It is not a reversal signal. The practical warning is that by the time three soldiers have printed, a good deal of the move has already happened — treat it as confirmation of a trend you had already identified from structure, not as an entry trigger.",
+   "hintOnFirstWrong": "Is this pattern describing a change of direction, or the continuation of one?"
+  },
+  {
+   "id": "q-9-5-a",
+   "module": 9,
+   "lesson": "9.5",
+   "tags": [
+    "candles",
+    "context"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Three charts show an identical hammer candle. In which is it a meaningful bullish signal?",
+   "options": [
+    {
+     "t": "After a five-day decline into a level that has held twice before, on above-average volume",
+     "correct": true
+    },
+    {
+     "t": "In the middle of a two-week sideways drift, on average volume",
+     "correct": false
+    },
+    {
+     "t": "After a three-week advance to a new high",
+     "correct": false
+    },
+    {
+     "t": "All three equally — the candle is identical",
+     "correct": false
+    }
+   ],
+   "explain": "The first has both ingredients: a decline that trapped sellers, and a level where buyers were waiting, with volume confirming. In the second the same candle sits mid-range in a drift — nobody was trapped, so nobody has to buy back, and it is noise. In the third it appears after an advance, which makes it a hanging man and bearish, despite being drawn identically. A candle's shape is half its meaning; everything before it is the other half.",
+   "hintOnFirstWrong": "Ask two questions of each: why were sellers pushing, and why would buyers be waiting there?"
+  },
+  {
+   "id": "q-9-5-b",
+   "module": 9,
+   "lesson": "9.5",
+   "tags": [
+    "candles",
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why is waiting for confirmation before acting on a candlestick pattern especially worthwhile on NEPSE?",
+   "options": [
+    {
+     "t": "Because round-trip friction is about 1% and illiquid positions cannot be exited quickly, so being wrong is expensive",
+     "correct": true
+    },
+    {
+     "t": "Because NEPSE requires a confirmation candle before an order can be placed",
+     "correct": false
+    },
+    {
+     "t": "Because confirmation raises the accuracy of the pattern to nearly 100%",
+     "correct": false
+    },
+    {
+     "t": "Because capital gains tax is lower on confirmed trades",
+     "correct": false
+    }
+   ],
+   "explain": "Confirmation costs you part of the move and removes a large share of false signals. That trade-off is worth making wherever being wrong is expensive — and on NEPSE it is, because every round trip costs roughly 1% in commission, SEBON fee and two DP charges, and a thin counter may take days to exit. There is no exchange rule about confirmation, no accuracy guarantee, and tax does not vary by how you entered.",
+   "hintOnFirstWrong": "What does being wrong actually cost you on this market, compared with being late?"
+  },
+  {
+   "id": "q-9-6-a",
+   "module": 9,
+   "lesson": "9.6",
+   "tags": [
+    "candles",
+    "bonus"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A chart shows a stock 'crashing 17% overnight' three years ago. Before drawing any conclusion, what should you check?",
+   "options": [
+    {
+     "t": "Whether that was an ex-bonus date and the chart is unadjusted",
+     "correct": true
+    },
+    {
+     "t": "Whether the exchange was closed that day",
+     "correct": false
+    },
+    {
+     "t": "Whether the stock hit its circuit limit",
+     "correct": false
+    },
+    {
+     "t": "Whether the SEBON fee changed that year",
+     "correct": false
+    }
+   ],
+   "explain": "On an ex-bonus date the price adjusts down mechanically by the bonus proportion — nothing happened to the business. Nepali banks and microfinance companies issue bonus shares frequently, so these gaps are common. If the chart is unadjusted, every level drawn across that date connects prices that are not on the same scale. A 17% overnight fall could not be a circuit day anyway, since the limit is 15%.",
+   "hintOnFirstWrong": "What corporate action makes a price drop overnight without anything happening to the company?"
+  },
+  {
+   "id": "q-9-6-b",
+   "module": 9,
+   "lesson": "9.6",
+   "tags": [
+    "candles",
+    "liquidity",
+    "circuit"
+   ],
+   "difficulty": 2,
+   "type": "multi",
+   "stem": "Which checks should you run before trusting any candlestick pattern on NEPSE? (Select all that apply)",
+   "options": [
+    {
+     "t": "Is the close sitting exactly at ±15% of the previous close?",
+     "correct": true
+    },
+    {
+     "t": "Does the chart span an unadjusted bonus or rights date?",
+     "correct": true
+    },
+    {
+     "t": "What is the 20-day average turnover?",
+     "correct": true
+    },
+    {
+     "t": "Is the pattern listed in the top ten most reliable patterns?",
+     "correct": false
+    }
+   ],
+   "explain": "The three checks are circuit, corporate actions and turnover — they take under a minute together and eliminate most false signals. Reliability rankings are a rough guide at best and do nothing about the three ways NEPSE specifically breaks pattern analysis: prices stopped by the limit rather than discovered, mechanical gaps on corporate-action dates, and counters too thin for a pattern to describe a crowd at all.",
+   "hintOnFirstWrong": "Three of these are about whether the data is trustworthy. One is about the pattern's reputation."
+  },
+  {
+   "id": "q-10-1-a",
+   "module": 10,
+   "lesson": "10.1",
+   "tags": [
+    "structure"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "How is an uptrend defined?",
+   "options": [
+    {
+     "t": "Higher highs and higher lows",
+     "correct": true
+    },
+    {
+     "t": "Price above the 50-day moving average",
+     "correct": false
+    },
+    {
+     "t": "More green candles than red over the last month",
+     "correct": false
+    },
+    {
+     "t": "RSI above 50",
+     "correct": false
+    }
+   ],
+   "explain": "An uptrend is higher highs AND higher lows; a downtrend is lower highs and lower lows; anything else is a range. The definition uses swing points only, so it needs no indicator and produces no argument. The other three options are all functions of price computed after the fact — useful as descriptions, but they lag the structure they are derived from.",
+   "hintOnFirstWrong": "The definition uses only the peaks and troughs the price itself makes."
+  },
+  {
+   "id": "q-10-1-b",
+   "module": 10,
+   "lesson": "10.1",
+   "tags": [
+    "structure"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A stock in an uptrend makes a lower high but its last swing low still holds. What is the status?",
+   "options": [
+    {
+     "t": "A warning — the uptrend is intact until a lower low prints",
+     "correct": true
+    },
+    {
+     "t": "The uptrend has broken",
+     "correct": false
+    },
+    {
+     "t": "A downtrend has begun",
+     "correct": false
+    },
+    {
+     "t": "Nothing has changed at all",
+     "correct": false
+    }
+   ],
+   "explain": "An uptrend needs both higher highs and higher lows. A lower high removes one leg, which is worth noticing, but the trend breaks only on a lower low — the first time buyers fail to defend a level they previously defended. This distinction keeps people in good positions: selling on a lower high means selling into a pause and paying about 1% round-trip for it, while waiting for the lower low gives an unambiguous exit that does not depend on how the chart feels.",
+   "hintOnFirstWrong": "Two conditions define an uptrend. How many have failed here?"
+  },
+  {
+   "id": "q-10-2-a",
+   "module": 10,
+   "lesson": "10.2",
+   "tags": [
+    "structure"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Line A has four touches and no violations. Line B has one touch and two violations. Which is a real level?",
+   "options": [
+    {
+     "t": "Line A — repeated touches with no clean break is evidence",
+     "correct": true
+    },
+    {
+     "t": "Line B — recent price action matters more than old touches",
+     "correct": false
+    },
+    {
+     "t": "Both, at different timeframes",
+     "correct": false
+    },
+    {
+     "t": "Neither — support and resistance are not real",
+     "correct": false
+    }
+   ],
+   "explain": "Two touches make a level and three or more make one worth respecting; one touch is just a low. Line B has been passed straight through twice, which is direct evidence against it. This test is countable, which is what separates drawing levels from wishing — and the honest caveat is that Line A will break eventually too. Its value is that it gives you a defined place to be wrong, which Lesson 14.2 turns into a position size.",
+   "hintOnFirstWrong": "Count the touches, then count the times price went straight through."
+  },
+  {
+   "id": "q-10-2-b",
+   "module": 10,
+   "lesson": "10.2",
+   "tags": [
+    "structure",
+    "bonus"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why should you treat a support level as a zone rather than a precise price?",
+   "options": [
+    {
+     "t": "Markets are made of people, who do not act to the paisa — a precise level produces stops hit by noise",
+     "correct": true
+    },
+    {
+     "t": "NEPSE rounds all prices to the nearest rupee",
+     "correct": false
+    },
+    {
+     "t": "Because the ±3% order band prevents precise entries",
+     "correct": false
+    },
+    {
+     "t": "Because levels are only valid on weekly charts",
+     "correct": false
+    }
+   ],
+   "explain": "A level of 'Rs. 232' is really Rs. 230–234. Treating it as an exact number produces stops that ordinary noise takes out, costing you about 1% round-trip each time for nothing. NEPSE quotes to the paisa, not the rupee; the ±3% band restricts how far from the LTP you may place an order but not the precision of the price; and levels work on any timeframe.",
+   "hintOnFirstWrong": "What is a level actually made of — a rule, or thousands of individual decisions?"
+  },
+  {
+   "id": "q-10-3-a",
+   "module": 10,
+   "lesson": "10.3",
+   "tags": [
+    "structure",
+    "volume"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What most raises the odds that a breakout is genuine rather than a fakeout?",
+   "options": [
+    {
+     "t": "A close beyond the level on above-average volume",
+     "correct": true
+    },
+    {
+     "t": "An intraday touch beyond the level",
+     "correct": false
+    },
+    {
+     "t": "A large gap on the opening print",
+     "correct": false
+    },
+    {
+     "t": "RSI above 70 at the moment of the break",
+     "correct": false
+    }
+   ],
+   "explain": "Volume tells you how many participants agreed, and the close — not the intraday touch — tells you the break held. Price poking through and closing back inside is a wick, not a breakout. A gap says nothing on its own and on NEPSE may be a corporate-action adjustment. RSI above 70 simply reflects that the move has been one-sided, which is what a breakout looks like anyway.",
+   "hintOnFirstWrong": "Two things matter: how many people agreed, and whether it held to the close."
+  },
+  {
+   "id": "q-10-3-b",
+   "module": 10,
+   "lesson": "10.3",
+   "tags": [
+    "structure",
+    "costs"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Entering on the retest rather than the break costs you some upside. Why is that trade usually right on NEPSE?",
+   "options": [
+    {
+     "t": "Because being wrong is expensive here — 1% friction, no stop-loss order type, and thin counters you cannot exit",
+     "correct": true
+    },
+    {
+     "t": "Because retests are more accurate about direction",
+     "correct": false
+    },
+    {
+     "t": "Because NEPSE charges lower commission on retest entries",
+     "correct": false
+    },
+    {
+     "t": "Because a retest guarantees the level has flipped permanently",
+     "correct": false
+    }
+   ],
+   "explain": "The retest rule does not make you more accurate about direction — it makes your losses less frequent, which is a different and more durable advantage. That matters most where being wrong is costly: roughly 1% round-trip friction, no automatic stop-loss on NEPSE, and counters that may take days to exit. Commission does not vary by entry style, and nothing about a retest is a guarantee.",
+   "hintOnFirstWrong": "Compare the cost of being wrong on this market against the cost of being late."
+  },
+  {
+   "id": "q-10-4-a",
+   "module": 10,
+   "lesson": "10.4",
+   "tags": [
+    "liquidity",
+    "volume"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "A thin counter shows a breakout on volume 4× its average — the strongest relative volume of any candidate you have found. Its 20-day average turnover is Rs. 2 lakh. You want a Rs. 2,00,000 position. What is the problem?",
+   "options": [
+    {
+     "t": "Your position is an entire normal day's turnover — you would be the breakout, and you could not exit",
+     "correct": true
+    },
+    {
+     "t": "There is no problem — 4× volume is exactly the confirmation you wanted",
+     "correct": false
+    },
+    {
+     "t": "The commission would be too high at that size",
+     "correct": false
+    },
+    {
+     "t": "The ±15% circuit would prevent the order",
+     "correct": false
+    }
+   ],
+   "explain": "Relative volume looks convincing and absolute turnover is negligible. A Rs. 2,00,000 position equals 100% of a normal day, so your own buying is the move, and exiting takes roughly ten trading days at 10% of turnover — during which your selling pushes the price down. Commission is proportional and unremarkable; the circuit limits daily price movement, not order size. Read absolute turnover in rupees, not the height of the volume bar.",
+   "hintOnFirstWrong": "Compare your intended position with one day's total turnover in rupees."
+  },
+  {
+   "id": "q-10-4-b",
+   "module": 10,
+   "lesson": "10.4",
+   "tags": [
+    "liquidity",
+    "spread"
+   ],
+   "difficulty": 2,
+   "type": "numeric",
+   "stem": "A counter averages Rs. 20 lakh of daily turnover. Assuming you can be at most 10% of a day's volume, what is the largest position you could exit in two trading days, in rupees?",
+   "answer": 400000,
+   "tolerance": 1000,
+   "unit": "Rs.",
+   "explain": "10% of Rs. 20 lakh is Rs. 2,00,000 sellable per day; over two days that is Rs. 4,00,000. Beyond that you are either taking longer to exit or becoming a large enough share of the volume that you move the price against yourself. This calculation is part of position sizing, not separate from it — a position you cannot leave in about two days is one whose risk you do not control, and NEPSE offers no stop-loss order type to help.",
+   "hintOnFirstWrong": "Work out how much you can sell in one day, then double it."
+  },
+  {
+   "id": "q-10-5-a",
+   "module": 10,
+   "lesson": "10.5",
+   "tags": [
+    "structure",
+    "psychology"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "The order book shows 18,400 kitta offered at Rs. 300 and about 1,500 at every neighbouring price. Where should you place your own sell order?",
+   "options": [
+    {
+     "t": "Just below Rs. 300 — at Rs. 300 you queue behind 18,400 kitta",
+     "correct": true
+    },
+    {
+     "t": "Exactly at Rs. 300, to get the round number",
+     "correct": false
+    },
+    {
+     "t": "Well above Rs. 300, since the wall will break",
+     "correct": false
+    },
+    {
+     "t": "It makes no difference — allocation is proportional",
+     "correct": false
+    }
+   ],
+   "explain": "Matching is by price then time, so an order at Rs. 300 sits behind 18,400 kitta already queued there. Placing at Rs. 299.50 fills ahead of all of them; on a 500-share position the fifty paisa costs Rs. 250, which is usually far less than the queue position is worth. Allocation is never proportional on NEPSE — the earliest order at a price fills completely before the next one gets anything.",
+   "hintOnFirstWrong": "Matching is by price, then by time. What happens to an order joining the back of a very long queue?"
+  },
+  {
+   "id": "q-10-5-b",
+   "module": 10,
+   "lesson": "10.5",
+   "tags": [
+    "structure"
+   ],
+   "difficulty": 1,
+   "type": "numeric",
+   "stem": "How many touches should a trendline have before it is worth drawing?",
+   "answer": 3,
+   "tolerance": 0,
+   "unit": "touches",
+   "explain": "Three. Two points define any line at all, so two touches prove nothing — you can draw a line through any two points on any chart. The common failure is drawing the line first and hunting for touches afterwards. Mark the swing points, then see whether a line fits; if you have to ignore a swing to make it work, it does not work.",
+   "hintOnFirstWrong": "How many points does it take to define a line? You need more than that."
+  },
+  {
+   "id": "q-10-5-c",
+   "module": 10,
+   "lesson": "10.5",
+   "tags": [
+    "psychology",
+    "shares"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "The Rs. 100 face value acts as a psychological level on NEPSE even though it carries no information about value.",
+   "options": [
+    {
+     "t": "True",
+     "correct": true
+    },
+    {
+     "t": "False",
+     "correct": false
+    }
+   ],
+   "explain": "True, and it is the strongest anchor in the Nepali market because it is printed on the instrument itself. Face value is an accounting convention used for paid-up capital and IPO pricing — Lesson 1.4 took that apart. But holders who bought at issue treat Rs. 100 as 'getting my money back', so selling often accelerates as a struggling counter approaches it from above. The accounts do not change at Rs. 100; the order book does.",
+   "hintOnFirstWrong": "Does something have to be economically meaningful to affect how people behave?"
+  },
+  {
+   "id": "q-11-1-a",
+   "module": 11,
+   "lesson": "11.1",
+   "tags": [
+    "indicators"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What is a moving average genuinely good at?",
+   "options": [
+    {
+     "t": "Describing the regime — whether price is above or below a rising or falling average",
+     "correct": true
+    },
+    {
+     "t": "Timing entries precisely",
+     "correct": false
+    },
+    {
+     "t": "Predicting where price will turn",
+     "correct": false
+    },
+    {
+     "t": "Working reliably in ranging markets",
+     "correct": false
+    }
+   ],
+   "explain": "A moving average is an average of the past and lags by construction, so it cannot time entries or predict turns. What it does well is summarise the regime: above a rising 200-day is a different world from below a falling one, and that single reading is worth more than every crossover signal combined. In ranges it is at its worst, sitting in the middle and crossing back and forth — and most charts are ranging most of the time.",
+   "hintOnFirstWrong": "It is an average of prices that already happened. What can that possibly do well?"
+  },
+  {
+   "id": "q-11-1-b",
+   "module": 11,
+   "lesson": "11.1",
+   "tags": [
+    "indicators",
+    "bonus"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why is an SMA 200 unreliable on a Nepali counter that listed eighteen months ago and has gone ex-bonus twice?",
+   "options": [
+    {
+     "t": "It is computed over a series that is partly mechanical adjustment and partly halted trading",
+     "correct": true
+    },
+    {
+     "t": "SMA 200 only works on indices, not individual shares",
+     "correct": false
+    },
+    {
+     "t": "NEPSE does not publish 200 sessions of history for new listings",
+     "correct": false
+    },
+    {
+     "t": "Bonus shares increase the share count, which invalidates all averages",
+     "correct": false
+    }
+   ],
+   "explain": "The 200-day average needs 200 sessions of clean, comparable data. On a recently listed counter with two ex-bonus adjustments and circuit days scattered through it, a large part of the window is either a mechanical price adjustment or a session where the price was stopped rather than discovered. NEPSE does publish the history; the problem is what that history contains. Check the chart is bonus-adjusted before reading any long average.",
+   "hintOnFirstWrong": "What has to be true about the 200 prices being averaged for the average to mean anything?"
+  },
+  {
+   "id": "q-11-2-a",
+   "module": 11,
+   "lesson": "11.2",
+   "tags": [
+    "indicators"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "RSI has been above 70 for three weeks. What does that tell you?",
+   "options": [
+    {
+     "t": "Recent up-sessions have been much larger than down-sessions — which is what a strong trend looks like",
+     "correct": true
+    },
+    {
+     "t": "The stock is expensive and should be sold",
+     "correct": false
+    },
+    {
+     "t": "A reversal is imminent",
+     "correct": false
+    },
+    {
+     "t": "The stock has hit its circuit limit repeatedly",
+     "correct": false
+    }
+   ],
+   "explain": "RSI compares the size of recent gains with recent losses. A high reading means the movement has been one-sided, which is precisely what a genuine uptrend produces — so selling because RSI is 74 means selling because the trend is strong. Overbought can stay overbought for months. RSI says nothing about whether the price is high relative to earnings, book value or anything real.",
+   "hintOnFirstWrong": "RSI measures the character of recent movement. Does it know anything about the company?"
+  },
+  {
+   "id": "q-11-2-b",
+   "module": 11,
+   "lesson": "11.2",
+   "tags": [
+    "indicators"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Price makes a higher high but RSI makes a lower high. What is that, and what should you do?",
+   "options": [
+    {
+     "t": "Bearish divergence — a reason to tighten a stop or stop adding, not to reverse",
+     "correct": true
+    },
+    {
+     "t": "Bearish divergence — sell immediately and short the stock",
+     "correct": false
+    },
+    {
+     "t": "A bullish signal, since price is still making higher highs",
+     "correct": false
+    },
+    {
+     "t": "A calculation error — RSI must follow price",
+     "correct": false
+    }
+   ],
+   "explain": "That is bearish divergence: the new price high was achieved with less momentum than the last one, which is a genuine deterioration in the character of the move. It is a warning, not a reversal signal — divergences persist and fail regularly. And on NEPSE you could not short it in any case, since there is no short selling. Treat it as a reason to tighten a stop or stop adding.",
+   "hintOnFirstWrong": "Price and momentum are disagreeing. Is that proof of a reversal, or a warning about its character?"
+  },
+  {
+   "id": "q-11-3-a",
+   "module": 11,
+   "lesson": "11.3",
+   "tags": [
+    "indicators"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "What does the MACD histogram actually measure?",
+   "options": [
+    {
+     "t": "The gap between momentum and its own average — the rate at which momentum is changing",
+     "correct": true
+    },
+    {
+     "t": "Total traded volume for the session",
+     "correct": false
+    },
+    {
+     "t": "The difference between the current price and the 26-day EMA",
+     "correct": false
+    },
+    {
+     "t": "Whether the stock is overbought or oversold",
+     "correct": false
+    }
+   ],
+   "explain": "The MACD line is EMA(12) − EMA(26), which is momentum. The signal line is a 9-period EMA of that. The histogram is the gap between them — the rate at which momentum itself is changing. That is why a shrinking histogram above zero warns of deceleration well before any crossover: the trend is still positive and losing steam. Volume is not an input to MACD at all.",
+   "hintOnFirstWrong": "The MACD line is momentum. The histogram is the gap between momentum and what?"
+  },
+  {
+   "id": "q-11-3-b",
+   "module": 11,
+   "lesson": "11.3",
+   "tags": [
+    "indicators"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "A MACD value of 4.2 means the same thing on Everest Bank at Rs. 670 as on a counter trading at Rs. 89.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. MACD is a rupee difference between two moving averages, so it has no absolute scale — 4.2 rupees of gap is a much larger signal on a Rs. 89 share than on a Rs. 670 one. Compare MACD only against its own history for the same stock, never across stocks, and treat any MACD figure quoted in a group chat without its context as meaningless.",
+   "hintOnFirstWrong": "What are the units of the MACD line?"
+  },
+  {
+   "id": "q-11-4-a",
+   "module": 11,
+   "lesson": "11.4",
+   "tags": [
+    "indicators",
+    "liquidity"
+   ],
+   "difficulty": 3,
+   "type": "multi",
+   "stem": "Which features of NEPSE break the assumptions indicators rely on? (Select all that apply)",
+   "options": [
+    {
+     "t": "Stale closes on counters where almost nothing traded",
+     "correct": true
+    },
+    {
+     "t": "Circuit-limit closes, where the price was stopped rather than discovered",
+     "correct": true
+    },
+    {
+     "t": "Unadjusted gaps on ex-bonus and ex-rights dates",
+     "correct": true
+    },
+    {
+     "t": "The 11:00–15:00 trading session being shorter than other markets",
+     "correct": false
+    }
+   ],
+   "explain": "Indicators assume a fair, continuously discovered closing price. Stale closes, circuit-limited closes and mechanical corporate-action gaps all violate that in different ways. The length of the session does not — a four-hour session still produces a genuine close on a liquid counter. The danger is that an indicator never reports an error: it draws a smooth, confident curve from whatever it is given.",
+   "hintOnFirstWrong": "Three of these corrupt the closing price itself. One is just a shorter day."
+  },
+  {
+   "id": "q-11-4-b",
+   "module": 11,
+   "lesson": "11.4",
+   "tags": [
+    "indicators",
+    "liquidity"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "A thin counter shows RSI 78, a large positive MACD histogram, and price above its SMA 50. Six of the last twenty sessions had no trading and three closed at the circuit limit. What are the indicators measuring?",
+   "options": [
+    {
+     "t": "Three limit-up closes and six days of nothing",
+     "correct": true
+    },
+    {
+     "t": "Genuine, powerful buying pressure",
+     "correct": false
+    },
+    {
+     "t": "Institutional accumulation",
+     "correct": false
+    },
+    {
+     "t": "An imminent reversal, since all three are extended",
+     "correct": false
+    }
+   ],
+   "explain": "Every one of those indicators is a function of the closing price, and here the closing prices are mostly limit closes and days with no trading. The readings look stronger than the liquid bank's precisely because they are computed from almost nothing. Worse, this is the counter you would need about ten trading days to exit at a 2.8% spread — the least reliable signal sits on the hardest position to leave.",
+   "hintOnFirstWrong": "Look at the input data, not the output numbers. What are those twenty closes actually made of?"
+  },
+  {
+   "id": "q-11-5-a",
+   "module": 11,
+   "lesson": "11.5",
+   "tags": [
+    "indicators"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why is adding a third correlated momentum indicator usually worse than useless?",
+   "options": [
+    {
+     "t": "It manufactures confidence — one piece of evidence triple-counted leads to larger positions on weaker reasoning",
+     "correct": true
+    },
+    {
+     "t": "It slows down the charting software",
+     "correct": false
+    },
+    {
+     "t": "Indicators cancel each other out mathematically",
+     "correct": false
+    },
+    {
+     "t": "SEBON limits the number of indicators a retail investor may use",
+     "correct": false
+    }
+   ],
+   "explain": "Most indicators are computed from the same closing prices, so most are highly correlated. Three of them agreeing feels like strong evidence and is really one piece of evidence stated three times — which leads to larger positions on weaker reasoning, exactly backwards. The second failure is paralysis: with six indicators some always disagree, so you either wait for alignment that never comes or pick whichever subset supports the trade you already wanted.",
+   "hintOnFirstWrong": "If three indicators use the same input data, how many independent opinions do you have?"
+  },
+  {
+   "id": "q-11-5-b",
+   "module": 11,
+   "lesson": "11.5",
+   "tags": [
+    "indicators",
+    "liquidity"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What single filter improves a NEPSE system more than any additional indicator?",
+   "options": [
+    {
+     "t": "A minimum 20-day average turnover",
+     "correct": true
+    },
+    {
+     "t": "A longer moving average",
+     "correct": false
+    },
+    {
+     "t": "A stricter RSI threshold",
+     "correct": false
+    },
+    {
+     "t": "Requiring three indicators to agree",
+     "correct": false
+    }
+   ],
+   "explain": "A liquidity filter removes more bad trades than any indicator adds, because it eliminates the counters where patterns are meaningless, spreads are wide and exits take days. It is not an indicator at all. The other three options all tighten a signal computed from price, which does nothing about the underlying problem: with 141 of 271 listed companies in hydropower and microfinance, much of the exchange is not tradeable at retail size with a stop.",
+   "hintOnFirstWrong": "The most valuable filter is not computed from price at all."
+  },
+  {
+   "id": "q-11-5-c",
+   "module": 11,
+   "lesson": "11.5",
+   "tags": [
+    "indicators",
+    "risk"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "System A wins 50% of trades with an average win of 2.1R against an average loss of 1.0R. System B wins 67% but its average win is only 0.7R against the same 1.0R loss. Which has the better expectancy?",
+   "options": [
+    {
+     "t": "System A — +0.55R per trade against System B's +0.14R",
+     "correct": true
+    },
+    {
+     "t": "System B — the higher win rate wins",
+     "correct": false
+    },
+    {
+     "t": "They are identical",
+     "correct": false
+    },
+    {
+     "t": "It cannot be determined without knowing the position sizes",
+     "correct": false
+    }
+   ],
+   "explain": "Expectancy = (win rate x average win) - (loss rate x average loss). System A: (0.50 x 2.1) - (0.50 x 1.0) = +0.55R. System B: (0.67 x 0.7) - (0.33 x 1.0) = +0.14R. System B is right twice as often and makes a quarter as much per trade, because it takes profits early and lets losses run the full stop — the loss-aversion profile from Lesson 15.2. R-multiples make the two comparable regardless of position size.",
+   "hintOnFirstWrong": "Multiply the win rate by the average win, then subtract the loss rate times the average loss. Do it for both."
+  },
+  {
+   "id": "q-12-1-a",
+   "module": 12,
+   "lesson": "12.1",
+   "tags": [
+    "fundamentals"
+   ],
+   "difficulty": 1,
+   "type": "mcq",
+   "stem": "Where is the authoritative source for a Nepali listed company's quarterly numbers?",
+   "options": [
+    {
+     "t": "The company's own website, under Unaudited Financial Results",
+     "correct": true
+    },
+    {
+     "t": "Sharesansar's comparison tables",
+     "correct": false
+    },
+    {
+     "t": "Merolagani's company page",
+     "correct": false
+    },
+    {
+     "t": "A NEPSE broker's research note",
+     "correct": false
+    }
+   ],
+   "explain": "The company publishes its own unaudited quarterly results, and everything else is a copy. Sharesansar, Merolagani and NepseAlpha are genuinely useful for screening and history, but they can be stale, they can transcribe wrongly, and they verify nothing. Use them to find candidates and open the company's own PDF before committing money — it takes five minutes and almost nobody does it, which is the entire edge available to a careful retail investor.",
+   "hintOnFirstWrong": "Who actually produces the numbers in the first place?"
+  },
+  {
+   "id": "q-12-1-b",
+   "module": 12,
+   "lesson": "12.1",
+   "tags": [
+    "fundamentals",
+    "eps"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "An aggregator shows EPS of Rs. 34.12 as 'annualised Q1'. Why is that likely to flatter?",
+   "options": [
+    {
+     "t": "Q4 carries most of a bank's provisioning, so multiplying Q1 by four systematically overstates the year",
+     "correct": true
+    },
+    {
+     "t": "Annualising always understates earnings",
+     "correct": false
+    },
+    {
+     "t": "Q1 is the weakest quarter for Nepali banks",
+     "correct": false
+    },
+    {
+     "t": "Annualised figures exclude interest income",
+     "correct": false
+    }
+   ],
+   "explain": "Nepali fiscal quarters begin in Shrawan, and most of a bank's loan-loss provisioning lands in Q4. Multiplying Q1 profit by four therefore projects a year without the provisioning that will actually arrive, so it overstates. Use trailing twelve months where you can. The difference is not trivial: it can move a P/E from 16.71× to 18.40× — the difference between looking cheaper than the sector median of 14.92× and looking above it.",
+   "hintOnFirstWrong": "Which quarter carries the year's provisioning, and is it included when you multiply Q1 by four?"
+  },
+  {
+   "id": "q-12-2-a",
+   "module": 12,
+   "lesson": "12.2",
+   "tags": [
+    "eps",
+    "bonus"
+   ],
+   "difficulty": 2,
+   "type": "numeric",
+   "stem": "A company reported EPS of Rs. 36.00 last year, then issued a 20% bonus. To compare fairly with this year's reported EPS, what is last year's adjusted EPS, in rupees?",
+   "answer": 30,
+   "tolerance": 0.01,
+   "unit": "Rs.",
+   "explain": "Adjusted EPS = 36.00 ÷ (1 + 0.20) = Rs. 30.00. The share count grew 20%, so historical per-share figures must be divided by 1.20 to sit on the same scale. Without this adjustment a company growing profits 20% a year can appear to have flat or falling earnings — and a screener sorting on EPS growth would rank it near the bottom. Apply the same divisor to prior prices before drawing any level across the bonus date.",
+   "hintOnFirstWrong": "Divide by (1 + the bonus ratio)."
+  },
+  {
+   "id": "q-12-2-b",
+   "module": 12,
+   "lesson": "12.2",
+   "tags": [
+    "bonus",
+    "cgt",
+    "wacc"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "Receiving bonus shares avoids capital gains tax on the value they represent.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False — it defers the tax, it does not avoid it. Bonus shares are not a taxable event when received, but they reduce your WACC across the whole holding. Buy 100 kitta at Rs. 600 and receive a 20% bonus, and you hold 120 kitta at a WACC of Rs. 500. When you eventually sell, the gain is computed against Rs. 500 rather than Rs. 600 — so the tax not paid at issue arrives later, in full.",
+   "hintOnFirstWrong": "What happens to your cost basis when the share count rises but the total cost does not?"
+  },
+  {
+   "id": "q-12-3-a",
+   "module": 12,
+   "lesson": "12.3",
+   "tags": [
+    "pe",
+    "roe",
+    "banks"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What was the median P/E of Nepali commercial banks in Q2 FY 2082/83?",
+   "options": [
+    {
+     "t": "14.92×",
+     "correct": true
+    },
+    {
+     "t": "7.67×",
+     "correct": false
+    },
+    {
+     "t": "343.16×",
+     "correct": false
+    },
+    {
+     "t": "22.95×",
+     "correct": false
+    }
+   ],
+   "explain": "14.92× is the sector median and the reference point you should compare against, rather than a remembered figure from another market. 7.67× was the lowest (NBL, with an ROE of just 6.76% — cheap because it earns poorly) and 343.16× the highest (NICA, whose EPS collapsed to Rs. 1.76). The range itself is the lesson: P/E used carelessly in Nepali banking tells you almost nothing.",
+   "hintOnFirstWrong": "The median sits between the 7.67× low and the 343.16× high — and it is close to the middle of the pack."
+  },
+  {
+   "id": "q-12-3-b",
+   "module": 12,
+   "lesson": "12.3",
+   "tags": [
+    "pe"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Laxmi Sunrise reported EPS of −Rs. 2.04. What should you do with its P/E?",
+   "options": [
+    {
+     "t": "Ignore it entirely — P/E is arithmetically meaningless when EPS is negative",
+     "correct": true
+    },
+    {
+     "t": "Treat it as very cheap",
+     "correct": false
+    },
+    {
+     "t": "Treat it as very expensive",
+     "correct": false
+    },
+    {
+     "t": "Use the absolute value of EPS",
+     "correct": false
+    }
+   ],
+   "explain": "Dividing a positive price by a negative EPS produces a number with no useful interpretation. Ignore it and look instead at P/B, at why earnings are negative, and at whether the loss is one-off or structural. Taking the absolute value would be inventing data. This is one of the specific cases where a screener sorting on P/E will rank a company nonsensically.",
+   "hintOnFirstWrong": "What does price divided by a negative number actually tell you?"
+  },
+  {
+   "id": "q-12-4-a",
+   "module": 12,
+   "lesson": "12.4",
+   "tags": [
+    "roe",
+    "banks"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Bank X has ROA 1.40% and leverage 10×. Bank Y has ROA 0.70% and leverage 20×. Both show ROE of 14%. What is the difference?",
+   "options": [
+    {
+     "t": "Bank Y produces the same ROE from leverage, so a 1% loan-book loss hurts it roughly twice as much",
+     "correct": true
+    },
+    {
+     "t": "There is no difference — identical ROE means identical quality",
+     "correct": false
+    },
+    {
+     "t": "Bank Y is better, because it uses capital more efficiently",
+     "correct": false
+    },
+    {
+     "t": "Bank X is riskier, because higher ROA means riskier lending",
+     "correct": false
+    }
+   ],
+   "explain": "ROE = ROA × leverage, so 1.40% × 10 and 0.70% × 20 both give 14%. But a 1% loss on the loan book takes Bank X's ROE to roughly 4% and Bank Y's to roughly −6%, because Y has half the equity cushion per rupee of assets. Identical headline number, very different fragility — and the ROE column alone will never show it. This is why NRB sets capital adequacy requirements, which cap the leverage term.",
+   "hintOnFirstWrong": "Work out what a 1% loss on assets does to each bank's equity."
+  },
+  {
+   "id": "q-12-4-b",
+   "module": 12,
+   "lesson": "12.4",
+   "tags": [
+    "nim",
+    "banks"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What does net interest margin measure, and why did it compress across Nepali banks in 2021–2023?",
+   "options": [
+    {
+     "t": "The spread between lending and deposit rates — it compressed because NRB tightened and deposit competition raised funding costs",
+     "correct": true
+    },
+    {
+     "t": "The bank's profit margin after tax — it fell because corporate tax rose",
+     "correct": false
+    },
+    {
+     "t": "The proportion of loans that are non-performing — it rose as borrowers defaulted",
+     "correct": false
+    },
+    {
+     "t": "The gap between book value and market price — it narrowed as prices fell",
+     "correct": false
+    }
+   ],
+   "explain": "NIM is the spread a bank earns between what it charges borrowers and pays depositors, as a percentage of earning assets — the core engine of a commercial bank. Through 2021–2023 NRB tightened, the system-wide credit-to-deposit ratio was already stretched, and fixed deposit rates rose above 11%. Funding got more expensive for every bank at once, which is why earnings fell across the sector rather than at one bank.",
+   "hintOnFirstWrong": "A bank borrows from depositors and lends to borrowers. What is the margin between those two?"
+  },
+  {
+   "id": "q-12-5-a",
+   "module": 12,
+   "lesson": "12.5",
+   "tags": [
+    "npl",
+    "banks"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Why does rising NPL predict a bank's future EPS better than its current P/E?",
+   "options": [
+    {
+     "t": "Bad loans require provisions, provisions reduce profit, and that chain takes two to four quarters to reach EPS",
+     "correct": true
+    },
+    {
+     "t": "NPL is audited while EPS is not",
+     "correct": false
+    },
+    {
+     "t": "P/E is not published quarterly",
+     "correct": false
+    },
+    {
+     "t": "NPL directly determines the share price",
+     "correct": false
+    }
+   ],
+   "explain": "P/E tells you what the market thinks about earnings already reported. NPL tells you about earnings not yet reported: loans go bad, the bank provisions against them, provisions reduce profit, and profit reduces EPS — a chain that takes two to four quarters to complete. The first link is published quarterly, on page one, and appears on almost no price-tracking site. That gap is the informational edge available to a careful retail investor.",
+   "hintOnFirstWrong": "Trace the sequence from a loan going bad to EPS falling. How long does it take?"
+  },
+  {
+   "id": "q-12-5-b",
+   "module": 12,
+   "lesson": "12.5",
+   "tags": [
+    "cd_ratio",
+    "banks"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A bank's credit-to-deposit ratio is stretched. What follows?",
+   "options": [
+    {
+     "t": "Little room to lend more without raising deposits, and deposit competition raises funding costs, compressing NIM",
+     "correct": true
+    },
+    {
+     "t": "The bank will report higher EPS, since it has lent more",
+     "correct": false
+    },
+    {
+     "t": "The bank must immediately issue bonus shares",
+     "correct": false
+    },
+    {
+     "t": "NPL will automatically fall",
+     "correct": false
+    }
+   ],
+   "explain": "A stretched CD ratio means the bank has already lent out most of what it has taken in. Growing further requires attracting deposits, which means competing on rate, which raises funding costs and compresses net interest margin. This was the central mechanism of the 2021–2023 cycle: the system-wide CD ratio was already stretched when NRB tightened, and fixed deposit rates climbed above 11%.",
+   "hintOnFirstWrong": "If a bank has lent out nearly all its deposits, what must it do to lend more?"
+  },
+  {
+   "id": "q-12-6-a",
+   "module": 12,
+   "lesson": "12.6",
+   "tags": [
+    "ddm",
+    "bonus"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "A Nepali bank announces a '20% dividend' that is 15% bonus and 5% cash. What goes into a dividend discount model?",
+   "options": [
+    {
+     "t": "Only the 5% cash portion",
+     "correct": true
+    },
+    {
+     "t": "The full 20%",
+     "correct": false
+    },
+    {
+     "t": "Only the 15% bonus portion",
+     "correct": false
+    },
+    {
+     "t": "The average of the two",
+     "correct": false
+    }
+   ],
+   "explain": "A dividend discount model values the cash a shareholder receives, and a bonus share is not cash — it is the same pie in more slices, as Lesson 12.2 established. Using the full 20% overstates intrinsic value by roughly a factor of four and is the most common error people make with this model in Nepal. It is how a valuation model becomes a justification for a decision already made.",
+   "hintOnFirstWrong": "Which part of that dividend can you actually spend?"
+  },
+  {
+   "id": "q-12-6-b",
+   "module": 12,
+   "lesson": "12.6",
+   "tags": [
+    "ddm"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "In V = D₁ ÷ (r − g), your assumptions give g = 14% and r = 12%. What does that tell you?",
+   "options": [
+    {
+     "t": "Your assumptions are wrong — growth cannot exceed the required return in this model",
+     "correct": true
+    },
+    {
+     "t": "The stock is infinitely valuable",
+     "correct": false
+    },
+    {
+     "t": "The stock is worthless",
+     "correct": false
+    },
+    {
+     "t": "You should use the absolute value of (r − g)",
+     "correct": false
+    }
+   ],
+   "explain": "If g ≥ r the denominator is zero or negative and the formula returns nonsense. The correct response is to revisit the assumptions, not the arithmetic: a company cannot grow its dividend faster than your required return forever, since long-run growth cannot exceed the economy's. Mid single digits for g is defensible; 14% is not. And r should reflect equity risk — if a Nepali fixed deposit paid above 8% at times, demanding 12% for equity is reasonable but 12% against 14% growth is not coherent.",
+   "hintOnFirstWrong": "What happens to the fraction when the denominator goes to zero or below?"
+  },
+  {
+   "id": "q-12-6-c",
+   "module": 12,
+   "lesson": "12.6",
+   "tags": [
+    "ddm"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Your DDM sensitivity table gives a range of Rs. 208 to Rs. 432, and the stock trades at Rs. 496. What have you learned?",
+   "options": [
+    {
+     "t": "It sits above every defensible cell — worth investigating why",
+     "correct": true
+    },
+    {
+     "t": "Nothing — the range is too wide to be useful",
+     "correct": false
+    },
+    {
+     "t": "The stock is definitely overvalued and should be sold short",
+     "correct": false
+    },
+    {
+     "t": "The model is broken and should be discarded",
+     "correct": false
+    }
+   ],
+   "explain": "A price outside the entire range of defensible assumptions is a genuine finding — it means either the market knows something your assumptions do not, or the price is stretched. That is worth investigating. A wide range is not a failure of the model; it is the model telling you honestly how little precision is available. And short selling is not possible on NEPSE in any case.",
+   "hintOnFirstWrong": "Inside the range means the model cannot settle it. What does outside the range mean?"
+  },
+  {
+   "id": "q-12-3-c",
+   "module": 12,
+   "lesson": "12.3",
+   "tags": [
+    "pe",
+    "roe"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "A low P/E always means a stock is good value.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. NBL traded at 7.67× — the lowest P/E of the nineteen commercial banks — with an ROE of 6.76%, below what a Nepali fixed deposit paid during the tightening cycle. It is cheap because it earns poorly. Read P/E next to ROE always: the interesting names are those where a reasonable P/E sits beside a strong ROE, such as KBL at 10.59× with 14.56%.",
+   "hintOnFirstWrong": "Cheap relative to what? What is the company actually returning on its capital?"
+  },
+  {
+   "id": "q-13-1-a",
+   "module": 13,
+   "lesson": "13.1",
+   "tags": [
+    "banks",
+    "pe",
+    "roe"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "NMB trades at Rs. 233.00 with EPS Rs. 17.10. CZBIL trades at Rs. 194.60 with EPS Rs. 4.63. For every Rs. 1,000 invested, which buys more annual earnings, and by roughly how much?",
+   "options": [
+    {
+     "t": "NMB — Rs. 73.39 against Rs. 23.80, about three times more",
+     "correct": true
+    },
+    {
+     "t": "CZBIL — it is Rs. 38.40 cheaper per share",
+     "correct": false
+    },
+    {
+     "t": "They are roughly equal once you adjust for face value",
+     "correct": false
+    },
+    {
+     "t": "CZBIL — a higher P/E means more earnings per rupee",
+     "correct": false
+    }
+   ],
+   "explain": "Rs. 1,000 ÷ Rs. 233.00 = 4.29 shares × Rs. 17.10 = Rs. 73.39. Rs. 1,000 ÷ Rs. 194.60 = 5.14 shares × Rs. 4.63 = Rs. 23.80. You are not buying a share, you are buying earnings — and NMB delivers about three times more per rupee, from a business with an ROE of 10.34% against CZBIL's 3.14%. The lower share price belongs to the more expensive company.",
+   "hintOnFirstWrong": "Work out how many shares Rs. 1,000 buys of each, then multiply by that company's EPS."
+  },
+  {
+   "id": "q-13-1-b",
+   "module": 13,
+   "lesson": "13.1",
+   "tags": [
+    "banks",
+    "npl"
+   ],
+   "difficulty": 2,
+   "type": "multi",
+   "stem": "Which three ratios predict a Nepali bank's future EPS better than its current P/E? (Select all that apply)",
+   "options": [
+    {
+     "t": "NPL — non-performing loans as a percentage of total loans",
+     "correct": true
+    },
+    {
+     "t": "CD ratio — credit to deposit",
+     "correct": true
+    },
+    {
+     "t": "Net interest margin",
+     "correct": true
+    },
+    {
+     "t": "Dividend yield",
+     "correct": false
+    }
+   ],
+   "explain": "NPL, CD ratio and NIM all describe earnings that have not been reported yet: rising NPL precedes falling EPS by two to four quarters, a stretched CD ratio raises funding costs, and NIM is the core engine. Dividend yield is derived from earnings already reported and from a board decision, so it lags rather than leads. All three of the correct answers are on page one of the quarterly report and on almost no price-tracking site.",
+   "hintOnFirstWrong": "Three of these describe the bank's lending book and funding. One describes a payout decision."
+  },
+  {
+   "id": "q-13-1-c",
+   "module": 13,
+   "lesson": "13.1",
+   "tags": [
+    "banks",
+    "pe",
+    "roe"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "NICA traded at a P/E of 343.16× with an ROE of 0.88%. The most likely explanation is:",
+   "options": [
+    {
+     "t": "Earnings collapsed and the price has not fully adjusted",
+     "correct": true
+    },
+    {
+     "t": "Investors expect enormous future growth",
+     "correct": false
+    },
+    {
+     "t": "A calculation error",
+     "correct": false
+    },
+    {
+     "t": "It is the highest-quality bank in the sector",
+     "correct": false
+    }
+   ],
+   "explain": "With EPS at Rs. 1.76 and ROE at 0.88%, the denominator collapsed. A 343× P/E on a near-zero ROE describes a bank that has stopped earning, not one priced for growth. Compare NABIL: P/E 18.40×, EPS Rs. 29.69, ROE 14.86%. Always read P/E with ROE beside it, and treat any P/E above roughly 40× in Nepali banking as a signal to open the quarterly report.",
+   "hintOnFirstWrong": "P/E is price over earnings. Which of those two numbers moved to produce 343×?"
+  },
+  {
+   "id": "q-13-2-a",
+   "module": 13,
+   "lesson": "13.2",
+   "tags": [
+    "hydropower"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Two hydropower projects both quote 10 MW installed capacity. Project A has an annual PLF of 62%, Project B 41%. What does that mean?",
+   "options": [
+    {
+     "t": "Project A generates about 51% more electricity, and therefore about 51% more revenue at the same tariff",
+     "correct": true
+    },
+    {
+     "t": "Nothing — installed capacity determines revenue",
+     "correct": false
+    },
+    {
+     "t": "Project B is more efficient, since it uses less water",
+     "correct": false
+    },
+    {
+     "t": "They will earn the same, since the PPA tariff is fixed",
+     "correct": false
+    }
+   ],
+   "explain": "Installed capacity is a licence to generate up to that much; PLF is what actually gets generated. At the same blended PPA tariff of Rs. 8.40/kWh, 62% PLF produces about Rs. 45.62 crore of annual revenue against about Rs. 30.17 crore at 41% — roughly 51% more. The fixed tariff is exactly why PLF drives the difference: price per unit is set, so volume is everything.",
+   "hintOnFirstWrong": "The tariff per unit is fixed. So what determines revenue?"
+  },
+  {
+   "id": "q-13-2-b",
+   "module": 13,
+   "lesson": "13.2",
+   "tags": [
+    "hydropower"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A hydropower company's Q3 results are much weaker than its Q2. What does that most likely tell you?",
+   "options": [
+    {
+     "t": "About the weather — compare year-on-year, not sequentially",
+     "correct": true
+    },
+    {
+     "t": "That the business is deteriorating",
+     "correct": false
+    },
+    {
+     "t": "That the PPA has been renegotiated downward",
+     "correct": false
+    },
+    {
+     "t": "That the company has taken on more debt",
+     "correct": false
+    }
+   ],
+   "explain": "Most Nepali projects are run-of-river and brutally seasonal: monsoon months run near full capacity while the dry season, roughly Mangsir through Baisakh, can drop generation to a fraction of that. Comparing Q3 to Q2 measures rainfall. Compare Q3 to the same quarter last year, every time. This is the single most common misreading of hydropower financials.",
+   "hintOnFirstWrong": "What is different about the river between those two quarters?"
+  },
+  {
+   "id": "q-13-2-c",
+   "module": 13,
+   "lesson": "13.2",
+   "tags": [
+    "hydropower"
+   ],
+   "difficulty": 3,
+   "type": "multi",
+   "stem": "What should you check before capacity when evaluating a hydropower company? (Select all that apply)",
+   "options": [
+    {
+     "t": "Whether a PPA with NEA is signed, and on what terms",
+     "correct": true
+    },
+    {
+     "t": "The project stage — construction, testing, or post-COD",
+     "correct": true
+    },
+    {
+     "t": "Debt-to-equity",
+     "correct": true
+    },
+    {
+     "t": "The number of shares outstanding",
+     "correct": false
+    }
+   ],
+   "explain": "A project without a signed Power Purchase Agreement has no route to revenue whatever its capacity. Stage matters because a pre-COD company has no earnings and any 'EPS' figure is close to meaningless. And these are project-finance businesses — target debt-to-equity below 1.0 for an operating company, because a delayed project accrues interest against no revenue and that gap is what destroys equity holders. Share count matters for per-share figures but says nothing about the project.",
+   "hintOnFirstWrong": "Three of these determine whether the project can earn anything at all."
+  },
+  {
+   "id": "q-13-3-a",
+   "module": 13,
+   "lesson": "13.3",
+   "tags": [
+    "microfinance",
+    "roe"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Microfinance companies often report ROE above 20%, roughly double the commercial banks. What is that compensating for?",
+   "options": [
+    {
+     "t": "Unsecured credit risk, borrower over-indebtedness, and heavy regulatory exposure",
+     "correct": true
+    },
+    {
+     "t": "Nothing — it is simply a better business model",
+     "correct": false
+    },
+    {
+     "t": "The higher capital adequacy requirement NRB imposes on them",
+     "correct": false
+    },
+    {
+     "t": "Their lower liquidity on NEPSE",
+     "correct": false
+    }
+   ],
+   "explain": "The extra return pays for real risks: lending is small, unsecured and dependent on local conditions; over-indebtedness can maintain apparent repayment until it suddenly cannot; and Nepal Rastra Bank has repeatedly intervened with rate caps, spread caps and dividend restrictions. Crucially those risks are correlated across the whole sector, so a single circular can reprice all 50 listed names at once — which means holding several microfinance companies diversifies almost nothing.",
+   "hintOnFirstWrong": "Higher return is usually payment for something. What is being taken on here?"
+  },
+  {
+   "id": "q-13-3-b",
+   "module": 13,
+   "lesson": "13.3",
+   "tags": [
+    "microfinance",
+    "correlation"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "You hold four different microfinance companies. NRB publishes a circular capping the lending spread. What happens?",
+   "options": [
+    {
+     "t": "All four reprice together — the diversification was across tickers, not risk factors",
+     "correct": true
+    },
+    {
+     "t": "Only the most leveraged of the four is affected",
+     "correct": false
+    },
+    {
+     "t": "Nothing, since the circular applies to future lending only",
+     "correct": false
+    },
+    {
+     "t": "The best-managed company gains market share and rises",
+     "correct": false
+    }
+   ],
+   "explain": "The dominant risk in microfinance is regulatory and it applies to every listed name simultaneously. Four companies, one risk factor — the same error as holding five commercial banks, which correlate at about 0.90. And note what makes this sector particularly difficult: there was no company-level warning to read. No NPL trend, no CD ratio deterioration. The risk arrived by circular and hit everyone.",
+   "hintOnFirstWrong": "Does the circular distinguish between the four companies?"
+  },
+  {
+   "id": "q-13-4-a",
+   "module": 13,
+   "lesson": "13.4",
+   "tags": [
+    "insurance"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "A non-life insurer grows premiums 18% but its claims ratio rises from 56.1% to 69.8%. How should you read that?",
+   "options": [
+    {
+     "t": "It wrote much more business and priced it worse — growth without the claims ratio is not information",
+     "correct": true
+    },
+    {
+     "t": "Excellent — 18% premium growth is the headline that matters",
+     "correct": false
+    },
+    {
+     "t": "The claims ratio is irrelevant for non-life insurers",
+     "correct": false
+    },
+    {
+     "t": "Rising claims always indicate fraud",
+     "correct": false
+    }
+   ],
+   "explain": "Non-life insurance has a short tail: claims arrive within the year, so the claims ratio is a fast and honest signal about underwriting quality. Premiums up 18% with claims consuming 69.8% rather than 56.1% means the new business was priced badly, or a flood season arrived. Profit fell despite revenue rising, and the solvency margin narrowed — which constrains further growth. Reading growth without the claims ratio is the same error as reading P/E without ROE.",
+   "hintOnFirstWrong": "Revenue rose. What happened to the cost of the business that revenue represents?"
+  },
+  {
+   "id": "q-13-4-b",
+   "module": 13,
+   "lesson": "13.4",
+   "tags": [
+    "insurance",
+    "correlation"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why can Nepali insurers act as a diversifier against a bank-heavy portfolio?",
+   "options": [
+    {
+     "t": "They hold large fixed-deposit floats, so rising rates help them while compressing bank margins",
+     "correct": true
+    },
+    {
+     "t": "They are not regulated, so policy changes do not affect them",
+     "correct": false
+    },
+    {
+     "t": "They are more liquid than banks on NEPSE",
+     "correct": false
+    },
+    {
+     "t": "Their earnings do not depend on the Nepali economy",
+     "correct": false
+    }
+   ],
+   "explain": "Insurers invest the float — premiums received but not yet paid out — and in Nepal a large share sits in fixed deposits. So rising interest rates lift investment income at the same time as they compress bank net interest margins. That gives insurance a genuinely different driver from banking. They are regulated (by the Nepal Insurance Authority), they are generally less liquid than the large banks, and they are fully exposed to the domestic economy.",
+   "hintOnFirstWrong": "Where do insurers put the premiums they have collected but not yet paid out?"
+  },
+  {
+   "id": "q-13-5-a",
+   "module": 13,
+   "lesson": "13.5",
+   "tags": [
+    "liquidity"
+   ],
+   "difficulty": 3,
+   "type": "numeric",
+   "stem": "A hotel counter averages Rs. 1.4 lakh of daily turnover. At 10% of a day's volume, what is the largest position you could exit in two trading days, in rupees?",
+   "answer": 28000,
+   "tolerance": 500,
+   "unit": "Rs.",
+   "explain": "10% of Rs. 1,40,000 is Rs. 14,000 sellable per day; over two days that is Rs. 28,000. A Rs. 3,00,000 position in the same counter would take about 21 trading days to unwind — during which your own selling pushes the price down. Position size in the thin sectors must be derived from liquidity, not just from your stop. A Rs. 28,000 position you can leave is worth more than a Rs. 3,00,000 one you cannot.",
+   "hintOnFirstWrong": "Work out 10% of one day's turnover, then double it for two days."
+  },
+  {
+   "id": "q-13-5-b",
+   "module": 13,
+   "lesson": "13.5",
+   "tags": [
+    "liquidity"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What advantage do the thin sectors genuinely offer, and to whom?",
+   "options": [
+    {
+     "t": "Less analysis means mispricings can persist — available only to someone whose horizon matches the illiquidity",
+     "correct": true
+    },
+    {
+     "t": "Lower commission rates, because turnover is small",
+     "correct": false
+    },
+    {
+     "t": "More reliable technical patterns, because there is less noise",
+     "correct": false
+    },
+    {
+     "t": "Faster settlement than the large caps",
+     "correct": false
+    }
+   ],
+   "explain": "Thinly-traded companies attract less attention, so genuine mispricings can persist in a way they cannot among the nineteen commercial banks. That is a real edge — but only for someone willing to hold for years without a working exit. Commission is regulated and identical at any turnover, settlement is T+2 for everything, and thin volume makes patterns less reliable, not more.",
+   "hintOnFirstWrong": "What is the one thing that is genuinely different about a company nobody is analysing?"
+  },
+  {
+   "id": "q-14-1-a",
+   "module": 14,
+   "lesson": "14.1",
+   "tags": [
+    "risk"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why should you decide your maximum loss in rupees before entering rather than after?",
+   "options": [
+    {
+     "t": "Once you own it, every decision is contaminated by owning it and by the price you paid",
+     "correct": true
+    },
+    {
+     "t": "Because SEBON requires a documented risk limit",
+     "correct": false
+    },
+    {
+     "t": "Because the broker needs it to place the order",
+     "correct": false
+    },
+    {
+     "t": "Because capital gains tax depends on the stop level",
+     "correct": false
+    }
+   ],
+   "explain": "The moment after you buy is the last moment you think clearly about that position. From then on you own it, you have an entry price to anchor to, and loss aversion pushes you to hold losers — all of which Module 15 covers. No regulator or broker requires a stop, and NEPSE does not even offer a stop-loss order type; this is entirely a discipline you impose on yourself, in advance, in writing.",
+   "hintOnFirstWrong": "What changes about your thinking the instant you own something?"
+  },
+  {
+   "id": "q-14-1-b",
+   "module": 14,
+   "lesson": "14.1",
+   "tags": [
+    "risk"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Ten consecutive losing trades on a Rs. 5,00,000 account. At 2% risk per trade you are down about 18%. At 10% risk, what does the same ten decisions cost?",
+   "options": [
+    {
+     "t": "About 65%, needing roughly a 186% gain to recover",
+     "correct": true
+    },
+    {
+     "t": "About 50%, needing a 50% gain",
+     "correct": false
+    },
+    {
+     "t": "About 100% — the account is wiped out",
+     "correct": false
+    },
+    {
+     "t": "About 20%, since losses compound slowly",
+     "correct": false
+    }
+   ],
+   "explain": "Compounding at 10% per loss leaves 0.9^10 ≈ 34.9% of the account, so down about 65%, requiring roughly +186% to recover. The same ten decisions, the same analysis and the same market produce a survivable 18% at 2% risk and a near-terminal 65% at 10%. Nothing about being right more often would have helped — the only variable that changed was set before entering.",
+   "hintOnFirstWrong": "Each loss is taken on the reduced balance. Compound 0.9 ten times."
+  },
+  {
+   "id": "q-14-2-a",
+   "module": 14,
+   "lesson": "14.2",
+   "tags": [
+    "risk",
+    "sizing"
+   ],
+   "difficulty": 3,
+   "type": "numeric",
+   "stem": "Your account is Rs. 4,00,000. You risk 1.5% per trade. You want to buy at Rs. 320 with a stop at Rs. 296. How many kitta?",
+   "answer": 250,
+   "tolerance": 1,
+   "unit": "kitta",
+   "explain": "Rupee risk = 4,00,000 × 0.015 = Rs. 6,000. Risk per share = 320 − 296 = Rs. 24. Position = 6,000 ÷ 24 = 250 kitta, costing Rs. 80,000 — 20% of the account, but risking only 1.5%. Exposure and risk are different numbers. Size is derived from the stop; it is never chosen first. Round down to a multiple of 10, and remember that about 1% of round-trip friction makes your real loss closer to Rs. 6,800.",
+   "hintOnFirstWrong": "Work out the rupee risk first, then divide by the distance from entry to stop."
+  },
+  {
+   "id": "q-14-2-b",
+   "module": 14,
+   "lesson": "14.2",
+   "tags": [
+    "risk",
+    "sizing"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You move your stop from Rs. 296 to Rs. 308, keeping the same rupee risk. What happens to the position size?",
+   "options": [
+    {
+     "t": "It doubles — a tighter stop permits a larger position for the same risk",
+     "correct": true
+    },
+    {
+     "t": "It halves — a tighter stop means less conviction",
+     "correct": false
+    },
+    {
+     "t": "It stays the same — size is independent of the stop",
+     "correct": false
+    },
+    {
+     "t": "It becomes undefined",
+     "correct": false
+    }
+   ],
+   "explain": "Risk per share falls from Rs. 24 to Rs. 12, so for the same Rs. 6,000 of risk the position rises from 250 to 500 kitta. This inverts the instinct that a large position is inherently risky: a large position with a close stop and a small position with a distant stop can carry identical risk. What must stay constant is the rupee risk, not the position size.",
+   "hintOnFirstWrong": "Rupee risk stays fixed. If risk per share halves, what must happen to the number of shares?"
+  },
+  {
+   "id": "q-14-3-a",
+   "module": 14,
+   "lesson": "14.3",
+   "tags": [
+    "risk"
+   ],
+   "difficulty": 2,
+   "type": "numeric",
+   "stem": "At a 2:1 reward-to-risk ratio, what win rate do you need simply to break even? Answer as a percentage.",
+   "answer": 33.3,
+   "tolerance": 0.5,
+   "unit": "%",
+   "explain": "Break-even win rate = risk ÷ (reward + risk) = 1 ÷ (2 + 1) = 33.3%. So at 2:1, being right 40% of the time is comfortably profitable. At 1:1 you need 50%, and at 3:1 only 25%. This is why win rate on its own tells you nothing about whether a system makes money — only expectancy does, and expectancy needs both the win rate and the reward-to-risk together.",
+   "hintOnFirstWrong": "Divide the risk by the sum of reward and risk."
+  },
+  {
+   "id": "q-14-3-b",
+   "module": 14,
+   "lesson": "14.3",
+   "tags": [
+    "risk",
+    "psychology"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Trader A wins 40% with +2.5R average wins and −1.0R losses. Trader B wins 70% with +0.6R wins and −1.5R losses. Over 100 trades, who makes money?",
+   "options": [
+    {
+     "t": "Trader A, at +40R — Trader B loses 3R despite being right far more often",
+     "correct": true
+    },
+    {
+     "t": "Trader B, because a 70% win rate cannot lose",
+     "correct": false
+    },
+    {
+     "t": "Both, in roughly equal amounts",
+     "correct": false
+    },
+    {
+     "t": "Neither — both are net negative after costs",
+     "correct": false
+    }
+   ],
+   "explain": "Trader A: (0.4 × 2.5) − (0.6 × 1.0) = +0.40R per trade, or +40R over 100. Trader B: (0.7 × 0.6) − (0.3 × 1.5) = −0.03R, or −3R. Trader B wins nearly twice as often and finishes down, because thirty trades wipe out the seventy. The emotional experience of the two systems is the exact opposite of their results, which is why so few people run the profitable one.",
+   "hintOnFirstWrong": "Multiply win rate by average win, then subtract loss rate times average loss, for each."
+  },
+  {
+   "id": "q-14-4-a",
+   "module": 14,
+   "lesson": "14.4",
+   "tags": [
+    "risk"
+   ],
+   "difficulty": 2,
+   "type": "numeric",
+   "stem": "You lose 50% of your capital. What percentage gain is required to get back to where you started?",
+   "answer": 100,
+   "tolerance": 0.5,
+   "unit": "%",
+   "explain": "G = L ÷ (1 − L) = 0.5 ÷ 0.5 = 100%. The curve is gentle to about 25% and then turns vertical: 20% needs 25%, 50% needs 100%, and 90% needs 900%. This is not psychology, it is arithmetic, and everything in risk management is an attempt to keep you on the flat part of it. The NEPSE index fell 49.5% from its 2021 peak and needed +98.1% to recover.",
+   "hintOnFirstWrong": "If Rs. 100 becomes Rs. 50, what percentage gain takes Rs. 50 back to Rs. 100?"
+  },
+  {
+   "id": "q-14-4-b",
+   "module": 14,
+   "lesson": "14.4",
+   "tags": [
+    "risk",
+    "rules-2026"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why does position sizing matter more on NEPSE than on markets with automatic stop-loss orders?",
+   "options": [
+    {
+     "t": "NEPSE has no stop-loss order type, so if a stock gaps or locks at the −15% circuit you may not get out at your price at all",
+     "correct": true
+    },
+    {
+     "t": "Because NEPSE charges higher commission on large positions",
+     "correct": false
+    },
+    {
+     "t": "Because SEBON limits how much any investor may hold in one company",
+     "correct": false
+    },
+    {
+     "t": "Because T+2 settlement delays all exits by two days",
+     "correct": false
+    }
+   ],
+   "explain": "You cannot leave a resting instruction that triggers on a price. Your stop is a decision executed manually inside the 11:00–15:00 session, and a gap or a circuit lock may leave no price at which you can sell that day. Size is the one variable fully under your control, so it carries more of the risk-management load here. Commission is proportional and regulated, and there is no per-investor holding cap.",
+   "hintOnFirstWrong": "What happens to your intended stop if the stock locks at the lower circuit?"
+  },
+  {
+   "id": "q-14-5-a",
+   "module": 14,
+   "lesson": "14.5",
+   "tags": [
+    "risk",
+    "correlation"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "You hold NABIL, NMB, SANIMA, GBIME and PCBL. How many risk factors do you hold?",
+   "options": [
+    {
+     "t": "Essentially one — Nepali commercial banking",
+     "correct": true
+    },
+    {
+     "t": "Five, one per company",
+     "correct": false
+    },
+    {
+     "t": "Two — large caps and mid caps",
+     "correct": false
+    },
+    {
+     "t": "Three, grouped by P/E band",
+     "correct": false
+    }
+   ],
+   "explain": "All five share the same regulator, the same funding market, the same borrowers, the same interest-rate cycle and the same credit-to-deposit constraint. They correlate at roughly 0.86–0.91 and reprice together the morning NRB publishes a circular. Diversification is across risk factors, not tickers — this is one position wearing five names, and different P/E ratios reflect different earnings, not different risk drivers.",
+   "hintOnFirstWrong": "Ask what would have to go wrong for each to fall. Is it the same thing five times?"
+  },
+  {
+   "id": "q-14-5-b",
+   "module": 14,
+   "lesson": "14.5",
+   "tags": [
+    "correlation",
+    "liquidity"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "What is the honest cost of genuinely diversifying a Nepali portfolio away from banking?",
+   "options": [
+    {
+     "t": "The real diversifiers — hydropower and insurance — are less liquid, so you accept wider spreads and longer exits",
+     "correct": true
+    },
+    {
+     "t": "There is no cost; diversification is free",
+     "correct": false
+    },
+    {
+     "t": "Higher commission rates on non-bank sectors",
+     "correct": false
+    },
+    {
+     "t": "Capital gains tax is higher outside the banking sector",
+     "correct": false
+    }
+   ],
+   "explain": "Hydropower correlates at about 0.62 and insurance has a different driver entirely, so both genuinely diversify. Both are also thinner than the large banks, which means wider spreads, longer days-to-exit and less reliable technical analysis. That is a real trade-off — and it is usually still worth paying, provided you size the illiquid positions from their liquidity rather than from conviction. Commission and CGT are identical across sectors.",
+   "hintOnFirstWrong": "Where do the genuine diversifiers sit on NEPSE, and what is true about their turnover?"
+  },
+  {
+   "id": "q-14-5-c",
+   "module": 14,
+   "lesson": "14.5",
+   "tags": [
+    "risk",
+    "diversification"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "Holding twelve companies is necessarily more diversified than holding five.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. Twelve companies across one risk factor is less diversified than five across four. Past about eight to ten genuinely different holdings, additional names add little and cost attention. And most Nepali investors carry a concentration nobody counts: salary, family income, property and portfolio all exposed to the same domestic economy — which makes the portfolio a smaller share of total household risk than it appears, and correlated with the rest of it.",
+   "hintOnFirstWrong": "Count risk factors, not tickers."
+  },
+  {
+   "id": "q-15-1-a",
+   "module": 15,
+   "lesson": "15.1",
+   "tags": [
+    "psychology"
+   ],
+   "difficulty": 2,
+   "type": "order",
+   "stem": "Put the five stages of a bubble in order, as NEPSE ran them between 2019 and 2023.",
+   "items": [
+    "Displacement — NRB cuts rates, liquidity is abundant, MeroShare removes account-opening friction",
+    "Boom — prices rise on real reasons and early buyers make real money",
+    "Euphoria — new participants cannot name what the company does, margin lending expands",
+    "Distribution — the index goes sideways at a high level while individual stocks stop making new highs",
+    "Panic — NRB tightens, FD rates pass 11%, margin unwinds, and the index falls 49.5%"
+   ],
+   "explain": "The sequence repeats because the human process does. What matters most is stage 2: the boom is indistinguishable from a healthy bull market, because it is one. And stage 4 is invisible from inside — distribution feels like consolidation, and everyone is still bullish. At every stage the crowd was rational given what it believed; the failure was the absence of a rule written down before the emotion arrived.",
+   "hintOnFirstWrong": "Something real starts it, and something real ends it. The middle three are about who is buying."
+  },
+  {
+   "id": "q-15-1-b",
+   "module": 15,
+   "lesson": "15.1",
+   "tags": [
+    "psychology",
+    "market-structure"
+   ],
+   "difficulty": 3,
+   "type": "multi",
+   "stem": "Which are the reliable late-cycle warning signs? (Select all that apply)",
+   "options": [
+    {
+     "t": "New Demat account growth accelerating",
+     "correct": true
+    },
+    {
+     "t": "Low-quality names outperforming the leaders",
+     "correct": true
+    },
+    {
+     "t": "Margin lending expanding faster than the index",
+     "correct": true
+    },
+    {
+     "t": "The index making a new all-time high",
+     "correct": false
+    }
+   ],
+   "explain": "Accelerating account growth means the last buyers are arriving; junk outperforming leaders means the good ideas ran out — visible as the headline NEPSE index outrunning the Sensitive Index, which Lesson 2.4 covered; and rising leverage is the fuel that must eventually unwind. A new high is not a warning sign at all: every bull market makes them, and most are followed by more. None of the three tell you the exact top; all of them tell you to reduce position size and stop adding.",
+   "hintOnFirstWrong": "Three of these describe who is buying and with what. One is just a price."
+  },
+  {
+   "id": "q-15-1-c",
+   "module": 15,
+   "lesson": "15.1",
+   "tags": [
+    "market-structure",
+    "psychology"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why is NEPSE structurally more prone to overshooting than markets with two-sided participation?",
+   "options": [
+    {
+     "t": "There is no short selling, so scepticism can only be expressed by staying out",
+     "correct": true
+    },
+    {
+     "t": "The ±15% circuit amplifies moves",
+     "correct": false
+    },
+    {
+     "t": "T+2 settlement forces investors to hold longer",
+     "correct": false
+    },
+    {
+     "t": "Because SEBON restricts institutional participation",
+     "correct": false
+    }
+   ],
+   "explain": "With no short selling, there is no mechanism for sceptics to express a view and dampen a rise — sentiment can only be expressed by buying or by staying out. Combined with a heavy retail base and 91 thinly-traded hydropower counters, that makes overshoot more likely in both directions. The circuit limits daily movement rather than amplifying it, and T+2 restrains churn rather than encouraging overshoot.",
+   "hintOnFirstWrong": "How does someone who thinks a stock is overpriced express that view on NEPSE?"
+  },
+  {
+   "id": "q-15-2-a",
+   "module": 15,
+   "lesson": "15.2",
+   "tags": [
+    "psychology"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What single question cuts through the 'long-term investor' rationalisation?",
+   "options": [
+    {
+     "t": "If I did not already own this, would I buy it today at this price?",
+     "correct": true
+    },
+    {
+     "t": "How far is it from its all-time high?",
+     "correct": false
+    },
+    {
+     "t": "How long have I held it?",
+     "correct": false
+    },
+    {
+     "t": "What did I pay for it?",
+     "correct": false
+    }
+   ],
+   "explain": "That question removes your history from the decision, which is exactly what the rationalisation depends on. If the answer is yes, holding is a real decision; if no, you are not holding — you are avoiding the act of selling. The other three questions all reference your past or the stock's, and the market knows nothing about either. Being a long-term investor is legitimate when chosen in advance, with a horizon and a rationale; becoming one after a 40% fall is a different thing wearing the same words.",
+   "hintOnFirstWrong": "Which question would you ask about a stock you had never owned?"
+  },
+  {
+   "id": "q-15-2-b",
+   "module": 15,
+   "lesson": "15.2",
+   "tags": [
+    "psychology",
+    "risk"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "You average down three times on a falling position. It began as 20% of your account. What is the usual outcome?",
+   "options": [
+    {
+     "t": "A position far past your size limit, with no stop, decided in pieces rather than as one choice",
+     "correct": true
+    },
+    {
+     "t": "A lower average cost with unchanged risk",
+     "correct": false
+    },
+    {
+     "t": "A guaranteed recovery, since the break-even price is now lower",
+     "correct": false
+    },
+    {
+     "t": "Reduced exposure, since you bought at cheaper prices",
+     "correct": false
+    }
+   ],
+   "explain": "Averaging down lowers your average cost and raises your total exposure to a position moving against you — the opposite of what your risk rules said. Each purchase feels reasonable in isolation, which is the mechanism: nobody decides to put 57% of an account into one counter, but three separate decisions can arrive there. The break-even price falls but the amount at stake rises, so the rupee loss required to reach it grows.",
+   "hintOnFirstWrong": "Average cost went down. What happened to the total amount committed?"
+  },
+  {
+   "id": "q-15-3-a",
+   "module": 15,
+   "lesson": "15.3",
+   "tags": [
+    "psychology"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Two people own the same share at Rs. 300 today. One paid Rs. 180, the other Rs. 420. What is the correct decision input?",
+   "options": [
+    {
+     "t": "The company's current numbers — the entry price is relevant only to tax and sizing",
+     "correct": true
+    },
+    {
+     "t": "Each person's entry price, since it determines their profit",
+     "correct": false
+    },
+    {
+     "t": "The higher of the two entry prices, as a fair reference",
+     "correct": false
+    },
+    {
+     "t": "The Rs. 100 face value",
+     "correct": false
+    }
+   ],
+   "explain": "Both hold identical assets with identical futures. Your entry price is a fact about your history, not about the company, and the market has no idea what it is. It matters for exactly two things: computing capital gains tax, and knowing your position size. Face value is an accounting convention that says nothing about value at all — it is simply the second anchor Nepali investors carry.",
+   "hintOnFirstWrong": "Does the company behave differently for one owner than the other?"
+  },
+  {
+   "id": "q-15-3-b",
+   "module": 15,
+   "lesson": "15.3",
+   "tags": [
+    "psychology"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Knowing about anchoring does not stop you feeling it. What actually works?",
+   "options": [
+    {
+     "t": "Procedure — write the exit before entry, and evaluate the company before looking at what you paid",
+     "correct": true
+    },
+    {
+     "t": "Willpower and self-awareness",
+     "correct": false
+    },
+    {
+     "t": "Checking the price more frequently",
+     "correct": false
+    },
+    {
+     "t": "Setting a mental target and remembering it",
+     "correct": false
+    }
+   ],
+   "explain": "Anchoring is not a knowledge problem — the feeling is produced before the reasoning arrives, so understanding it completely does not remove the pull. What works is procedural: decide the exit in advance, review positions on their current merits, and look at your entry price only afterwards and only for tax and sizing. Checking more often increases exposure to the anchor, and a mental target is precisely the kind of commitment that gets renegotiated when it becomes inconvenient.",
+   "hintOnFirstWrong": "If the feeling arrives before the reasoning, what kind of solution can help?"
+  },
+  {
+   "id": "q-15-4-a",
+   "module": 15,
+   "lesson": "15.4",
+   "tags": [
+    "scams",
+    "psychology"
+   ],
+   "difficulty": 2,
+   "type": "multi",
+   "stem": "Which of these are warning signs of a coordinated pump? (Select all that apply)",
+   "options": [
+    {
+     "t": "The tip names a target price but no scenario in which it fails",
+     "correct": true
+    },
+    {
+     "t": "Volume in a thin counter rises sharply days before any news",
+     "correct": true
+    },
+    {
+     "t": "The message urges you to buy before it is too late",
+     "correct": true
+    },
+    {
+     "t": "The company published its quarterly results on its own website",
+     "correct": false
+    }
+   ],
+   "explain": "The first three are the standard structure: quiet accumulation, a seeded tip with urgency and no downside case, then retail buying that organisers distribute into. Published quarterly results are ordinary, mandatory disclosure — the opposite of a warning sign. SEBON prohibits market manipulation; if you see this pattern the correct response is to stay out and report it, not to try to time an exit ahead of organisers who are already ahead of you.",
+   "hintOnFirstWrong": "Three of these describe how a tip arrives. One describes a company obeying disclosure rules."
+  },
+  {
+   "id": "q-15-4-b",
+   "module": 15,
+   "lesson": "15.4",
+   "tags": [
+    "scams",
+    "liquidity"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Why do pump organisers deliberately choose thin counters?",
+   "options": [
+    {
+     "t": "Little buying moves the price a lot — and the same thin liquidity traps retail buyers when they try to leave",
+     "correct": true
+    },
+    {
+     "t": "Thin counters have lower commission rates",
+     "correct": false
+    },
+    {
+     "t": "SEBON does not monitor thin counters",
+     "correct": false
+    },
+    {
+     "t": "Thin counters are exempt from the circuit limit",
+     "correct": false
+    }
+   ],
+   "explain": "On a counter trading Rs. 2 lakh a day, modest buying moves the price sharply — which makes the accumulation cheap and the apparent confirmation dramatic. The same thinness is what traps buyers in the final stage: exiting a Rs. 2,00,000 position at 10% of a Rs. 3 lakh daily turnover takes roughly seven trading days, with your own selling pushing the price lower. It was never an accident that a thin counter was chosen. Commission, monitoring and circuit limits are identical everywhere.",
+   "hintOnFirstWrong": "Think about both ends: what does thin liquidity do when they buy, and when you try to sell?"
+  },
+  {
+   "id": "q-16-1-a",
+   "module": 16,
+   "lesson": "16.1",
+   "tags": [
+    "system"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "What makes a trading rule testable?",
+   "options": [
+    {
+     "t": "Two people reading it would take the same action on the same chart",
+     "correct": true
+    },
+    {
+     "t": "It has produced a profit over the last six months",
+     "correct": false
+    },
+    {
+     "t": "It is based on a well-known indicator",
+     "correct": false
+    },
+    {
+     "t": "It can be written in one sentence",
+     "correct": false
+    }
+   ],
+   "explain": "That is the whole standard. 'Buy good stocks when they are cheap' fails it — everyone agrees and no two people would buy the same thing. 'Buy when the 20-day SMA crosses above the 50-day and 20-day average turnover exceeds Rs. 50 lakh' passes, because both conditions are checkable in a minute by anyone. Past profit does not make a rule testable, a famous indicator does not make it specific, and brevity is not precision.",
+   "hintOnFirstWrong": "Hand your rule to a stranger. Would they buy the same thing you would?"
+  },
+  {
+   "id": "q-16-1-b",
+   "module": 16,
+   "lesson": "16.1",
+   "tags": [
+    "system",
+    "liquidity"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Which rule should come first on NEPSE, before any entry criterion?",
+   "options": [
+    {
+     "t": "The liquidity filter — a floor on 20-day average turnover",
+     "correct": true
+    },
+    {
+     "t": "The entry signal",
+     "correct": false
+    },
+    {
+     "t": "The profit target",
+     "correct": false
+    },
+    {
+     "t": "The indicator set",
+     "correct": false
+    }
+   ],
+   "explain": "Apply the liquidity filter before you look at a chart, and a large share of the 271 listed companies disappears from your universe — which is the correct outcome, since they are not tradeable at retail size with a stop. Lesson 11.5 showed a liquidity filter outperforming six indicators. Entry rules get all the attention and matter least; the liquidity filter, the stop and the size do most of the work.",
+   "hintOnFirstWrong": "Which rule removes the most bad trades before you have even looked at a price?"
+  },
+  {
+   "id": "q-16-2-a",
+   "module": 16,
+   "lesson": "16.2",
+   "tags": [
+    "system"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Which journal column does the most work, and why?",
+   "options": [
+    {
+     "t": "The one-line thesis — writing it before entry prevents some trades from happening at all",
+     "correct": true
+    },
+    {
+     "t": "The exit price, since it determines profit",
+     "correct": false
+    },
+    {
+     "t": "The date, since it shows trading frequency",
+     "correct": false
+    },
+    {
+     "t": "The symbol, since it reveals concentration",
+     "correct": false
+    }
+   ],
+   "explain": "Forcing yourself to state the reason in one sentence before entering exposes the trades that have no reason — a thesis reading 'it's been going up' tends not to survive being written down. That preventive effect is most of the journal's value, more than the review it enables. The other columns are all genuinely useful; date shows frequency, symbol reveals concentration, and exit in R lets you compute expectancy.",
+   "hintOnFirstWrong": "Which column is filled in before the trade rather than after?"
+  },
+  {
+   "id": "q-16-2-b",
+   "module": 16,
+   "lesson": "16.2",
+   "tags": [
+    "system",
+    "risk"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why should outcomes be recorded in R rather than in rupees?",
+   "options": [
+    {
+     "t": "R makes trades comparable across different position sizes and lets you compute expectancy directly",
+     "correct": true
+    },
+    {
+     "t": "Because rupee amounts are affected by capital gains tax",
+     "correct": false
+    },
+    {
+     "t": "Because R is required for tax filing",
+     "correct": false
+    },
+    {
+     "t": "Because rupee figures are harder to remember",
+     "correct": false
+    }
+   ],
+   "explain": "An R-multiple expresses each outcome as a multiple of what was risked, so a Rs. 4,000 gain on a Rs. 2,000 risk and a Rs. 20,000 gain on a Rs. 10,000 risk are both +2R and directly comparable. That is what lets you evaluate a system rather than a story, and compute expectancy across trades of different sizes. Nothing about R relates to tax filing, which uses actual rupee gains and your WACC.",
+   "hintOnFirstWrong": "How would you compare a small trade and a large one fairly?"
+  },
+  {
+   "id": "q-16-3-a",
+   "module": 16,
+   "lesson": "16.3",
+   "tags": [
+    "system"
+   ],
+   "difficulty": 3,
+   "type": "mcq",
+   "stem": "Your monthly review shows +0.31R expectancy but two rule-breaks out of nine trades, one losing −2.2R. What should you change?",
+   "options": [
+    {
+     "t": "Nothing about the system — fix the execution",
+     "correct": true
+    },
+    {
+     "t": "The entry rules, since the system clearly is not working",
+     "correct": false
+    },
+    {
+     "t": "The position sizing, to reduce the largest loss",
+     "correct": false
+    },
+    {
+     "t": "Everything — start again with a different approach",
+     "correct": false
+    }
+   ],
+   "explain": "A system producing +0.31R expectancy is working. The −2.2R loss exceeded the maximum a −1R stop should allow, which means a stop was moved or skipped — an execution failure, not a design failure. Separating 'the system lost money' from 'I did not follow the system' is the point of the review, because they have opposite remedies. Most people conclude the first when the truth is the second, and end up rewriting a system that was fine.",
+   "hintOnFirstWrong": "Was the loss larger than the system permitted, or was the system's design wrong?"
+  },
+  {
+   "id": "q-16-3-b",
+   "module": 16,
+   "lesson": "16.3",
+   "tags": [
+    "system",
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Why must a monthly review include costs and tax in the R calculation?",
+   "options": [
+    {
+     "t": "Otherwise the review is systematically optimistic — a +0.15R gross system can be net zero after 1% friction and 10% short-term CGT",
+     "correct": true
+    },
+    {
+     "t": "Because SEBON requires cost-adjusted performance reporting",
+     "correct": false
+    },
+    {
+     "t": "Because costs vary between brokers",
+     "correct": false
+    },
+    {
+     "t": "Because R-multiples cannot be computed without tax figures",
+     "correct": false
+    }
+   ],
+   "explain": "Every round trip costs roughly 1% in commission, SEBON fee and two DP charges, and short-term gains have been taxed at 10% since 17 July 2026. A system showing a small gross edge may be net negative — which is exactly the finding a review exists to surface. No regulator requires this of a private investor; commission is regulated and identical across brokers; and R is computable gross or net, which is precisely why you must be explicit about which you are using.",
+   "hintOnFirstWrong": "What has been deducted before the money reaches you, and is it in your R figures?"
+  },
+  {
+   "id": "q-16-3-c",
+   "module": 16,
+   "lesson": "16.3",
+   "tags": [
+    "system"
+   ],
+   "difficulty": 2,
+   "type": "truefalse",
+   "stem": "Twenty trades is enough to judge whether a system works.",
+   "options": [
+    {
+     "t": "True",
+     "correct": false
+    },
+    {
+     "t": "False",
+     "correct": true
+    }
+   ],
+   "explain": "False. At a 50% win rate, runs of five consecutive losses are entirely ordinary, and twenty trades can easily produce a misleading result in either direction. Look for patterns across months rather than verdicts within one. And when you do change something, change one thing at a time — change two rules simultaneously and you cannot attribute the result to either.",
+   "hintOnFirstWrong": "How unusual is a run of five losses at a 50% win rate?"
+  },
+  {
+   "id": "q-16-4-a",
+   "module": 16,
+   "lesson": "16.4",
+   "tags": [
+    "system"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "In the 90-day plan, what defines success at day 90?",
+   "options": [
+    {
+     "t": "A complete journal, zero rule-breaks, and no position that risked more than 2%",
+     "correct": true
+    },
+    {
+     "t": "A profit on the account",
+     "correct": false
+    },
+    {
+     "t": "At least ten completed trades",
+     "correct": false
+    },
+    {
+     "t": "Beating the NEPSE index over the period",
+     "correct": false
+    }
+   ],
+   "explain": "Ninety days is far too short a sample for profit to mean anything either way — Lesson 16.3 made the point that even twenty trades cannot settle it. What ninety days can establish is whether you can follow a process: a complete journal, no rule-breaks, and disciplined sizing. Get those right and returns become a question of time and sample size; get them wrong and no amount of analysis rescues it. More trades is the opposite of the goal — the plan caps you at three.",
+   "hintOnFirstWrong": "What can ninety days actually prove, and what can it not?"
+  },
+  {
+   "id": "q-16-4-b",
+   "module": 16,
+   "lesson": "16.4",
+   "tags": [
+    "system",
+    "costs"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "The plan requires real positions of Rs. 25,000 or more. Why that floor?",
+   "options": [
+    {
+     "t": "Below it, flat charges dominate — a Rs. 1,000 trade needs a 5.77% move just to break even",
+     "correct": true
+    },
+    {
+     "t": "Because brokers refuse orders below Rs. 25,000",
+     "correct": false
+    },
+    {
+     "t": "Because the minimum lot is 10 kitta",
+     "correct": false
+    },
+    {
+     "t": "Because capital gains tax only applies above Rs. 25,000",
+     "correct": false
+    }
+   ],
+   "explain": "The Rs. 25 DP charge is flat and you pay it on both legs, so it is 2.5% of a Rs. 1,000 trade and 0.01% of a Rs. 2,30,000 one. Keeping positions at roughly Rs. 25,000 or above holds round-trip friction under about 1%. No broker imposes such a minimum, the 10-kitta lot is unrelated, and CGT applies to any gain regardless of size.",
+   "hintOnFirstWrong": "Which of the three charges does not scale with trade size, and how many times do you pay it?"
+  },
+  {
+   "id": "q-16-4-c",
+   "module": 16,
+   "lesson": "16.4",
+   "tags": [
+    "system"
+   ],
+   "difficulty": 2,
+   "type": "mcq",
+   "stem": "Two learners are both down 2.1% after 90 days. Learner A took 3 documented trades with zero rule-breaks and paid Rs. 2,240 in costs. Learner B took 11 trades, documented 4, broke rules 5 times, and paid Rs. 9,870. What is the real difference?",
+   "options": [
+    {
+     "t": "Learner A has data to learn from; Learner B paid four times as much to find out nothing",
+     "correct": true
+    },
+    {
+     "t": "No difference — the returns are identical",
+     "correct": false
+    },
+    {
+     "t": "Learner B gained more experience by taking more trades",
+     "correct": false
+    },
+    {
+     "t": "Learner A was simply luckier",
+     "correct": false
+    }
+   ],
+   "explain": "At ninety days a 2.1% loss is noise and says nothing about either approach. Learner A can compute an expectancy, see which rules helped, and carry that forward. Learner B cannot tell whether their system works because they did not run one — and will be in the same position in another ninety days, having paid another Rs. 10,000 to learn nothing. Volume of trades is not experience if none of it is recorded. The account balance is the least informative number on the table.",
+   "hintOnFirstWrong": "Which of the two can answer the question 'does my system work?' at the end of the period?"
   }
  ]
 }
