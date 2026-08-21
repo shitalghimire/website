@@ -24,6 +24,29 @@
     strip.innerHTML = run;
   }
 
+  /* ---------- skills grid ---------- */
+  /* stretch the last card across whatever cell the row has left over,
+     so an odd card count never leaves an empty square in the grid */
+  var skills = $('.skills');
+  if (skills) {
+    var fitSkills = function () {
+      var cards = $$('.skill', skills);
+      if (!cards.length) return;
+      cards.forEach(function (c) { c.style.gridColumn = ''; });
+      var cols = window.getComputedStyle(skills).gridTemplateColumns.split(' ').length;
+      var rem = cards.length % cols;
+      if (cols > 1 && rem !== 0) {
+        cards[cards.length - 1].style.gridColumn = 'span ' + (cols - rem + 1);
+      }
+    };
+    fitSkills();
+    var szf;
+    window.addEventListener('resize', function () {
+      clearTimeout(szf);
+      szf = setTimeout(fitSkills, 150);
+    });
+  }
+
   /* ---------- top bar state ---------- */
   var topbar = $('#topbar');
   var onScrollBar = function () {
