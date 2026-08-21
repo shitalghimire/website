@@ -1,0 +1,794 @@
+{
+  "module": 7,
+  "lessons": {
+    "7.1": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Four names dominate this field, and the names are the least useful thing about them. What actually separates the methods is a single question: does the technique add delay to a programme, take delay away from one, or simply look at two programmes and reason about the difference?"
+        },
+        {
+          "type": "core",
+          "md": "### Three general approaches\n\n**Additive.** Insert delay events into a programme and recalculate. The cause is known; the effect is projected. Mostly applied prospectively, during the works, when the full extent of a delay is not yet known.\n\n**Subtractive.** Remove delay events from an [[asbuilt|as-built programme]] and recalculate to find when completion would otherwise have occurred. \"But for these events…\"\n\n**Analytical.** Do not calculate at all. Compare programmes and **deduce** the delay from observation, variance and the factual record. Nothing is impacted, nothing is collapsed.\n\n### Four primary methods, and their derivatives\n\n| Approach | Primary method | Common derivatives |\n|---|---|---|\n| Additive | Impacted as-planned | Chronological addition, one at a time · gross addition, all at once |\n| Additive | Time impact analysis | Chronological event analysis · watershed · windows · contemporaneous impact |\n| Subtractive | Collapsed as-built | Chronological extraction, one at a time · gross extraction · windows |\n| Analytical | As-planned vs as-built | Contemporaneous float mapping · as-built critical path deduction · total time claim · as-planned vs contemporaneous updates |\n\n### \"Windows\" is not a technique\n\nThis is the most common confusion in the field, and it is worth stating flatly:\n\n> The term *windows* simply refers to the period of time being analysed.\n\nAny of the four primary methods can be run in windows. Windows can be regular — weekly, monthly, tied to the update cycle — or irregular, set by the completion of significant milestones. When key milestones set the boundaries the same approach is sometimes called **[[watershed|watershed analysis]]**.\n\nA watershed usually signals that the *nature* of the project has changed: delays during design need a different form of analysis to delays during construction, and delays during commissioning are different again. The transition between them is a watershed.\n\n### Prospective and retrospective\n\nCutting across all of this:\n\n- **Prospective** — carried out during the works, forward-looking, predictive. You know the cause; you estimate the effect.\n- **Retrospective** — carried out afterwards, forensic, when the impacts are known.\n\nSome methods can be run either way. The [[scl|SCL Protocol]] addresses both. AACE RP-29R-03 deals only with retrospective analysis.\n\n### Why two experts disagree\n\nAll of the commonly applied techniques fit into the four categories above. Each has secondary derivatives and many variations in execution — which is why two opposing experts can apply a technique with the same name and produce widely varying, inconsistent conclusions **without either of them making an arithmetical error**.\n\nWhichever process is used, it should be readily understood by any construction or legal professional, **auditable**, **capable of being recreated from the same factual matrix**, and with every assumption transparent and documented at every stage.\n\nThose underlying assumptions are often not documented in a contractor's submission, and are only uncovered through painstaking analysis by the opposing expert. That is the reason delay analysis has a reputation as a dark art — not the mathematics, which is trivial."
+        },
+        {
+          "type": "figure",
+          "widget": "taxonomy",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Precision is not accuracy",
+          "md": "Some specialist analysts apply a given technique uncompromisingly, producing very precise — and sometimes highly inaccurate — conclusions.\n\nAdding science and precision to a project where such precision did not exist during the works requires reliance on theoretical calculation. Those calculations must align with common sense, and the conclusions must be consistent with the facts and the contemporaneous documents.\n\nA report that goes wide and deep, with a large team of technicians and commensurate expense, is sometimes necessary. It should be avoided when it is disproportionate to the complexity or size of the dispute — and a tribunal that cannot follow it will not be persuaded by it."
+        },
+        {
+          "type": "worked",
+          "md": "The same delay event, through all four:",
+          "table": {
+            "head": [
+              "Method",
+              "Base programme",
+              "Operation",
+              "Question answered"
+            ],
+            "rows": [
+              [
+                "Impacted as-planned",
+                "The contract baseline, frozen",
+                "Insert the event, recalculate",
+                "What WOULD the delay have been, if all else went to plan?"
+              ],
+              [
+                "Time impact analysis",
+                "The update current at the time of each event",
+                "Insert the event, recalculate, move to the next window",
+                "What extension of time was due AT THE TIME?"
+              ],
+              [
+                "Collapsed as-built",
+                "The as-built programme",
+                "Remove the event, recalculate",
+                "When would it have finished BUT FOR this event?"
+              ],
+              [
+                "As-planned vs as-built",
+                "Both, side by side",
+                "Deduce the as-built critical path; measure variance",
+                "What delay ACTUALLY happened, and what caused it?"
+              ]
+            ]
+          },
+          "after": "Four different questions. Note that only the last one asks what actually happened — the other three all model something that did not occur. That is not a criticism; a tribunal deciding entitlement at the time of an event genuinely needs the second question answered. But it explains why prospective methods struggle to price prolongation: you cannot pay somebody for a period that never existed."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-7-1-a",
+            "q-7-1-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Three approaches — additive, subtractive, analytical — and four primary methods that everything else derives from.",
+            "'Windows' is not a technique. It is the period being analysed, and any method can be run in windows.",
+            "Watershed analysis sets windows by milestones rather than the calendar, usually where the nature of the work changes.",
+            "The name matters far less than whether the process is transparent, auditable, and reproducible from the same facts."
+          ]
+        }
+      ]
+    },
+    "7.2": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "The simplest CPM-based method there is: take the baseline, insert the employer's delays, and see where completion lands. It is widely criticised, widely misused, and still the most common first port of call — because it needs almost nothing and takes almost no time."
+        },
+        {
+          "type": "core",
+          "md": "### What it is\n\n**[[iap|Impacted as-planned]]** — additive, single base. AACE calls it *Modelled / Additive / Single Base (MIP 3.6)*. The [[scl|SCL Protocol]] says:\n\n> Impacted as-planned is based on the effect of employer risk events on the planned programme of work. This is thought to be the simplest form of delay analysis using CPM techniques since it involves the least amount of variables. The usefulness of the impacted as-planned technique is restricted due to the theoretical nature of the projected delays that are determined using this technique and uncertainty as to the feasibility of the contractor's as-planned programme.\n\nThe Protocol envisaged it as demonstrating **[[eot|extension of time]] entitlement only** — not [[prolongation|prolongation]] costs — and not as a means of identifying concurrency.\n\n### What you need\n\nOne programme: a [[baseline|baseline]] that is contractually compliant and represents the contractor's true intentions before any work started. Nothing else. No updates, no as-built, no progress records.\n\nIf the baseline is not compliant or contains identifiable logic or duration errors, it may need modifying first. Given the hypothetical nature of the method that is undesirable and adds subjectivity — and a reconstructed baseline should be avoided altogether unless the approach and building blocks are agreed with the other party.\n\n### Inserting the events\n\nEach event is added as a discrete activity or [[fragnet|fragnet]] with an estimated duration, logical predecessors and logical successors. Some analysts insert activities with **start constraints** to avoid needing a predecessor. That is appropriate occasionally, and should be avoided where a natural construction predecessor exists in the baseline.\n\nMethods of insertion include: delaying the start or finish of an existing or inserted activity with a constraint · increasing the duration of an existing activity · increasing or decreasing weekly working hours · inserting a new activity or fragnet linked to existing logic · adding or deleting logical links to reflect changed dependencies.\n\nWhichever is used must be **recorded as part of a transparent and auditable process**.\n\n### One at a time, or all at once\n\n- Concerned with the **total** impact → insert them all at once (gross insertion).\n- Concerned with the **individual additive** impact of each → insert one at a time, chronologically (stepped insertion).\n\nStepped insertion identifies which events contributed to critical delay and by how many days, which is almost always what you want.\n\n### Approximate concurrency\n\nThe method cannot demonstrate true concurrency — that requires as-built records. But AACE recognises it can identify **approximate concurrency**, two ways.\n\n**Combined chronological IAP.** All events, both employer and contractor, inserted in the order they arose. Delay from each is banked to the responsible party. The sum of employer delays plus contractor delays will exceed the pure employer-only run, and the difference is a measure of approximate concurrency.\n\n**Non-integrated IAP.** Two isolated models — one with only employer events, one with only contractor events.\n\n- Employer model projects more delay than the contractor model → the contractor may be entitled to prolongation to the extent of the excess.\n- Employer model projects less than the contractor model → no prolongation. The contractor is entitled to a time extension equal to the employer model's delay.\n\n### When it is appropriate\n\nOnly where:\n\n- there is no [[asbuilt|as-built programme]], **and**\n- there are insufficient progress records to create one, **and**\n- both parties agree to use the procedure.\n\nAnd it works only if you accept three assumptions: the as-planned logic was accurate, the as-planned durations were accurate, and the contractor followed the as-planned logic. In practice none of those is ever fully true, which is why the delay that \"should have been experienced\" is rarely the delay that was."
+        },
+        {
+          "type": "figure",
+          "widget": "impacted-as-planned",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Why the answer will not match reality",
+          "md": "The difference between the impacted completion date and the actual contract duration achieved is explained by several things at once:\n\n- deviations from the as-planned **sequence**\n- deviations from the as-planned **durations**\n- additional delays **not considered** in the model\n- **mitigation** achieved along the critical path\n\nAll four are invisible to the method, because the baseline is frozen. That is the honest limitation, and stating it up front is far better than having it put to you."
+        },
+        {
+          "type": "worked",
+          "md": "A combined chronological IAP, planned completion 1 January 2009:",
+          "table": {
+            "head": [
+              "Event",
+              "Type",
+              "Impacted completion",
+              "EDE cumulative",
+              "CDE cumulative"
+            ],
+            "n": [
+              3,
+              4
+            ],
+            "rows": [
+              [
+                "Baseline",
+                "—",
+                "1-Jan-09",
+                "0",
+                "0"
+              ],
+              [
+                "001",
+                "EDE",
+                "2-Jan-09",
+                "1",
+                "0"
+              ],
+              [
+                "002",
+                "EDE",
+                "5-Jan-09",
+                "4",
+                "0"
+              ],
+              [
+                "003",
+                "CDE",
+                "8-Jan-09",
+                "4",
+                "3"
+              ],
+              [
+                "004",
+                "EDE",
+                "10-Jan-09",
+                "6",
+                "3"
+              ],
+              [
+                "005",
+                "CDE",
+                "15-Jan-09",
+                "6",
+                "8"
+              ],
+              [
+                "006",
+                "EDE",
+                "15-Jan-09",
+                "6",
+                "8"
+              ],
+              [
+                "007",
+                "EDE",
+                "18-Jan-09",
+                "9",
+                "8"
+              ],
+              [
+                "=",
+                "Totals",
+                "18-Jan-09",
+                "9",
+                "8"
+              ]
+            ],
+            "caption": "Seventeen days of delay in total: nine assessed to the employer, eight to the contractor."
+          },
+          "after": "Two things to notice.\n\nEvent 006 moved the completion date by **zero days**. It was an employer risk event, it happened, and on this model it contributed nothing — because by the time it arrived the critical path had moved elsewhere.\n\nAnd these are estimates of approximate liability. The actual delay experienced may not be seventeen days at all. If a pre-agreed daily rate for prolongation exists, this model can support a commercial settlement — but it cannot tell you *when* the cost was incurred, which is what a tribunal awarding prolongation needs to know."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-7-2-a",
+            "q-7-2-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Additive, single base, frozen baseline. The simplest CPM method and the most theoretical.",
+            "Insert events chronologically, one at a time, to see which contributed critical delay and by how much.",
+            "It cannot show true concurrency. A non-integrated model — employer-only against contractor-only — gives approximate concurrency.",
+            "Appropriate only where there is no as-built, no records to build one, and both parties agree to it."
+          ]
+        }
+      ]
+    },
+    "7.3": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Take the programme that was actually in use when the event happened. Bring it up to date with real progress. Then insert the delay. Do that for every event, in order, and you have the SCL Protocol's preferred technique — and about fifteen assumptions the other side will want to talk about."
+        },
+        {
+          "type": "core",
+          "md": "### What changes from impacted as-planned\n\nOne thing: **multiple bases** instead of one. Each base programme is a CPM schedule representing the contractor's intentions for completing all remaining work, **before** the delay event is inserted.\n\nThe [[scl|SCL Protocol]]:\n\n> Time impact analysis is based on the effect of delay events on the contractor's intentions for the future conduct of the work in the light of progress actually achieved at the time of the delay event… It is also the best technique for determining the amount of extension of time that a contractor should have been granted at the time an employer risk event occurred. In this situation, the amount of extension of time may not precisely reflect the actual delay suffered by the contractor. That does not mean that time impact analysis generates hypothetical results — it generates results showing entitlement.\n\nThat last sentence is doing a great deal of work, and it is where most of the criticism lands.\n\n### The procedure\n\n1. List every identified delay event with duration, predecessors, successors and commencement date.\n2. Assess liability for each.\n3. Obtain progress data for all activities immediately prior to each event's commencement.\n4. Create a series of base programmes, either by relying on the contemporaneous update closest to each date (a *contemporaneous update TIA*) or by updating the closest programme to the point immediately before each event (a *chronological event TIA*, giving one base per event).\n5. Tabulate the data dates and projected completion of each base **before** impacting. Copy, rename and save each.\n6. Convert each event to a [[fragnet|fragnet]] with durations, predecessors and successors. Retrospectively you may use **as-built durations** — which is preferred, and reduces the theoretical nature of the results.\n7. Insert each fragnet, one at a time, chronologically, into its base.\n8. Where two events start on the same day: if both are the same risk type, a combined model finds the larger impact. If one is an employer event and one a contractor event, you need **three** models — the employer event alone, the contractor event alone, and both combined — to identify concurrency.\n9. Tabulate the change to the completion date for each event.\n10. Determine cumulative loss and gain for employer, contractor and concurrent periods.\n11. Review anomalous results and repeat where corrections are needed.\n\n### Keep the fragnets short\n\nThe most consequential practical rule. A fragnet spanning several updating cycles **overrides the progress achieved during that entire period** — it will not let the base programme account for concurrent events, lack of progress, or logic changes made in those months. Potentially critical events cannot emerge as critical until the fragnet concludes.\n\nBreak events into bite-sized chunks. The longer the fragnet, and the longer between base programmes, the more prospective and theoretical the results.\n\n### The updates matter as much as the events\n\nBetween each impact, the base is reset by the actual progress achieved. A **gain** between two updates accrues to the contractor's benefit. A **loss** that cannot be attributed to an [[ere|employer risk event]] is, by definition, a [[cre|contractor risk event]].\n\nThat rule is what makes the method cumulative and self-correcting: each update pulls the model back towards what actually happened.\n\n### The variables\n\nEven with agreed base programmes, these all remain open: the duration of each fragnet · which predecessors it links to · which successors · how much progress is added before each impact · estimated remaining durations for activities in progress · and the order of impacting when employer and contractor events fall in the same window.\n\nEach is an assumption. Each moves the answer. There are as many wrong ways to do a [[tia|time impact analysis]] as correct ones."
+        },
+        {
+          "type": "figure",
+          "widget": "time-impact",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "aacei",
+          "title": "The limitation on compensability",
+          "md": "RP-29R-03 puts it plainly:\n\n> An additive-modelled schedule by itself does not account for concurrent delays and is therefore unsuitable for determining compensability.\n\nThis is exactly what happened in the case study. The claimant's expert ran a competent time impact analysis over thirteen agreed employer risk events and produced a full extension of time to the actual completion date — and it failed, because it offered no linked chain of events from commencement to completion that could be related to an as-built programme and to the costs actually incurred.\n\nA prospective method is not disqualified. But applied **alongside** a comprehensive analysis of the facts and the delays reported contemporaneously, the gap between causation and damages can be closed considerably. Applied alone, it usually cannot."
+        },
+        {
+          "type": "worked",
+          "md": "Anomalous results — what to look for before you rely on the output:",
+          "table": {
+            "head": [
+              "Anomaly",
+              "What it usually means"
+            ],
+            "rows": [
+              [
+                "Projected commencement dates of successors far later than their actual commencement",
+                "The fragnet is too long, or its successors are wrong"
+              ],
+              [
+                "Impact to completion far in excess of the actual completion date",
+                "Accumulated theoretical delay with no correction from real progress"
+              ],
+              [
+                "No impact at all when a large fragnet is inserted on a known-critical event",
+                "The event has been linked to activities that were not driving at that moment"
+              ],
+              [
+                "Impacted dates that conflict with the as-built start and finish of the same tasks",
+                "The base programme's remaining durations were mis-estimated"
+              ]
+            ]
+          },
+          "after": "Anomalies are usually caused by changes to logic and sequence made in later programmes — attempted recovery, changed intentions, different methods, or relaxations to contractual working periods.\n\nWhere correcting one would drastically change the predicted impact, produce an **optional model** showing what the impact would have been had that later circumstance been considered in the earlier base. Presenting both, jointly, as alternative conclusions is far more useful to a tribunal than two experts arguing about which single number is right."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-7-3-a",
+            "q-7-3-b",
+            "q-7-3-c"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Multiple bases. Each event is impacted into the programme that was actually current when it arose.",
+            "Keep fragnets shorter than one update cycle. A long fragnet overrides a month of real progress and drifts from reality.",
+            "Gains between updates accrue to the contractor; unexplained losses are contractor risk events by definition.",
+            "An additive model alone cannot determine compensability. Pair it with a contemporaneous or as-built analysis."
+          ]
+        }
+      ]
+    },
+    "7.4": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Every other method asks what a delay did. This one asks what would have happened if it had not. It is elegant, it is simple to explain, and it requires you to invent something that never existed: the logic of a programme that was never logic-linked in the first place."
+        },
+        {
+          "type": "core",
+          "md": "### The philosophy, reversed\n\n**[[cab|Collapsed as-built]]** — subtractive, single base. Where [[iap|impacted as-planned]] inserts delays into a plan and asks what *would be* the impact, the collapsed as-built removes them from what happened and asks:\n\n> What if these delay events had not occurred? When would the project have finished but for them?\n\nIt is not a prospective method, but it is just as speculative and theoretical as the additive ones — with a different set of weaknesses and its own layered assumptions.\n\nThe [[scl|SCL Protocol]] is justifiably cautious:\n\n> Collapsed as-built is based on the effect of employer risk events on the programme of work as it was actually built. Similar to the as-planned versus as-built, the use of this technique is restricted by its inability to identify concurrency, re-sequencing, redistribution of resources or acceleration. This is particularly the case when the nature of the as-built logic is complex, requiring subjective reconstruction of as-built logic. Where acceleration, redistribution of resources or re-sequencing has taken place during the course of the works to overcome the effects of events, this form of analysis may produce unreliable results.\n\n### Four questions before you start\n\n1. Is there an appropriately detailed as-built, or must one be constructed? If so, is there sufficient data?\n2. Can the start and finish dates for each activity be **verified**?\n3. Once verified and corrected, can periods of **inactivity** be identified?\n4. Can the as-built logical relationships between each activity be accurately identified and simulated?\n\nThat fourth question is the one that sinks most attempts.\n\n### The invented logic problem\n\nAn [[asbuilt|as-built programme]] is a record of dates. It is not a logic network. But a collapsed as-built will only collapse **dynamically** if the as-built start and finish dates are replicated identically in a CPM model — which means somebody has to supply logic that produces exactly those dates.\n\nTake a real example. Final paint and carpets were planned finish-to-finish plus five days: carpets cannot complete until five days after paint. In the event, carpets completed **before** paint, because of [[acceleration|acceleration]] and changes to paint colours in areas already carpeted.\n\nThe analyst can now represent that three ways:\n\n- Change the lag to **FF−5**. Mathematically expressible, and nonsense: carpets did not *have* to finish five days before paint.\n- **FF+25 from paint's start** — carpets began after 25 days of paint progress and finished to their planned duration, while paint over-ran with no consequence to carpets. This is closer to what happened.\n- Something else entirely.\n\nOn a project with thousands of activities the analyst may have to make **literally thousands** of such amendments. The resulting model may reproduce the as-built dates perfectly and still be built on thousands of judgements, each of which is a risk.\n\n> The retrospective creation of the underlying as-built logic is the single most subjective step in the process.\n\n### The multi-iterative problem\n\nAACE's own guidance acknowledges the method is most efficiently implemented as a **multi-iterative process involving rapid modelling and a subsequent trial collapse which reveals faulty or incomplete as-built logic**, repeated until the model is debugged.\n\nA method that relies on rapid modelling to reveal faulty logic is difficult to recommend. If the input is altered because the analyst is unhappy with the output, the debugging is subjective by construction — and the process could theoretically be repeated until the model is \"debugged\" to a result favourable to the client.\n\n### Pacing and driving activities\n\nThe as-built and its logic struggle to distinguish **driving** activities from concurrent **paced** ones. A paced activity may appear critical when a driving activity is collapsed out.\n\nThe analyst must identify and collapse any dependent or paced activities alongside their driving activity, or as-built critical paths will be determined through non-driving activities. Whether something was paced or genuinely being performed as fast as possible is not readily apparent to most analysts — and when non-driving activities appear on the [[abcp|as-built critical path]] against common sense, the whole analysis weakens.\n\n### Where it works\n\nOn projects that are primarily a **linear sequence** of events: tunnels, roads, bridges, pipelines, earthworks. That limits the as-built logic problem to something manageable.\n\nOn a building with a thousand activities, the conclusions often collapse like a house of cards when enough of the assumed dependencies are shown to be wrong."
+        },
+        {
+          "type": "figure",
+          "widget": "collapsed-as-built",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "Extraction order and method both matter",
+          "md": "**How** you remove an event changes the answer:\n\n- **Delete** it — not recommended. Leaves hanging chains that collapse further than they should.\n- **Dissolve** it — successors are tied to predecessors, preserving the work flow. This is the preferred approach.\n- **Reduce its duration to zero** — keeps it in the network but removes its effect.\n\nEach can produce a different result depending on the residual logic. Be consistent, or expect to be criticised for inconsistent application of your own methodology.\n\nAnd the **order**: extract in reverse chronological order by latest actual finish, and extract contractor events **first**, to allow the contractor the benefit of any pacing or concurrent delay."
+        },
+        {
+          "type": "worked",
+          "md": "A stepped extraction, as-built completion 18 January 2009:",
+          "table": {
+            "head": [
+              "Event",
+              "Type",
+              "Actual dates",
+              "Collapsed completion",
+              "Movement"
+            ],
+            "n": [
+              4
+            ],
+            "rows": [
+              [
+                "001",
+                "EDE",
+                "7–11 Sep",
+                "18-Jan-09",
+                "0 — concurrent, sub-critical"
+              ],
+              [
+                "002",
+                "CDE",
+                "4–5 Sep",
+                "15-Jan-09",
+                "3 days"
+              ],
+              [
+                "003",
+                "CDE",
+                "15–24 Aug",
+                "9-Jan-09",
+                "5 days"
+              ],
+              [
+                "004",
+                "EDE",
+                "2–7 Jul",
+                "1-Jan-09",
+                "5 days"
+              ],
+              [
+                "005",
+                "CDE",
+                "2–5 Jul",
+                "1-Jan-09",
+                "0 — concurrent"
+              ],
+              [
+                "006",
+                "EDE",
+                "5–8 Jun",
+                "5-Jan-09",
+                "0"
+              ],
+              [
+                "007",
+                "EDE",
+                "3–6 Jun",
+                "2-Jan-09",
+                "3 days"
+              ],
+              [
+                "=",
+                "Contract completion date",
+                "—",
+                "1-Jan-09",
+                "1 day residual"
+              ]
+            ]
+          },
+          "after": "The last row is the finding that gets argued about. Every identified event has been extracted and the model still finishes **one day after** the contract date.\n\nThat one day cannot be attributed to any employer risk event, so by definition it accrues as a contractor risk event. Which is precisely why an analyst running this method has every incentive to identify as many events as possible before collapsing anything: the strength of the approach is that it relies on the **entire** as-built and accounts for concurrency at the point it occurred — and any event not considered stays in the model and lands on the contractor."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-7-4-a",
+            "q-7-4-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Subtractive. Remove the events from the as-built and see when it would have finished but for them.",
+            "The as-built logic has to be invented, and that reconstruction is the single most subjective step in any method.",
+            "Dissolve events rather than deleting them, extract in reverse chronological order, and take contractor events out first.",
+            "Confine it to linear work. On a complex building the assumed dependencies rarely survive scrutiny."
+          ]
+        }
+      ]
+    },
+    "7.5": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "No model, no impacting, no collapsing. Deduce the path the project actually ran on, measure what each activity did against what it was supposed to do, and explain the difference. Done properly it is the most persuasive method there is — and the arithmetic is subtraction."
+        },
+        {
+          "type": "core",
+          "md": "### The total time claim first — and why to avoid it\n\nIn its simplest form, an as-planned versus as-built analysis compares the **planned duration with the actual duration** and asserts the difference as [[excusable|excusable]] and compensable. AACE calls it *Observational / Static / Gross (MIP 3.1)*.\n\nThat is a [[global|global claim]] in programme form, and it carries the same burden. It must demonstrate that:\n\n- the as-planned [[baseline|baseline]] was reasonable\n- the contractor's performance was reasonably efficient\n- the contractor did not contribute to critical delay\n- the entire difference is attributable to excusable events\n- the complexity makes it impossible or highly impractical to account for the impacts any other way\n\nThe fourth and fifth are the ones that fail.\n\n### The proper version\n\nThe steps:\n\n1. Establish a contractually compliant [[asplanned|as-planned programme]]. It need not show [[float|float]] or identify critical paths.\n2. Establish a properly reconstructed as-built, to the same or higher level of detail.\n3. Add into the as-built any potential delay events, key milestones not in the as-planned, and significant events that establish the chronology.\n4. **Deduce at least one [[abcp|as-built critical path]].**\n\n### Deducing the as-built critical path\n\nThis is the most subjective part of the method, and the part that decides everything downstream. To do it the analyst must:\n\n- review correspondence and weekly or monthly reports to determine where the contractor's effort was concentrated\n- apply experience of this type of construction and the logical dependencies between tasks\n- review plant and labour returns to find where key plant and trades were deployed\n- review as-built start and finish dates between inherently dependent activities\n- trace additional paths, eliminating unlikely ones and testing whether more than one was competing for dominance\n\nOne convention worth knowing: **the [[critical|critical path]] shifts to a successor once the successor commences**. The predecessor is no longer critical once its successor can start, even if the predecessor is not 100% complete. If you do not follow that convention, say so and explain why.\n\nThe [[scl|SCL Protocol]] supports deduction over calculation:\n\n> The critical path analysis or method is the process of **deducing** the critical activities in a programme by tracing the logical sequence of tasks that directly affect the date of project completion.\n\nAnd AACE explains why it must be deduced: float values can only be generated **forward** of a [[datadate|data date]], so an as-built critical path cannot be directly computed. The critical set of as-built activities is often called the **controlling activities** rather than the critical activities for that reason.\n\n### Activity level variance\n\nThen the arithmetic. For each activity on the as-built critical path, calculate the start and finish variance **net of all previous variance**, so each activity's own contribution is isolated.\n\nThis is what separates it from a project-level comparison, and the difference is not small. In the worked example below, a project-level analysis reports 120 days of delay. The activity level analysis reports **142 days of critical delay and 22 days of recovery**.\n\nSame project. The 22 days of recovery — achieved through [[acceleration|acceleration]] or working out of sequence — is completely invisible at project level, and it is often the most valuable finding in the whole analysis."
+        },
+        {
+          "type": "figure",
+          "widget": "activity-variance",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "What both guides require before compensation",
+          "md": "The SCL Protocol states that loss and expense flowing from employer delay cannot usually be distinguished from that flowing from contractor delay without:\n\n- an as-planned programme showing how the contractor reasonably intended to carry out the work, **and the as-planned critical path**\n- an as-built programme showing the work and sequence actually carried out, **and the as-built critical path**\n- identification of activities and periods not part of the original scope\n- identification of those which are also at the contractor's cost risk\n- identification of the costs attributable to both\n\nAACE agrees: each incremental delay along the as-built critical path should be independently quantified and its cause identified. The sum of individual delays that were the employer's responsibility, delayed completion, and were **not concurrent** with contractor delays is excusable and compensable.\n\nBoth documents therefore treat establishing an as-built critical path as a **prerequisite** to demonstrating compensation for delay."
+        },
+        {
+          "type": "worked",
+          "md": "The pipeline example. Cumulative variance netted at every step.",
+          "table": {
+            "head": [
+              "Act",
+              "Planned finish",
+              "Actual finish",
+              "ALV",
+              "Cumulative",
+              "Reading"
+            ],
+            "n": [
+              3,
+              4
+            ],
+            "rows": [
+              [
+                "A-001",
+                "2-Jan-06",
+                "10-Jan-06",
+                "+8",
+                "8",
+                "Started 5 late, took 3 longer"
+              ],
+              [
+                "A-002",
+                "7-Jan-06",
+                "11-Jan-06",
+                "−4",
+                "4",
+                "Recovered 4 days"
+              ],
+              [
+                "A-003",
+                "7-Feb-06",
+                "12-Feb-06",
+                "+1",
+                "5",
+                "One further day lost"
+              ],
+              [
+                "X-012",
+                "— added",
+                "24-May-06",
+                "+100",
+                "105",
+                "Instructed pipe repair, 100 days"
+              ],
+              [
+                "A-006",
+                "12-Feb-06",
+                "30-May-06",
+                "+2",
+                "107",
+                "Only 2 days of its own"
+              ],
+              [
+                "X-042",
+                "— added",
+                "2-Jun-06",
+                "+2",
+                "109",
+                "Repair leak"
+              ],
+              [
+                "A-020",
+                "17-Feb-06",
+                "8-Jun-06",
+                "+2",
+                "111",
+                "Only 2 days of its own"
+              ],
+              [
+                "X-045",
+                "— added",
+                "15-Jun-06",
+                "+15",
+                "126",
+                "Additional manhole"
+              ],
+              [
+                "A-024",
+                "28-Feb-06",
+                "16-Jun-06",
+                "−18",
+                "108",
+                "Recovered 18 days"
+              ],
+              [
+                "X-050",
+                "— added",
+                "27-Jun-06",
+                "+10",
+                "118",
+                "Instructed additional backfill"
+              ],
+              [
+                "A-030",
+                "28-Feb-06",
+                "28-Jun-06",
+                "+2",
+                "120",
+                "Final acceptance"
+              ]
+            ],
+            "caption": "Project level variance: 120 days. Activity level: 142 days of delay, 22 days of recovery."
+          },
+          "after": "Read A-006. It finished 107 calendar days later than planned — and only **two** of those days are its own. The other 105 it inherited from the pipe repair upstream. Without netting, A-006 looks like a catastrophic over-run; with it, it performed almost exactly to plan.\n\nAnd read A-024. It started 112 days late and finished only 108 days late — a start variance of −14 and a finish variance of −4, meaning **18 days of recovery** along the critical path. That is the contractor accelerating, or working out of sequence, to claw back time. A project-level comparison would never have found it, and it is often worth more to the contractor than any single delay event."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-7-5-a",
+            "q-7-5-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "A total time claim is a global claim in programme form, with the same near-impossible burden.",
+            "The as-built critical path must be DEDUCED — float only calculates forward of a data date, so no software can compute it.",
+            "Measure each activity's variance net of everything before it, or every activity downstream of a late one looks late too.",
+            "Activity level variance finds recovery as well as delay. Project level comparison finds neither."
+          ]
+        }
+      ]
+    },
+    "7.6": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "The critical path moves. It moved on your project every month, for five separate reasons, and any method that assumes one fixed path through eighteen months of work is describing a project that did not exist."
+        },
+        {
+          "type": "core",
+          "md": "### Why the path moves\n\nThe [[abcp|as-built critical path]] shifts because of:\n\n- variations from planned durations due to actual progress\n- variations from planned durations due to delay events\n- changes to remaining durations from added or deleted scope\n- out-of-sequence working — changed intentions, varied scope, late information, unforeseen conditions, plant breakdowns, access restrictions\n- changed logical relationships, for any of the above reasons\n\nAny change to reflect actual progress or the contractor's intentions for the remaining work affects the [[totalfloat|total float]] of every activity, and most likely the location of the [[critical|critical path]] from month to month.\n\n### As-planned versus as-built windows\n\nAACE's *Observational / Static / Periodic (MIP 3.2)*. The same approach as the last lesson, but variances are summarised at the end of each window rather than per activity.\n\nWindow boundaries are usually set by: key milestones · periods when the contractor's intentions, logic or methodology changed · points where progress was recorded contemporaneously · or key changes, suspensions or delays.\n\nWhere irregular windows are chosen, take care that they are **not selected to hide the impact of certain events**. That is the criticism this method attracts, and it is easily made.\n\nWindow level variance is coarser than activity level. It is **less likely to identify concurrency**, because the over-run is not assigned to particular activities. And costs then need an average [[prolongation|prolongation]] rate for each window — the longer the window, the more theoretical that average and the harder it is to isolate damages caused by a specific event.\n\n### Contemporaneous windows analysis\n\nAACE's *Observational / Dynamic / Contemporaneous As-Is (MIP 3.3)*, and the authors' preferred method where updates exist.\n\n**Observational** because it does not impact or collapse anything — it rationalises the changes and variances observed in the contemporaneous updates. **Dynamic** because it recognises the moving critical path.\n\nThe procedure:\n\n1. Identify the contractor's as-planned CPM programme.\n2. Identify all contemporaneous progress updates through to completion.\n3. Determine the most critical activities in each month — least positive or greatest negative total [[float|float]]. This may require replacing float and date constraints with proper logical relationships.\n4. Determine which of those are in progress or planned to start in the period. These are the **driving** activities.\n5. Record float values for all driving activities in a **float map**, tracking gain and loss through every available update.\n6. Group related driving activities and identify concurrent as-built critical paths — sequences of unrelated activities competing for dominance.\n7. Identify tasks that were sub-critical but predecessors to driving activities where concurrent paths were dominant.\n8. Document the planned completion date in each monthly update.\n9. Record the loss or gain in each update against projected completion.\n10. Align the driving activities with the loss or gain each month.\n11. Investigate the cause of delay to the driving activity in each period where a measurable movement occurred.\n12. Assign or apportion responsibility by reference to the driving activity and the contemporaneous records.\n\n### Why employers like it and contractors sometimes do not\n\nSome employers prefer it because it uses the **contractor's own information** and relies on an as-built critical path to show the actual effect of delays.\n\nSome contractors dislike it for a specific reason: it can hide the impact of concurrent delays or events — such as design activities — that were never adequately modelled in the [[asplanned|as-planned programme]] or the updates in the first place.\n\n### Absolute and relative, again\n\nThe float gained or lost each month may not correspond exactly to the calendar days the completion date moved. Calendar assignments, imposed must-finish dates and zero-total-float constraints all interfere.\n\n> Float is a **relative** measure of delay. The number of calendar days the project loses or gains between updates is an **absolute** one.\n\nWhen the two disagree, the disagreement is the finding — go and locate what caused it before relying on either."
+        },
+        {
+          "type": "figure",
+          "widget": "float-map",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Do not float-map a reconstructed programme",
+          "md": "Performing float mapping exercises on recreated or modified contemporaneous programmes **should be avoided**.\n\nThe entire strength of the technique is that the float values came out of programmes the parties were actually using, produced at the time, without knowing what any of it would later be used for. Recreate the updates and you have re-introduced every subjectivity the method was chosen to escape — and you have done it to the one dataset that was previously beyond argument.\n\nWhere contemporaneous updates simply do not exist, this is not the method. Choose a different one."
+        },
+        {
+          "type": "worked",
+          "md": "Identifying driving activities — two tests, applied together:",
+          "table": {
+            "head": [
+              "Activity",
+              "Float, Apr 07",
+              "On longest path?",
+              "Starts in window?",
+              "Driving?"
+            ],
+            "n": [
+              1
+            ],
+            "rows": [
+              [
+                "E&M 1st fix conduit, 2nd level 35–43",
+                "−42",
+                "Yes",
+                "In progress",
+                "Yes"
+              ],
+              [
+                "Blockwork, 2nd level 35–43",
+                "−42",
+                "Yes",
+                "Yes",
+                "Yes"
+              ],
+              [
+                "Plaster walls/ceilings, 2nd level",
+                "−42",
+                "Yes",
+                "Yes",
+                "Yes"
+              ],
+              [
+                "Manufacture & deliver 1st shipment",
+                "−81",
+                "No — FNLT constraint",
+                "No",
+                "No — discount"
+              ],
+              [
+                "Complete curtain wall grid 25–46",
+                "−81",
+                "No — FNLT constraint",
+                "No",
+                "No — discount"
+              ],
+              [
+                "Fix curtain wall to control tower",
+                "−31",
+                "Yes",
+                "In progress",
+                "Yes — parallel path"
+              ]
+            ]
+          },
+          "after": "Rows four and five show worse float than the driving path and are **not** driving. Both are held by a finish-no-later-than constraint on an intermediate milestone, which manufactured the negative float.\n\nAn analyst who chased them would build a case on an artefact. Both tests have to be satisfied together — on the longest path, **and** in progress or due to start inside the window."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-7-6-a",
+            "q-7-6-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "The critical path moves for five identifiable reasons. Any method assuming one fixed path is describing a project that did not exist.",
+            "A driving activity satisfies two tests together: on the longest path, and in progress or due to start in the window.",
+            "Contemporaneous windows analysis is observational and dynamic — nothing is impacted or collapsed, so nothing is theoretical.",
+            "Never float-map a recreated programme. It destroys the one quality that makes the method persuasive."
+          ]
+        }
+      ]
+    },
+    "7.7": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A contractor re-sequences the work every month to claw back time, and by doing so makes its own delay disappear from the programme. How do you prove the recovery it achieved, when the evidence of it is the very thing that removed the evidence?"
+        },
+        {
+          "type": "core",
+          "md": "### The technique\n\nAACE calls it *Observational / Dynamic / Contemporaneous **Split** (MIP 3.4)*. The word *split* refers to **bifurcation** — also called half-stepping or two-stepping — a procedure that segregates progress reporting from the non-progress revisions inherent in the updating process.\n\nIt is not a modification of the update schedules. It is a procedure that examines selected data — namely logic changes — that are already inherent in the record.\n\n### What it isolates\n\nBetween any two updates, two different things happened:\n\n- **progress** — work got done, or did not\n- **revisions** — durations changed, logic was added or deleted, constraints were amended, leads and lags moved, activities were added or removed\n\nA normal [[windows|windows analysis]] sees the combined effect. This method separates them, by importing one month's actual progress into the **previous** month's programme — before any revisions — and recalculating.\n\nThat gives you the delay that would have been reported **had nothing been re-sequenced**. The difference between that and what was actually reported is the effect of the contractor's revisions.\n\n### The procedure\n\n1. Identify the as-planned CPM programme.\n2. Identify all contemporaneous updates through to completion.\n3. Export the progress achieved each month against each activity — percent complete, actual start, actual finish, remaining duration. **Progress data only.**\n4. Identify the periods requiring a half-step update.\n5. Import month *n*'s progress into the month *n−1* programme.\n6. Recalculate with the [[datadate|data date]] of month *n*. This is the month-to-month progress-only update. Save it under a unique name.\n7. If later programmes contain revisions that were not agreed or are otherwise suspect, keep importing subsequent months' progress into the same base and repeat.\n8. Tabulate the loss or gain from each month-to-month programme.\n9. Tabulate the additional loss or gain in the corresponding contemporaneous update with the same data date. **That difference is delay not related to progress** — it is the effect of sequence and duration changes.\n10. Rationalise the difference by identifying the logic and duration changes along the [[critical|critical path]] that caused it. Schedule comparison software will do the mechanical part.\n11. Determine the driving activities in the month-to-month programmes.\n12. Compare and rationalise [[float|float]] variances in a float map, tracking gain and loss **solely due to lack of progress**.\n13. Group related driving activities and identify concurrent as-built critical paths.\n14. Identify sub-critical predecessors to driving activities where concurrent paths were dominant.\n15. Document planned completion in each update.\n16. Identify loss or gain in each update.\n17. Align driving activities with the movement each month.\n18. Investigate the cause of delay to the driving activity in each period.\n19. Assign responsibility for the loss or gain in each window.\n20. Assign responsibility for the **additional** loss or gain from logic and duration changes.\n\n### Two uses\n\n**Demonstrating [[acceleration|acceleration]].** The most common use. Show what the delay *would* have been against what was reported, and the gap is the recovery achieved by re-sequencing.\n\n**Answering a rejection.** Where an employer's representative rejects a contractor's updates on the grounds that the number and nature of the changes make them unsuitable for imposing delays, the contractor can rely on an analysis that uses actual progress and projects delay in each window against the most recently **accepted** programme as a consistent [[baseline|baseline]]. Not a perfect solution, but one that meets the criticism squarely.\n\n### The caution\n\nThis is a theoretical conclusion, because the programme logic was not static — the contractor altered it dynamically, whether appropriately or not.\n\nAnd it cuts both ways. The results may demonstrate that alterations were **not** designed to exaggerate reported delay — which is good evidence. But caution is needed to ensure the alterations were not made to **sequester a culpable delay event** by means of unrealistic logic or duration revisions.\n\nThe defence against that allegation is cheap and available to every contractor: issue a transparent record of all programming revisions, monthly, as they are made."
+        },
+        {
+          "type": "figure",
+          "widget": "acceleration",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Activities added after the base programme will skew it",
+          "md": "The technique is straightforward to run, because modern software transfers progress data between assigned target and baseline files. It requires real skill and care, and the conclusions must be **checked and confirmed manually**.\n\nThe results are thrown off if new activities were created in either the accelerated or the unaltered-logic programme. An activity added in the February update did not exist in the January programme, and importing progress against it will skew the projected completion date.\n\nAn automated run of this analysis, unchecked, is worth very little."
+        },
+        {
+          "type": "worked",
+          "md": "Sixteen updates, comparing reported delay with what would have been reported:",
+          "table": {
+            "head": [
+              "Update",
+              "Reported at the time",
+              "Month-to-month calculated",
+              "Gain / (loss) through revisions"
+            ],
+            "n": [
+              1,
+              2,
+              3
+            ],
+            "rows": [
+              [
+                "UP10",
+                "393",
+                "393",
+                "0"
+              ],
+              [
+                "UP11",
+                "403",
+                "424",
+                "21"
+              ],
+              [
+                "UP12",
+                "430",
+                "454",
+                "24"
+              ],
+              [
+                "UP13",
+                "431",
+                "466",
+                "35"
+              ],
+              [
+                "UP14",
+                "431",
+                "473",
+                "42"
+              ],
+              [
+                "UP15",
+                "513",
+                "515",
+                "2"
+              ],
+              [
+                "UP16",
+                "513",
+                "518",
+                "5"
+              ],
+              [
+                "UP17",
+                "513",
+                "521",
+                "8"
+              ],
+              [
+                "UP18",
+                "513",
+                "564",
+                "51"
+              ],
+              [
+                "UP19",
+                "612",
+                "543",
+                "(69)"
+              ],
+              [
+                "UP20",
+                "612",
+                "571",
+                "(41)"
+              ],
+              [
+                "UP21",
+                "514",
+                "603",
+                "89"
+              ],
+              [
+                "UP22",
+                "514",
+                "630",
+                "116"
+              ],
+              [
+                "UP23",
+                "514",
+                "597",
+                "83"
+              ],
+              [
+                "UP24",
+                "528",
+                "590",
+                "62"
+              ],
+              [
+                "UP25",
+                "556",
+                "567",
+                "11"
+              ]
+            ],
+            "caption": "Delay in calendar days. UP10 and UP15 were the accepted programmes used as bases."
+          },
+          "after": "The contractor reduced the delay that would otherwise have been reported in **all but two** updates. In UP19 and UP20 the recalculated delay was *less* than the delay projected at the time — meaning no acceleration was attempted in those two months, and other logic, scope or duration alterations actually caused delay beyond what the accepted logic would have projected.\n\nThose two rows are exactly what an employer's expert would seize on, and exactly why the contractor should have documented its revisions at the time."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-7-7-a",
+            "q-7-7-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Bifurcation separates delay caused by lack of progress from delay caused by the contractor's own revisions.",
+            "Import month n's progress into month n−1's programme, before any revisions, and recalculate.",
+            "It is the standard way to demonstrate acceleration achieved through re-sequencing rather than through additional resources.",
+            "Check the results by hand. Activities added after the base programme will skew the recalculation."
+          ]
+        }
+      ]
+    }
+  }
+}

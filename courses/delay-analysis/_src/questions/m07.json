@@ -1,0 +1,276 @@
+[
+  { "id": "q-7-1-a", "lesson": "7.1",
+    "stem": "Is 'windows analysis' a technique?",
+    "opts": [
+      "No — 'windows' simply refers to the period of time being analysed, and any primary method can be run in windows",
+      "Yes, it is the fifth primary method",
+      "Yes, but only when applied retrospectively",
+      "Only where the contract specifies monthly analysis periods"
+    ],
+    "answer": 0,
+    "why": "Many in the industry list windows analysis as a technique, but the term simply refers to the period of time being analysed. Windows can be identified at regular intervals — weekly, monthly — or at irregular periods determined by the completion of significant key tasks. Where key milestones are relied on, the same approach is sometimes called watershed analysis. Each of the four primary methods has derivatives that can be applied in windows." },
+
+  { "id": "q-7-1-b", "lesson": "7.1",
+    "stem": "What distinguishes an 'analytical' approach from 'additive' and 'subtractive' ones?",
+    "opts": [
+      "It does not calculate delay by impacting or subtracting — it deduces it from comparing programmes and the factual record",
+      "It is only used prospectively",
+      "It requires no as-built programme",
+      "It relies on statistical rather than deterministic modelling"
+    ],
+    "answer": 0,
+    "why": "Observation may imply a passive method, but only in the sense that it does not require the analyst to quantify delay through programming simulations by impacting or subtracting events. The process of deduction from comparing programmes is required. Modelled techniques by contrast require intervention by the analyst to arrive at before and after states using what-if simulations." },
+
+  { "id": "q-7-2-a", "lesson": "7.2",
+    "stem": "Under what circumstances is impacted as-planned recommended?",
+    "opts": [
+      "Where there is no as-built, insufficient records to create one, and both parties agree to the procedure",
+      "Wherever a contractually compliant baseline exists",
+      "Wherever the dispute value is below a proportionate threshold",
+      "Where the contract requires proof of actual delay"
+    ],
+    "answer": 0,
+    "why": "The method is only recommended when there is no as-built programme, there are insufficient progress records allowing an as-built to be created, and both the employer and contractor agree to use the procedure. It works only if you accept three assumptions: that the as-planned logic was accurate, that the as-planned durations were accurate, and that the contractor followed the as-planned logic — none of which is ever fully true." },
+
+  { "id": "q-7-2-b", "lesson": "7.2",
+    "stem": "In a non-integrated impacted as-planned, the contractor-event model predicts MORE delay than the employer-event model. What follows?",
+    "opts": [
+      "No period of compensable delay; the contractor is entitled to a time extension equal to the employer model's delay",
+      "The contractor is entitled to prolongation for the difference between the two",
+      "Both claims cancel out and no extension of time is due",
+      "The combined model must be used instead"
+    ],
+    "answer": 0,
+    "why": "Where an impacted as-planned model impacted solely with an employer delay event projects a delay LESS than a model impacted solely with a contractor delay event, the contractor is not entitled to any prolongation — but is entitled to a time extension equal to the amount of delay projected by the employer model. Where the employer model projects the greater delay, the contractor may be entitled to prolongation to the extent of the excess." },
+
+  { "id": "q-7-3-a", "lesson": "7.3",
+    "stem": "What is the main difference between impacted as-planned and time impact analysis?",
+    "opts": [
+      "TIA uses multiple base programmes rather than a single frozen baseline",
+      "TIA is subtractive rather than additive",
+      "TIA does not require fragnets to be created",
+      "TIA can only be applied retrospectively"
+    ],
+    "answer": 0,
+    "why": "The main difference is the use of multiple base programmes in TIA, as opposed to a single base — the baseline — in impacted as-planned. AACE refers to TIA as modelled/additive/multiple base. Each base programme is a CPM schedule representing the contractor's intentions for completing all remaining work prior to the insertion of the delay event, which means the model is repeatedly corrected by real progress." },
+
+  { "id": "q-7-3-b", "lesson": "7.3",
+    "stem": "Why must fragnets be kept shorter than a single updating cycle?",
+    "opts": [
+      "A longer fragnet overrides the progress achieved in that period and prevents concurrent events or logic changes being accounted for",
+      "Software cannot calculate fragnets longer than 30 days",
+      "The contract usually limits activity durations to 30 days",
+      "Longer fragnets cannot be linked to more than one successor"
+    ],
+    "answer": 0,
+    "why": "Inserting fragnets with excessive durations spanning several updating cycles effectively over-rides the progress achieved during that entire period, and will not allow the base programme to account for delays due to concurrent events, lack of progress, or logic changes implemented in the relevant monthly updates. It may prevent potentially critical delay events from emerging as critical until the fragnet concludes. The longer the fragnet and the longer between bases, the more theoretical the results." },
+
+  { "id": "q-7-3-c", "lesson": "7.3",
+    "stem": "A contractor event and an employer event both commence on the same date. How many models are needed to identify concurrency?",
+    "opts": [
+      "Three — the employer event alone, the contractor event alone, and both combined",
+      "One combined model",
+      "Two — one for each event",
+      "Four — including a model with neither"
+    ],
+    "answer": 0,
+    "why": "When two or more events commence on the same day the analyst may enter them one at a time or in a combined model. A combined model is preferable where all the events are the same risk type, as it determines the event with the largest impact. But where a contractor event and an employer event commence on the same date, three models are required on that date: one to demonstrate the impact of the employer event, one for the contractor event, and one for the combined impact of both in the same base programme." },
+
+  { "id": "q-7-4-a", "lesson": "7.4",
+    "stem": "What is the single most subjective step in a collapsed as-built analysis?",
+    "opts": [
+      "Retrospectively creating the as-built logic",
+      "Deciding the order in which events are extracted",
+      "Verifying the as-built start and finish dates",
+      "Identifying which events are employer risk events"
+    ],
+    "answer": 0,
+    "why": "The potential for an analyst to steer the conclusions should not be underestimated at this stage: whether unwittingly or by deliberate manipulation, the retrospective creation of the underlying as-built logic is the single most subjective step in the process. It would be extremely rare for the logic in any large complex project to be exactly the same as-built as as-planned, so many adjustments are necessary — potentially thousands on a large project, each of which is a risk to the whole analysis." },
+
+  { "id": "q-7-4-b", "lesson": "7.4",
+    "stem": "Which method of removing a delay event from a collapsed as-built model is preferred?",
+    "opts": [
+      "Dissolving it, so successors are tied to predecessors and the work flow is preserved",
+      "Deleting it from the network entirely",
+      "Reducing its duration to zero",
+      "Replacing it with a zero-lag start-to-start relationship"
+    ],
+    "answer": 0,
+    "why": "Extraction can be done by simply deleting the delay events — which is not recommended — by dissolving them, so successor activities are tied to their predecessor activities, or by reducing durations to zero. Each could produce a different answer depending on the logical relationship applied and the residual logic remaining. Deleting leaves hanging activities that collapse further than they should. Whichever is chosen, the analyst should be consistent to avoid criticism for inconsistent application of the methodology." },
+
+  { "id": "q-7-5-a", "lesson": "7.5",
+    "stem": "Why can an as-built critical path not be directly computed by planning software?",
+    "opts": [
+      "Networked computations that generate float values can only be generated forward of the data date",
+      "Because as-built programmes contain no logical relationships",
+      "Because software cannot process actual dates",
+      "Because the backward pass cannot run on completed activities"
+    ],
+    "answer": 0,
+    "why": "The as-built critical path cannot be directly computed using CPM logic since networked computations that generate float values can only be generated to the future — the right — of the data date. Because of this the critical set of as-built activities is often called the controlling activities rather than the critical activities. Even in a modelled collapsible as-built, float is not a relevant indicator of criticality because late dates are not used in modelling the as-built schedule." },
+
+  { "id": "q-7-5-b", "lesson": "7.5",
+    "stem": "Why must activity level variance be measured net of all previous variance?",
+    "opts": [
+      "Otherwise every activity downstream of a late one appears late too, and recovery becomes invisible",
+      "Because the contract measures delay cumulatively",
+      "To prevent double recovery of prolongation costs",
+      "Because the as-planned dates are not reliable"
+    ],
+    "answer": 0,
+    "why": "To calculate start and finish variances the formula must take into account all previous activity level variance, in order to isolate any delay or recovery experienced by each activity. In the pipeline example activity A-006 finished 107 days later than planned but only 2 of those days were its own — the other 105 were inherited. And activity A-024 shows a start variance of −14 and a finish variance of −4, revealing 18 days of recovery that a project-level comparison would never find." },
+
+  { "id": "q-7-6-a", "lesson": "7.6",
+    "stem": "What two tests must an activity satisfy to be identified as 'driving' in a float map?",
+    "opts": [
+      "It must be on the longest path to completion, and be ongoing or scheduled to begin within the update period",
+      "It must have zero total float and at least one successor",
+      "It must be on the critical path and be an employer risk event",
+      "It must have the greatest negative float and a documented delay"
+    ],
+    "answer": 0,
+    "why": "Both factors must be satisfied together. The activity must be on the longest path to completion, and it must be ongoing or scheduled to begin within the update period. An activity with terrible float that is not scheduled to start for six months is not driving anything today. Activities with greater negative float that fail the second test are usually held there by a constraint, and must be evaluated, explained, and in many cases dismissed." },
+
+  { "id": "q-7-6-b", "lesson": "7.6",
+    "stem": "Why should float mapping not be performed on recreated or modified contemporaneous programmes?",
+    "opts": [
+      "The method's strength is that the float values came from programmes the parties actually used at the time",
+      "Recreated programmes cannot generate float values",
+      "It would breach the AACE source validation protocols",
+      "Modified programmes are inadmissible in arbitration"
+    ],
+    "answer": 0,
+    "why": "Performing float mapping exercises on recreated or modified contemporaneous programmes should be avoided. The entire strength of the technique is that the float values came from programmes the parties were actually using, produced at the time without knowing what they would later be used for. Recreating them re-introduces every subjectivity the method was chosen to escape — and does so to the one dataset that was previously beyond argument." },
+
+  { "id": "q-7-7-a", "lesson": "7.7",
+    "stem": "What does the month-to-month update analysis isolate?",
+    "opts": [
+      "Delay caused by progress achieved, separately from delay caused by the contractor's logic and duration revisions",
+      "Employer delay separately from contractor delay",
+      "Critical delay separately from non-critical delay",
+      "Prospective delay separately from retrospective delay"
+    ],
+    "answer": 0,
+    "why": "This approach allows the isolation of gains from mitigation or losses from delay due solely to progress achieved, as opposed to gains or losses arising from revisions to the schedule. Those other revisions might include increased or decreased activity durations, amended, added or deleted logical relationships or constraints, changed leads and lags, or added and deleted activities. AACE calls this bifurcation, or half-stepping." },
+
+  { "id": "q-7-7-b", "lesson": "7.7",
+    "stem": "What is the primary use of the month-to-month update analysis?",
+    "opts": [
+      "Demonstrating acceleration achieved through re-sequencing",
+      "Establishing the as-built critical path",
+      "Identifying concurrent delay events",
+      "Calculating prolongation costs per window"
+    ],
+    "answer": 0,
+    "why": "The most common use of this approach, by contractors, is to demonstrate the amount of acceleration attempted or achieved through re-sequencing or adding resources. It is very effective when a contractor needs to demonstrate what the likely effect of a delay event would have been as opposed to the actual effect — because where acceleration or mitigation was attempted by altering logic or increasing overlap, the actual effect is decreased." },
+
+  { "id": "q-7-1", "lesson": "7.1",
+    "stem": "Which four primary categories do all commonly applied forensic delay analysis techniques fit within?",
+    "opts": [
+      "Impacted as-planned, collapsed as-built, as-planned versus as-built, and time impact analysis",
+      "Prospective, retrospective, additive and subtractive",
+      "Windows, watershed, contemporaneous and month-to-month",
+      "Observational, modelled, static and dynamic"
+    ],
+    "answer": 0,
+    "why": "While there are many variations on the themes, all commonly applied forensic delay analysis techniques generally conform to one of four primary categories: impacted as-planned, collapsed as-built, as-planned versus as-built, and time impact analysis. Each has secondary derivative methods that may be used prospectively or retrospectively — and windows is a period of analysis rather than a category." },
+
+  { "id": "q-7-2", "lesson": "7.2",
+    "stem": "Why does an impacted as-planned result rarely match the actual delay experienced?",
+    "opts": [
+      "The frozen baseline cannot account for re-sequencing, actual durations, unmodelled delays, or mitigation",
+      "Because the baseline durations are always understated",
+      "Because employer events are inserted before contractor events",
+      "Because the method uses calendar rather than working days"
+    ],
+    "answer": 0,
+    "why": "The difference between the impacted contract completion date and the actual contract duration achieved is explained by several factors: deviations from the as-planned sequence, deviations from the as-planned durations, additional delays not considered in the model, and mitigation achieved along the critical path. All four are invisible to the method because the baseline is frozen — which is the honest limitation to state up front." },
+
+  { "id": "q-7-3", "lesson": "7.3",
+    "stem": "In a time impact analysis, a loss between two updates cannot be attributed to any employer risk event. How is it treated?",
+    "opts": [
+      "As a contractor risk event, by definition",
+      "As a neutral event, since no cause has been identified",
+      "As concurrent delay",
+      "It is excluded from the analysis"
+    ],
+    "answer": 0,
+    "why": "Losses and gains achieved due to the natural progress of the work are not employer delay events, and any delay which is unexplained is by definition a contractor delay event. The corollary is that gains accrue to the benefit of the contractor. That rule is what makes the method cumulative and self-correcting — each update pulls the model back towards what actually happened." },
+
+  { "id": "q-7-4", "lesson": "7.4",
+    "stem": "In which circumstances is the collapsed as-built approach most appropriate?",
+    "opts": [
+      "On projects representable primarily as a linear sequence — tunnels, roads, bridges, earthworks",
+      "On complex buildings with many parallel work faces",
+      "On projects with comprehensive monthly CPM updates",
+      "On any project where a detailed as-built programme exists"
+    ],
+    "answer": 0,
+    "why": "There are more circumstances in which the collapsed as-built approach will not be applicable than those in which it is appropriate. It is suggested that it is only appropriate on projects which can be represented primarily as a linear sequence of events — tunnels, roads, bridges, earthworks — which mitigates the biggest weakness, the creation of subjective as-built logic. On a complex building the assumed dependencies rarely survive scrutiny." },
+
+  { "id": "q-7-5", "lesson": "7.5",
+    "stem": "What convention applies when tracing the as-built critical path between dependent activities?",
+    "opts": [
+      "The critical path shifts to a successor once the successor commences, even if the predecessor is not complete",
+      "The predecessor remains critical until it reaches 100% complete",
+      "The critical path shifts at the midpoint of the overlap",
+      "The path shifts only where a driving relationship is documented"
+    ],
+    "answer": 0,
+    "why": "The normal convention is to interpret the critical path as having shifted to a successor activity once the successor commences — the predecessor is no longer critical once the successor is able to commence, even if the predecessor is not 100% complete. If this convention is not followed, proper explanations should be provided." },
+
+  { "id": "q-7-6", "lesson": "7.6",
+    "stem": "Why is a window level variance analysis less able to identify concurrency than an activity level one?",
+    "opts": [
+      "The over-run is not assigned to particular activities",
+      "Windows are always longer than the concurrency period",
+      "It uses the as-planned rather than the as-built programme",
+      "It cannot distinguish employer from contractor events"
+    ],
+    "answer": 0,
+    "why": "Depending on the level of detail of each window, it is less likely that a windows-based approach will be useful in identifying concurrent delay because the actual over-run is not assigned to particular activities. The main drawback is that costs associated with the delay in each window then require an average prolongation rate. With shorter discrete windows the overhead rate is less theoretical and the damages more representative of actual loss." },
+
+  { "id": "q-7-7", "lesson": "7.7",
+    "stem": "What most commonly skews a month-to-month update recalculation?",
+    "opts": [
+      "Activities created after the base programme, which did not exist in it",
+      "Changes in the calculation protocol between updates",
+      "Differences in calendar assignment between trades",
+      "Constraints imposed on the completion milestone"
+    ],
+    "answer": 0,
+    "why": "The results can be thrown off if any new activities were created in either the accelerated or unaltered-logic programmes. If an activity was added as a new activity in the February update it would not have existed in the January programme, and would therefore skew the resulting projected completion date. The process requires much skill and care, and the conclusions must be checked and confirmed manually." },
+
+  { "id": "q-7-8", "lesson": "7.3",
+    "stem": "Which of these is an anomalous result requiring review in a time impact analysis?",
+    "opts": [
+      "No impact resulting when a large fragnet is inserted on an activity known to be critical in the as-built state",
+      "An employer event producing more delay than a contractor event in the same window",
+      "A gain in the projected completion date between two updates",
+      "A fragnet with more than one successor activity"
+    ],
+    "answer": 0,
+    "why": "Examples of anomalous results include projected commencement dates of successors far in excess of their actual commencement dates; impacts to completion projected far in excess of the actual completion date; and no impact resulting to the relevant milestone when large-scale impacts or fragnets are inserted on what were known to be critical events in the as-built state. Anomalies often result from changes to logic and sequences incorporated in later programmes." },
+
+  { "id": "q-7-9", "lesson": "7.5",
+    "stem": "A project-level comparison reports 120 days of delay. The activity level analysis reports 142 days of delay and 22 days of recovery. What does this demonstrate?",
+    "opts": [
+      "Recovery achieved through acceleration or working out of sequence is invisible at project level",
+      "The as-built programme contains an error",
+      "The as-planned baseline was unreasonable",
+      "The two methods measure different completion dates"
+    ],
+    "answer": 0,
+    "why": "If a project level variance analysis were carried out, the analyst would have assessed a total delay of 120 days. The activity level variance analysis indicates 142 days of critical delay and 22 days of recovery accomplished. Both methods can demonstrate periods of achieved acceleration as measured against the as-planned intentions — but only the activity level view shows the recovery, which is often the most valuable finding in the whole analysis." },
+
+  { "id": "q-7-10", "lesson": "7.6",
+    "stem": "Which method do the authors of the source text prefer where contemporaneous updates are available?",
+    "opts": [
+      "Contemporaneous windows analysis",
+      "Time impact analysis",
+      "Collapsed as-built",
+      "Impacted as-planned"
+    ],
+    "answer": 0,
+    "why": "The contemporaneous windows analysis is the preferred method by the authors when contemporaneous updates are available. It relies on readily available contemporaneous programmes, recognises the shifting critical path, allows identification of multiple critical paths, is intuitive, and can identify both losses and gains between updates — and because nothing is impacted or collapsed, it is not theoretical by nature. Note that the SCL Protocol's stated preference is time impact analysis, which is not the same thing." }
+]

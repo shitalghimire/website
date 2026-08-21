@@ -1,0 +1,256 @@
+[
+  { "id": "q-3-1-a", "lesson": "3.1",
+    "stem": "The critical path method is a mathematical model based on how many variables?",
+    "opts": [
+      "Two — activity durations and activity relationships",
+      "Three — durations, relationships and resources",
+      "Four — durations, relationships, calendars and constraints",
+      "One — the total project duration"
+    ],
+    "answer": 0,
+    "why": "CPM is a mathematical model based primarily on two variables: activity durations and activity relationships. Everything else — early and late dates, float, the critical path, the completion date — is derived from those two. Reducing subjectivity in either makes the as-planned programme more objective and harder to criticise for failing to account for the work content." },
+
+  { "id": "q-3-1-b", "lesson": "3.1",
+    "stem": "An activity requires 320 labour-hours and a crew of five works an 8-hour day. What duration should the programme carry, before any time-risk allowance?",
+    "opts": [
+      "8 days",
+      "40 days",
+      "64 days",
+      "5 days"
+    ],
+    "answer": 0,
+    "why": "Duration = required labour hours ÷ available labour hours per day. Available labour is 5 × 8 = 40 hours per day. 320 ÷ 40 = 8 days. Every term in that equation is an assumption — the quantity, the assumed output that produced the 320 hours, the crew size and the working day — which is why the assumptions belong on an activity data sheet rather than in somebody's head." },
+
+  { "id": "q-3-2-a", "lesson": "3.2",
+    "stem": "Which relationship says 'B cannot finish until A has finished'?",
+    "opts": [
+      "Finish to finish",
+      "Finish to start",
+      "Start to finish",
+      "Start to start"
+    ],
+    "answer": 0,
+    "why": "Finish to finish constrains the END of the successor. B may start whenever the rest of the network allows; it simply cannot complete before A does — optionally plus a lag. This is usually the honest way to model painting following drywall on the same floor: some painting can proceed in boarded areas, but it cannot be 100% complete until the last sheet is up." },
+
+  { "id": "q-3-2-b", "lesson": "3.2",
+    "stem": "Why are negative lags discouraged?",
+    "opts": [
+      "They are invisible on a bar chart and very hard to defend, and the overlap is better modelled with a different relationship type",
+      "Planning software does not support them",
+      "They cause the forward pass to fail to calculate",
+      "They are prohibited by the SCL Protocol"
+    ],
+    "answer": 0,
+    "why": "Programming software allows negative lags, but there are few scenarios where they are appropriate in a forward-looking, transparent process of project management, so their use is best avoided. On the bar chart that comes out of the network, negative and positive lags are not readily apparent. RP-29R-03 goes further, recommending that any finish-to-start relationship with a negative lag greater than one time unit be replaced with a different relationship type carrying a zero or positive lag." },
+
+  { "id": "q-3-3-a", "lesson": "3.3",
+    "stem": "An activity has three predecessors with early finishes of 11, 14 and 12 June. Under the Option 1 convention, what is its early start?",
+    "opts": [
+      "15 June",
+      "12 June",
+      "14 June",
+      "13 June"
+    ],
+    "answer": 0,
+    "why": "When an activity has more than one predecessor, its early start is derived from the predecessor with the LATEST early finish — here 14 June — plus one calendar day, giving 15 June. The link from that predecessor is the driving relationship; the other two links are satisfied but not driving, and it is the driving links that carry the critical path.",
+    "whyWrong": { "2": "That is the latest early finish itself. Under Option 1 the successor starts the following day." } },
+
+  { "id": "q-3-3-b", "lesson": "3.3",
+    "stem": "Under the Option 1 convention, an activity with a duration of one day starts on 13 June. When does it finish?",
+    "opts": [
+      "13 June — the same day",
+      "14 June",
+      "12 June",
+      "It depends on the calendar assigned"
+    ],
+    "answer": 0,
+    "why": "Under Option 1 each task commences at 00:00 on its start date and completes at 23:59 on its finish date, so EF = ES + D − 1. A one-day task therefore starts and finishes on the same calendar day. Under Option 2 the same task would start on one day and finish the next. Either convention is correct provided it is applied consistently — mixing them produces off-by-one errors throughout the network." },
+
+  { "id": "q-3-4-a", "lesson": "3.4",
+    "stem": "How is total float calculated?",
+    "opts": [
+      "Late finish minus early finish, which always equals late start minus early start",
+      "Late finish minus early start",
+      "Early finish minus late start",
+      "The duration minus the remaining duration"
+    ],
+    "answer": 0,
+    "why": "Total float is the difference between each task's late finish and its early finish, or equivalently between its late start and its early start. The two always give the same number. An activity whose early and late dates coincide has zero total float and is critical — it cannot slip at all without extending the project." },
+
+  { "id": "q-3-4-b", "lesson": "3.4",
+    "stem": "On a project running four months late, every path is in negative float. Which path is the critical path?",
+    "opts": [
+      "The one with the most negative float",
+      "There is no critical path until float returns to zero",
+      "The one closest to zero float",
+      "Every path in negative float is equally critical"
+    ],
+    "answer": 0,
+    "why": "In a baseline or an unconstrained updated programme the critical path carries zero total float. On a late project the critical path is the path with the LEAST float — which, when everything is negative, means the most negative. In the airport case study the critical path sits at −85 days in one month and −167 in another, and identifying it depends entirely on looking for the least float rather than for zeroes that are not there." },
+
+  { "id": "q-3-5-a", "lesson": "3.5",
+    "stem": "An activity has 8 days of total float and 1 day of free float. What does that tell you?",
+    "opts": [
+      "Delaying it more than one day will consume float belonging to its successors",
+      "It can safely absorb 8 days of delay at no cost to anyone",
+      "It is critical, because free float is nearly zero",
+      "There is an error in the calculation — free float cannot be less than total float"
+    ],
+    "answer": 0,
+    "why": "Free float is the time an activity can be delayed without affecting the early start of any successor. Beyond that one day, the delay pushes a successor — which may not move the project yet, but has taken contingency from somebody else. That difference between total and free float is interfering float. Total float will always equal or exceed free float, so a smaller free float figure is not an error but the normal case.",
+    "whyWrong": { "1": "Eight days is available before the PROJECT moves. Only one day is available before a successor is affected." } },
+
+  { "id": "q-3-5-b", "lesson": "3.5",
+    "stem": "Which relationship between the float types always holds?",
+    "opts": [
+      "Total float ≥ free float ≥ independent float",
+      "Free float ≥ total float ≥ independent float",
+      "Independent float ≥ free float ≥ total float",
+      "All three are always equal on a non-critical activity"
+    ],
+    "answer": 0,
+    "why": "Total float will always equal or exceed free float, and independent float will always be less than or equal to free float. When an activity has zero total float its free float is zero too. Independent float is the time an activity can absorb without affecting its successors' early starts or its predecessors' late finishes — the most restrictive of the three, and therefore the smallest." },
+
+  { "id": "q-3-5-c", "lesson": "3.5",
+    "stem": "Why is 'the longest path' not always the same set of activities as 'the activities with least float'?",
+    "opts": [
+      "Constraints and mixed calendars can give an activity very low float without it driving anything",
+      "The longest path is calculated on the forward pass and least float on the backward pass",
+      "The longest path includes milestones and least float excludes them",
+      "They are the same thing described two ways"
+    ],
+    "answer": 0,
+    "why": "Float values are influenced by calendars, date constraints, float constraints and calculation protocols, so an activity can carry very low float without driving any successor — a finish-no-later-than constraint on an intermediate milestone is the classic case. The longest path is found by tracing DRIVING relationships back from completion. On a clean network the two coincide; on a real one they diverge, and it is the longest path that matters." },
+
+  { "id": "q-3-6-a", "lesson": "3.6",
+    "stem": "A 'start no earlier than' constraint affects which calculation?",
+    "opts": [
+      "The forward pass only",
+      "The backward pass only",
+      "Both passes",
+      "Neither — it is advisory"
+    ],
+    "answer": 0,
+    "why": "'Start or finish no earlier than' constraints affect only the early date calculations, which are produced by the forward pass. 'Start or finish no later than' constraints affect only the late date calculations from the backward pass. A 'start on' or 'finish on' constraint is a combination of both and overrides each of them." },
+
+  { "id": "q-3-6-b", "lesson": "3.6",
+    "stem": "What is the purpose of a zero total float constraint?",
+    "opts": [
+      "There is no legitimate purpose — it forces an activity to report zero float regardless of the network, and is the simplest way to sequester float",
+      "To identify the critical path automatically",
+      "To prevent an activity from being delayed by its predecessors",
+      "To lock an activity to its contractual milestone date"
+    ],
+    "answer": 0,
+    "why": "A zero total float constraint forces an activity's early and late dates to be equal, so it reports zero float whatever the network actually calculates. It is described as the simplest method of sequestering available float to an activity, and several US federal specifications prohibit it by name along with preferential sequencing, special lead/lag restraints, extended activity times and using resource levelling to consume float artificially." },
+
+  { "id": "q-3-1", "lesson": "3.1",
+    "stem": "Why does an inexperienced programmer represent a genuine project risk?",
+    "opts": [
+      "Durations will reflect that inexperience, and will then be calculated to the day and treated as fact by everyone downstream",
+      "They will be unable to operate the planning software",
+      "They will produce too many activities",
+      "They will not know which relationship types to use"
+    ],
+    "answer": 0,
+    "why": "When programmes are created by an individual with little experience of the particular type of work being planned, there is a real risk the durations will reflect that inexperience. Planners should ask many questions of project participants and gather as much information as necessary before publishing a programme for construction or bidding. The danger is the false precision that follows: the network computes exact dates from inexpert estimates, and everyone downstream treats those dates as facts." },
+
+  { "id": "q-3-2", "lesson": "3.2",
+    "stem": "Under RP-29R-03 guidance, when should a lag be replaced with a real scheduled activity?",
+    "opts": [
+      "When a finish-to-start lag is 50% or more of the duration of its predecessor or successor",
+      "Whenever the lag exceeds five days",
+      "Whenever the lag is on the critical path",
+      "Only when the lag is negative"
+    ],
+    "answer": 0,
+    "why": "The guidance is to replace with a schedule activity any FS logic with lag values 50% or longer than the duration of its predecessor or successor; any SS logic with lag 50% or longer than the predecessor's duration; and any FF logic with lag 50% or longer than the successor's duration. The reasoning is that a lag of that size is work or waiting, and it should be visible as a bar somebody owns — buried in a relationship it cannot be progressed, resourced, or shown to have been delayed." },
+
+  { "id": "q-3-3", "lesson": "3.3",
+    "stem": "What does the forward pass determine?",
+    "opts": [
+      "The early start and early finish of each activity, and the shortest time the project can be completed in",
+      "The critical path and the total float on each activity",
+      "The latest each activity can start without delaying completion",
+      "Which relationships are driving and which are merely satisfied"
+    ],
+    "answer": 0,
+    "why": "The forward pass works from beginning to end, determining the early start and early finish for each task along with the network's completion date — the shortest path to completion. It tells you nothing about float or the critical path; those require the backward pass. Driving relationships do fall out of the forward pass, but they are a by-product rather than its purpose." },
+
+  { "id": "q-3-4", "lesson": "3.4",
+    "stem": "In the backward pass, how is the late finish of a predecessor determined?",
+    "opts": [
+      "The smallest late start of all its successors, minus one calendar day",
+      "The largest late start of all its successors, minus one calendar day",
+      "Its own late start plus its duration",
+      "The project completion date minus the sum of successor durations"
+    ],
+    "answer": 0,
+    "why": "The late finish of a predecessor is equal to the SMALLEST of the late starts of all its successors, minus one calendar day. This mirrors the forward pass, where the LARGEST early finish of the predecessors governs a successor's early start. In each case the constraint that binds is the one that leaves the least room." },
+
+  { "id": "q-3-5", "lesson": "3.5",
+    "stem": "How many critical paths can a project have at one time?",
+    "opts": [
+      "More than one — and on projects with independent work areas you should expect it",
+      "Exactly one, by definition",
+      "One per contractual section only",
+      "As many as there are activities with float below the user-defined critical threshold"
+    ],
+    "answer": 0,
+    "why": "In any given network there may be more than one critical path, or parallel critical paths, at any point along the timeline. It is typical to find more than one on large-scale projects with work ongoing in several independent geographical locations, and concurrent delays are then evaluated by reference to events along each parallel path. The airport case study has two — a Terminal Building path and a Control Tower path — and either could have determined completion." },
+
+  { "id": "q-3-6", "lesson": "3.6",
+    "stem": "Which is a legitimate use of a date constraint?",
+    "opts": [
+      "Representing the date when access to part of the site will be provided",
+      "Ensuring an activity reports as critical so it receives management attention",
+      "Preventing an activity from showing float in a submitted programme",
+      "Holding a completion date fixed while the logic behind it slips"
+    ],
+    "answer": 0,
+    "why": "Legitimate uses include interim contractual milestones, when access to part of the site will be provided, when a long-lead item is expected from a manufacturer, when employer-furnished equipment will be available, and when staff will migrate into or out of parts of the works. All represent facts imposed from outside the network. The other three are float suppression techniques dressed up as scheduling." },
+
+  { "id": "q-3-7", "lesson": "3.4",
+    "stem": "An activity has ES 08-Jun, EF 12-Jun, LS 15-Jun, LF 19-Jun. What is its total float?",
+    "opts": [
+      "7 days",
+      "5 days",
+      "11 days",
+      "0 days — it is critical"
+    ],
+    "answer": 0,
+    "why": "Total float = LF − EF = 19 − 12 = 7 days. Equally LS − ES = 15 − 8 = 7 days. The two calculations always agree, which is a useful arithmetic check when working through a network by hand." },
+
+  { "id": "q-3-8", "lesson": "3.3",
+    "stem": "A milestone has zero duration and its last predecessor finishes on 23 June. What is the milestone's early finish?",
+    "opts": [
+      "23 June — the day the predecessor finished",
+      "24 June — the day after",
+      "22 June — the day before",
+      "A milestone has no early finish"
+    ],
+    "answer": 0,
+    "why": "The milestone's early START is 24 June — the predecessor's early finish plus one. Applying EF = ES + D − 1 with a duration of zero gives EF = 23 June. That looks odd until you see what it means: a completion milestone is achieved on the day the last piece of work actually completes, not the day after. The formula handles milestones correctly without a special case." },
+
+  { "id": "q-3-9", "lesson": "3.5",
+    "stem": "A planner is levelling resources and wants to move a non-critical activity later without any consequence to another trade. Which float should be used?",
+    "opts": [
+      "Free float",
+      "Total float",
+      "Interfering float",
+      "Terminal float"
+    ],
+    "answer": 0,
+    "why": "Free float is the time an activity can be delayed without affecting the early start of any successor, so spending it costs nobody anything. Spending beyond it — into interfering float — reduces the contingency available to successors, which may be a perfectly reasonable decision but is not a free one, and should be made knowingly." },
+
+  { "id": "q-3-10", "lesson": "3.6",
+    "stem": "In a float map, three activities show worse negative float than the driving critical path. What should the analyst suspect first?",
+    "opts": [
+      "That a constraint — typically finish no later than — has manufactured the negative float",
+      "That the driving critical path has been mis-identified",
+      "That the programme was calculated using progress override",
+      "That those activities are the true critical path"
+    ],
+    "answer": 0,
+    "why": "This is exactly what happened in the airport case study for April 2007: three activities showed greater negative float than the −42 day driving path, and rudimentary analysis showed all three were constrained with a finish-no-later-than constraint on an intermediate milestone. When anomalous float paths exist they need to be evaluated, explained, and in many cases dismissed from consideration of critical delay. Chasing them means building a case on an artefact." }
+]

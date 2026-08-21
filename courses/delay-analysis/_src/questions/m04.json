@@ -1,0 +1,222 @@
+[
+  { "id": "q-4-1-a", "lesson": "4.1",
+    "stem": "What is the correct standard for an as-planned programme?",
+    "opts": [
+      "Contractually compliant, readily auditable, and a true reflection of the contractor's intentions",
+      "Accurate when compared activity by activity with the as-built",
+      "Approved in writing by the contract administrator before work starts",
+      "Free of any logical errors or unrealistic durations"
+    ],
+    "answer": 0,
+    "why": "Attempting to develop a perfectly accurate as-planned programme is a mistaken concept. If accuracy were measured by comparing the baseline with the as-built activity by activity, no programme would pass a statistical test — and yet projects finish on time all the time with duration over-runs and sequence changes. The standard is that the programme is contractually compliant, readily auditable, and a true reflection of the contractor's intentions. It remains the base from which change is measured." },
+
+  { "id": "q-4-1-b", "lesson": "4.1",
+    "stem": "A contractor's monthly updates gradually change the baseline logic without documenting the changes. What is the consequence?",
+    "opts": [
+      "Nothing can be measured from it, because nobody can say what the baseline used to be",
+      "The baseline is automatically superseded by the latest update",
+      "The contract administrator is deemed to have approved the changes",
+      "The updates become inadmissible as evidence"
+    ],
+    "answer": 0,
+    "why": "Baselines are not affected by actual progress — only by changed intentions for the remaining work. Where major changes to logic, durations or scope are introduced they should be documented and a new baseline agreed, with all deviations from the original recorded. A baseline that drifts silently is worse than no baseline: it destroys the reference point every method of analysis depends on." },
+
+  { "id": "q-4-2-a", "lesson": "4.2",
+    "stem": "Which progress measurement technique should never be applied to a critical activity?",
+    "opts": [
+      "Observational assessment",
+      "Unit measure",
+      "Incremental milestones",
+      "Equivalent units"
+    ],
+    "answer": 0,
+    "why": "Observational assessment is expressly a subjective method, and should only be applied to non-critical tasks or those where measuring actual progress precisely would be extremely time-consuming — certain design and drafting functions, finishing trades, dewatering large areas. The remaining duration of a critical activity IS the forecast completion date, so guessing at it means guessing at the answer the whole programme exists to produce, with no way for a reviewer to test the guess." },
+
+  { "id": "q-4-2-b", "lesson": "4.2",
+    "stem": "What does the 'level of effort / cost ratio' technique actually measure?",
+    "opts": [
+      "Budget expenditure rather than progress achieved",
+      "Physical completion of the work",
+      "The productivity of the assigned crew",
+      "Remaining duration to completion"
+    ],
+    "answer": 0,
+    "why": "The level of effort or cost ratio method applies to time-related functions that are continuous through the life of a project and not based on production — quality assurance and monitoring roles, for example. It is determined by comparing actual cost to date with total forecast cost, which makes it a measure of budget expenditure rather than actual progress achieved. It is a legitimate proxy, provided everyone reading the number understands that is what it is." },
+
+  { "id": "q-4-3-a", "lesson": "4.3",
+    "stem": "What is the data date?",
+    "opts": [
+      "The date up to which performance data is measured, and from which future work is re-scheduled",
+      "The date the programme was issued",
+      "The contractual date for completion",
+      "The date of the next progress meeting"
+    ],
+    "answer": 0,
+    "why": "The data date is the date up to which performance data is measured and the date from which future work is re-programmed. Everything left of it is history; everything right of it is forecast. Float values are only calculated forward of the data date, which is the technical reason an as-built critical path cannot be directly computed by any software package and must be deduced." },
+
+  { "id": "q-4-3-b", "lesson": "4.3",
+    "stem": "Why is the 'auto update' function in planning software dangerous?",
+    "opts": [
+      "It assumes the project went to plan, producing a confident forecast that conceals real slippage",
+      "It corrupts the underlying network logic",
+      "It cannot handle activities with more than one predecessor",
+      "It resets all actual start and finish dates"
+    ],
+    "answer": 0,
+    "why": "Where auto-update is used, the software assumes the project is going to plan: activity durations in the progress window are updated with start and finish dates as intended. In the illustrated example a series auto-updated to 31 January still forecast completion on 15 February — but entering one activity's real 5% progress manually moved that to 19 February. It is tempting when faced with thousands of activities, and it produces poor records and information that is defective for forecasting." },
+
+  { "id": "q-4-4-a", "lesson": "4.4",
+    "stem": "Under 'retained logic', what happens when an activity starts out of sequence?",
+    "opts": [
+      "The dependency is kept, so the successor's remaining work still cannot complete until its predecessor does",
+      "The link to the predecessor is broken from the moment it starts early",
+      "The successor is reset to its original planned start date",
+      "The programme refuses to calculate until the logic is corrected"
+    ],
+    "answer": 0,
+    "why": "Retained logic recognises that although an activity may have started out of sequence, it cannot be one hundred per cent complete until its predecessors are also complete. Painting may proceed in areas where drywall has been installed, but it cannot be complete until the last sheet is up. Progress override does the opposite — it breaks the link, and will report physically impossible sequences and a completion date nobody has earned." },
+
+  { "id": "q-4-4-b", "lesson": "4.4",
+    "stem": "What is the correct repair for a sequence that has genuinely changed on site?",
+    "opts": [
+      "Replace the relationship with one that reflects how the work is actually being built",
+      "Switch the calculation protocol to progress override",
+      "Add a negative lag to the existing relationship",
+      "Leave the logic and adjust the remaining durations"
+    ],
+    "answer": 0,
+    "why": "One solution to repairing an illogical sequence resulting from progress override is to replace the over-ridden logic with a more logical relationship representing the true dependence of the two activities. In the drywall and paint example, a finish-to-finish relationship plus three days gives the same 13-day answer as retained logic and reflects what is actually happening — which is what survives cross-examination. A calculation setting is not a substitute for correct logic.",
+    "whyWrong": { "2": "Negative lags are invisible on a bar chart and among the hardest things on any network to defend." } },
+
+  { "id": "q-4-5-a", "lesson": "4.5",
+    "stem": "What single habit most improves the forensic value of a contractor's daily reports?",
+    "opts": [
+      "Referencing entries to programme activity IDs",
+      "Having them countersigned by the clerk of works",
+      "Recording weather conditions each day",
+      "Filing them chronologically rather than by trade"
+    ],
+    "answer": 0,
+    "why": "Daily reports should identify all activities in progress or being delayed, with the cause referenced where possible to the programme task IDs. An entry recording delay to 'second floor services' requires somebody later to work out which activities that means. An entry against C1B544210 is already connected to a bar, a duration, a float value and a position on the critical path — turning days of forensic work into minutes." },
+
+  { "id": "q-4-5-b", "lesson": "4.5",
+    "stem": "An analyst's conclusion conflicts with a contemporaneous document. Which prevails?",
+    "opts": [
+      "The contemporaneous document",
+      "The analysis, if the method was correctly applied",
+      "Whichever the tribunal finds more persuasive on the day",
+      "Neither — the conflict must be resolved by further analysis"
+    ],
+    "answer": 0,
+    "why": "Even where the process of analysis and application of a particular technique is carried out appropriately, when there are inconsistencies between the conclusions of the delay analysis and the contemporaneous documents, the contemporaneous documents will usually prevail. That is why a reality check against the records is a necessary step in every method, not an optional refinement." },
+
+  { "id": "q-4-6-a", "lesson": "4.6",
+    "stem": "Why does padding every activity duration by 20% ultimately defeat its own purpose?",
+    "opts": [
+      "The float re-emerges as activities perform to their natural durations, Parkinson's Law consumes it, and it destroys the contractor's own measured mile",
+      "Planning software automatically detects and removes it",
+      "It is prohibited under every standard form of contract",
+      "It makes the critical path impossible to calculate"
+    ],
+    "answer": 0,
+    "why": "Three consequences. If a contractor adds 20% to every duration, that float will soon emerge as activities are performed at their natural durations. Parkinson's Law applies — work expands to fill the time available — so the extended allowance encourages slower output and defeats the contingency. And it makes it more difficult to establish a measured mile or a period of efficient progress, masking the true impact of both excusable and culpable delay events." },
+
+  { "id": "q-4-6-b", "lesson": "4.6",
+    "stem": "What is a 'shadow programme' and when is it appropriate?",
+    "opts": [
+      "The contractor's latest submitted programme, updated with the employer team's own perception of progress, where reliable information has stopped flowing",
+      "A second programme the contractor keeps for internal use only",
+      "A programme prepared by the analyst after completion for forensic purposes",
+      "The accepted programme with all constraints removed"
+    ],
+    "answer": 0,
+    "why": "Where predatory programming practices are identified or suspected, an employer's project manager can prepare and maintain a shadow programme — created by recording the employer team's perception of progress and updating the contractor's most recently submitted programme. It protects against a lack of information or misinformation if reliable programming data stops flowing. It should always be labelled as what it is, dated, and never presented as though it were the accepted programme." },
+
+  { "id": "q-4-1", "lesson": "4.1",
+    "stem": "What is reviewed at a Joint Baseline Review workshop?",
+    "opts": [
+      "The assumptions and constraints behind the draft programme, with the whole professional team present",
+      "The contractor's compliance with the programme in the previous month",
+      "The extension of time entitlement for events to date",
+      "The accuracy of the as-built records"
+    ],
+    "answer": 0,
+    "why": "A Joint Baseline Review addresses the assumptions and constraints considered by the programming staff, with designers, estimators, engineers, contract administrators, the client, contractors, the project or construction manager and quantity surveying staff present. Typical items: plant selection and availability, labour composition, weather conditions and tidal patterns, site layout and logistics, supply chain factors, staff migration, risks and opportunities in each assumption, and every hard and soft logic assumption." },
+
+  { "id": "q-4-2", "lesson": "4.2",
+    "stem": "How is the project-wide percent complete determined from individual activity percentages?",
+    "opts": [
+      "By earned value: the sum of earned values divided by the sum of budget values",
+      "By taking the arithmetic mean of all activity percentages",
+      "By reference to the critical path activities only",
+      "By comparing elapsed time against the total planned duration"
+    ],
+    "answer": 0,
+    "why": "Earned value for a task is percent complete multiplied by the task's budgeted value. Project-wide percent complete is the earned value of all tasks divided by the budget value of all tasks. Without that weighting, a project with one 400-day activity at 10% and ten 2-day activities at 100% would report itself 91% complete — which is why a simple average is meaningless." },
+
+  { "id": "q-4-3", "lesson": "4.3",
+    "stem": "What does a look-ahead programme identify?",
+    "opts": [
+      "Activities that should have started or completed in the last period but did not, and those that must complete next period",
+      "The critical path for the remainder of the project",
+      "The total float available on every remaining activity",
+      "The forecast completion date under three scenarios"
+    ],
+    "answer": 0,
+    "why": "Look-ahead programmes typically span at least the work planned through the next update cycle and are produced at Level 3 or 4. They assist by indicating which activities should have started or completed in the last period but did not, and which need to be completed in the next update period. That first list is a set of things already going wrong, produced while there is still time to act." },
+
+  { "id": "q-4-4", "lesson": "4.4",
+    "stem": "Why must you establish which calculation protocol a set of programme updates was produced under before relying on them?",
+    "opts": [
+      "Different packages are inconsistent, the setting changes the completion date, and it appears on no printout",
+      "Progress override is prohibited under most standard forms",
+      "Retained logic prevents the critical path from being calculated",
+      "The protocol determines whether float is positive or negative"
+    ],
+    "answer": 0,
+    "why": "Different packages are not all consistent in how they deal with out-of-sequence progress, and the two common protocols produce materially different completion dates — 13 days against 10 in the drywall example. The setting is buried in the options menu and does not appear on any tabular or graphical report. A set of updates where the protocol changed midway is not a comparable series at all." },
+
+  { "id": "q-4-5", "lesson": "4.5",
+    "stem": "What is the risk of providing a forensic analyst with too many uncoded documents?",
+    "opts": [
+      "Excessive research cost disproportionate to the dispute, and key documents overlooked despite being in the bundle",
+      "The analyst will be unable to reach any conclusion at all",
+      "Privileged material may be inadvertently disclosed",
+      "The tribunal will refuse to admit the analysis"
+    ],
+    "answer": 0,
+    "why": "Providing an analyst with too many raw project documents, uncoded and unorganised, often leads to excessive research costs — possibly an analysis disproportionately costly to the amount in dispute — and increases the likelihood that key documents which would have assisted greatly are overlooked. The opposite failure is just as real: too few documents risks the analyst never seeing the one that would have shown a conclusion to be wrong." },
+
+  { "id": "q-4-6", "lesson": "4.6",
+    "stem": "Which of the following is a recognised float suppression technique?",
+    "opts": [
+      "Preferential sequencing, so the critical path passes through activities susceptible to employer-caused delay",
+      "Recording time-risk allowances as separate contingency activities",
+      "Updating the programme monthly with actual start and finish dates",
+      "Assigning a seven-day calendar to weather-independent activities"
+    ],
+    "answer": 0,
+    "why": "Preferential logic is named as a float suppression technique: elective sequencing whereby the critical path is arranged to either pass through or avoid activities more susceptible to delay caused by the employer. US federal specifications prohibit it by name, alongside special lead/lag restraints, zero total or free float constraints, extended activity times, and using resource levelling to consume float artificially. Declaring contingency explicitly is the opposite — it is the recommended practice." },
+
+  { "id": "q-4-7", "lesson": "4.3",
+    "stem": "Programme updates record the performance of which parties?",
+    "opts": [
+      "All of them — employer, professional team, designers and contractor alike",
+      "The contractor only, since it is the contractor's programme",
+      "Only those with activities on the critical path",
+      "Only the parties named in the contract particulars"
+    ],
+    "answer": 0,
+    "why": "Accurate updated programmes document the performance of the employer, the professional team, designers, and the contractor, and their ability to meet commitment dates. Contemporaneous updates provide a record of the timeliness and completeness of each party's effort. A properly maintained update history is evidence in both directions — which is one reason employers who neglect it lose as often as contractors who do." },
+
+  { "id": "q-4-8", "lesson": "4.1",
+    "stem": "A programme is found to contain many errors, inherent delays and illogical sequences. What is the appropriate response?",
+    "opts": [
+      "It may be deemed unreliable as a basis for measuring delay — and saying so in writing is a legitimate conclusion",
+      "Correct it silently and proceed with the analysis",
+      "Use it anyway, since a flawed contemporaneous programme is always preferred",
+      "Reconstruct a replacement baseline from the as-built records"
+    ],
+    "answer": 0,
+    "why": "If the programme is found to have too many errors, inherent delays or illogical sequences, it may be deemed unreliable for use as a basis for measuring delay. Any identified errors, flaws or concerns should be identified, documented and, if appropriate, corrected — transparently. Correcting silently undermines every conclusion drawn from the result, and a reconstructed baseline should be avoided unless the approach is agreed with the other party first." }
+]

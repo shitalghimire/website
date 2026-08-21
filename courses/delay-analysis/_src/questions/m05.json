@@ -1,0 +1,199 @@
+[
+  { "id": "q-5-1-a", "lesson": "5.1",
+    "stem": "Why should a contract programming specification require the programme in native software format?",
+    "opts": [
+      "Constraints, calculation protocols and float settings are invisible on a printout",
+      "Printouts cannot show activity durations",
+      "Native files are smaller and easier to archive",
+      "It is required by the SCL Protocol's model specification clause"
+    ],
+    "answer": 0,
+    "why": "Today's programming software contains many user-defined settings that are not apparent from tabular or graphical reports. Some are buried in pull-down menus accessible only in the native software, and the reviewer needs the same version of that software to open and interrogate them. A PDF of a bar chart cannot tell you the retained-logic setting, how many constraints exist, or whether a zero-total-float constraint is holding a path." },
+
+  { "id": "q-5-1-b", "lesson": "5.1",
+    "stem": "What must an analyst do after reconstructing a baseline from a hard-copy printout?",
+    "opts": [
+      "Iteratively confirm every early and late date and total float against the printout, documenting any remaining anomaly",
+      "Obtain the contractor's written confirmation that the reconstruction is accurate",
+      "Submit it to the contract administrator for approval",
+      "Nothing further — the reconstruction stands on the data used to build it"
+    ],
+    "answer": 0,
+    "why": "Even with a fully linked bar chart, a successor printout with relationship types and lags, activity durations, calendar assignments and non-work periods, the analyst must iteratively confirm each early start, late start, early finish, late finish and total float to ensure 100% consistency with the hard-copy printout. Where anomalies remain between the two they must be identified and documented clearly. A reconstruction that has not been reconciled is a new programme wearing the old one's name." },
+
+  { "id": "q-5-2-a", "lesson": "5.2",
+    "stem": "Why should an as-built programme show periods of inactivity as well as periods of progress?",
+    "opts": [
+      "A single continuous bar conceals where the time actually went, and the gaps are usually where the delay events are",
+      "Contract conditions normally require it",
+      "Planning software cannot calculate float without it",
+      "It reduces the number of activities needed in the programme"
+    ],
+    "answer": 0,
+    "why": "An as-built programme has the added feature of illustrating when an activity was active as well as periods of inactivity — a wide bar for days when progress was achieved, a narrow connector for the days between. When building a forensic as-built it is desirable to represent intermittent progress with a number of broken bars. A single bar running six months looks like six months of work; broken into the eleven actual spells, it tells a completely different story." },
+
+  { "id": "q-5-2-b", "lesson": "5.2",
+    "stem": "An activity reaches around 95% complete and then remains unfinished for several weeks. Why does this matter?",
+    "opts": [
+      "The last 5% may be the critical part, so 'actual finish' must be designated to mean 100% complete",
+      "It indicates the percentage was measured observationally",
+      "It means the activity should be split into two activities in the baseline",
+      "It shows the original duration was over-estimated"
+    ],
+    "answer": 0,
+    "why": "One common difficulty in preparing an as-built is identifying conclusive start and finish dates. Certain activities reach a completion state of around 95% but remain unfinished for many weeks. It is helpful to designate this point on the programme to ensure an actual finish date represents 100% completion — because the last 5% may actually be the critical bit. Key decisions and assumptions like this must be set out clearly." },
+
+  { "id": "q-5-3-a", "lesson": "5.3",
+    "stem": "A daily report and a monthly payment application disagree about when an activity started. Which should prevail, and why?",
+    "opts": [
+      "The daily report — it is accurate to the day, whereas an application is only accurate to the month",
+      "The payment application — it was issued to both parties and open to correction",
+      "Whichever is corroborated by the contractor's witness statement",
+      "Neither — the conflict makes both unreliable"
+    ],
+    "answer": 0,
+    "why": "Documents should be given a hierarchy establishing their level of accuracy and reliability. Payment applications are accurate only to the duration of the progress period applied for — 30 days. Daily reports are accurate to the day, as are date-stamped photographs and some diary entries. Applications are also prepared by somebody with an interest in the percentage being as high as defensible. The hierarchy resolves the conflict systematically, provided it was set before the research began." },
+
+  { "id": "q-5-3-b", "lesson": "5.3",
+    "stem": "Why are meeting minutes and valuation applications given particular weight despite their limited date accuracy?",
+    "opts": [
+      "They are open documents, sent to both parties and revisited, commented on and corrected periodically",
+      "They are always signed by both parties",
+      "They are prepared by an independent third party",
+      "They record work to a higher level of detail than daily reports"
+    ],
+    "answer": 0,
+    "why": "Records kept regularly and frequently are preferred to ad hoc documents created after delays are known to exist. Padding the files with inaccurate information is uncommon but not unknown, and is far less likely in frequently issued documents sent to both parties at the time. The advantage of valuation applications and meeting minutes is that they are open documents, revisited, commented upon and corrected on a frequent periodic basis." },
+
+  { "id": "q-5-4-a", "lesson": "5.4",
+    "stem": "In how many forms can delay to planned work scope occur?",
+    "opts": [
+      "Three — delay to commencement, extended duration, or suspension during performance",
+      "Two — critical and non-critical",
+      "Four — excusable, non-excusable, compensable, non-compensable",
+      "It varies with the form of contract"
+    ],
+    "answer": 0,
+    "why": "Delay to planned work scope can occur in only three forms: delay to commencement, extended duration, or suspension during performance. Each will have an impact on the completion of the delayed task. It is worth classifying each event this way, because the three leave different traces in the records — a delayed start shows in the actual start date, an extended duration in the productivity, a suspension in the gaps." },
+
+  { "id": "q-5-4-b", "lesson": "5.4",
+    "stem": "Which methods are described as 'cause-based'?",
+    "opts": [
+      "Impacted as-planned, time impact analysis and collapsed as-built",
+      "As-planned versus as-built and contemporaneous windows analysis",
+      "Only the additive methods",
+      "All retrospective methods"
+    ],
+    "answer": 0,
+    "why": "The impacted as-planned, time impact analysis and collapsed as-built approaches are all cause-based: they first identify the relevant delay events, both contractor and employer, and rely on the models to calculate the effect. The as-built methods are effect-based — they start with the delay effect and then identify the most proximate event that most likely caused it. Collapsed as-built surprises people because it works on an as-built, but it starts by identifying which events to extract." },
+
+  { "id": "q-5-5-a", "lesson": "5.5",
+    "stem": "From which programme should the delay caused by an instructed variation be measured?",
+    "opts": [
+      "The programme prevailing when the instruction was issued",
+      "The original contract baseline",
+      "The final as-built programme",
+      "The programme in force at practical completion"
+    ],
+    "answer": 0,
+    "why": "The measurement of delay is based on the date the work was actually carried out and the most recently submitted programme at the time the changed work was instructed. In the case study, although total delay from the baseline planned finish of column strengthening to its actual finish was 123 calendar days, the planned finish in the programme prevailing when the revised details were issued produced a direct critical delay of 33 days. Any delay occurring before the instruction was not caused by it." },
+
+  { "id": "q-5-5-b", "lesson": "5.5",
+    "stem": "Why should a delay register record the contractor's own delays as well as the employer's?",
+    "opts": [
+      "Small delays decide concurrency arguments, and identifying your own keeps control of that argument",
+      "It is a contractual requirement under most standard forms",
+      "The register is disclosable, so omissions constitute non-disclosure",
+      "It reduces the number of event analysis sheets required"
+    ],
+    "answer": 0,
+    "why": "The delay register is designed to capture all delays, no matter how small, that could have contributed to the critical delay incurred. An event contributing two days is not worth a claim alone, but it may be why a near-critical path became critical, and it may decide whether an employer event was dominant or merely concurrent. Recording your own is not an admission — it is how you keep control of the concurrency argument rather than having the other side discover them for you." },
+
+  { "id": "q-5-1", "lesson": "5.1",
+    "stem": "Why is the baseline programme still the starting point even for methods that do not require one?",
+    "opts": [
+      "It is contemporaneous evidence of the contractor's original intentions on durations, resourcing and logistics",
+      "It is the only document the tribunal will accept without proof",
+      "Every method ultimately requires a baseline at some stage",
+      "It establishes the contract completion date"
+    ],
+    "answer": 0,
+    "why": "Even where an analyst relies on a method of quantifying critical delay that does not depend on a baseline, the baseline is useful contemporaneous evidence of the contractor's original intentions with regard to activity durations, resourcing and logistics — written down before any dispute existed. A review may also reveal inherent flaws or errors in the contractor's assumptions, or that it was simply not possible to construct the project the way the programme said." },
+
+  { "id": "q-5-2", "lesson": "5.2",
+    "stem": "What is the minimum data required to maintain an updated programme that can support an as-built?",
+    "opts": [
+      "Percentage complete, actual start date, and actual completion date",
+      "Remaining duration and total float",
+      "Actual cost and actual hours expended",
+      "Percent complete and forecast completion date"
+    ],
+    "answer": 0,
+    "why": "During the course of a project, the minimum data required periodically to maintain an updated programme that can be relied on for constructing an as-built is: the progress of a programmed activity measured as a percentage of work complete, the activity start date, and the activity completion date. The more frequently that data is captured — bi-weekly, weekly, daily — the more accurate the factual matrix and the as-built will be." },
+
+  { "id": "q-5-3", "lesson": "5.3",
+    "stem": "Along which three dimensions should the reliability of a record be assessed?",
+    "opts": [
+      "Accuracy as to date, certainty as to location, and certainty as to scope",
+      "Authorship, date, and distribution",
+      "Contemporaneity, formality, and detail",
+      "Origin, retention period, and format"
+    ],
+    "answer": 0,
+    "why": "Documents are reliable about different things. Certain documents will be reliable as to the date of an activity but not equally reliable as to the location of the work — photographs on projects with repetitive floors, for example. Likewise timesheets might be reliable as to the date a task was carried out but less reliable as to the specific location. That is why the hierarchy is a grid rather than a single ranked list." },
+
+  { "id": "q-5-4", "lesson": "5.4",
+    "stem": "Until an event is confirmed as having caused actual delay, what is it?",
+    "opts": [
+      "Only a risk event",
+      "A compensation event",
+      "A concurrent delay",
+      "An excusable delay"
+    ],
+    "answer": 0,
+    "why": "Causes are usually categorised as contractor risk events or employer risk events. Until any of these events is confirmed as having caused actual delay, they are only risk events. That distinction does a great deal of work later: agreement that thirteen employer risk events occurred is not agreement that any of them caused delay, as the case study demonstrates where four of thirteen agreed events contributed nothing." },
+
+  { "id": "q-5-5", "lesson": "5.5",
+    "stem": "What is the single most valuable field on an event analysis sheet?",
+    "opts": [
+      "The CPM activity ID the event affects",
+      "The date the notice was served",
+      "The contract clause relied upon",
+      "The name of the person who identified the event"
+    ],
+    "answer": 0,
+    "why": "The event analysis sheet gathers documents, changes, contract entitlement clauses, programming information including predecessors and successors, and the actions required. The CPM activity ID connects the event to a bar, a duration, a float value and a position on the critical path — turning what would be days of forensic work into minutes. The same principle applies to daily reports, RFIs and instructions: reference everything to the programme." },
+
+  { "id": "q-5-6", "lesson": "5.4",
+    "stem": "Why should regularly updated contemporaneous programmes generally be preferred to a forensic computer model?",
+    "opts": [
+      "They were reviewed and used at the time to direct resources, whereas a model is built by someone who knows the answer they want",
+      "Computer models are inadmissible in most jurisdictions",
+      "Contemporaneous programmes are more likely to be technically accurate",
+      "Forensic models cannot handle more than a few hundred activities"
+    ],
+    "answer": 0,
+    "why": "Computer-generated models sometimes involve hundreds of iterations of impact simulations produced automatically, resulting in conclusions with no relationship to common sense, intuition, or what was reported as critical at the time. Where CPM programmes were updated regularly, submitted, reviewed by the employer's team, and used by the contractor to direct resources to critical work, those programmes should be preferred to a forensically created model simulating what-if scenarios after the fact." },
+
+  { "id": "q-5-7", "lesson": "5.2",
+    "stem": "Why should employers maintain their own as-built record of the contractor's progress?",
+    "opts": [
+      "Contractors increasingly favour minimalist narrative reports over detailed periodic records, which may be prejudicial to defending a claim",
+      "Contract conditions require the employer to keep the master as-built",
+      "The contractor's as-built is inadmissible against it",
+      "It is needed to calculate liquidated damages"
+    ],
+    "answer": 0,
+    "why": "There is an increasing trend for contractors to steer clear of traditional detailed periodic percentage records in favour of a minimalist narrative report — which may reflect a concern that a detailed record could prove prejudicial where culpable delay is a factor. In such circumstances it is prudent for employers to maintain an accurate as-built record of the contractor's progress against the latest submitted programme, effectively shadowing it. Where the contract administrator is already obliged to keep such records, this should require no additional effort." },
+
+  { "id": "q-5-8", "lesson": "5.2",
+    "stem": "What can delays identified by reference to an as-built programme alone demonstrate?",
+    "opts": [
+      "Only the effect of a delay event, not its cause",
+      "Both cause and effect, provided the records are complete",
+      "The critical path through the project",
+      "Entitlement to an extension of time"
+    ],
+    "answer": 0,
+    "why": "An as-built programme is a historical record of the timing of each activity. Unless reconstructed with reliable and non-contentious as-built logic, it will not normally be a logic-linked programme. Delays identified by reference to an as-built alone can only demonstrate the effect of a delay event. Establishing which events were critical, which concurrent, and how much time each contributed requires the analysis that follows." }
+]

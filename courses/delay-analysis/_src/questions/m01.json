@@ -1,0 +1,223 @@
+[
+  { "id": "q-1-1-a", "lesson": "1.1",
+    "stem": "A project experiences a three-week delay when unforeseen ground conditions are encountered during piling. What does this most directly indicate?",
+    "opts": [
+      "That a risk inherent to construction has materialised and now needs managing",
+      "That the project management team has failed",
+      "That the baseline programme was negligently prepared",
+      "That the contractor under-resourced the piling operation"
+    ],
+    "answer": 0,
+    "why": "Risk is inherent in construction — it can be managed, minimised, shared, transferred or accepted, but not ignored. If risk is inherent then so is delay, and a delay event is not in itself evidence that anybody has failed. What matters next is whether the event is identified, documented and its impact assessed **at the time**.",
+    "whyWrong": { "1": "Delays are often simply the result of an event that must be managed. Treating every delay as a management failure is how projects end up with nobody willing to report one early." } },
+
+  { "id": "q-1-1-b", "lesson": "1.1",
+    "stem": "On most construction projects, what is the largest single unanticipated cost?",
+    "opts": [
+      "The financial impact of delay and disruption",
+      "Increases in the cost of materials",
+      "Design development beyond the tender allowance",
+      "Defective work and its rectification"
+    ],
+    "answer": 0,
+    "why": "The most significant unanticipated cost in most construction projects is the financial impact associated with delay and disruption to the works. It is also the hardest to establish, because it requires a demonstrated causal link from event to effect to liability to damages — which is precisely why the discipline exists." },
+
+  { "id": "q-1-2-a", "lesson": "1.2",
+    "stem": "A delay analyst concludes that an instruction was an employer risk event. What is the status of that conclusion?",
+    "opts": [
+      "A provisional assignment, to allow the analysis to proceed — the determination belongs to the contract administrator or a tribunal",
+      "A binding finding, since the analyst is the expert on the programme",
+      "Irrelevant, because liability plays no part in delay analysis",
+      "A quantum question that should be answered by a quantity surveyor"
+    ],
+    "answer": 0,
+    "why": "Liability is grounded in law and the contract; causation is grounded in facts. The analyst must make a provisional assignment of risk so events can be categorised and the analysis can run, but interpreting the contractual obligation is for the contract administrator, project manager or tribunal. An analyst who presents a risk assignment as a finding has stepped outside their expertise — and given the other side an easy target.",
+    "whyWrong": { "2": "Liability is central to delay analysis; the analyst simply is not the person who decides it." } },
+
+  { "id": "q-1-2-b", "lesson": "1.2",
+    "stem": "A contractor is awarded a 20-day extension of time for late issue of design information. What follows about its entitlement to prolongation costs?",
+    "opts": [
+      "Nothing automatically — time and money are separate tests with different standards of proof",
+      "It is entitled to 20 days of prolongation at the pre-agreed daily rate",
+      "It is entitled to prolongation only if it also proves disruption",
+      "It is entitled to prolongation for 20 days less any float that existed"
+    ],
+    "answer": 0,
+    "why": "Entitlement to additional time does not automatically provide an equal entitlement to additional money. The SCL Protocol recognises different tests for time and money, and compensation for prolongation should be paid only for work actually done, time actually taken up, or loss and/or expense actually suffered — not for a period produced by a model.",
+    "whyWrong": { "1": "A pre-agreed daily rate helps with the arithmetic once entitlement is established. It does not establish the entitlement." } },
+
+  { "id": "q-1-3-a", "lesson": "1.3",
+    "stem": "Exceptionally adverse weather delays the critical path by two weeks under a contract that lists it as a relevant event but not a compensation event. How is this classified?",
+    "opts": [
+      "Excusable and non-compensable — a neutral event",
+      "Excusable and compensable",
+      "Non-excusable and non-compensable",
+      "Concurrent delay"
+    ],
+    "answer": 0,
+    "why": "A neutral event is one that is beyond the control of both parties: the contractor is relieved from liquidated damages but recovers no money. Exceptionally adverse weather, force majeure, strikes and civil commotion are the usual examples. Because the definition drives the outcome, the contract should say what 'exceptional' means, measured against what data, over what period." },
+
+  { "id": "q-1-3-b", "lesson": "1.3",
+    "stem": "Which combination of classifications cannot exist?",
+    "opts": [
+      "A contractor risk event that is compensable",
+      "An employer risk event that is non-compensable",
+      "A critical delay that is non-excusable",
+      "A concurrent delay that is excusable"
+    ],
+    "answer": 0,
+    "why": "A contractor risk event cannot be compensable. There is no combination in which a party recovers money for the consequences of its own default. The other three all occur routinely: an employer risk event may be excusable but non-compensable (a neutral event); a critical delay caused by the contractor is non-excusable; and concurrent delays commonly carry an extension of time without prolongation." },
+
+  { "id": "q-1-3-c", "lesson": "1.3",
+    "stem": "In a collapsed as-built analysis, every identified delay event is extracted and the programme still finishes eleven days after the contract date. How are those eleven days treated?",
+    "opts": [
+      "As contractor delay, because no cause has been identified for them",
+      "As neutral delay, because neither party has been shown to have caused them",
+      "As employer delay, because the employer bears the residual risk of completion",
+      "As an error in the model requiring the analysis to be re-run"
+    ],
+    "answer": 0,
+    "why": "By definition, if a delay cannot be attributed to an employer risk event it is treated as a contractor risk event. This default rule operates in every method, and it is the reason an analyst running a collapsed as-built has every incentive to identify as many events as possible — including the contractor's own — before collapsing anything.",
+    "whyWrong": { "3": "A residual is a normal output, not necessarily an error. It may point to a missed event, but it may equally be genuine unexplained contractor delay." } },
+
+  { "id": "q-1-4-a", "lesson": "1.4",
+    "stem": "A contract administrator defers assessing an extension of time application until the full effect of the event is known. What is the principal objection to this?",
+    "opts": [
+      "Evidence decays, staff leave and programmes are superseded, so the assessment becomes harder and more expensive the longer it waits",
+      "The contract administrator has no power to grant an extension after the completion date has passed",
+      "It automatically renders time at large",
+      "It breaches the SCL Protocol, which has the force of law"
+    ],
+    "answer": 0,
+    "why": "The SCL Protocol discourages the wait-and-see approach precisely because delays rarely go away by themselves, and the later an application is left the more difficult it becomes to assess its impact accurately. The cost of establishing the same entitlement rises by an order of magnitude at each step down the dispute hierarchy.",
+    "whyWrong": {
+      "1": "A contract administrator generally can grant an extension after the completion date has passed — this was confirmed in Balfour Beatty v Chestermount, which also settled that the 'net' rather than 'gross' method applies.",
+      "3": "The Protocol is expressly not a statement of law."
+    } },
+
+  { "id": "q-1-4-b", "lesson": "1.4",
+    "stem": "From the employer's perspective, what is the principal benefit of the extension of time machinery?",
+    "opts": [
+      "It preserves the right to set a new completion date and therefore to deduct liquidated damages",
+      "It transfers the risk of delay to the contractor",
+      "It caps the contractor's entitlement to prolongation costs",
+      "It obliges the contractor to accelerate"
+    ],
+    "answer": 0,
+    "why": "The benefit to the contractor is relief from liquidated damages. The benefit to the employer is twofold: it maintains the right to establish a new contract completion date — preventing time for completion becoming at large — and it preserves the right to deduct damages. Without a working mechanism, an act of prevention can leave the employer with no date to measure damages against." },
+
+  { "id": "q-1-5-a", "lesson": "1.5",
+    "stem": "On the question of float ownership, how do the SCL Protocol and AACE RP-29R-03 differ?",
+    "opts": [
+      "The Protocol treats float as available to whoever needs it without either party owning it; RP-29R-03 distinguishes shared network float from project float, which it says the contractor owns",
+      "The Protocol says the contractor owns it; RP-29R-03 says the employer does",
+      "They agree entirely — both say float belongs to the project",
+      "Neither document addresses float ownership"
+    ],
+    "answer": 0,
+    "why": "This is one of the two substantive divergences between the guides. The Protocol endorses granting an extension only once employer delay reduces total float on the affected paths below zero, without declaring an owner. RP-29R-03 clarifies that network float is shared but **project float** — terminal float — is owned solely by the contractor, which would allow recovery of time-related overheads before the contract completion date on an early completion programme.",
+    "whyWrong": { "3": "Both address it directly; it is one of the most discussed points in each." } },
+
+  { "id": "q-1-5-b", "lesson": "1.5",
+    "stem": "An expert applies a hybrid approach that does not match any named technique, and both parties accept it. What is the correct view?",
+    "opts": [
+      "This is unobjectionable, and may be commendable, provided the process is transparent, auditable and reproducible",
+      "It is inadmissible, because delay analysis must follow a recognised named method",
+      "It is acceptable only if the contract expressly permits a hybrid approach",
+      "It breaches RP-29R-03 and should be disregarded"
+    ],
+    "answer": 0,
+    "why": "Named approaches only really acquire significance as shorthand in expert evidence. RP-29R-03 states expressly that a departure from its protocols should not automatically be treated as an error or deficiency, so long as it rests on a conscious and sound application of scheduling principles. Most real analyses are hybrids in any event. What matters is transparency, auditability and the ability to reproduce the result from the same factual matrix.",
+    "whyWrong": { "1": "Getting too hung up on named approaches is itself identified as a problem — a spin-off from judicial involvement rather than a technical requirement." } },
+
+  { "id": "q-1-1", "lesson": "1.1",
+    "stem": "Which statement best captures the relationship between risk and delay in construction?",
+    "opts": [
+      "Because risk is inherent in construction, delay is inherent too and should be managed as a risk",
+      "Risk can be eliminated through sufficiently detailed planning, and with it delay",
+      "Delay is a consequence of poor management and is therefore avoidable",
+      "Risk is a commercial matter; delay is a technical one, and the two are unconnected"
+    ],
+    "answer": 0,
+    "why": "If it is accepted that risk is inherent in construction, it must also be accepted that delays are inherent — and should therefore be anticipated, managed and treated in the same fashion as any other risk. Systematic management during the project also ensures the cause of delay is identified and documented at the earliest opportunity." },
+
+  { "id": "q-1-2", "lesson": "1.2",
+    "stem": "What is the purpose of delay analysis?",
+    "opts": [
+      "To satisfy the causation requirement in a way that allows the resulting damages to be assessed",
+      "To determine which party is liable for each event",
+      "To calculate the prolongation costs arising from delay",
+      "To produce a programme that can be relied on for the remaining works"
+    ],
+    "answer": 0,
+    "why": "Liability is based in law and contractual obligations. Establishing causation requires arguments founded on facts, and demonstration of the cause–effect nexus between an event and its impact. Delay analysis exists to satisfy that causation requirement in a way that allows damages to be assessed. Determining liability is for the contract administrator or tribunal; quantifying damages is a quantum exercise." },
+
+  { "id": "q-1-3", "lesson": "1.3",
+    "stem": "Which of the following is a contractor risk event?",
+    "opts": [
+      "Failure of a domestic sub-contractor to perform",
+      "Late issue of design information by the employer's architect",
+      "An instruction to open up completed work for inspection, where the work proves compliant",
+      "Deferment of possession of part of the site"
+    ],
+    "answer": 0,
+    "why": "A contractor risk event is one which, under the contract, is not at the employer's risk. The acts and omissions of domestic sub-contractors are the contractor's responsibility. The other three are classic employer risk events: late information, instructions to open up compliant work, and deferred possession all sit with the employer under most standard forms." },
+
+  { "id": "q-1-4", "lesson": "1.3",
+    "stem": "What must be shown for a delay to be both excusable and compensable?",
+    "opts": [
+      "That it was critical, that no concurrent delay of the claiming party was operating, and that the event is compensable under the contract",
+      "That it was caused by an employer risk event and lasted more than a stated minimum period",
+      "That it delayed a critical activity and the contractor gave notice within the contractual period",
+      "That the contractor incurred additional cost that it can evidence from its accounts"
+    ],
+    "answer": 0,
+    "why": "Three tests. First, the delay must be shown to be critical by reference to a reliable critical path analysis. Second, the party claiming damages must show none of its own delay was running concurrently with the events relied on. Third, the event must be excusable and compensable under the contract. Notice provisions and cost evidence matter, but they are additional requirements, not the core tests." },
+
+  { "id": "q-1-5", "lesson": "1.4",
+    "stem": "Why do tribunals generally prefer contemporaneous programming evidence to programmes created afterwards?",
+    "opts": [
+      "Because a programme in live use was continually tested against reality by the people running the project",
+      "Because contemporaneous programmes are more likely to be technically correct",
+      "Because reconstructed programmes are inadmissible as evidence",
+      "Because contemporaneous programmes will always have been approved by the contract administrator"
+    ],
+    "answer": 0,
+    "why": "Contemporaneous programming evidence, flawed or not, is usually preferred to retrospectively created programme data. A programme that was updated regularly, submitted, reviewed and used to direct resources was tested against reality every month. A reconstruction is built by somebody who already knows what answer they need, which is why the RP-29R-03 protocols for recreated updates are so cautious.",
+    "whyWrong": { "1": "Contemporaneous programmes are frequently technically flawed. They are preferred despite that, not because of the opposite." } },
+
+  { "id": "q-1-6", "lesson": "1.4",
+    "stem": "At which stage of the delay claim life cycle is resolution cheapest and most reliable?",
+    "opts": [
+      "Agreeing the impact contemporaneously, as the event arises",
+      "At the end of the project, when the full effect is known",
+      "In adjudication, where a decision is binding within twenty-eight days",
+      "In arbitration, where a tribunal-appointed expert can be agreed"
+    ],
+    "answer": 0,
+    "why": "Resolution by way of a mutually acceptable extension of time should be sought at the earliest opportunity to avoid the dispute stepping up to the next, more formal process. Agreeing delay impacts contemporaneously — rather than adopting a wait-and-see approach — is identified as one of the principal steps that improves the outcome." },
+
+  { "id": "q-1-7", "lesson": "1.5",
+    "stem": "What is the stated purpose of AACE RP-29R-03?",
+    "opts": [
+      "To provide a unifying technical reference for forensic CPM scheduling and reduce the degree of subjectivity in practice",
+      "To provide guidance on managing programmes during the course of the works",
+      "To set out the law on extensions of time in the United States",
+      "To replace the SCL Protocol with a single international standard"
+    ],
+    "answer": 0,
+    "why": "RP-29R-03 is primarily focused on the terminology and application of forensic analysis, with an expressed emphasis on minimising procedural subjectivity. Unlike the SCL Protocol it does not address how parties should manage programmes contemporaneously, and it deals only with retrospective analysis. It also acknowledges that the Protocol has a wider scope.",
+    "whyWrong": { "1": "That is the Protocol's territory. RP-29R-03 is retrospective only." } },
+
+  { "id": "q-1-8", "lesson": "1.5",
+    "stem": "Two opposing experts each apply a 'time impact analysis' and reach conclusions 90 days apart. What is the most likely explanation?",
+    "opts": [
+      "The technique admits many variations, and their underlying assumptions differ",
+      "One of them has made an arithmetical error",
+      "One of them is not in fact applying a time impact analysis",
+      "The programme data they were given was different"
+    ],
+    "answer": 0,
+    "why": "It should not be surprising when two opposing experts apply the same technique and produce widely varying conclusions. There are many names used for the time impact analysis approach, probably because there are as many ways to apply it — fragnet durations, which predecessors and successors are chosen, how much progress is entered before each impact, and the order of impacting when employer and contractor events fall in the same window. Each of those is an assumption, and each moves the answer.",
+    "whyWrong": { "1": "Possible, but far less likely than a difference in assumptions — and an arithmetical error would usually be found and agreed quickly." } }
+]

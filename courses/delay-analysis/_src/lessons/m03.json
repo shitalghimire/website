@@ -1,0 +1,997 @@
+{
+  "module": 3,
+  "lessons": {
+    "3.1": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Every duration in every programme you will ever see is somebody's opinion. The arithmetic that follows is exact, which is exactly what makes it dangerous — a network computes a completion date to the day from inputs that were, at best, considered approximations."
+        },
+        {
+          "type": "core",
+          "md": "### Two variables, and that is all\n\nThe [[critical|critical path]] method is a mathematical model built on precisely two variables: **activity durations** and **activity relationships**. Everything else — early dates, late dates, [[float|float]], the critical path, the completion date — is derived. Reduce the subjectivity in either variable and the whole model becomes harder to attack.\n\n### What goes into a duration\n\nEstimating durations requires experience, judgement, and knowledge of the means and methods actually intended. The factors:\n\n- the quantity of work in the task\n- the number of resources assigned\n- hours worked per day or shift\n- the height or depth of the work face\n- working conditions and safety requirements\n- logistics and access to the work face\n- plant selection — turning radius, cycle times, reach\n- weather patterns, wave patterns, high-tide restrictions\n- minimum wait periods — concrete cure, drying, approvals\n\nThe base arithmetic:\n\n> **Task duration (days) = required labour (hours) ÷ available labour (hours per day)**\n\nGet the total labour-hours from the quantity and an assumed output. Get available labour from the crew size and the working day. Divide.\n\nEvery term in that equation is an assumption, which is why the activity data sheet from the last module matters so much.\n\n### Deterministic versus stochastic\n\nTraditional CPM is **deterministic**: one fixed duration per task, and one resulting completion date. Stochastic processes explore many possible outcomes by assigning probabilities to a range of durations, and produce a distribution instead.\n\nStochastic methods have a place in research and development, and in planning processes with no historic empirical data. They have very little relevance in forensic delay analysis, because a probability distribution cannot tell you what actually happened.\n\n### The honest position\n\n> Activity durations are the result of considered approximations at best, and wild guesses at worst.\n\nThat is not cynicism; it is the reason estimating should involve several disciplines, so the programme benefits from the whole team's experience rather than one planner's.\n\nIt is also the reason an inexperienced programmer is a genuine project risk. Someone with no experience of the work being planned will produce durations that reflect that inexperience, and those durations will then be calculated to the day and treated as fact by everybody downstream."
+        },
+        {
+          "type": "figure",
+          "widget": "network",
+          "props": {
+            "title": "The concrete package",
+            "sub": "Eleven activities. Everything below is derived from durations and logic alone.",
+            "phase": "all",
+            "autoplay": false,
+            "start": "2008-06-01",
+            "net": [
+              {
+                "id": "105",
+                "desc": "Excavate Perimeter Footings",
+                "dur": 7,
+                "pred": []
+              },
+              {
+                "id": "110",
+                "desc": "Perimeter Footings — Formwork",
+                "dur": 5,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "120",
+                "desc": "Perimeter Footings — Reinforcement",
+                "dur": 4,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "130",
+                "desc": "Excavate Grade Beams",
+                "dur": 7,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "140",
+                "desc": "Place Concrete — Perimeter Footings",
+                "dur": 1,
+                "pred": [
+                  "110",
+                  "120"
+                ]
+              },
+              {
+                "id": "170",
+                "desc": "Perimeter Footings — Strip Formwork",
+                "dur": 3,
+                "pred": [
+                  "140"
+                ]
+              },
+              {
+                "id": "150",
+                "desc": "Grade Beam Reinforcement",
+                "dur": 4,
+                "pred": [
+                  "130"
+                ]
+              },
+              {
+                "id": "160",
+                "desc": "Form Grade Beams",
+                "dur": 5,
+                "pred": [
+                  "130"
+                ]
+              },
+              {
+                "id": "180",
+                "desc": "Place Concrete — Grade Beams",
+                "dur": 1,
+                "pred": [
+                  "160",
+                  "150"
+                ]
+              },
+              {
+                "id": "210",
+                "desc": "Strip Formwork — Grade Beams",
+                "dur": 3,
+                "pred": [
+                  "180"
+                ]
+              },
+              {
+                "id": "240",
+                "desc": "Concrete Package Complete",
+                "dur": 0,
+                "milestone": true,
+                "pred": [
+                  "170",
+                  "210"
+                ]
+              }
+            ],
+            "note": "This network runs alongside you for the rest of the module. Every figure in every box is calculated live — nothing here is drawn in."
+          },
+          "caption": "Change one duration and eleven boxes change. That sensitivity is the value of the model, and the reason a careless duration propagates."
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Precision is not accuracy",
+          "md": "A programme that reports completion on 14 November 2027 is **precise**. Whether it is **accurate** depends entirely on inputs that were estimated by somebody, months earlier, from assumed quantities and assumed outputs.\n\nAdding science and precision to a project where such precision never existed usually requires reliance on theoretical calculation — and those calculations must still align with common sense and be consistent with the contemporaneous documents. When they do not, the documents win."
+        },
+        {
+          "type": "worked",
+          "md": "One duration, built from the ground up:",
+          "calc": [
+            {
+              "l": "Quantity — grade beam reinforcement",
+              "v": "28.4 tonnes"
+            },
+            {
+              "l": "Assumed output, historic, similar work",
+              "v": "0.9 t / fixer-day"
+            },
+            {
+              "l": "Required labour",
+              "v": "31.6 fixer-days",
+              "sub": true
+            },
+            {
+              "l": "Crew — 1 ganger + 7 fixers",
+              "v": "8 per day",
+              "sub": true
+            },
+            {
+              "l": "Duration = 31.6 ÷ 8",
+              "v": "3.9 days",
+              "total": true
+            },
+            {
+              "l": "Time-risk allowance — deep excavation, restricted access",
+              "v": "+0.5 days",
+              "sub": true
+            },
+            {
+              "l": "Duration carried in the programme",
+              "v": "4 days",
+              "total": true
+            }
+          ],
+          "after": "Four days. Now change one assumption. If the historic output of 0.9 t/fixer-day came from a clear site with crane access, and this reinforcement is being hand-balled into a 4 m deep trench, 0.6 t/fixer-day would be closer — which makes the duration 5.9 days, not 3.9. That single assumption, unrecorded, is a two-day error on one activity. Repeat it across a critical path and it is a season."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-3-1-a",
+            "q-3-1-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "CPM has exactly two inputs: durations and relationships. Everything else is derived.",
+            "Duration = required labour hours ÷ available labour hours per day. Every term is an assumption.",
+            "Traditional CPM is deterministic — one duration, one answer. Stochastic methods have little forensic value.",
+            "Durations are considered approximations at best. Precision in the output does not create accuracy in the input."
+          ]
+        }
+      ]
+    },
+    "3.2": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Before activity-on-node diagramming, every relationship in a network was finish-to-start and the critical path was obvious at a glance. Modern software offers four relationship types with leads and lags in either direction — vastly more flexible, and the reason nobody can read a network intuitively any more."
+        },
+        {
+          "type": "core",
+          "md": "### Two ways to draw a network\n\n**Arrow diagramming (ADM / activity-on-arrow / the I-J method).** The arrow is the activity; the node is an event with a unique number. Every relationship was finish-to-start. The [[critical|critical path]] was drawn with a heavier line, and interpreting the network was genuinely intuitive.\n\nNo current project management software supports it. It is worth knowing about because the clarity that was lost is real, and because the older case law and older claims you may encounter assume it.\n\n**Precedence diagramming (PDM / activity-on-node).** Perfected in the early 1960s. The **box is the activity**, and arrows are relationships. More variables, more flexibility — and it is that flexibility which removed the intuitive reading of the critical path and of how much [[float|float]] each task carries.\n\n### The activity box\n\n- **ACT** — a unique activity identifier\n- **OD / RD** — original and remaining duration\n- **ES / EF / LS / LF** — the four event dates\n- **PCT** — percent complete\n- **TF** — [[totalfloat|total float]]. Zero total float means critical.\n- **FF** — [[efloat|free float]]\n- **CAL** — the working calendar assigned\n\n### The four relationships\n\n- **Finish to start (FS)** — B cannot start until A has finished. The default, and the only one an arrow diagram could express.\n- **Start to start (SS)** — B cannot start until A has started.\n- **Finish to finish (FF)** — B cannot finish until A has finished.\n- **Start to finish (SF)** — B cannot finish until A has started. Rare, and almost always a mistake.\n\n### Lags\n\nAny relationship can carry a **lag** — `d` days imposed between the two constrained ends. A positive lag delays the successor. A negative lag lets it start earlier than the logic would otherwise allow.\n\nSoftware permits negative lags. There are very few scenarios in which they are appropriate in a forward-looking, transparent process of project management, and it is recommended they are avoided. Their practical problem is that they are invisible: on the bar chart that comes out of the network, a negative lag looks like nothing at all.\n\n### Hard logic and soft logic\n\nAssumptions made about sequence must be recorded. A contractor may change its logic from time to time and is generally entitled to — but **inherent logic errors in the [[baseline|baseline]] are usually not discovered until they manifest as actual delay on site**. Correcting them then is expensive in both time and money, and when the correction adds time to the critical path that delay is a [[cre|contractor risk event]] under virtually every form of contract."
+        },
+        {
+          "type": "figure",
+          "widget": "relationships",
+          "props": {
+            "durA": 10,
+            "durB": 6,
+            "note": "One activity, four ways of being constrained. Notice that a lag on a finish-to-finish relationship does something completely different to the same lag on a finish-to-start — which is why 'FS+5' and 'FF+5' are not interchangeable, however similar they look in a report."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "aacei",
+          "title": "When a lag should be an activity",
+          "md": "RP-29R-03 gives a clean rule for reconstructing as-built logic, and it is worth applying to a live programme too:\n\n- replace with a real activity any **FS** lag that is 50% or more of the duration of either its predecessor or its successor\n- replace with a real activity any **SS** lag that is 50% or more of the predecessor's duration\n- replace with a real activity any **FF** lag that is 50% or more of the successor's duration\n- replace any **FS** relationship with a negative lag greater than one time unit with a different relationship type carrying a zero or positive lag\n\nThe reasoning: a lag of that size is *work*, or *waiting*, and it should be visible as a bar that somebody owns. Buried in a relationship, it cannot be progressed, cannot be resourced, and cannot be shown to have been delayed."
+        },
+        {
+          "type": "worked",
+          "md": "The same overlap, modelled four ways:",
+          "table": {
+            "head": [
+              "Model",
+              "What it says",
+              "Verdict"
+            ],
+            "rows": [
+              [
+                "Drywall FS Paint",
+                "Paint starts after ALL drywall is complete",
+                "True of the last room; false of the floor"
+              ],
+              [
+                "Drywall SS+5 Paint",
+                "Paint starts five days after drywall starts",
+                "Better, but paint can now finish before drywall"
+              ],
+              [
+                "Drywall FF+3 Paint",
+                "Paint finishes three days after drywall finishes",
+                "Correct. Paint cannot be complete before its predecessor is."
+              ],
+              [
+                "Drywall FS−7 Paint",
+                "Paint starts seven days before drywall finishes",
+                "Arithmetically identical to SS+3, and invisible on the bar chart"
+              ]
+            ]
+          },
+          "after": "Rows two and three are both defensible; row three is better because it constrains the end, which is the constraint that is actually true. Row four produces the same dates and hides the reasoning — and when an analyst later has to explain why an activity started before its predecessor finished, a negative lag is the hardest thing on the network to defend."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-3-2-a",
+            "q-3-2-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Activity-on-arrow was intuitive and is extinct. Activity-on-node is flexible and is not intuitive — that is the trade.",
+            "Four relationships: FS, SS, FF, SF. SF is almost always a mistake.",
+            "Avoid negative lags. They are invisible on a bar chart and impossible to defend forensically.",
+            "A lag worth half an activity's duration should be an activity. Buried in a relationship it cannot be progressed, resourced or shown to have been delayed."
+          ]
+        }
+      ]
+    },
+    "3.3": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "The forward pass answers one question: what is the earliest this project can possibly finish? It works from the start of the network to the end, and it is four rules and some addition. A planner who cannot do it by hand cannot spot the moment software returns an answer that is wrong."
+        },
+        {
+          "type": "core",
+          "md": "### The convention\n\nBefore any arithmetic, fix a convention. There are two in use, and mixing them produces off-by-one errors everywhere.\n\n**Option 1** — an activity occupies whole days. It starts at 00:00 on its start date and finishes at 23:59 on its finish date. So:\n\n> **EF = ES + D − 1**\n\nA one-day task starts and finishes on the same calendar day.\n\n**Option 2** — an activity starts in the evening of the previous working day and finishes in the evening of the following one. So **EF = ES + D**, and a one-day task starts on one date and finishes on the next.\n\nEither is fine so long as it is applied consistently. This course uses **Option 1** throughout.\n\n### The rules\n\n1. Day 0 is the earliest start date for the first task.\n2. The **EF** of a task equals its **ES** plus its own duration, less one.\n3. The **ES** of any successor is the predecessor's **EF** plus one calendar day.\n4. Where an activity has more than one predecessor, its **ES** is governed by the **latest** of all its predecessors' early finishes.\n\nRule 4 is the one that does the work. When two competing paths share a successor, the path with the latest early finish prevails — and the other path now has slack, though you cannot yet say how much.\n\n### Driving relationships\n\nThe predecessor that actually set a successor's early start is the **[[driving|driving relationship]]**. Where an activity has several predecessors, only the one that determined the date is driving; the others are simply satisfied.\n\nThis matters enormously later. The [[critical|critical path]] is a chain of driving relationships, not merely a collection of activities that happen to have low [[float|float]]. Tracing it back through driving links is how the [[longest|longest path]] is found.\n\n### Milestones\n\nA [[milestone|milestone]] has zero duration. Applying `EF = ES + D − 1` gives `EF = ES − 1`, which looks strange until you see what it means: a milestone takes the date of the day its last predecessor **finished**, not the day after. That is exactly right — a completion milestone is achieved on the day the last piece of work completes."
+        },
+        {
+          "type": "figure",
+          "widget": "network",
+          "props": {
+            "title": "The forward pass",
+            "sub": "Left to right, column by column. Watch the early row populate.",
+            "phase": "forward",
+            "start": "2008-06-01",
+            "net": [
+              {
+                "id": "105",
+                "desc": "Excavate Perimeter Footings",
+                "dur": 7,
+                "pred": []
+              },
+              {
+                "id": "110",
+                "desc": "Perimeter Footings — Formwork",
+                "dur": 5,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "120",
+                "desc": "Perimeter Footings — Reinforcement",
+                "dur": 4,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "130",
+                "desc": "Excavate Grade Beams",
+                "dur": 7,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "140",
+                "desc": "Place Concrete — Perimeter Footings",
+                "dur": 1,
+                "pred": [
+                  "110",
+                  "120"
+                ]
+              },
+              {
+                "id": "170",
+                "desc": "Perimeter Footings — Strip Formwork",
+                "dur": 3,
+                "pred": [
+                  "140"
+                ]
+              },
+              {
+                "id": "150",
+                "desc": "Grade Beam Reinforcement",
+                "dur": 4,
+                "pred": [
+                  "130"
+                ]
+              },
+              {
+                "id": "160",
+                "desc": "Form Grade Beams",
+                "dur": 5,
+                "pred": [
+                  "130"
+                ]
+              },
+              {
+                "id": "180",
+                "desc": "Place Concrete — Grade Beams",
+                "dur": 1,
+                "pred": [
+                  "160",
+                  "150"
+                ]
+              },
+              {
+                "id": "210",
+                "desc": "Strip Formwork — Grade Beams",
+                "dur": 3,
+                "pred": [
+                  "180"
+                ]
+              },
+              {
+                "id": "240",
+                "desc": "Concrete Package Complete",
+                "dur": 0,
+                "milestone": true,
+                "pred": [
+                  "170",
+                  "210"
+                ]
+              }
+            ],
+            "note": "Activity 140 has two predecessors, 110 finishing 12 June and 120 finishing 11 June. Its early start is 13 June — governed by 110, the later of the two. The link from 120 is satisfied but not driving."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "Do it by hand once",
+          "md": "Nobody calculates a two-thousand-activity network manually. But a planner who has never done a forward pass by hand cannot tell the difference between a completion date that is right and one that is the product of a stray constraint, a calendar mismatch or a negative lag.\n\nThe personal computer is an extension that lets you do this for thousands of tasks quickly. It is not a substitute for knowing what it is doing — and if you cannot recognise an inconsistent result, inherent flaws in the as-planned programme will survive into the claim."
+        },
+        {
+          "type": "worked",
+          "md": "The forward pass, in full, on the concrete package. Project starts 1 June 2008, seven-day calendar.",
+          "table": {
+            "head": [
+              "Act",
+              "Dur",
+              "Predecessors",
+              "ES",
+              "EF",
+              "Governed by"
+            ],
+            "n": [
+              1
+            ],
+            "rows": [
+              [
+                "105",
+                "7d",
+                "—",
+                "01-Jun",
+                "07-Jun",
+                "start"
+              ],
+              [
+                "110",
+                "5d",
+                "105",
+                "08-Jun",
+                "12-Jun",
+                "105"
+              ],
+              [
+                "120",
+                "4d",
+                "105",
+                "08-Jun",
+                "11-Jun",
+                "105"
+              ],
+              [
+                "130",
+                "7d",
+                "105",
+                "08-Jun",
+                "14-Jun",
+                "105"
+              ],
+              [
+                "140",
+                "1d",
+                "110, 120",
+                "13-Jun",
+                "13-Jun",
+                "110 — the later EF"
+              ],
+              [
+                "170",
+                "3d",
+                "140",
+                "14-Jun",
+                "16-Jun",
+                "140"
+              ],
+              [
+                "150",
+                "4d",
+                "130",
+                "15-Jun",
+                "18-Jun",
+                "130"
+              ],
+              [
+                "160",
+                "5d",
+                "130",
+                "15-Jun",
+                "19-Jun",
+                "130"
+              ],
+              [
+                "180",
+                "1d",
+                "160, 150",
+                "20-Jun",
+                "20-Jun",
+                "160 — the later EF"
+              ],
+              [
+                "210",
+                "3d",
+                "180",
+                "21-Jun",
+                "23-Jun",
+                "180"
+              ],
+              [
+                "240",
+                "0d",
+                "170, 210",
+                "24-Jun",
+                "23-Jun",
+                "210 — the later EF"
+              ]
+            ]
+          },
+          "after": "The project completes on **23 June 2008** — twenty-three days. That is the shortest possible duration given these durations and this logic.\n\nNotice activity 240. Its early start is 24 June and its early finish is 23 June, which is the milestone formula behaving correctly: the package is complete on the day 210 finished. And notice that the forward pass has told you nothing whatsoever about float or the critical path. For that you need the backward pass."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-3-3-a",
+            "q-3-3-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Fix a convention first. Under Option 1, EF = ES + D − 1 and a one-day task starts and finishes on the same day.",
+            "Four rules, and the fourth does the work: where an activity has several predecessors, the latest early finish governs.",
+            "The predecessor that set the early start is *driving*. The critical path is a chain of driving relationships, not merely low-float activities.",
+            "The forward pass gives the shortest possible project duration — and no information at all about float."
+          ]
+        }
+      ]
+    },
+    "3.4": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "The backward pass asks the opposite question: how late can each activity be without moving the completion date? It is the same arithmetic run in reverse, and only when it is done can the word *critical* mean anything."
+        },
+        {
+          "type": "core",
+          "md": "### The rules\n\nStart at the last activity with the completion date the forward pass produced, and work backwards.\n\n1. The **LF** of the last activity equals the project completion date.\n2. The **LS** of a task equals its **LF** minus its duration, plus one. The plus one is because the duration is inclusive of the late finish date.\n3. The **LF** of a predecessor equals the **smallest** late start of all its successors, minus one calendar day.\n4. Where an activity has several successors, the **earliest** late start governs.\n\nRule 4 is the mirror of the forward pass's rule 4. There, the latest early finish governed. Here, the earliest late start does.\n\n### Then float falls out\n\n> **Total float = LF − EF**, which is always identical to **LS − ES**.\n\nAn activity whose early and late dates are the same has zero total [[float|float]]. It cannot slip at all without moving the project — it is **critical**.\n\n### Critical means least float, not zero float\n\nIn a [[baseline|baseline]], or in an unconstrained updated programme, the [[critical|critical path]] carries zero [[totalfloat|total float]]. On a project running late, every path can be in [[negfloat|negative float]], and the critical path is the **most negative** of them.\n\nThis is not pedantry. On the case study at the end of this course the critical path sits at −85 days in one month and −167 in another, and the analysis depends entirely on identifying the *least* float rather than looking for zeroes that are not there.\n\n### Negative float\n\nWhen the earliest an activity can start is later than the latest it should have started, total float is negative. It is a measure of how far behind programme a path is at a point in time.\n\nBut treat the number carefully. Negative float can be manufactured by a finish-no-later-than constraint on an intermediate [[milestone|milestone]], and a path can show terrible float without driving anything at all. **Float is a relative measure. Movement of the completion date between two updates is an absolute one.** When the two disagree, believe the absolute measurement and go and find out what made the float value lie."
+        },
+        {
+          "type": "figure",
+          "widget": "network",
+          "props": {
+            "title": "The backward pass, and what falls out of it",
+            "sub": "Right to left. Then float, then the critical path.",
+            "phase": "backward",
+            "start": "2008-06-01",
+            "net": [
+              {
+                "id": "105",
+                "desc": "Excavate Perimeter Footings",
+                "dur": 7,
+                "pred": []
+              },
+              {
+                "id": "110",
+                "desc": "Perimeter Footings — Formwork",
+                "dur": 5,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "120",
+                "desc": "Perimeter Footings — Reinforcement",
+                "dur": 4,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "130",
+                "desc": "Excavate Grade Beams",
+                "dur": 7,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "140",
+                "desc": "Place Concrete — Perimeter Footings",
+                "dur": 1,
+                "pred": [
+                  "110",
+                  "120"
+                ]
+              },
+              {
+                "id": "170",
+                "desc": "Perimeter Footings — Strip Formwork",
+                "dur": 3,
+                "pred": [
+                  "140"
+                ]
+              },
+              {
+                "id": "150",
+                "desc": "Grade Beam Reinforcement",
+                "dur": 4,
+                "pred": [
+                  "130"
+                ]
+              },
+              {
+                "id": "160",
+                "desc": "Form Grade Beams",
+                "dur": 5,
+                "pred": [
+                  "130"
+                ]
+              },
+              {
+                "id": "180",
+                "desc": "Place Concrete — Grade Beams",
+                "dur": 1,
+                "pred": [
+                  "160",
+                  "150"
+                ]
+              },
+              {
+                "id": "210",
+                "desc": "Strip Formwork — Grade Beams",
+                "dur": 3,
+                "pred": [
+                  "180"
+                ]
+              },
+              {
+                "id": "240",
+                "desc": "Concrete Package Complete",
+                "dur": 0,
+                "milestone": true,
+                "pred": [
+                  "170",
+                  "210"
+                ]
+              }
+            ],
+            "note": "The critical path runs 105 → 130 → 160 → 180 → 210 → 240. Everything on the perimeter footings branch carries float, even though it looked just as busy on the forward pass."
+          }
+        },
+        {
+          "type": "worked",
+          "md": "The complete calculation. Critical path in bold.",
+          "table": {
+            "head": [
+              "Act",
+              "Description",
+              "Dur",
+              "ES",
+              "EF",
+              "LS",
+              "LF",
+              "TF",
+              "FF"
+            ],
+            "n": [
+              2,
+              7,
+              8
+            ],
+            "rows": [
+              [
+                "**105**",
+                "**Excavate Perimeter Footings**",
+                "7d",
+                "01-Jun",
+                "07-Jun",
+                "01-Jun",
+                "07-Jun",
+                "0",
+                "0"
+              ],
+              [
+                "110",
+                "Perimeter Footings — Formwork",
+                "5d",
+                "08-Jun",
+                "12-Jun",
+                "15-Jun",
+                "19-Jun",
+                "7",
+                "0"
+              ],
+              [
+                "120",
+                "Perimeter Footings — Reinforcement",
+                "4d",
+                "08-Jun",
+                "11-Jun",
+                "16-Jun",
+                "19-Jun",
+                "8",
+                "1"
+              ],
+              [
+                "**130**",
+                "**Excavate Grade Beams**",
+                "7d",
+                "08-Jun",
+                "14-Jun",
+                "08-Jun",
+                "14-Jun",
+                "0",
+                "0"
+              ],
+              [
+                "140",
+                "Place Concrete — Perimeter Footings",
+                "1d",
+                "13-Jun",
+                "13-Jun",
+                "20-Jun",
+                "20-Jun",
+                "7",
+                "0"
+              ],
+              [
+                "170",
+                "Perimeter Footings — Strip Formwork",
+                "3d",
+                "14-Jun",
+                "16-Jun",
+                "21-Jun",
+                "23-Jun",
+                "7",
+                "7"
+              ],
+              [
+                "150",
+                "Grade Beam Reinforcement",
+                "4d",
+                "15-Jun",
+                "18-Jun",
+                "16-Jun",
+                "19-Jun",
+                "1",
+                "1"
+              ],
+              [
+                "**160**",
+                "**Form Grade Beams**",
+                "5d",
+                "15-Jun",
+                "19-Jun",
+                "15-Jun",
+                "19-Jun",
+                "0",
+                "0"
+              ],
+              [
+                "**180**",
+                "**Place Concrete — Grade Beams**",
+                "1d",
+                "20-Jun",
+                "20-Jun",
+                "20-Jun",
+                "20-Jun",
+                "0",
+                "0"
+              ],
+              [
+                "**210**",
+                "**Strip Formwork — Grade Beams**",
+                "3d",
+                "21-Jun",
+                "23-Jun",
+                "21-Jun",
+                "23-Jun",
+                "0",
+                "0"
+              ],
+              [
+                "**240**",
+                "**Concrete Package Complete**",
+                "0d",
+                "—",
+                "23-Jun",
+                "—",
+                "23-Jun",
+                "0",
+                "0"
+              ]
+            ],
+            "caption": "Every value calculated from durations and logic alone."
+          },
+          "after": "Read activity 120. It has eight days of total float — the most in the network — and only one day of free float. That gap between the two numbers is the whole subject of the next lesson, and it is the difference between contingency you can spend freely and contingency you can only spend at your successor's expense."
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Float is relative; the completion date is absolute",
+          "md": "Float values are influenced by working-day calendars, activity durations, start and finish constraints, float constraints, hard logic, soft logic, and any project-wide 'must finish by' date. None of those appear on a printed bar chart.\n\nSo float slippage from month to month may not correspond day-for-day with movement of the completion date. Analyse the longest path each month **and** the absolute slippage of the completion date in calendar days. When they disagree, the disagreement is the finding."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-3-4-a",
+            "q-3-4-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "The backward pass mirrors the forward pass: the earliest late start of the successors governs a predecessor's late finish.",
+            "Total float = LF − EF = LS − ES. Zero total float means critical.",
+            "'Critical' means LEAST float, not zero float. On a late project every path can be negative and the critical path is the most negative.",
+            "Float is a relative measure; movement of the completion date is absolute. When they disagree, find out why before you rely on either."
+          ]
+        }
+      ]
+    },
+    "3.5": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Total float and free float are different numbers, and spending one is not the same as spending the other. An activity with eight days of total float and one of free float has almost no room at all — and the programme reports it as the least critical thing on the job."
+        },
+        {
+          "type": "core",
+          "md": "### Four kinds of float\n\n**[[totalfloat|Total float]]** — the time by which a task may be delayed or lengthened without affecting the calculated earliest finish of the project. `LF − EF`, or equivalently `LS − ES`.\n\n**[[efloat|Free float]]** — the time by which a task may be delayed without affecting the **early start of any successor**. Spend it and the project is unmoved; spend more and you have taken contingency from the next trade.\n\n**Independent [[float|float]]** — the time a task may absorb without affecting its successors' early starts **or** its predecessors' late finishes. Always less than or equal to free float.\n\n**Interfering float** — the amount which, if used, would decrease the float available to successors. It is the difference between total and free float, seen from the other side.\n\nThe relationships hold always:\n\n> **total float ≥ free float ≥ independent float**\n\nAnd when total float is zero, free float is zero too.\n\n### Why the distinction is practical\n\nActivity 120 in the concrete package has eight days of total float and one day of free float.\n\nDelay it one day and nothing happens. Delay it two and activity 140 is pushed — which does not move the project yet, because 140 has its own float, but it has taken a day of contingency from a successor that may need it. That is **interfering float** being spent, and the sub-contractor on 140 will not thank you.\n\nA planner levelling resources uses free float first, precisely because it costs nobody anything.\n\n### The longest path is not just \"least float\"\n\nThis is where flexible relationships start to bite. An activity can carry the least float in the network and still not drive anything, because a constraint put it there.\n\nThe **[[longest|longest path]]** is found by tracing driving relationships back from project completion. On a clean network the two coincide. On a real one, with constraints and mixed calendars, they diverge — and it is the longest path that tells you what to worry about.\n\n### More than one critical path\n\nThere can be several, simultaneously. On any project with independent work in separate geographical locations, expect it: the airport case study has two, and either could have determined completion.\n\nA delay analysis that assumes a single [[critical|critical path]] on a project like that will produce a confident answer and the wrong one."
+        },
+        {
+          "type": "figure",
+          "widget": "float-anatomy",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "Float and entitlement",
+          "md": "The SCL Protocol's position, absent express contract provision:\n\n> Where there is remaining float in the programme at the time of an employer risk event, an extension of time should only be granted to the extent that the employer delay is predicted to reduce **below zero** the total float on the activity paths affected.\n\nSo float consumed is not, by itself, delay to completion. But the Protocol pairs this with a second principle: a contractor may be entitled to **direct time-related costs** — not overheads — for a period of delay that only deteriorates float.\n\nThose two principles together are the whole of the float ownership argument, and Module 8 takes it apart properly."
+        },
+        {
+          "type": "worked",
+          "md": "The concrete package, sorted by float:",
+          "table": {
+            "head": [
+              "Act",
+              "Description",
+              "Total float",
+              "Free float",
+              "Interfering",
+              "What that means"
+            ],
+            "n": [
+              2,
+              3,
+              4
+            ],
+            "rows": [
+              [
+                "120",
+                "Perimeter Footings — Reinforcement",
+                "8",
+                "1",
+                "7",
+                "Looks safest in the network. One day of genuinely free slack."
+              ],
+              [
+                "110",
+                "Perimeter Footings — Formwork",
+                "7",
+                "0",
+                "7",
+                "Any slip immediately pushes activity 140."
+              ],
+              [
+                "140",
+                "Place Concrete — Perimeter Footings",
+                "7",
+                "0",
+                "7",
+                "Any slip immediately pushes 170."
+              ],
+              [
+                "170",
+                "Perimeter Footings — Strip Formwork",
+                "7",
+                "7",
+                "0",
+                "Seven days that cost nobody anything. The only truly free slack here."
+              ],
+              [
+                "150",
+                "Grade Beam Reinforcement",
+                "1",
+                "1",
+                "0",
+                "One day, and it is free. Then it is critical."
+              ],
+              [
+                "105 130 160 180 210",
+                "The critical path",
+                "0",
+                "0",
+                "0",
+                "No room at all."
+              ]
+            ]
+          },
+          "after": "The two rows worth pausing on are 120 and 170. Both are labelled non-critical. Activity 170 has seven days of slack that genuinely belong to it. Activity 120 has one — and if a resource-levelling exercise moves it three days on the strength of its total float of eight, the consequence lands on somebody else entirely."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-3-5-a",
+            "q-3-5-b",
+            "q-3-5-c"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Total float ≥ free float ≥ independent float, always. Interfering float is the gap between total and free.",
+            "Free float costs nobody anything. Spending beyond it takes contingency from your successor.",
+            "The longest path is traced through driving relationships. It is not always the same as 'least float' once constraints are present.",
+            "There can be more than one critical path at once, and on projects with independent work areas you should expect it."
+          ]
+        }
+      ]
+    },
+    "3.6": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Constraints are the fastest way to make a programme produce the answer you want. They are also, used properly, the only way to model an access date or a delivery. Telling those two cases apart, in somebody else's programme, is a core forensic skill."
+        },
+        {
+          "type": "core",
+          "md": "### Legitimate uses\n\nSome dates are genuinely imposed from outside the network:\n\n- interim contractual [[milestone|milestone]] dates\n- when access to part of the site will be given\n- when a long-lead item is expected from a manufacturer\n- when employer-furnished equipment will be available\n- when staff will migrate into or out of parts of the works\n\nAll are real. None can be derived from logic, because nothing inside the network causes them.\n\n### The six primary types\n\n| Constraint | Affects | Effect |\n|---|---|---|\n| Start on | both | Forces the activity to start on the date |\n| Start no earlier than | forward pass | Sets the earliest an activity may begin |\n| Start no later than | backward pass | Forces a start no later than the date |\n| Finish on | both | Forces the finish on the date |\n| Finish no earlier than | forward pass | Prevents finishing before the date |\n| Finish no later than | backward pass | Forces a finish no later than the date |\n\nThe pattern is worth internalising: **\"no earlier than\" touches only the forward pass; \"no later than\" touches only the backward pass; \"on\" overrides both.**\n\n### The ones that should worry you\n\n**Mandatory start / mandatory finish** — forces early and late dates equal to the constraint date, overriding the logic entirely. [[float|Float]] upstream becomes fiction, and the [[critical|critical path]] can be broken clean in half.\n\n**Zero [[totalfloat|total float]]** — forces an activity's early and late dates to be equal, so it reports zero float whatever the network calculates. This is the simplest method of sequestering available float, and there is no legitimate use for it. Several US federal specifications prohibit it by name, along with preferential sequencing, special lead/lag restraints, extended activity times, and using resource levelling to consume float artificially.\n\n**As late as possible** — positions an activity on its late dates, consuming all its [[efloat|free float]]. It does not change the project duration initially, but it makes a non-critical activity look critical and leaves no room for its successors.\n\n### The forensic point\n\nConstraints have valid uses, but they are **not a substitute for logical relationships**. Over-use prevents the network from calculating an auditable or sensible critical path — which is fatal, because that is the only reason the network exists.\n\nWhen you review someone else's programme, count them. A [[baseline|baseline]] where dates are held by constraints rather than by logic cannot show the effect of a change, and cannot be used for any method of delay analysis without being repaired first — in the open, with every repair documented."
+        },
+        {
+          "type": "figure",
+          "widget": "constraints",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Constraints create false float",
+          "md": "In the airport case study, the April 2007 float map showed the driving critical path at −42 days. Three activities showed **worse** float than that.\n\nOn a first look those three are the most critical work on the project. They were not. All three were held by a *finish no later than* constraint on an intermediate milestone, which manufactured negative float out of nothing.\n\nAn analyst who chased those three would have built an entire case on an artefact. The float map is only usable once anomalous paths like these are identified, explained, and set aside — and that is a manual judgement no software will make for you."
+        },
+        {
+          "type": "worked",
+          "md": "The same activity, six ways:",
+          "table": {
+            "head": [
+              "Constraint applied",
+              "Early dates",
+              "Late dates",
+              "Total float",
+              "Critical path"
+            ],
+            "rows": [
+              [
+                "None",
+                "08–14 Jun",
+                "08–14 Jun",
+                "0",
+                "Runs through it"
+              ],
+              [
+                "Start no earlier than 12 Jun",
+                "12–18 Jun",
+                "12–18 Jun",
+                "0",
+                "Runs through it; project now 4 days later"
+              ],
+              [
+                "Start no later than 06 Jun",
+                "08–14 Jun",
+                "04–10 Jun",
+                "−4",
+                "Reports −4 days; nothing has actually moved"
+              ],
+              [
+                "Finish no later than 12 Jun",
+                "08–14 Jun",
+                "06–12 Jun",
+                "−2",
+                "Reports −2 days; nothing has actually moved"
+              ],
+              [
+                "Mandatory start 12 Jun",
+                "12–18 Jun",
+                "12–18 Jun",
+                "0",
+                "Predecessor logic ignored; upstream float meaningless"
+              ],
+              [
+                "Zero total float",
+                "08–14 Jun",
+                "08–14 Jun",
+                "0",
+                "Reports critical regardless of what the network says"
+              ]
+            ]
+          },
+          "after": "Rows three and four are the interesting ones. Both report negative float on an activity that has not moved and is not late. Anyone reading a float value without checking for constraints will conclude the project is behind on a path where nothing has actually happened — which is exactly what float suppression is designed to achieve."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-3-6-a",
+            "q-3-6-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "'No earlier than' affects only the forward pass; 'no later than' only the backward pass; 'on' overrides both.",
+            "Mandatory constraints override logic entirely and make upstream float meaningless.",
+            "A zero-total-float constraint has no legitimate use. It exists to hide float, and several specifications prohibit it by name.",
+            "Count the constraints in any programme you are asked to rely on. Dates held by constraints rather than logic cannot show the effect of change."
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "id": "delay-analysis",
+  "title": "Delay Analysis in Construction Contracts",
+  "tagline": "Programmes, critical paths, and proving who owes whom time.",
+  "asOf": "2026-08-21",
+  "modules": [
+    {
+      "n": 1,
+      "t": "Why Delay Analysis Exists",
+      "part": "Part I · Ground",
+      "source": "Chapter 1",
+      "blurb": "Delay is not a sign that management has broken down — it is a risk like any other, and it can be anticipated, managed and priced. What it cannot be is ignored. This module sets out what a delay claim must actually prove, and the four words that decide who pays.",
+      "quiz": { "q": ["q-1-1", "q-1-2", "q-1-3", "q-1-4", "q-1-5", "q-1-6", "q-1-7", "q-1-8"] },
+      "lessons": [
+        { "id": "1.1", "i": 1, "t": "Delay is a risk, not a failure", "min": 7, "src": "§1.1" },
+        { "id": "1.2", "i": 2, "t": "Entitlement, causation, damages", "min": 8, "src": "§3.1" },
+        { "id": "1.3", "i": 3, "t": "Excusable, non-excusable, compensable, non-compensable", "min": 9, "src": "§4.1.3" },
+        { "id": "1.4", "i": 4, "t": "The life cycle of a delay claim", "min": 7, "src": "§1.2.3" },
+        { "id": "1.5", "i": 5, "t": "Two guides, and why neither is law", "min": 8, "src": "§1.1.2" }
+      ]
+    },
+    {
+      "n": 2,
+      "t": "Planning, Programming and Control",
+      "part": "Part I · Ground",
+      "source": "Chapter 2 · §2.1–2.2, 2.5–2.7",
+      "blurb": "Three words used interchangeably on site that mean three different jobs, done at three different stages, by three different sets of people. Get them confused and you will build a programme that reports history instead of predicting it.",
+      "quiz": { "q": ["q-2-1", "q-2-2", "q-2-3", "q-2-4", "q-2-5", "q-2-6", "q-2-7", "q-2-8"] },
+      "lessons": [
+        { "id": "2.1", "i": 1, "t": "Planning, programming and controlling", "min": 8, "src": "§2.1.1" },
+        { "id": "2.2", "i": 2, "t": "What a project needs before it can be planned", "min": 7, "src": "§2.1.2–2.2" },
+        { "id": "2.3", "i": 3, "t": "The work breakdown structure", "min": 8, "src": "§2.2.2" },
+        { "id": "2.4", "i": 4, "t": "Building a baseline, step by step", "min": 9, "src": "§2.2.2, Fig 2.3" },
+        { "id": "2.5", "i": 5, "t": "The other techniques, and when they beat CPM", "min": 9, "src": "§2.5" },
+        { "id": "2.6", "i": 6, "t": "The project control cycle and earned value", "min": 10, "src": "§2.7.1–2.7.3" },
+        { "id": "2.7", "i": 7, "t": "Four levels of programme, one master", "min": 6, "src": "§2.6.2" }
+      ]
+    },
+    {
+      "n": 3,
+      "t": "The Critical Path Method",
+      "part": "Part II · Instruments",
+      "source": "Chapter 2 · §2.3",
+      "blurb": "Two variables — how long things take and what order they go in — and everything else falls out of the arithmetic. If you cannot do a forward and backward pass by hand, you cannot spot the moment software gives you an answer that is wrong.",
+      "quiz": { "q": ["q-3-1", "q-3-2", "q-3-3", "q-3-4", "q-3-5", "q-3-6", "q-3-7", "q-3-8", "q-3-9", "q-3-10"] },
+      "lessons": [
+        { "id": "3.1", "i": 1, "t": "Durations: considered approximations at best", "min": 8, "src": "§2.3.1" },
+        { "id": "3.2", "i": 2, "t": "The four relationships, leads and lags", "min": 9, "src": "§2.3.2" },
+        { "id": "3.3", "i": 3, "t": "The forward pass", "min": 10, "src": "§2.3.4" },
+        { "id": "3.4", "i": 4, "t": "The backward pass", "min": 9, "src": "§2.3.5" },
+        { "id": "3.5", "i": 5, "t": "Total float, free float, and two more", "min": 10, "src": "§2.3.3, 2.3.6" },
+        { "id": "3.6", "i": 6, "t": "Constraints and what they do to float", "min": 8, "src": "§2.3.7" }
+      ]
+    },
+    {
+      "n": 4,
+      "t": "Keeping the Programme Honest",
+      "part": "Part II · Instruments",
+      "source": "Chapter 2 · §2.4, 2.7.5–2.9",
+      "blurb": "A baseline nobody validated, updated by somebody in a hurry, calculated under a setting nobody checked. Most delay disputes are downstream of one of those three, and all three are avoidable.",
+      "quiz": { "q": ["q-4-1", "q-4-2", "q-4-3", "q-4-4", "q-4-5", "q-4-6", "q-4-7", "q-4-8"] },
+      "lessons": [
+        { "id": "4.1", "i": 1, "t": "Validating a baseline before you rely on it", "min": 10, "src": "§2.4, §3.1.2" },
+        { "id": "4.2", "i": 2, "t": "Six ways to measure percent complete", "min": 8, "src": "§2.7.1" },
+        { "id": "4.3", "i": 3, "t": "Updates, data dates and look-aheads", "min": 8, "src": "§2.7.5" },
+        { "id": "4.4", "i": 4, "t": "Retained logic or progress override", "min": 9, "src": "§2.7.5" },
+        { "id": "4.5", "i": 5, "t": "Records, records, records", "min": 9, "src": "§2.8" },
+        { "id": "4.6", "i": 6, "t": "Predatory programming, and how to spot it", "min": 8, "src": "§2.9" }
+      ]
+    },
+    {
+      "n": 5,
+      "t": "Identifying Delay",
+      "part": "Part III · Evidence",
+      "source": "Chapter 3 · §3.1–3.3",
+      "blurb": "Before any technique can be applied, two programmes must exist and be defensible: what was intended, and what happened. Building the second from the wreckage of a project is most of the work in any delay claim.",
+      "quiz": { "q": ["q-5-1", "q-5-2", "q-5-3", "q-5-4", "q-5-5", "q-5-6", "q-5-7", "q-5-8"] },
+      "lessons": [
+        { "id": "5.1", "i": 1, "t": "Validating the as-planned programme", "min": 9, "src": "§3.1.2" },
+        { "id": "5.2", "i": 2, "t": "Building an as-built programme", "min": 10, "src": "§3.2.1" },
+        { "id": "5.3", "i": 3, "t": "The hierarchy of records", "min": 8, "src": "§3.2.1" },
+        { "id": "5.4", "i": 4, "t": "Cause-based or effect-based", "min": 8, "src": "§3.3.1" },
+        { "id": "5.5", "i": 5, "t": "Delay registers and event analysis sheets", "min": 7, "src": "§3.3.2" }
+      ]
+    },
+    {
+      "n": 6,
+      "t": "Disruption",
+      "part": "Part III · Evidence",
+      "source": "Chapter 3 · §3.4",
+      "blurb": "Delay is about time. Disruption is about hours. They come from the same events and go in the same claim, and confusing them is the fastest way to lose both.",
+      "quiz": { "q": ["q-6-1", "q-6-2", "q-6-3", "q-6-4", "q-6-5", "q-6-6", "q-6-7", "q-6-8"] },
+      "lessons": [
+        { "id": "6.1", "i": 1, "t": "Delay and disruption are different things", "min": 8, "src": "§3.4.1" },
+        { "id": "6.2", "i": 2, "t": "Efficiency, productivity, and the arithmetic", "min": 8, "src": "§3.4.2" },
+        { "id": "6.3", "i": 3, "t": "What actually causes disruption", "min": 7, "src": "§3.4.3" },
+        { "id": "6.4", "i": 4, "t": "The measured mile", "min": 10, "src": "§3.4.5" },
+        { "id": "6.5", "i": 5, "t": "Global claims and total cost", "min": 9, "src": "§3.4.4" },
+        { "id": "6.6", "i": 6, "t": "Showing it: histograms and productivity curves", "min": 7, "src": "§3.4.6" }
+      ]
+    },
+    {
+      "n": 7,
+      "t": "The Four Primary Techniques",
+      "part": "Part IV · Method",
+      "source": "Chapter 4 · §4.1–4.2",
+      "blurb": "Impacted as-planned, time impact analysis, collapsed as-built, as-planned versus as-built. Everything else is a derivative of one of them. Two analysts can apply the same technique to the same facts and reach opposite conclusions — this module is about why.",
+      "quiz": { "q": ["q-7-1", "q-7-2", "q-7-3", "q-7-4", "q-7-5", "q-7-6", "q-7-7", "q-7-8", "q-7-9", "q-7-10"] },
+      "lessons": [
+        { "id": "7.1", "i": 1, "t": "Additive, subtractive, analytical", "min": 8, "src": "§4.2.1" },
+        { "id": "7.2", "i": 2, "t": "Impacted as-planned", "min": 10, "src": "§4.2.2" },
+        { "id": "7.3", "i": 3, "t": "Time impact analysis", "min": 12, "src": "§4.2.3" },
+        { "id": "7.4", "i": 4, "t": "Collapsed as-built", "min": 11, "src": "§4.2.4" },
+        { "id": "7.5", "i": 5, "t": "As-planned versus as-built", "min": 11, "src": "§4.2.5–4.2.6" },
+        { "id": "7.6", "i": 6, "t": "Windows, watersheds and the contemporaneous approach", "min": 10, "src": "§4.2.7–4.2.8" },
+        { "id": "7.7", "i": 7, "t": "Month-to-month update analysis", "min": 9, "src": "§4.2.9" }
+      ]
+    },
+    {
+      "n": 8,
+      "t": "Float and Concurrency",
+      "part": "Part V · Argument",
+      "source": "Chapter 5 · §5.2–5.3",
+      "blurb": "The two arguments that consume more time in delay disputes than every technique combined. Neither has a settled answer, and both turn on the same question: whose contingency was it in the first place?",
+      "quiz": { "q": ["q-8-1", "q-8-2", "q-8-3", "q-8-4", "q-8-5", "q-8-6", "q-8-7", "q-8-8", "q-8-9", "q-8-10"] },
+      "lessons": [
+        { "id": "8.1", "i": 1, "t": "What float actually is", "min": 8, "src": "§5.2.1" },
+        { "id": "8.2", "i": 2, "t": "Float loss, and how to measure it", "min": 9, "src": "§5.2.3–5.2.4" },
+        { "id": "8.3", "i": 3, "t": "Who owns the float?", "min": 10, "src": "§5.2.5" },
+        { "id": "8.4", "i": 4, "t": "Defining concurrency", "min": 9, "src": "§5.3.1" },
+        { "id": "8.5", "i": 5, "t": "First-in-line, dominant cause, apportionment", "min": 11, "src": "§5.3.2" },
+        { "id": "8.6", "i": 6, "t": "Three scenarios, three answers", "min": 9, "src": "§5.3.4" },
+        { "id": "8.7", "i": 7, "t": "Pacing", "min": 9, "src": "§5.3.7" }
+      ]
+    },
+    {
+      "n": 9,
+      "t": "Programmes, Acceleration and Early Completion",
+      "part": "Part V · Argument",
+      "source": "Chapter 5 · §5.4–5.5",
+      "blurb": "What the standard forms actually require you to submit, what acceptance does and does not mean, and the three situations where a contractor ends up spending money to recover time it may or may not be entitled to.",
+      "quiz": { "q": ["q-9-1", "q-9-2", "q-9-3", "q-9-4", "q-9-5", "q-9-6", "q-9-7", "q-9-8"] },
+      "lessons": [
+        { "id": "9.1", "i": 1, "t": "What the standard forms require", "min": 10, "src": "§5.4.1" },
+        { "id": "9.2", "i": 2, "t": "Approval, acceptance, and what neither means", "min": 8, "src": "§5.4.2" },
+        { "id": "9.3", "i": 3, "t": "Mitigation is not acceleration", "min": 8, "src": "§5.5.1–5.5.2" },
+        { "id": "9.4", "i": 4, "t": "Constructive acceleration", "min": 9, "src": "§5.5.2" },
+        { "id": "9.5", "i": 5, "t": "The right to finish early", "min": 9, "src": "§5.5.3" }
+      ]
+    },
+    {
+      "n": 10,
+      "t": "Guidance, Selection and Presentation",
+      "part": "Part VI · Practice",
+      "source": "Chapter 4 · §4.3 · Chapter 6",
+      "blurb": "Two protocols, one taxonomy, and the uncomfortable truth that most cases turn on the facts rather than the method. Then the part nobody teaches: making a tribunal understand it.",
+      "quiz": { "q": ["q-10-1", "q-10-2", "q-10-3", "q-10-4", "q-10-5", "q-10-6", "q-10-7", "q-10-8"] },
+      "lessons": [
+        { "id": "10.1", "i": 1, "t": "The SCL Protocol's twenty-one principles", "min": 12, "src": "§4.3.1–4.3.2" },
+        { "id": "10.2", "i": 2, "t": "RP-29R-03 and the taxonomy", "min": 10, "src": "§4.3.3" },
+        { "id": "10.3", "i": 3, "t": "Choosing a technique", "min": 9, "src": "§4.3.4" },
+        { "id": "10.4", "i": 4, "t": "Demonstrative evidence", "min": 9, "src": "§6.5" },
+        { "id": "10.5", "i": 5, "t": "The case study, end to end", "min": 10, "src": "Chapter 6" }
+      ]
+    }
+  ]
+}

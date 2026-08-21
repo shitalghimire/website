@@ -1,0 +1,669 @@
+{
+  "module": 8,
+  "lessons": {
+    "8.1": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Float is the difference between when something can happen and when it must. It is also, depending on who you ask, a contingency the contractor built and owns, time the employer bought and paid for, or a shared commodity available to whoever gets there first."
+        },
+        {
+          "type": "core",
+          "md": "### The definitions again, precisely\n\n**[[totalfloat|Total float]]** — the amount of time by which a task may be delayed or lengthened without impacting the calculated earliest finish of the project completion date.\n\n**[[efloat|Free float]]** — the amount of time by which a task may be delayed without impacting the early start of any of its successors.\n\n**[[terminal|Terminal float]]** — also called end [[float|float]] or finish float. The period by which the finish of the [[longest|longest path]] through a programme can be delayed, brought forward or extended without affecting the **contract** completion date. It exists only where planned completion is earlier than contract completion.\n\nThat third one is the important one for this module. When contractual arguments about float ownership arise, they are almost invariably about **terminal float**.\n\n### Positive and negative\n\nPositive float is the period an activity can slip before affecting completion. [[negfloat|Negative float]] measures how far behind programme an activity is: the earliest it can take place is after the latest it should have taken place.\n\nNegative float also arises when activities are constrained by an intermediate **key date** — which is a reminder that the number can be manufactured.\n\n> Float is a relative value. It determines which activities are more critical than others. The precise numerical value is not as important as the absolute delay calculated by measuring planned completion against projected completion.\n\n### What float is used for\n\nIt is a finite, quantifiable resource, and it should be treated like money. It is used to:\n\n- identify slippage to an activity, a sequence, or the programme as a whole\n- identify critical paths\n- allow re-sequencing to mitigate pre-existing delay\n- allow re-sequencing to reduce [[disruption|disruption]] — avoiding stacking of trades, discontinuity of work, or working in adverse weather or the wrong season\n\nThat last use is under-appreciated. Where float exists on non-critical activities it can be used for **resource levelling or smoothing** — delaying less critical work within its float period to give continuity to an expensive resource: a tower crane, an earthmover, a specialist trade.\n\n### Float as contingency\n\nFloat can be built into a programme deliberately, to reduce the risk that delays impact completion. It can be built into activity durations as a **time-risk allowance**, or introduced as additional activities at the end of a programme — an extended cleaning or snagging activity, or one expressly titled *contractor's contingency*.\n\nUsing it in the first way disguises the fact that float exists at all. Many US forms restrict contractors from sequestering float that way; others, such as NEC3, expressly encourage explicit time-risk allowances.\n\n### The principle that follows\n\n> Float should not be used for specific contingency purposes.\n\nWhere a contractor wants to complete early, or wants an allowance for risk items whose time requirements are not fully known, it should **declare those contingency periods at the outset** — protecting them and keeping them apart from the pattern of float movement in the programme over the life of the contract.\n\nRepresent them as express *contingency* or *risk allowance* periods for groups of related tasks, or as a predecessor to each [[milestone|milestone]]. Declared contingency can be defended. Buried contingency cannot."
+        },
+        {
+          "type": "figure",
+          "widget": "float-anatomy",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "The employer's counter-move",
+          "md": "Employers sometimes seek to influence programme design by limiting how much of it may be critical. A clause taken from a real NEC2 contract:\n\n> No more than fifty percent (50%) of the activities shall be critical or near critical, subject to the Project Manager's approval. Near critical is defined as float in the range of one (1) to fourteen (14) days.\n\nIt gives some comfort in risk terms, and it has a cost — contractors may have to increase resources or change methodology to comply.\n\nIt also has a drafting problem. On many projects it is impossible to maintain a position where fewer than 50% of the works are critical or near critical, and once the majority of the work has slipped to or beyond its latest allowable dates the clause is unmeetable. Unless it is expressly limited to the **baseline**, the definition of near-critical would need amending for every subsequent programme submitted."
+        },
+        {
+          "type": "worked",
+          "md": "One activity, three kinds of float:",
+          "calc": [
+            {
+              "l": "Activity C — early start",
+              "v": "Day 8"
+            },
+            {
+              "l": "Activity C — early finish",
+              "v": "Day 11"
+            },
+            {
+              "l": "Activity C — late finish (bounded by activity D's start)",
+              "v": "Day 19"
+            },
+            {
+              "l": "Total float = LF − EF",
+              "v": "8 days",
+              "total": true,
+              "tone": "emp"
+            },
+            {
+              "l": "Early start of the successor, activity D",
+              "v": "Day 20",
+              "sub": true
+            },
+            {
+              "l": "Free float = successor ES − EF − 1",
+              "v": "8 days",
+              "sub": true
+            },
+            {
+              "l": "Planned completion",
+              "v": "Day 26",
+              "sub": true
+            },
+            {
+              "l": "Contract completion date",
+              "v": "Day 30",
+              "sub": true
+            },
+            {
+              "l": "Terminal float",
+              "v": "4 days",
+              "total": true,
+              "tone": "emp"
+            }
+          ],
+          "after": "Three different numbers describing three different kinds of room.\n\nSpend the eight days of total float and the project is unmoved. Spend the four days of terminal float and the project is *still* unmoved — but it now has no cushion at all against the contract date. Whether the contractor is entitled to have that four days restored when an employer risk event consumes it is the whole of the next two lessons."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-8-1-a",
+            "q-8-1-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Total float runs to project completion; free float to the next activity; terminal float from planned completion to the contract date.",
+            "Arguments about float ownership are almost always arguments about terminal float.",
+            "Float is a relative measure. Movement of the completion date in calendar days is absolute.",
+            "Declare contingency explicitly rather than burying it in durations. Declared contingency can be defended."
+          ]
+        }
+      ]
+    },
+    "8.2": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Float does not usually disappear in one event. It bleeds away, a few days a month, from a dozen small causes — and by the time anybody notices, the programme has no room left to absorb the one event that actually matters."
+        },
+        {
+          "type": "core",
+          "md": "### What consumes float\n\nActivities with [[float|float]] are by definition non-critical. But if their float is used up the [[critical|critical path]] changes, and previously non-critical activities become critical. If non-critical activities do not start at their earliest dates, float is consumed.\n\nThe usual causes:\n\n- out-of-sequence or inefficient working\n- poor management of resources\n- shortage of resources\n- inappropriate plant selection\n- underestimated scope of work\n- over-estimated outputs and crew efficiency factors\n- omission of key tasks — drawing review time, permit approvals\n- over-optimistic lead-in times\n- variations or changes in scope\n- additional works\n- poor workmanship leading to extended remedial periods\n\n### Float loss without critical delay still costs money\n\nThis is the proposition contractors most often fail to run.\n\nWhile float reduction does not by itself cause critical delay, it **can cause financial loss** through the extended need for discrete task-related resources: tower cranes, generators, compressors, scaffold rental. A task that takes eleven weeks instead of six needs its access equipment for eleven weeks.\n\n> Any delay analysis should deal both with delay events identified as critical **and** with those that cause float deterioration.\n\nThe [[scl|SCL Protocol]]'s position on float and money supports this: contractors may be entitled to **direct time-related costs — not overheads —** for periods of delay that deteriorate float.\n\n### Measuring it\n\nWhere the programme is updated regularly, the remaining float can be recorded and compared with the previous update to measure:\n\n- the decrease in [[totalfloat|total float]], activity by activity\n- the change in criticality of activities\n\nThat is the basis of most contemporaneous windows analyses.\n\nAn alternative is to view float deterioration for the project **as a whole**, categorising all activities by thresholds of float loss so simple statistics can be produced. A summary might show that at the start of the year, 25% of uncompleted activities had float below zero; by December, 75% had float below −15 days.\n\n### The criticality profile\n\nAnother measure: the proportion of remaining activities that are critical, month by month.\n\nIt says nothing about how far behind the project is. It says a great deal about **how much contingency is left anywhere in it**. If 15% of activities were critical in January and 45% are by June, there is almost no path left to re-sequence through — and [[acceleration|acceleration]] stops being a lever you can pull.\n\n### The float suppression techniques\n\nProgrammers can manipulate float to improve the chance of an [[eot|extension of time]]:\n\n- **Preferential logic** — elective sequencing so the critical path passes through, or avoids, activities susceptible to employer-caused delay.\n- **Excessive leads and lags** — binding the whole programme into a large inflexible mass so it cannot react dynamically to change.\n- **Excessive date constraints** — breaking the linear flow of the critical path and creating gaps between an activity's early finish and its successor's early start, making the [[longest|longest path]] and float mapping much harder to establish.\n- **Zero total or [[efloat|free float]] constraints** — hiding available float by overriding the forward and backward pass entirely.\n- **Extended activity durations** — the simplest form, and the one that defeats itself.\n\n### Trend analysis, with a warning\n\nCharting techniques help focus on periods where critical and sub-critical delays occurred. They should be used cautiously and with periodic reality checks against corroborating evidence.\n\n> The use of any form of trending analysis is only indicative and must be supported by contemporaneous evidence that the delay existed and was known to the parties. If a trend is found to be based on anomalous data, the observations and findings will be of limited value."
+        },
+        {
+          "type": "figure",
+          "widget": "criticality",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Why padding durations destroys your own claim",
+          "md": "Adding 20% to every duration has three consequences, and the third is the expensive one.\n\nIt **emerges** — those activities will be performed at their natural durations and the float reappears visibly in the updates.\n\nIt invites **Parkinson's Law**: work expands to fill the time available. The foreman with an inflated allowance will use it, producing genuinely slower output.\n\nAnd it makes it **more difficult to establish a measured mile**. Skewed durations mask the true impact of both excusable and culpable delay events. There is no clean baseline productivity left to compare against — so the contractor has traded a disruption claim for a float-hiding tactic that was going to fail anyway."
+        },
+        {
+          "type": "worked",
+          "md": "Float deterioration across a twelve-month project:",
+          "table": {
+            "head": [
+              "Update",
+              "75% of activities had float below",
+              "50% had float below",
+              "25% had float below"
+            ],
+            "n": [
+              1,
+              2,
+              3
+            ],
+            "rows": [
+              [
+                "05-Jan",
+                "30 days",
+                "15 days",
+                "0 days"
+              ],
+              [
+                "05-Apr",
+                "30 days",
+                "10 days",
+                "0 days"
+              ],
+              [
+                "05-Jul",
+                "20 days",
+                "10 days",
+                "0 days"
+              ],
+              [
+                "05-Oct",
+                "5 days",
+                "−5 days",
+                "−20 days"
+              ],
+              [
+                "05-Dec",
+                "−15 days",
+                "−20 days",
+                "−35 days"
+              ]
+            ]
+          },
+          "after": "By December every activity is showing negative float and the spread is widening. The most critical path is at −35, and a quarter of the work is worse than −20.\n\nA simple 'but for' test on that data: **but for** the most critical path at −35, the project would still be 20 days behind on the next path down. If the employer were responsible for the 35-day path and the contractor for the 20-day path, the contractor's compensable delay might reduce from 35 days to 15.\n\nOr it might not. It is equally likely to be found that the employer's delay was the **dominant** delay and the concurrent sub-critical contractor delay is irrelevant to apportioning damages. There is case law supporting both, and the outcome turns on the facts rather than on the method."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-8-2-a",
+            "q-8-2-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Float loss without critical delay still causes financial loss through extended need for discrete resources — cranes, scaffold, plant.",
+            "The SCL Protocol supports direct time-related costs, not overheads, for periods that only deteriorate float.",
+            "The criticality profile shows how much contingency remains anywhere in the programme. Once half the work is critical, acceleration has nowhere to go.",
+            "Five recognised float suppression techniques, and padding durations defeats itself while destroying your own measured mile."
+          ]
+        }
+      ]
+    },
+    "8.3": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Three positions, all defensible, all with case law or a standard form behind them, and no settled answer. Which one applies to your project depends first on what your contract says — and most contracts say nothing at all."
+        },
+        {
+          "type": "core",
+          "md": "### Position one: the contractor owns it\n\nThe contractor prepared the programme, sequenced the operations to maximise its resources, and did so against a fixed timescale and a fixed price. Under those fairly common circumstances the contractor assumes a substantial degree of risk. It follows that the programme is **theirs to use, manage and control** — including re-sequencing to hit an accelerated target, or to absorb its own non-[[excusable|excusable]] delay.\n\nThe corollary the contractors' camp presses: if employers were exclusively entitled to the [[float|float]] and used it up, a contractor that then incurs non-excusable delay has **no opportunity to recover** through re-sequencing, and will incur damages.\n\n**NEC3 endorses this position.** Clause 63.3:\n\n> any delay to the completion date is assessed as the length of time that, due to the compensation event, planned completion is later than planned completion shown on the accepted programme…\n\nMeasuring delay against **planned** completion rather than contract completion leaves no doubt: under an unamended NEC3 the contractor owns the float. Where planned completion is earlier than contractual completion there is [[terminal|terminal float]], and extending the contractual date by the extent planned completion is delayed **restores the same terminal float that existed before the event**. That is consistent with the philosophy that a contractor should be put back in the position it was in before the employer's risk event.\n\n### Position two: the employer owns it\n\nThe employer, as owner of the project, has \"bought\" the float. If a 24-month contract period is agreed and the contractor priced its preliminaries on that period, the employer is entitled to use the whole of it — provided added or changed work does not extend the contractor's work beyond the contractual date.\n\nThere is a **fundamental flaw**. If employers owned the float they would need a say in how much float a programme contained and how it was managed, so their entitlement was preserved. That is either an intolerable intrusion into the contractor's programming, or a wholesale transfer of completion risk back to the employer.\n\nIt follows that where an employer consumes float, even without affecting the finish date, there is likely to be an entitlement to recover **direct time-related costs** arising solely from the delay to progress as measured by deteriorated float.\n\n### Position three: the project owns it — first come, first served\n\nWhere the contract is silent, neither party owns the float. It is a **shared commodity**, available to whoever needs it first. If one party's use causes the other financial loss, recompense can be made retrospectively.\n\nThis is the view widely promoted in the US and supported by the [[scl|SCL Protocol]].\n\n### Ascon v McAlpine\n\nThe case that addressed float most directly. A main contractor argued it was entitled to the benefit of the float and could use it at its option to cancel or reduce delays for which it or other sub-contractors were responsible, in preference to those chargeable to Ascon.\n\nThe court rejected that:\n\n> He cannot, however, while accepting that benefit as against the employer, claim against subcontractors as if it did not exist… No-one could suppose that the main contractor has, or should have, any power to alter the result so as to shift that 'benefit'.\n\nAnd on apportionment:\n\n> Six subcontractors, each responsible for a week's delay, will have caused no loss if there is a six weeks' float. They are equally at fault, and equally share in the 'benefit'. If the float is only five weeks, so that completion is a week late, the same principle should operate; they are equally at fault, should equally share in the reduced 'benefit' and therefore equally in responsibility for the one week's loss.\n\nSo: float is shared — but rather than *first come, first served*, an **apportionment based on shared contribution**.\n\n### Where it is going\n\nConventional wisdom has moved. In the 1960s and 70s, before widespread CPM, there was support for the contractor owning it, based on simple bar charts showing an intention to finish early. In the 80s and 90s support shifted to a shared resource.\n\nThe growing use of NEC3, with its unique formula for calculating time extensions, makes it more than likely that conventional wisdom shifts back towards the contractor."
+        },
+        {
+          "type": "figure",
+          "widget": "float-ownership",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "Where the two guides part company",
+          "md": "**SCL Protocol.** Absent express provision, an extension of time should be granted only to the extent employer delay is predicted to reduce total float on the affected paths **below zero**. It does not declare an owner. Separately, it suggests contractors are entitled to direct time-related costs — not overheads — for periods of delay that deteriorate float.\n\n**RP-29R-03.** Distinguishes **network float**, a shared resource, from **project float** — terminal float — which is \"owned solely by the contractor\". That would allow contractors to recover additional time-related overheads before the contractual completion date on an early completion programme.\n\nThis is one of the two substantive divergences between the guides, and it reflects a genuine difference between US and UK case law on early completion programmes."
+        },
+        {
+          "type": "worked",
+          "md": "The same 20-day employer delay, under three positions:",
+          "table": {
+            "head": [
+              "",
+              "Contractor owns it",
+              "Employer owns it",
+              "Project owns it"
+            ],
+            "rows": [
+              [
+                "Planned completion",
+                "1 Sep",
+                "1 Sep",
+                "1 Sep"
+              ],
+              [
+                "Contract completion",
+                "1 Oct — 30 days terminal float",
+                "1 Oct",
+                "1 Oct"
+              ],
+              [
+                "Employer delay of 20 days",
+                "Planned completion → 21 Sep",
+                "Planned completion → 21 Sep",
+                "Planned completion → 21 Sep"
+              ],
+              [
+                "Extension of time",
+                "20 days — terminal float restored",
+                "None — still inside the contract date",
+                "None — total float has not gone below zero"
+              ],
+              [
+                "New contract completion",
+                "21 Oct",
+                "1 Oct",
+                "1 Oct"
+              ],
+              [
+                "Time-related costs",
+                "Recoverable to the extended date",
+                "Direct costs arising from the delay to progress",
+                "Direct costs, not overheads"
+              ],
+              [
+                "If the contractor then slips 25 days of its own",
+                "Finishes 16 Oct — inside the extended date",
+                "Finishes 16 Oct — 15 days of LDs",
+                "Finishes 16 Oct — 15 days of LDs"
+              ]
+            ]
+          },
+          "after": "Look at the last row. Under the first column the contractor's own 25-day slip is entirely absorbed. Under the other two it costs fifteen days of liquidated damages.\n\nThat is the whole argument in one line, and it is why the answer is worth so much money. It also shows why the position matters most to the party that has **not** yet had its delay — which is why nobody can agree it after the event."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-8-3-a",
+            "q-8-3-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Three positions: contractor, employer, or the project. The first question is always what the contract says.",
+            "NEC3 clause 63.3 measures delay against PLANNED completion, which puts the float with the contractor.",
+            "The employer-owns-it argument has a structural flaw: it would require the employer to control how much float the programme contains.",
+            "Ascon v McAlpine treated float as shared but apportioned by contribution, rather than first come, first served."
+          ]
+        }
+      ]
+    },
+    "8.4": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "There is no universally accepted definition of concurrent delay. That is not a gap in the literature — it is the reason the subject is so contested, because two experts arguing about concurrency are usually arguing about what the word means."
+        },
+        {
+          "type": "core",
+          "md": "### The best definition available\n\n> A period of project over-run which is caused by two or more effective causes of delay which are of equal causative potency.\n\nFour elements worth separating: a **period of over-run**, **two or more** causes, both **effective**, and of **equal causative potency**. Fail any of them and what you have is not concurrency.\n\n### Concurrent delay and concurrent effect\n\nThe distinction that resolves most arguments.\n\n**True [[concurrency|concurrent delay]]** — two events running together at exactly the same time. This is a **rare occurrence**.\n\n**Concurrent effect** — two or more delay events arising at different times, but whose effects are felt, in whole or in part, over the same period. This is the common case.\n\nCauses of delay tend to overlap rather than coincide, and in that sense concurrency applies only to the **period of overlap**.\n\nThe [[scl|SCL Protocol]] treats the terms as interchangeable, which is a more accurate description of the common scenario. Use either — but say which you mean.\n\n### When it actually matters\n\nOnly where **at least one of the concurrent events is at the contractor's risk**.\n\nTwo concurrent employer risk events raise no concurrency issue at all — you take the larger and treat the other as having contributed nothing. Two concurrent contractor risk events likewise. It is the employer-plus-contractor combination that generates every argument in this module.\n\n### Two separate assessments\n\nTime delay analysis has two parts, and they must not be run together.\n\n**First, the effect on progress.** Did the claimed relevant event have a deleterious effect on progress? Did it merely slow the works, or bring them to a standstill? If either, how much was progress affected? Absent concurrency, you would then award an extension of that amount.\n\n**Second, the financial compensation.** A separate question, with a separate test.\n\nWhere concurrent delays are present, the contract administrator must identify from as-built data: the incidence of the delays, the window in which the concurrency falls, whether the delays affected the existing completion date, and liability for each.\n\n### The underlying principle\n\n> Neither the employer nor the contractor can recover damages from one another when they contribute to the delay.\n\nWith an appendage: contractors may be able to recover damages that can be **discretely attributed** to an [[excusable|excusable]] event caused by the employer.\n\nThe bulk of US case law concludes that contractors are entitled to time, but not time-related damages, when concurrent delays are present. UK case law is less clear and less consistent, because of the various methods of apportioning liability.\n\n### The combinations\n\nAny analysis must handle delay arising in various combinations:\n\n- reimbursable / non-reimbursable\n- reimbursable / culpable\n- non-reimbursable / culpable"
+        },
+        {
+          "type": "figure",
+          "widget": "delay-matrix",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Paralysis by analysis",
+          "md": "Experience suggests the various approaches adopted by contract administrators can lead to a state almost of **paralysis by analysis** — illogical results that hinder the ability to make fair entitlement assessments.\n\nThere is at least increasing evidence that contract administrators accept the principle that overlapping or concurrent delays, where one is an employer risk event and the other a contractor risk event, **entitle the contractor to an extension of time**.\n\nThe difficulty then moves to the all-important second question: what proportion of compensation, if any, should be paid. That is the next lesson."
+        },
+        {
+          "type": "worked",
+          "md": "Is this actually concurrency? Four tests:",
+          "table": {
+            "head": [
+              "Scenario",
+              "Two effective causes?",
+              "Equal potency?",
+              "Overlapping effect?",
+              "Concurrency?"
+            ],
+            "rows": [
+              [
+                "Late design information delays frame; separately, the contractor's steel supplier fails, same six weeks",
+                "Yes — one ERE, one CRE",
+                "Both would have caused the same delay alone",
+                "Yes",
+                "Yes"
+              ],
+              [
+                "Late design delays frame; contractor's painting gang is short-handed on non-critical work",
+                "The second is not an effective cause of delay to completion",
+                "No",
+                "—",
+                "No"
+              ],
+              [
+                "Two employer instructions, both delaying the critical path in March",
+                "Both EREs",
+                "—",
+                "Yes",
+                "Not relevant — take the larger"
+              ],
+              [
+                "Employer delay in March; contractor delay in June",
+                "Yes",
+                "—",
+                "No overlap in effect",
+                "No — sequential"
+              ],
+              [
+                "Employer delay in March; contractor delay in April, both prolonging completion through May and June",
+                "Yes",
+                "Both prolong the same period",
+                "Yes — concurrent EFFECT",
+                "Yes, on the SCL approach"
+              ]
+            ]
+          },
+          "after": "The last row is the one that matters most in practice, and it is the one people miss. The events arose a month apart. Neither was running when the other started. But their effects were felt over the same period — which is concurrent effect, and it is treated the same way.\n\nThe second row is the most common overreach: pointing at any contemporaneous contractor delay and calling it concurrent, when it was never an effective cause of delay to completion at all."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-8-4-a",
+            "q-8-4-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Concurrent delay: a period of over-run caused by two or more effective causes of equal causative potency.",
+            "True concurrency — same start, same end — is rare. Concurrent EFFECT, where the consequences overlap, is common.",
+            "It only matters where at least one of the events is at the contractor's risk.",
+            "Assess the effect on progress first, and compensation second. They are separate questions with separate tests."
+          ]
+        }
+      ]
+    },
+    "8.5": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Three approaches to apportioning concurrent delay, developed over eighty years of case law, and none of them commands the field. Which one applies depends on the contract, the jurisdiction, the facts — and, to a degree nobody enjoys admitting, on the preference of the analyst."
+        },
+        {
+          "type": "core",
+          "md": "### First-in-line\n\nThe first-occurring of two overlapping events is identified as the one that caused the critical delay.\n\nIts drawback is stated plainly: the results **do not reflect the impact of culpable delay**. A contractor delay starting a day earlier than an employer delay would take the whole period, regardless of relative significance.\n\n### Dominant cause\n\nA test to establish, as a question of fact, the dominant cause of a loss. Applied to construction delay, it identifies which of several competing events is the most dominant or predominant.\n\nGiven early support in **Leyland Shipping v Norwich Union** (1918), then rejected in the later construction case **Fairweather v Wandsworth** (1987) on appeal — which considered and criticised the approach on the merits of the evidence in that case.\n\nBut it is not dead. There is still support for it, and it cannot be ruled out as an available argument depending on the facts.\n\nOne crucial refinement: **the dominant cause approach is relevant to the recovery of damages, not to relief from damages**. It helps decide who pays. It does not decide whether the contractor gets time.\n\n### Apportionment\n\nImportant where both [[excusable|excusable]] and non-excusable delays occurred — exceptionally inclement weather alongside contractor-caused delay — and more important still where each party is responsible for at least one of the concurrent delays. It also applies downstream, where a main contractor must identify liability among a group of sub-contractors.\n\n**City Inn v Shepherd Construction** (2006) gave the most workable guidance:\n\n> between a relevant event and a contractor default, in the sense that both existed simultaneously, regardless of which started first, it may be appropriate to apportion responsibility for the delay between the two causes; obviously, however, the basis for such apportionment must be fair and reasonable.\n\nIn the event the judge made his own assessment of what was fair and reasonable, based on the **magnitude and significance** of each culpable and excusable event.\n\nThe case also supported the [[scl|SCL Protocol]]'s view that there is a different test for time and money — although the judge ultimately apportioned the monetary award on the same basis as the time.\n\nHow it operates: once concurrent delays are identified, one at the employer's risk and one at the contractor's, liability can be apportioned by offsetting one against the other. Time and money are granted for the difference, depending on whether the remaining period is excusable, non-excusable, compensable or non-compensable. Where none of the contractor's delay remains after applying the employer's [[concurrency|concurrent delay]] — both contributed equally — time but not money may be granted, and no [[ld|liquidated damages]] apply.\n\nApportionment is pragmatic and effective for assessing [[eot|extension of time]] entitlement. It may be **inconsistent with legal principles** in certain situations.\n\n### The Malmaison position\n\n**Henry Boot v Malmaison Hotel** (1999). Where there are two concurrent causes of delay, one a relevant event and one not, the contractor is entitled to an extension of time for the delay caused by the relevant event **notwithstanding the concurrent effect of the other**.\n\nThe example given in the case: if a week's production is lost to exceptionally inclement weather (a relevant event) **and** to a labour shortage (not one), and the failure to work that week would delay completion by a week, the contract administrator must grant a week's extension if he considers it fair and reasonable. He **cannot refuse on the grounds that the delay would have occurred anyway** because of the labour shortage.\n\nSupported subsequently in **Royal Brompton Hospital v Hammond** (2001): a contractor delayed by relevant events is entitled to extensions **notwithstanding its own defaults**.\n\n### Extensions during culpable delay\n\n**Balfour Beatty v Chestermount** (1993) settled two things. A contract administrator **has the power to grant an extension after the original completion date has passed**. And the extension should be assessed on the **net** basis — the time required for the variation itself, added to the last revised completion date, the *dot-on* principle — rather than the gross basis which would include the contractor's prior delay.\n\nCare is still needed: an adjustment must be fair and reasonable in all the circumstances.\n\n### And in the end\n\nThe trend in the courts is consistent with Chitty on Contracts:\n\n> The courts avoided laying down any formal test for causation; they have relied on common sense to guide decisions as to whether a breach of contract is a sufficiently substantial cause of the Claimant's loss… must in the end depend on the court's common sense in interpreting the facts.\n\nThe court's common sense in interpreting the facts will prevail, **regardless of the method of delay analysis undertaken**."
+        },
+        {
+          "type": "figure",
+          "widget": "compare",
+          "props": {
+            "title": "Three approaches to concurrency",
+            "cards": [
+              {
+                "k": "First in line",
+                "t": "The earlier event takes it",
+                "pro": [
+                  "Simple and mechanical to apply",
+                  "No assessment of relative significance required"
+                ],
+                "con": [
+                  "Does not reflect the impact of culpable delay",
+                  "A day's difference in start date decides everything",
+                  "Little support in modern practice"
+                ]
+              },
+              {
+                "k": "Dominant cause",
+                "t": "The effective or predominant cause",
+                "pro": [
+                  "Reflects reality where one cause plainly overwhelms the other",
+                  "Still available on the right facts"
+                ],
+                "con": [
+                  "Given early support then rejected in Fairweather",
+                  "Relevant to recovering damages, not to relief from them",
+                  "Encourages a wait-and-see approach the Protocol discourages"
+                ]
+              },
+              {
+                "k": "Apportionment",
+                "t": "Share responsibility fairly and reasonably",
+                "pro": [
+                  "Pragmatic and workable for assessing entitlement",
+                  "Supported in City Inn v Shepherd",
+                  "Handles the downstream sub-contractor case too"
+                ],
+                "con": [
+                  "The basis must be fair and reasonable — which is a judgement",
+                  "May be inconsistent with legal principles in some situations",
+                  "Two experts will apportion differently on identical facts"
+                ]
+              }
+            ],
+            "note": "Selection depends on the contract conditions, the prevailing case law, and — to an uncomfortable degree — the preference of the delay analyst."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "law",
+          "title": "Two questions people always ask",
+          "md": "**Where two concurrent causes occur, one a relevant event and one not, is the contractor entitled to an extension of time?**\n\nYes, on the Malmaison approach — for the period of delay caused by the relevant event, notwithstanding the concurrent effect of the other.\n\n**Can an extension be granted for variations instructed during a period of culpable delay, after the contract completion date has passed?**\n\nYes. Balfour Beatty v Chestermount held the architect had the power to do so, and that the **net** method applies: the time required for the variation is added to the last revised completion date, not calculated grossly to include the contractor's earlier delay."
+        },
+        {
+          "type": "worked",
+          "md": "Three months of over-run, apportioned three ways:",
+          "table": {
+            "head": [
+              "",
+              "Employer delay",
+              "Contractor delay",
+              "First in line",
+              "Dominant cause",
+              "Apportionment"
+            ],
+            "n": [
+              1,
+              2
+            ],
+            "rows": [
+              [
+                "Month 1 — employer starts 3rd, contractor 11th",
+                "28d",
+                "20d",
+                "All to employer",
+                "Employer — larger and earlier",
+                "60/40 to employer"
+              ],
+              [
+                "Month 2 — contractor starts 1st, employer 9th",
+                "22d",
+                "26d",
+                "All to contractor",
+                "Contractor — larger",
+                "45/55"
+              ],
+              [
+                "Month 3 — both start 1st",
+                "15d",
+                "15d",
+                "Indeterminate",
+                "Neither dominant",
+                "50/50"
+              ],
+              [
+                "EOT outcome",
+                "—",
+                "—",
+                "Distorted by start dates",
+                "Employer months 1 and 3",
+                "Full EOT, apportioned costs"
+              ]
+            ]
+          },
+          "after": "Notice that first-in-line gives month two entirely to the contractor because it started eight days earlier, even though the employer's delay was only four days shorter. That is exactly the drawback: the result does not reflect the impact of culpable delay in any proportionate way.\n\nOn the Malmaison approach the contractor gets an extension of time for all three months regardless. The argument is only ever about the money."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-8-5-a",
+            "q-8-5-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "First-in-line is mechanical and does not reflect culpable delay. Dominant cause survives on the right facts but goes to damages, not relief.",
+            "City Inn supports apportionment on a fair and reasonable basis, assessed on the magnitude and significance of each event.",
+            "Malmaison: a contractor is entitled to an extension for a relevant event notwithstanding a concurrent event that is not one.",
+            "Balfour Beatty v Chestermount: extensions can be granted after the completion date has passed, on the net 'dot-on' basis."
+          ]
+        }
+      ]
+    },
+    "8.6": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Three scenarios, drawn to scale. In each one the contractor will argue for the maximum, the employer for nothing, and the SCL Protocol will give an answer that satisfies neither — which is usually a sign it is the right one."
+        },
+        {
+          "type": "core",
+          "md": "### The Protocol's method, in two parts\n\n**On time:**\n\n1. Determine the status of the programme and the available [[float|float]] at the date of the delay event.\n2. Determine the impact of the [[ere|employer risk event]] on the contractor's plan at the time, **regardless of concurrent delays operating at the time**.\n\nAnd, importantly:\n\n> Contractor caused concurrent delay should not reduce an entitlement to an extension of time.\n\n**On money:**\n\n- Entitlement to an [[eot|extension of time]] does not automatically equal an entitlement to money.\n- Where concurrent delays are present, a contractor is generally due **time but not money**.\n- There are distinct tests for time and money.\n\nWith one significant qualification: where costs are suffered due to an employer delay and **can be distinguished** from costs incurred due to culpable delays, those may be recovered.\n\n### That qualification matters\n\nIt is the difference between a claim that recovers nothing and one that recovers something. [[prolongation|Prolongation]] — time-related overhead across the extended period — generally fails where concurrency is present, because those costs would have been incurred anyway.\n\nBut **costs arising directly as a result of the employer's delay event** remain payable. Standing time on a specific gang. Re-mobilisation of a specialist. Extended hire of one piece of plant that was there only because of that event.\n\nThe [[scl|SCL Protocol]] recommends record keeping and accounting for supervision and overheads in a way that lets a contractor **discretely track compensable and non-compensable costs**. Contractors that do this recover in situations where contractors that do not, cannot.\n\n### Why the Protocol takes this line\n\nIt is consistent with general English law, which requires a claimant to link the loss to the defendant's wrongful act. If the loss would have been incurred in any case, due to a [[cre|contractor risk event]], then **no loss has been suffered due to the employer risk event**.\n\nAnd it fits the Protocol's central theme. The dominant cause approach is retrospective — it encourages the wait-and-see attitude the Protocol frowns on. If all its recommendations are followed, a forensic dominant-cause exercise should not be required at all."
+        },
+        {
+          "type": "figure",
+          "widget": "concurrency",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "The identification problem",
+          "md": "The Protocol makes a practical point that is easy to skip past: identifying float and concurrency **contemporaneously** is only possible if all the programming management provisions are complied with — a programme that is approved and properly updated.\n\nWhich means the whole apparatus of this module depends on Module 4. Without monthly updates you cannot say what float existed at the date of an event, and without that you cannot assess concurrency at all, at the time or afterwards."
+        },
+        {
+          "type": "worked",
+          "md": "The three scenarios, with what each side would say:",
+          "table": {
+            "head": [
+              "",
+              "Scenario 1 — equal",
+              "Scenario 2 — employer greater",
+              "Scenario 3 — contractor greater"
+            ],
+            "rows": [
+              [
+                "Employer delay",
+                "1 month",
+                "2 months",
+                "1 month"
+              ],
+              [
+                "Contractor delay",
+                "1 month",
+                "1 month",
+                "2 months"
+              ],
+              [
+                "Contractor argues",
+                "1 month EOT + 1 month prolongation",
+                "2 months EOT + 2 months prolongation",
+                "1 month EOT + 1 month prolongation"
+              ],
+              [
+                "Employer argues",
+                "No EOT, no prolongation",
+                "1 month EOT + 1 month prolongation",
+                "No EOT, no prolongation"
+              ],
+              [
+                "SCL Protocol",
+                "1 month EOT. No prolongation. Costs arising directly from the employer event still payable.",
+                "2 months EOT. 1 month prolongation — the excess over the concurrent period.",
+                "1 month EOT. No prolongation. Costs arising directly from the employer event still payable."
+              ]
+            ]
+          },
+          "after": "The pattern across all three: **the employer risk event drives the extension of time in full**, and compensation is limited to the period by which it exceeds the concurrent contractor delay.\n\nIn scenarios 1 and 3 that excess is nil, so no prolongation — but the final clause of the Protocol's answer survives in both. Costs arising **directly** from the employer's delay event are still recoverable, and a contractor with cost records good enough to isolate them will recover where one without them will not."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-8-6-a",
+            "q-8-6-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Determine the impact of the employer risk event regardless of concurrent delays. Contractor concurrency does not reduce the extension of time.",
+            "Where concurrency is present the contractor is generally due time but not money.",
+            "Costs arising DIRECTLY from the employer's event remain payable even where prolongation does not. Keep records that isolate them.",
+            "Assessing concurrency contemporaneously is only possible with an approved and properly updated programme."
+          ]
+        }
+      ]
+    },
+    "8.7": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "When an employer points at a contractor's late activity and calls it concurrent delay, the contractor will very often say it was pacing — slowing down deliberately because something else was already driving the date. Sometimes that is exactly true. Usually it is said for the first time three years later."
+        },
+        {
+          "type": "core",
+          "md": "### What pacing is\n\nThe argument that a party, aware more critical delays were occurring elsewhere, **elected to pace its own progress** with the more critical delay — avoiding the unnecessary cost of speeding up only to wait for the concurrently delayed works to catch up.\n\nThe formal definition:\n\n> Pacing is when an event is completed later than planned, in the knowledge of the existence of a more critical delay being experienced to works independent of the works being paced.\n\n### It cuts both ways\n\nContractors run it when accused of concurrent culpable delay.\n\nAnd designers run it too. When late with information or shop drawing approvals, they argue the works were already in delay, their late response caused no further delay, they responded just in time, and there was no reason to hurry up and wait.\n\nBoth scenarios are sometimes valid. Both have limited support from cases in the US and UK.\n\n### The four limbs\n\nA party relying on [[pacing|pacing]] must demonstrate:\n\n1. **Knowledge** of the more critical [[excusable|excusable]] delay\n2. **Evidence of an express decision** to pace its works\n3. **Notification** to the other party that its works would be paced so as not to cause further delay or [[disruption|disruption]]\n4. **The ability to reinstate** normal outputs if the pre-existing delay was mitigated or avoided\n\nThere must be a conscious and contemporaneous decision, and an implied or express intention **and ability** to restore the paced works so those delays do not become critical.\n\n### Why pacing is done\n\nUsually to save money, but there are many legitimate reasons:\n\n- to perform work in more favourable weather\n- to smooth or level resources\n- to avoid unnecessary [[acceleration|acceleration]] of non-critical events\n- to allow designers more time to complete shop drawings\n- to let fabrication shops expedite more critical components\n- to reduce reliance on site storage or lay-down areas\n- to reduce reliance on vertical movement of trades and materials\n- to mitigate logistical challenges with site access\n- to allow management to focus on and resolve critical issues\n\nPacing is implemented by reducing outputs, extending durations, or suspending work altogether. The reasons must be clearly expressed, and the ability to restore normal conditions demonstrated.\n\n### The US position, and its limit\n\nIn the US, a contractor's right to pace in response to a more critical delay is an accepted concept — the contractor is not penalised for pacing to avoid unnecessary costs. Whether costs are recoverable **during** the period of pacing is not clear in any jurisdiction.\n\nThere is also authority the other way. In *John Murphy Construction*:\n\n> …it does not appear from the record that but for the government-caused delays, appellant could have completed the work by December 13. It is concluded, therefore, that despite the delays caused by the government, the record establishes that from the time scheduled for commencement of the project, appellant was at least concurrently responsible for the delay in the progress of the work.\n\nOn that view, a contractor is **not entitled to [[compensable|compensable delay]] when the result was merely to consume [[float|float]]**.\n\nAnd the general rule from *Coffey Construction*:\n\n> The general rule is that, where both parties contribute to the delay neither can recover damages, unless there is in the proof a clear apportionment of the delay and expenses attributable to each party.\n\n### The hindsight problem\n\n> Proving the above elements can only be done with contemporaneous records.\n\nPacing arguments are most often made at the **end** of a project, when an as-built analysis reveals that activities unaffected by any employer variation or excusable event appear to have been delayed.\n\nWhen pacing is argued with hindsight, it should be treated with both **caution and scepticism** — especially where the assertion is unsupported by contemporaneous records.\n\nWhich is the whole practical lesson: pacing is won in the monthly report, not in the expert report."
+        },
+        {
+          "type": "figure",
+          "widget": "pacing-test",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "law",
+          "title": "Pacing established — the case study",
+          "md": "In the airport case study the employer argued the joint venture would have finished late anyway because of the Runway Extension, which the employer had neither varied nor delayed.\n\nThe tribunal expert went to the contemporaneous record and found something specific: from March 2007, the JV's own files and monthly reports **expressly stated** it was altering the timing and sequence of the runway work to coincide with more favourable weather conditions — while ensuring completion well in advance of the Control Tower.\n\nAll four limbs, evidenced from documents created at the time. The tribunal accepted that the late completion of the Runway Extension was **elective re-sequencing** and, in any event, found it was never on the critical path.\n\nThe employer's strongest argument fell away entirely — on the strength of four monthly reports."
+        },
+        {
+          "type": "worked",
+          "md": "The same facts, with and without the records:",
+          "table": {
+            "head": [
+              "Limb",
+              "With contemporaneous records",
+              "Asserted afterwards"
+            ],
+            "rows": [
+              [
+                "Knowledge of the more critical delay",
+                "Float deterioration chart in the March monthly report",
+                "\"We obviously knew\""
+              ],
+              [
+                "Express decision to pace",
+                "Internal instruction dated 14 March, in the site file",
+                "\"It was a management decision\""
+              ],
+              [
+                "Notification to the other party",
+                "Monthly report issued to the employer, March, April, May",
+                "None"
+              ],
+              [
+                "Ability to reinstate",
+                "Sub-contractor letter confirming two additional gangs available at 14 days' notice",
+                "\"We could have if we'd needed to\""
+              ],
+              [
+                "Outcome",
+                "Pacing accepted; runway delays held irrelevant",
+                "Treated as concurrent contractor delay"
+              ]
+            ]
+          },
+          "after": "The facts in both columns are identical. Only the documentation differs, and it is worth 45 days.\n\nNote how ordinary the left-hand column is. A chart already being produced monthly, an internal instruction that took five minutes to write, a paragraph in a report that was going out anyway, and a letter from a sub-contractor. None of it was created for a claim. All of it survived because somebody wrote things down as they happened."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-8-7-a",
+            "q-8-7-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Pacing is electing to slow down in the knowledge that something more critical is already driving the date.",
+            "Four limbs: knowledge, an express decision, notification, and the ability to reinstate normal output.",
+            "It cuts both ways — design teams run the same argument when late with information.",
+            "It can only be proved with contemporaneous records. Asserted with hindsight it attracts caution and scepticism, and rightly."
+          ]
+        }
+      ]
+    }
+  }
+}

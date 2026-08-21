@@ -1,0 +1,542 @@
+{
+  "module": 10,
+  "lessons": {
+    "10.1": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Twenty-one statements of principle, published in 2002, aimed at stopping disputes rather than resolving them. Some were welcomed, some were controversial, and none of them is law — which is exactly what the Protocol says about itself."
+        },
+        {
+          "type": "core",
+          "md": "### What it is for\n\nThe stated aim:\n\n> …provide useful guidance on some of the common issues that arise on construction contracts, where one party wishes to recover from another an extension of time and/or compensation for the additional time spent and the resources used to complete the project. The purpose of the Protocol is to provide a means by which the parties can resolve these matters and avoid unnecessary disputes.\n\nAnd on its own status:\n\n> The protocol exists to provide Guidance to all parties to the construction process when dealing with time / delay matters. It recognises that transparency of information and methodology is central to both dispute prevention and dispute resolution.\n\nIts focus is **dispute avoidance** — recommendations for managing programmes that can actually be used to predict the impact of change during a project. And it recognises that common sense and reality checks are required when applying any of these techniques.\n\n### What it changed\n\nIt effected a genuine change in how delay analysis is undertaken in the UK, and everywhere UK-based contractors, consultants and law firms work. It raised awareness of the problematic issues, and it achieved judicial recognition in the Technology and Construction Court in *Mirant v Ove Arup*.\n\n### Where it was criticised\n\nThe support for [[tia|time impact analysis]] was met with some trepidation. The Protocol states that it is \"the preferred technique to resolve complex disputes related to delay and compensation for delay\".\n\nThe general concern: that this was **too prescriptive**, and did not place equal reliance on more accurate methods of as-built analysis.\n\nThat criticism has weight. As the case study in this course demonstrates, a competently executed time impact analysis over thirteen agreed employer risk events can still fail, if it is never tested against an [[abcp|as-built critical path]].\n\n### The sanctions it proposes\n\nWorth knowing, because they get written into contracts. For failure to comply with programme provisions:\n\n- reducing interim payments by **25%** until the contractor submits or updates the programme — released on submission\n- **[[ld|liquidated damages]]** covering the employer's cost of hiring outside consultants if the contractor fails to submit or update\n- **default for material breach** for failure to submit or update\n\n### The recurring theme\n\nAcross the whole document, one phrase does more work than any other: **at the time**.\n\nApplications and awards should be dealt with at the time the event occurs. Delay events should be analysed at the time they occur. The costs associated with a delay should be assessed relative to the work ongoing at the time — not during the extended performance period at the end.\n\nEverything else follows from that."
+        },
+        {
+          "type": "figure",
+          "widget": "scl-principles",
+          "props": {
+            "items": [
+              {
+                "t": "Programme and records",
+                "d": "The contractor should prepare and the contract administrator should agree a baseline programme, updated to reflect actual progress and any extensions granted. The parties should agree the type of records to be kept to identify the cause and extent of delays. Model specification and records clauses are provided, with sanctions for non-compliance."
+              },
+              {
+                "t": "Purpose of extension of time",
+                "d": "The benefit to the contractor is **solely relief from liability for damages** for delay to the contract completion date. The benefit to the employer is twofold: it maintains the right to establish a new completion date, preventing time becoming at large, and it preserves the right to deduct damages."
+              },
+              {
+                "t": "Entitlement to extensions of time",
+                "d": "Applications and awards should be dealt with **at the time** the event occurs. This requires both parties to accept a risk transfer mechanism, with negotiations for time and money signed off as *full accord and final settlement for all related damages, direct or indirect*. Playing the wait-and-see game is discouraged — delays rarely go away by themselves."
+              },
+              {
+                "t": "Procedure for granting extension of time",
+                "d": "Awards should be made close to the time the event occurs — prospectively — to avoid the wait-and-see position frequently adopted by contract administrators, which contractors often endure in the erroneous belief it assists their recovery later. The underlying principle: an extension of time should be based on **entitlement, not need**."
+              },
+              {
+                "t": "Effect of delay",
+                "d": "The risk of the potential effect of an event can be transferred to the contractor, via a prospective extension of time, **before the impact is actually known**. This is simply an agreement to revisit the original bargain each time the work is varied."
+              },
+              {
+                "t": "Incremental review of extensions of time",
+                "d": "To address the concern that a purely prospective analysis might grant more time than a proper as-built analysis would later justify, extensions could be awarded **incrementally**, based on the impact known from time to time."
+              },
+              {
+                "t": "Float as it relates to time",
+                "d": "Absent express provision, an extension should only be granted to the extent employer delay is predicted to reduce total float on the affected paths **below zero**, thereby delaying the contract completion date. This assumes the contract does not say either party owns the float."
+              },
+              {
+                "t": "Float as it relates to money",
+                "d": "Contractors are entitled to **direct time-related costs — not overheads —** for periods of delay that deteriorate float. This may be read as applying particularly where a contractor works to an early completion programme, so terminal float exists. It requires an accurate, approved and transparent programme, updated regularly, to work in practice."
+              },
+              {
+                "t": "Concurrent delay — effect on entitlement to extension of time",
+                "d": "The UK courts tend toward the dominant cause approach; the Protocol recommends the more traditional US approach, in which employer risk events entitle a contractor to an extension of time **even where concurrent delays are present**. Contractor-caused concurrent delay should not reduce that entitlement."
+              },
+              {
+                "t": "Concurrent delay — effect on entitlement to compensation",
+                "d": "The Protocol makes *concurrent delay* interchangeable with *concurrent effect*, which is the more accurate description of the common scenario. A contractor can only recover costs that **directly result** from a compensable event. If those costs cannot be discretely isolated from non-compensable causes — because they would have been incurred anyway — there is no entitlement to recovery."
+              },
+              {
+                "t": "Identification of float and concurrency",
+                "d": "As a practical matter, identifying float and concurrency **contemporaneously** is only possible if all the programme management provisions have been complied with: an approved programme, properly updated."
+              },
+              {
+                "t": "After the event delay analysis",
+                "d": "A somewhat controversial suggestion: a trier of fact should place himself in the shoes of the contract administrator at the time, to determine what extension **should have been granted** then, without the benefit of hindsight. For this to work, reliable programmes must exist. Reconstructed programmes created solely to measure impact after the event should be treated with scepticism."
+              },
+              {
+                "t": "Mitigation of delay and mitigation of loss",
+                "d": "Mitigation as a contractual obligation should be read as **reasonable steps to minimise loss**, but not unreasonable steps resulting in greater loss. There is subjectivity in *reasonable*, and specific contract provisions may increase the obligation beyond what the Protocol suggests."
+              },
+              {
+                "t": "Link between extension of time and compensation",
+                "d": "Entitlement to additional time does **not** automatically provide an equal entitlement to additional money. It is unfortunate that many hold contractors to the same burden of proof for time as for money. There are different tests."
+              },
+              {
+                "t": "Valuation of variations",
+                "d": "When negotiating variations the parties should, where possible, agree the direct costs together with the time-related costs and any programme revisions, as full accord for the change. Consistent with many US change order provisions requiring full and final settlement before implementation."
+              },
+              {
+                "t": "Basis of calculation of compensation for prolongation",
+                "d": "Recovery is based on causal links from delay events to actual cost incurred. Time-related costs must be for **work actually done, time actually taken up, or loss and/or expense actually suffered**. Where possible, pre-agree a fixed daily rate for delay, much as liquidated damages are pre-agreed."
+              },
+              {
+                "t": "Relevance of tender allowances",
+                "d": "Bid or tender allowances have little relevance. Bids are often unbalanced and not reflective of the actual cost incurred when delay damages are experienced."
+              },
+              {
+                "t": "Period for evaluation of compensation",
+                "d": "Delay events should be analysed **at the time** they occur, and the costs assessed relative to the work that was ongoing at the time the event occurred — rather than during the extended contract performance period at the end."
+              },
+              {
+                "t": "Global claims",
+                "d": "Discouraged, while discrete cause-and-effect based methods are encouraged."
+              },
+              {
+                "t": "Acceleration",
+                "d": "Prior to implementing acceleration, payment entitlement mechanisms should be agreed, to avoid constructive acceleration disputes. Where acceleration is agreed to be the result of an employer risk event, the basis of payment should also be agreed where possible."
+              },
+              {
+                "t": "Disruption",
+                "d": "Good record keeping is essential. Entitlement to compensation for disruption can be established **even if no critical delay has been experienced and no extension of time granted**. Establishing a causal link from an employer risk event to actual loss is the hurdle, and the Protocol suggests the **measured mile** is the best way of identifying disruption."
+              }
+            ]
+          }
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "Common sense, expressly required",
+          "md": "The Protocol is careful to counsel common sense, and this passage is the one to quote when an analysis produces an answer nobody believes:\n\n> Although the programme should be the primary tool for guiding the CA in his determination of extension of time, it should be used in conjunction with the contemporary evidence to ensure that the resulting extension of time is fair and reasonable. It will also be necessary for the parties to apply common sense and experience to the process to ensure that all relevant factors are taken into account, and that any anomalous results generated by the programme analysis are managed properly.\n\nNote the two obligations in that last clause. Anomalous results must be **identified** and **managed** — not reported as findings."
+        },
+        {
+          "type": "worked",
+          "md": "The four principles most often overlooked, and what each is worth:",
+          "table": {
+            "head": [
+              "Principle",
+              "What it says",
+              "Why it gets missed"
+            ],
+            "rows": [
+              [
+                "8 — float and money",
+                "Direct time-related costs, not overheads, for delay that only deteriorates float",
+                "Contractors abandon the claim when no EOT is granted"
+              ],
+              [
+                "14 — the link between time and money",
+                "Entitlement to time does not carry entitlement to money",
+                "Both parties treat them as one test"
+              ],
+              [
+                "17 — tender allowances",
+                "Bid allowances have little relevance to actual cost incurred",
+                "Employers defend every claim by attacking the tender"
+              ],
+              [
+                "21 — disruption",
+                "Compensation for disruption needs no critical delay and no EOT",
+                "Contractors attach the disruption claim to a failed EOT claim and lose both"
+              ]
+            ]
+          },
+          "after": "Principles 8 and 21 together describe a substantial claim that a great many contractors simply never make: **direct time-related costs for float consumed, plus disruption, on a project that finished on time and was granted no extension at all**.\n\nNeither requires an extension of time. Both require records good enough to isolate the cost."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-10-1-a",
+            "q-10-1-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Twenty-one principles, aimed at dispute avoidance, expressly not a statement of law — but judicially recognised in the TCC.",
+            "The recurring theme is 'at the time': assess events, award time and price cost when they happen.",
+            "Extensions should be based on entitlement, not need. Time and money are separate tests.",
+            "Its support for time impact analysis was the main criticism — too prescriptive, and light on as-built methods."
+          ]
+        }
+      ]
+    },
+    "10.2": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "If the SCL Protocol tells you what good practice looks like, RP-29R-03 gives you a language precise enough that two experts can establish exactly what each of them did — which turns out to be most of the argument."
+        },
+        {
+          "type": "core",
+          "md": "### What it is\n\nAACE International's *Recommended Practice No. 29R-03, Forensic Schedule Analysis*, issued 1 July 2007. Considerably more technical than the Protocol, and narrower: it addresses the **forensic application of CPM scheduling** and does not deal with managing programmes contemporaneously at all.\n\nIts stated purpose is to provide a unifying technical reference and to **reduce the degree of subjectivity involved in the current state of the art**, with an expressed emphasis on *minimising procedural subjectivity*.\n\nIt is not a primer. It assumes advanced, hands-on knowledge of CPM principles and analysis, plus working experience of claims and contractual disputes.\n\n### Its own honesty about itself\n\nThe premises are refreshingly candid:\n\n- it should be used \"in the spirit of logical and intellectual honesty\"\n- **all methods are subject to manipulation** — they all involve judgement calls by the analyst, in preparation and in interpretation\n- **no forensic schedule analysis method is exact**\n- proof of entitlement to additional time does not automatically establish proof of entitlement to compensation, which has its own standard and must have a basis in fact\n\nAnd on departures:\n\n> …is not intended to be a prescriptive document that can be applied without exception. The recommended protocols will aid the practitioner in creating a competent work product. Some cases require additional steps and some require less. Thus a departure from the recommended protocols should not be automatically treated as an error or a deficiency as long as such departure is based on a conscious and sound application of schedule analysis principles.\n\n### The taxonomy — five layers\n\n**Layer 1 · Timing.** Retrospective. Prospective methods performed during the project in real time are not its subject.\n\n**Layer 2 · Basic method.** *Observational* or *Modelled*. Observational does not mean passive — it means the analyst deduces from comparing programmes rather than quantifying by impacting or subtracting. Modelled requires intervention to arrive at before-and-after states using what-if simulations.\n\n**Layer 3 · Specific method.** *Static* or *Dynamic* for observational; *Additive* or *Subtractive* for modelled.\n\n- **Static** — comparisons of fixed programmes in their as-planned, as-updated or as-built states, where those programmes have the same activities and logic, unamended between states.\n- **Dynamic** — analysis of the logic changes between each state, quantifying the effect of the logic change before considering the delay events.\n- **Additive** — recalculating a base programme with additional events, constraints or logic representing a delay.\n- **Subtractive** — removing delay events from an as-built to determine when completion would otherwise have occurred.\n\n**Layers 4 and 5 · Basic and specific implementation.** The method implementation protocols — MIP 3.1 through 3.9.\n\n### The six questions\n\nThe implementation layers reduce to six choices, and stating your answers is most of what transparency means in this field:\n\n1. Analyse the whole programme at once (**gross**), or break it into windows (**periodic**)?\n2. Use the programmes as they are (**as-is**), or update an existing programme with progress data first (**split**)?\n3. **Modify** the existing programme, or **recreate** one?\n4. Use one **single base**, or **multiple bases**?\n5. Set windows by regular **fixed periods**, or by key events (**variable periods**)?\n6. Consider all events at once (**global insertion or extraction**), or one at a time (**stepped**)?\n\n### Its general rules\n\n**[[float|Float]] ownership.** Float is a shared commodity on a first-come, first-served basis — but *network float* is shared while *project float* is owned solely by the contractor. This is the substantive divergence from the Protocol.\n\n**[[critical|Critical path]] changes.** These happen from time to time, and the programme in place at the time is preferred to the original [[baseline|baseline]] or other out-of-date programmes.\n\n**Delays must affect the critical path.** As a precursor to compensation, delay to completion must be demonstrated — and a full reading indicates *completion* means **scheduled** completion, not contractual completion.\n\n**The core principle**, strikingly close to the Protocol's main theme:\n\n> when quantifying project delay, schedule analysts must evaluate the impact of potential causes of delay within the context of the schedule at the time when the circumstances happen.\n\n### Source validation\n\nThe part practitioners use most. Protocols for validating the baseline, the as-built, and intermediate updates — intended to maximise the reliability of the schedules as a faithful reflection of the facts. With another piece of candour:\n\n> Whether that reflection is an accurate model of reality is almost always a matter of debateable opinion.\n\nFor as-built programmes it sets an accuracy standard: **significant activities accurate to within one working day, all others within five**. And it explains how to create an updated schedule from a baseline, and how to **de-status** an as-built backwards to a desired [[datadate|data date]]."
+        },
+        {
+          "type": "figure",
+          "widget": "taxonomy",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "aacei",
+          "title": "Why the taxonomy is worth the effort",
+          "md": "The value of the tree is not the names at the end of it.\n\nIt is that two experts who each answer the six implementation questions out loud **cannot then talk past one another**. They will agree on precisely what they disagree about — the choice of windows, the decision to recreate rather than modify, the order of extraction — which is more than most delay cases manage.\n\nWhen two opposing experts refuse to engage with each other's method, it leaves a void where agreed programming evidence should be. Those cases usually conclude with the tribunal making its own assessment on the facts and disregarding both analyses."
+        },
+        {
+          "type": "worked",
+          "md": "The methods, in the taxonomy's own terms:",
+          "table": {
+            "head": [
+              "MIP",
+              "Classification",
+              "Common name"
+            ],
+            "rows": [
+              [
+                "3.1",
+                "Observational / Static / Gross",
+                "As-planned versus as-built — a total time comparison"
+              ],
+              [
+                "3.2",
+                "Observational / Static / Periodic",
+                "As-planned versus as-built windows analysis"
+              ],
+              [
+                "3.3",
+                "Observational / Dynamic / Contemporaneous As-Is",
+                "Contemporaneous windows analysis"
+              ],
+              [
+                "3.4",
+                "Observational / Dynamic / Contemporaneous Split",
+                "Month-to-month update analysis — bifurcation"
+              ],
+              [
+                "3.5",
+                "Observational / Dynamic / Modified or Reconstructed Updates",
+                "Windows analysis on recreated updates"
+              ],
+              [
+                "3.6",
+                "Modelled / Additive / Single Base",
+                "Impacted as-planned"
+              ],
+              [
+                "3.7",
+                "Modelled / Additive / Multiple Base",
+                "Time impact analysis"
+              ],
+              [
+                "3.8",
+                "Modelled / Subtractive / Single Simulation",
+                "Collapsed as-built"
+              ]
+            ]
+          },
+          "after": "Two things fall out of this table.\n\nThe Protocol's preferred method is **3.7**. The authors of the source text prefer **3.3** where updates exist. Both are defensible, and they answer different questions — which is exactly why running one alone so often fails.\n\nAnd note that **3.5** exists at all. Recreating updates forensically is recognised as a method, with its own protocols — but the guidance around it serves as much to highlight the subjectivity of the process as to endorse it."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-10-2-a",
+            "q-10-2-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "RP-29R-03 is retrospective only, technical, and aimed at minimising procedural subjectivity.",
+            "Five taxonomy layers reduce to six implementation questions. Answering them out loud is most of what transparency means.",
+            "It says all methods are subject to manipulation, no method is exact, and a departure is not an error if it is conscious and sound.",
+            "It diverges from the Protocol on float: network float is shared, project float belongs solely to the contractor."
+          ]
+        }
+      ]
+    },
+    "10.3": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Determining which technique is appropriate is the most subjective task in the whole field. Even where the parties agree on the technique, the application of the same technique often varies so much that neither will accept the other's conclusions."
+        },
+        {
+          "type": "core",
+          "md": "### Start with the contract\n\nOn many large international projects the contract **specifies** which method will be used to measure the impact of change. Where it is silent, or where the requirements were not followed, the contract terms are still the first thing to consider.\n\nRead what the [[eot|extension of time]] clause actually requires you to prove:\n\n- **Delay to \"planned completion\" rather than \"contract completion\"** → you need a method relying on contemporaneous programme projections, because the planned date changes from time to time.\n- **Events which \"have caused delay\"** → a retrospective analysis relying on an [[asbuilt|as-built programme]], so the delay has a basis in fact rather than in prospective CPM calculation.\n- **\"Likely delay\" caused by an event** → prospective methods projecting what-if scenarios are permissible.\n\nBefore selecting anything, review the contract and identify **what question you are being asked**: what was the actual delay to completion as a matter of fact, or what is the likely delay to completion?\n\nThe answer determines whether you start with the cause and assess the effect, or start with the effect and assess the most proximate cause.\n\n### The selection factors\n\nBoth guides list substantially the same ones.\n\n**[[scl|SCL Protocol]]:** the relevant conditions of contract · the nature of the causative events · the value of the dispute · the time available · the records available · the programme information available · the programmer's skill level and familiarity with the project.\n\n**RP-29R-03** adds two: the **forum for resolution and the audience**, and **legal or procedural requirements — including what method the other side is using**.\n\nThose two additions are pragmatic rather than technical, and they matter. A method the tribunal cannot follow is a bad method however rigorous. And if the other side has run a technique you refuse to engage with, the usual outcome is that the tribunal makes its own assessment on the facts and disregards both of you.\n\n### Two methods, on purpose\n\nWhere [[acceleration|acceleration]] or early completion programmes are at issue, it is advisable to apply **both a deterministic technique and an analytical one**. That gives a tribunal a range of opinion based on different assumptions.\n\nTo prove acceleration you need to show what the delay *would have been* if not for it — which requires a method that calculates a theoretical impact — alongside one that demonstrates what actually happened, to establish entitlement.\n\n### Proportionality\n\nThe approach must be **systematic and pragmatic**, and it is essential to keep a sense of balance about a proportionate cost-to-benefit ratio.\n\nOverly complex analyses should be avoided. They may be accurate, or precise, but they may not be **intuitive** — and they risk conflicting with a tribunal's view of common sense.\n\nWhile courts have judicial latitude, contractors and contract administrators cannot be seen to base extensions of time on **impressionistic assessments**. Those two constraints pull in opposite directions, and finding the point between them is the actual skill.\n\n### And in the end\n\nMost cases turn on the facts, not the method. Decisions about delay are made not necessarily on the method of analysis, but rather **on the underlying facts presented and relied upon**."
+        },
+        {
+          "type": "figure",
+          "widget": "method-chooser",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "law",
+          "title": "The English courts and common sense",
+          "md": "The English courts appear to lean in the direction of common sense, whereby the method of analysis is secondary — whether CPM techniques were relied on or not.\n\nUS courts have accepted CPM programming and computer-generated delay analysis submissions since the early 1970s, to the point where delay analysis in US courts almost exclusively relies on CPM methods of proving entitlement.\n\nThe practical instruction for an analyst is not to become blinkered or constrained by past judicial decisions when devising and applying techniques prospectively on a live project. If an analyst adopts an unorthodox approach that is acceptable to both parties and resolves a time entitlement claim, **that is to be commended**."
+        },
+        {
+          "type": "worked",
+          "md": "Four projects, four answers:",
+          "table": {
+            "head": [
+              "Situation",
+              "Records",
+              "Question the contract asks",
+              "Indicated method"
+            ],
+            "rows": [
+              [
+                "Live project, event just occurred",
+                "Monthly updates, accepted",
+                "Likely delay at the time",
+                "Time impact analysis on the current accepted programme"
+              ],
+              [
+                "Live project, no updates at all",
+                "Baseline only",
+                "Likely delay",
+                "Impacted as-planned — and start an update regime immediately"
+              ],
+              [
+                "Completed, dispute in arbitration",
+                "Sixteen monthly updates, as-built",
+                "Actual delay",
+                "Contemporaneous windows analysis, plus TIA if entitlement at the time is also in issue"
+              ],
+              [
+                "Completed pipeline, no usable updates",
+                "Detailed as-built, linear work",
+                "But-for question",
+                "Collapsed as-built — with the as-built logic problem stated openly"
+              ],
+              [
+                "Completed building, no updates, no as-built",
+                "Site diaries, applications, photographs",
+                "Actual delay",
+                "Build the as-built first. Total time only as a last resort."
+              ]
+            ]
+          },
+          "after": "Note the last row. \"No as-built\" is very rarely true — site diaries, payment applications and photographs will usually build a better one than anybody expects. A total time claim should be a conclusion reached after looking, not an assumption made instead of looking."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-10-3-a",
+            "q-10-3-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Read the extension of time clause first. 'Likely delay' points prospective; 'have caused delay' points retrospective; 'planned completion' requires contemporaneous projections.",
+            "Both guides list the same seven factors. AACE adds the forum and audience, and what method the other side is using.",
+            "Where acceleration is in issue, run both a modelled and an analytical method. The gap between them is the acceleration.",
+            "Most cases turn on the facts, not the method. An overly complex analysis that conflicts with common sense will lose to a simpler one that does not."
+          ]
+        }
+      ]
+    },
+    "10.4": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Jurors retain as little as 10 to 20 per cent of material presented to them orally, and as much as 65 to 80 per cent of material presented visually. Whatever you think of the precision of those figures, the direction is not in doubt — and a tribunal is not so different."
+        },
+        {
+          "type": "core",
+          "md": "### Why it is hard\n\nDelay claims rely on specialist terminology and require review of contracts, meeting minutes, specifications, drawings, shop drawings, change orders, notices and correspondence. That plethora of documents causes confusion if the ones relied on are not presented succinctly.\n\nThey also require expert testimony to pull together the essential facts — and such testimony, **even when technically competent, can be nearly incomprehensible if not carefully honed**.\n\n### The timeline\n\nThe focus of demonstrative evidence in delay cases is usually helping the tribunal understand the **overall project chronology**, so events can be heard against a universal timeline.\n\nRules for a timeline exhibit:\n\n- **objective and factual** — not prejudicial by underlining, highlighting or emphasising particular dates or events\n- visually appealing and easy to follow\n- big enough to include the **entire period on one board or sheet**\n- carefully planned level of detail, so it does not become cluttered with jargon, text boxes, arrows, bars and dates\n- no overuse of colour, which makes exhibits confusing, complex or unsightly\n\n### Documents\n\nThe most effective use is a document, or a page of one, blown up large — pasted to a foam board or displayed electronically — so key elements can be identified.\n\nOveruse leads to the tribunal becoming bored or confused about which documents matter more than others.\n\nA **call-out box** — an enlargement of specific text, accentuated with highlighting — lets the tribunal find relevant language quickly while evidence is being given.\n\nNote the asymmetry: **documents can be accentuated; the timeline should not be.**\n\n### Know your audience\n\nConsider how a particular adjudicator, arbitrator or judge is likely to respond. The forum and the audience are among AACE's selection factors for a reason.\n\n### Animations\n\nTwo categories, and the distinction matters.\n\n**Demonstration.** Shows how a physical principle or process works. An overview of a plant with components labelled; how structural steel is fabricated, assembled and erected. It does **not** show the party's position in the case — it is a tutorial to help the tribunal later understand an expert's evidence.\n\n**Reconstruction.** Shows how events actually occurred sequentially. The most complicated and controversial type, because it usually depicts one expert's **theory** of what happened, letting the tribunal watch the story unfold.\n\nTo use a reconstructive animation in court, several things must be disclosed:\n\n- the identity of the expert who created it, and the expert who will testify to the accuracy of the information depicted\n- the hardware and software used\n- the documents and data sources included\n- the computer data files making up the completed animation\n\nSufficient pre-trial disclosure is required for opposing counsel to have a fair chance to review it.\n\n### 4-D models\n\nA 3-D model projected through time, showing planned sequence and timing side by side with actual. Used, for example, where an arbitrator's health prevented a site tour of an operating nuclear plant — a 4-D model demonstrated how far in advance the civil works should have been progressed to allow mechanical work to follow.\n\n### The warning\n\n> One should avoid adding elements to an illustration, based on assumptions, merely to complete the story-line which a judge, arbitrator or panel will be asked to draw a conclusion from. Demonstrations and illustrations should be factual, and should not skew or spin the available facts.\n\nAnd a practical one: such illustrations are meant to help everyone understand what happened. **They can sometimes be used just as effectively by the opposing side's experts.**\n\nComputer animations are time-consuming to create and time-consuming to rebuff. Whether a case benefits from 3-D or 4-D modelling depends on the size and nature of the case, and **proportionality in cost is a major factor**."
+        },
+        {
+          "type": "figure",
+          "widget": "steps",
+          "props": {
+            "title": "Preparing demonstrative evidence",
+            "sub": "In order, and the first one carries the case",
+            "steps": [
+              {
+                "t": "Build the chronology first",
+                "d": "Objective, factual, unaccentuated. The entire period on one sheet. Everything else hangs off it.",
+                "m": "always"
+              },
+              {
+                "t": "Charts and graphs",
+                "d": "Float deterioration, labour histograms, productivity curves, weather data. Each needs a checkable audit trail.",
+                "m": "usually"
+              },
+              {
+                "t": "CPM programmes and extracts",
+                "d": "Filtered to the relevant path. A two-thousand-line network printed at A0 persuades nobody.",
+                "m": "usually"
+              },
+              {
+                "t": "Document blow-ups and call-outs",
+                "d": "One page, enlarged, with the operative words accentuated. Documents may be accentuated; the timeline may not.",
+                "m": "selectively"
+              },
+              {
+                "t": "Scale diagrams and models",
+                "d": "Where the physical arrangement of the works is itself in issue — congestion, access, sequence in a confined space.",
+                "m": "sometimes"
+              },
+              {
+                "t": "Animations — demonstration",
+                "d": "A tutorial on how the process works. Carries no party position. Helps the tribunal follow the expert evidence that comes later.",
+                "m": "sometimes"
+              },
+              {
+                "t": "Animations — reconstruction",
+                "d": "One expert's theory of what happened, shown as a sequence. Requires full disclosure of authorship, software, sources and data files.",
+                "m": "rarely"
+              }
+            ],
+            "note": "Proportionality decides how far down this list to go. A stepped approach works: early commercial negotiation needs the first two; arbitration may justify the rest."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "Weather, drawn properly",
+          "md": "Demonstrating that weather was, or was not, *exceptionally adverse* — whatever test the contract sets — usually means presenting complex data: wind, rain, temperature, humidity, tidal flows.\n\nA simple chart plotting the **actual monthly average against a thirty-year average**, with the contractual threshold drawn as a horizontal line, does the job in seconds. Which months exceeded the threshold, by how much, and for how long.\n\nThe same principle applies throughout. The chart is not the argument; it is what lets somebody hold the argument in their head while you make it."
+        },
+        {
+          "type": "worked",
+          "md": "Four ways to present the same finding:",
+          "table": {
+            "head": [
+              "Presentation",
+              "Tribunal retains",
+              "Time to deliver",
+              "Risk"
+            ],
+            "rows": [
+              [
+                "Oral evidence alone",
+                "10–20%",
+                "40 minutes",
+                "Almost entirely lost"
+              ],
+              [
+                "Oral evidence with a summary table",
+                "Better",
+                "30 minutes",
+                "Numbers without context"
+              ],
+              [
+                "A float deterioration chart, walked through",
+                "65–80%",
+                "8 minutes",
+                "Needs a checkable audit trail"
+              ],
+              [
+                "A 4-D reconstruction",
+                "Highest",
+                "5 minutes, plus weeks to build",
+                "Full disclosure required; opponent may use it too"
+              ]
+            ]
+          },
+          "after": "The third row is usually the right answer. It is cheap, it is checkable, and it does most of the work — which is why the float deterioration chart in the case study changed the shape of that arbitration before anybody discussed a single delay event."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-10-4-a",
+            "q-10-4-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Build the chronology first: objective, factual, unaccentuated, and the whole period on one sheet.",
+            "Documents may be accentuated with call-outs and highlighting. The timeline may not.",
+            "Demonstration animations are tutorials and carry no position. Reconstruction animations show one expert's theory and require full disclosure.",
+            "Illustrations must not add assumed elements to complete a story-line — and the other side's experts can use your exhibits too."
+          ]
+        }
+      ]
+    },
+    "10.5": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "One project, three areas of work, thirteen agreed employer risk events, and two experts who could not agree on a single day of entitlement. What the tribunal expert did with it is the best single demonstration of everything in this course."
+        },
+        {
+          "type": "core",
+          "md": "### The facts\n\nA joint venture contracted to renovate an existing terminal, modernise a control tower, and extend a runway. Commencement 1 October 2006, completion 1 August 2007. The works actually completed on 28 January 2008.\n\nAll three areas finished late, independently, for different reasons:\n\n- **Runway Extension** — 15 September 2007, 45 days late\n- **Terminal Building** — 12 December 2007, 133 days late\n- **Control Tower** — 15 January 2008, 167 days late\n\nThe project was in delay from the first update: October 2006 reported −28 days of [[float|float]].\n\n### What each side did\n\nThe **claimant's expert** ran a [[tia|time impact analysis]] over thirteen agreed employer risk events, concluding all contributed critical delay and justifying a full [[eot|extension of time]] to actual completion — 167 days.\n\nIt failed. Not on the arithmetic, but because the [[critical|critical path]] in the analysis jumped between the Terminal Building and the Runway Works and back, offering **no linked chain of events from commencement to completion** that could be related to an [[asbuilt|as-built programme]] and the costs actually incurred.\n\nThe **respondent's expert** produced no positive analysis. It argued the JV failed to act on instructions to accelerate, and would have finished late anyway because of the Runway Extension.\n\nA tribunal-appointed expert was agreed, on one condition: work only from evidence already before the tribunal.\n\n### What the tribunal expert did, in order\n\n**1 · Float deterioration first.** Plot [[totalfloat|total float]] per area from the sixteen contemporaneous updates. No impacting, no collapsing. It showed the Terminal Building most critical in October and November 2006, overtaken by the Control Tower from December through February 2007, then the two trading places for the rest of the project — with the Runway never close to either.\n\n**2 · Test the runway argument.** The JV's own monthly reports from March 2007 expressly stated it was altering the runway sequence for more favourable weather, while ensuring completion well ahead of the Control Tower. All four limbs of [[pacing|pacing]], evidenced contemporaneously. The tribunal accepted it, and in any event found the Runway was never critical.\n\n**3 · Float map.** Extract float values for every activity from every update. Highlight activities satisfying two tests together: on the [[longest|longest path]], **and** in progress or due to start within the window. Discount anomalous paths — in April 2007 three activities showed worse float than the −42 day driving path, all held by finish-no-later-than constraints on an intermediate [[milestone|milestone]].\n\n**4 · Group and deduce.** Related driving activities in adjacent months form chains. Unrelated chains running side by side are concurrent critical paths. Two emerged: Terminal Building and Control Tower.\n\n**5 · The but-for test.** The Control Tower finished last, so on a strict dominant delay approach only it matters. But: *but for the delays to the Control Tower, when would the project have completed?* No earlier than 12 December 2007, when the Terminal was complete. **Both paths are relevant.**\n\n**6 · Only now, the events.** Map each agreed [[ere|employer risk event]] to the path and window it actually affected, against the float actually lost. Where two employer events fell in the same window on the same path, carry the larger.\n\n**7 · [[acceleration|Acceleration]].** Import each month's actual progress into the January 2007 programme — the last before acceleration — with original logic untouched. Acceleration achieved in eight consecutive months, corroborated by out-of-sequence reports.\n\n### The result\n\nFour of the thirteen agreed employer risk events contributed **nothing** — not because they did not happen, and not because liability was in doubt, but because they landed on work with float, or in a window where something else was driving.\n\nThe tribunal expert concluded the contractor was entitled to **either 113 days** along the Terminal Building path **or 51 days** along the Control Tower path. Two figures, presented as a range, because two genuinely independent critical paths give two genuinely defensible answers.\n\nThe tribunal awarded **100 calendar days**, relying on the [[abcp|as-built critical path]] and reducing individual events on the underlying facts.\n\n### Why it was preferred\n\nThe approach was cited as helpful because it was:\n\n> based on, and in accordance with the facts of the case, and helpful in understanding the timeline of events, with a contemporaneous perspective.\n\nNot *because it was the correct methodology*. Because it described what happened."
+        },
+        {
+          "type": "figure",
+          "widget": "float-deterioration",
+          "props": {
+            "title": "Where the case turned",
+            "sub": "Total float per area, sixteen monthly updates",
+            "note": "Everything else followed from this one drawing. Two areas competing for dominance; the runway never close. It was produced before a single delay event was examined."
+          },
+          "caption": "Walk the whole case study, stage by stage, from the [case study](#/case) — nine stages from the brief to the award."
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "The lesson worth carrying out of the course",
+          "md": "The claimant lost 67 days not because its method was wrong. A time impact analysis is the SCL Protocol's **preferred** technique.\n\nIt lost because the method was applied **without ever deducing an as-built critical path** to test the results against — so it could not say which of thirteen agreed employer risk events actually mattered, or when the cost was being incurred.\n\nEvery technique in this course produces a number. The number is only ever worth what the factual matrix behind it is worth."
+        },
+        {
+          "type": "worked",
+          "md": "The four positions:",
+          "table": {
+            "head": [
+              "Position",
+              "Extension of time",
+              "Basis"
+            ],
+            "n": [
+              1
+            ],
+            "rows": [
+              [
+                "Claimant",
+                "167 days",
+                "Time impact analysis over 13 agreed events, to actual completion"
+              ],
+              [
+                "Respondent",
+                "0 days",
+                "No positive analysis; runway argument; failure to accelerate"
+              ],
+              [
+                "Tribunal expert",
+                "113 or 51 days",
+                "Contemporaneous windows analysis on two as-built critical paths"
+              ],
+              [
+                "Tribunal award",
+                "100 days",
+                "As-built critical path, with reductions on the underlying facts"
+              ]
+            ]
+          },
+          "after": "The gap between 167 and 100 is 67 days — and on a project of that size, several million pounds. Both experts were competent. The events were agreed. The programmes existed and were reliable.\n\nWhat separated the answers was whether anybody had established **which delays actually drove the completion date**, month by month, from evidence created at the time."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-10-5-a",
+            "q-10-5-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Float deterioration first, events last. The shape of the case comes from contemporaneous programmes, not from the claim.",
+            "Two independent critical paths give two defensible answers. Present a range rather than manufacturing a single number.",
+            "Four of thirteen agreed employer risk events contributed nothing — agreement on liability is not agreement on causation.",
+            "The method that won described what happened. Every technique produces a number; the number is worth what the facts behind it are worth."
+          ]
+        }
+      ]
+    }
+  }
+}

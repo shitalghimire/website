@@ -1,0 +1,155 @@
+/* ═══════════════════════════════════════════════════════════════
+   DELAY ANALYSIS IN CONSTRUCTION CONTRACTS
+   © 2026 Shital Ghimire. All rights reserved.
+
+   "DRAWING OFFICE" — the aesthetic of a forensic planner's desk at
+   night. Cool graphite ground, warm drafting-paper type, and a fine
+   grid that never quite disappears.
+
+   The colour system is SEMANTIC, not decorative. Every hue in this
+   file means one thing in delay analysis and is never spent on
+   interface chrome:
+
+     critical    the longest path, negative float
+     slack       positive float, non-critical work
+     employer    employer risk events (ERE / EDE)
+     contractor  contractor risk events (CRE / CDE)
+     neutral     concurrent, paced and force-majeure events
+
+   Hues are spaced in OKLCH so the five read apart on the graphite
+   ground and still separate in greyscale by lightness alone.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── ground: cool graphite, never pure black ─────────────── */
+  --g-950: #090B10;   /* page floor              */
+  --g-900: #0D1017;   /* page                    */
+  --g-850: #12161F;   /* deep panel              */
+  --g-800: #171C26;   /* surface / card          */
+  --g-750: #1E2430;   /* raised, hover           */
+  --g-700: #29303E;   /* hairline                */
+  --g-600: #39414F;   /* rule, gridline          */
+  --g-500: #4E5766;   /* strong rule             */
+
+  /* ── type: warm drafting paper against the cool ground ───── */
+  --p-100: #F1EDE3;   /* primary                 */
+  --p-200: #C8C3B6;   /* secondary               */
+  --p-300: #8E8B80;   /* tertiary, captions      */
+  --p-400: #635F57;   /* quaternary, disabled    */
+
+  /* ── the five meanings ───────────────────────────────────── */
+  /* critical — oklch(.66 .18 34). Red for critical is the one
+     convention every planner already reads without a legend.      */
+  --critical:      #F05A36;
+  --critical-soft: #F58A6F;
+  --critical-dim:  #6E2415;
+  --critical-wash: rgba(240, 90, 54, 0.12);
+
+  /* slack — oklch(.76 .11 187) */
+  --slack:      #45BFB6;
+  --slack-soft: #7DD6CF;
+  --slack-dim:  #16544F;
+  --slack-wash: rgba(69, 191, 182, 0.12);
+
+  /* employer risk — oklch(.79 .13 77) */
+  --employer:      #E3A63A;
+  --employer-soft: #F0C476;
+  --employer-dim:  #6B4A0E;
+  --employer-wash: rgba(227, 166, 58, 0.12);
+
+  /* contractor risk — oklch(.68 .12 277) */
+  --contractor:      #8C86E0;
+  --contractor-soft: #ADA8EC;
+  --contractor-dim:  #3A3572;
+  --contractor-wash: rgba(140, 134, 224, 0.12);
+
+  /* neutral / concurrent — deliberately desaturated: a concurrent
+     event is precisely the one nobody gets to claim.               */
+  --neutral:      #97A2B2;
+  --neutral-soft: #BAC2CE;
+  --neutral-dim:  #3E4653;
+  --neutral-wash: rgba(151, 162, 178, 0.12);
+
+  /* ── the single interface accent ─────────────────────────── */
+  /* Drafting blue. Used ONLY for wayfinding: focus rings, current
+     page, primary buttons, progress. Never for programme data.     */
+  --ink:      #5B9DD9;
+  --ink-soft: #8CBCE8;
+  --ink-dim:  #1E4368;
+  --ink-wash: rgba(91, 157, 217, 0.12);
+
+  /* ── programme drawing ───────────────────────────────────── */
+  --grid-fine:  rgba(57, 65, 79, 0.30);
+  --grid-major: rgba(57, 65, 79, 0.62);
+  --axis:       #5A6373;
+  --bar-plan:   #3B4453;   /* as-planned bar            */
+  --bar-built:  #7E8899;   /* as-built bar              */
+  --today:      #E3A63A;   /* data date line            */
+
+  /* ── type scale ──────────────────────────────────────────── */
+  --t-mega: clamp(3.2rem, 10vw, 8.5rem);
+  --t-xxl:  clamp(2.0rem, 5.2vw, 3.75rem);
+  --t-xl:   clamp(1.55rem, 3.1vw, 2.35rem);
+  --t-lg:   clamp(1.2rem, 1.9vw, 1.48rem);
+  --t-md:   1.0625rem;
+  --t-sm:   0.9375rem;
+  --t-xs:   0.8125rem;
+  --t-cap:  0.6875rem;
+  --t-mm:   0.625rem;
+
+  /* ── space: 4px base ─────────────────────────────────────── */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 24px; --s6: 36px; --s7: 56px; --s8: 84px; --s9: 128px;
+
+  --measure: 68ch;
+  --radius: 3px;
+  --hair: 1px solid var(--g-700);
+
+  --ease:     cubic-bezier(.2, .7, .2, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --dur: 300ms;
+
+  /* ── fonts ───────────────────────────────────────────────── */
+  --f-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --f-ui:      'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --f-data:    'IBM Plex Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+/* Colour-vision-safe alternative. Critical stays warm-red (it carries
+   the highest lightness contrast anyway); slack moves off teal toward
+   a blue that separates from it under deuteranopia, and the employer
+   amber lifts. Shape and label always carry the signal too — this is
+   an addition, never the only cue. */
+:root[data-cvd="1"] {
+  --slack:      #6FA8DC; --slack-dim: #1F4C74;
+  --slack-soft: #A0C8EA; --slack-wash: rgba(111, 168, 220, 0.12);
+  --contractor: #C58BD8; --contractor-dim: #5A2E67;
+  --contractor-soft: #DBB2E7; --contractor-wash: rgba(197, 139, 216, 0.12);
+}
+
+/* Print: the drawing office, on paper. Someone will print a lesson. */
+@media print {
+  :root {
+    --g-950: #fff; --g-900: #fff; --g-850: #fff;
+    --g-800: #fff; --g-750: #f4f2ec; --g-700: #cfcabd;
+    --g-600: #a9a396; --g-500: #8a8478;
+    --p-100: #14161b; --p-200: #2c2f36; --p-300: #5a5d64; --p-400: #85888f;
+    --grid-fine: rgba(0,0,0,.06); --grid-major: rgba(0,0,0,.14);
+    --bar-plan: #b9b4a7; --bar-built: #6d6a62;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+:root[data-motion="0"] *,
+:root[data-motion="0"] *::before,
+:root[data-motion="0"] *::after {
+  animation: none !important;
+  transition: none !important;
+}

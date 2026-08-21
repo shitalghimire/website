@@ -1,0 +1,199 @@
+[
+  { "id": "q-9-1-a", "lesson": "9.1",
+    "stem": "Under most standard forms, what is the status of the construction programme?",
+    "opts": [
+      "It is not a contract document, so building exactly to it is rarely a requirement",
+      "It is a contract document once accepted by the contract administrator",
+      "It becomes a contract document only under NEC3",
+      "It is a contract document from the date of submission"
+    ],
+    "answer": 0,
+    "why": "Under most standard forms of contract the programme is not a contract document. While it may be a breach of condition not to produce one, it is rarely a requirement for a contractor to proceed exactly to the programme other than meeting key contractual dates shown on it, such as sectional completion. If the programme were made a contract document, the contractor might become entitled to a variation whenever it proved impossible to construct the works in accordance with it." },
+
+  { "id": "q-9-1-b", "lesson": "9.1",
+    "stem": "Which requirement is unique to NEC3 among the British standard forms?",
+    "opts": [
+      "The programme must show provisions for float and time-risk allowances",
+      "The programme must be submitted within 21 days of award",
+      "A method statement must accompany the programme",
+      "The programme must be updated within 14 days of an extension of time"
+    ],
+    "answer": 0,
+    "why": "NEC3 clause 31.2 requires each programme submitted for acceptance to show provisions for float, time-risk allowances, health and safety requirements and the contract's procedures — along with planned completion, the order and timing of the contractor's operations and those of the employer and others, the dates access and information are needed, and a statement for each operation of how the work will be done. That explicit requirement to show float is not found in JCT, ICE or GC/Works/1." },
+
+  { "id": "q-9-2-a", "lesson": "9.2",
+    "stem": "What does acceptance of a programme by the contract administrator NOT do?",
+    "opts": [
+      "It does not make the programme a contract document or warrant that it will be achieved",
+      "It does not acknowledge that the programme is contractually compliant",
+      "It does not permit the contractor to proceed with the works",
+      "It does not entitle the contractor to interim payment"
+    ],
+    "answer": 0,
+    "why": "The SCL Protocol states that acceptance merely acknowledges that the accepted programme represents a contractually compliant, realistic and achievable depiction of the contractor's intended sequence and timing. Acceptance does not turn the programme into a contract document, does not mandate that the works be constructed exactly as set out, and does not amount to a warranty by the contract administrator to the employer that the programme will be achieved." },
+
+  { "id": "q-9-2-b", "lesson": "9.2",
+    "stem": "Under ICE 7th Edition, what happens if the Engineer takes no action on a submitted programme within 21 days?",
+    "opts": [
+      "The programme is deemed accepted as submitted",
+      "The contractor must resubmit it",
+      "The programme is deemed rejected",
+      "The 21-day period restarts"
+    ],
+    "answer": 0,
+    "why": "Under ICE 7th the Engineer has 21 days after receipt to accept the programme in writing, reject it in writing with reasons, or request further information to clarify or substantiate it. If none of those actions is taken within the 21-day period the Engineer will be deemed to have accepted the programme as submitted — including whatever constraints, shortened review periods and preferential logic it contains. This is consistent with NEC3 terms." },
+
+  { "id": "q-9-3-a", "lesson": "9.3",
+    "stem": "Is a contractor required to incur cost in mitigating delay?",
+    "opts": [
+      "Not unless it chooses to, for example to recover its own culpable delay",
+      "Yes, in all circumstances — it is a general duty",
+      "Yes, but only up to the value of the liquidated damages at risk",
+      "Only where the contract expressly requires acceleration"
+    ],
+    "answer": 0,
+    "why": "A contractor has a general duty to mitigate the actual or potential loss arising from delayed or disrupted works, and in particular should do everything reasonably possible to minimise non-productive labour and plant costs. But a contractor is not required to incur cost in mitigation unless it chooses to — for example to recover culpable delay. The SCL Protocol reads the obligation as reasonable steps to minimise loss, not unreasonable steps resulting in a greater loss." },
+
+  { "id": "q-9-3-b", "lesson": "9.3",
+    "stem": "Under NEC3 clause 36, what power does the project manager have regarding acceleration?",
+    "opts": [
+      "To obtain quotations to accelerate and subsequently agree to implement them",
+      "To instruct acceleration unilaterally",
+      "To instruct acceleration where the contractor is in culpable delay",
+      "None — acceleration is not addressed"
+    ],
+    "answer": 0,
+    "why": "Most UK standard forms do not deal with acceleration except where the contractor is at fault. NEC3 clause 36 moves in the direction of giving contract administrators authority, but only gives the project manager an express right to obtain quotations from a contractor to accelerate the work and subsequently to agree to the implementation of acceleration measures. There is no authority for the project manager to instruct acceleration unilaterally." },
+
+  { "id": "q-9-4-a", "lesson": "9.4",
+    "stem": "When does constructive acceleration occur?",
+    "opts": [
+      "When an employer denies a valid extension of time claim, or awards insufficient time, forcing the contractor to accelerate",
+      "When a contractor accelerates voluntarily to finish early",
+      "When the project manager instructs acceleration without agreeing the price",
+      "When a contractor mitigates its own culpable delay"
+    ],
+    "answer": 0,
+    "why": "Constructive acceleration is said to have occurred when the employer fails to recognise a contractor's entitlement to additional time, and as a direct result the contractor is forced to accelerate its progress in order to avoid liquidated damages or other financial consequences of finishing later than the date for completion. It can occur where an employer denies a valid extension of time claim, or awards insufficient time for a valid one." },
+
+  { "id": "q-9-4-b", "lesson": "9.4",
+    "stem": "What most commonly defeats a constructive acceleration claim?",
+    "opts": [
+      "The difficulty of separating acceleration costs from the costs of the delays and disruption occurring at the same time",
+      "The absence of a written instruction to accelerate",
+      "The doctrine not being recognised outside the United States",
+      "The contractor's failure to complete by the original date"
+    ],
+    "answer": 0,
+    "why": "As stated in Hensel Phelps, because acceleration took place while the work was being impacted by various delays and disruptions, it was extremely difficult to separate acceleration costs from impact costs. That is where these claims usually fail. The only practical answer is to open separate cost codes the day acceleration begins — overtime premium, additional gangs, second shift, additional plant and supervision, each coded separately from the base work." },
+
+  { "id": "q-9-5-a", "lesson": "9.5",
+    "stem": "What did Glenlion v Guinness decide about early completion programmes?",
+    "opts": [
+      "There is no obligation on the employer to facilitate early completion or release information early",
+      "A contractor may not submit a programme showing early completion",
+      "The employer must amend the liquidated damages clause to match the early date",
+      "The contractor is entitled to prolongation costs from the early completion date"
+    ],
+    "answer": 0,
+    "why": "In Glenlion Construction v The Guinness Trust it was decided there was no obligation for the employer to facilitate early completion in accordance with a programme indicating the works would be completed before the contract completion date. By reference to current UK case law, contractors are entitled to complete early and employers must not hinder them, but there is no duty imposed on employers to produce information early. Under most standard forms the contractor may still submit such a programme." },
+
+  { "id": "q-9-5-b", "lesson": "9.5",
+    "stem": "Which test most often defeats a claim to recover time-related damages from an early completion date?",
+    "opts": [
+      "That the contractor would have finished early but for the employer's delay",
+      "That the contractor gave notice of the early completion programme",
+      "That the early completion programme was reasonable",
+      "That the employer was aware of the intention to finish early"
+    ],
+    "answer": 0,
+    "why": "The contractor must demonstrate that it could have and would have finished early but for employer delay. If it was already behind its own early completion programme when the employer's event occurred, it cannot show it would have finished early — and the whole basis for recovering time-related damages before the contract date disappears. This is why maintaining the early date through the updates matters so much." },
+
+  { "id": "q-9-1", "lesson": "9.1",
+    "stem": "What sanction does NEC3 apply for failure to submit a compliant first programme?",
+    "opts": [
+      "One quarter of the price for work done to date is retained until a compliant programme is submitted",
+      "Liquidated damages accrue from the date of the breach",
+      "The employer may terminate for material breach",
+      "Interim payments are suspended entirely"
+    ],
+    "answer": 0,
+    "why": "Failure to comply with the NEC programme requirements results in one quarter of the Price for Work Done To Date being retained in assessments of amounts due, until the contractor has submitted a first programme showing the information the contract requires. A common amendment applies this sanction to any programme submitted for acceptance, not only the first. Because the amount due is the total cumulative amount, the retention becomes a progressively larger incentive as the project proceeds." },
+
+  { "id": "q-9-2", "lesson": "9.2",
+    "stem": "Which is NOT a permitted reason for a project manager to refuse to accept a programme under NEC3?",
+    "opts": [
+      "That the programme shows completion earlier than the contract completion date",
+      "That the plans it shows are not practicable",
+      "That the information the contract requires is not shown",
+      "That the contractor's plans are not realistically represented"
+    ],
+    "answer": 0,
+    "why": "NEC3 limits the reasons a project manager may rely on for not accepting a programme to four: the plans it shows are not practicable, the information required under the contract is not shown, the contractor's plans are not realistically represented, and it does not comply with the works information. An early completion programme is not among them — indeed the contractor's ability to propose one sits alongside the 25% retention as part of the commercial balance in this form." },
+
+  { "id": "q-9-3", "lesson": "9.3",
+    "stem": "What effect can acceleration itself have on the works?",
+    "opts": [
+      "It can disrupt them — stacking of trades, congestion, reduced productivity and an increase in defects",
+      "It improves efficiency per unit of production",
+      "It has no effect on productivity if properly resourced",
+      "It reduces the number of activities on the critical path"
+    ],
+    "answer": 0,
+    "why": "Acceleration measures affect work patterns and efficiency. Acceleration can in fact disrupt works, with stacking of trades, congestion on site, reduced productivity and an increase in defects. It is achieved by extending working hours, increasing manpower, altering shifts and providing additional plant — and it is usually less efficient and more expensive per unit of production than normal working. Quality standards will also likely slip during a period of sustained acceleration." },
+
+  { "id": "q-9-4", "lesson": "9.4",
+    "stem": "Which analysis is the standard tool for proving acceleration achieved through re-sequencing?",
+    "opts": [
+      "The month-to-month update analysis",
+      "Impacted as-planned",
+      "Collapsed as-built",
+      "A total time assessment"
+    ],
+    "answer": 0,
+    "why": "Take the last programme in use before acceleration was attempted, import each subsequent month's actual progress into it leaving the original logic untouched, and recalculate. That gives the delay that would have been reported had nothing been re-sequenced, and the gap between it and what was actually reported is the recovery achieved. Corroborate with out-of-sequence progress reports and cost data showing increases in supervision, labour, plant and temporary works." },
+
+  { "id": "q-9-5", "lesson": "9.5",
+    "stem": "Under US practice, what are an employer's two options when a contractor submits an early completion programme?",
+    "opts": [
+      "Accept the programme and the early date, or accept the programme while maintaining the contract completion date",
+      "Accept it or reject it outright",
+      "Accept it, or require the contractor to extend the durations to the contract date",
+      "Accept it only if the contractor waives any claim for prolongation"
+    ],
+    "answer": 0,
+    "why": "Where a contractor seeks to work to an early completion programme, the employer can either accept the programme and the early completion date, or accept only the programme while maintaining the contract completion date — which effectively creates float on all activities equal to the time between the two dates. Under the first option the liquidated damages clause could be amended to align with the earlier date, by agreement and express change to the conditions." },
+
+  { "id": "q-9-6", "lesson": "9.1",
+    "stem": "Why do US courts see better contemporaneous programming evidence than UK courts?",
+    "opts": [
+      "US forms commonly mandate CPM format, maximum activity durations and payment tied to programme compliance",
+      "US courts require expert evidence in every construction case",
+      "US contractors are required to be licensed programmers",
+      "US contracts have longer notice periods for claims"
+    ],
+    "answer": 0,
+    "why": "In the US, particularly on government forms, it is common practice to require detailed and sophisticated programme requirements — preliminary and detailed network diagrams, maximum activity durations of 20 to 30 days, cost and manpower loading, and provisions under which no progress payments are processed until the schedule has been properly prepared and submitted. In the US most if not all construction cases accept CPM methods, which may be due to the quality and abundance of programming information available contemporaneously." },
+
+  { "id": "q-9-7", "lesson": "9.2",
+    "stem": "Why does the SCL Protocol say disagreements about the accepted programme should be resolved straight away?",
+    "opts": [
+      "Without an agreed accepted programme there is no baseline against which any delay can be measured",
+      "Because the contract imposes a time limit on such disputes",
+      "Because the programme becomes a contract document after acceptance",
+      "Because the project manager loses the power to reject it later"
+    ],
+    "answer": 0,
+    "why": "The Protocol regards agreement of the Accepted Programme as very important, and says disagreements over what constitutes it should be resolved straight away and not allowed to continue through the project. A project where the parties are months in and still disagree about which programme is the accepted one has no baseline — and therefore nothing to measure delay against, by any method." },
+
+  { "id": "q-9-8", "lesson": "9.3",
+    "stem": "What should an employer put in place before agreeing to fund acceleration?",
+    "opts": [
+      "A methodology for monitoring and measuring its effectiveness, with an early warning system and the option to stop",
+      "A fixed lump sum agreed in advance in every case",
+      "A waiver of the contractor's extension of time claim",
+      "An instruction confirming the acceleration is at the contractor's risk"
+    ],
+    "answer": 0,
+    "why": "From the employer's perspective there should be some methodology for monitoring and measuring the effectiveness of the operation — an early warning system indicating that acceleration measures are not working, with the option to instruct that acceleration stops and the related costs cease. What employers need to avoid is becoming hostage to a blank cheque. Agreeing a fixed price at the outset is prudent but not always possible, since acceleration is something of an unknown quantity." }
+]

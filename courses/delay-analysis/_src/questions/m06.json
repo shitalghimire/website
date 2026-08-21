@@ -1,0 +1,221 @@
+[
+  { "id": "q-6-1-a", "lesson": "6.1",
+    "stem": "A project finishes exactly on the contract date, but the mechanical package took 39% more hours than allowed. What claim is available?",
+    "opts": [
+      "A disruption claim — no extension of time is required for it",
+      "None, because there was no delay to completion",
+      "A prolongation claim for the extended use of resources",
+      "A global claim only"
+    ],
+    "answer": 0,
+    "why": "Disruption, unlike delay, always has a direct consequence on financial loss. Where disruption affects non-critical activities the contractor may have no claim for an extension of time, but a claim for the related costs of reduced efficiency of labour and plant. The SCL Protocol recognises expressly that entitlement to compensation for disruption can be established even if no critical delay has been experienced and no extension of time granted." },
+
+  { "id": "q-6-1-b", "lesson": "6.1",
+    "stem": "Why must delay and disruption be analysed using different methods?",
+    "opts": [
+      "Delay is measured in time and disruption in hours; a delay analysis does not measure or identify disruption",
+      "Because they are always caused by different events",
+      "Because disruption claims are decided by a different tribunal",
+      "Because delay analysis software cannot calculate productivity"
+    ],
+    "answer": 0,
+    "why": "The effect of delay (time) and disruption (hours) must be analysed independently using different methods. A critical activity prolonged from ten weeks to twenty may reflect doubled scope, or conditions making the work 50% less efficient. Had the contractor doubled the hours worked in the original ten weeks there would have been no critical delay and the same level of disruption. Delay analysis does not measure or identify disruption, though it may identify events that cannot be quantified discretely." },
+
+  { "id": "q-6-2-a", "lesson": "6.2",
+    "stem": "100 m² of drywall is planned to take 16 hours. It actually takes 32 hours. What is the efficiency?",
+    "opts": [
+      "50%",
+      "200%",
+      "100%",
+      "It cannot be determined without knowing the crew size"
+    ],
+    "answer": 0,
+    "why": "Efficiency is the ratio of planned productivity to actual productivity. Planned productivity is 100 units in 16 hours; actual is 100 units in 32 hours. Efficiency = 16 ÷ 32 = 0.5, or 50%. The disruption experienced caused a loss of 16 hours per 100 m². That loss can be expressed as a percentage of hours spent (16/32) or of hours planned (16/16) — both correct, and worth stating which you mean." },
+
+  { "id": "q-6-2-b", "lesson": "6.2",
+    "stem": "What is the difference between productivity and efficiency?",
+    "opts": [
+      "Productivity is output per unit of input; efficiency is the ratio of planned productivity to actual, as a percentage",
+      "They are two words for the same measurement",
+      "Productivity applies to labour; efficiency applies to plant",
+      "Efficiency is measured weekly; productivity is measured monthly"
+    ],
+    "answer": 0,
+    "why": "Productivity is normally measured as production per unit of effort — output divided by input, in units per hour — and can equally be expressed as input divided by output, in hours per unit. Efficiency is a measure of productivity expressed as a ratio or percentage, comparing a control group or undisrupted period with the production actually achieved. Many in the industry use the terms interchangeably. They are relative measures of the same factors, but they are different and expressed in different terms." },
+
+  { "id": "q-6-3-a", "lesson": "6.3",
+    "stem": "Should disruption analysis be confined to events on the critical path?",
+    "opts": [
+      "No — disruption can be experienced from events with no proximity to the critical path at all",
+      "Yes, because only critical events can cause recoverable loss",
+      "Yes, unless the contract expressly provides otherwise",
+      "Only where an extension of time has already been granted"
+    ],
+    "answer": 0,
+    "why": "Decreased efficiency is not always directly related to the event that caused critical delay, and vice versa. Disruption analysis should not be confined to events along the critical path, as disruption can be experienced from events with no proximity to it. This follows from the fact that disruption is about hours rather than time — a non-critical activity can absorb enormous productivity loss while the completion date never moves." },
+
+  { "id": "q-6-3-b", "lesson": "6.3",
+    "stem": "When are published productivity studies such as the MCA guidelines an appropriate basis for a disruption claim?",
+    "opts": [
+      "Where no undisrupted period exists to serve as a control, and their relevance to this project can be established",
+      "Whenever the contractor prefers not to analyse its own records",
+      "Only where the contract expressly incorporates them",
+      "In every case, as a cross-check on the measured mile"
+    ],
+    "answer": 0,
+    "why": "There is no guarantee that MCA, Business Roundtable or other productivity models will be applicable to the project under analysis, and they should be used with caution. In Clark Construction Group there was no period of undisrupted progress to rely on as a control and the MCA guidelines were used as an alternative. In Hensel Phelps there was held to be considerable merit in the approach — but the reasoning turned on a qualified expert using the factors under a contract committing the parties to assessing the impact of change on unchanged work." },
+
+  { "id": "q-6-4-a", "lesson": "6.4",
+    "stem": "Why must the first weeks of an activity usually be excluded from the measured mile control period?",
+    "opts": [
+      "They contain the learning curve, so output is below normal and the loss would be understated",
+      "Records from the early weeks are usually incomplete",
+      "The contract does not permit measurement before practical commencement",
+      "Early weeks are always disrupted by mobilisation"
+    ],
+    "answer": 0,
+    "why": "It is important to compare like with like — similar parts of the works — to avoid distortions such as would occur if the part selected as unaffected were measured during a period when a learning curve was taking place. Care must also be taken to factor out unrealistic programme expectations and inefficient working outputs. Choosing a below-normal period as the control produces a lower reference rate and a smaller claim, but more importantly makes the whole analysis indefensible." },
+
+  { "id": "q-6-4-b", "lesson": "6.4",
+    "stem": "Why should tender rates not be used as the comparator in a measured mile analysis?",
+    "opts": [
+      "They may never have been achievable and may contain assumptions irrelevant to the actual scope and conditions",
+      "They are commercially confidential",
+      "They exclude preliminaries and overheads",
+      "They are expressed in different units to site records"
+    ],
+    "answer": 0,
+    "why": "It is important to use actual site productivity during unimpacted periods as the comparative measure, not tender rates or outputs. Tender rates may not have been achievable and may contain assumptions not relevant to the actual scope and site conditions. If the measured mile establishes that the tender rates were overly optimistic, an adjustment must be made if damages are to be calculated on the basis of tender rates at all." },
+
+  { "id": "q-6-5-a", "lesson": "6.5",
+    "stem": "What did John Doyle v Laing establish about a global claim that fails as a global claim?",
+    "opts": [
+      "There may still be a sufficient basis in the evidence to find individual causal connections or make a rational apportionment",
+      "It must be dismissed in its entirety",
+      "It can be re-pleaded once as a modified total cost claim",
+      "The court will substitute its own assessment of the whole loss"
+    ],
+    "answer": 0,
+    "why": "The court confirmed that the logic of a global claim requires all contributing events to be compensable, but held that the claim may fail while there is still in the evidence a sufficient basis to find causal connections between individual losses and individual events, or to make a rational apportionment of part of the global loss to the causative events. It also applied a common-sense approach to causation: a dominant cause for which the employer is responsible can be sufficient to establish liability." },
+
+  { "id": "q-6-5-b", "lesson": "6.5",
+    "stem": "What distinguishes a modified total cost claim from a plain total cost claim?",
+    "opts": [
+      "It subtracts known culpable costs incurred as a result of contractor risk events",
+      "It is presented event by event rather than in aggregate",
+      "It excludes labour costs and claims only plant and preliminaries",
+      "It is calculated from the tender rather than from actual cost"
+    ],
+    "answer": 0,
+    "why": "A modified total cost claim, also called a top-down approach, relies initially on the total cost differential but then subtracts any culpable costs incurred as a result of contractor risk events, claiming the balance as compensable disruption. This reduces the severity of the usual criticism of a total cost claim. The problem that remains is that there will always be a portion not allocated to any individual event." },
+
+  { "id": "q-6-6-a", "lesson": "6.6",
+    "stem": "What should a labour histogram be read for?",
+    "opts": [
+      "Total hours, fluctuation, and unplanned gaps",
+      "The critical path through the labour-intensive activities",
+      "The contractor's profit margin on the package",
+      "Compliance with the agreed method statement"
+    ],
+    "answer": 0,
+    "why": "A histogram of planned against actual level of effort should be read for whether hours increased dramatically or stayed level while the work stretched; for fluctuation, which indicates remobilisation, learning curves and discontinuity; and for unplanned gaps such as a holiday period nobody allowed for. Two trades on the same project can tell completely different stories — one showing pure prolongation, the other prolongation and substantial disruption." },
+
+  { "id": "q-6-6-b", "lesson": "6.6",
+    "stem": "Why should a productivity chart include periods of the contractor's own culpability?",
+    "opts": [
+      "It makes the rest of the chart credible, and the other side will find them anyway",
+      "It is required by the SCL Protocol",
+      "It reduces the risk of a total cost claim being alleged",
+      "It transfers those periods to the employer's account"
+    ],
+    "answer": 0,
+    "why": "In a worked example, a summary resource profile was overlaid with findings from extensive document analysis showing delays and inefficiency due to delayed weather-tightness, an increased learning curve from late access, late M&E instructions — and defective works in the form of leaks, which is the contractor's own. Contractors should show they have considered tender sufficiency, the efficiency of their own and sub-contract labour, and sums already recovered through variations or acceleration agreements." },
+
+  { "id": "q-6-1", "lesson": "6.1",
+    "stem": "How does the SCL Protocol define disruption?",
+    "opts": [
+      "Disturbance, hindrance or interruption to a contractor's normal working methods, resulting in lower efficiency",
+      "Any event which prevents the contractor from completing on the contract date",
+      "The additional cost of work carried out in a changed sequence",
+      "Loss of productivity caused by concurrent delay"
+    ],
+    "answer": 0,
+    "why": "The SCL Protocol defines disruption, as distinct from delay, as disturbance, hindrance or interruption to a contractor's normal working methods resulting in lower efficiency — and adds that in the construction context, disrupted work is work carried out less efficiently than it would have been had it not been for the cause of the disruption. In construction generally it is an interruption to the flow, continuity or sequence of planned work." },
+
+  { "id": "q-6-2", "lesson": "6.2",
+    "stem": "What are the three burdens a disruption claim must satisfy?",
+    "opts": [
+      "That the event was compensable, that the disruption factor was actually present, and the amount of disruption resulting",
+      "That the event was critical, concurrent, and compensable",
+      "Notice, particulars, and quantification",
+      "Tender sufficiency, actual cost, and mitigation"
+    ],
+    "answer": 0,
+    "why": "The cause-effect burden of proof for disruption mirrors that for critical delay. First it must be established that the event or factor causing disruption was a compensable event, to satisfy the liability test. Second, that the disruption factor was actually present, to satisfy causation. Third, the amount of disruption resulting from that factor must be demonstrated, to satisfy the damages test." },
+
+  { "id": "q-6-3", "lesson": "6.3",
+    "stem": "In a recorded case history, resources were increased from 22 to 78 men per floor to accelerate. What was the result?",
+    "opts": [
+      "Deceleration — lower output per man, and a delay to the works",
+      "The acceleration succeeded but at disproportionate cost",
+      "Output per man remained constant while total output rose",
+      "The works completed early with a modest productivity loss"
+    ],
+    "answer": 0,
+    "why": "The presence of crowding as a disruptive factor was identified in weeks four through eight. Although the example may be extreme, the effects of crowding resulted in deceleration and lower output per man as well as a delay to the works. Progress per man was also affected by dilution of supervision — more men per supervisor — and lack of sufficient detailed design to support the proposed acceleration. Because the disruption comprised many interacting factors, a measured mile approach was accepted." },
+
+  { "id": "q-6-4", "lesson": "6.4",
+    "stem": "If the only reliable measure of progress is monthly payment applications, what does that mean for a measured mile analysis?",
+    "opts": [
+      "Accuracy is only possible to the month; finer analysis is adding science where there is none",
+      "The analysis cannot be carried out at all",
+      "Weekly efficiency can still be interpolated from the monthly figures",
+      "The tender rates must be used instead"
+    ],
+    "answer": 0,
+    "why": "Typically the quality of the data defines the precision or duration of the periods being analysed. If weekly labour returns and corresponding weekly progress reports are available, efficiency can be measured weekly. If the only true measure of progress is monthly pay applications, accuracy will only be possible to the month, and attempts to analyse the data more precisely will result in adding science where there is none. Where assumptions are needed, state them clearly and present a range of opinion." },
+
+  { "id": "q-6-5", "lesson": "6.5",
+    "stem": "Which is NOT part of the burden for a total cost claim to succeed in its entirety?",
+    "opts": [
+      "That an extension of time has been granted for the same period",
+      "That the bid was reasonable",
+      "That all events contributing to the loss were compensable",
+      "That the contractor did not contribute to the increased cost in any way"
+    ],
+    "answer": 0,
+    "why": "The burden comprises: the bid must be shown to be reasonable; the actual cost must be shown to be reasonable; all events contributing to the loss must be compensable; it must be demonstrated that there is no other way to calculate the loss; and it must be established that the contractor did not contribute to the increased cost in any way. An extension of time is not among them — and indeed disruption can be recovered where no extension of time was granted at all." },
+
+  { "id": "q-6-6", "lesson": "6.6",
+    "stem": "What do graphics in a disruption claim actually achieve?",
+    "opts": [
+      "They identify the periods in which disruption occurred and the potential causes — they do not prove entitlement",
+      "They establish liability, causation and damages together",
+      "They replace the need for underlying source data",
+      "They are admissible only where agreed by both parties"
+    ],
+    "answer": 0,
+    "why": "Graphics do not prove entitlement. While illustrations alone cannot convey liability, causation and damages, they assist in reducing the evidence and conclusions into a readily accessible format, and they are important in identifying the periods in which disruption occurred and the potential cause. There must always be a sound and checkable audit trail behind any graphic used to support a claim, and carelessly prepared graphics may obfuscate or contradict the claim being made." },
+
+  { "id": "q-6-7", "lesson": "6.1",
+    "stem": "Is acceleration synonymous with increased efficiency?",
+    "opts": [
+      "No — acceleration is usually less efficient and more expensive per unit of production than normal working",
+      "Yes, since more output is produced in the same period",
+      "Only where additional plant rather than additional labour is used",
+      "Only where the acceleration is instructed rather than constructive"
+    ],
+    "answer": 0,
+    "why": "To accelerate you must increase overall daily or hourly production, using measures such as increased resources, plant, labour, supervision, overtime and additional shift working. Although acceleration requires increased production, it is not synonymous with efficiency. In fact acceleration is usually less efficient and more expensive per unit of production than normal non-accelerated working — which is precisely why acceleration and disruption claims so often arrive together." },
+
+  { "id": "q-6-8", "lesson": "6.2",
+    "stem": "Why is 'keeping more records' not by itself sufficient to prove disruption?",
+    "opts": [
+      "It is the quality and relevance that counts — hours must align with a measurable unit of progress",
+      "Because records created after the event are inadmissible",
+      "Because the employer will demand disclosure of all of them",
+      "Because volume increases the cost of analysis beyond proportionality"
+    ],
+    "answer": 0,
+    "why": "Organising the data to align the hours with a particular measurable unit of progress is often a challenge on projects of any size, and should be the focus of improved record keeping. Merely keeping more records may be of no assistance in demonstrating disruption — it is the quality and relevance of the records that counts. A million timesheets that cannot be tied to a quantity of work produced are worth nothing to a disruption claim." }
+]

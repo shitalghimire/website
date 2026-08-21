@@ -1,0 +1,245 @@
+[
+  { "id": "q-2-1-a", "lesson": "2.1",
+    "stem": "At which stage of the project life cycle does *planning*, properly so called, take place?",
+    "opts": [
+      "Concept and feasibility",
+      "Realisation",
+      "Throughout, continuously",
+      "Immediately after contract award"
+    ],
+    "answer": 0,
+    "why": "Planning takes place during the conception and feasibility phases. Programming and control are undertaken during realisation, which itself covers design, procurement, construction, commissioning and hand-over. Projects that fail can often be traced to a failure to understand the risks during concept and feasibility — the point at which baseline estimates and programmes are being created." },
+
+  { "id": "q-2-1-b", "lesson": "2.1",
+    "stem": "A contractor issues a programme update every month with the payment application. Nobody has changed a decision on the basis of it. What has happened?",
+    "opts": [
+      "The programme has been relegated to a retrospective reporting tool",
+      "The programme is being properly maintained; decisions are a separate matter",
+      "The update cycle is too frequent",
+      "The programme is non-compliant with the contract"
+    ],
+    "answer": 0,
+    "why": "The purpose of a CPM programme is to be dynamic, forward-looking and transparent — a tool for predicting the impact of change in a structured way. Overriding planned logic with intuition and instinct relegates the schedule to a retrospective reporting tool and lays to waste all the effort in developing and validating the original logic. Producing an update is not the same as using one." },
+
+  { "id": "q-2-2-a", "lesson": "2.2",
+    "stem": "Which of these is a factor that can build inherent delay into a programme before any event occurs on site?",
+    "opts": [
+      "An inappropriate contract packaging strategy",
+      "Exceptionally adverse weather in month four",
+      "A variation instructed in month six",
+      "A sub-contractor entering administration"
+    ],
+    "answer": 0,
+    "why": "Poor project definition, an inappropriate form of contract or packaging strategy, ambiguities in the documents, inexperienced supervision, insufficient contingency, poor plant selection and ineffective site logistics can all result in programmes containing inherent delays before the first delay event culminates on site. The other three are discrete events with dates attached — which is precisely what makes them pleadable and inherent delay not." },
+
+  { "id": "q-2-2-b", "lesson": "2.2",
+    "stem": "Why is inherent delay so difficult to advance as a claim?",
+    "opts": [
+      "There is no discrete event or date to point at, so it cannot be linked to a specific cause and effect",
+      "It is always the contractor's risk under every standard form",
+      "It arises before the contract is executed and is therefore time-barred",
+      "The SCL Protocol prohibits claiming for it"
+    ],
+    "answer": 0,
+    "why": "Examples of these factors can be identified, but pin-pointing the impact of each — or of any combination — often proves impossible. Without a discrete event and date the causal link cannot be demonstrated. This category of loss tends to end up bundled into a global or total cost claim, which is part of why such claims are viewed with suspicion: genuine inherent problems and the contractor's own inefficiency become indistinguishable in a single number." },
+
+  { "id": "q-2-3-a", "lesson": "2.3",
+    "stem": "What should coincide at the lowest level of a work breakdown structure?",
+    "opts": [
+      "A definable task and a definable cost item",
+      "A single trade and a single drawing",
+      "One activity and one week of work",
+      "A sub-contract package and a payment milestone"
+    ],
+    "answer": 0,
+    "why": "At the lowest WBS level a definable task and cost item should be defined, so that the WBS, cost plan and programme are consistently structured. Only then can cost and programme be cross-referenced and reported against each other without somebody reconciling two sets of numbers by hand every month." },
+
+  { "id": "q-2-3-b", "lesson": "2.3",
+    "stem": "What is the consequence of a work breakdown structure that is too shallow?",
+    "opts": [
+      "It cannot isolate cost over-runs or deviations from budget",
+      "It becomes too sensitive and requires micro-management",
+      "It prevents the critical path from calculating",
+      "It makes the programme non-compliant with the contract"
+    ],
+    "answer": 0,
+    "why": "A WBS which is too shallow — too few levels — is ineffective at isolating cost over-runs or deviations from budgeted values: you will know the project is over, but not where. Too deep is the opposite failure: over-sensitive, labour-intensive to populate at each update, and requiring micro-management of individual tasks. Deciding the depth requires sensitivity to the team's actual capacity to manage the work.",
+    "whyWrong": { "1": "That is the consequence of a WBS that is too DEEP." } },
+
+  { "id": "q-2-4-a", "lesson": "2.4",
+    "stem": "What is the difference between hard logic and soft logic?",
+    "opts": [
+      "Hard logic is the natural sequence dictated by the design; soft logic is a preferential sequence imposed by resources, plant or access",
+      "Hard logic is finish-to-start; soft logic uses the other three relationship types",
+      "Hard logic cannot be changed after the baseline is accepted; soft logic can",
+      "Hard logic is the contractor's; soft logic is imposed by the employer"
+    ],
+    "answer": 0,
+    "why": "Hard logic is the natural sequence of tasks dictated by the design, absent any outside influence, constraint or imposed milestone — you cannot place concrete before the reinforcement is fixed. Soft logic is a preferential sequence imposed by resource constraints, plant selection, access, or agreements with third parties. The distinction matters forensically: when a programme is later collapsed or re-sequenced, soft logic can legitimately move and hard logic cannot." },
+
+  { "id": "q-2-4-b", "lesson": "2.4",
+    "stem": "What is the primary forensic value of an activity data sheet?",
+    "opts": [
+      "It records the assumptions behind a duration and its logic, so deviations can be explained later",
+      "It provides an audit trail of who approved each activity",
+      "It satisfies the contractual requirement to submit a method statement",
+      "It records the actual start and finish dates of each activity"
+    ],
+    "answer": 0,
+    "why": "Activity data sheets document the relevant specifications, assumed quantities, duration calculations, calendar assignments, time-risk allowances, assumed outputs and resource allocations. They are invaluable to a forensic analyst seeking to understand the cause of duration over-runs along the critical path, and they let the as-planned and as-built programmes be reconciled — explaining deviations in logic, out-of-sequence work and durations. A project that maintains them properly is unlikely to have an extension of time dispute at all, because cause and effect were transparent throughout." },
+
+  { "id": "q-2-5-a", "lesson": "2.5",
+    "stem": "What is the principal limitation of a bar chart without logical relationships?",
+    "opts": [
+      "It cannot calculate event times, identify the critical path, or show the impact of a change",
+      "It cannot show activity durations accurately",
+      "It cannot be produced by modern planning software",
+      "It cannot represent more than about fifty activities"
+    ],
+    "answer": 0,
+    "why": "Gantt charts provide little assistance in calculating early or late event times and cannot determine the impact of delays or the critical path through the events. Only with logical relationships can these be identified — a Gantt chart with logic is a time-scaled logic diagram, which is a different thing. Unless work proceeds in the exact sequence planned, a bar chart cannot tell you overall project status." },
+
+  { "id": "q-2-5-b", "lesson": "2.5",
+    "stem": "On an eighteen-storey fit-out where several trades follow each other floor by floor, which technique most quickly shows which trade slowed down?",
+    "opts": [
+      "Line of balance",
+      "PERT",
+      "Impacted as-planned",
+      "A mass haul diagram"
+    ],
+    "answer": 0,
+    "why": "Line of balance is appropriate where a project consists of repetitive tasks at numerous locations in a pre-defined sequence — housing, pipelines, bridges, roads, tunnels, and high-rise internal finishes. Plotting as-planned against as-built cumulative completion shows immediately which trade was slowing down or causing delay to its successors. It will not by itself establish excusable or compensable delay, but it isolates delays to individual trades so the analyst knows exactly which records to pull.",
+    "whyWrong": { "3": "Mass haul diagrams are for earthworks — road works, heavy earthmoving and mining operations." } },
+
+  { "id": "q-2-6-a", "lesson": "2.6",
+    "stem": "A project reports BCWS £55m, BCWP £45m and ACWP £37m. What is the correct reading?",
+    "opts": [
+      "Behind programme, and the apparent underspend is largely work that has not been done",
+      "Under budget and ahead of programme",
+      "Over budget and behind programme",
+      "On budget, with a schedule variance that will correct itself"
+    ],
+    "answer": 0,
+    "why": "SPI = 45 ÷ 55 = 0.82, so the project is roughly 18% behind schedule on value earned. CPI = 45 ÷ 37 = 1.22, so work completed cost 22% less than budgeted. Taken alone, an outflow of £37m against a planned £45m suggests coming in under budget — but read with the schedule performance it is clear the underspend is a factor of the lack of progress. This is exactly the situation earned value analysis exists to expose." },
+
+  { "id": "q-2-6-b", "lesson": "2.6",
+    "stem": "What is the significance of CPI falling below 1.00?",
+    "opts": [
+      "Statistically it rarely returns to 1.00 or above without cutting scope or quality",
+      "It means the project will certainly finish late",
+      "It triggers a contractual right for the employer to instruct acceleration",
+      "It indicates the earned value has been overstated"
+    ],
+    "answer": 0,
+    "why": "Once the cost performance index falls below one, it rarely if ever returns. Once a project is over budget, finding savings to offset that overrun without compromising quality or scope is effectively impossible. The related observation is that when SPI falls below 1 it takes additional funding to bring the project in on time — which pushes CPI down in turn. Time and money are coupled." },
+
+  { "id": "q-2-7-a", "lesson": "2.7",
+    "stem": "What are Level 3 programmes usually called, and who prepares them?",
+    "opts": [
+      "Fragnets, prepared by prime contractors and specialist trade contractors",
+      "Master programmes, prepared by the project manager",
+      "Look-ahead programmes, prepared by the section foreman",
+      "Tender programmes, prepared by the estimating team"
+    ],
+    "answer": 0,
+    "why": "Level 3 — Management Level — networks are the working construction planning documents, prepared by prime contractors and specialist trade contractors, in detail sufficient to plan and monitor weekly activity. They are also described as fragnets and are usually associated with particular disciplines, work areas or trades. During the final months before handover the scope for using fragnets is often modified to combine remaining activities by system or subsystem rather than by trade." },
+
+  { "id": "q-2-7-b", "lesson": "2.7",
+    "stem": "Why should all four levels of programme report derive from a single Master Project Programme?",
+    "opts": [
+      "To avoid inconsistencies in reporting between audiences",
+      "Because the contract requires a single programme to be submitted",
+      "Because planning software cannot maintain more than one network",
+      "To reduce the licence cost of the planning software"
+    ],
+    "answer": 0,
+    "why": "Communicating the as-planned programme to stakeholders involves several levels of report, and all should be derived from the same centrally managed Master Project Programme to avoid inconsistencies in reporting. Maintaining two separately creates two sources of truth: they will diverge, and in a delay claim each divergence becomes a document produced against you — with the honest explanation sounding much like the dishonest one." },
+
+  { "id": "q-2-1", "lesson": "2.1",
+    "stem": "Which of these is a *control* function rather than a planning or programming one?",
+    "opts": [
+      "Monitoring progress against the baseline and re-assigning resources to maintain it",
+      "Determining the project scope and overall duration",
+      "Identifying individual tasks and assigning budgets to each",
+      "Establishing the earliest and latest allowable start times for each activity"
+    ],
+    "answer": 0,
+    "why": "Project control means updating the programme, monitoring progress against the baseline for both cost and schedule performance, and measuring and managing the effects of progress, delays or changes — re-assigning resources and re-scheduling as required. Defining scope and duration is planning; identifying tasks, assigning budgets and calculating event times is programming." },
+
+  { "id": "q-2-2", "lesson": "2.2",
+    "stem": "Which question should it be possible to answer at the conclusion of the planning stage?",
+    "opts": [
+      "Are the risks adequately defined and allocated in the contract documents?",
+      "Which activities are on the critical path?",
+      "How much float does each activity carry?",
+      "What is the earned value at the end of month six?"
+    ],
+    "answer": 0,
+    "why": "At the conclusion of planning it should be possible to answer whether the project is feasible technically and financially, whether it is commercially acceptable to investors or owners, and whether risks are adequately defined and allocated in the contract documents. The other three are outputs of programming and control, which happen later." },
+
+  { "id": "q-2-3", "lesson": "2.3",
+    "stem": "Beyond cost and programme reporting, what further benefit does effective WBS coding provide?",
+    "opts": [
+      "Document control, filing and retrieval can be organised on the same codes",
+      "It removes the need for a formal change procedure",
+      "It allows the critical path to be calculated without logic",
+      "It satisfies the contractual requirement for a method statement"
+    ],
+    "answer": 0,
+    "why": "Effective WBS definitions allow a project's document control, filing and retrieval systems to be organised, cross-referenced and structured consistently with the WBS codes. In a delay claim that is the difference between finding the evidence for one activity in an afternoon and paying somebody to read four hundred files." },
+
+  { "id": "q-2-4", "lesson": "2.4",
+    "stem": "Which are described as the most fundamental steps in preparing a baseline programme?",
+    "opts": [
+      "Defining the logic and dependencies between tasks, and defining the duration of the tasks",
+      "Defining the work breakdown structure and the activity coding",
+      "Assigning working calendars and identifying procurement durations",
+      "Obtaining sub-contractor buy-in and the contract administrator's approval"
+    ],
+    "answer": 0,
+    "why": "The most fundamental steps in the baseline preparation process are defining the logic and dependencies between the tasks, and defining the duration of the tasks. Everything else in the nine-step process supports those two — and since CPM is a mathematical model built on precisely those two variables, that is exactly what you would expect." },
+
+  { "id": "q-2-5", "lesson": "2.5",
+    "stem": "In PERT, what are the three durations estimated for each activity?",
+    "opts": [
+      "Optimistic, most likely, and pessimistic",
+      "Minimum, contractual, and maximum",
+      "Planned, actual, and forecast",
+      "Original, remaining, and at completion"
+    ],
+    "answer": 0,
+    "why": "PERT applies the same approach as CPM except that three durations are calculated for each task. The most likely time is the best estimate — the equivalent duration a traditional CPM programme would carry. The optimistic time is the minimum, if everything proceeded better than expected. The pessimistic time is the maximum. Assigning probabilities produces a range of possible completion dates rather than a single, precise and potentially inaccurate one." },
+
+  { "id": "q-2-6", "lesson": "2.6",
+    "stem": "What are the four stages of the project control cycle?",
+    "opts": [
+      "Establish the plan, monitor progress, process and analyse information, implement corrective action",
+      "Plan, programme, control, report",
+      "Baseline, update, revise, re-baseline",
+      "Estimate, tender, construct, commission"
+    ],
+    "answer": 0,
+    "why": "The project control cycle is a repetitive loop of establishing the plan, monitoring progress, processing and analysing information, and implementing corrective action — with the interval set by the project's updating frequency. Corrective action includes increasing or changing resources, revising construction procedures, or revising the targets: a later completion date, an increased budget, or lower quality. Those three are the only things that can give." },
+
+  { "id": "q-2-7", "lesson": "2.7",
+    "stem": "What does a Level 1 programme typically contain?",
+    "opts": [
+      "A single-page, time-scaled summary of the overall plan, progress and current forecast",
+      "The detailed weekly working programme for each trade contractor",
+      "Daily tick-sheets and material monitoring reports",
+      "The full logic network with every activity and relationship"
+    ],
+    "answer": 0,
+    "why": "Level 1, the Executive Summary Level, is usually limited to a single-page display of the overall project plan, progress and current forecast. It is time-scaled and represents in summarised form the programme for each contractor, trade or project, typically with summary bars and key milestone events such as notice to proceed and planned completion." },
+
+  { "id": "q-2-8", "lesson": "2.6",
+    "stem": "A project reports SPI of 0.98 while its critical path has not moved for six weeks. How is that possible?",
+    "opts": [
+      "Non-critical work has been earning value while the critical path stood still",
+      "The earned value calculation must contain an error",
+      "SPI above 0.95 always indicates a healthy critical path",
+      "The critical path has been mis-identified"
+    ],
+    "answer": 0,
+    "why": "Earned value measures schedule performance in money, so it cannot tell you which activities are late. A project can report SPI close to 1.00 while its critical path is in ruins, because value is being earned on work that carries float. Use earned value to spot a trend early, then go to the programme to find out what the trend is made of — the two are complementary and neither substitutes for the other." }
+]

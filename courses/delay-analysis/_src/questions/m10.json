@@ -1,0 +1,199 @@
+[
+  { "id": "q-10-1-a", "lesson": "10.1",
+    "stem": "According to the SCL Protocol, what is the benefit of an extension of time to the contractor?",
+    "opts": [
+      "Solely relief from liability for damages for delay to the contract completion date",
+      "Recovery of prolongation costs for the extended period",
+      "Confirmation that the delay was an employer risk event",
+      "The right to a revised programme approved by the contract administrator"
+    ],
+    "answer": 0,
+    "why": "The benefit of an extension of time for a contractor is solely to relieve it of liability for damages for delay to the contract completion date. The benefit for the employer is twofold: it maintains the right to establish a new contract completion date, preventing time for completion becoming at large, and it preserves the employer's right to deduct damages from the contractor." },
+
+  { "id": "q-10-1-b", "lesson": "10.1",
+    "stem": "Principle 4 states that an extension of time should be based on what?",
+    "opts": [
+      "Entitlement, not need",
+      "Need, assessed at the time",
+      "The contractor's actual costs incurred",
+      "The dominant cause of the delay"
+    ],
+    "answer": 0,
+    "why": "The Protocol recommends extensions of time are awarded close to the time the delay event occurs — prospectively — to avoid the wait-and-see position frequently adopted by contract administrators, which contractors often endure under the erroneous impression it will assist their recovery later. The underlying principle is that an extension of time should be based on entitlement, not need." },
+
+  { "id": "q-10-2-a", "lesson": "10.2",
+    "stem": "In the RP-29R-03 taxonomy, what distinguishes 'static' from 'dynamic' logic observation?",
+    "opts": [
+      "Static compares fixed programmes with the same activities and logic; dynamic analyses the logic changes between each state",
+      "Static is retrospective; dynamic is prospective",
+      "Static uses one base programme; dynamic uses several",
+      "Static is observational; dynamic is modelled"
+    ],
+    "answer": 0,
+    "why": "Static logic observations are based on comparisons of fixed programmes in their as-planned, as-updated or as-built states, so long as those programmes consist of the same set of activities and logic, unamended between each state. Dynamic logic observation requires analysing the logic changes between each state or update, and quantifying the effect of the logic change before considering the impact of delay events." },
+
+  { "id": "q-10-2-b", "lesson": "10.2",
+    "stem": "What does RP-29R-03 say about departing from its recommended protocols?",
+    "opts": [
+      "A departure should not automatically be treated as an error, provided it rests on a conscious and sound application of scheduling principles",
+      "Any departure invalidates the analysis",
+      "Departures are permitted only where the parties agree in advance",
+      "It does not address departures"
+    ],
+    "answer": 0,
+    "why": "RP-29R-03 states expressly that it is not intended to be a prescriptive document applied without exception. The recommended protocols aid the practitioner in creating a competent work product; some cases require additional steps and some require fewer. A departure should not automatically be treated as an error or deficiency as long as it is based on a conscious and sound application of schedule analysis principles." },
+
+  { "id": "q-10-3-a", "lesson": "10.3",
+    "stem": "The contract requires entitlement to be established by events which 'have caused delay' to completion. What kind of analysis does that point to?",
+    "opts": [
+      "A retrospective analysis relying on an as-built programme, so the delay has a basis in fact",
+      "A prospective what-if analysis on the baseline",
+      "An impacted as-planned model",
+      "A time impact analysis on the current accepted programme"
+    ],
+    "answer": 0,
+    "why": "If the contract terms state that entitlement must be established by events which have caused delay to completion, then a form of retrospective analysis relying on an as-built programme is likely to be most appropriate, so the delay has a basis in fact rather than in prospective CPM calculations. Where the contract refers to the LIKELY delay caused by an event, prospective what-if methods may be used. Where it refers to delays to PLANNED completion, contemporaneous programme projections are needed." },
+
+  { "id": "q-10-3-b", "lesson": "10.3",
+    "stem": "Which two selection factors does RP-29R-03 add beyond those in the SCL Protocol?",
+    "opts": [
+      "The forum for resolution and audience, and legal or procedural requirements including what method the other side is using",
+      "The value of the dispute and the records available",
+      "The analyst's expertise and the time available",
+      "The nature of the causative events and the contract conditions"
+    ],
+    "answer": 0,
+    "why": "Both documents list substantially the same factors: contract conditions, the nature of the causative events, the value of the dispute, time available, records available, programme information available, and the analyst's skill and familiarity. AACE adds the forum for resolution and audience, and legal or procedural requirements including past history and what method the other side is using. Both are pragmatic rather than technical, and both matter — a method the tribunal cannot follow is a bad method however rigorous." },
+
+  { "id": "q-10-4-a", "lesson": "10.4",
+    "stem": "What is the key difference in how timelines and documents should be presented as demonstrative evidence?",
+    "opts": [
+      "Documents may be accentuated with call-outs and highlighting; timelines must remain objective and unaccentuated",
+      "Timelines may be accentuated; documents must be shown in full",
+      "Both must be presented without any emphasis",
+      "Both may be accentuated provided the other side is notified"
+    ],
+    "answer": 0,
+    "why": "Timeline and chronology exhibits must be objective and factual, and should not be prejudicial by underlining, highlighting or emphasising particular dates or events. Documents, by contrast, can be accentuated — a call-out box enlarging certain text, usually with highlighting, allows the tribunal to find important or relevant language quickly while evidence is being presented." },
+
+  { "id": "q-10-4-b", "lesson": "10.4",
+    "stem": "What distinguishes a 'demonstration' animation from a 'reconstruction' animation?",
+    "opts": [
+      "A demonstration shows how a process works and carries no party position; a reconstruction depicts one expert's theory of what happened",
+      "A demonstration is 3-D; a reconstruction is 4-D",
+      "A demonstration is prepared by counsel; a reconstruction by the expert",
+      "A demonstration is admissible; a reconstruction is not"
+    ],
+    "answer": 0,
+    "why": "A demonstration animation is usually designed to show how some physical principle or process works — an overview of a plant with components labelled, or how structural steel is fabricated and erected. It does not show the party's position; it is a tutorial to help the tribunal later understand expert evidence. A reconstruction illustrates how events actually occurred sequentially and is the most complicated and controversial type, because it usually depicts one expert's theory of what happened." },
+
+  { "id": "q-10-5-a", "lesson": "10.5",
+    "stem": "In the airport case study, why did the claimant's time impact analysis fail?",
+    "opts": [
+      "It offered no linked chain of events from commencement to completion that could be related to the as-built and to costs actually incurred",
+      "The employer risk events were not agreed",
+      "It used the wrong base programmes for the fragnets",
+      "It was arithmetically incorrect"
+    ],
+    "answer": 0,
+    "why": "The time impact analysis did not offer a linear critical path through the works showing how the impact of unrelated events should be treated as additive critical delays. According to its results the critical path shifted from the Terminal Building to the Runway Works and back again. It did not provide a linked chain of events from commencement to completion which could be related to an as-built programme and the actual costs incurred — which is what a tribunal awarding prolongation needs." },
+
+  { "id": "q-10-5-b", "lesson": "10.5",
+    "stem": "How many of the thirteen agreed employer risk events were found to have contributed no critical delay?",
+    "opts": [
+      "Four",
+      "None — all thirteen contributed",
+      "Two",
+      "Nine"
+    ],
+    "answer": 0,
+    "why": "Four of the thirteen agreed employer risk events contributed nothing — not because they did not happen, and not because liability was in doubt, since it was agreed, but because they landed on work that had float or in a window where something else was already driving. That is the whole difference between an event and a delay, and it is why agreement on liability is not agreement on causation." },
+
+  { "id": "q-10-1", "lesson": "10.1",
+    "stem": "What was the main criticism of the SCL Protocol when it was published?",
+    "opts": [
+      "That its support for time impact analysis was too prescriptive and placed insufficient reliance on as-built methods",
+      "That it had no judicial recognition",
+      "That it failed to address concurrency",
+      "That it was written only for contractors"
+    ],
+    "answer": 0,
+    "why": "Some guidance was controversial — in particular the Protocol's support for the time impact analysis methodology, which was met with some trepidation. The Protocol states this technique is the preferred technique to resolve complex disputes related to delay and compensation for delay. The general concern was that this was too prescriptive and did not place equal reliance on more accurate methods of as-built analysis." },
+
+  { "id": "q-10-2", "lesson": "10.2",
+    "stem": "Which method implementation protocol corresponds to the collapsed as-built?",
+    "opts": [
+      "MIP 3.8 — Modelled / Subtractive / Single Simulation",
+      "MIP 3.6 — Modelled / Additive / Single Base",
+      "MIP 3.3 — Observational / Dynamic / Contemporaneous As-Is",
+      "MIP 3.1 — Observational / Static / Gross"
+    ],
+    "answer": 0,
+    "why": "The collapsed as-built is MIP 3.8, Modelled / Subtractive / Single Simulation. MIP 3.6 is impacted as-planned; MIP 3.7 is time impact analysis; MIP 3.1 is a total time as-planned versus as-built comparison; MIP 3.2 is the windows version of it; MIP 3.3 is contemporaneous windows analysis; and MIP 3.4 is the month-to-month update analysis, or bifurcation." },
+
+  { "id": "q-10-3", "lesson": "10.3",
+    "stem": "Why is it advisable to apply both a deterministic and an analytical technique where acceleration is at issue?",
+    "opts": [
+      "One shows what the delay would have been; the other shows what it actually was, and acceleration is the gap between them",
+      "Because tribunals require two independent analyses",
+      "Because deterministic methods cannot handle concurrency",
+      "Because the contract normally specifies two methods"
+    ],
+    "answer": 0,
+    "why": "On projects where the effects of acceleration or early completion programmes are at issue it is advisable to apply both a deterministic technique and an analytical technique. This provides a tribunal with a range of opinions based on different assumptions. To prove acceleration it is often helpful to demonstrate what the delay would have been if it were not for the acceleration — which requires a method calculating a theoretical impact, alongside one demonstrating what actually happened." },
+
+  { "id": "q-10-4", "lesson": "10.4",
+    "stem": "What must be disclosed before a reconstruction animation can be used in court?",
+    "opts": [
+      "The identity of its creator and the testifying expert, the hardware and software used, the data sources, and the computer data files",
+      "Only the identity of the expert who will testify to it",
+      "Only the underlying programme data",
+      "Nothing beyond the animation itself"
+    ],
+    "answer": 0,
+    "why": "To use a reconstructive animation in court, several pieces of information must be disclosed or exchanged with the opposing party's legal representatives: the identity of the expert who created the animation and the expert who will testify to the accuracy of the information depicted; the hardware and software used to construct it; the documents and other data sources included; and the computer data files that make up the completed animation. Sufficient pre-trial disclosure is required for opposing counsel to review it." },
+
+  { "id": "q-10-5", "lesson": "10.5",
+    "stem": "What did the tribunal ultimately award in the airport case study?",
+    "opts": [
+      "100 calendar days, relying on the as-built critical path",
+      "167 days, as claimed",
+      "113 days, as the tribunal expert concluded",
+      "Nothing, as the respondent argued"
+    ],
+    "answer": 0,
+    "why": "The tribunal expert concluded the contractor was entitled to either 113 days of excusable, compensable delay along the Terminal Building critical path, or alternatively 51 days along the Control Tower critical path. The tribunal relied on the as-built critical path and awarded 100 calendar days, having made reductions to certain events on the underlying facts and available evidence." },
+
+  { "id": "q-10-6", "lesson": "10.1",
+    "stem": "Which SCL principle allows a claim to succeed even where no critical delay occurred and no extension of time was granted?",
+    "opts": [
+      "Principle 21 — disruption",
+      "Principle 8 — float as it relates to money",
+      "Principle 14 — link between extension of time and compensation",
+      "Principle 16 — basis of calculation of compensation for prolongation"
+    ],
+    "answer": 0,
+    "why": "Principle 21 recognises that entitlement to compensation for disruption can be established even if no critical delay has been experienced and no extension of time granted. Establishing a causal link from an employer risk event to actual loss is the hurdle, and the Protocol suggests the measured mile is the best way of identifying disruption. Principle 8 is closely related but different — it addresses direct time-related costs where employer delay only deteriorates float." },
+
+  { "id": "q-10-7", "lesson": "10.3",
+    "stem": "What is the risk of an overly complex delay analysis?",
+    "opts": [
+      "It may be accurate or precise but not intuitive, and may conflict with a tribunal's view of common sense",
+      "It will be excluded as disproportionate to the value of the dispute",
+      "It cannot be reproduced by an opposing expert",
+      "It will take longer than the contractual period for determination"
+    ],
+    "answer": 0,
+    "why": "The approach must be systematic and pragmatic, and it is essential to keep a sense of balance about a proportionate cost-to-benefit ratio. Overly complex analyses should be avoided: they may be accurate or precise, but may not be intuitive, at the risk of conflicting with a tribunal's view of common sense. The countervailing constraint is that contractors and contract administrators cannot be seen to base extensions of time on impressionistic assessments." },
+
+  { "id": "q-10-8", "lesson": "10.5",
+    "stem": "Why did the tribunal describe the tribunal expert's approach as helpful?",
+    "opts": [
+      "Because it was based on and in accordance with the facts of the case, with a contemporaneous perspective",
+      "Because it applied the SCL Protocol's preferred technique",
+      "Because it produced a single definitive figure",
+      "Because it was the only analysis using CPM methods"
+    ],
+    "answer": 0,
+    "why": "The tribunal expert's approach was cited as being helpful because it was based on, and in accordance with the facts of the case, and helpful in understanding the timeline of events with a contemporaneous perspective. Notably it was not described as the correct methodology — it prevailed because it described what actually happened, using evidence both parties had already relied upon." }
+]

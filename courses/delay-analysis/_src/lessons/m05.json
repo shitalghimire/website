@@ -1,0 +1,761 @@
+{
+  "module": 5,
+  "lessons": {
+    "5.1": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Even where a method does not need a baseline, the baseline is still useful evidence — it is the contractor's own contemporaneous statement of what it intended to do, made before it had any reason to say anything else."
+        },
+        {
+          "type": "core",
+          "md": "### Why start here even when you do not need it\n\nSome methods of quantifying critical delay do not depend on an [[asplanned|as-planned programme]] at all. The [[baseline|baseline]] is still the starting point, because it is contemporaneous evidence of the contractor's original intentions on **durations, resourcing and logistics** — written down before any dispute existed.\n\n### What a review may reveal\n\nA review may show inherent flaws or errors in the contractor's assumptions, or that it was simply **not possible to build the project the way the programme said** — even though that programme was accepted, contractually compliant, and used to manage the works throughout.\n\nThat combination is more common than it sounds, and it is awkward for both parties. The employer accepted it. The contractor managed to it. And it was never buildable.\n\n### The settings you cannot see\n\nModern software carries user-defined settings that do not appear on any tabular or graphical report. Some are buried in pull-down menus accessible only in the native file, and the reviewer needs the **same version of the same software** to interrogate them.\n\nThat is why a contract programming specification should require submission in native format. A PDF of a bar chart cannot tell you what the retained-logic setting was, how many constraints there are, or whether a zero-total-[[float|float]] constraint is holding a path at zero.\n\n### When you cannot get the native file\n\nIf all you have is a hard-copy printout, a faithful recreation may not be possible at all. At minimum you need a fully linked bar chart showing relationship types, leads and lags. Failing that:\n\n- a full successor printout with relationship type, leads and lags\n- an activity list showing durations\n- an activity list showing calendar assignments\n- a clear designation of non-work periods\n\nAnd then the reconciliation: **iteratively confirm every early start, late start, early finish, late finish and [[totalfloat|total float]]** against the printout until the reconstruction is completely consistent with it. Any remaining anomaly must be identified and documented.\n\n### What-if testing\n\nA useful final check. Impose an obvious impact on an obviously critical event and see whether the programme reacts the way intuition says it should. A network that does not move when you delay its [[critical|critical path]] is telling you something important about its constraints.\n\nIf a programme is found to have too many errors, inherent delays or illogical sequences, it may simply be **unreliable as a basis for measuring delay** — and saying so, early and in writing, is a legitimate and sometimes necessary conclusion."
+        },
+        {
+          "type": "figure",
+          "widget": "network",
+          "props": {
+            "title": "What-if: delay the critical path and watch",
+            "sub": "Run both passes, then ask whether the network behaves",
+            "phase": "idle",
+            "autoplay": false,
+            "start": "2008-06-01",
+            "net": [
+              {
+                "id": "105",
+                "desc": "Excavate Perimeter Footings",
+                "dur": 7,
+                "pred": []
+              },
+              {
+                "id": "110",
+                "desc": "Perimeter Footings — Formwork",
+                "dur": 5,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "120",
+                "desc": "Perimeter Footings — Reinforcement",
+                "dur": 4,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "130",
+                "desc": "Excavate Grade Beams",
+                "dur": 7,
+                "pred": [
+                  "105"
+                ]
+              },
+              {
+                "id": "140",
+                "desc": "Place Concrete — Perimeter Footings",
+                "dur": 1,
+                "pred": [
+                  "110",
+                  "120"
+                ]
+              },
+              {
+                "id": "170",
+                "desc": "Perimeter Footings — Strip Formwork",
+                "dur": 3,
+                "pred": [
+                  "140"
+                ]
+              },
+              {
+                "id": "150",
+                "desc": "Grade Beam Reinforcement",
+                "dur": 4,
+                "pred": [
+                  "130"
+                ]
+              },
+              {
+                "id": "160",
+                "desc": "Form Grade Beams",
+                "dur": 5,
+                "pred": [
+                  "130"
+                ]
+              },
+              {
+                "id": "180",
+                "desc": "Place Concrete — Grade Beams",
+                "dur": 1,
+                "pred": [
+                  "160",
+                  "150"
+                ]
+              },
+              {
+                "id": "210",
+                "desc": "Strip Formwork — Grade Beams",
+                "dur": 3,
+                "pred": [
+                  "180"
+                ]
+              },
+              {
+                "id": "240",
+                "desc": "Concrete Package Complete",
+                "dur": 0,
+                "milestone": true,
+                "pred": [
+                  "170",
+                  "210"
+                ]
+              }
+            ],
+            "note": "A validated network responds predictably. Delay 130 — on the critical path — and completion should move day for day. If it does not, a constraint is holding something and you need to find it before you rely on any date this programme produces."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Do not silently repair somebody else's programme",
+          "md": "Where an analyst alters or recreates an as-planned programme, **all deviations from the contractor's original must be made in a transparent manner**.\n\nThe as-planned programme is a theoretical model of how one contractor wanted to build a project; it is not a record of fact. Changes that cannot be substantiated undermine every conclusion drawn from the result, and the usual consequence is that the entire analysis is treated with scepticism.\n\nBest practice, where recreation is unavoidable: agree the approach, the application and the building blocks with the opposing party **first**. Used that way it becomes a negotiating tool rather than an exhibit to be attacked."
+        },
+        {
+          "type": "worked",
+          "md": "A baseline review that changed a case:",
+          "table": {
+            "head": [
+              "Check",
+              "Finding",
+              "Consequence"
+            ],
+            "rows": [
+              [
+                "Continuous chain start to finish",
+                "Broken at three points by open-ended activities",
+                "Float paths did not generate correctly beyond week 30"
+              ],
+              [
+                "Every activity has a successor",
+                "84 activities with no successor",
+                "Their float was meaningless and 11 were being claimed as critical"
+              ],
+              [
+                "Employer review periods",
+                "Shown as 7 days; the contract allows 21",
+                "Two 'employer delays' were the employer taking its contractual time"
+              ],
+              [
+                "Seasonal work",
+                "External render scheduled through January",
+                "No temporary weather protection in the method statement"
+              ],
+              [
+                "Calendars",
+                "Groundworks on a 7-day calendar; no other trade was",
+                "12 days of apparent float that could never have existed"
+              ],
+              [
+                "Constraints",
+                "31 mandatory-start constraints",
+                "Upstream float was fiction throughout the first half of the programme"
+              ]
+            ]
+          },
+          "after": "None of this appeared on the bar chart, and the programme had been accepted by the contract administrator. The third row alone removed two employer risk events from the claim — the contractual review period was being treated as delay simply because the programme had allowed a third of it."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-5-1-a",
+            "q-5-1-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Even when a method does not need a baseline, it is contemporaneous evidence of the contractor's original intentions.",
+            "Critical settings — constraints, calculation protocols, float suppression — are invisible on a printout. Require the native file.",
+            "A reconstruction from hard copy must be reconciled activity by activity until it matches the printout exactly.",
+            "Every correction must be transparent. A programme too flawed to rely on is a legitimate finding — say so in writing."
+          ]
+        }
+      ]
+    },
+    "5.2": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "The as-built programme is the one document that says what actually happened. Building it from the wreckage of a finished project is usually most of the work in a delay claim — and it is the part that decides whether the claim stands up."
+        },
+        {
+          "type": "core",
+          "md": "### The ideal, and the reality\n\nIdeally, an [[asbuilt|as-built programme]] is prepared and maintained **during** the works. If a project updates its programme properly, the final update *is* the as-built programme, and no forensic exercise is needed.\n\nIn practice it usually has to be built retrospectively, and there is a growing tendency for contractors to move away from detailed periodic percentage records in favour of a minimalist narrative report — which may reflect a concern that a detailed record could prove prejudicial where culpable delay is a factor.\n\nWhich is why employers should keep their own. Where a contract administrator is already obliged to record progress, maintaining a **shadow** as-built against the latest submitted programme requires little more effort than was already anticipated.\n\n### The minimum data\n\nThree fields, per activity:\n\n- percentage of work complete\n- actual start date\n- actual finish date\n\nThe more frequently that data is captured — fortnightly, weekly, daily — the more accurate the factual matrix and the as-built will be.\n\n### The 95% problem\n\nOne persistent difficulty: activities reach a completion state of around 95% and then stay unfinished for weeks. It is worth designating that point on the programme, so an **actual finish** genuinely means 100% complete.\n\nThe last 5% may be the critical bit.\n\n### Show the gaps\n\nA good as-built shows both **days of activity and days of inactivity**. A wide bar for days when progress was achieved, a narrow connector for the periods between.\n\nThis matters enormously. A single bar running from 3 March to 18 September looks like six months of continuous work. Broken into the eleven spells of actual progress it really was, with the gaps drawn, it tells a completely different story — and the gaps are usually where the delay events are.\n\nWhere possible, seek corroborating evidence of as-built progress, particularly for activities affected by delay events.\n\n### Proportionality\n\nThe level of detail should follow the level of detail in the [[asplanned|as-planned programme]] and the nature of the issues. On a 2,500-activity programme where the main delay concerns curtain walling, painstakingly establishing the exact start and finish of every substructure activity is disproportionate. Collapse activities not directly relevant into summary bars or hammocks.\n\n### Interviewing\n\nOne task in any retrospective exercise is interviewing project staff who were on site and know the work sequence, the logic, and what was actually done. Their recollection is evidence, and it also tells you which documents to go looking for.\n\n### What an as-built alone can prove\n\nOnly the **effect**. It is a historical record of the timing of each activity. Unless reconstructed with reliable as-built logic — which is a large and subjective exercise in itself — an as-built programme is not a logic-linked programme, and delays identified from it alone demonstrate that delay occurred, not what caused it."
+        },
+        {
+          "type": "figure",
+          "widget": "gantt",
+          "props": {
+            "title": "An as-built bar, drawn honestly",
+            "sub": "Wide bars are days of progress. Narrow connectors are days of nothing.",
+            "start": "2026-03-01",
+            "end": "2026-10-01",
+            "unit": "month",
+            "rows": [
+              {
+                "label": "Curtain walling — as-planned",
+                "sub": "one continuous 84-day bar",
+                "bars": [
+                  {
+                    "s": "2026-03-03",
+                    "f": "2026-05-26",
+                    "kind": "plan",
+                    "label": "84d planned"
+                  }
+                ]
+              },
+              {
+                "label": "Curtain walling — as-built, summary",
+                "sub": "what a single bar suggests",
+                "bars": [
+                  {
+                    "s": "2026-03-03",
+                    "f": "2026-09-18",
+                    "kind": "built",
+                    "label": "200d — looks continuous"
+                  }
+                ]
+              },
+              {
+                "label": "Curtain walling — as-built, honest",
+                "sub": "91 days of work, 109 days of nothing",
+                "bars": [
+                  {
+                    "s": "2026-03-03",
+                    "f": "2026-03-24",
+                    "kind": "built"
+                  },
+                  {
+                    "s": "2026-04-20",
+                    "f": "2026-05-08",
+                    "kind": "built"
+                  },
+                  {
+                    "s": "2026-06-15",
+                    "f": "2026-07-10",
+                    "kind": "built"
+                  },
+                  {
+                    "s": "2026-08-17",
+                    "f": "2026-09-18",
+                    "kind": "built"
+                  }
+                ],
+                "stack": false,
+                "idle": [
+                  {
+                    "s": "2026-03-25",
+                    "f": "2026-04-19"
+                  },
+                  {
+                    "s": "2026-05-09",
+                    "f": "2026-06-14"
+                  },
+                  {
+                    "s": "2026-07-11",
+                    "f": "2026-08-16"
+                  }
+                ]
+              },
+              {
+                "label": "Employer risk events",
+                "sub": "what was happening in the gaps",
+                "bars": [
+                  {
+                    "s": "2026-03-25",
+                    "f": "2026-04-19",
+                    "kind": "emp",
+                    "label": "awaiting revised detail"
+                  },
+                  {
+                    "s": "2026-05-09",
+                    "f": "2026-06-14",
+                    "kind": "emp",
+                    "label": "re-fabrication after change"
+                  },
+                  {
+                    "s": "2026-07-11",
+                    "f": "2026-08-16",
+                    "kind": "emp",
+                    "label": "awaiting sample approval"
+                  }
+                ],
+                "stack": false
+              }
+            ],
+            "markers": [
+              {
+                "at": "2026-05-26",
+                "label": "planned completion",
+                "kind": "cd"
+              }
+            ],
+            "note": "Rows two and three describe the same work. Only the third can be used to prove anything, because only the third shows where the time actually went."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "Sources when no as-built exists",
+          "md": "Site diaries · clerk of works records · as-built drawings · photographs · daily inspection reports · valuations and payment applications · material delivery notes · welding and testing certificates · concrete test results · plant and labour returns · timesheets and payroll · requests for information · sub-contractor reports · meeting minutes · monthly progress reports · sub-contractor payment applications · instructions · site observations by project staff, which can later found witness statements · job correspondence.\n\nOne caution, and it applies particularly to the payment applications: guard against **optimistic progress-based applications and self-serving records**. Which is exactly what the hierarchy in the next lesson is for."
+        },
+        {
+          "type": "worked",
+          "md": "A data capture sheet — every as-built date needs a source:",
+          "table": {
+            "head": [
+              "Date",
+              "Planned activity ID",
+              "Activity description",
+              "Source"
+            ],
+            "rows": [
+              [
+                "23-Apr-26",
+                "1100",
+                "Excavate foundations",
+                "Progress Report No. 3; Photo #S29"
+              ],
+              [
+                "24-Apr-26",
+                "1150",
+                "Install reinforcing steel — foundations",
+                "Timesheets"
+              ],
+              [
+                "24-Apr-26",
+                "1200",
+                "Formwork — foundations",
+                "Timesheets"
+              ],
+              [
+                "02-May-26",
+                "1200",
+                "Formwork — foundations complete",
+                "Daily inspection report DIR-114"
+              ],
+              [
+                "05-May-26",
+                "1250",
+                "Pour foundations",
+                "Concrete test certificate C-0455"
+              ]
+            ]
+          },
+          "after": "The last column is what makes the as-built auditable. Without it, the programme is an assertion. With it, the process of creating it can be **confirmed, audited, agreed and emulated** — which is the standard an as-built has to meet if it is going to carry expert evidence."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-5-2-a",
+            "q-5-2-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "A properly updated programme produces its own as-built. Everything else is forensic reconstruction.",
+            "Show days of inactivity as well as days of progress. The gaps are usually where the delay events are.",
+            "Designate the 95% point so an 'actual finish' means 100% complete — the last 5% may be the critical bit.",
+            "Every as-built date needs a documented source. Without the audit trail the programme is an assertion, not evidence."
+          ]
+        }
+      ]
+    },
+    "5.3": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A timesheet says the gang was on the third floor on Tuesday. A monthly report says that work started the following week. Both are contemporaneous, both are genuine, and they disagree. Which one wins — and did you decide that before or after you knew which answer helped you?"
+        },
+        {
+          "type": "core",
+          "md": "### Why a hierarchy is necessary\n\nConflicting information about the location or progress of a work item is normal, not exceptional. Inaccuracies and inconsistencies between contemporaneous records are a feature of every project.\n\nA hierarchy establishing which documents override others makes the process **systematic, transparent and correctable** — and, critically, it does so in advance of knowing which answer it produces.\n\n### Three separate dimensions\n\nDocuments are not simply more or less reliable. They are reliable about different things.\n\n- **Accuracy (date)** — how precisely does it tell you *when*? A daily report is accurate to the day. Weekly minutes to within seven days. A monthly payment application to within thirty.\n- **Location** — how certain is it about *where*? A photograph is accurate to the day but may be useless about which of eighteen identical floors it shows.\n- **Scope** — how certain is it about *what work*? A timesheet may prove a gang worked eight hours without telling you what they did.\n\nThat is why the hierarchy is a grid rather than a list.\n\n### Frequency beats effort\n\n> Any record documents that are kept regularly and frequently are to be preferred to ad hoc documents created after delays are known to exist.\n\nPadding the files with inaccurate information, or misinformation, is uncommon but not unknown. It is far less likely in frequently issued documents that were **sent to both parties at the time**.\n\nThat is the great advantage of valuation applications and meeting minutes: they are open documents, revisited, commented on and corrected on a regular cycle. A monthly report that both parties saw and neither objected to at the time carries a weight no reconstruction can match.\n\n### Applying it\n\nWeightings can be adjusted project by project. What matters is that they are set out **before** the research begins, and applied consistently.\n\nWhen the other side's expert asks why you preferred the daily report over the monthly application, the answer should be \"because our stated hierarchy says daily reports are accurate to the day and applications only to the month\" — not a reason invented on the day."
+        },
+        {
+          "type": "figure",
+          "widget": "records",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Payment applications are optimistic by nature",
+          "md": "A payment application is a request for money. It is prepared by somebody with an interest in the percentage being as high as defensible, and it is accurate only to the duration of the period being applied for.\n\nThat does not make it worthless — it is contemporaneous, it was issued to the other party, and it was open to correction. But treat it as a **month-accurate, optimistic** record of progress, and prefer a daily report or a date-stamped photograph wherever the two disagree about a date."
+        },
+        {
+          "type": "worked",
+          "md": "The same activity, four sources, one conflict:",
+          "table": {
+            "head": [
+              "Source",
+              "Says",
+              "Date accuracy",
+              "Location",
+              "Scope",
+              "Weight"
+            ],
+            "rows": [
+              [
+                "Daily report, 14 Apr",
+                "Blockwork commenced, level 2, grid 35–43",
+                "1 day",
+                "1",
+                "1",
+                "Highest"
+              ],
+              [
+                "Date-stamped photograph",
+                "Blockwork visibly under way",
+                "1 day",
+                "2",
+                "1",
+                "High, but which grid?"
+              ],
+              [
+                "Timesheets, w/e 18 Apr",
+                "6 bricklayers, 4 days",
+                "1 day",
+                "2",
+                "2",
+                "Proves labour, not location"
+              ],
+              [
+                "Monthly application, 30 Apr",
+                "Blockwork 0% at month end",
+                "30 days",
+                "3",
+                "3",
+                "Lowest — and it contradicts the rest"
+              ]
+            ]
+          },
+          "after": "The monthly application is the only one saying the work had not started, and it is the least accurate on all three dimensions. Under a stated hierarchy the conflict resolves in one line: **actual start 14 April**, on the daily report, corroborated by timesheets, with the monthly application discounted as a month-accurate commercial document.\n\nThat is a defensible finding. \"We preferred the daily report because it suited us\" is not."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-5-3-a",
+            "q-5-3-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Records are reliable about different things: date accuracy, location certainty and scope certainty are three separate dimensions.",
+            "Documents kept regularly and frequently beat documents created after the delay was known about.",
+            "Open documents sent to both parties and open to correction — minutes, applications — carry particular weight for that reason.",
+            "Set the hierarchy before the research starts. Deciding which document wins after you know the answer is not a method."
+          ]
+        }
+      ]
+    },
+    "5.4": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "There are exactly two directions you can run a delay analysis from. Start with the events and work forward to their effects, or start with the effects and work backward to their causes. Which you choose is dictated by the records you have, not by preference."
+        },
+        {
+          "type": "core",
+          "md": "### Two directions\n\n**Effect-based.** Start with an [[asbuilt|as-built programme]] and work backwards, identifying deviations from the as-planned schedule. Those deviations *are* the effects of delay events. Then find the most proximate cause of each.\n\nHeavily dependent on a reliable as-built programme and a strong factual matrix.\n\n**Cause-based.** Develop a set of issues, events and potential delay events and measure their impact on a base programme. Because the process starts from causes, it is a cause-based approach.\n\nHeavily dependent on a reliable [[asplanned|as-planned programme]] or CPM updates, and on clear-cut events — compensation events, instructions, variations.\n\n### Which methods fall where\n\n- **Cause-based**: [[iap|impacted as-planned]], [[tia|time impact analysis]], [[cab|collapsed as-built]]. Identify the events; let the model calculate the effect.\n- **Effect-based**: the as-built methods. Start with the delay and identify the most likely cause.\n\nCollapsed as-built sitting in the cause-based group surprises people, because it works on an as-built programme. But it starts by identifying the events to be extracted, which makes it cause-based in direction even though it is subtractive in operation.\n\n### Three forms of delay\n\nDelay to planned work can occur in only three forms:\n\n1. **Delay to commencement**\n2. **Extended duration**\n3. **Suspension during performance**\n\nThat is the complete list. Every delay event you will ever analyse produces one or more of those three, and it is worth classifying each one, because they leave different traces in the records.\n\n### Typical employer risk events\n\nDelay or deferment in granting possession of the site · unforeseeable ground conditions · instructions, including to open up work for inspection · variations or changes to scope · increase in quantities · inaccurate quantities in the bills · late design information · suspension of the works · delay caused by statutory undertakers · exceptionally adverse weather · delay caused by the employer or its representatives · civil commotion · strikes and industrial action.\n\nUntil any of these is confirmed as having caused actual delay, it is **only a risk event**.\n\n### Filtering\n\nOn a complex project, attempting to include every RFI, potential compensation event and confirmation of verbal instruction into the list of events to be analysed — without a filter — is a Herculean task, and it wastes time chasing irrelevant chronologies.\n\nA useful first filter is the as-planned versus as-built comparison. It gives an immediate view of where the potential issues are, and interviews with project staff at the same time give the first indications of the problem areas.\n\n### Proportionality is a real constraint\n\nThe cost of applying a method that requires a disproportionate level of effort to prepare, respond to, and develop through a hearing cannot be overstated. If one party adopts a disproportionate approach, the other will usually have to respond in kind.\n\nProportionality should not be the only factor in choosing a method. But clients should be told, in advance, what the effort involved actually is."
+        },
+        {
+          "type": "figure",
+          "widget": "compare",
+          "props": {
+            "title": "Cause-based and effect-based",
+            "cards": [
+              {
+                "k": "Start with the events",
+                "t": "Cause-based",
+                "pro": [
+                  "Works where clear-cut compensation events exist",
+                  "Can be run prospectively, during the works",
+                  "Impacted as-planned, time impact analysis, collapsed as-built"
+                ],
+                "con": [
+                  "Needs a reliable as-planned programme or CPM updates",
+                  "Results are modelled, and therefore theoretical",
+                  "Cannot demonstrate true concurrency by itself"
+                ]
+              },
+              {
+                "k": "Start with the delay",
+                "t": "Effect-based",
+                "pro": [
+                  "Grounded in what actually happened",
+                  "Locates delay in the period costs were actually incurred",
+                  "Findings readily supported by as-built records"
+                ],
+                "con": [
+                  "Needs a reliable as-built programme",
+                  "Needs a strong factual matrix",
+                  "Deducing the as-built critical path takes real expertise"
+                ]
+              }
+            ],
+            "note": "Many disputes need both. A prospective method shows the LIKELY delay from the time an event occurred; a forensic method shows the ACTUAL delay. Where acceleration is in issue, the gap between the two is the acceleration."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Computer models that nobody believes",
+          "md": "Delay analysts and tribunals alike are likely to value contemporaneous as-built records over computer-generated impact assessments.\n\nComputer models sometimes involve hundreds of iterations of impact simulations generated through automated processes, producing conclusions that bear no relationship to common sense, to intuition, or to what was being reported as critical at the time.\n\nIt is possible that those contemporaneous programmes were wrong and the parties were relying on flawed critical paths throughout. But where CPM programmes were updated regularly, submitted, reviewed by the employer's team, and used by the contractor to direct resources — those programmes should be **preferred** to any forensically created model attempting to simulate what-if scenarios after the fact."
+        },
+        {
+          "type": "worked",
+          "md": "The same project, both directions:",
+          "table": {
+            "head": [
+              "",
+              "Cause-based",
+              "Effect-based"
+            ],
+            "rows": [
+              [
+                "Step 1",
+                "List every instruction, RFI and compensation event",
+                "Build the as-built programme from records"
+              ],
+              [
+                "Step 2",
+                "Assess liability for each",
+                "Compare it against the as-planned"
+              ],
+              [
+                "Step 3",
+                "Build a fragnet for each event",
+                "Identify every deviation — late start, extended duration, suspension"
+              ],
+              [
+                "Step 4",
+                "Insert into the base programme, chronologically",
+                "Deduce the as-built critical path"
+              ],
+              [
+                "Step 5",
+                "Record the movement to completion",
+                "For each critical deviation, find the most proximate cause"
+              ],
+              [
+                "Needs",
+                "A reliable baseline or updates",
+                "A reliable as-built and a strong factual matrix"
+              ],
+              [
+                "Answers",
+                "What the delay would likely have been",
+                "What the delay actually was"
+              ],
+              [
+                "Risk",
+                "Diverges from reality the longer the windows",
+                "The as-built critical path is a deduction, and can be challenged"
+              ]
+            ]
+          },
+          "after": "Neither column is superior. They answer different questions, and the contract usually tells you which question you are being asked: an entitlement based on *likely delay* points one way; one based on events that *have caused delay* points the other."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-5-4-a",
+            "q-5-4-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Cause-based starts with events and models their effect. Effect-based starts with the delay and finds the cause.",
+            "Delay occurs in exactly three forms: delayed commencement, extended duration, suspension during performance.",
+            "Until an event is shown to have caused delay it is only a risk event. Filter before you analyse.",
+            "Regularly updated programmes that the parties actually used should be preferred to a forensic model built afterwards."
+          ]
+        }
+      ]
+    },
+    "5.5": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "On a medium project there may be hundreds of potential causes of delay; on a large one, thousands. Without a register and a standard sheet per event, the research phase has no end and no shape — and the analysis becomes a project in its own right."
+        },
+        {
+          "type": "core",
+          "md": "### The event analysis sheet\n\nOne sheet per potential delay event, gathering everything about it in one place:\n\n- reference documents — location, confirmation of verbal instruction, RFI, potential compensation event\n- the event description\n- the **CPM activity ID** it affects\n- planned start, finish, duration and [[totalfloat|total float]] from the current windows programme\n- actual start, finish, duration and total [[float|float]]\n- the variance between them\n- total float loss in the window\n- a time analysis, the relevant facts, and the measurement of delay\n- key dates\n- the schedule impact: activities added, deleted or revised, with durations, predecessors, successors, logic and constraints\n- comments, assumptions and actions required\n\nThe two rows that do most of the work are the **planned versus actual** comparison and the **float loss in the window**, because together they connect the event to the programme and to a measurable consequence.\n\n### The delay register\n\nA table capturing every delay, however small, that could have contributed to critical delay:\n\n| Ref | Cause and effect | Delay to section | Delay to completion | Contract clause | Date of notice |\n\nSmall entries matter. An event that contributed two days is not worth a claim on its own, but it may be the reason a near-[[critical|critical path]] became critical — and it may be the difference between an employer event being dominant and being concurrent.\n\n### Registers during the works\n\nEffective project controls teams keep live registers of **early warning notices**, problem files (\"P-files\"), or simply chronological issue files, throughout the works.\n\nProjects that do this are far less likely to end in a long-running dispute — not because the register itself proves anything, but because it forces issues into the open early, when both parties can still see the same facts and resolve things at ground level.\n\n### The research phase\n\nOnce the initial list of issue files and event analysis sheets exists and the register is running, the main forensic research can begin: a review of all job-specific documentation, media and records demonstrating what actually happened.\n\nExpect the list to change. Some heads of delay initially identified will be dropped; new ones will emerge. The register and the sheets are **working documents** throughout, revisited and refined — not a deliverable produced once at the start."
+        },
+        {
+          "type": "figure",
+          "widget": "table",
+          "props": {
+            "title": "A delay register",
+            "sub": "Every delay, however small — the small ones decide concurrency arguments",
+            "head": [
+              "Ref",
+              "Cause and effect",
+              "Delay to section",
+              "Delay to completion",
+              "Clause",
+              "Notice given"
+            ],
+            "n": [
+              2,
+              3
+            ],
+            "rows": [
+              [
+                "1",
+                "Under-slab drainage — additional works from ground beam clash",
+                "16 days",
+                "4 days",
+                "25 · Relevant Event 25.4.5.1",
+                "23 Nov, contractor's letter"
+              ],
+              [
+                "2",
+                "Late issue of coordinated services drawings, level 2",
+                "22 days",
+                "18 days",
+                "25 · Relevant Event 25.4.6",
+                "14 Dec, letter and RFI 218"
+              ],
+              [
+                "3",
+                "Plant breakdown — piling rig hydraulics",
+                "6 days",
+                "0 days",
+                "— contractor risk",
+                "n/a"
+              ],
+              [
+                "4",
+                "Revised cladding specification instructed",
+                "31 days",
+                "12 days",
+                "26 · Compensation Event",
+                "3 Feb, early warning notice"
+              ],
+              [
+                "5",
+                "Exceptional rainfall, 97th percentile against 30-year data",
+                "9 days",
+                "5 days",
+                "25 · Relevant Event 25.4.2",
+                "11 Feb, letter with Met Office data"
+              ],
+              [
+                "6",
+                "Rework — out-of-tolerance blockwork, level 2",
+                "8 days",
+                "2 days",
+                "— contractor risk",
+                "n/a"
+              ]
+            ],
+            "note": "Rows 3 and 6 are the contractor's own. Recording them is not an admission — it is how you keep control of the concurrency argument rather than having the other side discover them for you."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "Reference to activity IDs, always",
+          "md": "The single field that makes an event analysis sheet worth keeping is the **CPM activity ID**.\n\nAn event recorded as \"delay to second floor services\" requires somebody, later, to work out which activities that means. An event recorded against `C1B544210` is already connected to a bar, a duration, a float value and a position on the critical path — and the whole analysis for that event can be run in minutes rather than days.\n\nThe same applies to daily reports, RFIs and instructions. Reference everything to the programme."
+        },
+        {
+          "type": "worked",
+          "md": "One event analysis sheet, filled in:",
+          "table": {
+            "head": [
+              "Field",
+              "Entry"
+            ],
+            "rows": [
+              [
+                "EAS reference",
+                "EAS 004"
+              ],
+              [
+                "Event",
+                "Revised cladding specification instructed"
+              ],
+              [
+                "Documents",
+                "AI 118 · RFI 214 · PCE 031 · minutes 03-Feb"
+              ],
+              [
+                "CPM activity",
+                "C1B450040 — Fix curtain wall, grid 25–46"
+              ],
+              [
+                "Windows reference",
+                "Update 0407 (data date 1 Apr)"
+              ],
+              [
+                "Planned start / finish",
+                "12-Apr / 28-Jun · 78 days"
+              ],
+              [
+                "Actual start / finish",
+                "13-May / 29-Aug · 109 days"
+              ],
+              [
+                "Variance",
+                "Start +31 days · duration +31 days"
+              ],
+              [
+                "Total float, planned",
+                "−42 days"
+              ],
+              [
+                "Total float, actual",
+                "−73 days"
+              ],
+              [
+                "Float loss in window",
+                "31 days"
+              ],
+              [
+                "Measurement of delay",
+                "31 days — from the planned finish in the prevailing programme at the date of instruction"
+              ],
+              [
+                "Assumptions",
+                "Re-fabrication lead time taken from the supplier's letter of 19 Feb, not from the original tender allowance"
+              ]
+            ]
+          },
+          "after": "Note the last row. The measurement of delay is taken from the programme **prevailing when the instruction was issued** — not from the original baseline. Any delay to the start of curtain walling that had occurred before that instruction was not caused by it, and pretending otherwise is the single most common overreach in a delay claim."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-5-5-a",
+            "q-5-5-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "One event analysis sheet per potential event, and every one of them references a CPM activity ID.",
+            "Record every delay in the register, including your own. Small ones decide concurrency arguments.",
+            "Registers kept live during the works — early warning notices, problem files — prevent disputes rather than merely documenting them.",
+            "Measure an event's delay from the programme prevailing when it arose, not from the original baseline."
+          ]
+        }
+      ]
+    }
+  }
+}

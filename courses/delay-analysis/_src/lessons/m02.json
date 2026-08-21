@@ -1,0 +1,791 @@
+{
+  "module": 2,
+  "lessons": {
+    "2.1": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Planning, programming and controlling are used interchangeably on almost every site in the world. They are three different jobs, done at three different stages of a project, and usually by three different sets of people. A team that cannot tell them apart will produce a programme that reports history instead of predicting the future — which is the one thing a programme is for."
+        },
+        {
+          "type": "core",
+          "md": "### Three functions, in order\n\n**Planning** — define the project, determine its scope, set the overall duration and budget, identify risks and contingencies, and agree what success looks like. This happens during **conception and feasibility**, long before anyone is on site.\n\n**Programming** (scheduling, in US usage) — identify individual tasks, assign resources and budgets to each, and produce a [[baseline|baseline]] that calculates the earliest and latest allowable start and finish for every activity, the [[float|float]] available to each, and the [[critical|critical path]] through the project.\n\n**Control** — update the programme, monitor progress against the baseline for both cost and schedule, measure and manage the effects of progress, delays and changes, and re-assign resources or re-sequence work as required.\n\nProgramming and control both happen during **realisation** — design, procurement, construction, commissioning, handover.\n\n### The project life cycle underneath\n\n- Concept\n- Feasibility\n- Realisation\n- Operation\n- Termination\n\nPlanning belongs to the first two. Programming and control belong to the third. Projects that fail can very often be traced back to a failure to understand the risks during concept and feasibility — at the point the contractor was building its baseline estimate and its baseline programme.\n\n### A note on the vocabulary\n\nIn US practice the word for all of this is *scheduling*. In UK practice *scheduling* has traditionally meant something different — producing schedules of rates, of materials, of finishes — so the terms *planning* and *programming* are used instead. Both conventions are current, and international projects use them inconsistently. Say which you mean once, then be consistent.\n\n### Why planning was a Cinderella activity\n\nBefore cheap desktop computing in the mid-1980s, planning was slow, manual and largely unrepeatable. Bar charts went up on the site conference-room wall like wallpaper and stayed there, yellowing, because editing them meant redrawing them. The programme became a decoration.\n\nThat has changed technically and not always culturally. It is still entirely possible to find a project where the programme is produced monthly, filed, and never used to make a decision."
+        },
+        {
+          "type": "figure",
+          "widget": "steps",
+          "props": {
+            "title": "Three functions, three stages",
+            "sub": "Confusing them is how a programme becomes a report",
+            "steps": [
+              {
+                "t": "Planning",
+                "d": "Define the project and its scope. Set the overall duration and budget. Identify risks and contingencies. Agree the goals and the completion criteria.",
+                "m": "concept · feasibility"
+              },
+              {
+                "t": "Programming",
+                "d": "Identify tasks. Assign resources and budgets. Create the baseline: earliest and latest event times, float on every activity, and the critical path.",
+                "m": "realisation"
+              },
+              {
+                "t": "Control",
+                "d": "Update. Monitor against the baseline for cost and time. Measure the effect of progress, delay and change. Re-assign and re-sequence to hold the date.",
+                "m": "realisation"
+              }
+            ],
+            "note": "Project management, in the CIOB's definition, is the overall planning, coordination and control of a project from inception to completion, aimed at meeting the client's requirements in order to produce a functionally and financially viable project completed on time, within authorised cost, and to the required quality standards."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "The programme is a decision tool or it is nothing",
+          "md": "The test of whether a project is genuinely programmed rather than merely reported: **has the programme changed a decision this month?**\n\nIf the answer is that resources moved, a sequence altered, a delivery was expedited or a variation was priced with a time impact attached, the programme is working. If the answer is that it was printed, filed and circulated, it has been relegated to a retrospective reporting tool — and all the effort of building and validating the logic has been laid to waste."
+        },
+        {
+          "type": "worked",
+          "md": "The same project, two ways:",
+          "table": {
+            "head": [
+              "",
+              "Programme as a tool",
+              "Programme as a report"
+            ],
+            "rows": [
+              [
+                "Update frequency",
+                "Monthly, aligned to progress meetings",
+                "Monthly, aligned to the payment application"
+              ],
+              [
+                "Who enters progress",
+                "The planner, activity by activity, from field records",
+                "Auto-update, or a global percentage"
+              ],
+              [
+                "Response to a variation",
+                "Fragnet built and priced with a time impact before the work starts",
+                "Noted; effect assessed later"
+              ],
+              [
+                "Response to slippage",
+                "Critical path re-examined; resources moved that week",
+                "Recorded in the narrative"
+              ],
+              [
+                "Logic changes",
+                "Documented, with reasons, and re-issued",
+                "Made silently between issues"
+              ],
+              [
+                "At the end",
+                "An as-built programme falls out of the last update",
+                "An as-built has to be reconstructed forensically"
+              ]
+            ]
+          },
+          "after": "The right-hand column is not a caricature; it is the ordinary condition of a great many projects. Every one of those rows becomes an argument in a delay claim, and the last one alone can cost six figures to remedy after the event."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-2-1-a",
+            "q-2-1-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Planning defines the project; programming builds the network; control keeps it honest. Different stages, different people, different outputs.",
+            "Planning happens in concept and feasibility. Programming and control happen in realisation.",
+            "US practice says *scheduling*; UK practice reserves that word for schedules of rates and materials, and says *planning* and *programming*.",
+            "A programme that has not changed a decision this month has been relegated to a reporting tool."
+          ]
+        }
+      ]
+    },
+    "2.2": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "For a project to be capable of being managed at all, it needs a beginning, a middle and an end. That sounds trivial until you meet the projects that do not have them — no agreed completion criteria, no defined scope, and a client who will tell you what they wanted once they see what you have built."
+        },
+        {
+          "type": "core",
+          "md": "### Seven elements\n\nBefore a project can be planned, programmed and controlled it must have:\n\n1. a clear definition of the project\n2. appropriate staff levels and experience\n3. a pre-estimate of cost and time\n4. identified risk contingencies, in both cost and time\n5. each phase broken into manageable tasks\n6. a formal change procedure\n7. clear completion criteria, agreed\n\nMiss any of these and uncertainty prevails. The likelihood of arriving at the intended completion date on time falls accordingly, and it falls before the first spade goes in the ground.\n\n### The pre-planning tasks\n\nBefore planning proper begins there is a body of work that is rarely programmed and rarely coordinated to anything like the standard the construction work will be:\n\n- defining the purpose and goal of the project\n- identifying all stakeholders and their competing aspirations\n- identifying funding sources and the means of delivery\n- conceptual estimates and cost/benefit analysis\n- conceptual summary programmes and milestones\n- defining risks and go/no-go criteria\n- site selection\n- defining the professional team's roles\n- schematic and preliminary design\n- preparing contract documentation, drawings and specifications\n- the project management plan\n- defining scope, milestones, duration and budget\n\nChanges made after these goals are set and communicated are **disproportionately more expensive** than changes made during them.\n\n### Delays that exist before the project starts\n\nTraditional delay analysis focuses on design and construction. But a programme can contain delay before a single event has occurred on site. The usual causes:\n\n- poor project definition\n- an inappropriate form of contract\n- an inappropriate packaging strategy\n- ambiguities in the specification, drawings, bills or employer's requirements\n- inexperienced managers and supervisors appointed\n- insufficient budget or contingency for unforeseen events and design development\n- poor plant selection\n- failure to communicate intentions to local authorities\n- ineffective site logistics planning\n- incorrect assumptions about neighbouring sites, landowners or other stakeholders\n\nThese are real, and they are almost impossible to plead. You can identify them; pin-pointing the impact of any one, or of a combination, usually proves impossible — which is exactly why they end up bundled into a [[global|global claim]].\n\n### The level of detail question\n\nWhen first preparing a programme a balance has to be struck. Plan in minute detail from the outset and you produce an unmanageable, confusing plan nobody can update. Plan too coarsely and you have an impractical management tool that cannot show the effect of anything.\n\nModern software has made too much detail less dangerous than it used to be — **provided** the information is properly linked, coded and filtered. Reporting requirements differ by audience: an employer wants headline progress and a forecast completion; a section foreman needs detailed information weekly or daily. Both can come off the same network if the coding is right."
+        },
+        {
+          "type": "figure",
+          "widget": "checklist",
+          "props": {
+            "id": "pre-planning",
+            "title": "Pre-planning: the prerequisites",
+            "sub": "Rarely programmed, rarely coordinated, and disproportionately expensive to fix later",
+            "items": [
+              "The purpose and goal of the project are defined and written down.",
+              "All stakeholders are identified, including those with competing aspirations.",
+              "Funding sources are identified and committed.",
+              "The means of project delivery is chosen — and suits the risk profile.",
+              "Conceptual estimates and a cost/benefit analysis exist.",
+              "Conceptual summary programmes and milestones are set.",
+              "Risks are defined, with go/no-go criteria.",
+              "The site is selected and its constraints understood.",
+              "Professional team roles are defined and allocated.",
+              "Schematic and preliminary design are developed.",
+              "Contract documentation, drawings and specifications are prepared and internally consistent.",
+              "A project management plan exists.",
+              "Scope, milestones, duration and budget are defined.",
+              "A formal change procedure is established.",
+              "Completion criteria are agreed — in writing, by both parties."
+            ],
+            "note": "Answer three questions at the end of the planning stage: is the project feasible technically and financially; is it acceptable to investors or owners; and are the risks adequately defined and allocated in the contract documents?"
+          }
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Inherent delay is nearly unpleadable",
+          "md": "A programme built on an inappropriate contract packaging strategy, with inexperienced supervision and no contingency, is late from the day it is issued. Everybody on the project can feel it.\n\nBut you cannot plead it. There is no event, no date, no instruction — nothing to point at. It is precisely this category of loss that gets swept into a global or total cost claim, and it is a large part of why such claims are viewed with suspicion: the genuine inherent problems and the contractor's own inefficiency are indistinguishable in the number."
+        },
+        {
+          "type": "worked",
+          "md": "Where the cost of a change actually lands:",
+          "calc": [
+            {
+              "l": "Change made during concept — redraw a sketch",
+              "v": "£1",
+              "tone": "emp"
+            },
+            {
+              "l": "During scheme design — revise a layout and a cost plan",
+              "v": "≈ £10",
+              "sub": true
+            },
+            {
+              "l": "During detailed design — re-coordinate structure, services, façade",
+              "v": "≈ £100",
+              "sub": true
+            },
+            {
+              "l": "After tender, before construction — re-price, re-programme, re-procure",
+              "v": "≈ £1,000",
+              "sub": true
+            },
+            {
+              "l": "During construction — instruct, disrupt, re-sequence, extend",
+              "v": "≈ £10,000",
+              "total": true,
+              "tone": "crit"
+            }
+          ],
+          "after": "The exact multipliers vary by sector and by study; the order of magnitude does not. Any changes made to the project definition once the goals are set are disproportionately more expensive than changes made during planning — which is the entire commercial argument for spending money on pre-construction."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-2-2-a",
+            "q-2-2-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Seven elements are needed before a project can be managed at all — most importantly a definition, a change procedure, and agreed completion criteria.",
+            "Pre-planning tasks are rarely programmed to the standard the construction work will be, and changes made after them cost disproportionately more.",
+            "A programme can contain inherent delay before any event occurs on site. It is real, and it is nearly impossible to plead discretely.",
+            "Level of detail is a balance: too fine and nobody can update it, too coarse and it cannot show the effect of change."
+          ]
+        }
+      ]
+    },
+    "2.3": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Before you can programme a project you have to decide what its parts are. Get that decomposition right and cost, time, documents and drawings all report against the same structure. Get it wrong and you will spend the whole job reconciling three sets of numbers that describe the same building."
+        },
+        {
+          "type": "core",
+          "md": "### What a work breakdown structure is\n\nThe **[[wbs|work breakdown structure]]** defines every element of the completed project and cross-refers those elements to their respective tasks. It is presented as a hierarchy, and the layers of that hierarchy are called levels.\n\nA conventional arrangement:\n\n- **Level 1** — the entire project\n- **Level 2** — each phase, system, or stage (design, construction, testing)\n- **Level 3** — work type\n- **Level 4** — element\n\nThe number of levels below Level 2 is determined by the size and complexity of the work. At the lowest level, a definable task **and** a definable cost item should coincide — that is the whole point. Only when the WBS, the cost plan and the programme are structured consistently can cost and time be reported against each other.\n\n### Coding\n\nA code such as `1-A-101-M` might decompose as:\n\n- `1` — Level 1, the project\n- `A` — Level 2, substructure\n- `101` — Level 3/4, formwork to concrete work\n- `M` — the resource type: material\n\nWith `S` for subcontractor and `L` for labour, the same activity can be filtered by trade, by area, by phase or by cost type without ever restructuring the network.\n\nWBS coding is something of an art form. It can be system-based, cost-item-based, task-based, process-based or product-based, and the right choice depends on the industry and the nature of the work.\n\n### Too shallow, too deep\n\n- **Too shallow** — too few levels. Ineffective at isolating cost over-runs or deviations from budget. You will know the project is over; you will not know where.\n- **Too deep** — too many levels. Over-sensitive, labour-intensive to populate at every update, and it forces micro-management of individual tasks.\n\nDeciding the depth requires some sensitivity to the professional team's actual capacity to manage the work. A structure nobody can maintain will not be maintained.\n\n### The knock-on benefit\n\nAn effective WBS lets the project's document control, filing and retrieval systems be organised on the same codes. Correspondence, RFIs, drawings and change orders all filed against the same structure as the programme and the cost plan.\n\nThat sounds like administration. In a delay claim it is the difference between finding the evidence for one activity in an afternoon and paying somebody to read four hundred lever-arch files."
+        },
+        {
+          "type": "figure",
+          "widget": "table",
+          "props": {
+            "title": "A work breakdown structure for a building",
+            "sub": "Four levels, and a code that means something",
+            "head": [
+              "Level 1",
+              "Level 2 — phase",
+              "Level 3 — work type",
+              "Level 4 — element",
+              "Code"
+            ],
+            "rows": [
+              [
+                "New building",
+                "A · Substructure",
+                "100 · Concrete work",
+                "101 · Erect formwork",
+                "1-A-101"
+              ],
+              [
+                "",
+                "",
+                "",
+                "102 · Steel reinforcing",
+                "1-A-102"
+              ],
+              [
+                "",
+                "",
+                "",
+                "103 · Place concrete",
+                "1-A-103"
+              ],
+              [
+                "",
+                "",
+                "200 · Excavation",
+                "—",
+                "1-A-200"
+              ],
+              [
+                "",
+                "B · Superstructure",
+                "300 · Carpentry",
+                "—",
+                "1-B-300"
+              ],
+              [
+                "",
+                "",
+                "400 · Roof decking",
+                "—",
+                "1-B-400"
+              ],
+              [
+                "",
+                "C · Enclosure",
+                "500 · Siding / roofing",
+                "—",
+                "1-C-500"
+              ],
+              [
+                "",
+                "",
+                "600 · Doors / windows",
+                "—",
+                "1-C-600"
+              ],
+              [
+                "",
+                "D · Internal finishes",
+                "700 · M&E",
+                "—",
+                "1-D-700"
+              ],
+              [
+                "",
+                "",
+                "800 · Decorating",
+                "—",
+                "1-D-800"
+              ]
+            ],
+            "note": "Append M, S or L for material, subcontractor or labour: 1-A-101-M is the material cost of substructure concrete formwork, and it will appear in the cost report, the programme and the document register under the same reference."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "The test of a good WBS",
+          "md": "Ask one question: **can you produce a report showing the budget, the earned value and the programme status for any single element, without anyone having to reconcile anything?**\n\nIf yes, the structure is doing its job. If cost is coded one way and the programme another, then somebody spends a week every month building a bridge between them — and that bridge is where the errors live."
+        },
+        {
+          "type": "worked",
+          "md": "The same over-run, seen through two structures:",
+          "table": {
+            "head": [
+              "",
+              "Shallow WBS (2 levels)",
+              "Structured WBS (4 levels)"
+            ],
+            "rows": [
+              [
+                "What the report says",
+                "Superstructure is £340k over budget",
+                "1-B-400 roof decking labour is £310k over; everything else is within tolerance"
+              ],
+              [
+                "What you can do about it",
+                "Ask the superstructure manager to explain",
+                "Look at roof decking productivity, crew size and access from week 14"
+              ],
+              [
+                "When you found out",
+                "Month 9, in the cost report",
+                "Month 5, in the earned value trend"
+              ],
+              [
+                "What it cost to find",
+                "Two weeks of investigation",
+                "One filtered report"
+              ]
+            ]
+          },
+          "after": "The £340k is the same in both columns. What differs is whether the structure told you in month five, when there was still a critical path to re-sequence, or in month nine, when there was not."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-2-3-a",
+            "q-2-3-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "A WBS decomposes the project into levels, and at the lowest level a definable task and a definable cost item should coincide.",
+            "Cost, programme and document control should all be coded to the same structure — otherwise somebody reconciles them by hand, monthly.",
+            "Too shallow hides overruns; too deep forces micro-management and will not be maintained.",
+            "Coding is an art. System, cost-item, task, process or product-based — the right answer depends on the work."
+          ]
+        }
+      ]
+    },
+    "2.4": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "There is a defined order to building a baseline, and the two steps most often rushed — defining the logic, and estimating durations — are the two the entire model rests on. Everything else is bookkeeping."
+        },
+        {
+          "type": "core",
+          "md": "### The nine steps\n\n**1 · De-scope the project into work packages.** Ensure that every element of the bill of quantities is accounted for; every element on the structural drawings, architectural plans and elevations; every element and constraint defined in the specification, contract documents, planning conditions and tender documents. Each becomes either a task with a duration and measurable work content, or a date constraint.\n\n**2 · Define the [[wbs|work breakdown structure]].**\n\n**3 · Allocate every activity** to both the activity code structure and the lowest WBS level — location, level, phase, trade, system, task.\n\n**4 · Identify hard logic** — the natural sequence dictated by the design, absent any outside influence, constraint or imposed [[milestone|milestone]]. Ask of each task: is this a start milestone? A finish milestone? Which tasks must precede it? Which must follow? Which must happen at the same time?\n\n**5 · Identify soft logic** — preferential sequences imposed by resource constraints, plant selection or intermediate milestones. Is this task resource constrained? Dependent on a primary crane or earthmover? Dependent on access to adjacent property? On agreement with a rail, road or river authority? On goods supplied by others?\n\n**6 · Identify procurement durations** for long-lead items, so design tasks can be prioritised against them.\n\n**7 · Identify tasks for contractual allowances** — employer review of drawings, inspections, testing, approval and commissioning periods. These are real durations owed by somebody, and leaving them out is how a programme quietly becomes non-compliant.\n\n**8 · Estimate durations** from tender quantities, expected crew size and historical outputs for similar work.\n\n**9 · Define working calendars** — 40 hours a week, 50 hours, holidays, exclusion periods.\n\n### Hard logic and soft logic\n\nThe distinction matters far beyond the [[baseline|baseline]]. **Hard logic** cannot be changed without changing the design: you cannot place concrete before the reinforcement is fixed. **Soft logic** is a choice: pouring the east wing before the west because there is one crane.\n\nWhen a delay analyst later collapses or re-sequences a programme, soft logic is the part that can legitimately move and hard logic is the part that cannot. If the baseline never recorded which was which, that distinction has to be reconstructed by argument — and it will be.\n\n### The activity data sheet\n\nFor each activity, record the assumptions: relevant specifications and drawings, assumed quantities, the duration calculation, calendar assignment, time-risk allowance, assumed production outputs, resource and cost allocation, successors, and the applicable milestone.\n\nThese can be a handwritten page in a file or a relational database. Their value is twofold. During the works they make change transparent — you can see exactly which assumption a variation invalidated. Forensically, they are invaluable in understanding why a duration over-ran, and a project that keeps them properly is unlikely to have a delay dispute at all, simply because cause and effect were visible throughout."
+        },
+        {
+          "type": "figure",
+          "widget": "checklist",
+          "props": {
+            "id": "baseline-build",
+            "title": "Building a baseline",
+            "sub": "Nine steps. Two of them carry the whole model.",
+            "items": [
+              "Every element of the bill of quantities is accounted for.",
+              "Every element on the structural, architectural and elevation drawings is accounted for.",
+              "Every constraint in the specification, contract, planning conditions and tender documents is accounted for.",
+              "Every element is defined either as a task with a duration, or as a date constraint.",
+              "The work breakdown structure is defined.",
+              "Every activity is coded to the activity code structure and the lowest WBS level.",
+              "Hard logic is identified — the natural sequence dictated by the design.",
+              "Soft logic is identified separately — resource, plant, access and preference.",
+              "Procurement durations for long-lead items are in, and drive the design priorities.",
+              "Contractual allowances are in: employer review, inspection, testing, approval, commissioning.",
+              "Durations are estimated from quantities, crew size and historical outputs.",
+              "Working calendars are defined, including holidays and exclusion periods.",
+              "An activity data sheet exists for each significant task, recording the assumptions.",
+              "Every task has a clear owner — a subcontractor or a named sector manager.",
+              "Major subcontractors have expressly bought into the programme.",
+              "The resulting critical path is logical and consistent with the experience of senior staff."
+            ],
+            "note": "The last item is the one that catches the most. If the critical path surprises the people who have built this kind of project before, either the programme is wrong or their intuition is — and you need to know which before you commit to it."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "The Joint Baseline Review",
+          "md": "When the draft is ready, a **[[jbr|Joint Baseline Review]]** workshop brings together designers, estimators, engineers, the contract administrator, the client, the construction manager and quantity surveying staff to test the assumptions before the baseline is fixed.\n\nWhat gets reviewed: plant selection and availability; labour composition and local union requirements; weather patterns and tidal or seasonal restrictions; site layout, delivery restrictions, lay-down and storage; supply-chain risks in structural steel, concrete or specialist design; staff migration where an operational building is being refurbished; and every hard-logic and soft-logic assumption in the network.\n\nIt is a day. It routinely saves months."
+        },
+        {
+          "type": "worked",
+          "md": "One activity, one data sheet:",
+          "table": {
+            "head": [
+              "Field",
+              "Entry"
+            ],
+            "rows": [
+              [
+                "Activity",
+                "1-B-400-L · Roof decking, grid 12–24"
+              ],
+              [
+                "Drawings / specification",
+                "S-402 rev C; NBS section H31"
+              ],
+              [
+                "Assumed quantity",
+                "1,840 m²"
+              ],
+              [
+                "Assumed output",
+                "46 m² per gang-day"
+              ],
+              [
+                "Crew",
+                "1 ganger + 3, one gang"
+              ],
+              [
+                "Duration calculation",
+                "1,840 ÷ 46 = 40 gang-days ≈ 8 weeks"
+              ],
+              [
+                "Calendar",
+                "5-day, excluding August shutdown"
+              ],
+              [
+                "Time-risk allowance",
+                "3 days included, wind-sensitive lifting"
+              ],
+              [
+                "Hard logic",
+                "Follows frame erection grid 12–24 (structural)"
+              ],
+              [
+                "Soft logic",
+                "Follows east wing decking — single mobile crane"
+              ],
+              [
+                "Successors",
+                "1-C-500 roof covering; 1-D-700 M&E first fix"
+              ]
+            ]
+          },
+          "after": "Now suppose the quantity increases to 2,300 m². The duration consequence falls straight out: 2,300 ÷ 46 = 50 gang-days, ten more than allowed. And because the sheet records that the crane is shared, the knock-on to the east wing is visible immediately. Without the sheet, that is a three-week argument eighteen months later about what the original duration was based on."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-2-4-a",
+            "q-2-4-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Nine steps, and the two that matter most are defining the logic and estimating the durations.",
+            "Separate hard logic from soft logic and record which is which — a delay analyst will need that distinction and cannot recover it later.",
+            "Contractual allowances for review, inspection and approval are real durations owed by somebody. Leaving them out makes a programme non-compliant.",
+            "Activity data sheets make change transparent during the works and are invaluable forensically. Projects that keep them rarely need them."
+          ]
+        }
+      ]
+    },
+    "2.5": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "The critical path method dominates because it answers the question that matters — what happens if this slips. But there are jobs it is bad at, and on a housing scheme, a pipeline or a tunnel the right drawing is often not a network at all."
+        },
+        {
+          "type": "core",
+          "md": "### PERT and the three-point estimate\n\nDeveloped by the US Navy in the 1950s for the Polaris programme. The mathematics is CPM's, with one change: the planner estimates **three** durations for each activity —\n\n- **Optimistic** — the minimum, if everything goes better than expected\n- **Most likely** — the standard estimate, with a normal crew, no overtime, ideal conditions\n- **Pessimistic** — the maximum\n\nAssign probabilities and you get a distribution of completion dates rather than one date. A frequency curve might say there is a 62% likelihood of finishing within the 27-month budget, and 99% within 33 months.\n\nThat is a genuinely different conversation to have with a client. If a 62% chance of on-time completion is not enough for their appetite for risk, something has to change — now, not in month twenty.\n\n[[pert|PERT]] is most valuable where there is little historical data: novel methods, research and development, oil and gas exploration. Forensically it has almost no application, because a distribution cannot tell you what actually delayed anything.\n\n### Gantt charts\n\nA horizontal bar chart showing duration and sequence. Named after Henry Gantt, an American engineer better remembered in his own time for humanising production management. Still the most widely used way of illustrating a plan, and rightly.\n\nWhat it does: shows what happens when, legibly, to anyone.\n\nWhat it cannot do, without logic: calculate early or late event times, identify the [[critical|critical path]], or show the impact of a delay. A bar chart with logical relationships is a **time-scaled logic diagram** and is a different animal entirely. A bar chart without them cannot tell you overall project status unless work has proceeded exactly as planned — which it never has.\n\n### Line of balance\n\nFor repetitive work at multiple locations: housing, pipelines, bridges, roads, rail, tunnels, and the internal fit-out of any high-rise. Plot cumulative units complete against time and each trade becomes a line.\n\nThe power of it is diagnostic. On an as-planned chart the lines run parallel at a controlled spacing. Overlay the as-built and you can see instantly which trade slowed, where a follow-on failed to keep pace with its predecessor, and where the gap between two trades closed to nothing.\n\nIt will not by itself establish [[excusable|excusable]] or [[compensable|compensable delay]]. What it will do is isolate delays to individual trades so the analyst can go straight to the right fortnight of records.\n\n### Critical chain\n\nA product of the theory of constraints, focused on finding and eliminating bottlenecks. Its criticisms of conventional CPM are worth hearing:\n\n- durations based on worst-case estimates cause everyone to wait until the last possible moment\n- starting too many tasks on their early start dates causes multi-tasking, and everything takes longer\n- effort spent finishing to early finish dates is wasted if it produces discontinuity for a trade — early completion of one task rarely offsets a delay elsewhere, but late completion is always passed on\n\nIts answers: use **average** durations, calculate backwards from the date the project is needed, and pool contingency into explicit **buffers** managed by the team rather than padding every activity.\n\nBuffers are [[float|float]] by another name, and the critical chain is the critical path by another name. The genuine difference is that the contingency is visible and owned, rather than hidden inside durations — which is a point worth taking even if you never run a critical chain project."
+        },
+        {
+          "type": "figure",
+          "widget": "compare",
+          "props": {
+            "title": "Four techniques, four jobs",
+            "cards": [
+              {
+                "k": "Probabilistic",
+                "t": "PERT",
+                "pro": [
+                  "Gives a distribution, not a single date",
+                  "Exposes how much confidence a duration actually carries",
+                  "Right choice where no historic data exists"
+                ],
+                "con": [
+                  "Requires three estimates per activity",
+                  "Almost no forensic application",
+                  "A distribution cannot show what caused a delay"
+                ]
+              },
+              {
+                "k": "Illustrative",
+                "t": "Gantt chart",
+                "pro": [
+                  "Legible to anyone, without training",
+                  "Still the standard output of every CPM package",
+                  "Sufficient on small projects managed intuitively"
+                ],
+                "con": [
+                  "Without logic, cannot calculate event times or float",
+                  "Cannot show the impact of a change",
+                  "Cannot identify what is critical from time to time"
+                ]
+              },
+              {
+                "k": "Repetitive work",
+                "t": "Line of balance",
+                "pro": [
+                  "Ideal for housing, pipelines, tunnels, high-rise fit-out",
+                  "Shows instantly which trade slowed and when",
+                  "Isolates delays to a trade so records can be targeted"
+                ],
+                "con": [
+                  "Only suits genuinely repetitive sequences",
+                  "Will not establish excusable or compensable delay alone",
+                  "Discrete events still need conventional analysis"
+                ]
+              },
+              {
+                "k": "Bottlenecks",
+                "t": "Critical chain",
+                "pro": [
+                  "Contingency is explicit and owned, not hidden in durations",
+                  "Attacks multi-tasking and discontinuity directly",
+                  "Buffer consumption is an early-warning signal"
+                ],
+                "con": [
+                  "Buffers are float renamed; the chain is the path renamed",
+                  "Rarely attempted on traditional construction",
+                  "Sits awkwardly with contracts written around CPM"
+                ]
+              }
+            ],
+            "note": "Also in use: mass-haul diagrams for earthworks and roads; time-chainage for linear works; cascade diagrams; and assembly-line balancing in manufacturing."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "Line of balance in a delay claim",
+          "md": "Suppose high-level mechanical starts a month late on an eighteen-storey fit-out, and drywall then fails to keep pace with it. Two distinct delays, and on a bar chart of 2,400 activities you would struggle to see either.\n\nOn a line of balance chart they are two visible gaps: the horizontal offset at the start, and the widening vertical gap between two lines that should have run parallel. From there you know exactly which floors and which weeks to pull records for. The chart does not prove the claim. It tells you where the claim is."
+        },
+        {
+          "type": "worked",
+          "md": "The same activity, estimated three ways:",
+          "calc": [
+            {
+              "l": "Optimistic — good weather, full gang, no interruptions",
+              "v": "18 days"
+            },
+            {
+              "l": "Most likely — industry norm, standard crew, no overtime",
+              "v": "26 days"
+            },
+            {
+              "l": "Pessimistic — restricted access, weather, one gang short",
+              "v": "47 days"
+            },
+            {
+              "l": "PERT expected duration = (O + 4M + P) ÷ 6",
+              "v": "28.2 days",
+              "total": true
+            },
+            {
+              "l": "Duration a traditional CPM programme would carry",
+              "v": "26 days",
+              "sub": true
+            },
+            {
+              "l": "Hidden optimism in the deterministic figure",
+              "v": "2.2 days",
+              "sub": true,
+              "tone": "crit"
+            }
+          ],
+          "after": "Two days on one activity is nothing. Two days of unrecognised optimism on every activity along a forty-activity critical path is three months, and it is invisible in a deterministic programme because each individual duration looks perfectly defensible. That is the case for probabilistic methods, and it is a strong one at tender stage even if you never use them again."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-2-5-a",
+            "q-2-5-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "PERT gives a distribution of completion dates instead of one date. Valuable where there is no historic data; near-useless forensically.",
+            "A Gantt chart without logic cannot calculate float, identify the critical path, or show the impact of a change.",
+            "Line of balance is the right drawing for repetitive work, and is superb at isolating which trade slowed and when.",
+            "Critical chain's contribution is making contingency explicit and owned rather than buried inside padded durations."
+          ]
+        }
+      ]
+    },
+    "2.6": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A project spending £37m against a £45m plan looks like it is coming in under budget. It is not. It is 18% behind programme, and the underspend is simply work that has not been done. One number told you the wrong thing; two numbers together tell you the truth."
+        },
+        {
+          "type": "core",
+          "md": "### The cycle\n\nProject control is a loop with four stations:\n\n1. **Establish the plan** — agree the [[baseline|baseline]] programme and budget, the level of detail and WBS coding, resource forecasts and cash flows, and distribute the procedures.\n2. **Monitor progress** — gather data, update the programme, look for trends, and determine actual cost, actual hours, actual quantities, percent complete and cost to complete.\n3. **Process and analyse** — calculate variances and performance indicators, determine the cause of any unacceptable deviation, communicate the findings and recommend corrective action.\n4. **Implement corrective action** — increase or change resources, revise construction procedures, or revise the targets: a later completion date, a bigger budget, or lower quality.\n\nThat last item is uncomfortable and it is honest. Those are the only three things that can give.\n\n### Earned value, in four terms\n\nThe method comes from US Government contracting — Cost Schedule Control Systems Criteria — and rests on four figures:\n\n- **BCWS** · budgeted cost of work **scheduled** — what should have been done by now\n- **BCWP** · budgeted cost of work **performed** — the earned value; the budget for what actually got done\n- **ACWP** · actual cost of work performed — what it actually cost\n- **BAC** · budget at completion\n\nFrom those:\n\n- Schedule variance = **BCWP − BCWS**\n- Cost variance = **BCWP − ACWP**\n- Schedule performance index **SPI = BCWP ÷ BCWS**\n- Cost performance index **CPI = BCWP ÷ ACWP**\n- Estimate at completion **EAC = ACWP + (BAC − BCWP) ÷ CPI**\n\n### Reading the indices\n\nBoth at 1.00 means on time and on budget. Below 1.00 is unsatisfactory in either case.\n\nTwo empirical observations are worth carrying:\n\n- Once **CPI falls below 1.00 it rarely returns**. Finding savings to offset an overrun, without cutting scope or quality, is close to impossible.\n- When **SPI falls below 1.00 it takes additional funding to recover** — which pushes CPI down in turn. Time and money are coupled, and buying one costs the other.\n\n### What earned value cannot do\n\nIt measures schedule performance **in money**. It cannot tell you *which* activities are late, and a project can report SPI near 1.00 while its [[critical|critical path]] is in ruins — because non-critical work has been earning value while the critical path stood still.\n\nUse it to spot a trend early. Then go to the programme to find out what the trend is made of."
+        },
+        {
+          "type": "figure",
+          "widget": "earned-value",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "Time control — managing float like money",
+          "md": "There is a discipline that treats time exactly as cost is treated:\n\n- **Time budget** — the overall project duration available\n- **Time plan** — that budget divided into definable tasks, each with logic, a duration and a time-risk allowance\n- **Time-risk allowance** — the duration allowed to each task, plus a reserve (float) available for authorised transfers to tasks that over-run\n- **Time checking** — monitoring actual time against the allowance and reporting deviations\n\nWhen a task uses more time than allocated there are exactly five options: transfer contingency to it; re-sequence remaining work to absorb it; shorten remaining allowances; accept a later completion date; or enforce damages.\n\nFraming it this way makes float a **depleting resource with an owner and an authorisation trail**, which is a considerably more useful thing than a number in a column."
+        },
+        {
+          "type": "worked",
+          "md": "A project at month six, £100m budget at completion:",
+          "calc": [
+            {
+              "l": "BCWS — budgeted cost of work scheduled",
+              "v": "£55m"
+            },
+            {
+              "l": "BCWP — budgeted cost of work performed (earned)",
+              "v": "£45m"
+            },
+            {
+              "l": "ACWP — actual cost of work performed",
+              "v": "£37m"
+            },
+            {
+              "l": "Schedule variance = BCWP − BCWS",
+              "v": "−£10m",
+              "tone": "crit"
+            },
+            {
+              "l": "Cost variance = BCWP − ACWP",
+              "v": "+£8m",
+              "sub": true
+            },
+            {
+              "l": "SPI = 45 ÷ 55",
+              "v": "0.82",
+              "total": true,
+              "tone": "crit"
+            },
+            {
+              "l": "CPI = 45 ÷ 37",
+              "v": "1.22",
+              "total": true
+            }
+          ],
+          "after": "Taken alone, an outflow of £37m against a planned £45m suggests a project coming in under budget. Read with the schedule performance, it is clear the underspend is a **factor of the lack of progress**: 18% behind programme, and the money not spent is work not done. This situation is invisible in a cost report and obvious in an earned value analysis, which is the entire argument for running one."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-2-6-a",
+            "q-2-6-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Four stations: establish the plan, monitor progress, process and analyse, implement corrective action. Then round again.",
+            "SPI = BCWP ÷ BCWS and CPI = BCWP ÷ ACWP. Both at 1.00 is on time and on budget.",
+            "An underspend read without schedule performance is dangerously misleading — it is usually work that has not been done.",
+            "Once CPI drops below 1.00 it rarely recovers, and recovering SPI costs money, which pushes CPI down further."
+          ]
+        }
+      ]
+    },
+    "2.7": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "An executive wants one page. A section foreman wants next Tuesday, hour by hour. Both are legitimate, and if you produce them from two different programmes you will spend the project explaining why they disagree."
+        },
+        {
+          "type": "core",
+          "md": "### Four levels, one source\n\nEvery report must derive from the same centrally managed **Master Project Programme**. Filtered and summarised differently, never maintained separately.\n\n**Level 1 — Executive summary.** A single page of the overall plan, progress and current forecast. Time-scaled, summarised into bars per contractor, trade or project, with the key milestones: notice to proceed, planned completion.\n\n**Level 2 — Summary, the Master Programme.** Planned and programmed within the constraints of Level 1, and the basis for updating it. Status reports extract selected activities to depict the state of the project concisely.\n\n**Level 3 — Management.** The working construction planning documents, prepared by prime contractors and specialist trades, in enough detail to plan and monitor weekly activity at working level. These are the **fragnets** — usually associated with a discipline, work area or trade. In the final months before handover, fragnets are often recombined by system rather than by trade, because that is how commissioning actually proceeds.\n\n**Level 4 — Site, daily.** Progress lists and tick-sheets maintained by each department, section or trade: material monitoring, expediting reports, logic diagrams for areas in progress, punch lists, testing programmes. These supply the data the programmer interprets, and they identify the information, material or equipment shortages that will restrain the Level 2 and 3 activities.\n\n### Why one source matters\n\nIf Level 1 is maintained by the project director's assistant and Level 3 by each trade contractor, they will diverge — quickly, and in a way nobody notices until an employer's report and a contractor's report state different completion dates in the same month.\n\nIn a delay claim that divergence is fatal. The other side will find both documents, and the honest explanation — that they were maintained separately — sounds exactly like the dishonest one."
+        },
+        {
+          "type": "figure",
+          "widget": "steps",
+          "props": {
+            "title": "Four levels, filtered from one network",
+            "sub": "Never maintained separately",
+            "steps": [
+              {
+                "t": "Level 1 · Executive summary",
+                "d": "One page. Overall plan, progress, forecast. Summary bars and key milestones, time-scaled.",
+                "m": "board"
+              },
+              {
+                "t": "Level 2 · Summary — the Master Programme",
+                "d": "Planned within Level 1's constraints, and the basis for updating it. Concise status against selected activities.",
+                "m": "monthly"
+              },
+              {
+                "t": "Level 3 · Management",
+                "d": "The working documents. Prepared by prime and specialist contractors, detailed enough to plan and monitor weekly. These are the fragnets.",
+                "m": "weekly"
+              },
+              {
+                "t": "Level 4 · Site, daily",
+                "d": "Tick sheets, material monitoring, expediting reports, punch lists, testing programmes. Where the data comes from.",
+                "m": "daily"
+              }
+            ],
+            "note": "Level 4 documents also identify the restraints — missing information, late material, unavailable equipment — that will show up in Level 2 and 3 as slippage a month later."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Two programmes is worse than none",
+          "md": "A project that maintains an employer-facing summary programme separately from the contractor's working programme has created two sources of truth. They will diverge, and every divergence becomes a document that the other side will produce in cross-examination.\n\nIf a shadow programme is genuinely needed — and it sometimes is, where a contractor has stopped issuing reliable information — call it a shadow programme, date it, say what it is based on, and never let it be mistaken for the accepted programme."
+        },
+        {
+          "type": "worked",
+          "md": "The same week, four ways:",
+          "table": {
+            "head": [
+              "Level",
+              "Audience",
+              "What it shows about roof decking"
+            ],
+            "rows": [
+              [
+                "1",
+                "Client board",
+                "Superstructure: 78% complete, forecast completion 14 Nov"
+              ],
+              [
+                "2",
+                "Project manager, monthly report",
+                "1-B-400 Roof decking — 62% complete, 11 days behind, on the critical path"
+              ],
+              [
+                "3",
+                "Trade contractor, weekly",
+                "Grid 12–18 complete; 18–24 in progress; 24–30 starts Monday, one gang, 4 days"
+              ],
+              [
+                "4",
+                "Section foreman, daily",
+                "Tuesday: deck bays 21–22, 3 fixers, crane 09:00–11:30, weather check 07:00"
+              ]
+            ]
+          },
+          "after": "Four documents, four audiences, one network. The 11 days behind in Level 2 is calculated, not asserted — and the reason for it is visible in the Level 4 tick sheets that recorded three days lost to crane availability."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-2-7-a",
+            "q-2-7-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Four levels — executive, summary, management, site — all filtered from one Master Project Programme.",
+            "Level 3 networks are the fragnets: discipline, area or trade. In the run-up to handover they regroup by system, because that is how commissioning works.",
+            "Level 4 daily records are where the update data comes from, and where restraints show up first.",
+            "Maintaining two programmes separately creates two sources of truth, and both will be produced against you."
+          ]
+        }
+      ]
+    }
+  }
+}

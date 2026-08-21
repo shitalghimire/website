@@ -1,0 +1,591 @@
+{
+  "module": 1,
+  "lessons": {
+    "1.1": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A delay on a construction project is not evidence that the management team has broken down. It is evidence that a project is being built in the open air, by dozens of separate businesses who have never worked together before and never will again, to a design that is still being finished. The question is never whether delay will happen. It is whether anybody was managing it when it did."
+        },
+        {
+          "type": "core",
+          "md": "Construction is roughly a tenth of the economy in most developed countries, and it is unlike almost every other industry in one respect: each project brings the factory to the job. There is no production line, no fixed plant, no repeat run to learn from. The site is different every time, the design is different every time, and the team is assembled for one job and disbanded afterwards.\n\nThat makes coordination the whole discipline. And coordination on that scale requires planning, programming and control — not as paperwork, but as the mechanism by which several hundred people know what to do next.\n\n### Risk cannot be ignored\n\nSir Michael Latham's formulation has stuck because it is exact:\n\n> No construction project is risk free. Risk can be managed, minimised, shared, transferred, or accepted. It cannot be ignored.\n\nIf risk is inherent, delay is inherent. It follows that delay should be **anticipated and managed in exactly the same way as any other risk** — identified early, quantified, allocated, and recorded. What it should never be is discovered at the end.\n\n### The most expensive thing on the job\n\nOn most projects the largest unanticipated cost is not a materials increase or a design change. It is the financial impact of delay and [[disruption|disruption]] — prolonged preliminaries, extended plant hire, supervision, head-office overhead, finance charges, and the diversion of senior staff into a claim instead of onto the next tender.\n\nThose costs are recoverable only if somebody can establish a causal link from an event to an effect, to a liability, to a number. That chain is what this course is about.\n\n### Why it goes wrong\n\nDelay claims are usually assembled by the people least equipped to assemble them: site staff who are already stretched, working from records that were kept for a different purpose, months or years after the fact. Two failure modes follow, and both are common:\n\n- **Contractors with a poor strike rate**, submitting claims that establish that events happened without ever establishing that they caused delay to completion.\n- **Employers' teams granting too much**, because nobody on that side of the table can test the analysis they have been handed.\n\nBoth are skills problems, and both are fixable."
+        },
+        {
+          "type": "figure",
+          "widget": "gantt",
+          "props": {
+            "title": "Where delay analysis sits",
+            "sub": "The same project, three ways of looking at it",
+            "start": "2026-01-01",
+            "end": "2026-12-01",
+            "unit": "month",
+            "rows": [
+              {
+                "label": "As-planned",
+                "sub": "what was intended",
+                "bars": [
+                  {
+                    "s": "2026-01-01",
+                    "f": "2026-08-15",
+                    "kind": "plan",
+                    "label": "planned"
+                  }
+                ]
+              },
+              {
+                "label": "As-built",
+                "sub": "what happened",
+                "bars": [
+                  {
+                    "s": "2026-01-01",
+                    "f": "2026-11-10",
+                    "kind": "built",
+                    "label": "actual"
+                  }
+                ]
+              },
+              {
+                "label": "Employer risk",
+                "sub": "instructed change, late information",
+                "bars": [
+                  {
+                    "s": "2026-04-02",
+                    "f": "2026-06-20",
+                    "kind": "emp"
+                  }
+                ]
+              },
+              {
+                "label": "Contractor risk",
+                "sub": "rework, under-resourcing",
+                "bars": [
+                  {
+                    "s": "2026-06-21",
+                    "f": "2026-08-05",
+                    "kind": "con"
+                  }
+                ]
+              },
+              {
+                "label": "Neutral",
+                "sub": "exceptional weather",
+                "bars": [
+                  {
+                    "s": "2026-02-10",
+                    "f": "2026-03-05",
+                    "kind": "neu"
+                  }
+                ]
+              }
+            ],
+            "markers": [
+              {
+                "at": "2026-08-15",
+                "label": "contract completion",
+                "kind": "cd"
+              }
+            ],
+            "note": "Eighty-seven days late. Delay analysis is the work of deciding which of those three coloured bars actually caused it — and in what order."
+          },
+          "caption": "Nothing in this drawing tells you the answer. Three events overlap, and the total of their durations is longer than the overrun."
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "The cheapest delay analysis",
+          "md": "The best delay analysis is the one nobody has to do. Where extension of time applications are dealt with **at the time the event occurs**, priced and signed off as a compensation event, the whole apparatus in this course becomes unnecessary.\n\nEvery month that passes without agreeing the effect of an event makes that effect harder to establish, more expensive to prove, and more likely to end in front of somebody who has never built anything."
+        },
+        {
+          "type": "worked",
+          "md": "What a modest delay actually costs, before anyone argues about entitlement:",
+          "calc": [
+            {
+              "l": "Site preliminaries — supervision, welfare, temporary works",
+              "v": "£4,800 / week"
+            },
+            {
+              "l": "Plant on hire — tower crane, hoist, generators",
+              "v": "£3,200 / week"
+            },
+            {
+              "l": "Head-office overhead contribution",
+              "v": "£1,900 / week"
+            },
+            {
+              "l": "Time-related cost per week",
+              "v": "£9,900",
+              "total": true
+            },
+            {
+              "l": "Twelve weeks of delay",
+              "v": "£118,800",
+              "sub": true
+            },
+            {
+              "l": "Liquidated damages at £7,500/week if unrecovered",
+              "v": "£90,000",
+              "sub": true,
+              "tone": "crit"
+            },
+            {
+              "l": "Total exposure on a twelve-week overrun",
+              "v": "£208,800",
+              "total": true
+            }
+          ],
+          "after": "Then add the cost of proving it. Expert fees, legal fees, and the senior staff who spend six months on a claim instead of winning the next job. This is why the discipline exists, and why proportionality is a real constraint on how far any analysis should go."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-1-1-a",
+            "q-1-1-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Delay is an inherent risk of construction, not a symptom of failure. It should be anticipated, managed and recorded like any other risk.",
+            "The largest unanticipated cost on most projects is the financial impact of delay and disruption.",
+            "A claim must establish causation — that an event caused delay to **completion** — not merely that the event happened.",
+            "Agreeing the effect of a delay at the time it occurs is cheaper than every technique in this course put together."
+          ]
+        }
+      ]
+    },
+    "1.2": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "There are three things a delay claim has to establish, and they come from three completely different places. Confusing them is the most common structural fault in a claim — and the easiest one to attack."
+        },
+        {
+          "type": "core",
+          "md": "### Liability comes from the contract\n\nWhether an event is at the employer's risk or the contractor's risk is a question of **contract interpretation**. It is answered by reading the conditions, not by looking at a programme. A programmer cannot decide it, and should not try — the most an analyst does is make a provisional assignment so the analysis can proceed, and say clearly that they have done so.\n\n### Causation comes from the facts\n\nCausation is the link from the event to its effect: the demonstration that **this** happened, and **that** followed. It is founded on the factual matrix — the records, the programmes, the correspondence, the chronology. This is where delay analysis lives, and it is the only part of the three that a programming expert is actually qualified to answer.\n\n### Damages come from the money\n\nWhat the delay cost is a quantum question. It is answered from cost records, and it has its own standard of proof. Critically:\n\n> Compensation for prolongation should not be paid for anything other than work actually done, time actually taken up, or loss and/or expense actually suffered.\n\nThat sentence rules out a great deal of what gets claimed. It rules out applying an average weekly rate to a theoretical period produced by a model. It rules out claiming preliminaries for a period in which the site was demobilised.\n\n### The three tests for compensable delay\n\nPut together, a contractor seeking both time and money must show:\n\n1. **The delay was critical** — established by reference to a reliable [[critical|critical path]] analysis. Delay to work with [[float|float]] delays nothing.\n2. **No [[concurrency|concurrent delay]] of its own was operating** — or, where there was, it must be separated out.\n3. **The event was [[excusable|excusable]] and compensable** under the terms of the contract.\n\nEach test can be passed or failed independently. That is precisely why an entitlement to time does not automatically bring an entitlement to money — a point the [[scl|SCL Protocol]] makes explicitly, and one that costs claimants more than any other single misunderstanding."
+        },
+        {
+          "type": "figure",
+          "widget": "steps",
+          "props": {
+            "title": "What has to be proved, and from where",
+            "sub": "Three questions, three sources, three different experts",
+            "steps": [
+              {
+                "t": "Liability — is this at the employer's risk?",
+                "d": "Answered from the conditions of contract. Decided by the contract administrator, or ultimately a tribunal. Not a programming question.",
+                "m": "contract"
+              },
+              {
+                "t": "Causation — did it delay completion?",
+                "d": "Answered from the factual matrix: programmes, records, correspondence, chronology. This is the delay analyst's job, and the only one they are qualified for.",
+                "m": "facts"
+              },
+              {
+                "t": "Damages — what did it cost?",
+                "d": "Answered from cost records. Work actually done, time actually taken, loss actually suffered. A quantum question with its own standard of proof.",
+                "m": "cost"
+              }
+            ],
+            "note": "A claim that is strong on one and silent on another does not partly succeed. It fails."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "The trap in \"the event happened\"",
+          "md": "It is startlingly common for a claim to devote two hundred pages to establishing that thirteen employer risk events occurred — with the events **agreed** — and then simply assert that the project was therefore late by the sum of their durations.\n\nAgreement on liability is not agreement on causation. In the case study at the end of this course, all thirteen events were agreed to be employer risk events, and four of them contributed exactly nothing to the completion date."
+        },
+        {
+          "type": "worked",
+          "md": "The same event, run through the three tests:",
+          "table": {
+            "head": [
+              "Question",
+              "Source",
+              "Finding"
+            ],
+            "rows": [
+              [
+                "Was the two-week delay in issuing the revised cladding detail at the employer's risk?",
+                "Contract — late instruction is a relevant event under clause 25",
+                "Yes. Liability established."
+              ],
+              [
+                "Was cladding on the critical path when the instruction arrived?",
+                "Programme update current at the time",
+                "No — it had 18 days of float."
+              ],
+              [
+                "Did the delay reduce that float below zero?",
+                "Next two programme updates",
+                "No. Float reduced to 4 days, then recovered."
+              ],
+              [
+                "Is there an entitlement to an extension of time?",
+                "All of the above",
+                "No. The event was excusable but caused no critical delay."
+              ],
+              [
+                "Is there any entitlement at all?",
+                "Cost records",
+                "Possibly. Float was consumed, which may carry direct time-related cost for scaffold and access — but not prolongation."
+              ]
+            ]
+          },
+          "after": "Liability was never in doubt. The claim still fails on causation, and the only surviving argument is a much smaller one about float consumption. Reaching that conclusion in month four costs nothing. Reaching it in year three costs a fortune."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-1-2-a",
+            "q-1-2-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Liability comes from the contract, causation from the facts, damages from the cost records. Three questions, three sources.",
+            "Delay analysis exists to satisfy **causation** in a way that lets damages be assessed. It cannot decide liability.",
+            "Three tests must all be passed for compensable delay: critical, not concurrent with your own delay, and excusable and compensable under the contract.",
+            "An entitlement to time is not an entitlement to money. They are separate tests with different standards of proof."
+          ]
+        }
+      ]
+    },
+    "1.3": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Four words decide who pays for a delay: excusable, non-excusable, compensable, non-compensable. They are not two pairs of opposites. They are two independent questions, and one of the four possible combinations does not exist at all."
+        },
+        {
+          "type": "core",
+          "md": "### Start with the risk event\n\nBefore anything is a delay, it is a **risk event** — and it belongs to one party or the other.\n\n- **[[ere|Employer risk event]] (ERE)** — an event, circumstance or cause which, under the contract or by later determination of a tribunal, is at the employer's risk. Late information. Instructed variations. Deferred possession of the site. Unforeseeable ground conditions, where the contract puts that risk on the employer.\n- **[[cre|Contractor risk event]] (CRE)** — anything that is not. Under-resourcing. Rework. Plant breakdown. Sub-contractor default.\n\nUntil an event is shown to have actually caused delay, it is **only a risk event**. That distinction does a lot of work later.\n\n### Then ask the two questions\n\n**Is it [[excusable|excusable]]?** Does the contractor get relief from [[ld|liquidated damages]]? This turns on who carried the risk of the event.\n\n**Is it compensable?** Does anybody pay for the time? This turns on whether the contract makes that particular event recoverable in money.\n\n### The four outcomes\n\n| | Compensable | Non-compensable |\n|---|---|---|\n| **Employer risk event** | Time and money | Time only — a *neutral* event |\n| **Contractor risk event** | Cannot exist | Neither. Damages run. |\n\nThe empty cell is the one to remember. A contractor risk event cannot be compensable: if the contractor caused it, the contractor pays for it. There is no combination in which a party is compensated for its own default.\n\n### Neutral events\n\nThe top-right cell has a name — a **[[neutral|neutral event]]**. Excusable but non-compensable: the contractor gets time but no money. Exceptionally adverse weather and force majeure are the standard examples.\n\nNeutral events cause more argument than they should, because contracts define them badly. \"Exceptionally adverse weather\" means nothing until somebody says exceptional compared with what, measured how, over what period. Define it in the contract with a data source and a threshold, or expect to argue about it."
+        },
+        {
+          "type": "figure",
+          "widget": "delay-matrix",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "Anything unexplained defaults to the contractor",
+          "md": "This is the single most consequential default rule in delay analysis, and it appears in every method.\n\nIn a collapsed as-built, once every identified event has been extracted, any remaining overrun is treated as contractor delay — not because anybody proved it, but because nobody identified a cause. In a time impact analysis, a loss between two updates that cannot be attributed to an employer risk event is, by definition, a contractor risk event.\n\nThe practical consequence is straightforward: **identify every event, including your own**. An analyst who leaves gaps is handing them to the other side."
+        },
+        {
+          "type": "worked",
+          "md": "Five events on the same project, classified:",
+          "table": {
+            "head": [
+              "Event",
+              "Risk",
+              "Excusable?",
+              "Compensable?",
+              "Outcome"
+            ],
+            "rows": [
+              [
+                "Instruction to change the cladding specification",
+                "ERE",
+                "Yes",
+                "Yes",
+                "Time and money"
+              ],
+              [
+                "Six days of rainfall in the 99th percentile against 30-year data",
+                "Neutral",
+                "Yes",
+                "No",
+                "Time only"
+              ],
+              [
+                "Steel fabricator enters administration",
+                "CRE",
+                "No",
+                "No",
+                "Damages run"
+              ],
+              [
+                "Late release of the employer's structural design",
+                "ERE",
+                "Yes",
+                "Yes",
+                "Time and money"
+              ],
+              [
+                "Concrete rejected on test, poured again",
+                "CRE",
+                "No",
+                "No",
+                "Damages run"
+              ]
+            ]
+          },
+          "after": "Now notice what this table does **not** tell you. It says nothing about whether any of these five delayed completion. Classification is a necessary first step and a wholly insufficient one — the same five events could produce a 40-day extension of time or none at all, depending entirely on where each landed relative to the critical path."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-1-3-a",
+            "q-1-3-b",
+            "q-1-3-c"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Excusable and compensable are two independent tests, not one test with a name each side.",
+            "A contractor risk event cannot be compensable — that combination does not exist.",
+            "Neutral events are excusable but non-compensable: time, no money. Define them precisely in the contract or argue about them later.",
+            "Anything unexplained defaults to the contractor's account, in every method. Identify your own events before somebody else does."
+          ]
+        }
+      ]
+    },
+    "1.4": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Every delay claim follows the same eleven stages. The only variable is how far down the list it gets before somebody agrees something — and each step down costs an order of magnitude more than the one above it."
+        },
+        {
+          "type": "core",
+          "md": "### The stages\n\n1. The [[baseline|baseline]] programme is established\n2. The project commences\n3. Deviation from the baseline is identified — or projected\n4. A delay occurs, or is discovered\n5. Delay analysis\n6. The claim is submitted and presented\n7. The claim is responded to\n8. Negotiation, and an award of [[eot|extension of time]]\n9. A revised baseline is agreed for the remaining work\n10. Dispute resolution, if the award is not agreed\n11. Resolution\n\nStages 1 to 9 are project management. Stage 10 is where the money goes.\n\n### The wait-and-see problem\n\nThe most damaging habit in this cycle is deferring stages 5 to 8. It is superficially rational on both sides:\n\n- The **contract administrator** waits because the full effect of an event is not yet known, and granting time that later proves excessive cannot be taken back.\n- The **contractor** waits because it believes a fuller picture later will support a larger claim.\n\nBoth are wrong, and for the same reason. Evidence decays. The people who knew what happened leave. The programme that was current at the time gets superseded. What could have been settled in a fortnight from a monthly update becomes a forensic exercise requiring two experts, a reconstructed as-built, and eighteen months.\n\nThe [[scl|SCL Protocol]] is emphatic about this. Its central theme is dealing with applications **as close in time as possible to the event**, and it discourages the wait-and-see approach in terms.\n\n### Time at large\n\nThere is a further reason employers should not let this drift. If an employer prevents completion and there is no effective mechanism left to fix a new completion date, time may become **at large** — the obligation reverts to completing within a reasonable time, and the right to deduct [[ld|liquidated damages]] goes with it.\n\nThat is worth stating plainly: the extension of time machinery protects the employer at least as much as the contractor. Its benefit to the contractor is relief from damages. Its benefit to the employer is preserving the right to charge them at all."
+        },
+        {
+          "type": "figure",
+          "widget": "steps",
+          "props": {
+            "title": "The life cycle, and where cost enters",
+            "sub": "Each step down is roughly an order of magnitude more expensive than the last",
+            "steps": [
+              {
+                "t": "Establish and agree the baseline",
+                "d": "The single cheapest intervention available. Everything downstream is measured from here.",
+                "m": "£"
+              },
+              {
+                "t": "Identify deviation early",
+                "d": "Monthly updates, early-warning registers, problem files. A deviation spotted in the month it happens can often be re-sequenced away.",
+                "m": "£"
+              },
+              {
+                "t": "Notify and analyse at the time",
+                "d": "A time impact evaluation on the current programme, while everyone still remembers the facts.",
+                "m": "££"
+              },
+              {
+                "t": "Submit, respond, negotiate",
+                "d": "Commercial settlement between the parties who were actually there.",
+                "m": "££"
+              },
+              {
+                "t": "Agree a revised baseline",
+                "d": "Reset for the remaining work so the next event is measured from something real.",
+                "m": "££"
+              },
+              {
+                "t": "Adjudication",
+                "d": "Twenty-eight days, and a decision binding until finally determined.",
+                "m": "££££"
+              },
+              {
+                "t": "Arbitration or litigation",
+                "d": "Two party-appointed experts, possibly a third appointed by the tribunal, and years.",
+                "m": "££££££"
+              }
+            ],
+            "note": "Delay claims are a very effective way to spend money and divert management away from running a business."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "law",
+          "title": "Contemporaneous beats reconstructed, almost always",
+          "md": "Tribunals prefer contemporaneous programming evidence to anything created afterwards — and they will prefer a flawed programme that both parties were actually using at the time to an immaculate one built for the hearing.\n\nThis is not judicial conservatism. A programme in live use was tested weekly against reality by people whose job depended on it. A reconstruction was built by somebody who already knew the answer they wanted."
+        },
+        {
+          "type": "worked",
+          "md": "The same event, resolved at four different stages:",
+          "calc": [
+            {
+              "l": "Agreed at the time — a two-hour meeting, a signed compensation event",
+              "v": "≈ £900",
+              "tone": "emp"
+            },
+            {
+              "l": "Resolved in negotiation six months later, with internal analysis",
+              "v": "≈ £14,000",
+              "sub": true
+            },
+            {
+              "l": "Adjudicated at 18 months, with a delay expert engaged",
+              "v": "≈ £70,000",
+              "sub": true
+            },
+            {
+              "l": "Arbitrated at three years, two experts and a tribunal expert",
+              "v": "≈ £340,000",
+              "total": true,
+              "tone": "crit"
+            }
+          ],
+          "after": "The underlying entitlement is identical in all four rows. Only the cost of establishing it changes — and in the fourth row it may well exceed the value of the extension of time being argued about. That is what proportionality means in practice, and it is a legitimate factor in choosing how sophisticated an analysis to run."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-1-4-a",
+            "q-1-4-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Eleven stages, and the cost multiplies at each step down the dispute hierarchy.",
+            "Wait-and-see is seductive to both parties and damaging to both. Evidence decays; people leave; programmes get superseded.",
+            "The extension of time machinery protects the employer too — without it, time can become at large and liquidated damages go with it.",
+            "Contemporaneous evidence beats reconstructed evidence, even when the contemporaneous evidence is flawed."
+          ]
+        }
+      ]
+    },
+    "1.5": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Until 2002 there was almost no published guidance on how to do any of this. Practitioners were largely self-taught, which is why two experts could apply a technique with the same name and produce opposite answers without either of them being obviously wrong. Two documents changed that — and neither of them is law."
+        },
+        {
+          "type": "core",
+          "md": "### The SCL Delay and Disruption Protocol\n\nPublished by the Society of Construction Law in October 2002. Its stated aim is to give useful guidance on the common issues that arise where one party seeks an [[eot|extension of time]] or compensation from another, and to provide a means of resolving them **without a dispute**.\n\nIts structure:\n\n- twenty-one core statements of principle\n- four sections of guidance notes explaining the reasoning\n- guidelines on preparing and maintaining programmes and records\n- guidelines on dealing with extensions of time during the works, and after completion\n- model specification and records clauses\n- definitions and a glossary\n\nIts focus is **dispute avoidance**. It is written for contract administrators as much as for forensic analysts, and its recurring instruction is to deal with matters *at the time*.\n\n### RP-29R-03, Forensic Schedule Analysis\n\nPublished by AACE International on 1 July 2007. Substantially more technical, and narrower in scope: it is about the forensic application of CPM scheduling, and it does not address how parties should manage programmes during the works at all.\n\nIts stated purpose is to provide a unifying technical reference and to **reduce the degree of subjectivity** in current practice. It assumes the reader already has advanced, hands-on knowledge of [[critical|critical path]] method analysis. Its lasting contribution is the taxonomy — a five-layer classification of methods that lets two analysts establish precisely what each of them did.\n\n### Where they agree, and where they part\n\nThey agree on more than the debate suggests: transparency, the primacy of contemporaneous records, the need for a validated [[baseline|baseline]], and that no method is exact.\n\nThey diverge on two points of substance:\n\n- **[[float|Float]] ownership.** The Protocol treats float as available to whoever needs it, without saying either party owns it. RP-29R-03 distinguishes *network float*, a shared resource, from *project float* — [[terminal|terminal float]] — which it says is owned solely by the contractor.\n- **Timing.** The Protocol addresses prospective analysis during the works. RP-29R-03 deals only with retrospective analysis, after the effects are known.\n\n### Neither is law\n\nThe Protocol says so itself: it is expressly not intended as a statement of law. RP-29R-03 says a departure from its protocols should not automatically be treated as an error, provided the departure is a conscious and sound application of scheduling principles.\n\nThat matters more than it sounds. Both documents have been used in argument as though non-compliance were itself a defect. It is not. An unorthodox approach that both parties accept and that resolves a claim is a good approach, whatever it is called."
+        },
+        {
+          "type": "figure",
+          "widget": "compare",
+          "props": {
+            "title": "Two guides, side by side",
+            "cards": [
+              {
+                "k": "United Kingdom · 2002",
+                "t": "SCL Delay and Disruption Protocol",
+                "pro": [
+                  "Twenty-one principles covering time, money, float, concurrency and disruption",
+                  "Aimed at dispute AVOIDANCE, not just resolution",
+                  "Model specification and records clauses you can put straight into a contract",
+                  "Addresses prospective analysis during the works",
+                  "Judicially recognised in the Technology and Construction Court"
+                ],
+                "con": [
+                  "Criticised as too prescriptive in preferring time impact analysis",
+                  "Places less weight on as-built methods than many practitioners think it should",
+                  "Expressly not a statement of law"
+                ]
+              },
+              {
+                "k": "United States · 2007",
+                "t": "AACE RP-29R-03",
+                "pro": [
+                  "Rigorous taxonomy — two analysts can state exactly what they each did",
+                  "Explicitly aimed at minimising procedural subjectivity",
+                  "Detailed source-validation protocols for baselines, updates and as-builts",
+                  "Practical guidance on reconstructing as-built logic"
+                ],
+                "con": [
+                  "Retrospective only — silent on managing programmes during the works",
+                  "Assumes advanced CPM knowledge; not a primer",
+                  "Narrower scope than the Protocol",
+                  "No judicial recognition"
+                ]
+              }
+            ],
+            "note": "They complement each other. The Protocol tells you what good practice looks like; RP-29R-03 tells you how to describe precisely what you did."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Do not get hung up on names",
+          "md": "\"Time impact analysis\", \"as-planned versus as-built\", \"collapsed as-built\" — these labels only really matter when giving expert evidence, as shorthand for the general approach being taken. Each has secondary derivatives and many variations in execution.\n\nBadging a piece of analysis and then defending the badge rather than the reasoning is a recognisable failure mode. What matters is that the process is transparent, auditable, reproducible from the same facts, and that every assumption is stated."
+        },
+        {
+          "type": "worked",
+          "md": "The same seven factors appear in both guides' selection criteria, with two additions from AACE:",
+          "table": {
+            "head": [
+              "Factor",
+              "SCL Protocol",
+              "RP-29R-03"
+            ],
+            "rows": [
+              [
+                "The conditions of contract",
+                "Yes",
+                "Yes"
+              ],
+              [
+                "The nature of the causative events",
+                "Yes",
+                "Yes"
+              ],
+              [
+                "The value of the dispute",
+                "Yes",
+                "Yes"
+              ],
+              [
+                "Time available",
+                "Yes",
+                "Yes"
+              ],
+              [
+                "Records available",
+                "Yes",
+                "Yes"
+              ],
+              [
+                "Programme information available",
+                "Yes",
+                "Yes"
+              ],
+              [
+                "The analyst's skill and familiarity with the project",
+                "Yes",
+                "Yes"
+              ],
+              [
+                "The forum for resolution, and the audience",
+                "—",
+                "Yes"
+              ],
+              [
+                "Legal or procedural requirements, and what the other side is using",
+                "—",
+                "Yes"
+              ]
+            ]
+          },
+          "after": "The two AACE additions are pragmatic rather than technical, and they are worth taking seriously. A method the tribunal cannot follow is a bad method however rigorous it is — and if the other side has run a technique you refuse to engage with, the result is usually that the tribunal makes its own assessment on the facts and disregards both of you."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-1-5-a",
+            "q-1-5-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "The SCL Protocol (2002) is broad, aimed at avoidance, and addresses analysis during the works. RP-29R-03 (2007) is technical, retrospective, and aimed at reducing subjectivity.",
+            "They differ on float ownership: the Protocol treats it as shared; AACE says terminal float belongs to the contractor.",
+            "Neither is law. Both say so. Non-compliance is not itself a defect if the departure is conscious and explained.",
+            "The name of a technique matters far less than whether the process is transparent, auditable and reproducible."
+          ]
+        }
+      ]
+    }
+  }
+}

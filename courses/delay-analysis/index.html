@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--
+  DELAY ANALYSIS IN CONSTRUCTION CONTRACTS
+  © 2026 Shital Ghimire. All rights reserved.
+
+  This course — its curriculum, lesson text, worked examples,
+  instruments, question bank, design system and source code — is the
+  original work of Shital Ghimire. It may not be copied, reproduced,
+  republished or redistributed, in whole or in part, without his
+  express written permission.
+
+  The subject matter follows the structure of "Delay Analysis in
+  Construction Contracts" by P. J. Keane and A. F. Caletka
+  (Wiley-Blackwell, 2008). The techniques taught here are the
+  industry-standard methods described in the SCL Delay and Disruption
+  Protocol and AACE International RP-29R-03. All text is original.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Delay Analysis in Construction Contracts — Shital Ghimire</title>
+<meta name="description" content="An interactive course in forensic programming and delay analysis. Critical path method, float, concurrency, and the four primary techniques — with instruments that actually run. Access by code."/>
+<meta name="theme-color" content="#0D1017"/>
+<meta name="author" content="Shital Ghimire"/>
+<meta name="copyright" content="© 2026 Shital Ghimire. All rights reserved."/>
+<meta name="robots" content="index, follow"/>
+
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Delay Analysis in Construction Contracts"/>
+<meta property="og:description" content="Programmes, critical paths, and the four techniques for proving who owes whom time. An interactive course."/>
+
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="../../assets/icon-180.png"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="css/tokens.css"/>
+<link rel="stylesheet" href="css/base.css"/>
+<link rel="stylesheet" href="css/shell.css"/>
+<link rel="stylesheet" href="css/lesson.css"/>
+<link rel="stylesheet" href="css/widgets.css"/>
+</head>
+<body>
+
+<a class="skip" href="#view">Skip to content</a>
+
+<!-- ══════════ THE GATE ══════════ -->
+<div class="gate" id="gate">
+  <div class="gate__bg" id="gateBg" aria-hidden="true"></div>
+
+  <div class="gate__card sheet">
+    <div class="gate__strip">
+      <span>Project <b>DA-2026</b></span>
+      <span>Rev <b>A</b></span>
+      <span>Status <b>Sealed</b></span>
+    </div>
+
+    <div class="gate__body">
+      <svg class="gate__mark" viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="1" y="7"  width="17" height="6" rx="1" fill="#F05A36"/>
+        <rect x="1" y="17" width="26" height="6" rx="1" fill="#39414F"/>
+        <rect x="1" y="27" width="11" height="6" rx="1" fill="#39414F"/>
+        <path d="M18 10 h5 v10 h5" fill="none" stroke="#5B9DD9" stroke-width="1.4"/>
+        <path d="M12 30 h9 v-6" fill="none" stroke="#45BFB6" stroke-width="1.4" stroke-dasharray="2 2"/>
+        <circle cx="36" cy="20" r="2.6" fill="none" stroke="#F1EDE3" stroke-width="1.4"/>
+      </svg>
+
+      <h1 class="gate__title">
+        Delay Analysis
+        <em>in Construction Contracts</em>
+      </h1>
+
+      <p class="gate__blurb">
+        Ten modules on forensic programming — the critical path method, float,
+        concurrency, disruption, and the four techniques for proving who owes
+        whom time. This course is encrypted; the access code unseals it.
+      </p>
+
+      <form class="gate__field" id="gateForm" novalidate>
+        <label for="gateCode">Access code</label>
+        <input class="gate__input" id="gateCode" type="password"
+               inputmode="numeric" autocomplete="off" autocapitalize="off"
+               spellcheck="false" placeholder="••••••••••"
+               aria-describedby="gateMsg"/>
+        <p class="gate__msg" id="gateMsg" role="status" aria-live="polite"></p>
+
+        <div class="gate__actions">
+          <button class="btn btn--primary btn--wide" id="gateGo" type="submit">Unseal the course</button>
+          <label style="display:flex;align-items:center;gap:8px;font-size:var(--t-xs);color:var(--p-300);cursor:pointer">
+            <input type="checkbox" id="gateRemember"/>
+            Remember on this device
+          </label>
+        </div>
+      </form>
+    </div>
+
+    <div class="gate__foot">
+      <span>© 2026 Shital Ghimire</span>
+      <a href="../index.html">← All courses</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ HEADER ══════════ -->
+<header class="head" id="head">
+  <div class="wrap head__bar">
+    <a class="head__home" href="../index.html" title="All courses">← Courses</a>
+
+    <a class="wordmark" href="#/">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="1" y="7"  width="17" height="6" rx="1" fill="#F05A36"/>
+        <rect x="1" y="17" width="26" height="6" rx="1" fill="#39414F"/>
+        <rect x="1" y="27" width="11" height="6" rx="1" fill="#39414F"/>
+        <path d="M18 10 h5 v10 h5" fill="none" stroke="#5B9DD9" stroke-width="1.6"/>
+      </svg>
+      <span>Delay Analysis</span><i>· forensic programming</i>
+    </a>
+
+    <button class="head__burger" id="burger" type="button"
+            aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="head__nav" id="nav" aria-label="Course sections">
+      <a href="#/">Programme</a>
+      <a href="#/case">Case study</a>
+      <a href="#/toolkit">Toolkit</a>
+      <a href="#/glossary">Glossary</a>
+      <a href="#/settings">Settings</a>
+    </nav>
+
+    <span class="head__prog" title="Lessons completed">
+      <span class="lbl">Progress</span>
+      <span class="head__meter"><i id="meter"></i></span>
+      <b id="progVal">0/0</b>
+    </span>
+  </div>
+</header>
+
+<main class="view wrap" id="view" tabindex="-1">
+  <div class="msg">
+    <h2>Unsealing…</h2>
+    <p>Deriving the key and decrypting the curriculum.</p>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <p>
+      <b>Delay Analysis in Construction Contracts</b>
+      An interactive course in forensic programming. Educational content only —
+      not legal advice. Nothing here is a substitute for the terms of your own contract.
+    </p>
+    <p>
+      <b>Sources</b>
+      Follows the structure of Keane &amp; Caletka, <i>Delay Analysis in Construction
+      Contracts</i> (Wiley-Blackwell). References the SCL Delay and Disruption Protocol
+      and AACE International RP-29R-03. All text original.
+    </p>
+    <p>
+      <b>© 2026 Shital Ghimire</b>
+      <span class="foot__links">
+        <a href="#/glossary">Glossary</a>
+        <a href="#/settings">Settings</a>
+        <a href="../index.html">All courses</a>
+        <a href="../../index.html">shitalghimire.com.np</a>
+      </span>
+    </p>
+  </div>
+</footer>
+
+<noscript>
+  <div class="wrap" style="padding:64px 0">
+    <div class="msg">
+      <h2>This course needs JavaScript</h2>
+      <p>Every lesson, network diagram and calculation runs in your browser — there is no server.
+         The course body is also encrypted, and the key is derived here from your access code.
+         Please enable JavaScript and reload.</p>
+    </div>
+  </div>
+</noscript>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

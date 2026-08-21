@@ -1,0 +1,796 @@
+{
+  "module": 6,
+  "lessons": {
+    "6.1": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "A project can be disrupted from end to end and still finish on time. It can also finish four months late having suffered no disruption at all. Delay is about time; disruption is about hours — and the events that cause them are usually the same events."
+        },
+        {
+          "type": "core",
+          "md": "### Definitions worth being precise about\n\n**[[disruption|Disruption]]** is an interruption to the flow, continuity or sequence of planned work — a bringing of disorder to an activity or project. The [[scl|SCL Protocol]] puts it this way:\n\n> Disruption (as distinct from delay) is disturbance, hindrance or interruption to a Contractor's normal working methods, resulting in lower efficiency.\n\nAnd:\n\n> In the construction context, disrupted work is work that is carried out less efficiently than it would have been had it not been for the cause of the disruption.\n\n### The difference that matters\n\nDelay and disruption often result from the same events, which is why they are spoken of in the same breath. But:\n\n- **Delay** may or may not have a financial consequence. Delay to an activity with [[float|float]] delays nothing and costs nothing.\n- **Disruption**, once established, has a **direct measurable financial consequence** — even where concurrent or co-contributory culpable factors are present.\n\nThat second point is the important one. Disruption can be recovered on a project that completed on time, because the loss is in the hours, not in the calendar.\n\n### The three ways they interact\n\n**Disruption without delay.** Non-critical activities are disrupted. The works still complete on time. No [[eot|extension of time]], but a claim for the reduced efficiency of labour and plant.\n\n**Disruption causing delay.** A critical activity is prolonged from ten weeks to twenty. Examine why and you may find the scope doubled — or that conditions made the work 50% less efficient, requiring twice the hours for the same task. Here disruption was the *cause* of critical delay.\n\n**Disruption absorbed by resources.** A critical activity is disrupted, but the contractor throws more resources at it and avoids critical delay. No extension of time, and the same level of disruption to claim.\n\nThat third case is worth sitting with. Had the contractor simply doubled the hours worked in the original ten weeks, there would have been **no critical delay and identical disruption**.\n\n### Which is why they need separate analyses\n\nThe effect of delay (time) and the effect of disruption (hours) must be analysed **independently, using different methods**. Delay analysis does not measure or identify disruption. It may identify delay events that cannot be quantified discretely because of overlapping causes — but that is not the same as measuring the productivity loss.\n\n### Acceleration is not efficiency\n\nOne more distinction. To accelerate you must increase daily or hourly **production**: more resources, more plant, more supervision, overtime, additional shifts.\n\n[[acceleration|Acceleration]] is not synonymous with efficiency. In fact acceleration is usually **less efficient and more expensive per unit of production** than normal working — which is precisely why it costs money and why disruption and acceleration claims so often arrive together."
+        },
+        {
+          "type": "figure",
+          "widget": "gantt",
+          "props": {
+            "title": "Three ways disruption and delay interact",
+            "sub": "Same event. Three different outcomes.",
+            "start": "2026-01-01",
+            "end": "2026-08-01",
+            "unit": "month",
+            "rows": [
+              {
+                "group": "Case A — disruption, no delay",
+                "tone": "slack"
+              },
+              {
+                "label": "Non-critical activity, planned",
+                "bars": [
+                  {
+                    "s": "2026-01-05",
+                    "f": "2026-03-16",
+                    "kind": "plan"
+                  }
+                ],
+                "float": {
+                  "s": "2026-03-17",
+                  "f": "2026-05-11"
+                }
+              },
+              {
+                "label": "…as built, disrupted",
+                "sub": "38% more hours, absorbed by float",
+                "bars": [
+                  {
+                    "s": "2026-01-05",
+                    "f": "2026-04-20",
+                    "kind": "emp",
+                    "label": "+35d, no critical delay"
+                  }
+                ]
+              },
+              {
+                "group": "Case B — disruption causing delay",
+                "tone": "critical"
+              },
+              {
+                "label": "Critical activity, planned",
+                "sub": "10 weeks",
+                "bars": [
+                  {
+                    "s": "2026-01-05",
+                    "f": "2026-03-16",
+                    "kind": "crit"
+                  }
+                ]
+              },
+              {
+                "label": "…as built, disrupted",
+                "sub": "20 weeks — same scope, half the efficiency",
+                "bars": [
+                  {
+                    "s": "2026-01-05",
+                    "f": "2026-05-25",
+                    "kind": "emp",
+                    "label": "+70d critical delay"
+                  }
+                ]
+              },
+              {
+                "group": "Case C — disruption absorbed by resources",
+                "tone": "employer"
+              },
+              {
+                "label": "Critical activity, planned",
+                "sub": "10 weeks, one gang",
+                "bars": [
+                  {
+                    "s": "2026-01-05",
+                    "f": "2026-03-16",
+                    "kind": "crit"
+                  }
+                ]
+              },
+              {
+                "label": "…as built, two gangs",
+                "sub": "on time — and identical disruption",
+                "bars": [
+                  {
+                    "s": "2026-01-05",
+                    "f": "2026-03-16",
+                    "kind": "con",
+                    "label": "no delay, double the hours"
+                  }
+                ]
+              }
+            ],
+            "markers": [
+              {
+                "at": "2026-03-16",
+                "label": "planned finish",
+                "kind": "cd"
+              }
+            ],
+            "legend": false,
+            "note": "Cases A and C both complete without critical delay. Both carry a full disruption claim. A delay analysis would find nothing in either."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "Disruption without an extension of time",
+          "md": "The SCL Protocol recognises expressly that **entitlement to compensation for disruption can be established even where no critical delay has been experienced and no extension of time granted**.\n\nThis is one of the most under-used propositions in the field. Contractors routinely lose a disruption claim by attaching it to a failed extension of time claim, as though the two stood or fell together. They do not. The hurdle for disruption is establishing a causal link from an employer risk event to actual loss — and that link does not run through the critical path at all."
+        },
+        {
+          "type": "worked",
+          "md": "One project, two completely separate claims:",
+          "calc": [
+            {
+              "l": "Contract completion",
+              "v": "16 Aug"
+            },
+            {
+              "l": "Actual completion",
+              "v": "16 Aug — on time",
+              "tone": "emp"
+            },
+            {
+              "l": "Extension of time claim",
+              "v": "nil",
+              "sub": true
+            },
+            {
+              "l": "Planned labour, mechanical package",
+              "v": "42,000 hrs",
+              "sub": true
+            },
+            {
+              "l": "Actual labour expended",
+              "v": "58,400 hrs",
+              "sub": true
+            },
+            {
+              "l": "Hours attributable to instructed additional scope",
+              "v": "6,200 hrs",
+              "sub": true
+            },
+            {
+              "l": "Unexplained excess hours",
+              "v": "10,200 hrs",
+              "total": true
+            },
+            {
+              "l": "Established as disruption from employer risk events",
+              "v": "7,400 hrs",
+              "tone": "emp"
+            },
+            {
+              "l": "At £41/hr all-in",
+              "v": "£303,400",
+              "total": true
+            }
+          ],
+          "after": "Nil delay. £303,400 of disruption. The project finished on the contractual date and the contractor is still substantially out of pocket, because the same work took 39% more hours than it should have.\n\nThe 2,800-hour gap between the unexplained excess and the established disruption is the contractor's own — poor productivity it could not attribute to any employer risk event. Identifying and conceding it is what makes the remaining 7,400 credible."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-6-1-a",
+            "q-6-1-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Delay is about time; disruption is about hours. Same events, different analyses, different methods.",
+            "Disruption always has a direct financial consequence. Delay may have none at all if it lands on float.",
+            "Disruption can be recovered on a project that finished on time, and does not require an extension of time.",
+            "Acceleration is not efficiency — it is usually less efficient per unit of production than normal working."
+          ]
+        }
+      ]
+    },
+    "6.2": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Efficiency and productivity get used interchangeably on every site in the country. They are different measurements, expressed in different units, and the moment somebody has to price the difference the confusion becomes expensive."
+        },
+        {
+          "type": "core",
+          "md": "### Two terms, precisely\n\n**Productivity** is production per unit of effort — output divided by input. Units per hour. It can equally be expressed the other way round, as input divided by output: hours per unit.\n\n**Efficiency** is a *ratio* — planned production compared to actual production, expressed as a percentage. It is a measure **of** productivity, comparing a control group or undisrupted period against production actually achieved.\n\nIf target production is 10 units a day and actual production is 5 units a day for the same input, efficiency is 50%. If actual equals target for the same input, efficiency is 1, or 100%. Above 1 and the actual output is better than planned.\n\n### The arithmetic\n\n> **Efficiency = planned productivity ÷ actual productivity**\n\nWorked through:\n\n- 100 m² of drywall is planned to take 8 hours with a two-man crew. That is **16 hours per 100 m²**.\n- Actual production is 50 m² in an 8-hour day with a two-man crew. That is **32 hours per 100 m²**.\n- Efficiency = 16 ÷ 32 = **0.5, or 50%**.\n\n[[disruption|Disruption]] is the measure of the productivity loss between those two rates. The loss here is **16 hours per 100 m²**.\n\n### Expressing the loss\n\nThat 16-hour figure can be expressed two ways, and they give different percentages:\n\n- as a proportion of hours **spent**: 16 ÷ 32 = 50%\n- as a proportion of hours **planned**: 16 ÷ 16 = 100%\n\nBoth are correct and they mean different things. Say which you are using. In either case, 16 hours were lost per 100 m² to whatever disruption was present.\n\n### The three burdens\n\nA disruption claim carries the same cause-and-effect burden as a critical delay claim:\n\n1. **Liability** — the event or factor causing disruption was a compensable event.\n2. **Causation** — the disruption factor was actually present.\n3. **Damages** — the amount of disruption resulting from that factor.\n\n### Where it gets hard\n\nDetermining these ratios for discrete periods or individual tasks relies on accurate, comprehensive records. The formula must account for variable input as well as output, and **organising the data so hours align with a measurable unit of progress** is the real challenge on any project of size.\n\nNote what that implies about record keeping. Merely keeping more records may be of no assistance whatsoever — it is the **quality and relevance** of the records that counts. A million timesheets that cannot be tied to a quantity of work produced are worth nothing to a disruption claim."
+        },
+        {
+          "type": "figure",
+          "widget": "disruption-calc",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "Record hours against measurable output",
+          "md": "The single change that makes a disruption claim provable: **allocate labour hours to activities that have countable output**.\n\nNot \"48 hours, second floor\". Instead: \"48 hours, activity C1B644010, blockwork level 2 grid 35–43, 212 m² placed\".\n\nThat one line gives you hours, an activity, a location and a quantity — which is everything the efficiency calculation needs. Without the quantity, you have a cost record and no productivity record, and the measured mile in two lessons' time becomes impossible to construct."
+        },
+        {
+          "type": "worked",
+          "md": "The drywall example, and what it costs:",
+          "calc": [
+            {
+              "l": "Planned — 100 m² in 8 hours, two-man crew",
+              "v": "16 hrs / 100 m²"
+            },
+            {
+              "l": "Actual — 50 m² in 8 hours, two-man crew",
+              "v": "32 hrs / 100 m²"
+            },
+            {
+              "l": "Efficiency = 16 ÷ 32",
+              "v": "50%",
+              "total": true,
+              "tone": "crit"
+            },
+            {
+              "l": "Hours lost per 100 m²",
+              "v": "16 hrs",
+              "sub": true
+            },
+            {
+              "l": "Total drywall in the affected area",
+              "v": "3,400 m²",
+              "sub": true
+            },
+            {
+              "l": "Total hours lost = 3,400 ÷ 100 × 16",
+              "v": "544 hrs",
+              "total": true
+            },
+            {
+              "l": "At £38/hr all-in",
+              "v": "£20,672",
+              "total": true,
+              "tone": "emp"
+            }
+          ],
+          "after": "Establishing the 50% is the first third of the job. You must still show that the factor causing it was an employer risk — stacking of trades, restricted access, late information — and that it caused **this** loss rather than something else. Any model attempting to calculate disruption should be capable of isolating the loss due to excusable factors from the loss due to the contractor's own."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-6-2-a",
+            "q-6-2-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Productivity is output per unit of input. Efficiency is the ratio of planned productivity to actual, as a percentage.",
+            "Efficiency = planned productivity ÷ actual productivity. Below 1 means loss.",
+            "State whether you express the loss against hours spent or hours planned — they give different percentages and both are correct.",
+            "Record labour hours against activities with countable output. Without the quantity there is no productivity record and no measured mile."
+          ]
+        }
+      ]
+    },
+    "6.3": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "The list of things that reduce productivity on a construction site runs to about forty items. Most of them are recognisable to anyone who has been on one. The difficulty is never identifying them — it is showing which of them cost what."
+        },
+        {
+          "type": "core",
+          "md": "### The causes\n\n**Information and design**\nLate design · inaccurate detailed drawings · rework and corrective work · the ripple effect of multiple changes · changes and variations to scope · constructive changes · contract changes.\n\n**Access and conditions**\nDelayed or hindered access · out-of-sequence access to work faces · adverse weather, usually severe · environmental conditions · discovery of hazards · work carried out in less than ideal conditions · joint occupancy · beneficial occupancy · works undertaken by others.\n\n**Crowding and congestion**\nCrew overloading · congestion at work faces — confined space, confusion, safety hazards · stacking of trades in confined space · stacking of trades, activities accomplished concurrently · increase in labour gangs above optimum levels.\n\n**Learning and continuity**\nLearning and un-learning curves · repeated learning cycles when new resources are recruited · premature moves between activities · interruption of job rhythm · out-of-sequence working · double handling of materials · reassignment of manpower.\n\n**People and supervision**\nDilution of supervision · fatigue from overtime and shift working · overtime — physical fatigue and depressed mental attitude · increase in shifts · morale and attitude · revisits and redoing work · crew size efficiency · over-inspection.\n\n### Two things worth noticing\n\nMany of these are similar to the causes of delay. But **decreased efficiency is not always related to the event that caused critical delay, and vice versa**. [[disruption|Disruption]] analysis should not be confined to events on the [[critical|critical path]] — disruption can be experienced from events with no proximity to it at all.\n\nAnd some of these are the contractor's own. Liability for disruption caused by crew overloading, dilution of supervision or poor material handling may arise through **poor on-site management**. Any model attempting to calculate disruption should be capable of isolating the loss due to [[excusable|excusable]] factors from the loss due to non-excusable ones.\n\n### Published productivity studies\n\nSeveral bodies publish tables predicting the effects of disruptive factors:\n\n- The Mechanical Contractors Association (MCA)\n- The Business Roundtable, Bulletin 917\n- The National Electrical Contractors Association\n- The Chartered Institute of Building\n- The US Department of Labor\n\nThe MCA guidelines are the best known. They set expected loss of efficiency for **sixteen disruption factors** on a scale, according to whether the frequency or magnitude of the factor is assessed as *minor*, *average* or *severe*.\n\n### Use them with caution\n\nEach study has different applications. A contractor must establish the **relevance** of a study before relying on it, and the data is far more effectively applied by somebody familiar both with the factors and with the type of operation disrupted.\n\nThe courts have accepted the MCA approach where there was no undisrupted period to serve as a control — in *Clark Construction Group*, where no [[measuredmile|measured mile]] was available, and in *Hensel Phelps*, where it was held there was \"considerable merit in the approach\". But the reasoning in *Hensel Phelps* is instructive: the tribunal had no objection to a **qualified expert** using these factors, in a contract that committed the parties to assessing the impact of change on unchanged work.\n\nWhere practicable, agree the model, curve or guidelines with the opposing party as early as possible. As Lord Justice Carnwath observed in *Railtrack v Guinness*, where parties intend to rely on a complex valuation exercise based on a computer model, it is of the utmost importance that they seek to agree a common model."
+        },
+        {
+          "type": "figure",
+          "widget": "table",
+          "props": {
+            "title": "Disruption factors and where they come from",
+            "sub": "Some are the employer's. Some are yours. A model must separate them.",
+            "head": [
+              "Factor",
+              "Typical origin",
+              "Leaves a trace in"
+            ],
+            "rows": [
+              [
+                "Late or inaccurate design information",
+                "Employer",
+                "RFI register, drawing issue register, minutes"
+              ],
+              [
+                "Rework and corrective work",
+                "Either — depends on the cause",
+                "Inspection reports, NCRs, timesheets"
+              ],
+              [
+                "Ripple effect of multiple changes",
+                "Employer",
+                "Instruction register, change order log"
+              ],
+              [
+                "Delayed or hindered access",
+                "Employer",
+                "Correspondence, site diaries, possession records"
+              ],
+              [
+                "Stacking of trades in confined space",
+                "Either",
+                "Labour histograms, daily reports, photographs"
+              ],
+              [
+                "Dilution of supervision",
+                "Usually contractor",
+                "Staff records, labour returns"
+              ],
+              [
+                "Learning curve on new resources",
+                "Follows from whoever caused the remobilisation",
+                "Labour histograms, payroll"
+              ],
+              [
+                "Overtime and shift-working fatigue",
+                "Follows from whoever caused the acceleration",
+                "Timesheets, payroll"
+              ],
+              [
+                "Crew overloading above optimum",
+                "Usually contractor, unless instructed to accelerate",
+                "Labour histograms"
+              ],
+              [
+                "Out-of-sequence working",
+                "Either",
+                "Out-of-sequence reports, programme updates"
+              ],
+              [
+                "Over-inspection",
+                "Employer",
+                "Inspection records, correspondence"
+              ],
+              [
+                "Discovery of hazards",
+                "Usually employer",
+                "Site records, statutory notifications"
+              ]
+            ],
+            "note": "The third column is the point. Every factor leaves a documentary trace somewhere, and knowing where to look is most of the work in establishing that the factor was actually present."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "law",
+          "title": "Stacking of trades, in one project",
+          "md": "A recorded case history: resources on a fit-out were increased from 22 men per floor to as many as 78, in an attempt to accelerate.\n\nThe efficiency of each man — measured in value earned per hour expended — was tracked across the thirteen weeks of the task. Crowding was identified as a disruptive factor in weeks four to eight, and the effect was the opposite of what was intended: **deceleration**. Lower output per man, and a delay to the works.\n\nOther factors compounded it: dilution of supervision as the men-per-supervisor ratio rose, and insufficient detailed design to support the proposed acceleration. Because the disruption comprised many interacting factors, identifying the hours lost to each discretely would have been impossible — which is exactly why a measured mile approach was accepted."
+        },
+        {
+          "type": "worked",
+          "md": "How a published study is applied — and why it needs care:",
+          "table": {
+            "head": [
+              "Factor",
+              "Minor",
+              "Average",
+              "Severe",
+              "Assessed here"
+            ],
+            "n": [
+              1,
+              2,
+              3
+            ],
+            "rows": [
+              [
+                "Stacking of trades",
+                "10%",
+                "20%",
+                "30%",
+                "Average — 20%"
+              ],
+              [
+                "Morale and attitude",
+                "5%",
+                "15%",
+                "30%",
+                "Minor — 5%"
+              ],
+              [
+                "Reassignment of manpower",
+                "5%",
+                "10%",
+                "15%",
+                "Average — 10%"
+              ],
+              [
+                "Crew size inefficiency",
+                "10%",
+                "20%",
+                "30%",
+                "Minor — 10%"
+              ],
+              [
+                "Dilution of supervision",
+                "10%",
+                "15%",
+                "25%",
+                "Average — 15%"
+              ],
+              [
+                "Learning curve",
+                "5%",
+                "15%",
+                "30%",
+                "Average — 15%"
+              ]
+            ],
+            "caption": "Illustrative percentages in the style of a published productivity study. Actual values must be taken from the study itself."
+          },
+          "after": "Two problems with reading straight down that last column. Adding six factors gives 75%, which would mean the crew was working at a quarter of normal output — and the factors overlap, so simple addition double-counts.\n\nAnd every entry in it is an assessment. *Minor*, *average* or *severe* is a judgement made by the person building the claim. That is why these studies should be used cautiously, supported by contemporaneous observation, and relied on only when factual evidence does not allow a measured mile to be established — or to corroborate one."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-6-3-a",
+            "q-6-3-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "About forty recognised disruption factors, and many of them are the contractor's own. A model must isolate excusable from non-excusable loss.",
+            "Disruption is not confined to the critical path — it can arise from events with no proximity to it at all.",
+            "Published studies (MCA, Business Roundtable, NECA, CIOB) exist and have been accepted where no measured mile was available. Establish their relevance first.",
+            "Agree the model, curve or guidelines with the other side as early as possible. Arguing about the model is worse than arguing about the facts."
+          ]
+        }
+      ]
+    },
+    "6.4": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Take a period where the work went well. Take a period where it did not. Claim the difference. It is the approach the courts have relied on more than any other in recent years, and its entire strength and its entire weakness are the same thing: you chose the first period."
+        },
+        {
+          "type": "core",
+          "md": "### The method\n\nCompare the actual hours spent and output achieved during a period **unaffected** by [[disruption|disruption]] with the hours and output in a period that **was** affected. The production achieved in the unaffected period is the *[[measuredmile|measured mile]]*. The difference in effort is the loss.\n\nIt is endorsed by the [[scl|SCL Protocol]] and accepted by the US federal courts, and its appeal is obvious: it uses the project's **own** data, from the **same** workforce, on the **same** job. No industry averages, no published tables, no theoretical model.\n\n### What the data quality decides\n\nThe quality of the records defines the precision of the analysis, and therefore the length of the periods you can compare.\n\n- Weekly labour returns and corresponding weekly progress reports → efficiency measurable **weekly**\n- Only monthly payment applications as a measure of progress → accuracy only to the **month**\n\nAttempting to analyse the data more precisely than it supports is *adding science where there is none*. Where assumptions are needed to work at a finer resolution, state them clearly, and present a range of opinion in case they prove unreliable.\n\n### Comparing like with like\n\nSeveral traps:\n\n- **Avoid the learning curve.** If the \"unaffected\" period is the first three weeks, you have chosen a period of below-normal output and understated your loss.\n- **Factor out unrealistic programme expectations** and genuinely inefficient working. If the contractor's own output was poor in the control period for its own reasons, the comparison is corrupted.\n- **Use actual site productivity, not tender rates.** Tender rates may never have been achievable and may contain assumptions irrelevant to the actual scope and conditions. If the measured mile establishes that the tender rates were over-optimistic, an adjustment must be made before any damages are calculated on them.\n\n### When there is no clean period\n\nIf the project was so heavily disrupted that no unaffected part exists, options in descending order of strength:\n\n1. Compare productivity on **other similar projects** — depending on the quantity and quality of those records, and on showing the work was sufficiently similar.\n2. Use published **productivity model data** — standard production rates and curves — with the caution set out in the previous lesson.\n\n### The honest problem\n\nShowing confidently that a tradesman worked at a certain output during an undisrupted phase, and then recording his output accurately during the disrupted period, requires record keeping closer to a factory work-study than a building site.\n\nAnd for a main contractor there is a further obstacle: the records that would usefully indicate productivity are usually kept by the **sub-contractors**, and are consequently not readily available."
+        },
+        {
+          "type": "figure",
+          "widget": "measured-mile",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "The band is the argument",
+          "md": "Move the control band in the instrument above into the disrupted weeks and watch the claimed loss collapse.\n\nThat sensitivity is the whole case against the measured mile and the whole reason the choice of period has to be justified **from the records** rather than chosen for the answer it produces.\n\nExpect the other side to run exactly this test. If your control period cannot survive being moved a fortnight either way without the claim transforming, you need to explain why that particular period is the right one — and the explanation has to be about the facts, not about the arithmetic."
+        },
+        {
+          "type": "worked",
+          "md": "One measured mile, from weekly returns:",
+          "calc": [
+            {
+              "l": "Control period — weeks 3 to 6, no disruptive factors recorded",
+              "v": "4 weeks"
+            },
+            {
+              "l": "Output in the control period",
+              "v": "1,085 units"
+            },
+            {
+              "l": "Hours in the control period",
+              "v": "1,920 hrs"
+            },
+            {
+              "l": "Measured mile productivity",
+              "v": "0.565 units/hr",
+              "total": true,
+              "tone": "emp"
+            },
+            {
+              "l": "Impacted periods — weeks 1–2 and 7–15",
+              "v": "11 weeks",
+              "sub": true
+            },
+            {
+              "l": "Output in the impacted periods",
+              "v": "2,041 units",
+              "sub": true
+            },
+            {
+              "l": "Hours actually spent",
+              "v": "6,720 hrs",
+              "sub": true
+            },
+            {
+              "l": "Hours that output should have taken at 0.565 u/hr",
+              "v": "3,612 hrs",
+              "sub": true
+            },
+            {
+              "l": "Hours lost to disruption",
+              "v": "3,108 hrs",
+              "total": true,
+              "tone": "crit"
+            },
+            {
+              "l": "Efficiency in the impacted periods",
+              "v": "54%",
+              "sub": true
+            },
+            {
+              "l": "At £42/hr all-in",
+              "v": "£130,536",
+              "total": true
+            }
+          ],
+          "after": "Note that weeks 1 and 2 are in the *impacted* group, not the control. They were the learning curve, and including them in the measured mile would have lowered the reference rate and understated the claim — which sounds like it helps the other side until you realise it also makes the whole analysis indefensible."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-6-4-a",
+            "q-6-4-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Compare an unimpacted period with a disrupted one, using the project's own records. Endorsed by the SCL Protocol and the US courts.",
+            "Record quality sets the resolution. Monthly applications mean month-level accuracy; anything finer is adding science where there is none.",
+            "Never use the learning curve as the control period, and never use tender rates as the comparator.",
+            "The choice of control period changes the answer completely. Justify it from the facts, because the other side will move it."
+          ]
+        }
+      ]
+    },
+    "6.5": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Claim your total spend, subtract the contract sum, and call the difference disruption. It is the oldest technique in the field and it still gets run, because it is cheap — which is also why it is treated with such suspicion."
+        },
+        {
+          "type": "core",
+          "md": "### The total cost claim\n\nIn its simplest form: compare the planned spend to the actual spend and claim the overspend on labour as the loss due to [[disruption|disruption]]. However it is packaged, this is a **global or rolled-up claim**.\n\n### The cumulative effect claim\n\nA variation, sometimes called *death by a thousand cuts*. A contractor receives a hundred instructions, each varying the work and each disrupting it slightly. The disruptive effect of any one in isolation may be minimal. Rather than claim for each, a single claim is made for the total increased cost, alleging it was caused by the combined effect of all hundred.\n\n### The modified total cost claim\n\nA more sophisticated version, also called *top down*. It begins with the total cost differential but then **subtracts any culpable costs** incurred as a result of contractor risk events, claiming the balance. The contractor starts with the total and takes out as many known discrete costs as possible, both its own and the employer's.\n\nThis materially reduces the force of the usual criticism — but a residual always remains that is not allocated to any individual event, and that residual is where the argument goes.\n\n### The bottom-up alternative\n\nBuild the claim event by event. Its own hurdles: avoiding double recovery, establishing reasonable rates where estimates are relied on, and demonstrating the applicability of bill rates. But it links cause to effect, which is what a [[global|global claim]] by definition does not.\n\n### The burden\n\nFor a total cost claim to succeed **in its entirety**:\n\n- the bid must be shown to be reasonable\n- the actual cost must be shown to be reasonable\n- all events contributing to the loss must be compensable\n- it must be demonstrated that there is no other way to calculate the loss\n- it must be established that the contractor did not contribute to the increased cost in any way\n\nThat last requirement is close to impossible on a real project.\n\n### The case law\n\n**Crosby v Portland (1967)** first gave legal validity to rolled-up claims. **Merton v Leach (1985)** applied and approved the approach but emphasised that such claims can only be made where the loss attributable to each head of claim **cannot in reality be separated**, and only where the conditions for an award have been satisfied for each head individually.\n\n**John Doyle v Laing (2002)** is the most useful. The Scottish court confirmed that the logic of a global claim requires all contributing events to be compensable — but then held that the claim need not fail outright:\n\n> The global claim may fail, but there may be in the evidence a sufficient basis to find causal connections between individual losses and individual events, or to make a rational apportionment of part of the global loss to the causative events for which the defender has been held responsible.\n\nAnd on causation:\n\n> If any event or events for which the employer is responsible can be described as the dominant cause of an item of loss, that will be sufficient to establish liability, notwithstanding that other events played a part in its occurrence.\n\n### What follows practically\n\nA claimant hoping to succeed will have a far stronger position if it has **properly identified the disruptive factors** and attempted to break the project, the events and the losses down into manageable, bite-sized windows.\n\nEven where it proves impossible to allocate financial consequences to each head, part of the claim may still succeed. And where the contractor contributed to the loss, those elements must be identified and excluded wherever possible.\n\nBecause of the limited cost of preparing them, global claims will most likely continue to be predominant in construction disputes. That is a statement about economics, not about their merit."
+        },
+        {
+          "type": "figure",
+          "widget": "compare",
+          "props": {
+            "title": "Four ways to build a disruption claim",
+            "cards": [
+              {
+                "k": "Cheapest",
+                "t": "Total cost",
+                "pro": [
+                  "Very low cost to prepare",
+                  "Requires no event-by-event analysis"
+                ],
+                "con": [
+                  "Requires proof the bid was reasonable",
+                  "Requires proof the contractor contributed nothing",
+                  "Makes no allowance for non-excusable events",
+                  "Shows no link from event to discrete loss"
+                ]
+              },
+              {
+                "k": "Aggregated",
+                "t": "Cumulative effect",
+                "pro": [
+                  "Recognises that many small changes have a combined effect greater than the sum",
+                  "Realistic where each individual effect was genuinely minimal"
+                ],
+                "con": [
+                  "Still a global claim by another name",
+                  "Same burden of proof",
+                  "Very hard to test, and therefore easy to attack"
+                ]
+              },
+              {
+                "k": "Top down",
+                "t": "Modified total cost",
+                "pro": [
+                  "Subtracts known culpable costs, which blunts the usual defence",
+                  "Concedes the contractor's own contribution up front",
+                  "Doyle v Laing supports partial recovery"
+                ],
+                "con": [
+                  "A residual always remains unallocated",
+                  "The residual is where the argument concentrates"
+                ]
+              },
+              {
+                "k": "Bottom up",
+                "t": "Event by event",
+                "pro": [
+                  "Links cause to effect discretely",
+                  "The only approach the courts consistently prefer",
+                  "Survives the loss of any single head"
+                ],
+                "con": [
+                  "Expensive to prepare",
+                  "Risk of double recovery",
+                  "Requires defensible rates where estimates are used"
+                ]
+              }
+            ],
+            "note": "The objective of compensation for disruption is to put the contractor in the same financial position it would have been in if the disruption had not occurred. Any method that overshoots that is not compensation."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "The Protocol's position",
+          "md": "Global claims are **discouraged** in the SCL Protocol, which encourages discrete cause-and-effect based methods instead — and identifies the measured mile as the best way of establishing disruption.\n\nBut discouraged is not prohibited. Doyle v Laing left the door open: a global claim that fails as a global claim may still yield sufficient evidence for causal connections between individual losses and individual events, or for a rational apportionment.\n\nThe practical reading is that a global claim should be a **fallback presented alongside** the best discrete analysis you can manage — never the primary case, and never the only one."
+        },
+        {
+          "type": "worked",
+          "md": "The same overspend, three ways:",
+          "calc": [
+            {
+              "l": "Tender allowance, mechanical labour",
+              "v": "£1,840,000"
+            },
+            {
+              "l": "Actual cost of mechanical labour",
+              "v": "£2,610,000"
+            },
+            {
+              "l": "Total cost claim — the raw difference",
+              "v": "£770,000",
+              "tone": "crit"
+            },
+            {
+              "l": "Less: rework to the contractor's own defective pipework",
+              "v": "−£96,000",
+              "sub": true
+            },
+            {
+              "l": "Less: costs recovered through variation accounts",
+              "v": "−£184,000",
+              "sub": true
+            },
+            {
+              "l": "Less: tender under-allowance conceded on review",
+              "v": "−£62,000",
+              "sub": true
+            },
+            {
+              "l": "Modified total cost claim",
+              "v": "£428,000",
+              "total": true
+            },
+            {
+              "l": "Bottom-up: measured mile on the main riser package",
+              "v": "£131,000",
+              "sub": true
+            },
+            {
+              "l": "Bottom-up: discrete disruption, 14 identified instructions",
+              "v": "£207,000",
+              "sub": true
+            },
+            {
+              "l": "Bottom-up total, causally linked",
+              "v": "£338,000",
+              "total": true,
+              "tone": "emp"
+            }
+          ],
+          "after": "The bottom-up figure is £90,000 lower than the modified total cost figure and worth considerably more, because every pound of it is tied to an event. Present both: the discrete analysis as the primary case, and the modified total cost as the fallback showing that the difference between them — the £90,000 residual — is real loss that simply could not be discretely allocated."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-6-5-a",
+            "q-6-5-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "A total cost claim requires proof that the bid was reasonable, the costs were reasonable, every contributing event was compensable, and the contractor contributed nothing.",
+            "The modified total cost approach subtracts known culpable costs, which blunts the usual defence — but always leaves an unallocated residual.",
+            "Doyle v Laing allows a failed global claim to yield partial recovery where the evidence supports individual causal connections or a rational apportionment.",
+            "Break the project into windows, identify the factors, and run the global claim as a fallback — never as the primary case."
+          ]
+        }
+      ]
+    },
+    "6.6": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Nobody reads three hundred pages of labour returns. They look at one chart, and if the chart is honest and well made it does more work than the three hundred pages ever could."
+        },
+        {
+          "type": "core",
+          "md": "### Why graphics, and where the limit is\n\nGood records supply the source data. But it is not only the records that determine the outcome of a claim — it is how they are **analysed, sorted, collated and presented**.\n\nComputer-generated graphics are important for fast and efficient presentation, and in the early analytical stages they are an excellent way of getting quickly to the heart of a [[disruption|disruption]] claim. There must always be a **sound and checkable audit trail** behind any graphic used to support a claim.\n\nThe corollary matters as much: graphics prepared carelessly should be treated with caution, because they may obfuscate or even contradict the claim being made.\n\n### The labour histogram\n\nThe workhorse. Planned level of effort in man-hours against actual level of effort expended, over the project timeline.\n\nRead it for three things:\n\n- **the totals** — did hours increase dramatically, or stay level while the work stretched?\n- **fluctuation** — sharp peaks and troughs mean remobilisation, learning curves, discontinuity\n- **unplanned gaps** — a holiday period nobody allowed for, or a stoppage\n\nTwo trades on the same project can tell completely different stories. Mechanical hours may not increase dramatically while the works are severely delayed — pure [[prolongation|prolongation]]. Electrical hours may be significantly exceeded with a much steeper holiday slow-down and start-up curve — prolongation *and* disruption.\n\n### Overlaying the findings\n\nA histogram alone shows a shape. Overlay the periods identified from the documents and it becomes an argument:\n\n- delayed weather-tightness of the building\n- an increased learning curve because access came late\n- defective works — leaks — which is the contractor's own\n- late instructions to mechanical and electrical works\n\nNote that third item. Including your own culpability on the chart is what makes the rest of it credible.\n\n### Cumulative productivity curves\n\nMore sophisticated: total hours spent plotted against productive hours, with the loss stacked by factor — shift working, learning curve, lack of supervision, stacking, overtime.\n\nOn a project spending 60,000 hours with roughly 40,000 productive, the productive hours can then be compared against the tender to test whether the productive effort was in line with what was allowed. That comparison is important, because it addresses the first defence to any disruption claim: **the tender was insufficient**.\n\n### What contractors should show they considered\n\nWhatever the approach:\n\n- tender sufficiency\n- efficiency of their own and any sub-contract labour performance\n- sums already recovered through variations or separate agreements, including [[acceleration|acceleration]]\n\n### What graphics cannot do\n\n> While illustrations alone cannot convey liability, causation and damages, they assist in reducing down the evidence and conclusions into a readily accessible format.\n\nThey do not prove entitlement. They identify the periods in which disruption occurred and the potential causes — which is a great deal, and is not the same thing.\n\nAnd there is a warning attached: it is easy to get carried away with the capability offered by information technology. All charts should be fully explained, with full back-up of checkable source data available."
+        },
+        {
+          "type": "figure",
+          "widget": "measured-mile",
+          "props": {
+            "title": "Reading a productivity curve",
+            "note": "The dip is the finding. Everything else in a disruption claim is the work of establishing why it happened, who caused it, and what it cost."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "Photographs",
+          "md": "With cheap digital photography there is now very little excuse for not keeping comprehensive progress photographs.\n\nUsed judiciously, photographic evidence is an excellent method of demonstrating facts — site conditions, progress, a dangerous or congested working environment. Photographs have their place in virtually any size of claim.\n\nTwo practical points. **Date-stamp them**, or they are accurate to nothing. And on a project with repetitive floors, note the **location**, because a photograph of one identical floor is evidence about that floor and no other."
+        },
+        {
+          "type": "worked",
+          "md": "One subcontractor, two trades, two different stories:",
+          "table": {
+            "head": [
+              "",
+              "Mechanical",
+              "Electrical"
+            ],
+            "rows": [
+              [
+                "Planned hours",
+                "38,400",
+                "31,200"
+              ],
+              [
+                "Actual hours",
+                "40,100",
+                "47,900"
+              ],
+              [
+                "Increase",
+                "+4%",
+                "+54%"
+              ],
+              [
+                "Over-run",
+                "39 weeks",
+                "39 weeks"
+              ],
+              [
+                "Histogram shape",
+                "Level, but stretched — plus an unplanned Dec/Jan gap",
+                "Significantly exceeded, with a steep holiday slow-down and start-up"
+              ],
+              [
+                "Reads as",
+                "Prolongation. Time-related cost, little productivity loss.",
+                "Prolongation AND disruption. Substantial productivity loss."
+              ],
+              [
+                "Claim",
+                "Time-related cost for the extended period",
+                "Time-related cost plus a measured mile on the productivity loss"
+              ]
+            ]
+          },
+          "after": "Same project, same overall delay of 39 weeks, of which 16 was granted as an extension of time leaving 23 at risk. Two completely different claims, and it takes two histograms about ten seconds to show why. Presenting them as one combined chart would have concealed the entire distinction."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-6-6-a",
+            "q-6-6-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Labour histograms show totals, fluctuation and unplanned gaps. Two trades on one project can tell entirely different stories.",
+            "Overlay the findings from the documents — including your own culpable periods. That is what makes the chart credible.",
+            "Compare productive hours against the tender allowance, because 'the tender was insufficient' is the first defence you will meet.",
+            "Graphics do not prove entitlement. They locate the periods and the likely causes, and every one needs a checkable audit trail."
+          ]
+        }
+      ]
+    }
+  }
+}

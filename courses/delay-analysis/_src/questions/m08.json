@@ -1,0 +1,266 @@
+[
+  { "id": "q-8-1-a", "lesson": "8.1",
+    "stem": "When contractual arguments arise about float ownership, which type of float is almost always in issue?",
+    "opts": [
+      "Terminal float",
+      "Free float",
+      "Independent float",
+      "Interfering float"
+    ],
+    "answer": 0,
+    "why": "When contractual arguments ensue regarding float ownership they are invariably referring to terminal or end float, which only exists when planned completion is earlier than the date for contract completion. It is the period by which the finish of the longest path can be delayed, brought forward or extended without affecting the completion date. It is sometimes called finish float." },
+
+  { "id": "q-8-1-b", "lesson": "8.1",
+    "stem": "Why should a contractor declare contingency explicitly rather than building it into activity durations?",
+    "opts": [
+      "Declared contingency can be defended and kept apart from the pattern of float movement; buried contingency cannot",
+      "Because most contracts prohibit time-risk allowances within durations",
+      "Because software cannot calculate float where durations are padded",
+      "Because the contract administrator will otherwise reject the programme"
+    ],
+    "answer": 0,
+    "why": "Float should not be used for specific contingency purposes. Where contractors have an ambition to complete earlier, or want an allowance for risk items whose time requirements are not fully known, they should declare those estimated contingency periods at the outset — protecting them and keeping them apart from the pattern of float movement during the project's lifecycle. They can be represented as express contingency or risk allowance periods for groups of related tasks, or as a predecessor to a milestone." },
+
+  { "id": "q-8-2-a", "lesson": "8.2",
+    "stem": "Float on an activity is consumed but the completion date does not move. Can there be any financial consequence?",
+    "opts": [
+      "Yes — through the extended need for discrete task-related resources such as cranes, scaffold and plant",
+      "No — without critical delay there is no loss",
+      "Only where the contract expressly provides for it",
+      "Only if an extension of time is subsequently granted"
+    ],
+    "answer": 0,
+    "why": "While float reduction does not result in critical delay to a project, it can cause financial loss due to the extended need for discrete task-related resources — tower cranes, generators, compressors, scaffold rental. Any delay analysis should deal both with events identified as critical and with those that cause float deterioration. The SCL Protocol supports this: contractors may be entitled to direct time-related costs, though not overheads, for periods of delay that deteriorate float." },
+
+  { "id": "q-8-2-b", "lesson": "8.2",
+    "stem": "What does a criticality profile — the proportion of remaining activities that are critical — actually tell you?",
+    "opts": [
+      "How much contingency remains anywhere in the programme, not how far behind the project is",
+      "The number of days by which the project is delayed",
+      "Which paths are competing for dominance",
+      "The reliability of the total float calculations"
+    ],
+    "answer": 0,
+    "why": "The pattern of criticality can be reviewed by identifying the number of tasks in a programme which are critical as a proportion of the total remaining activities. While such a chart does not indicate how far behind programme the critical path is, it does indicate how much contingency exists in the programme generally. The higher the percentage of activities that are critical, the more difficult it will be to accelerate the project — there is no path left to re-sequence through." },
+
+  { "id": "q-8-3-a", "lesson": "8.3",
+    "stem": "Under an unamended NEC3, who effectively owns the float?",
+    "opts": [
+      "The contractor — clause 63.3 measures delay against planned completion, not contract completion",
+      "The employer, since it has bought the whole contract period",
+      "The project, on a first come, first served basis",
+      "It is apportioned between the parties by the project manager"
+    ],
+    "answer": 0,
+    "why": "NEC3 clause 63.3 provides that any delay to the completion date is assessed as the length of time that, due to the compensation event, planned completion is later than planned completion shown on the accepted programme. Measuring delay relative to PLANNED completion leaves no doubt that contractors own the float under an unamended NEC3. Where planned completion is earlier than contractual completion there is terminal float, and extending the contractual date restores the same terminal float that existed before the event." },
+
+  { "id": "q-8-3-b", "lesson": "8.3",
+    "stem": "What is the fundamental flaw in the argument that the employer owns the float?",
+    "opts": [
+      "The employer would need a say in how much float the programme contained and how it was managed",
+      "Employers do not prepare the programme",
+      "It conflicts with the SCL Protocol, which has judicial recognition",
+      "It would make the programme a contract document"
+    ],
+    "answer": 0,
+    "why": "If it were correct that employers owned the float, they would surely be entitled to have some say in how much float was required in a programme and how it was managed and utilised, so their entitlement to use it was preserved. As float is essentially a by-product of the planning process, that would amount to an intolerable amount of interference with a contractor's programming activity — or would shift a substantial part of the completion risk back to the employer." },
+
+  { "id": "q-8-4-a", "lesson": "8.4",
+    "stem": "What is the difference between concurrent delay and concurrent effect?",
+    "opts": [
+      "Concurrent delay is events running at exactly the same time; concurrent effect is events arising at different times whose effects overlap",
+      "Concurrent delay affects the critical path; concurrent effect does not",
+      "Concurrent delay involves two employer events; concurrent effect involves one of each",
+      "They are two terms for the same thing in all circumstances"
+    ],
+    "answer": 0,
+    "why": "True concurrent delay, where events run together at exactly the same time, is a rare occurrence. Where two or more delay events arise at different times but their effects are felt, in whole or in part, at the same time, this is more correctly termed the concurrent effect of sequential delay events. Causes of delay more commonly overlap, and in that sense concurrency applies only to the period of overlap. The SCL Protocol treats the terms as interchangeable." },
+
+  { "id": "q-8-4-b", "lesson": "8.4",
+    "stem": "When does concurrency actually become relevant to entitlement?",
+    "opts": [
+      "When at least one of the concurrent delay events is at the contractor's risk",
+      "Whenever two delays overlap in time",
+      "Only where the events are of exactly equal duration",
+      "Only after the contract completion date has passed"
+    ],
+    "answer": 0,
+    "why": "The particular relevance of this issue applies when at least one of the concurrent delay events is at the risk of the contractor. Two concurrent employer risk events raise no concurrency issue — you take the larger. Two concurrent contractor risk events likewise. It is the employer-plus-contractor combination that generates every argument about apportionment, extension of time and prolongation." },
+
+  { "id": "q-8-5-a", "lesson": "8.5",
+    "stem": "In Malmaison, where two concurrent causes operate and one is a relevant event, what is the contractor entitled to?",
+    "opts": [
+      "An extension of time for the delay caused by the relevant event, notwithstanding the concurrent effect of the other",
+      "Nothing, because the delay would have occurred anyway",
+      "A proportionate extension based on the relative significance of each cause",
+      "An extension of time and full prolongation costs"
+    ],
+    "answer": 0,
+    "why": "In Henry Boot v Malmaison Hotel it was recorded that where there are two concurrent causes of delay, one a relevant event and the other not, the contractor is entitled to an extension of time for the period of delay caused by the relevant event notwithstanding the concurrent effect of the other. The example given: a week lost to exceptionally inclement weather and to a labour shortage — the contract administrator cannot refuse on the grounds that the delay would have occurred anyway.",
+    "whyWrong": { "3": "Time and money are separate tests. An extension of time follows; prolongation generally does not where concurrency is present." } },
+
+  { "id": "q-8-5-b", "lesson": "8.5",
+    "stem": "Balfour Beatty v Chestermount decided that an extension granted for a variation instructed during culpable delay should be assessed on which basis?",
+    "opts": [
+      "The net basis — the time for the variation added to the last revised completion date",
+      "The gross basis, including the contractor's prior delay",
+      "By apportionment between the parties",
+      "Only from the date the contractor gave notice"
+    ],
+    "answer": 0,
+    "why": "The case held that the architect had power to grant an extension of time after the original completion date had passed, and addressed whether it should be given on a gross or net basis. The gross approach would include the contractor's delay prior to the variation; the net basis is the time required for the variation itself added to the last revised completion date — the 'dot-on' principle. The net method was held to be correct, with the caution that any adjustment must be fair and reasonable in all the circumstances." },
+
+  { "id": "q-8-6-a", "lesson": "8.6",
+    "stem": "Employer delay of two months runs concurrently with contractor delay of one month. What does the SCL Protocol advise?",
+    "opts": [
+      "Two months extension of time, one month of prolongation, plus costs arising directly from the employer's event",
+      "One month extension of time and one month of prolongation",
+      "Two months extension of time and two months of prolongation",
+      "No extension of time and no prolongation"
+    ],
+    "answer": 0,
+    "why": "The full employer delay drives the extension of time — contractor-caused concurrent delay should not reduce it. Compensation is limited to the period by which the employer delay exceeds the concurrent contractor delay, here one month. And in every scenario the Protocol adds that costs arising directly as a result of the employer's delay event remain payable, even where prolongation does not." },
+
+  { "id": "q-8-6-b", "lesson": "8.6",
+    "stem": "Where concurrency is present, what costs can a contractor still recover?",
+    "opts": [
+      "Costs suffered due to the employer delay that can be distinguished from costs incurred due to culpable delays",
+      "A proportionate share of all time-related overhead",
+      "Nothing at all",
+      "Full prolongation, provided an extension of time was granted"
+    ],
+    "answer": 0,
+    "why": "Where concurrent delays are present a contractor is generally due time but not money. But the SCL Protocol states that where costs are suffered due to an employer delay, if these can be distinguished from the costs the contractor incurred due to culpable delays, they may be recovered. This is why the Protocol recommends record keeping and accounting for supervision and overheads in a way that lets a contractor discretely track compensable and non-compensable costs." },
+
+  { "id": "q-8-7-a", "lesson": "8.7",
+    "stem": "Which is NOT one of the four things a party must demonstrate to rely on pacing?",
+    "opts": [
+      "That the paced work was on the critical path at the time",
+      "Knowledge of the more critical excusable delay",
+      "Evidence of an express decision to pace its works",
+      "The ability to reinstate normal outputs if the pre-existing delay were mitigated"
+    ],
+    "answer": 0,
+    "why": "The four limbs are: knowledge of the more critical excusable delay; evidence of an express decision to pace; notification to the other party that the works would be paced so as not to cause further delay or disruption; and the ability to reinstate normal outputs if the pre-existing delay was mitigated or avoided. Pacing is by definition applied to works INDEPENDENT of the more critical delay, so being on the critical path is not part of the test." },
+
+  { "id": "q-8-7-b", "lesson": "8.7",
+    "stem": "Why are pacing arguments raised at the end of a project treated with scepticism?",
+    "opts": [
+      "They can only be proved with contemporaneous records, and are easy to assert with hindsight",
+      "Because pacing is not recognised outside the United States",
+      "Because pacing always amounts to concurrent delay",
+      "Because the contract requires notice within a fixed period"
+    ],
+    "answer": 0,
+    "why": "Proving the four elements can only be done with contemporaneous records. Pacing arguments are most often made at the end of a project, when an as-built analysis reveals that activities unaffected by any employer variation or other excusable event appear to have been delayed. When pacing is argued with hindsight it should be treated with both caution and scepticism, especially where unsupported by contemporaneous records." },
+
+  { "id": "q-8-1", "lesson": "8.1",
+    "stem": "Float can legitimately be used for which of the following?",
+    "opts": [
+      "Re-sequencing activities to reduce disruption from stacking of trades or adverse weather",
+      "Absorbing employer delay without any consequence to either party",
+      "Extending activity durations to conceal contingency",
+      "Setting the contract completion date"
+    ],
+    "answer": 0,
+    "why": "Float is a finite resource used to identify slippage, identify critical paths, allow re-sequencing to mitigate pre-existing delay, and allow re-sequencing to reduce or avoid disruption due to stacking of trades, discontinuity of work, or working in adverse weather or seasonal conditions. Where float exists on non-critical activities it can also be used for levelling or smoothing resources — giving continuity to an expensive crane, earthmover or specialist trade." },
+
+  { "id": "q-8-2", "lesson": "8.2",
+    "stem": "Which is a float suppression technique that hides float by overriding the forward and backward pass?",
+    "opts": [
+      "A zero total float constraint",
+      "A start-no-earlier-than constraint",
+      "A finish-to-finish relationship with a lag",
+      "Assigning a six-day working calendar"
+    ],
+    "answer": 0,
+    "why": "Zero total or free float constraints simply hide any available float by over-riding the backward and forward pass calculations, requiring the early dates of activities to match the late dates. The other named techniques are preferential logic, excessive leads and lags, excessive date constraints, and extended activity durations. Several US federal specifications prohibit all of these by name." },
+
+  { "id": "q-8-3", "lesson": "8.3",
+    "stem": "What did Ascon v McAlpine decide about the benefit of float?",
+    "opts": [
+      "Float is shared, and where it is exceeded responsibility should be shared among those who used it",
+      "The main contractor may allocate the benefit of float as it sees fit",
+      "Float belongs exclusively to the employer",
+      "Float ownership depends entirely on the form of contract"
+    ],
+    "answer": 0,
+    "why": "The court rejected the main contractor's argument that it could use the float at its option to cancel or reduce delays for which it or other sub-contractors were responsible, in preference to those chargeable to Ascon. Where six sub-contractors each cause a week's delay against a six-week float, none has caused loss — they are equally at fault and equally share in the benefit. Where the float is only five weeks, the same principle applies to the one week's loss. The allocation is not in the gift of the main contractor." },
+
+  { "id": "q-8-4", "lesson": "8.4",
+    "stem": "What is the most salient definition of concurrent delay?",
+    "opts": [
+      "A period of project over-run caused by two or more effective causes of delay of equal causative potency",
+      "Any two delays occurring in the same month",
+      "Two delay events, one at the employer's risk and one at the contractor's",
+      "Delay affecting two parallel critical paths simultaneously"
+    ],
+    "answer": 0,
+    "why": "There is no universally accepted definition, but the most acceptable and salient recent formulation is a period of project over-run which is caused by two or more effective causes of delay which are of equal causative potency. Four elements: a period of over-run, two or more causes, both effective, and of equal causative potency. Fail any and what you have is not concurrency." },
+
+  { "id": "q-8-5", "lesson": "8.5",
+    "stem": "What is the principal drawback of the first-in-line approach?",
+    "opts": [
+      "The results do not reflect the impact of culpable delay",
+      "It requires an as-built critical path to be deduced",
+      "It cannot be applied where more than two events overlap",
+      "It has been expressly rejected by the courts"
+    ],
+    "answer": 0,
+    "why": "The first-in-line approach identifies the first-occurring of two overlapping events as the one that caused critical delay. A drawback is that the results do not reflect the impact of culpable delay — a contractor delay starting one day earlier than an employer delay would take the whole period regardless of relative significance. The dominant cause approach, by contrast, was given early support in Leyland Shipping and later rejected in Fairweather v Wandsworth." },
+
+  { "id": "q-8-6", "lesson": "8.6",
+    "stem": "According to the SCL Protocol, how should the impact of an employer risk event be determined where concurrent delays are operating?",
+    "opts": [
+      "By reference to the contractor's plan at the time, regardless of the concurrent delays",
+      "By deducting the concurrent contractor delay before assessing the impact",
+      "By apportioning the impact between the parties",
+      "By reference to the original baseline programme"
+    ],
+    "answer": 0,
+    "why": "The Protocol's approach on time is to determine the status of the programme and the available float at the date of the delay event, then determine the impact of the employer risk event on the contractor's plan at the time, regardless of concurrent delays operating at the time. It states expressly that contractor-caused concurrent delay should not reduce an entitlement to an extension of time. The money question is answered separately." },
+
+  { "id": "q-8-7", "lesson": "8.7",
+    "stem": "Which party can advance a pacing argument?",
+    "opts": [
+      "Either — designers late with information run the same argument as contractors",
+      "The contractor only",
+      "The employer only",
+      "Neither, outside the United States"
+    ],
+    "answer": 0,
+    "why": "When concurrent culpable delays are identified by the employer, contractors often argue they were simply pacing the work. Likewise, when designers are late with information and shop drawing approvals they often argue the works were already in delay, so their late response caused no further delay — they responded just in time, and there was no reason to hurry up and wait. Both scenarios are sometimes valid and both have limited support from cases in the US and UK." },
+
+  { "id": "q-8-8", "lesson": "8.1",
+    "stem": "What does negative float measure?",
+    "opts": [
+      "How far behind programme an activity or path is at a given point in time",
+      "The number of days by which an activity exceeded its planned duration",
+      "The cost of delay expressed in time-equivalent terms",
+      "The difference between total float and free float"
+    ],
+    "answer": 0,
+    "why": "Negative float is a measure of how much behind schedule an activity is at a given point in time. When the earliest date an activity can take place is after the latest date by which it should have taken place so as not to cause delay, its total float will be negative. It also occurs when activities are constrained by an intermediate key date — a reminder that the number can be manufactured by constraints rather than by actual lateness." },
+
+  { "id": "q-8-9", "lesson": "8.3",
+    "stem": "How does RP-29R-03 treat float ownership?",
+    "opts": [
+      "Network float is a shared resource; project float is owned solely by the contractor",
+      "All float is shared on a first come, first served basis",
+      "All float belongs to the contractor",
+      "Float ownership is a matter for the contract alone"
+    ],
+    "answer": 0,
+    "why": "RP-29R-03 states that float is a shared commodity on a first come, first served basis, then clarifies that network float is a shared resource but project float is owned solely by the contractor. That would allow contractors to recover additional time-related overheads before the contractual date for completion where an early completion programme exists. It is one of the two substantive divergences from the SCL Protocol, which does not name an owner." },
+
+  { "id": "q-8-10", "lesson": "8.6",
+    "stem": "Identifying float and concurrency contemporaneously is only possible if what is true?",
+    "opts": [
+      "All programme management provisions have been complied with — an approved programme, properly updated",
+      "Both parties have appointed programming experts",
+      "The contract expressly provides for concurrency to be assessed",
+      "The as-built programme has been agreed between the parties"
+    ],
+    "answer": 0,
+    "why": "As a practical point, the identification of float and concurrency contemporaneously is only possible if all programming management provisions are complied with — that is, a programme which is approved and properly updated. Without monthly updates you cannot say what float existed at the date of an event, and without that you cannot assess concurrency at all, at the time or afterwards." }
+]

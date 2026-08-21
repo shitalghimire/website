@@ -1,0 +1,207 @@
+/* =============================================================
+   COURSES — catalogue
+   Same drawing-set language as the site. Each course is a sheet
+   in the set: a designation, a title block, a status stamp.
+   ============================================================= */
+
+.cat-hero {
+  padding-block: clamp(4rem, 10vh, 7rem) clamp(2.5rem, 6vh, 4rem);
+}
+.cat-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.6rem, 8vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  font-variation-settings: 'wdth' 92;
+  margin-bottom: 1.4rem;
+}
+.cat-hero h1 i {
+  font-style: normal;
+  color: var(--vis-deep);
+}
+.cat-hero p {
+  max-width: 58ch;
+  font-size: clamp(1.02rem, 0.98rem + 0.3vw, 1.2rem);
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* ===================== the course sheets ===================== */
+
+.courses {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  padding-bottom: clamp(4rem, 9vh, 7rem);
+}
+
+.course {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+  border: 1px solid var(--rule-firm);
+  background: var(--paper-2);
+  transition: transform 0.28s var(--ease), box-shadow 0.28s var(--ease);
+}
+.course:hover { transform: translate(-3px, -3px); box-shadow: 7px 7px 0 var(--ink); }
+.course--locked:hover { box-shadow: 7px 7px 0 var(--graphite); }
+.course--soon { opacity: 0.62; }
+.course--soon:hover { transform: none; box-shadow: none; }
+
+@media (max-width: 900px) {
+  .course { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* left: the content */
+.course__body {
+  padding: clamp(1.6rem, 3.5vw, 2.6rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.course__id {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.course__id b {
+  font-weight: 500;
+  color: var(--ink);
+  border: 1px solid var(--rule-firm);
+  padding: 0.16rem 0.5rem;
+}
+
+.course__title {
+  font-family: var(--display);
+  font-size: clamp(1.6rem, 3.6vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
+  font-variation-settings: 'wdth' 95;
+}
+.course__sub {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--graphite);
+  margin-top: -0.5rem;
+}
+.course__blurb {
+  color: var(--ink-2);
+  max-width: 62ch;
+  line-height: 1.62;
+}
+
+.course__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.6rem;
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--rule);
+  margin-top: auto;
+}
+.course__fact { padding-top: 0.85rem; }
+.course__fact b {
+  display: block;
+  font-family: var(--mono);
+  font-size: 1.28rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.course__fact span {
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+.course__acts { display: flex; flex-wrap: wrap; gap: 0.65rem; padding-top: 0.6rem; }
+
+/* right: the plate — a preview drawn in each course's own colours */
+.course__plate {
+  position: relative;
+  overflow: hidden;
+  border-left: 1px solid var(--rule-firm);
+  min-height: 240px;
+  display: grid;
+  place-items: center;
+}
+@media (max-width: 900px) {
+  .course__plate { border-left: 0; border-top: 1px solid var(--rule-firm); min-height: 180px; order: -1; }
+}
+.course__plate svg { width: 100%; height: 100%; display: block; }
+
+/* status stamp, top-right of the plate */
+.course__stamp {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  z-index: 2;
+  font-family: var(--mono);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid currentColor;
+  background: rgba(20, 21, 15, 0.55);
+  backdrop-filter: blur(4px);
+}
+.course__stamp--open   { color: #C9E82A; }
+.course__stamp--locked { color: #5B9DD9; }
+.course__stamp--soon   { color: #9B9C92; }
+
+/* ===================== the access note ===================== */
+
+.accessnote {
+  border: 1px dashed var(--rule-firm);
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  background: var(--paper);
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: clamp(2rem, 5vh, 3rem);
+}
+.accessnote b {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.accessnote p { font-size: 0.9375rem; color: var(--ink-2); max-width: 70ch; }
+
+/* ===================== soon ===================== */
+.soon {
+  border: 1px dashed var(--rule);
+  padding: clamp(1.4rem, 3vw, 2rem);
+  display: grid;
+  gap: 0.5rem;
+}
+.soon h3 {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+.soon p { font-size: 0.9375rem; color: var(--graphite); max-width: 60ch; }
+.soon__list {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 0.4rem;
+}
+.soon__list span {
+  font-family: var(--mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--graphite);
+  border: 1px solid var(--rule);
+  padding: 0.24rem 0.6rem;
+}

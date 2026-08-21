@@ -1,0 +1,609 @@
+{
+  "module": 4,
+  "lessons": {
+    "4.1": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Somebody hands you a baseline programme and asks you to prove a delay from it. Before you calculate anything, you have to decide whether the programme is worth calculating from — because if it is not, every number you produce afterwards inherits its faults."
+        },
+        {
+          "type": "core",
+          "md": "### The baseline is a statement of intent, not a record of fact\n\nAn [[asplanned|as-planned programme]] is a theoretical model of how one particular contractor would like to build a project. It is not a record of anything. That has two consequences.\n\nFirst, attempting to develop a **perfectly accurate** as-planned programme is a mistaken concept. If accuracy were measured by comparing the [[baseline|baseline]] with the as-built activity by activity, no programme ever written would pass a statistical test. And yet projects finish on time all the time, with duration over-runs and sequence changes throughout.\n\nSecond, the baseline is still the **base from which change is measured** — which is precisely why it has to be validated before it is used, and why any change you make to it must be visible.\n\n### Before it becomes the baseline\n\nThe draft goes through two gates.\n\nA **[[jbr|Joint Baseline Review]]** workshop, formal or informal, with designers, estimators, engineers, contract administrators, the client, the construction manager and quantity surveyors. It tests plant selection and availability; labour composition and local working rules; weather and tidal patterns; site layout, deliveries, lay-down and storage; supply-chain risks; staff migration on operational buildings; and every hard-logic and soft-logic assumption.\n\nThen a **final internal review** by the contractor's own staff, which should consider:\n\n- the final means and methods, so that method statements agree with the programme\n- whether the resulting [[critical|critical path]] is logical and consistent with the intuition of senior staff\n- the level of detail and coding, and that every task carries budgeted cost and resources\n- that every task has a clear owner — a sub-contractor or a named manager\n\nThat second bullet is the one that catches most. If the critical path surprises people who have built this kind of thing before, either the programme is wrong or their intuition is. You need to know which before you commit.\n\n### Baselines and progress\n\n> Baselines are not affected by actual progress — only by changed intentions for completing the remaining works.\n\nWhen major changes to logic, durations or scope are introduced, those changes should be documented and a **new baseline** agreed for the remaining work, with all deviations from the original recorded. Under many forms that requires the contract administrator's express approval.\n\nA baseline that quietly drifts, update by update, is worse than no baseline. Nothing can be measured from it, because nobody can say what it used to be."
+        },
+        {
+          "type": "figure",
+          "widget": "checklist",
+          "props": {
+            "id": "baseline-validation",
+            "title": "Validating a baseline before you rely on it",
+            "sub": "Sixteen checks. Work down them before any method of analysis.",
+            "items": [
+              "One hundred per cent of the contract work scope is represented.",
+              "There is at least one continuous chain of activities from start to completion.",
+              "Every activity has at least one predecessor and one successor.",
+              "Start and finish activities carry appropriate constraints so float paths generate.",
+              "Durations along the critical and near-critical paths are reasonable.",
+              "Logic along the critical and near-critical paths is feasible on the information available at tender.",
+              "No delays or changes are built in that could not have been known at tender or contract award.",
+              "All milestones, constraints and sectional completion dates are represented accurately.",
+              "No weather-sensitive work is scheduled out of season without a stated temporary measure.",
+              "Regional and national holidays are allowed for.",
+              "Working calendars are assigned correctly — 5, 6 and 7 day.",
+              "Local trade working rules are modelled in the calendars.",
+              "Third-party interfaces appear, with notification periods for statutory undertakers, easements and rights of way.",
+              "Employer review and approval periods are adequate and contractually compliant.",
+              "Constraint use is proportionate — dates are held by logic, not by constraints.",
+              "A 'what-if' test moves the completion date the way intuition says it should."
+            ],
+            "note": "Your ticks are saved on this device. If a programme fails several of these it is not automatically useless — but you must say so, in writing, before building anything on it."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Correcting a baseline is a last resort",
+          "md": "An analyst may need to correct a baseline before relying on it. If so, **every deviation must be made transparently**.\n\nThe as-planned programme is a theoretical model of one contractor's intentions. Any change that cannot be substantiated undermines the integrity of every conclusion drawn from it, and the usual result is that the entire analysis is treated with scepticism.\n\nEmployers should treat any forensically created or amended baseline with caution: it is rarely possible to confirm that logic in a modified or recreated programme reflects the contractor's original intentions. The safest course is to avoid reconstruction altogether unless the approach and its building blocks are agreed with the other side first — in which case it can be a genuinely useful negotiating tool."
+        },
+        {
+          "type": "worked",
+          "md": "What you need if all you have is a hard-copy printout:",
+          "table": {
+            "head": [
+              "Required",
+              "Why"
+            ],
+            "rows": [
+              [
+                "A fully linked bar chart showing relationship type, leads and lags",
+                "Without it the network cannot be rebuilt at all"
+              ],
+              [
+                "A full successor printout with relationship types and lags",
+                "The alternative to the above, and usually easier to obtain"
+              ],
+              [
+                "An activity list showing duration",
+                "Original duration, not remaining"
+              ],
+              [
+                "An activity list showing calendar assignment",
+                "A 5-day and a 7-day activity of the same duration finish weeks apart"
+              ],
+              [
+                "A clear designation of non-work periods",
+                "Weekends, holidays, river exclusion periods, traffic management windows"
+              ]
+            ]
+          },
+          "after": "Even with every one of those, the analyst must then **iteratively confirm each ES, LS, EF, LF and total float** against the printout, activity by activity, until the reconstruction is one hundred per cent consistent with it. Any remaining anomaly has to be identified and documented clearly.\n\nThat is days of work on a medium project, and it is not optional. A reconstruction that has not been reconciled to the printout is a new programme wearing the old one's name."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-4-1-a",
+            "q-4-1-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "A baseline is a statement of intent, not a record of fact. Perfect accuracy is not the standard; contractual compliance and a genuine reflection of intentions are.",
+            "Baselines are not affected by actual progress — only by changed intentions for the remaining work.",
+            "Validate before you calculate. Sixteen checks, and the one that catches most is whether the critical path matches experienced intuition.",
+            "Any correction to a baseline must be transparent. Unsubstantiated changes will call the whole analysis into question."
+          ]
+        }
+      ]
+    },
+    "4.2": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "\"Sixty per cent complete\" can mean six entirely different things depending on how it was measured, and the difference between them decides whether your programme is telling you the truth about the remaining duration."
+        },
+        {
+          "type": "core",
+          "md": "### Six techniques\n\n**1 · Unit measure.** Percent of units or quantity of work completed at the update date. The most objective, where the work has countable units: cubic metres poured, tonnes erected, metres of pipe laid.\n\n**2 · Incremental milestones.** Progress measured as a series of milestones is achieved. Only valid where the milestones give an acceptably reliable rate of progress — three of five milestones does not mean 60% unless the milestones are genuinely evenly weighted.\n\n**3 · Start/finish.** For work where the rate of progress is difficult to measure with certainty: major rigging, alignment, some commissioning. These are tasks where achieving a tolerance may happen on one attempt or over a series of trials of uncertain duration. When they finish they are 100%; before that only arbitrary progress can be assessed.\n\n**4 · Observational assessment.** Subjective. Should only be applied to **non-critical** tasks, or where measuring precisely would be disproportionately time-consuming — some design and drafting, finishing trades, dewatering large areas.\n\n**5 · Level of effort / cost ratio.** For continuous time-related functions that are not production-based: quality assurance, monitoring, supervision. Determined by comparing actual cost to date with total forecast cost — which measures budget expenditure rather than progress achieved, and should be understood as such.\n\n**6 · Equivalent units.** For sub-tasks within one activity that run concurrently and have different units of measurement. Each sub-task is given a weighted value in equivalent units so a composite figure can be derived — structural steel sub-assemblies, composite wall framing.\n\n### Rolling it up\n\nOnce each activity has a percentage, the project-wide figure requires earned value:\n\n> **Earned value (task) = percent complete × task budgeted value**\n>\n> **Percent complete (project) = earned value of all tasks ÷ budget value of all tasks**\n\nWithout the weighting, a project with one 400-day activity at 10% and ten 2-day activities at 100% would report itself 91% complete."
+        },
+        {
+          "type": "figure",
+          "widget": "table",
+          "props": {
+            "title": "Six measurement techniques",
+            "sub": "Choosing the wrong one produces a percentage that does not mean what it says",
+            "head": [
+              "Technique",
+              "Use where",
+              "Objectivity",
+              "Watch for"
+            ],
+            "rows": [
+              [
+                "Unit measure",
+                "Work has countable units — m³, tonnes, metres",
+                "High",
+                "Units completed but not tested or accepted"
+              ],
+              [
+                "Incremental milestones",
+                "Progress is genuinely stepped",
+                "High",
+                "Milestones weighted unequally but counted equally"
+              ],
+              [
+                "Start / finish",
+                "Rate of progress is not measurable — rigging, alignment, commissioning",
+                "Binary",
+                "Long periods reporting 0%, then 100% overnight"
+              ],
+              [
+                "Observational assessment",
+                "Non-critical work, or where precision is disproportionate",
+                "Low",
+                "Never use it on a critical activity"
+              ],
+              [
+                "Level of effort / cost ratio",
+                "Continuous time-related functions — QA, supervision",
+                "Proxy only",
+                "It measures spend, not progress"
+              ],
+              [
+                "Equivalent units",
+                "Concurrent sub-tasks with different units",
+                "Medium",
+                "The weighting is a judgement and should be recorded"
+              ]
+            ],
+            "note": "Whichever is used, the technique should be stated against the activity — so that a reader six months later knows what the number means."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Never assess a critical activity observationally",
+          "md": "Observational assessment is explicitly a subjective method and should be applied only to non-critical tasks, or tasks where measuring actual progress with precision would be extremely time-consuming.\n\nThe reason is simple. The remaining duration of a critical activity **is** the forecast completion date. Guessing at it means guessing at the answer the entire programme exists to produce — and there is no way for a reviewer to test the guess."
+        },
+        {
+          "type": "worked",
+          "md": "The same activity, measured six ways:",
+          "table": {
+            "head": [
+              "Technique applied",
+              "Reported",
+              "Remaining duration implied",
+              "Comment"
+            ],
+            "rows": [
+              [
+                "Unit measure — 620 of 1,000 m² decked",
+                "62%",
+                "15 days of 40",
+                "Defensible, and checkable"
+              ],
+              [
+                "Incremental milestones — 3 of 5 achieved",
+                "60%",
+                "16 days",
+                "Only right if the five are equal. They rarely are."
+              ],
+              [
+                "Start / finish",
+                "0%",
+                "40 days",
+                "Started but not finished — reports nothing"
+              ],
+              [
+                "Observational",
+                "\"About two-thirds\"",
+                "13 days",
+                "Untestable. Never on a critical activity."
+              ],
+              [
+                "Level of effort — £74k of £120k spent",
+                "62%",
+                "15 days",
+                "Correct only if cost and progress track. Often they do not."
+              ],
+              [
+                "Equivalent units — deck 70%, edge trim 20%, weighted",
+                "58%",
+                "17 days",
+                "The weighting is the judgement; record it"
+              ]
+            ]
+          },
+          "after": "Four days of spread on the remaining duration of one activity. On a critical path of forty activities, inconsistent measurement technique alone can move a forecast completion date by a month — with nobody having done anything wrong on site at all."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-4-2-a",
+            "q-4-2-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Six techniques: unit measure, incremental milestones, start/finish, observational, level of effort, equivalent units.",
+            "Observational assessment belongs only on non-critical work. Never guess the remaining duration of a critical activity.",
+            "Level of effort measures budget expenditure, not progress. Read it as such.",
+            "Rolling up to a project percentage requires earned value weighting, or long activities will be drowned out by short ones."
+          ]
+        }
+      ]
+    },
+    "4.3": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "An as-planned programme is out of date as a management tool the moment one activity deviates from its planned duration or start date. Everything after that depends on the update cycle — and on one date that divides history from forecast."
+        },
+        {
+          "type": "core",
+          "md": "### The data date\n\nThe **[[datadate|data date]]** is the date up to which performance data has been measured, and from which future work is re-scheduled.\n\nEverything to the left of it is history. Everything to the right is a forecast. [[float|Float]] values are only calculated forward of it, which is why no software can compute an [[abcp|as-built critical path]] — a point that comes back in Module 7 and again in the case study.\n\n### Why programmes are updated\n\n- to communicate actual project status\n- to keep the programme relevant as a management tool\n- to record the actual performance of **all** parties, not just the contractor\n- to record changes to the original plan\n- to support forensic or prospective delay analysis\n\nThat third one is worth dwelling on. Contemporaneous updates document the employer's, the designer's and the professional team's ability to meet their commitment dates just as much as the contractor's. A properly maintained update history is evidence both ways.\n\n### Frequency\n\nThe contract usually sets it. Where it does not, it is unlikely a contractor will submit updates until an [[eot|extension of time]] is being sought or significant change is incorporated — which is exactly when the update history is least useful.\n\nMonthly is traditional, usually tied to the payment cycle. Fast-track projects need more. Projects interfacing with operational facilities — hospitals, schools, power stations, water treatment — need frequent updates so operational staff know where work is happening, for safety as much as for programme.\n\n**Job meeting frequency should align with the update cycle.** If meetings are weekly, an updated programme should be available for discussion weekly even if formal submission is monthly. And unexpected events mid-cycle — a major delay, added scope, an instruction to accelerate — justify an unplanned update.\n\n### What to progress\n\nThe minimum for each activity:\n\n- percent complete\n- remaining duration\n- actual start\n- actual finish\n\nPlus resource usage and cost expenditure where the programme carries them.\n\n### Look-aheads\n\nOnce the programme is updated, analysed and adjusted, produce the look-ahead for the next window — typically at Level 3 or 4, spanning at least through the next update cycle. It identifies which activities:\n\n- should have started or completed in the last period, but did not\n- need to be completed in the next update period\n\nThat first line is the one that gets acted on. It is a list of things that are already going wrong, produced weekly, while there is still time to do something about them."
+        },
+        {
+          "type": "figure",
+          "widget": "steps",
+          "props": {
+            "title": "One update cycle",
+            "sub": "Do it manually. Every shortcut in this list has cost somebody a claim.",
+            "steps": [
+              {
+                "t": "Gather field data, activity by activity",
+                "d": "From daily reports, tick sheets, labour returns. Not from a global assumption, and not from an auto-update function.",
+                "m": "days 1–2"
+              },
+              {
+                "t": "Enter actual starts, actual finishes, percent complete and remaining duration",
+                "d": "Evaluate each activity individually. Avoid grouping similar activities and generalising progress.",
+                "m": "day 3"
+              },
+              {
+                "t": "Identify out-of-sequence progress",
+                "d": "Every package produces an out-of-sequence report. Read it. An activity that started before its predecessor finished changes how the network calculates.",
+                "m": "day 3"
+              },
+              {
+                "t": "Recalculate and examine the new critical path",
+                "d": "The forward and backward pass run again. The critical path will have moved — find out where and why.",
+                "m": "day 4"
+              },
+              {
+                "t": "Document every logic and duration change, with reasons",
+                "d": "Issue a transparent record of all revisions. This single habit prevents most allegations of schedule manipulation.",
+                "m": "day 4"
+              },
+              {
+                "t": "Compare projected completion against the last update",
+                "d": "The movement in calendar days is the absolute measurement. Float movement is relative. Reconcile the two.",
+                "m": "day 5"
+              },
+              {
+                "t": "Produce the look-ahead",
+                "d": "What should have started or finished and did not; what must complete next period.",
+                "m": "day 5"
+              }
+            ]
+          }
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Auto-update is how records get destroyed",
+          "md": "Planning software will 'auto update' a programme by assuming everything went to plan up to the data date. Faced with two thousand activities, the temptation is obvious.\n\nHere is what it does. Take a chain of activities auto-updated to 31 January: the forecast completion of the chain stays exactly as planned, 15 February. Now suppose one activity in that chain actually achieved only 5% by 31 January. Enter that one figure manually and the forecast moves to 19 February.\n\nFour days, from one activity, on one chain. Multiply across a real project. Auto-update does not merely produce a poor record — it produces a **confident and wrong forecast**, and it hides the very slippage the update exists to reveal."
+        },
+        {
+          "type": "worked",
+          "md": "The same chain, updated two ways at 31 January:",
+          "table": {
+            "head": [
+              "Activity",
+              "Planned",
+              "Auto-updated",
+              "Manually updated",
+              "Difference"
+            ],
+            "rows": [
+              [
+                "1010 Foundations",
+                "100%",
+                "100%",
+                "100%",
+                "—"
+              ],
+              [
+                "1020 Ground floor slab",
+                "100%",
+                "100%",
+                "100%",
+                "—"
+              ],
+              [
+                "1030 Steel erection",
+                "100%",
+                "100% (assumed)",
+                "5% actual",
+                "95 points"
+              ],
+              [
+                "1040 Metal decking",
+                "starts 1 Feb",
+                "starts 1 Feb",
+                "starts 5 Feb",
+                "4 days"
+              ],
+              [
+                "Chain completion",
+                "15 Feb",
+                "15 Feb",
+                "19 Feb",
+                "4 days late"
+              ]
+            ]
+          },
+          "after": "The auto-updated programme reports the project exactly on plan. The manually updated one reports it four days late and identifies precisely which activity caused it. Both were produced on the same day from the same project. Only one of them is a record."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-4-3-a",
+            "q-4-3-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "The data date divides history from forecast. Float is only calculated forward of it — which is why no software can compute an as-built critical path.",
+            "Updates record the performance of every party, not just the contractor. They are evidence in both directions.",
+            "Progress each activity individually. Auto-update assumes everything went to plan and hides the slippage you are looking for.",
+            "Issue a transparent record of every logic and duration change. It is the cheapest defence against an allegation of manipulation."
+          ]
+        }
+      ]
+    },
+    "4.4": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "There is a setting buried in an options menu in every major planning package. It has two values. Which one is selected changes the calculated completion date of your project, and almost nobody checks it."
+        },
+        {
+          "type": "core",
+          "md": "### Out-of-sequence progress\n\nWork gets done out of sequence constantly. An activity starts before its predecessor has finished, or finishes before a relationship should allow. Every package produces an **out-of-sequence report** identifying it, and the entries read like this:\n\n> `C1B357077 · C1B357067 · FS 0 · started before its predecessor finished`\n>\n> `C1B512210 · C1B516210 · FF 0 · started too early to allow it to finish on or after its predecessor's finish`\n\nWhen this happens the software must decide what to do with the broken logic, and there are two protocols.\n\n### Retained logic\n\nThe dependency is **kept**. The successor may have started out of sequence, but its remaining work still cannot complete until the predecessor is complete.\n\nTake drywall (10 days) and paint (5 days), planned finish-to-start, 15 days total. Paint actually starts on day 3. Under [[retained|retained logic]], painting can proceed in the areas that are boarded — but it cannot be 100% complete until the last sheet of drywall is up. The programme calculates 13 days.\n\nThis is the honest setting, and it is the one you almost always want. It recognises that although an activity may have started out of sequence, it **cannot be complete until its predecessors are**.\n\n### Progress override\n\nThe link from the activity to its predecessors is **broken** the moment it starts out of sequence.\n\nSame example. Paint starts on day 3, runs 5 days, and the programme now says painting completes on day 8 while drywall runs to day 10. Total: 10 days.\n\nThat is not a schedule. It is a physical impossibility — a floor fully painted before it has been fully boarded. And it has just removed five days from the project that nobody has earned.\n\n### The real repair\n\nNeither setting is the right answer to a sequence that has genuinely changed. The right answer is **better logic**.\n\nIf painting really does now follow drywall by three days on a rolling basis, say so: replace the finish-to-start relationship with finish-to-finish plus three. That gives 13 days, it reflects how the work is actually being built, and it survives cross-examination because it is true.\n\n### Why this matters forensically\n\nMaintaining valid logical relationships is fundamental to the credibility of a programme used in delay analysis. In *Pacific Construction v Greater Vancouver Regional Hospital District*, the court emphasised the necessity of evaluating the validity and reasonableness of a contractor's [[baseline|baseline]] before it could be relied on for forensic analysis.\n\nMore practically: if you are handed a set of monthly updates and asked to run a [[windows|windows analysis]], **find out which protocol they were calculated under before you rely on a single date**. Different packages are not consistent, and the setting does not appear on any printout."
+        },
+        {
+          "type": "figure",
+          "widget": "out-of-sequence",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "site",
+          "title": "Check it on day one",
+          "md": "Add this to the baseline validation list, and check it again on any programme you are given:\n\n- which calculation protocol is selected — retained logic or progress override\n- whether the out-of-sequence report is empty, short, or hundreds of lines long\n- whether the same protocol was used consistently across every update\n\nA set of updates where the protocol changed midway is not a series. The dates before and after are not comparable, and a windows analysis built across the change will attribute a calculation-setting artefact to somebody as delay."
+        },
+        {
+          "type": "worked",
+          "md": "Drywall 10 days, paint 5 days, paint starts on day 3:",
+          "calc": [
+            {
+              "l": "As planned — finish to start",
+              "v": "15 days"
+            },
+            {
+              "l": "Retained logic — paint cannot finish before drywall does",
+              "v": "13 days",
+              "tone": "emp"
+            },
+            {
+              "l": "Progress override — link broken, paint finishes on day 8",
+              "v": "10 days",
+              "tone": "crit"
+            },
+            {
+              "l": "Corrected logic — finish to finish plus 3 days",
+              "v": "13 days",
+              "total": true
+            },
+            {
+              "l": "Days apparently gained by the calculation setting alone",
+              "v": "3 days",
+              "sub": true,
+              "tone": "crit"
+            }
+          ],
+          "after": "Three days on one pair of activities, produced by a menu selection rather than by anything happening on site. On a project with hundreds of out-of-sequence entries the aggregate is substantial — and it is entirely invisible unless somebody opens the options dialogue and looks."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-4-4-a",
+            "q-4-4-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Out-of-sequence progress forces the software to choose between retained logic and progress override. The choice moves the completion date.",
+            "Retained logic keeps the dependency: work may start early but cannot be complete before its predecessor. This is almost always the honest setting.",
+            "Progress override breaks the link and will report physically impossible sequences and unearned time.",
+            "The real repair for a changed sequence is better logic, not a calculation setting. Check which protocol was used before relying on anybody's dates."
+          ]
+        }
+      ]
+    },
+    "4.5": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Give a forensic analyst too few documents and they will miss the one that proves your point. Give them too many, uncoded, and you will pay for six months of reading — and they will still miss it."
+        },
+        {
+          "type": "core",
+          "md": "### Why notice provisions and records travel together\n\nMost standard forms require notice of an intention to claim time or money within a reasonable period of the event. Those provisions are usually tied to a requirement to keep contemporaneous records that the employer's representative may inspect.\n\nWhen contractors fail to comply, their entitlement is often limited. The records requirement is not administrative box-ticking; it is a condition of the machinery working at all.\n\n### The categories\n\n**Programme and progress**\n[[baseline|Baseline]] programme with order, sequence, timing and dependencies · method statements · intended resources · revised programmes showing contemporaneous intentions · time impact evaluations made *before* changed work is carried out · progress programmes · minutes of daily, weekly, monthly, special and early-warning meetings.\n\n**Contractor's daily reports**\nAll activities in progress or being delayed, with the cause referenced **to the programme activity ID** · all plant on site with hours worked, idle, down and under repair given separately · work performed with location and by whom · test results and inspections with references to the specification · deficiencies and corrective action · photographs.\n\n**Communications**\nLetters · transmittals · faxes · emails · requests for information · submittals · certificates.\n\n**Cost**\nJob cost report · labour returns and daily allocation records · plant returns and hire records · sub-contractor allocation reports · payment vouchers, invoices, purchase orders · change orders, estimates, negotiations.\n\n**Contract**\nConditions · specifications · employer's requirements · drawings · instructed variations.\n\n### Reference everything to the programme\n\nThe single most valuable habit on that list is the small one: **reference daily report entries to programme activity IDs**.\n\nA daily report saying \"delayed on the second floor by late M&E information\" is worth something. One saying \"C1B544210 delayed — no coordinated services drawing, ref RFI 218\" is worth an order of magnitude more, because it links a fact to an activity to a document without anybody reconstructing anything.\n\n### Document control\n\nA centralised document control centre. Every document date-stamped on arrival, coded — **using the WBS structure** — logged, assigned to a named person for action, and distributed within one day.\n\nWell-run projects designate a single individual for all correspondence to and from each party, usually the project manager. Separate document control logs for incoming/outgoing correspondence, for RFIs and technical queries, and for potential compensation events and change orders.\n\nDelays caused by an inadequate document control system are entirely avoidable, and they carry real contractual consequence: exceeding a contractual \"period for reply\" on an RFI or a drawing review can itself become a compensation event."
+        },
+        {
+          "type": "figure",
+          "widget": "records",
+          "props": {}
+        },
+        {
+          "type": "note",
+          "kind": "protocol",
+          "title": "Agree the records at the start",
+          "md": "The SCL Protocol recommends the parties reach a clear agreement on which records will be kept, by which party, how often, and to what level of detail. Its model records clause is drafted to go into the specification section of the tender documents — with a shorter version for small projects and a fuller one for larger or more complex ones.\n\nThe reasoning is stated plainly:\n\n> The starting point for any delay analysis is to understand what work was carried out and when it was carried out.\n\nThat agreement costs nothing at tender stage and is worth a great deal later. It also fixes the standard, so neither party can later complain about the level of detail it agreed to."
+        },
+        {
+          "type": "worked",
+          "md": "What too many and too few documents each cost:",
+          "table": {
+            "head": [
+              "Approach",
+              "What happens",
+              "Consequence"
+            ],
+            "rows": [
+              [
+                "Too few documents provided",
+                "The analyst does not see the document that would have shown when an event actually occurred",
+                "A conclusion that is confidently wrong, and collapses when the other side produces it"
+              ],
+              [
+                "Too many, uncoded and unorganised",
+                "Excessive research cost, disproportionate to the sum in dispute",
+                "Key documents overlooked despite being in the bundle"
+              ],
+              [
+                "Coded to the WBS, referenced to activity IDs",
+                "The analyst filters to one activity and reads twenty documents",
+                "Findings that are succinct, checkable and cheap to produce"
+              ]
+            ]
+          },
+          "after": "The middle row is the common one, and it is worse than it sounds. Volume creates a false sense of thoroughness while raising the probability that the decisive document is never read. When the analysis conflicts with a contemporaneous document, **the document wins** — every time."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-4-5-a",
+            "q-4-5-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Notice provisions and record-keeping requirements travel together. Failing the second usually limits entitlement under the first.",
+            "Reference daily report entries to programme activity IDs. It is the cheapest habit on the project and the most valuable in a claim.",
+            "Code documents to the WBS so the programme, the cost plan and the file all use one structure.",
+            "Where analysis conflicts with a contemporaneous document, the document prevails."
+          ]
+        }
+      ]
+    },
+    "4.6": {
+      "blocks": [
+        {
+          "type": "hook",
+          "md": "Most contractors plan honestly. Some maximise the opportunity for an extension of time by minimising the float they show. The techniques are well known, they are all detectable in a programme review, and a contract administrator who cannot spot them is negotiating blind."
+        },
+        {
+          "type": "core",
+          "md": "### The techniques\n\n**Reducing the employer's design and drawing review time.** Contractual review periods shortened in the programme, so that a review taking its allotted time appears as employer delay.\n\n**Unrealistic early completion programmes.** A programme showing completion months before the contract date, generating [[terminal|terminal float]] that the contractor then claims to own.\n\n**Artificial activity durations to hide [[float|float]].** Padding every duration by 15–20%. Consumes float invisibly, and defeats itself over time as activities perform to their natural durations.\n\n**Artificial logic to hide float.** Preferential sequencing so the [[critical|critical path]] is arranged to pass through — or avoid — activities more susceptible to employer-caused delay.\n\n**Artificial logic to exaggerate known delays.** Adding dependencies after an event, so its impact appears larger than it was.\n\n**Selective issue of progress information.** Issuing updates only when they support a position.\n\n**Progress updates with no historic as-built data.** Updates that show the forecast but not what actually happened, so no as-built can ever be built from the series.\n\n**Incorrect actual dates in progress updates.** Actual starts and finishes that do not match the field records.\n\n**Changing historical data in the final as-built.** Retrospectively adjusting dates that were reported differently at the time.\n\n**Unidentified logic and duration changes between updates.** The most common of all, and often not deliberate — but indistinguishable from the deliberate version.\n\n### Refusing to programme at all\n\nWhere a contractor is not expressly required to submit detailed CPM programmes or updates, some will not issue a [[baseline|baseline]] or any updates whatsoever. That makes [[eot|extension of time]] negotiation very difficult, and may force the employer to produce its own programme from site records at considerable expense — in order to assess or defend a claim it has no other means of testing.\n\n### The defence: a shadow programme\n\nWhere these practices are identified or suspected, the employer's project manager can prepare and maintain a **shadow programme**: the contractor's most recently submitted programme, updated with the employer's team's own perception of progress.\n\nIt protects against a loss of information, or misinformation, if reliable programming data stops flowing. On projects where the contract administrator is already obliged to keep progress records, maintaining one should require little more effort than was already anticipated.\n\nCall it what it is. Date it. Record what it is based on. A shadow programme presented as though it were the accepted programme is its own species of bad practice.\n\n### The float suppression clause\n\nUS federal specifications address this directly, and the drafting is worth borrowing:\n\n> Use of float suppression techniques, such as preferential sequencing, special lead/lag logic restraints, zero total or free float constraints, extended activity times, or imposing constraint dates other than as required by the contract, shall be cause for rejection of the project schedule or its updates. The use of resource levelling used for the purpose of artificially adjusting activity durations to consume float and influence the critical path is expressly prohibited."
+        },
+        {
+          "type": "figure",
+          "widget": "checklist",
+          "props": {
+            "id": "predatory-review",
+            "title": "Reviewing a submitted programme",
+            "sub": "Ten things to look for, and each has a defence",
+            "items": [
+              "Employer review and approval periods match the contract — not shortened.",
+              "Planned completion is realistic, and any terminal float shown is declared and explained.",
+              "Activity durations are consistent with tender allowances and historic outputs.",
+              "The critical path does not run implausibly through employer-dependent activities.",
+              "The proportion of activities that are critical or near-critical is reasonable for the stage.",
+              "Constraints are few, and each has a stated reason.",
+              "No zero-total-float or mandatory constraints are present.",
+              "Each update carries historic as-built data, not just a forward forecast.",
+              "Actual start and finish dates reconcile with daily reports and labour returns.",
+              "Logic and duration changes between updates are identified and explained.",
+              "The same calculation protocol — retained logic or progress override — is used throughout.",
+              "The programme is supplied in native format, not just as a PDF printout."
+            ],
+            "note": "That last one matters more than it looks. Constraints, calculation protocols and float settings are invisible on a printout and only accessible in the native file — which is why contract programming specifications should require it."
+          }
+        },
+        {
+          "type": "note",
+          "kind": "warn",
+          "title": "Padding defeats itself, and costs you the measured mile",
+          "md": "Adding 20% to every duration to hide float has three problems.\n\nIt **emerges**. Those activities will be performed at their natural durations and the float will reappear, visibly, in the updates.\n\nIt **invites Parkinson's Law** — work expands to fill the time available. The site foreman with an inflated allowance will use it, which produces genuinely slower output and defeats the purpose.\n\nAnd it **destroys your own disruption claim**. Establishing a measured mile requires a period of efficient, unimpacted progress to compare against. Skewed durations mask the true impact of both excusable and culpable events, and there is no clean baseline productivity left to point at.\n\nIf you want contingency, declare it. Show it as an express risk allowance or contingency activity, kept apart from the pattern of float movement in the programme."
+        },
+        {
+          "type": "worked",
+          "md": "One clause, and what it prohibits:",
+          "table": {
+            "head": [
+              "Technique",
+              "How it hides float",
+              "How the clause catches it"
+            ],
+            "rows": [
+              [
+                "Preferential sequencing",
+                "Critical path routed through employer-dependent work",
+                "Named and prohibited"
+              ],
+              [
+                "Special lead/lag restraints",
+                "Excessive lags bind the network into an inflexible mass",
+                "Named and prohibited"
+              ],
+              [
+                "Zero total or free float constraints",
+                "Early and late dates forced equal",
+                "Named and prohibited"
+              ],
+              [
+                "Extended activity times",
+                "Padding buried in durations",
+                "Named and prohibited"
+              ],
+              [
+                "Constraint dates beyond those the contract requires",
+                "Manufactured negative float",
+                "Named and prohibited"
+              ],
+              [
+                "Resource levelling to consume float",
+                "Durations adjusted to influence the critical path",
+                "Expressly prohibited"
+              ]
+            ]
+          },
+          "after": "The clause achieves something a review alone cannot: it makes these techniques a **ground for rejecting the programme**, which shifts the burden. Without it, the contract administrator must prove the programme is misleading. With it, the contractor must show its programme complies."
+        },
+        {
+          "type": "check",
+          "q": [
+            "q-4-6-a",
+            "q-4-6-b"
+          ]
+        },
+        {
+          "type": "takeaway",
+          "points": [
+            "Ten recognised float-suppression techniques, all detectable in a programme review — several only in the native file.",
+            "A shadow programme protects the employer when reliable information stops flowing. Label it as one.",
+            "Padding durations defeats itself: the float re-emerges, Parkinson's Law consumes it, and you lose your own measured mile.",
+            "A float suppression clause makes these techniques a ground for rejecting the programme, which is worth more than any amount of after-the-fact argument."
+          ]
+        }
+      ]
+    }
+  }
+}
