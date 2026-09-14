@@ -9,6 +9,7 @@ import * as state from '../state.js';
 import * as data from '../data.js';
 import { el, frag, shuffle, num, pctPlain, announce } from '../util.js';
 import { runQuiz } from '../quiz.js';
+import { icon } from '../icons.js';
 
 const COOLDOWN = { module: 60 * 1000, boss: 5 * 60 * 1000 };
 
@@ -46,8 +47,14 @@ export async function quiz(modN, isBoss) {
 
   const wrap = el('div');
 
+  wrap.append(el('nav.crumbs', { 'aria-label': 'Breadcrumb' }, [
+    el('a', { href: '#/' }, 'Dashboard'), icon('chevronRight'),
+    el('a', { href: `#/m/${modN}` }, `Module ${String(modN).padStart(2, '0')}`), icon('chevronRight'),
+    el('span', isBoss ? `Boss quiz ${level.roman}` : 'Quiz')
+  ]));
+
   wrap.append(el('div.head', [
-    el('span.head__kicker.kicker', isBoss ? `Boss quiz · Level ${level.roman}` : `Module ${String(modN).padStart(2, '0')} quiz`),
+    el('span.head__kicker', [icon(isBoss ? 'trophy' : 'help', 13), isBoss ? `Boss quiz · Level ${level.roman}` : `Module ${String(modN).padStart(2, '0')} quiz`]),
     el('h1', isBoss ? `Boss Quiz ${level.roman} — ${level.name}` : `${mod.title}`),
     el('p', isBoss
       ? `${length} questions drawn from a pool of ${pool.length}, covering Modules ${level.modules[0]}–${level.modules[level.modules.length - 1]}. ` +
@@ -78,7 +85,7 @@ export async function quiz(modN, isBoss) {
   }
 
   const picked = shuffle(pool).slice(0, length);
-  const host = el('div');
+  const host = el('div.panel.quizcard');
   wrap.append(host);
 
   host.append(runQuiz(picked, {

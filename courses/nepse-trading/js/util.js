@@ -143,7 +143,12 @@ export function el(spec, props = null, children = null) {
     for (const [k, v] of Object.entries(props)) {
       if (v === null || v === undefined || v === false) continue;
       if (k === 'class') n.className += (n.className ? ' ' : '') + v;
-      else if (k === 'style' && typeof v === 'object') Object.assign(n.style, v);
+      else if (k === 'style' && typeof v === 'object') {
+        for (const [p, pv] of Object.entries(v)) {
+          if (p.startsWith('--')) n.style.setProperty(p, pv);   // custom properties need setProperty
+          else n.style[p] = pv;
+        }
+      }
       else if (k === 'dataset') Object.assign(n.dataset, v);
       else if (k.startsWith('on') && typeof v === 'function') n.addEventListener(k.slice(2), v);
       else if (k === 'html') n.innerHTML = v;                 // only ever called with our own markup

@@ -155,7 +155,9 @@ export class CandleChart {
       }
     }
     const padv = (hi - lo) * 0.08 || 1;
-    lo -= padv; hi += padv;
+    // padding must not invent a negative axis for a series that never goes below zero
+    lo = lo >= 0 ? Math.max(0, lo - padv) : lo - padv;
+    hi += padv;
 
     const plotH = this._plotH;
     const y = p => PAD.t + (1 - (p - lo) / (hi - lo)) * plotH;
@@ -326,12 +328,17 @@ export class CandleChart {
       ctx.save();
       ctx.font = '500 9px "Martian Mono", ui-monospace, monospace';
       ctx.fillStyle = C.axis; ctx.textBaseline = 'top'; ctx.textAlign = 'center';
-      const step = Math.max(1, Math.round(n / 6));
+      // as many labels as the width holds (~72px each), never clipped at either edge
+      const fit = Math.max(2, Math.floor((this.w - PAD.l - PAD.r) / 72));
+      const step = Math.max(1, Math.ceil(n / fit));
       for (let k = 0; k < n; k += step) {
         const i = from + k;
         const d = this.o.data[i].d;
         if (!d) continue;
-        ctx.fillText(String(d).slice(2, 10).replace(/-/g, '.'), x(i), this.h - PAD.b + 4);
+        const label = String(d).slice(2, 10).replace(/-/g, '.');
+        const half = ctx.measureText(label).width / 2;
+        if (x(i) - half < 0 || x(i) + half > this.w - PAD.r + 4) continue;
+        ctx.fillText(label, x(i), this.h - PAD.b + 4);
       }
       ctx.restore();
     }

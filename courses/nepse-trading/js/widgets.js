@@ -421,10 +421,12 @@ function costCalculator(props = {}) {
         }),
         el('div', {
           style: {
-            marginTop: 'var(--s3)', padding: 'var(--s3) var(--s4)',
-            borderLeft: '3px solid ' + (win ? 'var(--bull)' : 'var(--bear)'),
+            marginTop: 'var(--s3)', padding: '14px 16px',
+            border: '1px solid ' + (win ? 'var(--bull-line)' : 'var(--bear-line)'),
+            borderLeft: '4px solid ' + (win ? 'var(--bull)' : 'var(--bear)'),
+            borderRadius: '12px',
             background: win ? 'var(--bull-wash)' : 'var(--bear-wash)',
-            fontFamily: 'var(--f-data)', fontSize: 'var(--t-xs)'
+            fontSize: 'var(--t-xs)'
           }
         }, [
           el('div', { class: win ? 'up' : 'down', style: { fontSize: 'var(--t-md)', fontWeight: 600 } },
@@ -615,23 +617,20 @@ function settlementTimeline() {
       : ['Mon (T)', 'Tue (T+1)', 'Wed (T+2)'];
 
     out.replaceChildren(
-      el('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '1px', background: 'var(--ink-700)', border: 'var(--hairline)' } },
+      el('div.tabs', { role: 'tablist' },
         labels.map((lab, i) => el('button', {
-          style: {
-            background: i === day ? 'var(--ink-750)' : 'var(--ink-850)',
-            padding: 'var(--s3)', fontFamily: 'var(--f-data)', fontSize: 'var(--t-cap)',
-            color: i === day ? 'var(--signal)' : 'var(--paper-3)', minHeight: '44px'
-          },
-          'aria-pressed': String(i === day),
+          type: 'button', role: 'tab',
+          'aria-selected': String(i === day),
           onclick: () => { day = i; paint(); }
         }, lab))),
 
       el('div', { style: { marginTop: 'var(--s4)', display: 'grid', gap: 'var(--s3)' } }, [
-        lane('BUY', LANES.buy[day]),
-        lane('SELL', LANES.sell[day])
+        lane('Buy', LANES.buy[day]),
+        lane('Sell', LANES.sell[day])
       ]),
 
-      thursday && day === 2 && el('div.callout.callout--nepse', { style: { marginTop: 'var(--s4)' } }, [
+      // replaceChildren would print a bare `false`, so the empty case is an empty string
+      !(thursday && day === 2) ? '' : el('div.callout.callout--nepse', { style: { marginTop: 'var(--s4)' } }, [
         el('span.callout__l', 'Why Monday'),
         el('p', 'Settlement counts trading days, not calendar days. Saturday and Sunday are market holidays since ' +
                 'NEPSE moved to a Monday–Friday week in April 2026, so a Thursday sale settles on Monday. ' +
@@ -644,13 +643,15 @@ function settlementTimeline() {
     const act = flag === 'act';
     return el('div', {
       style: {
-        borderLeft: '3px solid ' + (act ? 'var(--signal)' : title === 'BUY' ? 'var(--bull-dim)' : 'var(--bear-dim)'),
-        background: act ? 'var(--signal-wash)' : 'var(--ink-850)',
-        padding: 'var(--s3) var(--s4)'
+        border: '1px solid ' + (act ? 'var(--accent-line)' : 'var(--line)'),
+        borderLeft: '4px solid ' + (act ? 'var(--accent)' : title === 'Buy' ? 'var(--bull)' : 'var(--bear)'),
+        borderRadius: '12px',
+        background: act ? 'var(--accent-soft)' : 'var(--surface-2)',
+        padding: '12px 16px'
       }
     }, [
-      el('span.callout__l', { style: act ? { color: 'var(--signal)' } : {} }, title),
-      el('p', { style: { fontSize: 'var(--t-sm)', color: 'var(--paper-2)' } }, text)
+      el('span.callout__l', { style: act ? { color: 'var(--accent-text)' } : {} }, act ? `${title} — you must act today` : title),
+      el('p', { style: { fontSize: 'var(--t-sm)', color: 'var(--text-2)' } }, text)
     ]);
   }
 
@@ -899,7 +900,7 @@ function sectorTreemap() {
   const sectors = ctx.securities.sectors;
   const total = ctx.securities.totalListedCompanies;
   const host = el('div', {
-    style: { display: 'flex', flexWrap: 'wrap', gap: '2px' },
+    style: { display: 'flex', flexWrap: 'wrap', gap: '6px' },
     role: 'img',
     'aria-label': `Sector composition of ${total} listed companies. ` +
       sectors.map(s => `${s.name} ${s.count}`).join(', ') + '.'
@@ -913,14 +914,14 @@ function sectorTreemap() {
         flex: `1 1 ${Math.max(80, area * 3.4)}px`,
         minHeight: Math.max(48, area * 2.6) + 'px',
         background: `color-mix(in srgb, var(${palette[i % palette.length]}) 22%, var(--ink-850))`,
-        border: '1px solid var(--ink-700)',
-        padding: 'var(--s2) var(--s3)',
+        border: '1px solid var(--line)', borderRadius: '10px',
+        padding: '10px 12px',
         display: 'flex', flexDirection: 'column', justifyContent: 'space-between'
       },
       title: `${s.name} — ${s.count} companies (${(s.share * 100).toFixed(1)}%)`
     }, [
-      el('span', { style: { fontFamily: 'var(--f-data)', fontSize: '0.625rem', letterSpacing: '0.08em', color: 'var(--paper-2)', lineHeight: 1.3 } }, s.name),
-      el('span', { style: { fontFamily: 'var(--f-data)', fontSize: 'var(--t-sm)', fontWeight: 600, color: 'var(--paper)' } },
+      el('span', { style: { fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-2)', lineHeight: 1.3 } }, s.name),
+      el('span.num', { style: { fontSize: 'var(--t-sm)', fontWeight: 700, color: 'var(--text)' } },
         `${s.count} · ${(s.share * 100).toFixed(1)}%`)
     ]));
   });
@@ -1200,13 +1201,13 @@ function staticTable(props) {
 /** A numbered flow of steps, each with a cost or a timing. */
 function flow(props) {
   return frame(props.title, props.sub,
-    el('div.lessons', (props.steps || []).map((s, i) => el('div.lrow', { style: { cursor: 'default' } }, [
-      el('span.lrow__n', String(i + 1).padStart(2, '0')),
-      el('div', [
-        el('div.lrow__t', { style: { color: 'var(--paper)' } }, s.t),
-        s.d && el('p', { style: { fontSize: 'var(--t-xs)', color: 'var(--paper-3)', marginTop: '3px' } }, s.d)
+    el('ol.flow', (props.steps || []).map((s, i) => el('li.flow__step', [
+      el('span.flow__n.num', String(i + 1)),
+      el('div.flow__body', [
+        el('b', s.t),
+        s.d && el('p', s.d)
       ]),
-      s.meta && el('span.lrow__m', s.meta)
+      s.meta && el('span.flow__m', s.meta)
     ]))),
     props.note);
 }
@@ -1215,7 +1216,7 @@ function flow(props) {
 function compare(props) {
   return frame(props.title, props.sub, [
     el('div', { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(210px, 100%), 1fr))', gap: 'var(--s4)' } },
-      (props.sides || []).map(s => el('div.panel', { style: { background: 'var(--ink-800)' } }, [
+      (props.sides || []).map(s => el('div.panel.panel--deep', [
         el('span.kicker', s.k),
         el('h4', { style: { margin: '6px 0 var(--s3)' } }, s.t),
         el('div.calc', (s.rows || []).map(r =>

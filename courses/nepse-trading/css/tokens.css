@@ -2,93 +2,227 @@
    NEPSE TRADING ACADEMY — design tokens
    © 2026 Shital Ghimire. All rights reserved.
 
-   "LEDGER" — the aesthetic of a well-set annual report read at night.
-   Warm charcoal ground rather than cold blue-black. ONE metal accent,
-   spent sparingly. Market green and red are reserved exclusively for
-   market data and never appear in the interface chrome.
+   "TRADING DESK" — a calm product surface for a serious subject.
+   Two themes share one set of semantic names. Violet carries the
+   interface; lime is a highlighter, used for emphasis only. Market
+   green and red stay reserved for market data.
+
+   Older view code still reads the legacy names (--ink-*, --paper-*,
+   --gold, --signal). They are aliased at the bottom of each theme so
+   every inline style keeps working in both.
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ── ground: warm charcoal, never pure black ─────────────── */
-  --ink-900: #100F0D;   /* page                     */
-  --ink-850: #16150F;   /* deep panel               */
-  --ink-800: #1B1A16;   /* surface / card           */
-  --ink-750: #22211B;   /* raised, hover            */
-  --ink-700: #2C2A23;   /* hairline                 */
-  --ink-600: #3B3931;   /* strong rule, gridline    */
-  --ink-500: #4E4B41;
+  color-scheme: light;
 
-  /* ── type: warm paper, four steps of emphasis ────────────── */
-  --paper:   #F4F1E8;
-  --paper-2: #C3BEB0;
-  --paper-3: #8B857678;
-  --paper-3: #8E8878;
-  --paper-4: #605B4F;
+  /* ── ground and surfaces ─────────────────────────────────── */
+  --bg:        #F4F5F8;
+  --surface:   #FFFFFF;
+  --surface-2: #F8F9FB;
+  --surface-3: #EFF1F5;
+  --raised:    #FFFFFF;
+  --line:      #E6E8EE;
+  --line-2:    #D5D9E1;
 
-  /* ── the single accent: old gold. Used sparingly. ────────── */
-  --gold:      #C9A227;
-  --gold-soft: #E0BF57;
-  --gold-dim:  #6E5A16;
-  --gold-wash: rgba(201, 162, 39, 0.10);
+  /* ── text, four steps ────────────────────────────────────── */
+  --text:   #0E1118;
+  --text-2: #464E5D;
+  --text-3: #6A7282;
+  --text-4: #8E95A2;
 
-  /* ── market signals — DATA ONLY, never chrome ────────────── */
-  --bull:      #3FBF8F;
-  --bull-dim:  #1F6E52;
-  --bull-wash: rgba(63, 191, 143, 0.10);
-  --bear:      #E2585F;
-  --bear-dim:  #8C2F36;
-  --bear-wash: rgba(226, 88, 95, 0.10);
+  /* ── interface accent ────────────────────────────────────── */
+  --accent:       #5B3DF5;
+  --accent-2:     #4A2CE3;
+  --accent-soft:  #F0ECFF;
+  --accent-line:  #D6CCFF;
+  --accent-text:  #4B2EE0;
+  --on-accent:    #FFFFFF;
 
-  /* learner progress shares the gold; no fourth colour exists */
-  --signal:      var(--gold);
-  --signal-dim:  var(--gold-dim);
-  --signal-wash: var(--gold-wash);
+  /* ── highlighter ─────────────────────────────────────────── */
+  --lime:    #C8F25C;
+  --on-lime: #10140A;
 
-  /* Nepal crimson: EXACTLY three uses —
-     1) the NEPSE wordmark  2) the certificate seal  3) the Nepal-note rule */
-  --crimson: #C0392B;
+  /* Nepal crimson: wordmark, Nepal-note callouts, certificate seal */
+  --crimson:      #D12F2A;
+  --crimson-soft: #FDF0EF;
+  --crimson-line: #F3C5C2;
 
-  /* ── chart ───────────────────────────────────────────────── */
-  --grid:    rgba(59, 57, 49, 0.5);
-  --axis:    #6E6959;
-  --volume:  rgba(195, 190, 176, 0.16);
-  --ma-fast: var(--gold);
-  --ma-slow: #7C9BB5;
-  --rsi-line:#A98BC4;
+  /* ── market signals: data only ───────────────────────────── */
+  --bull:      #0B996A;
+  --bull-line: #A6DCC7;
+  --bull-wash: rgba(11, 153, 106, 0.09);
+  --bear:      #DB3446;
+  --bear-line: #F2B6BD;
+  --bear-wash: rgba(219, 52, 70, 0.08);
+  --warn:      #B86E00;
+  --warn-line: #F1D19A;
+  --warn-wash: rgba(242, 159, 5, 0.12);
 
-  /* ── type scale: wider contrast than before ──────────────── */
-  --t-mega: clamp(3.5rem, 11vw, 9rem);
-  --t-xxl:  clamp(2.1rem, 5.4vw, 3.9rem);
-  --t-xl:   clamp(1.6rem, 3.2vw, 2.4rem);
-  --t-lg:   clamp(1.22rem, 2vw, 1.5rem);
-  --t-md:   1.0625rem;
+  /* ── the four levels ─────────────────────────────────────── */
+  --lv-1: #6A4CFF;
+  --lv-2: #E48A00;
+  --lv-3: #0B93D6;
+  --lv-4: #D93C82;
+
+  /* ── hero card: dark in both themes ──────────────────────── */
+  --hero-bg:     #0F1118;
+  --hero-line:   rgba(255, 255, 255, 0.08);
+  --hero-text:   #F5F6FA;
+  --hero-text-2: #A6ADBB;
+
+  /* ── charts ──────────────────────────────────────────────── */
+  --grid:     rgba(14, 17, 24, 0.07);
+  --axis:     #8A91A0;
+  --volume:   rgba(14, 17, 24, 0.08);
+  --ma-fast:  #E08600;
+  --ma-slow:  #2F6FEB;
+  --rsi-line: #9B51E0;
+
+  /* ── depth ───────────────────────────────────────────────── */
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.05);
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04), 0 2px 8px -2px rgba(16, 24, 40, 0.06);
+  --shadow-md: 0 1px 3px rgba(16, 24, 40, 0.05), 0 12px 32px -10px rgba(16, 24, 40, 0.14);
+  --shadow-lg: 0 24px 64px -18px rgba(16, 24, 40, 0.28);
+  --scrim:     rgba(14, 17, 24, 0.42);
+  --overlay:   rgba(255, 255, 255, 0.95);
+  --watermark: rgba(14, 17, 24, 0.045);
+  --glass:     rgba(244, 245, 248, 0.82);
+
+  /* ── type ────────────────────────────────────────────────── */
+  --f-ui:   'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono: 'JetBrains Mono', 'Martian Mono', ui-monospace, monospace;
+  --f-serif:'Newsreader', Georgia, serif;
+  --f-np:   'Mukta', sans-serif;
+
+  --t-mega: clamp(2.4rem, 5vw, 3.6rem);
+  --t-xxl:  clamp(2rem, 3.8vw, 2.75rem);
+  --t-xl:   clamp(1.5rem, 2.4vw, 1.875rem);
+  --t-lg:   1.25rem;
+  --t-md:   1rem;
   --t-sm:   0.9375rem;
   --t-xs:   0.8125rem;
-  --t-cap:  0.6875rem;
+  --t-cap:  0.75rem;
 
-  /* ── space: 4px base, but the large steps are larger ─────── */
+  /* ── space: 4px base ─────────────────────────────────────── */
   --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
-  --s5: 24px; --s6: 36px; --s7: 56px; --s8: 80px; --s9: 120px;
+  --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
 
-  --measure: 66ch;
-  --radius:  2px;
-  --hairline: 1px solid var(--ink-700);
+  --r-sm: 8px;
+  --r:    12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
 
-  --ease: cubic-bezier(.2,.7,.2,1);
-  --dur: 280ms;
+  --measure: 70ch;
+  --side-w: 264px;
+  --top-h: 68px;
 
-  /* fonts */
-  --f-display: 'Bricolage Grotesque', 'Arial Black', sans-serif;
-  --f-read:    'Newsreader', Georgia, serif;
-  --f-data:    'Martian Mono', ui-monospace, monospace;
-  --f-np:      'Mukta', sans-serif;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur: 320ms;
+
+  /* ── legacy aliases (read by older view and game code) ───── */
+  --ink-900: var(--bg);
+  --ink-850: var(--surface-2);
+  --ink-800: var(--surface);
+  --ink-750: var(--surface-3);
+  --ink-700: var(--line);
+  --ink-600: var(--line-2);
+  --ink-500: var(--text-4);
+  --paper:   var(--text);
+  --paper-2: var(--text-2);
+  --paper-3: var(--text-3);
+  --paper-4: var(--text-4);
+  --gold:      var(--accent);
+  --gold-soft: var(--accent-2);
+  --gold-dim:  var(--accent-line);
+  --gold-wash: var(--accent-soft);
+  --signal:      var(--accent);
+  --signal-dim:  var(--accent-line);
+  --signal-wash: var(--accent-soft);
+  --bull-dim: var(--bull-line);
+  --bear-dim: var(--bear-line);
+  --f-display: var(--f-ui);
+  --f-read:    var(--f-ui);
+  --f-data:    var(--f-mono);
+  --radius:    10px;
+  --hairline:  1px solid var(--line);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:        #0A0B10;
+  --surface:   #12141B;
+  --surface-2: #171A23;
+  --surface-3: #1E2230;
+  --raised:    #292E3F;
+  --line:      #232736;
+  --line-2:    #30354A;
+
+  --text:   #EDEFF5;
+  --text-2: #B2B8C6;
+  --text-3: #858C9B;
+  --text-4: #646B7B;
+
+  --accent:      #7B64FF;
+  --accent-2:    #9481FF;
+  --accent-soft: rgba(123, 100, 255, 0.14);
+  --accent-line: rgba(123, 100, 255, 0.38);
+  --accent-text: #AE9FFF;
+  --on-accent:   #FFFFFF;
+
+  --lime:    #C8F25C;
+  --on-lime: #10140A;
+
+  --crimson:      #FF5A4F;
+  --crimson-soft: rgba(255, 90, 79, 0.08);
+  --crimson-line: rgba(255, 90, 79, 0.32);
+
+  --bull:      #3DD49C;
+  --bull-line: rgba(61, 212, 156, 0.38);
+  --bull-wash: rgba(61, 212, 156, 0.10);
+  --bear:      #FF6B7D;
+  --bear-line: rgba(255, 107, 125, 0.38);
+  --bear-wash: rgba(255, 107, 125, 0.10);
+  --warn:      #FFB84D;
+  --warn-line: rgba(255, 184, 77, 0.34);
+  --warn-wash: rgba(255, 184, 77, 0.10);
+
+  --lv-1: #8C73FF;
+  --lv-2: #FFAE2E;
+  --lv-3: #3DB8F5;
+  --lv-4: #FF6BAA;
+
+  --hero-bg:     #15122B;
+  --hero-line:   rgba(160, 140, 255, 0.18);
+  --hero-text:   #F5F6FA;
+  --hero-text-2: #ABA8C8;
+
+  --grid:     rgba(255, 255, 255, 0.06);
+  --axis:     #6E7586;
+  --volume:   rgba(255, 255, 255, 0.08);
+  --ma-fast:  #FFB020;
+  --ma-slow:  #5B9BFF;
+  --rsi-line: #C08BFF;
+
+  --shadow-xs: none;
+  --shadow-sm: 0 1px 0 rgba(255, 255, 255, 0.02) inset;
+  --shadow-md: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 16px 40px -16px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 28px 72px -18px rgba(0, 0, 0, 0.8);
+  --scrim:     rgba(0, 0, 0, 0.62);
+  --overlay:   rgba(10, 11, 16, 0.95);
+  --watermark: rgba(255, 255, 255, 0.045);
+  --glass:     rgba(10, 11, 16, 0.78);
 }
 
 /* Colour-blind-safe alternative: bull becomes blue, bear stays red.
    Shape already carries the signal — up candles hollow, down filled —
    so this is an addition, never a substitute. */
 :root[data-cb="1"] {
-  --bull: #5B9FE0; --bull-dim: #2A5F91;
+  --bull: #2F74D9; --bull-line: #A9C6F0;
+  --bull-wash: rgba(47, 116, 217, 0.10);
+}
+:root[data-cb="1"][data-theme="dark"] {
+  --bull: #5B9FE0; --bull-line: rgba(91, 159, 224, 0.4);
   --bull-wash: rgba(91, 159, 224, 0.10);
 }
 

@@ -24,7 +24,7 @@ const DEFAULT = {
   simulator: null,      // Paper Floor saved run
   learnerName: '',
   stats: { csAnswered: 0, csCorrect: 0, csContextPerfect: false, tdEdisFailed: false },
-  settings: { reduceMotion: false, colorBlindSafe: false, sound: false }
+  settings: { reduceMotion: false, colorBlindSafe: false, sound: false, theme: 'system' }
 };
 
 let cache = null;
@@ -273,6 +273,15 @@ export function rankFor(levels, xp) {
   return { rank: cur.rank, level: cur.n, next, toNext: next ? next.rankXp - xp : 0 };
 }
 
+/** The first unfinished lesson in course order, or null when all are done. */
+export function nextLesson(modules) {
+  for (const mod of modules) {
+    const lesson = mod.lessons.find(l => !lessonDone(l.id));
+    if (lesson) return { mod, lesson };
+  }
+  return null;
+}
+
 /** Certificate unlocks at 100% lessons AND all four boss quizzes passed. */
 export function certificateUnlocked(modules) {
   const p = courseProgress(modules);
@@ -289,9 +298,28 @@ export function setSetting(k, v) {
   applySettings();
 }
 
+const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+/** 'system' follows the operating system; the resolved value lands on <html>. */
+export function resolvedTheme() {
+  const t = load().settings.theme || 'system';
+  return t === 'system' ? (darkQuery.matches ? 'dark' : 'light') : t;
+}
+
 export function applySettings() {
   const { settings } = load();
   const r = document.documentElement;
   r.dataset.cb = settings.colorBlindSafe ? '1' : '0';
   r.dataset.motion = settings.reduceMotion ? '0' : '1';
+
+  const theme = resolvedTheme();
+  const changed = r.dataset.theme !== theme;
+  r.dataset.theme = theme;
+  document.getElementById('themeColor')?.setAttribute('content', theme === 'dark' ? '#0A0B10' : '#F4F5F8');
+  // canvases read colours at draw time, so tell them to repaint
+  if (changed) window.dispatchEvent(new CustomEvent('themechange', { detail: theme }));
 }
+
+darkQuery.addEventListener?.('change', () => {
+  if ((load().settings.theme || 'system') === 'system') applySettings();
+});

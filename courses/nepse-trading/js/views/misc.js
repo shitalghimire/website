@@ -1,10 +1,11 @@
 /* ═══════════════════════════════════════════════════════════════
-   FLOORSHEET — glossary, resources, settings
+   NEPSE TRADING ACADEMY — glossary, resources, settings
    ═══════════════════════════════════════════════════════════════ */
 
 import { ctx } from '../app.js';
 import * as state from '../state.js';
-import { el, frag, num, $$, announce, fmtDate } from '../util.js';
+import { el, frag, num, announce, fmtDate, stagger } from '../util.js';
+import { icon } from '../icons.js';
 
 /* ── glossary ───────────────────────────────────────────────── */
 
@@ -13,45 +14,49 @@ export function glossary() {
   const entries = Object.entries(g).sort((a, b) => a[1].en.localeCompare(b[1].en));
 
   const list = el('div.glist');
-  const count = el('p.dim', { style: { fontSize: 'var(--t-xs)', marginTop: 'var(--s3)' } });
+  const count = el('p.gcount');
 
   const paint = q => {
     const term = q.trim().toLowerCase();
     const hits = entries.filter(([k, e]) =>
       !term || e.en.toLowerCase().includes(term) || e.def.toLowerCase().includes(term) ||
       (e.rom || '').toLowerCase().includes(term) || e.np.includes(q.trim()) || k.includes(term));
-    list.replaceChildren(...hits.map(([k, e]) => el('div.gitem', [
+    list.replaceChildren(...hits.map(([, e]) => el('div.gitem', [
       el('h3', e.en),
       el('div', [
-        el('span.gitem__np', { lang: 'ne', class: 'np gitem__np' }, e.np),
-        ' ',
-        el('span.gitem__rom', e.rom || '')
+        el('span', { lang: 'ne', class: 'np gitem__np' }, e.np),
+        e.rom && el('span.gitem__rom', ` · ${e.rom}`)
       ]),
       el('p', e.def),
-      e.lesson && el('a', { href: lessonHref(e.lesson) }, `Taught in ${e.lesson} →`)
+      e.lesson && el('a', { href: lessonHref(e.lesson) }, [`Taught in lesson ${e.lesson}`, icon('arrowRight', 14)])
     ])));
-    count.textContent = `${hits.length} of ${entries.length} terms`;
+    if (!hits.length) list.replaceChildren(el('div.callout', el('p', `No term matches “${q.trim()}”. Try the English word, the romanised Nepali, or Devanagari.`)));
+    count.textContent = term ? `${hits.length} of ${entries.length} terms match` : `${entries.length} terms`;
   };
+
+  const initial = ctx.glossaryQuery || '';
+  ctx.glossaryQuery = '';
 
   const input = el('input.gsearch', {
     type: 'search',
-    placeholder: 'Search the glossary — English, Nepali or Devanagari…',
+    value: initial,
+    placeholder: 'Search in English, romanised Nepali or Devanagari…',
     'aria-label': 'Search glossary',
     oninput: e => paint(e.target.value)
   });
 
-  paint('');
+  paint(initial);
+  if (initial) requestAnimationFrame(() => input.focus());
 
   return frag([
     el('div.head', [
-      el('span.head__kicker.kicker', 'Reference'),
+      el('span.head__kicker', [icon('glossary', 13), 'Reference']),
       el('h1', 'Glossary'),
-      el('p', `Every term the course uses, with its Nepali equivalent. ${entries.length} entries, ` +
-              `each linked to the lesson that teaches it.`)
+      el('p', `Every term the course uses, with its Nepali equivalent — each linked to the lesson that teaches it.`)
     ]),
-    input,
+    el('div.gsearchbox', [icon('search', 20), input]),
     count,
-    el('div', { style: { marginTop: 'var(--s5)' } }, list)
+    list
   ]);
 }
 
@@ -64,47 +69,52 @@ function lessonHref(id) {
 
 export function resources() {
   const R = ctx.modules.resources;
+  const grid = el('div.rgrid', R.map(r => el('a.rcard', {
+    href: r.url, target: '_blank', rel: 'noopener noreferrer'
+  }, [
+    el('div.rcard__top', [
+      el('span.tile', icon('globe', 19)),
+      icon('arrowUpRight', 18)
+    ]),
+    el('div', [
+      el('b', r.name),
+      el('span.sr-only', ' (opens in a new tab)')
+    ]),
+    el('p', r.good)
+  ])));
+  stagger(grid);
+
   return frag([
     el('div.head', [
-      el('span.head__kicker.kicker', 'Reference'),
+      el('span.head__kicker', [icon('compass', 13), 'Reference']),
       el('h1', 'Where to go next'),
-      el('p', 'Seven places worth your time, and what each is genuinely good for.')
+      el('p', `${R.length} places worth your time, and what each is genuinely good for.`)
     ]),
 
-    el('div.lessons', R.map(r => el('a.lrow', {
-      href: r.url, target: '_blank', rel: 'noopener noreferrer',
-      style: { gridTemplateColumns: '1fr' }
-    }, [
-      el('div', [
-        el('div', { style: { display: 'flex', gap: 'var(--s3)', alignItems: 'baseline', flexWrap: 'wrap' } }, [
-          el('span', { style: { fontFamily: 'var(--f-data)', fontSize: 'var(--t-sm)', color: 'var(--paper)' } }, r.name),
-          el('span.kicker', 'opens in a new tab ↗')
+    grid,
+
+    el('div.rgrid2', [
+      el('div.panel', [
+        el('div.secthead', [
+          el('span.tile', icon('shield', 19)),
+          el('div', [
+            el('h3', 'Where this course’s numbers come from'),
+            el('p', 'Every rule, fee and tax rate was verified in August 2026 and carries an as-of date. Three changes in 2026 invalidate most NEPSE material still online:')
+          ])
         ]),
-        el('p', { style: { fontSize: 'var(--t-xs)', color: 'var(--paper-3)', marginTop: '4px' } }, r.good)
-      ])
-    ]))),
-
-    el('div.callout.callout--warn', { style: { marginTop: 'var(--s5)' } }, [
-      el('span.callout__l', 'Read this before you trust a number'),
-      el('p', 'None of these are advice. Portals aggregate; they do not verify. ' +
-              'When a number matters — when you are about to commit money to it — open the company\'s own ' +
-              'quarterly report on its own website, and read the figure there.')
-    ]),
-
-    el('div.panel', { style: { marginTop: 'var(--s5)' } }, [
-      el('span.kicker', { style: { display: 'block', marginBottom: 'var(--s3)' } }, 'Where this course\'s numbers come from'),
-      el('p', { style: { fontSize: 'var(--t-sm)', color: 'var(--paper-2)' } },
-        'Every rule, fee and tax rate in this course was verified in August 2026 and carries an as-of date. ' +
-        'Two things changed in 2026 that invalidate most NEPSE material still online:'),
-      el('ul', { style: { marginTop: 'var(--s3)', marginLeft: 'var(--s5)' } }, [
-        el('li', { style: { fontSize: 'var(--t-sm)', color: 'var(--paper-2)' } },
-          '21 April 2026 — the daily price limit rose from ±10% to ±15%, and the index circuit breaker went from three tiers to two.'),
-        el('li', { style: { fontSize: 'var(--t-sm)', color: 'var(--paper-2)' } },
-          '17 July 2026 (1 Shrawan 2083) — short-term capital gains tax rose from 7.5% to 10%, long-term from 5% to 7.5%.'),
-        el('li', { style: { fontSize: 'var(--t-sm)', color: 'var(--paper-2)' } },
-          'April 2026 — NEPSE moved to a Monday–Friday week. It ran Sunday–Thursday for its entire prior history.')
+        el('ul.timeline', [
+          el('li', [el('b', '21 April 2026'), 'The daily price limit rose from ±10% to ±15%, and the index circuit breaker went from three tiers to two.']),
+          el('li', [el('b', 'April 2026'), 'NEPSE moved to a Monday–Friday week. It ran Sunday–Thursday for its entire prior history.']),
+          el('li', [el('b', '17 July 2026 (1 Shrawan 2083)'), 'Short-term capital gains tax rose from 7.5% to 10%, long-term from 5% to 7.5%.'])
+        ]),
+        el('p.asof', [icon('clock', 13), `Fee schedule as at ${ctx.fees.asOf} · Market rules as at ${ctx.rules.asOf}`])
       ]),
-      el('p.asof', `Fee schedule as at ${ctx.fees.asOf} · Market rules as at ${ctx.rules.asOf}`)
+      el('div.callout.callout--warn', [
+        el('span.callout__l', 'Read this before you trust a number'),
+        el('p', 'None of these are advice. Portals aggregate; they do not verify. ' +
+                'When a number matters — when you are about to commit money to it — open the company\'s own ' +
+                'quarterly report on its own website, and read the figure there.')
+      ])
     ])
   ]);
 }
@@ -116,23 +126,40 @@ export function settings() {
   const wrap = el('div');
 
   wrap.append(el('div.head', [
-    el('span.head__kicker.kicker', 'Your course'),
+    el('span.head__kicker', [icon('settings', 13), 'Your course']),
     el('h1', 'Settings & progress'),
     el('p', 'Everything is stored in this browser only. There is no account and no server, ' +
-            'which means clearing your browser data would erase your progress — so export it if it matters to you.')
+            'so clearing your browser data would erase your progress — export it if it matters to you.')
   ]));
 
-  /* settings */
-  wrap.append(el('div.panel', [
-    el('span.kicker', { style: { display: 'block', marginBottom: 'var(--s4)' } }, 'Display'),
+  const grid = el('div.sgrid');
+  wrap.append(grid);
 
-    toggleRow('Reduce motion', 'Turns off the entry stagger, the candle-print animation and the ticker.',
+  /* appearance */
+  const picks = el('div.themepick', { role: 'group', 'aria-label': 'Theme' });
+  const paintPicks = () => {
+    const cur = state.load().settings.theme || 'system';
+    picks.querySelectorAll('.tp').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.t === cur)));
+  };
+  for (const [t, label, ic] of [['light', 'Light', 'sun'], ['dark', 'Dark', 'moon'], ['system', 'System', 'monitor']]) {
+    picks.append(el('button', {
+      type: 'button', class: `tp tp--${t}`, dataset: { t },
+      onclick: () => { state.setSetting('theme', t); paintPicks(); announce(`${label} theme`); }
+    }, [el('span.tp__prev'), el('span.tp__lbl', [icon(ic, 15), label])]));
+  }
+  paintPicks();
+
+  grid.append(el('section.panel', [
+    el('div.secthead', [
+      el('span.tile', icon('sun', 19)),
+      el('div', [el('h3', 'Appearance'), el('p', 'Choose a theme, or follow your device.')])
+    ]),
+    picks,
+    toggleRow('Reduce motion', 'Turns off the entry animations, the candle-print animation and the ticker.',
       s.settings.reduceMotion, v => state.setSetting('reduceMotion', v)),
-
     toggleRow('Colour-blind safe palette',
-      'Up candles become blue instead of green. Shape already carries the signal — up candles are hollow, down candles filled — so this is an addition, not a substitute.',
+      'Up candles become blue instead of green. Shape already carries the signal — up candles are hollow, down candles filled.',
       s.settings.colorBlindSafe, v => state.setSetting('colorBlindSafe', v)),
-
     toggleRow('Sound in games', 'Off by default. Feedback is always visual and textual as well.',
       s.settings.sound, v => state.setSetting('sound', v))
   ]));
@@ -140,45 +167,49 @@ export function settings() {
   /* progress numbers */
   const prog = state.courseProgress(ctx.modules.modules);
   const rank = state.rankFor(ctx.modules.levels, s.xp);
-  wrap.append(el('div.panel', { style: { marginTop: 'var(--s4)' } }, [
-    el('span.kicker', { style: { display: 'block', marginBottom: 'var(--s4)' } }, 'Progress'),
+  grid.append(el('section.panel', [
+    el('div.secthead', [
+      el('span.tile', { style: { '--tone': 'var(--lv-2)' } }, icon('chart', 19)),
+      el('div', [el('h3', 'Progress'), el('p', s.startedAt ? `Started ${fmtDate(s.startedAt)}.` : 'Nothing recorded yet.')])
+    ]),
     el('div.statrow', [
       cell('XP', num(s.xp, 0)),
       cell('Rank', rank.rank),
       cell('Lessons', `${prog.done}/${prog.total}`),
-      cell('Streak', `${s.streakDays}d`),
+      cell('Streak', `${s.streakDays} days`),
       cell('Badges', `${s.badges.filter(b => !b.startsWith('_')).length}/${ctx.modules.badges.length}`),
       cell('Sessions', num(new Set(s.equityEvents.map(e => new Date(e.t).toDateString())).size, 0))
-    ]),
-    s.startedAt && el('p.asof', `Started ${fmtDate(s.startedAt)}`)
+    ])
   ]));
 
-  /* export / import / reset */
-  wrap.append(el('div.panel', { style: { marginTop: 'var(--s4)' } }, [
-    el('span.kicker', { style: { display: 'block', marginBottom: 'var(--s4)' } }, 'Your data'),
-
-    el('p', { style: { fontSize: 'var(--t-sm)', color: 'var(--paper-2)', marginBottom: 'var(--s4)' } },
-      'Learners who clear their browser must not silently lose four hours of work with no recourse. ' +
-      'Export writes a JSON file you can keep; import reads it back.'),
-
+  /* export / import */
+  grid.append(el('section.panel', [
+    el('div.secthead', [
+      el('span.tile', { style: { '--tone': 'var(--lv-3)' } }, icon('download', 19)),
+      el('div', [el('h3', 'Your data'), el('p', 'Export writes a JSON file you can keep; import reads it back on any browser.')])
+    ]),
     el('div.row', [
-      el('button.btn', { onclick: doExport }, '↓ Export progress'),
+      el('button.btn', { type: 'button', onclick: doExport }, [icon('download', 16), 'Export progress']),
       el('label.btn', { style: { cursor: 'pointer' } }, [
-        '↑ Import progress',
+        icon('upload', 16), 'Import progress',
         el('input', {
           type: 'file', accept: '.json,application/json',
           style: { display: 'none' },
           onchange: doImport
         })
       ])
+    ])
+  ]));
+
+  /* reset */
+  grid.append(el('section.panel', [
+    el('div.secthead', [
+      el('span.tile', { style: { '--tone': 'var(--bear)' } }, icon('reset', 19)),
+      el('div', [
+        el('h3', 'Reset the course'),
+        el('p', 'Erases every lesson, quiz score, game high score, badge and candle. It cannot be undone. Type RESET to confirm.')
+      ])
     ]),
-
-    el('hr.rule'),
-
-    el('span.kicker', { style: { display: 'block', marginBottom: 'var(--s3)', color: 'var(--bear)' } }, 'Reset'),
-    el('p', { style: { fontSize: 'var(--t-sm)', color: 'var(--paper-2)', marginBottom: 'var(--s3)' } },
-      'This erases every lesson, quiz score, game high score, badge and candle on your equity curve. ' +
-      'It cannot be undone. Type RESET to confirm.'),
     resetBlock()
   ]));
 
@@ -191,6 +222,7 @@ export function settings() {
 
 function toggleRow(title, desc, value, onChange) {
   const btn = el('button.toggle', {
+    type: 'button',
     'aria-pressed': String(!!value),
     'aria-label': title,
     onclick: e => {
@@ -235,11 +267,11 @@ function doImport(e) {
 function resetBlock() {
   const input = el('input', {
     type: 'text', placeholder: 'Type RESET',
-    style: { maxWidth: '160px' },
-    class: '', 'aria-label': 'Type RESET to confirm'
+    'aria-label': 'Type RESET to confirm'
   });
-  const field = el('div.field', { style: { maxWidth: '160px' } }, input);
+  const field = el('div.field', { style: { width: '170px' } }, input);
   const btn = el('button.btn.btn--bear', {
+    type: 'button',
     disabled: true,
     onclick: () => {
       state.reset();

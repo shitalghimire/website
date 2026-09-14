@@ -17,6 +17,7 @@
    ═══════════════════════════════════════════════════════════════ */
 
 import { el, frag, append } from './util.js';
+import { icon } from './icons.js';
 
 let GLOSSARY = {};
 export function setGlossary(g) { GLOSSARY = g || {}; }
@@ -38,8 +39,9 @@ export function inline(text) {
 }
 
 function token(t) {
-  if (t.startsWith('**')) return el('strong', t.slice(2, -2));
-  if (t.startsWith('`')) return el('code', { style: { fontFamily: 'var(--f-data)', fontSize: '0.9em' } }, t.slice(1, -1));
+  // bold may wrap a glossary term or a link, so its inside is parsed too
+  if (t.startsWith('**')) return el('strong', inline(t.slice(2, -2)));
+  if (t.startsWith('`')) return el('code', t.slice(1, -1));
   if (t.startsWith('{ne:')) return el('span.np', { lang: 'ne' }, t.slice(4, -1));
   if (t.startsWith('[[')) {
     const body = t.slice(2, -2);
@@ -96,10 +98,10 @@ function show(btn, entry) {
     el('div.pop__t', entry.en),
     el('div.pop__np', [
       el('span.np', { lang: 'ne' }, entry.np),
-      entry.rom ? el('em', { style: { color: 'var(--paper-4)', marginLeft: '8px', fontSize: '0.85em' } }, entry.rom) : null
+      entry.rom ? el('em', { style: { color: 'var(--text-4)', marginLeft: '8px', fontSize: '0.85em' } }, entry.rom) : null
     ]),
     el('div', entry.def),
-    lessonHref && el('a.pop__lesson', { href: lessonHref }, `Taught in ${entry.lesson} →`)
+    lessonHref && el('a.pop__lesson', { href: lessonHref }, [`Taught in lesson ${entry.lesson}`, icon('arrowRight', 13)])
   ]);
   document.body.append(pop);
 
@@ -157,18 +159,18 @@ export function md(text) {
 /* ── the seven lesson blocks ────────────────────────────────── */
 
 const LABELS = {
-  hook: ['①', 'Hook'],
-  core: ['②', 'Core'],
-  visual: ['③', 'Visual'],
-  nepse: ['④', 'Nepal note'],
-  example: ['⑤', 'Worked example'],
-  check: ['⑥', 'Check yourself'],
-  takeaway: ['⑦', 'Takeaway']
+  hook: ['sparkles', 'Hook'],
+  core: ['book', 'The idea'],
+  visual: ['chart', 'See it'],
+  nepse: ['mountain', 'Nepal note'],
+  example: ['calculator', 'Worked example'],
+  check: ['help', 'Check yourself'],
+  takeaway: ['listChecks', 'Takeaway']
 };
 
 export function blockLabel(type) {
-  const [gl, name] = LABELS[type] || ['•', type];
-  return el('div.block__label', [el('i', gl), name]);
+  const [ic, name] = LABELS[type] || ['circle', type];
+  return el('div.block__label', [el('span.block__ic', icon(ic, 15)), name]);
 }
 
 /**
@@ -209,7 +211,7 @@ export function renderBlock(block, deps) {
 
     case 'nepse':
       wrap.append(el('div.callout.callout--nepse', [
-        el('span.callout__l', 'Nepal note'),
+        el('span.callout__l', 'Specific to NEPSE'),
         md(block.md),
         block.asOf && el('span.asof', `As at ${block.asOf}`)
       ]));

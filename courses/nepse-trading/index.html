@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>NEPSE Trading Academy — Shital Ghimire</title>
 <meta name="description" content="An interactive, gamified course on trading the Nepal Stock Exchange. 16 modules, 78 lessons, 6 games. Educational content only — not investment advice."/>
-<meta name="theme-color" content="#07090C"/>
+<meta name="theme-color" content="#F4F5F8" id="themeColor"/>
 <meta name="robots" content="index, follow"/>
 <meta name="author" content="Shital Ghimire"/>
 <meta name="copyright" content="© 2026 Shital Ghimire. All rights reserved."/>
@@ -27,8 +27,20 @@
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml"/>
 <link rel="apple-touch-icon" href="../../assets/icon-180.png"/>
 
+<!-- Theme before first paint, so a dark-mode learner never sees a white flash -->
+<script>
+  (function () {
+    var t = 'system';
+    try { t = (JSON.parse(localStorage.getItem('nepse-academy:v1') || '{}').settings || {}).theme || 'system'; } catch (e) {}
+    if (t === 'system') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.dataset.theme = t;
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <link rel="preload" href="assets/fonts/martian.woff2" as="font" type="font/woff2" crossorigin/>
-<link rel="preload" href="assets/fonts/newsreader.woff2" as="font" type="font/woff2" crossorigin/>
 
 <link rel="stylesheet" href="css/tokens.css"/>
 <link rel="stylesheet" href="css/base.css"/>
@@ -40,71 +52,106 @@
 
 <a class="skip" href="#view">Skip to content</a>
 
-<div class="shell">
+<div class="app" id="app">
 
-  <header class="chead">
-    <div class="wrap chead__bar">
-      <a class="chead__home" href="../../index.html" title="Back to shitalghimire.com.np">← Site</a>
-
-      <a class="wordmark" href="#/">
-        <em>NEPSE</em> Trading Academy
+  <!-- ── sidebar ─────────────────────────────────────────── -->
+  <aside class="side" id="side" aria-label="Course navigation">
+    <div class="side__head">
+      <a class="brand" href="#/" id="brand">
+        <span class="brand__mark" id="brandMark"></span>
+        <span class="brand__txt">
+          <b><em>NEPSE</em> Academy</b>
+          <small>Trading course</small>
+        </span>
       </a>
-
-      <span class="chead__spacer"></span>
-
-      <nav class="chead__nav" id="cnav" aria-label="Course sections">
-        <a href="#/">Dashboard</a>
-        <a href="#/games">Games</a>
-        <a href="#/glossary">Glossary</a>
-        <a href="#/resources">Resources</a>
-        <a href="#/settings">Settings</a>
-      </nav>
-
-      <span class="chead__xp" id="xpChip" title="Experience points and rank">
-        <b class="num" id="xpVal">0</b> <i>XP</i>
-      </span>
+      <button class="iconbtn side__close" id="sideClose" type="button" aria-label="Close menu"></button>
     </div>
-  </header>
 
-  <!-- ticker runs edge to edge, so it reads as a fragment of something continuous -->
-  <div class="ticker" id="ticker" aria-hidden="true">
-    <div class="ticker__run" id="tickerRun"></div>
+    <nav class="side__nav" id="cnav" aria-label="Course sections">
+      <a href="#/" data-icon="dashboard">Dashboard</a>
+      <a href="#/games" data-icon="games">Games</a>
+      <a href="#/glossary" data-icon="glossary">Glossary</a>
+      <a href="#/resources" data-icon="compass">Resources</a>
+      <a href="#/certificate" data-icon="award">Certificate</a>
+      <a href="#/settings" data-icon="settings">Settings</a>
+    </nav>
+
+    <div class="side__sect">
+      <span class="side__label">Levels</span>
+      <ul class="side__levels" id="sideLevels"></ul>
+    </div>
+
+    <div class="side__foot">
+      <div class="side__card" id="sideCard"></div>
+      <a class="side__site" href="../../index.html" id="sideSite">shitalghimire.com.np</a>
+    </div>
+  </aside>
+  <div class="scrim" id="scrim" hidden></div>
+
+  <!-- ── main column ─────────────────────────────────────── -->
+  <div class="main">
+    <header class="top">
+      <button class="iconbtn top__menu" id="menuBtn" type="button" aria-label="Open menu" aria-controls="side" aria-expanded="false"></button>
+
+      <div class="search" id="search" role="search">
+        <span class="search__ic" id="searchIc"></span>
+        <input class="search__in" id="searchIn" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Search the course…" aria-label="Search lessons and glossary terms"
+               aria-controls="searchList" aria-expanded="false"/>
+        <kbd class="search__kbd">/</kbd>
+        <div class="search__list" id="searchList" role="listbox" hidden></div>
+      </div>
+
+      <span class="top__spacer"></span>
+
+      <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch theme"></button>
+
+      <span class="top__streak" id="streakChip" title="Study streak"></span>
+
+      <a class="xpchip" id="xpChip" href="#/settings" title="Experience points and rank">
+        <span class="xpchip__badge" id="rankInitial">R</span>
+        <span class="xpchip__txt">
+          <b><span class="num" id="xpVal">0</span> XP</b>
+          <small id="rankVal">Retail</small>
+        </span>
+      </a>
+    </header>
+
+    <!-- illustrative tape, not a live quote -->
+    <div class="ticker" id="ticker" aria-hidden="true">
+      <div class="ticker__run" id="tickerRun"></div>
+    </div>
+
+    <main class="view" id="view" tabindex="-1">
+      <div class="msg">
+        <h2>Loading the floor…</h2>
+        <p class="dim">Reading the curriculum, the fee schedule and the market rules.</p>
+      </div>
+    </main>
+
+    <footer class="cfoot">
+      <div class="cfoot__grid">
+        <p class="cfoot__disc">
+          <b>Educational content only. Not investment advice.</b>
+          Not affiliated with NEPSE, SEBON, or CDSC.
+          <span id="footAsOf"></span>
+        </p>
+        <p class="cfoot__links">
+          <a href="#/resources">Resources</a>
+          <a href="#/glossary">Glossary</a>
+          <a href="#/settings">Settings &amp; progress</a>
+          <a href="../../index.html">Shital Ghimire</a>
+        </p>
+        <p class="cfoot__own">© 2026 Shital Ghimire. All rights reserved.</p>
+      </div>
+    </footer>
   </div>
-
-  <main class="view wrap" id="view" tabindex="-1">
-    <div class="msg">
-      <h2>Loading the floor…</h2>
-      <p class="dim">Reading the curriculum, the fee schedule and the market rules.</p>
-    </div>
-  </main>
-
-  <footer class="cfoot">
-    <div class="wrap cfoot__grid">
-      <p class="cfoot__disc">
-        Educational content only. Not investment advice.<br/>
-        Not affiliated with NEPSE, SEBON, or CDSC.<br/>
-        <span id="footAsOf" class="dim"></span>
-      </p>
-      <p class="cfoot__own">
-        <b>© 2026 Shital Ghimire. All rights reserved.</b>
-      </p>
-      <p>
-        <a href="#/resources">Resources</a> ·
-        <a href="#/glossary">Glossary</a> ·
-        <a href="#/settings">Settings &amp; progress</a> ·
-        <a href="../../index.html">Shital Ghimire</a>
-      </p>
-    </div>
-  </footer>
-
 </div>
 
 <noscript>
-  <div class="wrap" style="padding:48px 0">
-    <div class="msg">
-      <h2>This course needs JavaScript</h2>
-      <p>Every lesson, chart and game runs in your browser — there is no server. Please enable JavaScript and reload.</p>
-    </div>
+  <div style="padding:48px 16px;text-align:center;font-family:system-ui,sans-serif">
+    <h2>This course needs JavaScript</h2>
+    <p>Every lesson, chart and game runs in your browser — there is no server. Please enable JavaScript and reload.</p>
   </div>
 </noscript>
 

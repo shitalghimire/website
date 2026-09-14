@@ -318,7 +318,8 @@ export default {
         // T+1 — the trap
         const authorised = acct.pendingSell?.authorised;
         stage.replaceChildren(
-          !authorised && el('div.td__toast', { style: { marginBottom: 'var(--s3)' } },
+          // replaceChildren would print a bare `false`, so the empty case is an empty string
+          authorised ? '' : el('div.td__toast', { style: { marginBottom: 'var(--s3)' } },
             'Your sale is unauthorised. You have until the end of the day to submit EDIS, or the trade fails to auction settlement.'),
           win('My EDIS', 'depo', [
             menu([['edis', 'My EDIS'], ['port', 'My Portfolio'], ['asba', 'My ASBA']], 'edis'),

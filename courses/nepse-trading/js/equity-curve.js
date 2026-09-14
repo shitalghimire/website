@@ -9,6 +9,7 @@ import { CandleChart } from './chart/candles.js';
 import { sma } from './chart/indicators.js';
 import * as state from './state.js';
 import { el, num, cssVar, fmtDate } from './util.js';
+import { icon } from './icons.js';
 
 const SESSION_GAP = 30 * 60 * 1000;   // 30 minutes
 
@@ -113,6 +114,7 @@ export function equityCurve(opts = {}) {
 
   if (candles.length < 2) {
     host.append(el('div.equity__empty', [
+      el('span.tile.tile--lg', icon('candles', 24)),
       el('b', 'Your equity curve starts empty'),
       el('p', 'Finish a lesson and this chart prints its first candle. Pass a quiz and it gaps up. Fail one and it prints red.'),
       el('p.dim', { style: { marginTop: '12px', fontSize: '0.8125rem' } },
@@ -159,7 +161,7 @@ export function equityCurve(opts = {}) {
       stat('Green', num(greens, 0), 'up'),
       stat('Red', num(reds, 0), reds ? 'down' : 'dim'),
       stat('Peak XP', num(peak, 0)),
-      stat('Max drawdown', (mdd * 100).toFixed(1) + '%', mdd > 0 ? 'down' : 'dim')
+      stat('Drawdown', (mdd * 100).toFixed(1) + '%', mdd > 0 ? 'down' : 'dim')
     ]));
   }
 

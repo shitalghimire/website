@@ -1,12 +1,14 @@
 /* ═══════════════════════════════════════════════════════════════
-   FLOORSHEET — lesson view
-   Seven blocks, a sticky nav, and the candle that prints when you finish.
+   NEPSE TRADING ACADEMY — lesson view
+   Reading column on the left, module navigator on the right, and the
+   finish card that prints a candle on the equity curve.
    ═══════════════════════════════════════════════════════════════ */
 
 import { ctx } from '../app.js';
 import * as state from '../state.js';
 import * as data from '../data.js';
-import { el, frag, num, deva2, stagger, announce } from '../util.js';
+import { el, pctPlain, stagger, announce } from '../util.js';
+import { icon } from '../icons.js';
 import { renderBlock, setGlossary } from '../render.js';
 import { WIDGETS } from '../widgets.js';
 import { question } from '../quiz.js';
@@ -36,48 +38,36 @@ export async function lesson(modN, lessonIdx) {
   let perfectCheck = true;
   let checksSeen = 0;
 
-  const wrap = el('div.lesson');
+  const lv = M.levels.find(l => l.n === mod.level);
+  const mm = String(modN).padStart(2, '0');
+  const wrap = el('div.lesson', { style: { '--lv': `var(--lv-${mod.level})` } });
 
-  wrap.append(el('div.row', { style: { marginBottom: 'var(--s5)' } }, [
-    el('a.kicker', { href: `#/m/${modN}` }, `← Module ${String(modN).padStart(2, '0')} · ${mod.title}`)
+  wrap.append(el('nav.crumbs', { 'aria-label': 'Breadcrumb' }, [
+    el('a', { href: '#/' }, 'Dashboard'), icon('chevronRight'),
+    el('a', { href: `#/m/${modN}` }, `Module ${mm}`), icon('chevronRight'),
+    el('span', `Lesson ${meta.id}`)
   ]));
 
-  const left = el('div');
-  const right = el('div');
-  wrap.append(el('div.split', [left, right]));
+  const main = el('article.lmain');
+  const aside = el('aside.laside');
+  wrap.append(el('div.lwrap', [main, aside]));
 
-  /* ── left: sticky lesson nav ──────────────────────────── */
-  const nav = el('div.lesson__nav', [
-    el('span.kicker', { style: { display: 'block', marginBottom: 'var(--s3)' } }, 'This module'),
-    el('div.lessons', mod.lessons.map(l => el('a', {
-      class: 'lrow' + (state.lessonDone(l.id) ? ' lrow--done' : ''),
-      href: `#/m/${modN}/l/${l.index}`,
-      style: l.id === meta.id ? { background: 'var(--ink-750)', borderLeft: '2px solid var(--signal)' } : {},
-      'aria-current': l.id === meta.id ? 'page' : null
-    }, [
-      el('span.lrow__n', l.id),
-      el('span.lrow__t', l.title),
-      state.lessonDone(l.id) ? el('span.lrow__tick', '✓') : el('span.lrow__m', `${l.minutes}m`)
-    ])))
-  ]);
-  left.append(nav);
-
-  /* ── right: the lesson itself ─────────────────────────── */
-  right.append(el('div', [
-    el('div.lesson__num.num', { 'aria-hidden': 'true' }, meta.id),
-    el('span.kicker', { style: { display: 'block', marginBottom: 'var(--s3)' } }, [
-      el('span.deva', { lang: 'ne' }, deva2(mod.n)), ' / LESSON ', meta.id
+  /* ── header ───────────────────────────────────────────── */
+  const doneAtLoad = state.lessonDone(meta.id);
+  main.append(el('header.lhead', [
+    el('div.lhead__chips', [
+      el('span.pill.pill--signal', `Lesson ${meta.id}`),
+      el('span.pill', [icon('clock', 13), `${meta.minutes} min read`]),
+      el('span.pill', [icon('zap', 13), `${meta.xp} XP`]),
+      doneAtLoad && el('span.pill.pill--bull', [icon('check', 13), 'Completed'])
     ]),
-    el('h1.lesson__title', meta.title),
-    el('div.lesson__meta', [
-      el('span.pill', `${meta.minutes} min`),
-      el('span.pill.pill--signal', `${meta.xp} XP`),
-      state.lessonDone(meta.id) && el('span.pill.pill--bull', '✓ completed')
-    ])
+    el('h1', meta.title),
+    el('div.lhead__mod', [el('i'), `Level ${lv.roman} · ${mod.title}`])
   ]));
 
+  /* ── blocks ───────────────────────────────────────────── */
   if (!content) {
-    right.append(el('div.callout.callout--warn', [
+    main.append(el('div.callout.callout--warn', { style: { marginTop: '32px' } }, [
       el('span.callout__l', 'This lesson is not written yet'),
       el('p', `Lesson ${meta.id} — "${meta.title}" — has a place in the curriculum but no content file yet.`)
     ]));
@@ -96,38 +86,93 @@ export async function lesson(modN, lessonIdx) {
         blocks.append(el('div.callout.callout--danger', el('p', `A "${b.type}" block could not be rendered.`)));
       }
     }
-    right.append(blocks);
+    main.append(blocks);
     stagger(blocks);
   }
 
-  /* ── complete + navigate ──────────────────────────────── */
+  /* ── finish card ──────────────────────────────────────── */
   const prev = mod.lessons.find(l => l.index === lessonIdx - 1);
   const next = mod.lessons.find(l => l.index === lessonIdx + 1);
   const nextMod = M.modules.find(m => m.n === modN + 1);
 
-  const doneBtn = el('button.btn.btn--primary', {
-    onclick: () => {
-      const secs = Math.round(performance.now() - started);
-      const first = state.completeLesson(meta.id, secs, checksSeen > 0 && perfectCheck);
-      announce(first
-        ? `Lesson ${meta.id} complete. ${meta.xp} XP earned. A green candle just printed on your equity curve.`
-        : 'Lesson already completed.');
-      doneBtn.replaceWith(el('span.pill.pill--bull', { style: { padding: 'var(--s3) var(--s5)' } },
-        first ? `✓ +${meta.xp} XP — candle printed` : '✓ Completed'));
-      goNext.classList.add('btn--primary');
-    }
-  }, state.lessonDone(meta.id) ? '✓ Completed' : `Mark complete · +${meta.xp} XP`);
+  const nextHref = next ? `#/m/${modN}/l/${next.index}` : `#/quiz/m${modN}`;
+  const nextLabel = next ? `Next: lesson ${next.id}` : `Module ${modN} quiz`;
 
-  const goNext = next
-    ? el('a.btn', { href: `#/m/${modN}/l/${next.index}` }, `Next: ${next.id} →`)
-    : nextMod
-      ? el('a.btn', { href: `#/quiz/m${modN}` }, `Module ${modN} quiz →`)
-      : el('a.btn', { href: `#/m/${modN}` }, 'Back to module');
+  const finish = el('section.lfinish');
+  const paintFinish = (justDone) => {
+    const done = state.lessonDone(meta.id);
+    finish.classList.toggle('is-done', done);
+    finish.replaceChildren(
+      el('div.lfinish__txt', [
+        el('span.tile.tile--lg', icon(done ? 'checkCircle' : 'target', 24)),
+        el('div', done
+          ? [el('b', justDone ? `+${meta.xp} XP — a green candle just printed` : 'Lesson complete'),
+             el('small', next ? `Keep the momentum: ${next.title}` : 'That was the last lesson in this module. Test yourself on the quiz.')]
+          : [el('b', 'Finished reading?'),
+             el('small', `Mark it complete to earn ${meta.xp} XP and print a green candle on your equity curve.`)])
+      ]),
+      el('div.row', done
+        ? [el('a.btn.btn--lime', { href: nextHref }, [nextLabel, icon('arrowRight', 17)])]
+        : [
+          el('button.btn.btn--lime', {
+            type: 'button',
+            onclick: () => {
+              const secs = Math.round(performance.now() - started);
+              const first = state.completeLesson(meta.id, secs, checksSeen > 0 && perfectCheck);
+              announce(first
+                ? `Lesson ${meta.id} complete. ${meta.xp} XP earned. A green candle just printed on your equity curve.`
+                : 'Lesson already completed.');
+              paintFinish(first);
+              paintNav();
+            }
+          }, [icon('check', 17), `Mark complete · +${meta.xp} XP`]),
+          el('a.btn.btn--glass', { href: nextHref }, 'Skip for now')
+        ])
+    );
+  };
+  paintFinish(false);
+  main.append(finish);
 
-  right.append(el('div.lnav', [
-    prev ? el('a.btn', { href: `#/m/${modN}/l/${prev.index}` }, `← ${prev.id}`) : el('a.btn', { href: `#/m/${modN}` }, '← Module'),
-    el('div.row', [state.lessonDone(meta.id) ? el('span.pill.pill--bull', { style: { padding: 'var(--s3) var(--s5)' } }, '✓ Completed') : doneBtn, goNext])
+  main.append(el('nav.pager', { 'aria-label': 'Lessons' }, [
+    prev
+      ? el('a', { href: `#/m/${modN}/l/${prev.index}` }, [el('small', [icon('arrowLeft', 14), `Lesson ${prev.id}`]), el('b', prev.title)])
+      : el('a', { href: `#/m/${modN}` }, [el('small', [icon('arrowLeft', 14), 'Overview']), el('b', `Module ${mm} · ${mod.title}`)]),
+    next
+      ? el('a.pager__next', { href: `#/m/${modN}/l/${next.index}` }, [el('small', [icon('arrowRight', 14), `Lesson ${next.id}`]), el('b', next.title)])
+      : el('a.pager__next', { href: `#/quiz/m${modN}` }, [el('small', [icon('arrowRight', 14), 'Test yourself']),
+          el('b', nextMod ? `Module ${modN} quiz` : 'Final module quiz')])
   ]));
+
+  /* ── module navigator ─────────────────────────────────── */
+  const navCard = el('div.panel.lnavcard');
+  aside.append(navCard);
+  const paintNav = () => {
+    const p = state.moduleProgress(mod);
+    navCard.replaceChildren(
+      el('div.lnavcard__head', [
+        el('span.kicker', [el('i'), `Module ${mm}`]),
+        el('b', mod.title),
+        el('div.lnavcard__prog', [
+          el('div.bar', el('i', { style: { width: pctPlain(p.pct, 1) } })),
+          el('span.num', `${p.done}/${p.total}`)
+        ])
+      ]),
+      el('div.lnavlist', mod.lessons.map(l => {
+        const done = state.lessonDone(l.id);
+        return el('a', {
+          class: done ? 'is-done' : '',
+          href: `#/m/${modN}/l/${l.index}`,
+          'aria-current': l.id === meta.id ? 'page' : null
+        }, [
+          el('span.lnavlist__st.num', done ? icon('check', 12) : String(l.index)),
+          el('span', l.title),
+          el('span.lnavlist__m', `${l.minutes}m`)
+        ]);
+      })),
+      el('div.lnavcard__foot', el('a.btn.btn--sm.btn--block', { href: `#/quiz/m${modN}` }, [icon('help', 15), `Module ${modN} quiz`]))
+    );
+  };
+  paintNav();
 
   return wrap;
 }
@@ -138,14 +183,10 @@ function inlineCheck(qids, byId, onAnswer) {
   if (!qs.length) {
     return el('div.callout.callout--info', el('p', 'No check questions are attached to this lesson yet.'));
   }
-  const host = el('div', { style: { display: 'grid', gap: 'var(--s5)' } });
-  qs.forEach((q, i) => {
-    host.append(el('div.panel', { style: { background: 'var(--ink-850)' } }, [
-      el('span.kicker', { style: { display: 'block', marginBottom: 'var(--s3)' } }, `Check ${i + 1} of ${qs.length}`),
-      question(q, { mode: 'inline', onDone: ok => onAnswer(ok) })
-    ]));
-  });
-  return host;
+  return el('div.checks', qs.map((q, i) => el('div.panel.checkcard', [
+    el('span.kicker', `Question ${i + 1} of ${qs.length}`),
+    question(q, { mode: 'inline', onDone: ok => onAnswer(ok) })
+  ])));
 }
 
 function notFound() {

@@ -80,7 +80,7 @@ export default {
             el('button.btn.btn--primary', { onclick: () => resume(saved) }, 'Resume run'),
             el('button.btn', { onclick: () => { const s = state.load(); s.simulator = null; state.save(s); renderPicker(); } }, 'Discard')
           ])
-        ]) : null,
+        ]) : '',   // replaceChildren prints a bare null, so the empty case is an empty string
         el('div.pf__scen', SCENARIOS.map(s => el('button.pf__scencard', { onclick: () => begin(s) }, [
           el('h4', s.name),
           el('p', s.teaches),
