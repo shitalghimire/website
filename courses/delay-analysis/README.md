@@ -135,5 +135,7 @@ js/widgets/         the instruments
 css/tokens.css      the design system — "Drawing Office"
 ```
 
-Progress lives in `localStorage` under `delay-analysis:v1`. No account, no
-backend, no cookie banner, nothing leaves the device.
+Progress lives in `localStorage` under `delay-analysis:v1`. Optional sync
+(Settings → Sync across your devices) keeps it in step across devices through a
+private GitHub Gist in the learner's own account, encrypted with the access code
+— see `../sync/sync.js`. No other backend, no cookie banner.

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+  THE REGISTRY — a private reading room for a construction contract
+  © 2026 Shital Ghimire. All rights reserved.
+
+  The course content (contract text, explanations, case files, letter
+  register) is encrypted at rest in data/registry.sealed.json and is
+  only readable with the access code. This page, its design system and
+  its source code are the original work of Shital Ghimire and may not
+  be copied or redistributed without permission.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>The Registry — Shital Ghimire</title>
+<meta name="description" content="A private, code-access reading room for contract administration: clauses in plain words, a letter analyser, a drafting desk and deadline clocks."/>
+<meta name="robots" content="noindex, nofollow"/>
+<meta name="theme-color" content="#EFE8D8"/>
+<meta name="author" content="Shital Ghimire"/>
+<meta name="copyright" content="© 2026 Shital Ghimire. All rights reserved."/>
+
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="../../assets/icon-180.png"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:ital,wght@0,400..800;1,400..600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="css/registry.css"/>
+<link rel="stylesheet" href="css/views.css"/>
+<link rel="stylesheet" href="css/desks.css"/>
+<link rel="stylesheet" href="css/draft.css"/>
+<link rel="stylesheet" href="css/rooms.css"/>
+</head>
+<body>
+
+<a class="skip" href="#view">Skip to content</a>
+
+<!-- ══════════ THE GATE ══════════ -->
+<section class="gate" id="gate" aria-labelledby="gateTitle">
+  <div class="gate__desk" aria-hidden="true">
+    <div class="gate__folder gate__folder--back"></div>
+    <div class="gate__folder gate__folder--mid"></div>
+  </div>
+
+  <div class="gate__file">
+    <div class="gate__tab">Private file</div>
+    <div class="gate__tape" aria-hidden="true"><span></span></div>
+
+    <div class="gate__inner">
+      <p class="gate__kicker">Reading room · by code only</p>
+      <h1 class="gate__title" id="gateTitle">The Registry</h1>
+      <p class="gate__lede">
+        Every clause in plain words. Paste a letter and see what it really says.
+        Draft the reply. Never miss a notice clock.
+      </p>
+
+      <form class="gate__form" id="gateForm" novalidate>
+        <label class="gate__label" for="gateCode">Access code</label>
+        <div class="gate__row">
+          <input class="gate__input" id="gateCode" type="password" inputmode="numeric"
+                 autocomplete="current-password" spellcheck="false" placeholder="· · · · · · · · · ·"
+                 aria-describedby="gateMsg"/>
+          <button class="btn btn--stamp" id="gateGo" type="submit">Open the file</button>
+        </div>
+        <label class="gate__remember">
+          <input type="checkbox" id="gateRemember"/> <span>Keep it open on this device</span>
+        </label>
+        <p class="gate__msg" id="gateMsg" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="gate__stamp" id="gateStamp" aria-hidden="true">SEALED</div>
+    </div>
+
+    <footer class="gate__foot">
+      <a href="../index.html">← All courses</a>
+      <span>Encrypted at rest · AES-256</span>
+    </footer>
+  </div>
+</section>
+
+<!-- ══════════ THE APP ══════════ -->
+<div class="app" id="app" hidden>
+  <aside class="rail" id="rail" aria-label="Sections">
+    <a class="rail__brand" href="#/">
+      <span class="rail__seal" aria-hidden="true">R</span>
+      <span class="rail__name">The<br/>Registry</span>
+    </a>
+    <nav class="rail__tabs" id="railTabs"></nav>
+    <div class="rail__foot">
+      <button class="rail__btn" id="themeBtn" type="button" aria-label="Switch light or dark"></button>
+      <button class="rail__btn" id="lockBtn" type="button" aria-label="Lock the file"></button>
+    </div>
+  </aside>
+
+  <div class="stage">
+    <header class="topbar" id="topbar">
+      <div class="crumbs" id="crumbs"></div>
+      <button class="finder" id="finderBtn" type="button">
+        <span class="finder__icon" aria-hidden="true"></span>
+        <span class="finder__label">Find a clause, word or letter</span>
+        <kbd>/</kbd>
+      </button>
+    </header>
+    <main class="view" id="view" tabindex="-1"></main>
+  </div>
+
+  <nav class="dock" id="dock" aria-label="Main"></nav>
+</div>
+
+<div class="palette" id="palette" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<noscript><p class="noscript">This reading room needs JavaScript.</p></noscript>
+<script type="module" src="js/boot.js"></script>
+</body>
+</html>

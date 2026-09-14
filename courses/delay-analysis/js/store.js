@@ -1,16 +1,17 @@
 /* ═══════════════════════════════════════════════════════════════
    DRAWING OFFICE — progress store
 
-   All progress lives in one versioned localStorage key. No account,
-   no backend, no cookie banner — so nothing here needs consent and
-   nothing leaves the device.
+   All progress lives in one versioned localStorage key. When sync is
+   switched on in Settings, the same progress is also kept — encrypted
+   with the access code — in the learner's own private GitHub Gist, so
+   every device stays in step (see ../../sync/sync.js).
    ═══════════════════════════════════════════════════════════════ */
 
 import { today } from './dom.js';
 
 const KEY = 'delay-analysis:v1';
 
-const BLANK = {
+export const BLANK = {
   version: 1,
   startedAt: null,
   lessons: {},        // "3.2": { at }
@@ -54,6 +55,14 @@ export function reset() {
   cache = structuredClone(BLANK);
   try { localStorage.removeItem(KEY); } catch { /* private mode */ }
   subs.forEach(fn => fn(cache));
+  return cache;
+}
+
+/** Sync brings in progress merged from another device. */
+export function replaceAll(obj) {
+  cache = { ...structuredClone(BLANK), ...obj, version: 1, settings: { ...BLANK.settings, ...(obj.settings || {}) } };
+  save(cache);
+  applySettings();
   return cache;
 }
 

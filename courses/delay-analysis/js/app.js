@@ -10,6 +10,7 @@ import { el, svg, $, $$, frag, pct, say, prefersStill } from './dom.js';
 import * as store from './store.js';
 import * as vault from './vault.js';
 import { setGlossary } from './markup.js';
+import { createSync } from '../../sync/sync.js';
 
 import { dashboard } from './views/dashboard.js';
 import { module as moduleView } from './views/module.js';
@@ -64,7 +65,7 @@ function buildGate() {
       const content = await vault.open(code);
       vault.remember(code, remember?.checked);
       msg.textContent = 'Unsealed.';
-      await start(content, gate);
+      await start(content, gate, code);
     } catch (err) {
       submit.disabled = false;
       input.disabled = false;
@@ -129,7 +130,7 @@ function ghostProgramme() {
    BOOT
    ═══════════════════════════════════════════════════════════════ */
 
-async function start(content, gate) {
+async function start(content, gate, code) {
   ctx.content = content;
   ctx.course = content.course;
   ctx.glossary = content.glossary || {};
@@ -137,6 +138,7 @@ async function start(content, gate) {
   setGlossary(ctx.glossary);
 
   store.applySettings();
+  startSync(code);
   buildHeader();
 
   document.body.classList.add('is-open');
@@ -147,6 +149,29 @@ async function start(content, gate) {
 
   const p = store.courseProgress(ctx.course.modules);
   if (p.done) say(`Welcome back. ${p.done} of ${p.total} lessons complete.`);
+}
+
+/* ── sync across devices ─────────────────────────────────────── */
+
+function startSync(code) {
+  const sync = createSync({
+    course: 'delay-analysis', file: 'delay-analysis.sync.json',
+    template: structuredClone(store.BLANK),
+    read: () => store.load(), write: next => store.replaceAll(next), subscribe: store.subscribe
+  });
+  ctx.sync = sync;
+
+  const dot = el('i.syncdot', { aria: { hidden: 'true' } });
+  $('#nav a[href="#/settings"]')?.append(dot);
+  sync.on(st => {
+    dot.dataset.state = st.state;
+    if (st.state !== 'synced' || !st.remoteApplied) return;
+    const hash = location.hash || '#/';
+    const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName);
+    if (!typing && /^#\/($|m\/\d+$|settings$|certificate$)/.test(hash)) route();
+    say('Progress updated from your other device.');
+  });
+  sync.unlock(code);
 }
 
 function buildHeader() {

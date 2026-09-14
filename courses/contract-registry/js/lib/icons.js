@@ -1,0 +1,58 @@
+/* Icon set — drawn on a 24 grid with slightly uneven strokes so they read
+   as pen marks rather than a stock UI kit. Static markup only. */
+
+const P = (d, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ${extra}>${d}</svg>`;
+
+export const icons = {
+  desk: P('<path d="M3 10.5h18"/><path d="M5 10.5v9M19 10.5v9"/><path d="M8 10.5V6.2c0-.7.5-1.2 1.2-1.2h5.6c.7 0 1.2.5 1.2 1.2v4.3"/><path d="M10.5 7.8h3"/>'),
+  book: P('<path d="M4 5.2c2.6-.9 5.2-.7 8 1v13c-2.8-1.6-5.4-1.9-8-1z"/><path d="M20 5.2c-2.6-.9-5.2-.7-8 1v13c2.8-1.6 5.4-1.9 8-1z"/><path d="M6.5 9.3c1.3-.2 2.4 0 3.5.6M14 9.9c1.1-.6 2.2-.8 3.5-.6"/>'),
+  scan: P('<path d="M6 3.5h8.2l3.8 3.9V20a.5.5 0 0 1-.5.5h-11.5A.5.5 0 0 1 5.5 20V4a.5.5 0 0 1 .5-.5z"/><path d="M14 3.6v4h4"/><path d="M8.5 11h4M8.5 14h7M8.5 17h5"/><circle cx="16.8" cy="16.6" r="2.4"/><path d="m18.6 18.4 1.9 1.9"/>'),
+  pen: P('<path d="M15.4 4.6 19.4 8.6 9 19l-4.6 1 1-4.6z"/><path d="m13.6 6.4 4 4"/><path d="M4 21h8"/>'),
+  clock: P('<circle cx="12" cy="13" r="7.5"/><path d="M12 9v4.2l2.6 1.8"/><path d="M9.5 3.3h5M12 3.3v2.2"/><path d="m18.3 6.2 1.4-1.4"/>'),
+  folder: P('<path d="M3.5 7.2c0-.7.5-1.2 1.2-1.2h4.1l1.9 2h8.6c.7 0 1.2.5 1.2 1.2v9.6c0 .7-.5 1.2-1.2 1.2H4.7c-.7 0-1.2-.5-1.2-1.2z"/><path d="M3.5 10.5h17"/>'),
+  list: P('<path d="M9 6.5h11M9 12h11M9 17.5h11"/><path d="M4.3 6.5h.6M4.3 12h.6M4.3 17.5h.6" stroke-width="2.6"/>'),
+  cap: P('<path d="m2.5 9.3 9.5-4.6 9.5 4.6-9.5 4.6z"/><path d="M6.5 11.3v4.6c1.6 1.6 3.5 2.4 5.5 2.4s3.9-.8 5.5-2.4v-4.6"/><path d="M21.5 9.3v5.4"/>'),
+  cards: P('<rect x="3.5" y="6.5" width="12" height="14" rx="1.4" transform="rotate(-6 9.5 13.5)"/><path d="M11 4.6h8.3c.7 0 1.2.5 1.2 1.2v12.5"/>'),
+  tools: P('<path d="M5 20V13M5 9V4M12 20v-9M12 7V4M19 20v-5M19 11V4"/><path d="M3 13h4M10 7h4M17 15h4"/>'),
+  words: P('<path d="M4.5 18.5 9 5.5l4.5 13M6.2 14h5.6"/><path d="M15.5 12.5c.5-1 1.4-1.5 2.5-1.5 1.6 0 2.5 1 2.5 2.6v4.9M20.5 15.6c-1-.4-2-.5-3-.3-1.3.3-2 1-2 1.9 0 1 .8 1.6 1.9 1.6 1.2 0 2.3-.7 3.1-2"/>'),
+  search: P('<circle cx="10.8" cy="10.8" r="6.2"/><path d="m15.4 15.4 5 5"/>'),
+  sun: P('<circle cx="12" cy="12" r="4"/><path d="M12 2.8v2M12 19.2v2M2.8 12h2M19.2 12h2M5.5 5.5l1.4 1.4M17.1 17.1l1.4 1.4M5.5 18.5l1.4-1.4M17.1 6.9l1.4-1.4"/>'),
+  moon: P('<path d="M19.5 14.7A8 8 0 0 1 9.3 4.5 8 8 0 1 0 19.5 14.7z"/>'),
+  lock: P('<rect x="5" y="10.5" width="14" height="10" rx="1.5"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"/><path d="M12 14.5v2.2"/>'),
+  bell: P('<path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 2h-14z"/><path d="M10 20.5a2 2 0 0 0 4 0"/>'),
+  pause: P('<rect x="6.5" y="5" width="3.6" height="14" rx=".8"/><rect x="13.9" y="5" width="3.6" height="14" rx=".8"/>'),
+  bolt: P('<path d="M13.2 2.8 5.5 13.5h6l-1.1 7.7 8.1-11.2h-6.1z"/>'),
+  shuffle: P('<path d="M3.5 7h3.6c2 0 3.1 1 4.2 3l2.2 4c1.1 2 2.2 3 4.2 3h2.8"/><path d="m18 14.8 2.5 2.2-2.5 2.2"/><path d="M3.5 17h3.6c1.3 0 2.2-.4 3-1.2M13.7 8.2c.8-.8 1.7-1.2 3-1.2h3.8"/><path d="m18 4.8 2.5 2.2L18 9.2"/>'),
+  coin: P('<ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7"/><path d="M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/>'),
+  shield: P('<path d="M12 3.2 19 6v5.6c0 4.4-3 7.8-7 9.2-4-1.4-7-4.8-7-9.2V6z"/><path d="m9 12 2.2 2.2L15.3 10"/>'),
+  scale: P('<path d="M12 4v16M7 20h10"/><path d="M5 7.5h14"/><path d="m5 7.5-2.6 6.2a3 3 0 0 0 5.2 0zM19 7.5l-2.6 6.2a3 3 0 0 0 5.2 0z"/>'),
+  gavel: P('<path d="m13.5 4.5 6 6"/><path d="m11.3 6.7 6 6"/><path d="m12.4 5.6 6 6"/><path d="m8.8 9.2 4 4-7.5 7.5a1.4 1.4 0 0 1-2-2z"/><path d="M14 20.5h7"/>'),
+  check: P('<path d="m4.5 12.5 4.8 4.8L19.5 7"/>'),
+  map: P('<path d="M9 4.5 3.5 6.5v13l5.5-2 6 2 5.5-2v-13l-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/>'),
+  chart: P('<path d="M4 20V4"/><path d="M4 20h16"/><path d="M7.5 16.5h6M7.5 12.5h10M7.5 8.5h4"/>'),
+  doc: P('<path d="M6 3.5h8l4 4V20c0 .3-.2.5-.5.5h-11.5A.5.5 0 0 1 5.5 20V4a.5.5 0 0 1 .5-.5z"/><path d="M14 3.5v4h4M8.5 12h7M8.5 15.5h7"/>'),
+  leaf: P('<path d="M5 19c0-8 5-13.5 14.5-14 .3 9.5-5.5 14.5-13.5 14.5"/><path d="M5 19c3-4 6-6.5 10-8"/>'),
+  link: P('<path d="M10 14a3.5 3.5 0 0 0 5 0l3.3-3.3a3.5 3.5 0 0 0-5-5L12 7"/><path d="M14 10a3.5 3.5 0 0 0-5 0l-3.3 3.3a3.5 3.5 0 0 0 5 5L12 17"/>'),
+  people: P('<circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5c.4-3.2 2.6-5 5.5-5s5.1 1.8 5.5 5"/><circle cx="17" cy="9.5" r="2.3"/><path d="M15.8 14.7c2.4-.3 4.4 1.2 4.8 4.3"/>'),
+  flag: P('<path d="M5.5 21V4"/><path d="M5.5 4.5c3-1.6 5.5.9 8.4-.3 1.7-.7 3-.4 4.6.4v8.6c-1.6-.8-2.9-1.1-4.6-.4-2.9 1.2-5.4-1.3-8.4.3"/>'),
+  arrow: P('<path d="M5 12h14M13.5 6.5 19 12l-5.5 5.5"/>'),
+  back: P('<path d="M19 12H5M10.5 6.5 5 12l5.5 5.5"/>'),
+  copy: P('<rect x="8.5" y="8.5" width="11" height="12" rx="1.4"/><path d="M15.5 8.5V5c0-.8-.6-1.5-1.4-1.5H5.9c-.8 0-1.4.7-1.4 1.5v9.6c0 .8.6 1.4 1.4 1.4h2.6"/>'),
+  download: P('<path d="M12 4v11M7 10.5l5 5 5-5"/><path d="M4.5 19.5h15"/>'),
+  print: P('<path d="M7 8.5V3.5h10v5"/><rect x="3.5" y="8.5" width="17" height="8" rx="1.4"/><path d="M7 14h10v6.5H7z"/>'),
+  star: P('<path d="m12 3.8 2.5 5.2 5.7.8-4.1 4 1 5.7L12 16.8l-5.1 2.7 1-5.7-4.1-4 5.7-.8z"/>'),
+  x: P('<path d="M6 6l12 12M18 6 6 18"/>'),
+  plus: P('<path d="M12 5v14M5 12h14"/>'),
+  info: P('<circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.8v.4" stroke-width="2"/>'),
+  alert: P('<path d="M12 3.5 21 19.5H3z"/><path d="M12 9.5v4.5M12 16.8v.4" stroke-width="2"/>'),
+  tape: P('<path d="M4 7h16v10H4z"/><path d="M4 7l5 5-5 5M20 7l-5 5 5 5"/>'),
+  eye: P('<path d="M2.5 12c2.3-4.3 5.4-6.5 9.5-6.5s7.2 2.2 9.5 6.5c-2.3 4.3-5.4 6.5-9.5 6.5S4.8 16.3 2.5 12z"/><circle cx="12" cy="12" r="2.8"/>'),
+  spark: P('<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>'),
+  menu: P('<path d="M4 7h16M4 12h16M4 17h16"/>'),
+  play: P('<path d="M8 5.5v13l10-6.5z"/>'),
+  cloud: P('<path d="M7 18.5h10.2a4.3 4.3 0 0 0 .6-8.6 6 6 0 0 0-11.5 1.6A3.5 3.5 0 0 0 7 18.5z"/><path d="m9.6 13.6 2.4-2.4 2.4 2.4M12 11.3v5"/>'),
+  refresh: P('<path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 4.5v4.2h-4.2"/>'),
+};
+
+import { h } from './h.js';
+export const icon = (name, cls) => h('span.ic' + (cls ? '.' + cls : ''), { html: icons[name] || icons.doc, 'aria-hidden': 'true' });
