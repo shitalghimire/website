@@ -118,6 +118,10 @@ export default function exchange(view, { args, ctx, data }) {
     head(h('span', 'The ', h('em', 'exchange')),
       'A claim is not a document. It is a conversation, in writing, under clocks — you to the Engineer, the Engineer back to you, the Employer copied on everything. This page is the map of that traffic: what you send, when, under which clause, and what to do with each kind of letter that lands on you.'),
 
+    outro(),
+
+    caseStrip(),
+
     whoIsWho(),
 
     sec('The route a claim takes', 'From the day it happens'),
@@ -135,18 +139,57 @@ export default function exchange(view, { args, ctx, data }) {
     sec('Words that carry weight', 'Phrase bank'),
     phraseBank(data),
 
-    h('div.ex-outro',
-      h('div',
-        h('p.eyebrow', 'Next'),
-        h('h3.ex-outro__t', 'See what happened when the programme was missing'),
-        h('p.muted', 'Twenty months of letters about one Primavera file — and the reason eleven of twelve delay events came back with nothing.')),
-      h('a.btn.btn--stamp', { href: '#/baseline' }, icon('gantt'), 'The baseline story'),
-      h('a.btn', { href: '#/cases' }, icon('folder'), 'All case files')),
+    outro(),
   );
 
   reveal(view.querySelector('.ex-route'), { selector: '.ex-stage', stagger: 70 });
   reveal(view.querySelector('.ex-in'), { selector: '.ex-move', stagger: 50 });
   reveal(view.querySelector('.ex-grid'), { selector: '.ltr', stagger: 34 });
+}
+
+/* ── the three case studies, each on its own ────────────────────── */
+const CASE_STUDIES = [
+  {
+    href: '#/baseline', ic: 'gantt', kicker: 'Twenty-two months',
+    t: 'The baseline that was never approved',
+    s: 'Eleven reminders about one Primavera file, from the Notice to Commence to a determination that refused to use any programme at all.',
+    figs: [['11', 'reminders'], ['560', 'activities'], ['0', 'approved']],
+  },
+  {
+    href: '#/eot', ic: 'clock', kicker: 'The first EOT · January 2026',
+    t: 'EOT-01, and the twelve delay events',
+    s: 'What an extension of time has to prove, how the delay analysis works, and why eleven of the twelve came back with nothing.',
+    figs: [['525', 'days claimed'], ['228', 'determined'], ['0', 'cost']],
+  },
+  {
+    href: '#/eot/2', ic: 'scale', kicker: 'The second EOT · June 2026',
+    t: 'The resubmission — 587 days',
+    s: 'A fresh application that supersedes the first entirely, and the seven reasons the Engineer said it still could not be assessed.',
+    figs: [['587', 'days claimed'], ['7.38m', 'USD'], ['7', 'gaps']],
+  },
+];
+
+function caseStrip() {
+  return h('section.cstrip',
+    h('div.cstrip__h', h('span.eyebrow', 'The case studies'), h('span.muted', 'Built from the real TKV correspondence')),
+    h('div.cstrip__g', CASE_STUDIES.map((c, i) => h('a.cstudy', { href: c.href, style: { '--i': i } },
+      h('span.cstudy__ic', icon(c.ic)),
+      h('p.eyebrow', c.kicker),
+      h('h3.cstudy__t', c.t),
+      h('p.cstudy__s', c.s),
+      h('div.cstudy__f', c.figs.map(([n, l]) => h('span', h('b', n), h('small', l)))),
+      h('span.cstudy__go', 'Open', icon('arrow'))))));
+}
+
+/* ── the way on to the case studies ─────────────────────────────── */
+function outro() {
+  return h('div.ex-outro',
+    h('div',
+      h('p.eyebrow', 'Next'),
+      h('h3.ex-outro__t', 'See what happened when the programme was missing'),
+      h('p.muted', 'Twenty months of letters about one Primavera file — and the reason eleven of twelve delay events came back with nothing.')),
+    h('a.btn.btn--stamp', { href: '#/baseline' }, icon('gantt'), 'The baseline story'),
+    h('a.btn', { href: '#/cases' }, icon('folder'), 'All case files'));
 }
 
 /* ── who writes to whom ─────────────────────────────────────────── */

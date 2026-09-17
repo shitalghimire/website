@@ -76,10 +76,19 @@ const READY = [
   'Everything transmitted through document control, referenced and dated.',
 ];
 
-export default function eot(view, { ctx }) {
-  ctx.crumbs([{ label: 'Case files', href: '#/cases' }, { label: 'The EOT' }]);
+/* Two submissions, two pages. The first is the claim and how it was
+   judged; the second is what came back five months later. They are
+   separate documents in real life, so they are separate here. */
+export default function eot(view, { args, ctx }) {
+  return args[0] === '2' ? roundTwoPage(view, ctx) : roundOnePage(view, ctx);
+}
+
+/* ═══════════ THE FIRST EOT ═══════════ */
+function roundOnePage(view, ctx) {
+  ctx.crumbs([{ label: 'Case files', href: '#/cases' }, { label: 'EOT-01 · the first submission' }]);
 
   view.append(
+    rounds(1),
     hero(),
 
     sec('What you are actually asking for', 'Plain words'),
@@ -100,7 +109,23 @@ export default function eot(view, { ctx }) {
     sec('The twelve delay events', 'EOT-01 · determined March 2026'),
     eventTable(),
 
-    sec('Round two: 587 days', 'Resubmitted 11 June 2026'),
+    nextRound(),
+  );
+
+  reveal(view.querySelector('.eot-gates'), { selector: '.eot-gate', stagger: 70 });
+  reveal(view.querySelector('.eot-vols'), { selector: '.eot-vol', stagger: 80 });
+  reveal(view.querySelector('.eot-events'), { selector: '.eot-ev', stagger: 34 });
+}
+
+/* ═══════════ THE SECOND EOT ═══════════ */
+function roundTwoPage(view, ctx) {
+  ctx.crumbs([{ label: 'Case files', href: '#/cases' }, { label: 'EOT-01 · the resubmission' }]);
+
+  view.append(
+    rounds(2),
+    hero2(),
+
+    sec('What was resubmitted', '11 June 2026'),
     roundTwo(),
 
     sec('Seven reasons it still could not be assessed', 'Engineer\'s letter 886 · 15 July 2026'),
@@ -110,10 +135,52 @@ export default function eot(view, { ctx }) {
     checklist(),
   );
 
-  reveal(view.querySelector('.eot-gates'), { selector: '.eot-gate', stagger: 70 });
-  reveal(view.querySelector('.eot-vols'), { selector: '.eot-vol', stagger: 80 });
-  reveal(view.querySelector('.eot-events'), { selector: '.eot-ev', stagger: 34 });
   reveal(view.querySelector('.eot-gaps'), { selector: '.eot-gap', stagger: 60 });
+}
+
+/* the switch between the two submissions, on both pages */
+function rounds(at) {
+  const tab = (n, href, label, sub) => h(`a.eot-rt${n === at ? '.is-on' : ''}`, { href },
+    h('span.eot-rt__n', `Round ${n}`),
+    h('span.eot-rt__l', label),
+    h('small', sub));
+  return h('nav.eot-rounds', { 'aria-label': 'The two submissions' },
+    tab(1, '#/eot', 'The first EOT', '525 days claimed · January 2026 · determined at 228'),
+    tab(2, '#/eot/2', 'The resubmission', '587 days claimed · June 2026 · not yet assessable'));
+}
+
+/* the way on from the first page */
+function nextRound() {
+  return h('div.ex-outro.eot-next',
+    h('div',
+      h('p.eyebrow', 'Five months later'),
+      h('h3.ex-outro__t', 'They went back in with 587 days'),
+      h('p.muted', 'A second submission that supersedes the first entirely — and seven reasons the Engineer said it still could not be assessed.')),
+    h('a.btn.btn--stamp', { href: '#/eot/2' }, icon('clock'), 'The second EOT'),
+    h('a.btn', { href: '#/baseline' }, icon('gantt'), 'The baseline story'));
+}
+
+/* hero for the second submission */
+function hero2() {
+  const fig = (n, label, sub, cls = '', fmtN) => {
+    const b = h(`b.eot-fig__n${cls}`);
+    countWhenSeen(b, n, fmtN ? { format: fmtN } : undefined);
+    return h('div.eot-fig', b, h('span.eot-fig__l', label), h('small', sub));
+  };
+  return h('header.eot-hero',
+    h('div.eot-hero__text',
+      h('p.eyebrow', 'Case study · the second submission'),
+      h('h1.eot-hero__t', 'Back in with 587 days,', h('br'), h('em', 'and still not assessable')),
+      h('p.lede', 'On 11 June 2026 the Contractor resubmitted under letter TKV/COM/2026/878, superseding the January application in its entirety: 587 calendar days, an adjustment to the Sectional Completion Milestones, and USD 7,379,383.27 in cost, in three volumes. Five weeks later the Engineer did not reject it — it said the claim could not be assessed at all, listed seven deficiencies, and gave fourteen days.'),
+      h('div.eot-figs',
+        fig(587, 'days claimed', 'up from 525 in January'),
+        fig(7379383, 'US dollars', 'about 12,571 a day', '.is-part', (n) => n.toLocaleString()),
+        fig(7, 'deficiencies', 'every one about proof', '.is-bad'),
+        fig(14, 'days to remedy', 'from 15 July 2026')),
+      h('div.row',
+        h('a.btn.btn--stamp', { href: '#/eot' }, icon('back'), 'The first submission'),
+        h('a.btn', { href: '#/baseline' }, icon('gantt'), 'Why the baseline decided it'))),
+    h('div.eot-hero__art', { 'aria-hidden': 'true' }, heroArt()));
 }
 
 /* ── hero ───────────────────────────────────────────────────────── */
@@ -127,14 +194,15 @@ function hero() {
     h('div.eot-hero__text',
       h('p.eyebrow', 'Case study · Tamakoshi V, Lot 1'),
       h('h1.eot-hero__t', 'How an extension of time', h('br'), h('em', 'is actually submitted')),
-      h('p.lede', 'In January 2026 the Contractor asked for 525 days and about USD 5.5 million. The Engineer determined 228 days and nothing. In June 2026 the Contractor came back with 587 days and USD 7.38 million — and in July the Engineer replied that it still could not assess the claim at all. This page is what sits behind those numbers, and what a submission has to contain before anyone can say yes to it.'),
+      h('p.lede', 'In January 2026 the Contractor asked for 525 days and about USD 5.5 million for twelve delay events. The Engineer determined 228 days on one event, and nothing at all in money. This page is what sat behind those numbers — what an extension of time has to prove, how the delay analysis works, and why eleven of the twelve came back empty.'),
       h('div.eot-figs',
         fig(525, 'days claimed', 'EOT-01 · January 2026'),
+        fig(12, 'delay events', 'one got time'),
         fig(228, 'days determined', 'one event only', '.is-part'),
-        fig(587, 'days claimed again', 'resubmitted June 2026'),
         fig(0, 'rupees of cost', 'nothing was proved', '.is-bad')),
       h('div.row',
-        h('a.btn.btn--stamp', { href: '#/baseline' }, icon('gantt'), 'Why the baseline decided it'),
+        h('a.btn.btn--stamp', { href: '#/eot/2' }, icon('clock'), 'The second submission'),
+        h('a.btn', { href: '#/baseline' }, icon('gantt'), 'Why the baseline decided it'),
         h('a.btn', { href: '#/read/35' }, icon('book'), 'Clause 35'))),
     h('div.eot-hero__art', { 'aria-hidden': 'true' }, heroArt()));
 }
@@ -358,5 +426,6 @@ function checklist() {
         h('h3.ex-outro__t', 'Every one of these needs an accepted programme'),
         h('p.muted', 'Twelve of the first twelve events, and six of the seven deficiencies, come back to the same missing document.')),
       h('a.btn.btn--stamp', { href: '#/baseline' }, icon('gantt'), 'The baseline story'),
+      h('a.btn', { href: '#/eot' }, icon('back'), 'The first submission'),
       h('a.btn', { href: '#/exchange' }, icon('exchange'), 'How a claim travels')));
 }

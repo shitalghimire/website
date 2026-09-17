@@ -187,3 +187,23 @@
 .eot-ready__i.is-done .eot-ready__box { background: var(--ok); border-color: var(--ok); }
 .eot-ready__i.is-done .eot-ready__box::after { opacity: 1; transform: none; }
 .eot-ready__i.is-done > span:last-child { color: var(--ink-3); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--ok) 60%, transparent); }
+
+/* ── the switch between the two submissions ───────────────────── */
+.eot-rounds { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin-bottom: 1.6rem; }
+@media (max-width: 680px) { .eot-rounds { grid-template-columns: 1fr; } }
+.eot-rt {
+  display: grid; gap: .1rem; padding: .8rem 1rem; text-decoration: none; color: var(--ink-2);
+  background: var(--sheet-2); border: 1px solid var(--line); border-radius: var(--r-3);
+  transition: transform .2s var(--ease), border-color .2s, background .2s, box-shadow .2s;
+}
+.eot-rt:hover { color: var(--ink); transform: translateY(-2px); border-color: var(--stamp); box-shadow: var(--shadow-2); }
+.eot-rt__n { font: 700 .6rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); }
+.eot-rt__l { font: 400 1.16rem var(--display); color: var(--ink); }
+.eot-rt small { font: 400 .76rem var(--mono); color: var(--ink-3); }
+.eot-rt.is-on { background: var(--ink); border-color: var(--ink); box-shadow: var(--shadow-2); }
+.eot-rt.is-on .eot-rt__n { color: var(--marker); }
+.eot-rt.is-on .eot-rt__l { color: var(--sheet); }
+.eot-rt.is-on small { color: color-mix(in srgb, var(--sheet) 62%, transparent); }
+.eot-rt.is-on:hover { transform: none; }
+
+.eot-next { margin-top: 2.4rem; }

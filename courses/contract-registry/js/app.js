@@ -47,7 +47,7 @@ const ROUTES = [
   [/^\/cases(?:\/([\w-]+))?\/?$/, cases, 'cases'],
   [/^\/exchange(?:\/([\w-]+))?\/?$/, exchange, 'exchange'],
   [/^\/baseline\/?$/, baseline, 'exchange'],
-  [/^\/eot\/?$/, eot, 'exchange'],
+  [/^\/eot(?:\/(\d))?\/?$/, eot, 'exchange'],
   [/^\/register\/?$/, register, 'register'],
   [/^\/learn(?:\/(\w+)(?:\/(\w+))?)?\/?$/, learn, 'learn'],
   [/^\/drill(?:\/([\w-]+))?\/?$/, drill, 'drill'],
