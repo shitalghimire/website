@@ -1,10 +1,14 @@
 /* ═══════════════════════════════════════════════════════════════
    DESCENT — main.
 
-   State machine: title -> playing -> (perk | paused) -> dying ->
-   dead -> title. The loop runs continuously in every state so the
-   shaft keeps drifting behind the menus; only `playing` steps the
+   State machine: title -> playing -> (paused) -> dying -> dead ->
+   title. The loop runs continuously in every state so the shaft
+   keeps drifting behind the menus; only `playing` steps the
    simulation.
+
+   Nothing except an explicit pause ever stops a run. Perks used to
+   open a modal at every zone break and it wrecked the pacing, so
+   they are picked up in the shaft now — see offerPerks.
 
    Music intensity is derived, not scripted: speed, combo and depth
    each push it up, so the track thickens because of how you are
@@ -12,18 +16,18 @@
    make a procedural score feel authored.
    ═══════════════════════════════════════════════════════════════ */
 
-import { TILE, VIEW_W, Screen, Input, Loop, clamp, lerp, damp, rng } from './core.js';
-import { World, ZONES, ZONE_ROWS, zoneAt, zoneIndex } from './world.js';
+import { TILE, COLS, WALL, VIEW_W, Screen, Input, Loop, clamp, lerp, damp, rng } from './core.js';
+import { World, ZONES, ZONE_ROWS, EMPTY, zoneAt, zoneIndex } from './world.js';
 import { Player, P_H } from './player.js';
 import { Actors } from './actors.js';
 import { Fx } from './fx.js';
 import { Audio } from './audio.js';
 import { PerkState } from './perks.js';
-import { SURVEYOR } from './portrait.js';
+import { SURVEYOR, SURVEYOR_SMALL } from './portrait.js';
 import { draw } from './render.js';
 import {
   Hud, Overlay, store, icon,
-  titleScreen, pauseScreen, perkScreen, deathScreen,
+  titleScreen, pauseScreen, deathScreen,
 } from './hud.js';
 
 const BASE_PALETTE = {
@@ -111,17 +115,6 @@ class Game {
       if (t.id === 'ovStart' || t.id === 'ovAgain') { this.audio.ui(); this.startRun(); }
       else if (t.id === 'ovResume') { this.audio.ui(); this.resume(); }
       else if (t.id === 'ovQuit' || t.id === 'ovMenu') { this.audio.ui(); this.showTitle(); }
-      else if (t.dataset.perk != null) this.choosePerk(+t.dataset.perk);
-    });
-
-    /* 1 / 2 / 3 pick a perk — the deliberate keyboard path, since
-       the cards are not autofocused */
-    addEventListener('keydown', (e) => {
-      if (this.state !== 'perk' || !this.overlay.armed) return;
-      const n = { Digit1: 0, Digit2: 1, Digit3: 2 }[e.code];
-      if (n == null) return;
-      e.preventDefault();
-      this.choosePerk(n);
     });
 
     /* sound + music toggles live in the top bar */
@@ -158,6 +151,7 @@ class Game {
     /* portrait can load in the background; it is not needed until
        the first zone break */
     SURVEYOR.load();
+    SURVEYOR_SMALL.load();
   }
 
   /* ---------- screens ---------- */
@@ -224,41 +218,94 @@ class Game {
     this.state = 'playing';
   }
 
-  /* ---------- zone break: the surveyor ---------- */
-  openPerks() {
-    this.state = 'perk';
-    this.input.releaseAll();
-    this.audio.zone();
-    this.audio.setIntensity(0.22);
-    this.fx.addFlash(0.4, this.palette.accent);
+  /* ---------- zone break ----------
+     This used to stop the game and open a modal to pick a perk.
+     It was the wrong call: the appeal of this game is unbroken
+     downward momentum, and freezing it every 96m to read three
+     cards fought that every single time.
 
+     So the offer goes into the shaft instead. Three badges fan
+     across the width and you steer into the one you want while
+     still falling — the choice costs you positioning rather than
+     your flow, and nothing waits for a click. */
+  offerPerks() {
     const offers = this.perks.offer(this.rand, 3);
-    if (!offers.length) { this.state = 'playing'; return; }
-    this.offers = offers;
-    /* no autofocus: this choice is permanent, so it needs a
-       deliberate click or a number key, never a stray keyup */
-    this.overlay.show(perkScreen(this, offers), 'ov--perk', { autofocus: false });
+    if (!offers.length) return;
 
-    /* drop the dithered portrait in once the markup exists */
-    const host = document.getElementById('ovPortrait');
-    if (host) {
-      SURVEYOR.load().then(() => {
-        if (!SURVEYOR.loaded) { host.classList.add('is-missing'); return; }
-        host.innerHTML = '';
-        host.appendChild(SURVEYOR.toCanvas(1, this.palette.vis, 'transparent'));
-      });
+    const p = this.player;
+    /* far enough below to be seen and reacted to at speed, and
+       clear of the boundary row itself */
+    const y = p.feet + this.screen.h * 0.62;
+    const row = Math.floor(y / TILE);
+
+    /* spread across the interior, then nudge each one out of any
+       rock it happens to land in */
+    const inL = WALL + 1, inR = COLS - WALL - 2;
+    const span = inR - inL;
+    const xs = offers.map((_, i) => {
+      let col = Math.round(inL + (span * (i + 0.5)) / offers.length);
+      for (let k = 0; k < 6; k++) {
+        if (!this.world.isSolid(col, row)) break;
+        col += (i === 0 ? 1 : -1);
+        col = clamp(col, inL, inR);
+      }
+      return col * TILE + TILE / 2;
+    });
+
+    /* clear the badges' row so an offer is never buried in a ledge */
+    this.world.ensureTo(row + 2);
+    for (const bx of xs) {
+      const c = Math.floor(bx / TILE);
+      for (let r = row - 1; r <= row + 1; r++) {
+        for (let d = -1; d <= 1; d++) {
+          if (this.world.tile(c + d, r) !== EMPTY) this.world.setTile(c + d, r, EMPTY);
+        }
+      }
     }
+
+    this.perkGroup = (this.perkGroup || 0) + 1;
+    this.actors.perkOffer(offers, xs, y, this.perkGroup);
+
+    this.audio.zone();
+    this.fx.addFlash(0.28, this.palette.accent);
+    this.transmit(`ZONE ${this.zoneNo} — ${this.zone.name}`, 'Shaft gets meaner. Grab one on the way down.');
   }
 
-  choosePerk(i) {
-    const p = this.offers && this.offers[i];
-    if (!p) return;
-    this.perks.take(p, this.player);
+  collectPerk(pickup) {
+    const perk = pickup.perk;
+    this.perks.take(perk, this.player);
     this.audio.perk();
-    this.fx.addFlash(0.3, this.palette.vis);
-    this.overlay.hide();
-    this.state = 'playing';
-    this.fx.popup(this.player.cx, this.player.cy - 18, p.name.toUpperCase(), this.palette.vis, 1.2);
+    this.fx.addFlash(0.26, this.palette.vis);
+    this.fx.burst(pickup.x, pickup.y, this.palette.vis, 18, 200);
+    this.fx.ring(pickup.x, pickup.y, this.palette.vis, 0.45, 8);
+    this.fx.addShake(2.5);
+    this.fx.popup(pickup.x, pickup.y - 14, perk.name.toUpperCase(), this.palette.vis, 1.4);
+  }
+
+  /* A line from the surveyor, slid in at the edge of the screen.
+     Purely presentational — it never touches game state and takes
+     no input, so it cannot interrupt a run. */
+  transmit(who, line) {
+    const el = document.getElementById('tx');
+    if (!el) return;
+    el.querySelector('#txWho').textContent = who;
+    el.querySelector('#txLine').textContent = line;
+
+    /* the small re-dithered pass, not a scaled-down big one */
+    const host = el.querySelector('#txPort');
+    if (host && !host.childElementCount) {
+      SURVEYOR_SMALL.load().then(() => {
+        if (SURVEYOR_SMALL.loaded && !host.childElementCount) {
+          host.appendChild(SURVEYOR_SMALL.toCanvas(1, this.palette.vis, 'transparent'));
+        }
+      });
+    }
+
+    el.classList.remove('is-on');
+    void el.offsetWidth;            /* restart the slide */
+    el.classList.add('is-on');
+    clearTimeout(this._txT);
+    this._txT = setTimeout(() => el.classList.remove('is-on'), 4200);
   }
 
   /* ---------- game events ---------- */
@@ -354,6 +401,15 @@ class Game {
     store.bump('kills', this.kills);
     store.bump('gems', this.gems);
     this.overlay.show(deathScreen(this, rec), 'ov--dead');
+
+    const host = document.getElementById('ovPortrait');
+    if (host) {
+      SURVEYOR.load().then(() => {
+        if (!SURVEYOR.loaded) { host.classList.add('is-missing'); return; }
+        host.innerHTML = '';
+        host.appendChild(SURVEYOR.toCanvas(1, this.palette.vis, 'transparent'));
+      });
+    }
   }
 
   /* ---------- update ---------- */
@@ -420,14 +476,14 @@ class Game {
     this.actors.cull(this.camY - 80);
     this.fx.update(dt);
 
-    /* zone crossing -> the surveyor */
+    /* zone crossing — drops a perk offer into the shaft ahead and
+       lets the run carry straight on */
     const zi = zoneIndex(Math.floor(p.feet / TILE));
     if (zi + 1 > this.zoneNo && zi < ZONES.length) {
       this.zoneNo = zi + 1;
       this.zone = ZONES[zi];
       this.zoneStartRow = zi * ZONE_ROWS;
-      this.openPerks();
-      return;
+      this.offerPerks();
     }
     this.zone = zoneAt(Math.floor(p.feet / TILE));
     this._palette(dt, Math.floor(p.feet / TILE));

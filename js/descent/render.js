@@ -16,6 +16,7 @@
 import { TILE, COLS, WALL, VIEW_W, clamp } from './core.js';
 import { EMPTY, SOLID, CRUMBLE, SPIKE } from './world.js';
 import { P_W, P_H } from './player.js';
+import { drawIcon } from './icons.js';
 
 export function draw(ctx, g) {
   const { screen, world, player, actors, fx, palette: pal } = g;
@@ -151,6 +152,49 @@ function drawPickups(ctx, g) {
   const pal = g.palette;
   for (const p of g.actors.pickups) {
     if (p.dead) continue;
+
+    /* perk badge: drawn big, labelled, and pulsing, because it has
+       to be read and steered toward at terminal velocity */
+    if (p.kind === 'perk') {
+      const r = p.w / 2;
+      const pulse = 1 + Math.sin(p.t * 4) * 0.05;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+
+      /* halo so it reads against both bone rock and dark air */
+      ctx.globalAlpha = 0.16 + Math.sin(p.t * 4) * 0.06;
+      ctx.fillStyle = pal.vis;
+      ctx.beginPath();
+      ctx.arc(0, 0, r * 1.75 * pulse, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      ctx.scale(pulse, pulse);
+      ctx.fillStyle = pal.plate;
+      ctx.beginPath();
+      ctx.arc(0, 0, r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = pal.vis;
+      ctx.lineWidth = 1.6;
+      ctx.stroke();
+
+      drawIcon(ctx, p.perk.icon, 0, 0, r * 1.25, pal.vis);
+      ctx.restore();
+
+      /* name above, with a dark stroke so it survives any backdrop */
+      ctx.save();
+      ctx.font = '700 7px "JetBrains Mono", ui-monospace, monospace';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'alphabetic';
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = 'rgba(20,21,15,0.9)';
+      ctx.strokeText(p.perk.name.toUpperCase(), p.x, p.y - r - 6);
+      ctx.fillStyle = pal.vis;
+      ctx.fillText(p.perk.name.toUpperCase(), p.x, p.y - r - 6);
+      ctx.restore();
+      continue;
+    }
+
     const bob = Math.sin(p.t * 3) * 1.6;
     ctx.save();
     ctx.translate(p.x, p.y + bob);

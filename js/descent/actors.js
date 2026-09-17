@@ -76,6 +76,27 @@ export class Actors {
     }
   }
 
+  /* A zone's perk offer, as three things in the shaft rather than a
+     menu. They share a `group` so taking one clears the rest. The
+     box is generous because this is a choice, not a test of
+     pixel-accurate steering at terminal velocity. */
+  perkOffer(perks, xs, y, group) {
+    perks.forEach((perk, i) => {
+      this.pickups.push({
+        kind: 'perk', perk, group,
+        x: xs[i], y,
+        w: 22, h: 22,
+        t: i * 0.7, vx: 0, vy: 0, dead: false,
+      });
+    });
+  }
+
+  clearPerkGroup(group, exceptOne) {
+    for (const p of this.pickups) {
+      if (p.kind === 'perk' && p.group === group && p !== exceptOne) p.dead = true;
+    }
+  }
+
   bullet(x, y, angleOff, pierce, palette) {
     const speed = 520;
     this.bullets.push({
@@ -277,6 +298,18 @@ export class Actors {
     for (const p of this.pickups) {
       if (p.dead) continue;
       p.t += dt;
+
+      /* perk badges hold station and are never dragged by the
+         magnet — their position is the choice being offered */
+      if (p.kind === 'perk') {
+        if (player.dead) continue;
+        if (p.x + p.w / 2 < player.x || p.x - p.w / 2 > player.x + P_W) continue;
+        if (p.y + p.h / 2 < player.y || p.y - p.h / 2 > player.y + P_H) continue;
+        p.dead = true;
+        this.clearPerkGroup(p.group, p);
+        game.collectPerk(p);
+        continue;
+      }
 
       if (mag > 0 && !player.dead) {
         const d2 = dist2(p.x, p.y, player.cx, player.cy);

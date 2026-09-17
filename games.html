@@ -72,6 +72,16 @@
   <div class="dplay">
     <canvas id="cv" width="320" height="560" aria-label="Descent game"></canvas>
 
+    <!-- the surveyor, in play. Slides in, says one line, slides out.
+         Takes no input and never pauses the run. -->
+    <aside class="tx" id="tx" aria-live="polite">
+      <div class="tx__port" id="txPort"></div>
+      <div class="tx__body">
+        <p class="tx__who" id="txWho"></p>
+        <p class="tx__line" id="txLine"></p>
+      </div>
+    </aside>
+
     <div class="ov" id="ov" hidden>
       <div class="ov__panel" id="ovBody"></div>
     </div>

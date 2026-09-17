@@ -66,3 +66,49 @@ export function icon(name, cls = '') {
   return '<svg class="ico ' + cls + '" viewBox="' + g.v + '" fill="currentColor"'
     + ' aria-hidden="true" focusable="false">' + g.d + '</svg>';
 }
+
+/* ---------------------------------------------------------------
+   Canvas drawing.
+
+   Every icon in the pack is a single <path>, so the stored markup
+   can go straight into a Path2D and be drawn in the game canvas —
+   real icons on the perk pickups with no raster step and no second
+   copy of the artwork. Paths are built once and cached; viewBoxes
+   in this pack are tightly cropped and all different, so each
+   icon carries its own transform.
+   --------------------------------------------------------------- */
+const _pathCache = new Map();
+
+function _glyph(name) {
+  if (_pathCache.has(name)) return _pathCache.get(name);
+  const g = ICONS[name];
+  let out = null;
+  if (g) {
+    const ds = [...g.d.matchAll(/\sd="([^"]+)"/g)].map((m) => m[1]);
+    const vb = g.v.split(/\s+/).map(Number);
+    if (ds.length && vb.length === 4) {
+      out = { paths: ds.map((d) => new Path2D(d)), vb };
+    }
+  }
+  _pathCache.set(name, out);
+  return out;
+}
+
+/**
+ * Draw an icon centred on (cx, cy), fitted to `size`.
+ * @returns true if it drew, false if the name is unknown
+ */
+export function drawIcon(ctx, name, cx, cy, size, color) {
+  const g = _glyph(name);
+  if (!g) return false;
+  const [vx, vy, vw, vh] = g.vb;
+  const s = size / Math.max(vw, vh);
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(s, s);
+  ctx.translate(-(vx + vw / 2), -(vy + vh / 2));
+  ctx.fillStyle = color;
+  for (const p of g.paths) ctx.fill(p);
+  ctx.restore();
+  return true;
+}

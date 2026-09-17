@@ -257,39 +257,20 @@ export function pauseScreen(g) {
   `;
 }
 
-/* The cameo. The surveyor is the one who hands out the perks, which
-   gives the portrait a reason to be on screen and a moment where
-   the player actually looks at it. */
-export function perkScreen(g, offers) {
-  const cards = offers.map((p, i) => `
-    <button class="card" data-perk="${i}">
-      <span class="card__ico">${icon(p.icon)}</span>
-      <span class="card__key">${i + 1}</span>
-      <span class="card__n">${p.name}</span>
-      <span class="card__b">${p.blurb}</span>
-      ${g.perks.countOf(p.id) ? `<span class="card__have">owned &times;${g.perks.countOf(p.id)}</span>` : ''}
-    </button>
-  `).join('');
-
-  return `
-    <div class="survey">
-      <div class="survey__who">
-        <div class="survey__port" id="ovPortrait"></div>
-        <p class="survey__name">S. GHIMIRE</p>
-        <p class="survey__role">Surveyor &mdash; ${g.zone.name}</p>
-      </div>
-      <div class="survey__say">
-        <p class="ov__kicker">${icon('level')} Zone ${g.zoneNo} cleared &mdash; ${Math.floor(g.depth)}m</p>
-        <h2 class="ov__h2">“Shaft gets meaner below this. Take something.”</h2>
-        <div class="cards">${cards}</div>
-      </div>
-    </div>
-  `;
-}
-
+/* The cameo now lives on the run summary and in the in-play
+   transmission strip, both of which sit outside the run rather
+   than stopping it. It used to front a modal perk picker at every
+   zone break, which read well but broke the pacing. */
 export function deathScreen(g, rec) {
   const perks = g.perks.list();
   return `
+    <div class="signoff">
+      <div class="signoff__port" id="ovPortrait"></div>
+      <div>
+        <p class="signoff__name">S. GHIMIRE</p>
+        <p class="signoff__role">Surveyor &mdash; signed off at ${Math.floor(g.maxDepth)}m</p>
+      </div>
+    </div>
     <p class="ov__kicker ov__kicker--bad">${icon('skull')} Run ended</p>
     <h2 class="ov__title ov__title--sm">${Math.floor(g.depth)}<small>m</small></h2>
     ${rec.depth ? `<p class="badge">${icon('trophy')} New deepest run</p>` : ''}

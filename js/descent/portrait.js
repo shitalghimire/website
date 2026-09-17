@@ -185,12 +185,26 @@ export class Portrait {
 
    If the photo is swapped, re-measure and retune these numbers;
    nothing else needs to change. */
-export const SURVEYOR = new Portrait('assets/images/portrait.jpg', {
-  w: 210,
-  h: 218,
+const CAMEO = {
   crop: { x: 0.395, y: 0.195, w: 0.365, h: 0.375 },
   black: 0.22,
   white: 0.70,
   gamma: 1.0,
   invert: true,
+};
+
+/* Full size, for the run summary where there is room to look at it. */
+export const SURVEYOR = new Portrait('assets/images/portrait.jpg', {
+  w: 210, h: 218, ...CAMEO,
+});
+
+/* A second, genuinely low-resolution pass for the little in-play
+   strip. CSS-scaling the big one down was tried and it turns to
+   mush: ordered dither only holds together at the size it was
+   thresholded for, so shrinking it averages the pattern away.
+   Re-dithering at the target size keeps it crisp instead.
+   Levels are opened up a touch because at 34px the face has far
+   fewer pixels to carry its mid-tones. */
+export const SURVEYOR_SMALL = new Portrait('assets/images/portrait.jpg', {
+  w: 34, h: 36, ...CAMEO, black: 0.26, white: 0.66,
 });
