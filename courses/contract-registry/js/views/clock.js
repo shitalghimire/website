@@ -56,7 +56,7 @@ export default function clock(view, { ctx, params, data }) {
   const saved = h('div.clk-saved');
   const drawSaved = () => {
     const list = store.get().clocks.map((k) => ({ ...k, d: D.fromIso(k.due) })).sort((a, b) => a.d - b.d);
-    if (!list.length) { mount(saved, h('div.empty', 'No clocks saved. Count one above or save one from an analysed letter.')); return; }
+    if (!list.length) { mount(saved, h('div.empty', 'No clocks saved yet. Pick a clock above, enter the start date, and save it so it cannot slip.')); return; }
     mount(saved, h('ul.clk-list', list.map((k) => {
       const left = D.diffDays(D.today(), k.d);
       return h(`li${left < 0 ? '.is-late' : left <= 3 ? '.is-hot' : ''}`,

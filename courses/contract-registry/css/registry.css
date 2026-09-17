@@ -110,7 +110,9 @@ kbd { font: 700 .72rem var(--mono); padding: .05rem .38rem; border: 1px solid va
   background: var(--bg); color: var(--fg); border: 1px solid var(--bd); font: 600 .9rem/1 var(--sans);
   text-decoration: none; transition: transform .12s var(--ease), box-shadow .2s var(--ease), background .2s; white-space: nowrap;
 }
-.btn:hover { color: var(--fg); box-shadow: var(--shadow-2); transform: translateY(-1px); }
+.btn:hover { color: var(--fg); box-shadow: var(--shadow-2); transform: translateY(-2px); }
+.btn svg { transition: transform .22s var(--ease); }
+.btn:hover svg { transform: translateX(1px); }
 .btn:active { transform: translateY(1px); box-shadow: none; }
 .btn svg { width: 16px; height: 16px; }
 .btn--ink { --bg: var(--ink); --fg: var(--sheet); --bd: var(--ink); }
@@ -130,7 +132,8 @@ kbd { font: 700 .72rem var(--mono); padding: .05rem .38rem; border: 1px solid va
   font: 700 .74rem/1.4 var(--mono); text-decoration: none; white-space: nowrap; cursor: pointer;
   transition: background .15s, color .15s, border-color .15s;
 }
-a.chip:hover, button.chip:hover { border-color: var(--stamp); color: var(--stamp); background: var(--stamp-soft); }
+.chip { transition: background .15s, color .15s, border-color .15s, transform .15s var(--ease); }
+a.chip:hover, button.chip:hover { border-color: var(--stamp); color: var(--stamp); background: var(--stamp-soft); transform: translateY(-1px); }
 .chip--pcc { border-color: color-mix(in srgb, var(--tape) 45%, transparent); color: var(--tape); background: var(--tape-soft); }
 .chip--ok { border-color: color-mix(in srgb, var(--ok) 45%, transparent); color: var(--ok); background: var(--ok-soft); }
 .chip--warn { border-color: color-mix(in srgb, var(--warn) 45%, transparent); color: var(--warn); background: var(--warn-soft); }
@@ -257,7 +260,10 @@ a.chip:hover, button.chip:hover { border-color: var(--stamp); color: var(--stamp
 .rail__tab svg { width: 22px; height: 22px; stroke-width: 1.6; }
 .rail__tab:hover { color: var(--ink); background: color-mix(in srgb, var(--sheet) 55%, transparent); }
 .rail__tab[aria-current="page"] { background: var(--paper); color: var(--ink); box-shadow: -1px 0 0 var(--line-2), 0 -1px 0 var(--line-2), 0 1px 0 var(--line-2); }
-.rail__tab[aria-current="page"]::after { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 3px; background: var(--tape); }
+.rail__mark { position: absolute; left: 0; top: 10px; bottom: 10px; width: 3px; border-radius: 3px; background: var(--tape); opacity: 0; transform: scaleY(.3); transition: opacity .18s, transform .22s var(--ease-out); }
+.rail__tab[aria-current="page"] .rail__mark { opacity: 1; transform: none; }
+.rail__tab:hover .rail__mark { opacity: .35; transform: scaleY(.6); }
+.rail__tab[aria-current="page"]:hover .rail__mark { opacity: 1; transform: none; }
 .rail__foot { display: flex; justify-content: center; gap: .3rem; padding-top: .6rem; border-top: 1px dashed var(--line-2); }
 .rail__btn { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid transparent; border-radius: 8px; background: transparent; color: var(--ink-2); }
 .rail__btn:hover { background: var(--sheet); border-color: var(--line-2); color: var(--ink); }
@@ -271,20 +277,35 @@ a.chip:hover, button.chip:hover { border-color: var(--stamp); color: var(--stamp
 .crumbs a:hover { color: var(--stamp); }
 .crumbs i { font-style: normal; opacity: .5; }
 .finder { margin-left: auto; display: flex; align-items: center; gap: .6rem; width: min(420px, 48vw); padding: .5rem .6rem .5rem .8rem; background: var(--sheet); border: 1px solid var(--line-2); border-radius: 999px; color: var(--ink-3); font-size: .9rem; text-align: left; box-shadow: var(--shadow-1); }
-.finder:hover { border-color: var(--stamp); color: var(--ink-2); }
+.finder { transition: border-color .18s, color .18s, box-shadow .22s var(--ease); }
+.finder:hover { border-color: var(--stamp); color: var(--ink-2); box-shadow: var(--shadow-2); }
 .finder__icon { width: 16px; height: 16px; flex: none; }
 .finder__icon svg { width: 16px; height: 16px; }
 .finder__label { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 
 .view { padding: clamp(1rem, 3vw, 2.2rem) clamp(1rem, 3vw, 2.2rem) 6rem; outline: none; max-width: 1320px; width: 100%; }
-.view > * { animation: rise .55s var(--ease-out) both; }
-.view > *:nth-child(2) { animation-delay: .05s; }
-.view > *:nth-child(3) { animation-delay: .1s; }
-.view > *:nth-child(4) { animation-delay: .15s; }
-.view > *:nth-child(5) { animation-delay: .2s; }
-.view > *:nth-child(n+6) { animation-delay: .24s; }
 @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+/* ── reveal ───────────────────────────────────────────────────────
+   Marked by js/lib/motion.js. An element waits at .rv until it is
+   scrolled into view, then rises once. Nothing below the fold burns
+   its entrance before anyone is there to see it. */
+.rv { opacity: 0; transform: translateY(14px); }
+.rv.is-in { animation: rise .6s var(--d, 0ms) var(--ease-out) both; }
+
+/* page and theme transitions */
+::view-transition-old(root) { animation: vtOut .18s var(--ease) both; }
+::view-transition-new(root) { animation: vtIn .34s var(--ease-out) both; }
+@keyframes vtOut { to { opacity: 0; transform: translateY(-6px); } }
+@keyframes vtIn { from { opacity: 0; transform: translateY(10px); } }
+:root[data-vt="theme"]::view-transition-old(root) { animation: fade .26s both reverse; transform: none; }
+:root[data-vt="theme"]::view-transition-new(root) { animation: fade .26s both; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0ms !important; transition-duration: .01ms !important; }
+  .rv { opacity: 1; transform: none; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+}
 
 .dock { display: none; }
 @media (max-width: 860px) {

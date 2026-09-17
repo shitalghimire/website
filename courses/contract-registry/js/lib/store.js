@@ -1,12 +1,12 @@
 /* Local progress & personal data — one versioned localStorage key.
    When sync is switched on, this progress is also sent — encrypted —
    to the learner's own private GitHub Gist (see courses/sync/sync.js).
-   Pasted letters are never stored; saved analyses keep only a summary. */
+   Only progress and your own notes are kept — never contract text. */
 
 const KEY = 'registry:v1';
 const blank = () => ({
   learned: {}, bookmarks: {}, notes: {}, lessons: {}, answers: {}, leitner: {},
-  clocks: [], analyses: [], drafts: {}, settings: {}, days: [], opened: {},
+  clocks: [], settings: {}, days: [], opened: {},
 });
 
 let state = load();

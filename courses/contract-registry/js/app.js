@@ -8,14 +8,16 @@ import { store, BLANK } from './lib/store.js';
 import { createSync } from '../../sync/sync.js';
 import { syncBadge, openSync } from './views/syncpanel.js';
 import { forget } from './lib/vault.js';
+import { swap, reveal, flip, still } from './lib/motion.js';
 import C from './engine/contract.js';
 import * as S from './engine/search.js';
 
 import desk from './views/desk.js';
 import library from './views/library.js';
 import clause from './views/clause.js';
-import analyse from './views/analyse.js';
-import write from './views/write.js';
+import exchange from './views/exchange.js';
+import baseline from './views/baseline.js';
+import eot from './views/eot.js';
 import clock from './views/clock.js';
 import cases from './views/cases.js';
 import register from './views/register.js';
@@ -27,10 +29,9 @@ import words from './views/words.js';
 export const TABS = [
   { id: 'desk', label: 'Desk', icon: 'desk', href: '#/' },
   { id: 'read', label: 'Clauses', icon: 'book', href: '#/read' },
-  { id: 'analyse', label: 'Analyse', icon: 'scan', href: '#/analyse' },
-  { id: 'write', label: 'Draft', icon: 'pen', href: '#/write' },
   { id: 'clock', label: 'Clocks', icon: 'clock', href: '#/clock' },
   { id: 'cases', label: 'Cases', icon: 'folder', href: '#/cases' },
+  { id: 'exchange', label: 'Exchange', icon: 'exchange', href: '#/exchange' },
   { id: 'register', label: 'Letters', icon: 'list', href: '#/register' },
   { id: 'learn', label: 'Learn', icon: 'cap', href: '#/learn' },
   { id: 'drill', label: 'Practice', icon: 'cards', href: '#/drill' },
@@ -42,10 +43,11 @@ const ROUTES = [
   [/^\/?$/, desk, 'desk'],
   [/^\/read\/?$/, library, 'read'],
   [/^\/read\/([\w.]+)$/, clause, 'read'],
-  [/^\/analyse\/?$/, analyse, 'analyse'],
-  [/^\/write(?:\/([\w-]+))?\/?$/, write, 'write'],
   [/^\/clock\/?$/, clock, 'clock'],
   [/^\/cases(?:\/([\w-]+))?\/?$/, cases, 'cases'],
+  [/^\/exchange(?:\/([\w-]+))?\/?$/, exchange, 'exchange'],
+  [/^\/baseline\/?$/, baseline, 'exchange'],
+  [/^\/eot\/?$/, eot, 'exchange'],
   [/^\/register\/?$/, register, 'register'],
   [/^\/learn(?:\/(\w+)(?:\/(\w+))?)?\/?$/, learn, 'learn'],
   [/^\/drill(?:\/([\w-]+))?\/?$/, drill, 'drill'],
@@ -66,9 +68,9 @@ export function startApp(data, code) {
 
   sync = createSync({
     course: 'registry', file: 'registry.sync.json', template: BLANK(),
-    spec: { ids: { clocks: 'id', analyses: 'at' }, local: ['opened'] },
+    spec: { ids: { clocks: 'id' }, local: ['opened'] },
     read: store.get, write: store.replace, subscribe: store.on,
-    normalize: (s) => { s.days = [...new Set(s.days || [])].sort(); s.analyses = (s.analyses || []).sort((a, b) => b.at - a.at).slice(0, 30); return s; },
+    normalize: (s) => { s.days = [...new Set(s.days || [])].sort(); return s; },
   });
   ctx.sync = sync;
   sync.on((st) => {
@@ -76,7 +78,7 @@ export function startApp(data, code) {
     theme(store.get().settings.theme);
     const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName);
     const path = location.hash.replace(/^#/, '').split('?')[0];
-    if (!typing && /^\/?(read|clock|learn|drill|cases|tools)?\/?$/.test(path) && document.getElementById('palette').hidden) route();
+    if (!typing && /^\/?(read|clock|learn|drill|cases|exchange|baseline|eot|tools)?\/?$/.test(path) && document.getElementById('palette').hidden) route();
     toast('Progress updated from your other device');
   });
   sync.unlock(code);
@@ -87,7 +89,7 @@ export function startApp(data, code) {
   $('#themeBtn').addEventListener('click', () => {
     const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     store.update((s) => { s.settings.theme = next; });
-    theme(next);
+    swap(() => theme(next), 'theme');
   });
   $('#lockBtn').addEventListener('click', () => { forget(); location.reload(); });
   $('#lockBtn').before(syncBadge(sync));
@@ -111,13 +113,15 @@ function theme(t) {
 }
 
 function buildNav() {
-  mount($('#railTabs'), TABS.map((t) => h('a.rail__tab', { href: t.href, dataset: { tab: t.id } }, icon(t.icon), t.label)));
+  mount($('#railTabs'), TABS.map((t) => h('a.rail__tab', { href: t.href, dataset: { tab: t.id } }, icon(t.icon), t.label, h('i.rail__mark'))));
   mount($('#lockBtn'), h('span', { html: icons.lock }));
   $('#lockBtn').title = 'Lock the file';
-  const dock = ['desk', 'read', 'analyse', 'write'].map((id) => TABS.find((t) => t.id === id));
+  const dock = ['desk', 'read', 'exchange', 'cases'].map((id) => TABS.find((t) => t.id === id));
   mount($('#dock'), dock.map((t) => h('a', { href: t.href, dataset: { tab: t.id } }, icon(t.icon), t.label)),
     h('button', { type: 'button', onclick: () => openMenu() }, icon('menu'), 'More'));
 }
+
+let lastTab = null;
 
 function route() {
   const [path, qs] = location.hash.replace(/^#/, '').split('?');
@@ -126,18 +130,32 @@ function route() {
   for (const [re, fn, tab] of ROUTES) {
     const m = path.match(re);
     if (!m) continue;
-    document.querySelectorAll('[data-tab]').forEach((a) => a.toggleAttribute('aria-current', a.dataset.tab === tab) || a.removeAttribute('aria-current'));
-    document.querySelectorAll(`[data-tab="${tab}"]`).forEach((a) => a.setAttribute('aria-current', 'page'));
+    markTab(tab);
+    lastTab = tab;
     setCrumbs([]);
-    mount(view);
-    try { fn(view, { params, args: m.slice(1), ctx, data: DATA }); }
-    catch (err) { console.error(err); mount(view, h('div.empty', 'Something went wrong drawing this page. ', h('a', { href: '#/' }, 'Back to the desk'))); }
+    swap(() => {
+      mount(view);
+      try { fn(view, { params, args: m.slice(1), ctx, data: DATA }); }
+      catch (err) { console.error(err); mount(view, h('div.empty', 'Something went wrong drawing this page. ', h('a', { href: '#/' }, 'Back to the desk'))); }
+      reveal(view);
+    });
     if (!params.has('s')) scrollTo({ top: 0 });
     view.focus({ preventScroll: true });
     closePalette();
     return;
   }
   location.hash = '/';
+}
+
+/* The red marker on the rail moves to the new tab rather than blinking
+   out of one and into another — it reads as one object travelling. */
+function markTab(tab) {
+  const railMark = document.querySelector(`.rail__tab[data-tab="${lastTab}"] .rail__mark`);
+  const first = railMark && !still() ? railMark.getBoundingClientRect() : null;
+  document.querySelectorAll('[data-tab][aria-current]').forEach((a) => a.removeAttribute('aria-current'));
+  document.querySelectorAll(`[data-tab="${tab}"]`).forEach((a) => a.setAttribute('aria-current', 'page'));
+  const next = document.querySelector(`.rail__tab[data-tab="${tab}"] .rail__mark`);
+  if (next && first) flip(next, first);
 }
 
 function setCrumbs(list) {
@@ -147,8 +165,8 @@ function setCrumbs(list) {
 }
 
 /* ── finder palette ───────────────────────────────────────────── */
-const GROUP = { clause: 'Clauses', text: 'Contract text', pcc: 'PCC changes', plain: 'Plain words', word: 'Words', case: 'Case files', template: 'Letter types', letter: 'TKV letters' };
-const ORDER = ['clause', 'pcc', 'text', 'plain', 'word', 'template', 'case', 'letter'];
+const GROUP = { clause: 'Clauses', text: 'Contract text', pcc: 'PCC changes', plain: 'Plain words', word: 'Words', case: 'Case files', letter: 'TKV letters' };
+const ORDER = ['clause', 'pcc', 'text', 'plain', 'word', 'case', 'letter'];
 
 export function openPalette(initial = '') {
   const pal = $('#palette');
@@ -174,7 +192,7 @@ export function openPalette(initial = '') {
       nodes.push(h('div.palette__group', GROUP[t]));
       for (const r of g) {
         const a = h('a.palette__item', { href: r.href, role: 'option', 'aria-selected': 'false', onmousemove: () => select(items.indexOf(a)) },
-          h('span.palette__no', t === 'letter' ? '✉' : t === 'template' ? '✎' : t === 'case' ? r.no : r.no || '·'),
+          h('span.palette__no', t === 'letter' ? '✉' : t === 'case' ? r.no : r.no || '·'),
           h('span', h('span.palette__t', r.title), h('span.palette__s', marked(S.snippet(r.snippet, r.terms), r.terms))));
         items.push(a); nodes.push(a);
       }

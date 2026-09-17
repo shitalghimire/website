@@ -228,3 +228,16 @@ a.ref--pcc { color: var(--tape); }
 .q__opt.is-right .q__k { color: var(--ok); }
 .q__opt.is-wrong { border-color: var(--tape); background: var(--tape-soft); }
 .q__why { font-size: .88rem; color: var(--ink-2); padding: .6rem .7rem; background: var(--sheet-2); border-radius: var(--r-2); border-left: 3px solid var(--stamp); animation: rise .35s var(--ease-out) both; }
+
+/* ── where you left off ──────────────────────────────────────── */
+.resume { display: grid; gap: .45rem; margin-top: 1.4rem; }
+.resume__row { display: flex; gap: .5rem; overflow-x: auto; padding-bottom: .3rem; scrollbar-width: thin; }
+.resume__c { flex: none; display: grid; gap: .1rem; max-width: 14rem; padding: .55rem .8rem; background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r-2); text-decoration: none; color: var(--ink); box-shadow: var(--shadow-1); transition: transform .18s var(--ease), border-color .18s, box-shadow .18s; }
+.resume__c:hover { transform: translateY(-2px); border-color: var(--stamp); box-shadow: var(--shadow-2); color: var(--ink); }
+.resume__no { font: 700 .7rem var(--mono); color: var(--stamp); }
+.resume__t { font-size: .84rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+/* staggered entrances for the strips the desk redraws */
+.core { animation: rise .45s calc(var(--i, 0) * 26ms) var(--ease-out) both; }
+.usage__row { transition: background .15s, transform .15s var(--ease); }
+.usage__row:hover { transform: translateX(2px); }

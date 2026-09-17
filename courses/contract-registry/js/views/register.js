@@ -1,9 +1,9 @@
 /* The TKV letter register — searchable index of the correspondence tracker */
 
-import { h, mount, marked, debounce } from '../lib/h.js';
+import { h, mount, marked, debounce, copy } from '../lib/h.js';
 import { icon } from '../lib/icons.js';
 import C from '../engine/contract.js';
-import { normLetterRef } from '../engine/reader.js';
+import { normLetterRef } from '../engine/letters.js';
 import { dirLabel, tokens } from '../engine/search.js';
 import { head, refChip } from './ui.js';
 
@@ -75,7 +75,7 @@ export default function register(view, { ctx, data, params }) {
       r.r?.length ? h('div.reg-card__sec', h('span.label', 'Refers to'), r.r.map(link)) : null,
       r.rp?.length ? h('div.reg-card__sec', h('span.label', 'Replied by'), r.rp.map(link)) : null,
       repliedBy.length ? h('div.reg-card__sec', h('span.label', 'Letters that cite this one'), repliedBy.slice(0, 12).map(({ x }) => link(x.n))) : null,
-      h('button.btn.btn--sm', { type: 'button', onclick: () => { sessionStorage.setItem('registry:analyse', `${r.n}\nSubject: ${r.s}\n`); location.hash = '/analyse'; } }, icon('scan'), 'Start an analysis with this reference')));
+      h('div.row', h('button.btn.btn--sm', { type: 'button', onclick: () => copy(`${r.n} dated ${r.d || '—'} — ${r.s}`) }, icon('copy'), 'Copy the reference line'))));
     detailBox.classList.add('is-on');
     if (matchMedia('(max-width: 1000px)').matches) detailBox.scrollIntoView({ behavior: 'smooth' });
   }

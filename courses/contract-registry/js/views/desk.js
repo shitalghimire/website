@@ -3,9 +3,10 @@
 import { h } from '../lib/h.js';
 import { icon } from '../lib/icons.js';
 import { store } from '../lib/store.js';
+import { countWhenSeen, reveal, cascade } from '../lib/motion.js';
 import * as D from '../lib/dates.js';
 import C from '../engine/contract.js';
-import { rich, refChip, sec } from './ui.js';
+import { rich, sec } from './ui.js';
 
 export default function desk(view, { data }) {
   const st = store.get();
@@ -21,16 +22,16 @@ export default function desk(view, { data }) {
   const dayIdx = Math.floor(D.today() / 86400000) % core.length;
   const cod = core[dayIdx];
 
-  view.append(
+  const parts = [
     h('section.hero',
       h('div.hero__text',
         h('p.eyebrow', `${hello} · ${D.fmt(D.today())}`),
-        h('h1.hero__title', 'What landed on', h('br'), h('em', 'your desk'), ' today?'),
-        h('p.lede', 'Paste a letter from the Engineer and see what every clause in it actually says, what it means for you, and how to answer — or look anything up in the contract in plain words.'),
+        h('h1.hero__title', 'The whole contract,', h('br'), h('em', 'in plain words')),
+        h('p.lede', 'Ninety-eight General Conditions with the Particular Conditions laid over them, every deadline in one place, and the real TKV correspondence that shows what each clause does when somebody actually uses it.'),
         h('div.hero__actions',
-          h('a.btn.btn--stamp', { href: '#/analyse' }, icon('scan'), 'Analyse a letter'),
-          h('a.btn', { href: '#/write' }, icon('pen'), 'Draft a letter'),
-          h('button.btn.btn--ghost', { type: 'button', onclick: () => document.getElementById('finderBtn').click() }, icon('search'), 'Look up a clause'))),
+          h('a.btn.btn--stamp', { href: '#/read' }, icon('book'), 'Read the clauses'),
+          h('a.btn', { href: '#/exchange' }, icon('exchange'), 'How a claim travels'),
+          h('button.btn.btn--ghost', { type: 'button', onclick: () => document.getElementById('finderBtn').click() }, icon('search'), 'Look something up'))),
       h('div.hero__art', { 'aria-hidden': 'true' }, heroArt())),
 
     h('section.stats',
@@ -38,6 +39,8 @@ export default function desk(view, { data }) {
       stat(lessonsDone, `of ${totalLessons}`, 'lessons done', '#/learn'),
       stat(store.streak(), store.streak() === 1 ? 'day' : 'days', 'reading streak', '#/drill'),
       stat(st.clocks.filter((k) => D.fromIso(k.due) >= D.today()).length, 'running', 'deadline clocks', '#/clock')),
+
+    continueCard(st, all),
 
     h('section.desk-grid',
       h('div.folder.cod', { dataset: { tab: 'Clause of the day' } },
@@ -50,10 +53,10 @@ export default function desk(view, { data }) {
       rulesCard(data)),
 
     sec('The clauses that decide most letters', 'Start here'),
-    h('div.core-strip', ['35', '32', '42', '53', '30', '67', '44', '55', '56', '61', '27', '4'].map((n) => {
+    h('div.core-strip', cascade(['35', '32', '42', '53', '30', '67', '44', '55', '56', '61', '27', '4'].map((n) => {
       const c = C.getClause(n);
       return h('a.core', { href: `#/read/${n}` }, h('span.core__no', n), h('span.core__t', c.title), learnedDot(n, st));
-    })),
+    }))),
 
     sec('On TKV, who cites what', 'From 757 letters'),
     usageChart(data.usage),
@@ -63,14 +66,32 @@ export default function desk(view, { data }) {
       h('div.row', h('span.chip', k.no), h(`span.tone.tone--${k.tone}`, k.status)),
       h('h3.casecard__t', k.title),
       h('p.casecard__r', k.result)))),
-  );
+  ];
+  view.append(...parts.filter(Boolean));
+
+  reveal(view.querySelector('.core-strip'), { selector: '.core', stagger: 26 });
+  reveal(view.querySelector('.usage__rows'), { selector: '.usage__row', stagger: 22 });
 }
 
 function stat(n, of, label, href) {
-  return h('a.stat', { href }, h('span.stat__n', n), h('span.stat__of', of), h('span.stat__l', label));
+  const num = h('span.stat__n');
+  countWhenSeen(num, n);
+  return h('a.stat', { href }, num, h('span.stat__of', of), h('span.stat__l', label));
 }
 
 function learnedDot(n, st) { return st.learned[n] ? h('span.core__done', { title: 'Learned' }, icon('check')) : null; }
+
+/* Where you left off — the last few clauses you opened. */
+function continueCard(st, all) {
+  const recent = Object.entries(st.opened || {})
+    .sort((a, b) => b[1] - a[1]).slice(0, 5)
+    .map(([no]) => all.find((c) => c.no === no)).filter(Boolean);
+  if (!recent.length) return null;
+  return h('section.resume',
+    h('span.eyebrow', 'Where you left off'),
+    h('div.resume__row', recent.map((c) => h('a.resume__c', { href: `#/read/${c.no}` },
+      h('span.resume__no', c.no), h('span.resume__t', c.title)))));
+}
 
 function clocksCard(st) {
   const list = st.clocks.map((k) => ({ ...k, dueD: D.fromIso(k.due) })).filter((k) => k.dueD >= D.addDays(D.today(), -3)).sort((a, b) => a.dueD - b.dueD).slice(0, 4);
@@ -99,7 +120,7 @@ function usageChart(u) {
   const max = Math.max(...keys.map((x) => Math.max(x.us, x.er)));
   return h('div.usage',
     h('div.usage__legend', h('span.usage__sw.usage__sw--us'), 'Our letters', h('span.usage__sw.usage__sw--er'), 'Engineer\'s letters', h('span.muted', ' · letters citing each clause at least once')),
-    h('div.usage__rows', keys.map((x) => h('a.usage__row', { href: C.hrefOf(x.k), title: C.titleOf(x.k) },
+    h('div.usage__rows', keys.map((x, i) => h('a.usage__row', { href: C.hrefOf(x.k), title: C.titleOf(x.k), style: { '--i': i } },
       h('span.usage__k', x.k),
       h('span.usage__t', C.titleOf(x.k)),
       h('span.usage__bars',

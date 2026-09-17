@@ -11,6 +11,30 @@ export default function cases(view, { args, ctx, data }) {
   ctx.crumbs([{ label: 'Case files' }]);
   view.append(
     head(h('span', 'Case ', h('em', 'files')), 'The real claims and disputes on TKV, from the letters in the Letter Recording and Claims & Variation folders. For each: what happened, which clauses each side used, the result, what worked, what did not — and how to write the next letter.'),
+
+    h('div.case-doors',
+      h('a.door.door--ex', { href: '#/exchange' },
+        h('span.door__ic', icon('exchange')),
+        h('span.door__body',
+          h('span.eyebrow', 'Learn the moves'),
+          h('h3.door__t', 'How a claim travels'),
+          h('p.door__s', 'The whole route, letter by letter: what you send to the Engineer and the Employer, inside which clock — and what to do with every kind of letter that lands back on you.')),
+        icon('arrow')),
+      h('a.door.door--bl', { href: '#/baseline' },
+        h('span.door__ic', icon('gantt')),
+        h('span.door__body',
+          h('span.eyebrow', 'Case study'),
+          h('h3.door__t', 'The baseline that was never approved'),
+          h('p.door__s', 'Twenty-two months, eleven reminders and one Primavera file — and the reason eleven of twelve delay events came back with nothing.')),
+        icon('arrow')),
+      h('a.door.door--eot', { href: '#/eot' },
+        h('span.door__ic', icon('clock')),
+        h('span.door__body',
+          h('span.eyebrow', 'Case study'),
+          h('h3.door__t', 'How an extension of time is submitted'),
+          h('p.door__s', '525 days, then 228, then 587 — the twelve delay events, the delay analysis behind them, and the seven things still missing.')),
+        icon('arrow'))),
+
     h('div.cases', data.cases.map((k, i) => h('a.casefile', { href: `#/cases/${k.id}`, style: { '--i': i } },
       h('span.casefile__tab', k.no),
       h('div.casefile__body',
@@ -43,6 +67,6 @@ function detail(view, ctx, data, k) {
       h('aside.cs-side',
         h('section.side-card', h('h3.side-card__h', 'Clauses we used'), h('div.chips', [...new Set(k.ours)].map((x) => refChip(x)))),
         h('section.side-card', h('h3.side-card__h', 'Clauses the Engineer used'), h('div.chips', [...new Set(k.theirs)].map((x) => refChip(x)))),
-        h('section.side-card', h('h3.side-card__h', 'Practise'), h('a.btn.btn--sm', { href: '#/write' }, icon('pen'), 'Draft a reply'), h('a.btn.btn--sm.btn--ghost', { href: '#/analyse' }, icon('scan'), 'Analyse a letter')),
+        h('section.side-card', h('h3.side-card__h', 'Learn the moves'), h('a.btn.btn--sm', { href: '#/exchange' }, icon('exchange'), 'How the exchange works'), h('a.btn.btn--sm.btn--ghost', { href: '#/baseline' }, icon('chart'), 'The baseline story')),
         h('p.muted.cs-note', 'Summaries are paraphrased from the project letters; letter numbers let you find the originals in Nutstore.'))));
 }
