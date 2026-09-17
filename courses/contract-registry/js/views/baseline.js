@@ -566,6 +566,7 @@ function p6Window() {
       const a = new Date(y, 0, 1);
       const b = new Date(y + 1, 0, 1);
       out.push(h('div.p6__yr', { style: { left: `${x(a)}%`, width: `${x(b) - x(a)}%` } }, h('span', y)));
+      out.push(h('div.p6__yl', { style: { left: `${x(a)}%` } }));
       for (let q = 1; q < 4; q++) out.push(h('div.p6__q', { style: { left: `${x(new Date(y, q * 3, 1))}%` } }));
     }
     return out;

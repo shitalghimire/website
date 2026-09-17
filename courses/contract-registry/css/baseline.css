@@ -83,13 +83,13 @@
 .p6__dt { text-align: right; font: 400 .7rem var(--mono); color: var(--ink-2); }
 .p6__r.is-crit .p6__dt, .p6__r.is-crit .p6__nm { color: var(--tape); font-weight: 600; }
 
-.p6__gantt { position: relative; overflow-x: auto; }
+.p6__gantt { position: relative; overflow-x: auto; overflow-y: hidden; }
 @media (max-width: 860px) { .p6__head, .p6__r { grid-template-columns: 5.4rem minmax(0, 1fr) 4rem; } .p6__num { display: none; } }
 .p6__chart { position: relative; min-width: 660px; padding-top: var(--p6-row); height: calc((var(--rows, 15) + 1) * var(--p6-row)); }
 .p6__grid { position: absolute; inset: 0; }
 .p6__yr { position: absolute; top: 0; height: var(--p6-row); border-left: 1px solid var(--line-2); background: var(--folder); display: flex; align-items: center; }
 .p6__yr span { font: 700 .66rem var(--mono); color: var(--ink-2); padding-left: .4rem; }
-.p6__yr::after { content: ''; position: absolute; left: -1px; top: var(--p6-row); bottom: -2000px; width: 1px; background: var(--line-2); }
+.p6__yl { position: absolute; top: var(--p6-row); bottom: 0; width: 1px; background: var(--line-2); }
 .p6__q { position: absolute; top: var(--p6-row); bottom: 0; width: 1px; background: var(--line); }
 .p6__monsoons { position: absolute; top: var(--p6-row); bottom: 0; left: 0; right: 0; }
 .p6__mon { position: absolute; top: 0; bottom: 0; background: repeating-linear-gradient(-45deg, color-mix(in srgb, var(--stamp) 10%, transparent) 0 6px, transparent 6px 12px); border-left: 1px solid color-mix(in srgb, var(--stamp) 25%, transparent); border-right: 1px solid color-mix(in srgb, var(--stamp) 25%, transparent); animation: fade .4s both; }
