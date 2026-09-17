@@ -1,0 +1,564 @@
+/* =============================================================
+   DESCENT — dark plate of the drawing set.
+
+   Layout is one grid: rail | shaft. The shaft is the only thing
+   that must keep its aspect, so it gets the free space and the
+   rail is sized in ch. Below 900px the rail becomes a strip above
+   the shaft and the touch pads appear; that is the whole
+   responsive story.
+   ============================================================= */
+
+body.descent {
+  background: var(--plate);
+  color: var(--on-plate);
+  padding-left: 0;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;              /* the shaft scrolls, the page never does */
+  overscroll-behavior: none;
+  touch-action: manipulation;
+}
+body.descent::before {
+  background-image:
+    linear-gradient(rgba(242,240,234,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(242,240,234,0.04) 1px, transparent 1px);
+  background-size: 64px 64px, 64px 64px;
+  opacity: 1;
+}
+.descent ::selection { background: var(--vis); color: var(--plate); }
+.descent :focus-visible { outline: 2px solid var(--vis); outline-offset: 2px; }
+
+/* ---------- icon: inline SVG, inherits currentColor ---------- */
+.ico {
+  display: inline-block;
+  width: 1em; height: 1em;
+  fill: currentColor;
+  vertical-align: -0.14em;
+  flex: none;
+}
+
+/* ══════════════ top bar ══════════════ */
+.dbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .7rem clamp(.8rem, 3vw, 1.6rem);
+  border-bottom: 1px solid var(--plate-rule);
+  background: rgba(20,21,15,0.92);
+  backdrop-filter: blur(12px);
+  z-index: 40;
+  flex: none;
+}
+.dbar__back, .dbar__act {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--mono); font-size: .625rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: .45rem .7rem;
+  border: 1px solid var(--plate-rule);
+  color: var(--on-plate-dim);
+  background: none;
+  cursor: pointer;
+  transition: background-color .18s, color .18s, border-color .18s;
+}
+.dbar__back:hover, .dbar__act:hover {
+  background: var(--vis); color: var(--plate); border-color: var(--vis);
+}
+.dbar__act[aria-pressed="false"] { opacity: .5; }
+.dbar__acts { display: flex; gap: .4rem; }
+.dbar__title {
+  font-family: var(--display); font-weight: 900; font-stretch: 118%;
+  font-size: 1.05rem; letter-spacing: .04em;
+}
+.dbar__title i { font-style: normal; color: var(--vis); }
+
+/* ══════════════ stage ══════════════ */
+.dstage {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 19ch 1fr;
+  gap: clamp(.8rem, 2vw, 1.8rem);
+  padding: clamp(.7rem, 2vw, 1.4rem);
+  align-items: stretch;
+}
+
+.dplay {
+  position: relative;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+}
+#cv {
+  display: block;
+  background: var(--plate);
+  border: 1px solid var(--plate-rule);
+  image-rendering: pixelated;
+  box-shadow: 0 0 0 1px rgba(20,21,15,.8), 0 24px 70px -20px rgba(0,0,0,.8);
+}
+
+/* ══════════════ rail / HUD ══════════════ */
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  min-width: 0;
+}
+.read { border-top: 1px solid var(--plate-rule); padding-top: .4rem; }
+.read dt {
+  font-family: var(--mono); font-size: .5625rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--on-plate-dim);
+}
+.read dd {
+  font-family: var(--display); font-weight: 800; font-stretch: 112%;
+  font-size: 1.35rem; line-height: 1.1; letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+}
+.read dd small { font-size: .6em; color: var(--on-plate-dim); margin-left: .1em; }
+.read--big dd { font-size: clamp(2rem, 4.6vw, 3rem); color: var(--vis); }
+.read--dim dd { font-size: .95rem; color: var(--on-plate-dim); font-weight: 600; }
+
+.zone {
+  font-family: var(--mono); font-size: .625rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--plate);
+  background: var(--vis);
+  padding: .2rem .45rem;
+  align-self: flex-start;
+  margin-top: -.35rem;
+}
+
+/* --- pips: health and ammo --- */
+.vitals { display: flex; flex-direction: column; gap: .55rem; margin-top: .3rem; }
+.vital dt, .combo dt {
+  font-family: var(--mono); font-size: .5625rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--on-plate-dim);
+  margin-bottom: .25rem;
+}
+.pips { display: flex; flex-wrap: wrap; gap: 3px; }
+.pip {
+  display: block;
+  border: 1px solid currentColor;
+  transition: background-color .12s, opacity .12s;
+}
+.pip--heart {
+  width: 11px; height: 11px;
+  color: var(--signal);
+  opacity: .28;
+  border-radius: 2px;
+}
+.pip--heart.is-on { background: var(--signal); opacity: 1; }
+.pip--ammo {
+  width: 5px; height: 13px;
+  color: var(--vis);
+  opacity: .25;
+}
+.pip--ammo.is-on { background: var(--vis); opacity: 1; }
+.pips--ammo.is-empty .pip--ammo { color: var(--signal); animation: dry .5s infinite; }
+@keyframes dry { 50% { opacity: .5; } }
+
+/* --- combo --- */
+.combo {
+  border-top: 1px solid var(--plate-rule);
+  padding-top: .4rem;
+  opacity: .35;
+  transition: opacity .2s;
+}
+.combo.is-live { opacity: 1; }
+.combo dd {
+  font-family: var(--display); font-weight: 900; font-stretch: 118%;
+  font-size: 1.6rem; line-height: 1;
+  color: var(--on-plate-dim);
+}
+.combo.is-live dd { color: var(--vis); }
+.combo.pop dd { animation: cpop .3s var(--ease); }
+@keyframes cpop {
+  0% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+/* --- carried perks --- */
+.perkrow { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: auto; }
+.mini {
+  display: inline-flex; align-items: center; gap: .2rem;
+  font-family: var(--mono); font-size: .625rem;
+  color: var(--vis);
+  border: 1px solid var(--plate-rule);
+  padding: .22rem .34rem;
+}
+.mini b { color: var(--on-plate); font-size: .9em; }
+.mini--lg {
+  font-size: .6875rem; gap: .4rem; padding: .3rem .5rem;
+  color: var(--on-plate);
+}
+.mini--lg .ico { color: var(--vis); font-size: 1.1em; }
+
+/* ══════════════ overlay ══════════════ */
+/* `display` here would otherwise beat the UA stylesheet's
+   [hidden] { display: none }, leaving the panel's dark background
+   and backdrop blur sitting over the canvas forever. */
+.ov[hidden] { display: none; }
+.ov {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(20,21,15,0.86);
+  backdrop-filter: blur(6px);
+  z-index: 30;
+  padding: 1rem;
+  animation: ovIn .22s var(--ease);
+}
+@keyframes ovIn { from { opacity: 0; } }
+.ov__panel {
+  width: min(100%, 46ch);
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: center;
+  scrollbar-width: thin;
+}
+/* the panel takes focus programmatically so screens without an
+   autofocused button are still announced; it is not a control, so
+   it should not draw a focus ring */
+.ov__panel:focus, .ov__panel:focus-visible { outline: none; }
+.ov--perk .ov__panel { width: min(100%, 76ch); text-align: left; }
+
+.ov__kicker {
+  font-family: var(--mono); font-size: .625rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--vis);
+  display: inline-flex; align-items: center; gap: .4rem;
+  margin-bottom: .5rem;
+}
+.ov__kicker--bad { color: var(--signal); }
+.ov__title {
+  font-family: var(--display); font-weight: 900; font-stretch: 125%;
+  font-size: clamp(2.6rem, 11vw, 4.4rem);
+  letter-spacing: -.04em; line-height: .88;
+}
+.ov__title i { font-style: normal; color: transparent; -webkit-text-stroke: 2px var(--vis); }
+.ov__title--sm { font-size: clamp(2.4rem, 9vw, 3.6rem); color: var(--vis); }
+.ov__title--sm small { font-size: .38em; color: var(--on-plate-dim); -webkit-text-stroke: 0; }
+.ov__h2 {
+  font-family: var(--display); font-weight: 800; font-stretch: 110%;
+  font-size: clamp(1.1rem, 3.4vw, 1.5rem);
+  letter-spacing: -.02em; line-height: 1.16;
+  margin-bottom: .8rem;
+}
+.ov__lede {
+  color: var(--on-plate-dim);
+  font-size: .9375rem;
+  margin: .7rem auto 1rem;
+  max-width: 40ch;
+}
+.ov__lede b { color: var(--vis); font-weight: 600; }
+.ov__sub {
+  font-family: var(--mono); font-size: .5625rem;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--on-plate-dim);
+  margin: 1rem 0 .45rem;
+}
+.ov__foot {
+  font-family: var(--mono); font-size: .5625rem;
+  color: var(--on-plate-dim);
+  margin-top: .9rem;
+  letter-spacing: .06em;
+}
+.ov__row { display: flex; gap: .5rem; justify-content: center; margin-top: 1.1rem; flex-wrap: wrap; }
+
+/* --- keys legend ---
+   Two versions ship and CSS picks one: a keyboard has no use for
+   "FIRE", and a phone has no use for "ESC". */
+.keys {
+  display: flex; flex-direction: column; gap: .4rem;
+  margin: 1rem auto; width: fit-content;
+}
+.keys--touch { display: none; }
+@media (pointer: coarse) {
+  .keys--kbd { display: none; }
+  .keys--touch { display: flex; }
+}
+.keys__g { display: flex; align-items: center; gap: .3rem; }
+.keys__g em {
+  font-family: var(--mono); font-size: .5625rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--on-plate-dim); font-style: normal; margin-left: .4rem;
+}
+.key {
+  font-family: var(--mono); font-size: .625rem; font-weight: 500;
+  border: 1px solid var(--plate-rule);
+  border-bottom-width: 2px;
+  padding: .22rem .45rem;
+  min-width: 1.9rem;
+  color: var(--on-plate);
+}
+.key--wide { min-width: 3.2rem; }
+.key--vis { border-color: var(--vis); color: var(--vis); }
+
+/* --- stat grid --- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: .1rem;
+  margin: 1rem 0 .2rem;
+  text-align: left;
+  border-top: 1px solid var(--plate-rule);
+}
+.stats > div {
+  border-bottom: 1px solid var(--plate-rule);
+  padding: .45rem .1rem;
+}
+.stats dt {
+  font-family: var(--mono); font-size: .5625rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--on-plate-dim);
+  display: flex; align-items: center; gap: .3rem;
+}
+.stats dd {
+  font-family: var(--display); font-weight: 800;
+  font-size: 1.2rem; letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+  margin-top: .1rem;
+}
+.stats dd small { font-size: .6em; color: var(--on-plate-dim); }
+.stats--title { max-width: 34ch; margin-inline: auto; }
+
+.badge {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--mono); font-size: .625rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  background: var(--vis); color: var(--plate);
+  padding: .3rem .6rem;
+  margin-top: .6rem;
+}
+
+.loadout { display: flex; flex-wrap: wrap; gap: .3rem; justify-content: center; }
+
+/* --- buttons --- */
+.btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-family: var(--mono); font-size: .6875rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  padding: .7rem 1.1rem;
+  border: 1px solid var(--plate-rule);
+  background: none; color: var(--on-plate);
+  cursor: pointer;
+  transition: background-color .18s, color .18s, border-color .18s, transform .12s;
+}
+.btn:hover { border-color: var(--vis); color: var(--vis); }
+.btn:active { transform: translateY(1px); }
+.btn--go {
+  background: var(--vis); color: var(--plate); border-color: var(--vis);
+  font-weight: 700;
+}
+.btn--go:hover { background: var(--on-plate); border-color: var(--on-plate); color: var(--plate); }
+.btn--go span { transition: transform .18s var(--ease); }
+.btn--go:hover span { transform: translateY(3px); }
+
+/* ══════════════ the surveyor ══════════════ */
+/* min-width:0 on the text column — without it the cards refuse to
+   shrink below their content and the panel grows a scrollbar */
+.survey { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1.2rem; align-items: start; }
+.survey__who { text-align: center; }
+.survey__say { min-width: 0; }
+.survey__port {
+  width: 210px; height: 218px;
+  border: 1px solid var(--plate-rule);
+  background:
+    linear-gradient(rgba(201,232,42,.05), rgba(201,232,42,0)) ,
+    var(--plate-2);
+  display: grid; place-items: center;
+  margin-bottom: .45rem;
+  position: relative;
+  overflow: hidden;
+}
+/* scanlines, so the portrait reads as a monitor feed */
+.survey__port::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    rgba(20,21,15,0) 0 2px, rgba(20,21,15,.32) 2px 3px);
+  pointer-events: none;
+}
+.survey__port canvas { display: block; image-rendering: pixelated; }
+.survey__port.is-missing::before {
+  content: 'NO SIGNAL';
+  font-family: var(--mono); font-size: .5rem;
+  letter-spacing: .18em; color: var(--on-plate-dim);
+}
+/* the portrait is 210px wide; below this the column cannot hold it
+   beside the cards, so the surveyor moves above them */
+@media (max-width: 620px) {
+  .survey { grid-template-columns: 1fr; gap: .8rem; justify-items: center; }
+  .survey__say { width: 100%; }
+  .survey__port { width: 140px; height: 145px; }
+  .survey__port canvas { width: 140px !important; height: 145px !important; }
+}
+
+.survey__name {
+  font-family: var(--mono); font-size: .625rem;
+  letter-spacing: .14em; color: var(--vis);
+}
+.survey__role {
+  font-family: var(--mono); font-size: .5rem;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--on-plate-dim);
+}
+
+/* --- perk cards --- */
+.cards { display: flex; flex-direction: column; gap: .4rem; }
+.card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: auto auto;
+  gap: .1rem .7rem;
+  text-align: left;
+  padding: .65rem .8rem;
+  border: 1px solid var(--plate-rule);
+  background: none;
+  color: var(--on-plate);
+  cursor: pointer;
+  transition: border-color .16s, background-color .16s, transform .12s;
+}
+.card:hover, .card:focus-visible {
+  border-color: var(--vis);
+  background: rgba(201,232,42,.06);
+  transform: translateX(3px);
+}
+.card__ico {
+  grid-row: 1 / 3;
+  align-self: center;
+  font-size: 1.5rem;
+  color: var(--vis);
+  display: grid; place-items: center;
+  width: 2rem;
+}
+.card__n {
+  font-family: var(--display); font-weight: 800; font-stretch: 110%;
+  font-size: 1rem; letter-spacing: -.01em;
+}
+.card__b { font-size: .8125rem; color: var(--on-plate-dim); line-height: 1.4; }
+.card__key {
+  grid-column: 3;
+  grid-row: 1 / 3;
+  align-self: center;
+  font-family: var(--mono); font-size: .6875rem;
+  color: var(--on-plate-dim);
+  border: 1px solid var(--plate-rule);
+  border-bottom-width: 2px;
+  padding: .1rem .38rem;
+}
+.card:hover .card__key, .card:focus-visible .card__key {
+  color: var(--vis); border-color: var(--vis);
+}
+.card__have {
+  grid-column: 2;
+  font-family: var(--mono); font-size: .5rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--vis); opacity: .7;
+}
+
+/* ══════════════ touch pads ══════════════ */
+.pads { display: none; }
+
+/* ══════════════ responsive ══════════════ */
+/* narrow: the bar must stay on one line, so the toggles lose their
+   labels and keep their icons (aria-label carries the meaning) */
+@media (max-width: 620px) {
+  .dbar { padding: .5rem .6rem; gap: .4rem; }
+  .dbar__title { font-size: .9rem; }
+  .dbar__back, .dbar__act { padding: .4rem .5rem; font-size: .5625rem; }
+  .dbar__act span { display: none; }
+  .dbar__act .ico { font-size: 1.05em; }
+  .dbar__acts { gap: .3rem; }
+  .ov { padding: .6rem; }
+  .ov__lede { font-size: .875rem; }
+}
+
+@media (max-width: 900px) {
+  .dstage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: .6rem;
+    padding: .6rem;
+  }
+  /* the rail becomes a compact instrument strip. It has to stay on
+     one line — every row it wraps onto is a row stolen from the
+     shaft, which is the only thing here that needs the space. */
+  .rail {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: .55rem;
+    overflow: hidden;
+  }
+  .read { border-top: 0; padding-top: 0; min-width: 0; }
+  .read--big dd { font-size: 1.5rem; }
+  .read dd { font-size: .95rem; }
+  .read dt { font-size: .5rem; letter-spacing: .12em; }
+  .zone { margin-top: 0; font-size: .5rem; padding: .16rem .3rem; }
+  .vitals { flex-direction: row; gap: .55rem; margin: 0; }
+  .vital dt, .combo dt { font-size: .5rem; margin-bottom: .18rem; }
+  .pips { gap: 2px; }
+  .pip--heart { width: 9px; height: 9px; }
+  .pip--ammo { width: 4px; height: 11px; }
+  .combo { border-top: 0; padding-top: 0; }
+  .combo dd { font-size: 1.05rem; }
+  /* dropped on small screens: the shaft is worth more than these */
+  .read--dim, .perkrow { display: none; }
+}
+
+@media (pointer: coarse) {
+  .pads {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 1fr;
+    gap: .5rem;
+    padding: .5rem .6rem calc(.6rem + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--plate-rule);
+    background: rgba(20,21,15,.95);
+    flex: none;
+  }
+  .pad {
+    font-family: var(--mono); font-size: .8125rem; font-weight: 700;
+    letter-spacing: .1em;
+    padding: 1.1rem .5rem;
+    border: 1px solid var(--plate-rule);
+    background: rgba(242,240,234,.05);
+    color: var(--on-plate);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: none;
+  }
+  .pad:active { background: var(--vis); color: var(--plate); border-color: var(--vis); }
+  .pad--f { color: var(--vis); border-color: rgba(201,232,42,.4); }
+}
+
+/* landscape phone: keep the shaft tall, shrink the chrome */
+@media (max-height: 560px) and (orientation: landscape) {
+  .dbar { padding: .35rem .7rem; }
+  .dbar__title { font-size: .8rem; }
+  .dstage { grid-template-columns: 15ch 1fr; grid-template-rows: 1fr; padding: .4rem; }
+  /* back to a column, so undo the row-mode centring from the
+     900px block or the readouts centre while .zone sits hard left */
+  .rail {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .3rem;
+    overflow: visible;
+  }
+  .read--big dd { font-size: 1.5rem; }
+  .pads { grid-template-columns: 1fr 1fr 1fr; padding: .3rem .4rem; }
+  .pad { padding: .55rem .4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ov { animation: none; }
+  .combo.pop dd { animation: none; }
+  .pips--ammo.is-empty .pip--ammo { animation: none; }
+}
