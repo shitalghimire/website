@@ -81,17 +81,22 @@ export function analyse(text, data, { received, viaEmail = true } = {}) {
   /* ── 2. citations ── */
   const cites = new Map();
   for (const f of C.findRefs(t)) {
+    /* the same number can be a GCC clause in one sentence and a PTS clause in
+       the next, so the document it belongs to is part of the key */
+    const docKey = f.doc === 'spec' || f.doc === 'other' ? `${f.doc}:` : '';
     const key = f.ref + (f.item ? `(${f.item})` : '');
-    let e = cites.get(key);
+    let e = cites.get(docKey + key);
     if (!e) {
-      e = { key, ref: f.ref, item: f.item, raws: [], quotedTitles: new Set(), hits: 0, spec: false, prefixed: false };
-      cites.set(key, e);
+      e = { key, id: docKey + key, ref: f.ref, item: f.item, raws: [], quotedTitles: new Set(), hits: 0, spec: false, prefixed: false, doc: f.doc, specPara: false };
+      cites.set(docKey + key, e);
     }
     e.hits++; e.raws.push(f.raw.trim());
     if (f.quotedTitle) e.quotedTitles.add(f.quotedTitle);
     if (f.spec) e.spec = true;
     if (f.hasPrefix) e.prefixed = true;
-    out.marks.push({ start: f.index, end: f.end, kind: 'cite', key });
+    if (f.doc === 'contract') e.doc = 'contract';
+    if (!f.doc && C.specParagraph(t, f.index)) e.specPara = true;
+    out.marks.push({ start: f.index, end: f.end, kind: 'cite', key, id: e.id });
   }
   // multi-level spec numbers like "Clause 2.7.5 of the GTS"
   const specHits = [];
@@ -110,16 +115,26 @@ export function analyse(text, data, { received, viaEmail = true } = {}) {
     const fidic = R.fidic.find((f) => f.from === e.ref);
     const quoted = [...e.quotedTitles];
     const c = { ...e, quotedTitles: quoted, status: 'ok', note: null, tkvTitle: null, fidic: null, amended: false };
-    if (e.spec && !e.prefixed) { c.status = 'spec'; c.note = 'Looks like a technical-specification reference (GTS / PTS / Employer\'s Requirements), not a GCC clause.'; citations.push(c); continue; }
-    if (!r && e.spec) {
-      const known = R.specs.known.find((k) => new RegExp(`(^|\\s)${e.ref.replace('.', '\\.')}(\\b|$)`).test(k.ref));
+    const known = R.specs.known.find((k) => new RegExp(`(^|\\s)${e.ref.replace('.', '\\.')}(\\b|$)`).test(k.ref));
+    const asSpec = (why) => {
       c.status = 'spec';
-      c.note = known ? `Technical specification — ${known.ref}: ${known.title}. Not a GCC/PCC clause.` : 'Not a GCC/PCC number — a technical-specification reference (check Volume 4 GTS/PTS).';
+      c.note = known ? `Technical specification — ${known.ref}: ${known.title}. Not a GCC/PCC clause.` : why;
+      citations.push(c);
+    };
+    if (e.doc === 'other') {
+      c.status = 'other';
+      c.note = 'A clause of another document (the bidding documents, a code or standard, a report or an Act), not the GCC or PCC. Nothing to check against this contract.';
       citations.push(c); continue;
+    }
+    if (e.doc === 'spec') { asSpec('The letter places this in the technical specification (GTS / PTS / Employer\'s Requirements), not the GCC or PCC. Check Volume 4.'); continue; }
+    if (e.doc !== 'contract') {
+      if (e.spec && !e.prefixed) { asSpec('Looks like a technical-specification reference (GTS / PTS / Employer\'s Requirements), not a GCC clause.'); continue; }
+      if (!r && e.spec) { asSpec('Not a GCC/PCC number — a technical-specification reference (check Volume 4 GTS/PTS).'); continue; }
+      if (!r && e.specPara) { asSpec('Not a GCC/PCC number. The paragraph around it is about the technical specification, so this is most likely a PTS or GTS clause. Check Volume 4.'); continue; }
     }
     if (!r) {
       c.status = 'missing';
-      c.note = e.spec ? 'Not a GCC/PCC number — probably a technical-specification reference. Check Volume 4.' : 'This number does not exist in the TKV GCC or PCC.';
+      c.note = e.doc === 'contract' ? 'The letter says this is a clause of the Contract, but the number does not exist in the TKV GCC or PCC.' : 'This number does not exist in the TKV GCC or PCC.';
       if (fidic) { c.fidic = fidic; c.note += ` ${fidic.note}`; }
       citations.push(c); continue;
     }
@@ -133,6 +148,10 @@ export function analyse(text, data, { received, viaEmail = true } = {}) {
         c.note = `The letter calls it "${quoted[0]}", but in TKV ${e.key} sits under [${r.clause.title}].`;
         const f2 = R.fidic.find((f) => f.from === e.ref && overlap(quoted[0], f.title) >= 0.34) || fidic;
         if (f2 && overlap(quoted[0], f2.title) >= 0.34) { c.status = 'fidic'; c.fidic = f2; c.note += ` That title is FIDIC ${f2.from} [${f2.title}] — in TKV use ${f2.to.includes('.') ? f2.to : 'Clause ' + f2.to}.`; }
+        else if (e.doc !== 'contract' && (e.spec || e.specPara)) {
+          asSpec(`The letter calls it "${quoted[0]}", which is not the TKV title of ${e.key} [${r.clause.title}], and the paragraph is about the technical specification. Most likely a PTS or GTS clause — check Volume 4.`);
+          continue;
+        }
       }
     }
     // known confusions without titles
@@ -150,7 +169,10 @@ export function analyse(text, data, { received, viaEmail = true } = {}) {
   if (c101b && /employer'?s?\s+(failure|inability|obligation|responsib)/i.test(low)) { c101b.status = 'wrong'; c101b.note = '10.1(b) is the CONTRACTOR\'s permit obligation. The Employer\'s duty to obtain permissions for the Permanent Works is 10.1(a).'; }
   if (/force majeure means an exceptional event or circumstance,? natural disaster/i.test(t)) out.deletedText = 'The letter quotes the old GCC 67.1 wording, which the PCC deleted and replaced. Quote PCC 67.1 instead.';
   if (/employer'?s risks?/i.test(low) && /(excessive rain|landslide|flood|earthquake)/i.test(low) && citations.some((c) => c.ref === '21.1')) out.riskNote = 'Natural disasters are no longer Employer\'s Risks — the PCC replaced 21.1. They fall under Force Majeure (PCC 67.1(f)), which gives time but not cost (PCC 70.1(b)).';
-  out.citations = citations.sort((a, b) => ['wrong', 'missing', 'fidic', 'title', 'spec', 'ok'].indexOf(a.status) - ['wrong', 'missing', 'fidic', 'title', 'spec', 'ok'].indexOf(b.status) || parseFloat(a.ref) - parseFloat(b.ref));
+  /* only clauses of this contract count towards topics, shields and case files */
+  const contractCites = citations.filter((c) => c.status !== 'spec' && c.status !== 'other');
+  const ORDER = ['wrong', 'missing', 'fidic', 'title', 'ok', 'spec', 'other'];
+  out.citations = citations.sort((a, b) => ORDER.indexOf(a.status) - ORDER.indexOf(b.status) || parseFloat(a.ref) - parseFloat(b.ref));
   out.specs = specHits;
 
   /* ── 3. intents ── */
@@ -168,12 +190,12 @@ export function analyse(text, data, { received, viaEmail = true } = {}) {
   out.topics = R.topics.map((tp) => {
     let s = 0; const hits = new Set();
     for (const w of tp.words) { const m = t.match(new RegExp(w, 'gi')); if (m) { s += Math.min(m.length, 5); m.slice(0, 3).forEach((x) => hits.add(x.toLowerCase())); } }
-    for (const c of citations) if (tp.clauses.some((k) => c.ref === k || c.ref.startsWith(k + '.') || c.key === k)) s += 3;
+    for (const c of contractCites) if (tp.clauses.some((k) => c.ref === k || c.ref.startsWith(k + '.') || c.key === k)) s += 3;
     return { ...tp, score: s, hits: [...hits] };
   }).filter((x) => x.score >= 3).sort((a, b) => b.score - a.score).slice(0, 5);
 
-  const cited = new Set(citations.map((c) => c.ref));
-  const citedTop = new Set(citations.map((c) => c.ref.split('.')[0]));
+  const cited = new Set(contractCites.map((c) => c.ref));
+  const citedTop = new Set(contractCites.map((c) => c.ref.split('.')[0]));
   const shields = new Map();
   const watch = new Map();
   for (const tp of out.topics.slice(0, 4)) {
@@ -217,7 +239,7 @@ export function analyse(text, data, { received, viaEmail = true } = {}) {
     : has('non-compliance') ? 'ncr-response' : has('review-comments') ? 'variation-notice' : has('instruction') ? (topic('variation') || topic('design') ? 'variation-notice' : 'confirm-instruction')
       : has('rejection') ? 'rejection-response' : topic('force-majeure') ? 'fm-notice' : topic('payment') ? 'late-payment' : topic('change-in-law') ? 'change-in-law' : topic('claim-notice') ? 'notice-claim' : 'rejection-response';
 
-  const refSet = new Set(citations.map((c) => c.ref.split('.')[0]));
+  const refSet = new Set(contractCites.map((c) => c.ref.split('.')[0]));
   const keywords = new Set(words(t).filter((w) => w.length > 4));
   out.cases = data.cases.map((k) => {
     let s = 0;

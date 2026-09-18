@@ -131,39 +131,126 @@ export function firstLine(raw) {
 }
 
 /* Find clause references in free text.
-   Returns [{index, end, raw, ref, prefix, title, hasPrefix}] */
-const REF_RE = /\b(?:(sub[-\s]?clauses?|clauses?|gcc|pcc|scc|sc)\s*(?:no\.?\s*)?)?(\d{1,3})\s*\.\s*(\d{1,2})(?!\s*\.\s*\d)(?:\s*\(\s*([a-z]{1,2}|[ivx]{1,4})\s*\))?|\b(sub[-\s]?clauses?|clauses?|gcc|pcc|scc)\s*(?:no\.?\s*)?(\d{1,3})\b(?!\s*\.\s*\d)(?:\s*\(\s*([a-z]{1,2})\s*\))?/gi;
-const UNIT_AFTER = /^\s*(%|percent|m\b|mm|km|kn|kv|mw|kw|l\b|m3|m²|m2|days?|years?|months?|crore|lakh|million|x\b|°)/i;
+   Returns [{index, end, raw, ref, prefix, hasPrefix, quotedTitle, doc, spec}]
+
+   A number only counts as a clause when the words around it say so.
+   "Sub-Clause 53.6", "GCC 35.1", "Clauses 42.1 and 35.1", "53.6 [Variations]"
+   and "under 20.1 of the GCC" are clauses. "2.1 MPa", "a safety factor of
+   2.0", "1.5 times" and "1.54 m and 1.0 m" are not — a bare decimal is just
+   a number unless something marks it as a clause.
+
+   doc says which document the clause belongs to, when the letter says so:
+     'contract'  … of the GCC / PCC / Conditions of Contract
+     'spec'      … of the PTS / GTS / Technical Specifications / Section VI
+     'other'     … of the ITB, a standard, a report, an Act, the BOQ …
+     null        not stated */
+/* "Sub-Clause", "Sub Clause", "Sub - clause", "GCC.", and the scan misreadings "Sub-Glause", "Sub{lause" */
+const PREFIX = String.raw`sub\s*[-–{]?\s*(?:[cg][l1i])?auses?|sub\s*[-–{]?\s*[cg]?lauses?|[cg][l1i]auses?|gcc|pcc|scc|sc`;
+const REF_RE = new RegExp(String.raw`\b(?:(${PREFIX})\s*[.:]?\s*\[?\s*(?:no\.?\s*)?)?(\d{1,3})\s*\.\s*(\d{1,2})(?!\s*\.\s*\d)(?!\d)(?:\s*\(\s*([a-z]{1,2}|[ivx]{1,4})\s*\))?|\b(${PREFIX})\s*[.:]?\s*\[?\s*(?:no\.?\s*)?(\d{1,3})\b(?!\s*\.\s*\d)(?:\s*\(\s*([a-z]{1,2})\s*\))?`, 'gi');
+const UNIT_AFTER = /^\s*-?\s*(%|percent|m\b|meters?|metres?|m\/s|m³|m3|m²|m2|mm|cm|km|kn|kv|kva|mw|kw|mpa|kpa|gpa|n\/mm|kg|t\b|tons?|tonnes?|l\b|lit|days?|hrs?|hours?|years?|months?|weeks?|crore|lakh|million|times\b|x\b|°|degrees?|sec|seconds?|minutes?|mins?|nos?\.?\b|bags?|pcs|sets?|units?)/i;
+const TITLE_AFTER = /^\]?\s*\[\s*([A-Za-z][^\]\n]{2,80}?)(?:\]|J(?=[\s,.;]|$))|^\s*\(\s*(?:["“‘']\s*([A-Za-z][^)\n]{2,78}?)["”’']|([A-Z][a-z][^)\n]{2,78}))\s*\)/;
+const DOC_CONTRACT = String.raw`GCC|PCC|SCC|General Conditions|Particular Conditions|Special Conditions|Conditions of (?:the )?Contract|Contract Agreement|Contract(?!or)\b`;
+const DOC_SPEC = String.raw`GTS|PTS|TS\b|(?:General |Particular )?Technical Specifications?|Specifications?|Employer'?s Requirements?|Section\s+V?I+\b|Volume\s*[1-4]`;
+const DOC_OTHER = String.raw`ITB|Instructions? to Bidders|BDS|Bid Data Sheet|IS\b|BS\b|EN\b|ASTM|AASHTO|ACI|Eurocode|IEC|ISO|IEEE|NBC|(?:relevant )?(?:code|standard)s?\b|(?:design |inspection |geological |test )?reports?\b|manual|method statement|BOQ|Bills? of Quantities|(?:JV |joint venture )?agreement|MoU|minutes|Act\b|Regulations?\b|Rules\b|Polic(?:y|ies)\b|Guidelines?\b|Circulars?\b|Directives?\b|DCN|Design Basis|Bank Guarantee`;
+const OF = String.raw`^\s*,?\s*(of|in|under)\s+(?:the\s+)?(?:said\s+)?`;
+const DOC_AFTER = [
+  ['contract', new RegExp(OF + `(?:${DOC_CONTRACT})`, 'i')],
+  ['contract', /^\s*(of)?\s*(?:the\s+)?(?:particular|general|special)\s+conditions?\b/i],
+  ['spec', new RegExp(OF + `(?:${DOC_SPEC})`, 'i')],
+  ['other', new RegExp(String.raw`^\s*,?\s*(of)\s+(?:the\s+)?(?:${DOC_OTHER})`, 'i')],
+];
+const DOC_BEFORE = [
+  ['contract', /\b(?:GCC|PCC|SCC|General Conditions?|Particular Conditions?|Conditions? of (?:the )?Contract)\s*[-–,]?\s*(?:item|article)?\s*$/i],
+  ['spec', /\b(?:GTS|PTS|TS|Technical Specifications?|Specifications?)\s*[-–,]?\s*$/i],
+  ['other', /\b(?:ITB|BDS|IS|BS|EN|ASTM|ACI|IEC|ISO|Eurocode|Act|Regulations?|Code)\s*[-–,]?\s*$/i],
+];
+const LEADS_IN = /\b(?:under|pursuant to|in accordance with|in line with|as per|per|in terms of|according to|vide|invok(?:e|es|ed|ing)|refer(?:ring)? to|provisions? of|stipulated in|specified in|set out in|required by|governed by|notwithstanding|(?:provided|stated|contained|described|defined|envisaged|foreseen)(?:\s+for)?\s+(?:in|under)|(?:conditions|provisions|requirements|terms|scope|wording|meaning|operation|application) of)\s*$/i;
+/* between two clauses of one list: "35.1, 35.2 and 42.1", "Sub-Clauses 4.5, 27.8, 32, 46.1" */
+const JOINER = /^\]?(?:\s*(?:,|;|&|\/|~|and\/or|and|or|to|through|till|until|–|-)?\s*\d{1,3}(?:\.\d{1,2})?(?:\s*\([a-z]{1,2}\))?)*\s*(?:,|;|&|\/|~|and\/or|and|or|to|through|till|until|–|-)?\s*(?:,|and|or)?\s*$/i;
+/* "the clauses discussed above (including 10.1, 95.2, 96.1)": the word clause opens a list */
+const LIST_OPEN = /\b(?:sub\s*[-–]?\s*)?clauses?\b((?:[^.;:\n]|\.(?=\d)){0,60})$/i;
+const LIST_FILLER = /\b(?:and|or|including|includes?|like|along with|as well as|together with|e\.g|i\.e|namely|such as|viz|discussed|mentioned|cited|listed|above|below|the|these|those|under|of|in|gcc|pcc|conditions?|contract)\b|\d{1,3}(?:\.\d{1,2})?(?:\s*\([a-z]{1,2}\))?|\[[^\]]{2,80}\]|[\s,()–-]/gi;
 
 export function findRefs(text) {
   const out = [];
+  let prev = null;
   for (const m of text.matchAll(REF_RE)) {
-    const prefix = (m[1] || m[5] || '').toLowerCase();
+    const prefix = (m[1] || m[5] || '').toLowerCase().replace(/\s+/g, '');
     const clause = m[2] || m[6];
     const subN = m[3];
     const item = (m[4] || m[7] || '').toLowerCase() || null;
     if (+clause === 0 || +clause > 120) continue;
-    const after = text.slice(m.index + m[0].length, m.index + m[0].length + 8);
-    const before = text.slice(Math.max(0, m.index - 12), m.index);
-    if (!prefix && (UNIT_AFTER.test(after) || /(rs\.?|npr|usd|\$|€|no\.|v|version|rev\.?)\s*$/i.test(before) || /\d[.,]$/.test(before))) continue;
-    if (!prefix && subN && /^0\d/.test(subN) && subN.length > 1) continue;
-    // a title in [brackets] or (parentheses) right after the number
-    const tail = text.slice(m.index + m[0].length, m.index + m[0].length + 90);
-    const tm = tail.match(/^\s*[[(]\s*([A-Z][^\])]{2,70})[\])]/);
+    const start = m.index;
+    const end = m.index + m[0].length;
+    const tail = text.slice(end, end + 140);
+    const before = text.slice(Math.max(0, start - 40), start);
+    /* never part of a longer number: 5.5.5, 1,234.50, B.12.1, Rev.2.1 */
+    if (!prefix && /(?:\d[.,]|[A-Za-z]\.)$/.test(text.slice(Math.max(0, start - 2), start))) continue;
+    /* "PCC 1:3:6", "PCC 100 mm" — plain cement concrete, not the Particular Conditions */
+    if (/^(pcc|sc|scc)$/.test(prefix) && (UNIT_AFTER.test(tail) || /^\s*[:x]\s*\d/i.test(tail) || /^\s*(?:grade|m\d)/i.test(tail))) continue;
+    if (!prefix && UNIT_AFTER.test(tail)) continue;
+    if (!prefix && subN && /^0\d/.test(subN)) continue;
+
+    const tm = tail.match(TITLE_AFTER);
+    const title = tm ? (tm[1] || tm[2] || tm[3]).trim() : null;
+    const afterTitle = tm ? tail.slice(tm[0].length) : tail;
+    let doc = null;
+    let docOf = false;   // "… of the GCC" / "PTS 5.4": the letter names the document outright
+    for (const [d, re] of DOC_AFTER) { const dm = afterTitle.match(re); if (dm) { doc = d; docOf = !dm[1] || dm[1].toLowerCase() === 'of'; break; } }
+    if (!doc) for (const [d, re] of DOC_BEFORE) if (re.test(before)) { doc = d; docOf = true; break; }
+    /* "Table 5.3", "Section 4.2", "item 3.1" are not clauses — unless the letter says "of the Conditions of Contract" */
+    if (!prefix && !(doc === 'contract' && docOf) && /(rs\.?|npr|usd|inr|\$|€|no\.|v|ver\.?|version|rev\.?|ch\.?|chainage|el\.?|elevation|table|fig\.?|figure|item|page|section|chapter|annex|appendix|para(?:graph)?|volume|vol\.?|stage|activity|phase)\s*$/i.test(before)) continue;
+
+    /* a bare number has to earn its place */
+    if (!prefix) {
+      const exists = !!resolve(subN ? `${clause}.${subN}` : clause);
+      let continues = false;
+      if (prev && start - prev.end < 120) {
+        const gap = text.slice(prev.end, start)
+          .replace(/^\]/, '').replace(/^\s*\[[^\]\n]{2,80}?(?:\]|J(?=[\s,.;]|$))/, '').replace(/^\s*\([^)\n]{2,80}\)/, '')
+          .replace(new RegExp(OF + `(?:${DOC_CONTRACT}|${DOC_SPEC})`, 'i'), '');
+        continues = JOINER.test(gap);
+      }
+      const lo = text.slice(Math.max(0, start - 90), start).match(LIST_OPEN);
+      const listed = exists && !!lo && !lo[1].replace(LIST_FILLER, '').trim();
+      const leads = exists && LEADS_IN.test(before);
+      const bracketed = !!(tm && tm[1]);
+      const titled = !!(tm && (tm[2] || (tm[3] && title.split(/\s+/).length >= 2)));
+      const lettered = !!item && exists;   // 23.2(b), 67.1(f)
+      if (!(continues || listed || bracketed || titled || lettered || (doc && docOf) || leads)) continue;
+      if (continues && !doc) doc = prev.doc;
+    }
     const ref = subN ? `${clause}.${subN}` : clause;
-    out.push({
-      index: m.index, end: m.index + m[0].length, raw: m[0], ref, clause, sub: subN ? ref : null, item,
-      prefix, hasPrefix: !!prefix, quotedTitle: tm ? tm[1].trim() : null,
-      spec: isSpecContext(text, m.index),
-    });
+    const f = {
+      index: start, end, raw: m[0], ref, clause, sub: subN ? ref : null, item,
+      prefix, hasPrefix: !!prefix, quotedTitle: title, doc,
+      spec: doc === 'spec' || (!doc && isSpecContext(text, start, end)),
+    };
+    out.push(f);
+    prev = f;
   }
   return out;
 }
 
-function isSpecContext(text, i) {
-  const win = text.slice(Math.max(0, i - 90), i + 40).toLowerCase();
+/* the same sentence talks about the specification */
+function isSpecContext(text, i, j = i) {
   const cue = DATA?.reader?.specs?.cue;
-  return cue ? new RegExp(cue, 'i').test(win) : false;
+  if (!cue) return false;
+  const a = Math.max(text.lastIndexOf('. ', i), text.lastIndexOf('\n', i), i - 160);
+  const bRaw = text.slice(j, j + 120).search(/\.\s|\n/);
+  const b = bRaw < 0 ? j + 120 : j + bRaw;
+  return new RegExp(cue, 'i').test(text.slice(a, b));
+}
+
+/* the paragraph around a reference talks about the specification */
+export function specParagraph(text, i) {
+  const cue = DATA?.reader?.specs?.cue;
+  if (!cue) return false;
+  const a = Math.max(0, text.lastIndexOf('\n\n', i), i - 700);
+  let b = text.indexOf('\n\n', i);
+  if (b < 0 || b - i > 500) b = i + 500;
+  const para = text.slice(a, b);
+  return new RegExp(cue, 'i').test(para) || /\b\d{1,2}\.\d{1,2}\.\d{1,2}\b/.test(para);
 }
 
 /* ── all deadlines from the plain layer ───────────────────────── */
@@ -173,5 +260,5 @@ export function deadlines() {
   return out;
 }
 
-const api = { init, allClauses, getClause, getSub, resolve, titleOf, findRefs, hrefOf, isAmended, deadlines, firstLine, parseRef };
+const api = { init, allClauses, getClause, getSub, resolve, titleOf, findRefs, specParagraph, hrefOf, isAmended, deadlines, firstLine, parseRef };
 export default api;

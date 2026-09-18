@@ -229,7 +229,8 @@
 .an-cites { display: grid; gap: .55rem; }
 .an-cite { background: var(--sheet); border: 1px solid var(--line); border-left: 4px solid var(--ok); border-radius: var(--r-2); padding: .7rem .9rem; display: grid; gap: .45rem; }
 .an-cite--amended { border-left-color: var(--tape); }
-.an-cite--title, .an-cite--spec { border-left-color: var(--warn); }
+.an-cite--title { border-left-color: var(--warn); }
+.an-cite--spec, .an-cite--other { border-left-color: var(--stamp-2); }
 .an-cite--fidic, .an-cite--missing, .an-cite--wrong { border-left-color: var(--tape); background: color-mix(in srgb, var(--tape-soft) 40%, var(--sheet)); }
 .an-cite__head { display: flex; flex-wrap: wrap; gap: .4rem .8rem; align-items: center; }
 .an-cite__raw { font-weight: 700; font-size: .92rem; }
@@ -284,11 +285,13 @@
 .mk { border-radius: 3px; padding: 0 .12em; }
 .mk--cite { font-weight: 700; color: var(--ok); background: var(--ok-soft); text-decoration: none; }
 .mk--cite.mk--amended { color: var(--tape); background: var(--tape-soft); }
-.mk--cite.mk--title, .mk--cite.mk--spec { color: var(--warn); background: var(--warn-soft); }
+.mk--cite.mk--title { color: var(--warn); background: var(--warn-soft); }
+/* a clause of the specification or of another document: not a mistake, just not this contract */
+.mk--cite.mk--spec, .mk--cite.mk--other { font-weight: 600; color: var(--stamp); background: var(--stamp-soft); }
 .mk--cite.mk--fidic, .mk--cite.mk--missing, .mk--cite.mk--wrong { color: var(--sheet); background: var(--tape); }
 .mk--intent { background: var(--marker); color: inherit; }
 .mk--letter { text-decoration: underline wavy color-mix(in srgb, var(--stamp) 60%, transparent); text-underline-offset: 3px; }
-.mk--spec { border-bottom: 2px dotted var(--warn); }
+.mk--spec { border-bottom: 2px dotted var(--stamp-2); }
 .mk--weak { text-decoration: underline wavy var(--tape); text-decoration-thickness: 1.5px; text-underline-offset: 4px; background: color-mix(in srgb, var(--tape-soft) 60%, transparent); cursor: help; }
 
 /* ═══════════ DRAFTING DESK ═══════════ */

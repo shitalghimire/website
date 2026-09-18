@@ -138,7 +138,7 @@ CC: Tamakoshi Jalvidhyut Company Limited`,
 
 const STATUS = {
   ok: ['Verified', 'ok'], amended: ['PCC changed', 'tape'], title: ['Check title', 'warn'], fidic: ['Not TKV wording', 'tape'],
-  missing: ['Not in TKV', 'tape'], wrong: ['Wrong clause', 'tape'], spec: ['Spec ref', 'ink'],
+  missing: ['Not in TKV', 'tape'], wrong: ['Wrong clause', 'tape'], spec: ['Spec ref', 'ink'], other: ['Other document', 'ink'],
 };
 const SENDER = { er: 'From the Engineer', contractor: 'From us', employer: 'From the Employer', unknown: 'Sender unclear' };
 
@@ -264,7 +264,7 @@ export default function letterCheck(view, { ctx, data, params }) {
       blocks.push(sec('Letters it refers to', 'From the TKV register'));
       blocks.push(h('ul.an-refs', m.refs.map((x) => h('li',
         h('span.mono.an-refs__no', x.raw),
-        x.letter ? h('a', { href: `#/register?i=${x.letter.i}` }, h('b', x.letter.s), h('small', `${x.letter.d || ''} · ${dirLabel(x.letter.c)}`))
+        x.letter ? h('a', { href: `#/register?i=${x.letter.i}${x.letter.x ? '&read=letter' : ''}` }, h('b', x.letter.s), h('small', `${x.letter.d || ''} · ${dirLabel(x.letter.c)}${x.letter.x ? ' · full letter on file' : ''}`))
           : h('span.muted', 'Not in the register — may be newer than the last export')))));
     }
 
@@ -406,7 +406,7 @@ export default function letterCheck(view, { ctx, data, params }) {
         stamp(label, kind, -2)),
       c.note ? h('p.an-cite__note', rich(c.note)) : null,
       c.quotedTitles.length ? h('p.an-cite__quoted', 'The letter calls it: ', c.quotedTitles.map((q) => h('q', q))) : null,
-      res && st !== 'spec' && st !== 'missing' ? h('details.an-cite__more',
+      res && st !== 'spec' && st !== 'other' && st !== 'missing' ? h('details.an-cite__more',
         h('summary', 'What this contract actually says'),
         h('div',
           res.clause.plain?.gist ? h('p.an-cite__gist', rich(res.clause.plain.gist)) : null,
@@ -419,6 +419,7 @@ export default function letterCheck(view, { ctx, data, params }) {
       h('span', h('i.mk.mk--cite.mk--ok', '35.1'), 'Clause checks out'),
       h('span', h('i.mk.mk--cite.mk--amended', '67.1'), 'Changed by the PCC'),
       h('span', h('i.mk.mk--cite.mk--wrong', '34'), 'Does not check out'),
+      h('span', h('i.mk.mk--cite.mk--spec', '5.4'), 'Specification, not the contract'),
       h('span', h('i.mk.mk--intent', 'hereby'), 'What the letter is doing'),
       withPen ? h('span', h('i.mk.mk--weak', 'severe'), 'Carries no weight') : null);
   }
@@ -435,9 +436,9 @@ export default function letterCheck(view, { ctx, data, params }) {
       if (mk.start > pos) nodes.push(t.slice(pos, mk.start));
       const s = t.slice(mk.start, mk.end);
       if (mk.kind === 'cite') {
-        const c = r.citations.find((x) => x.key === mk.key);
+        const c = r.citations.find((x) => x.id === mk.id);
         const st = c ? (c.status === 'ok' && c.amended ? 'amended' : c.status) : 'ok';
-        nodes.push(C.resolve(mk.key)
+        nodes.push(C.resolve(mk.key) && st !== 'spec' && st !== 'other'
           ? h(`a.mk.mk--cite.mk--${st}`, { href: C.hrefOf(mk.key), title: c?.note || C.titleOf(mk.key) }, s)
           : h(`span.mk.mk--cite.mk--${st}`, { title: c?.note || '' }, s));
       } else if (mk.kind === 'intent') nodes.push(h('mark.mk.mk--intent', s));
