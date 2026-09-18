@@ -305,6 +305,7 @@ button.reg-link:hover { border-color: var(--stamp); }
 .syncp__status--auth, .syncp__status--error { background: var(--tape-soft); color: var(--tape); }
 .syncp__status--offline { background: var(--warn-soft); color: var(--warn); }
 .syncp__on, .syncp__off { display: grid; gap: .8rem; }
+.syncp__warn { display: grid; gap: .55rem; justify-items: start; padding: .8rem .9rem; border: 1px dashed var(--tape); border-radius: var(--r-2); background: color-mix(in srgb, var(--tape-soft) 45%, transparent); font-size: .92rem; }
 .syncp__steps { margin: 0; padding-left: 1.3rem; display: grid; gap: .5rem; font-size: .92rem; }
 .syncp__steps li::marker { font: 700 .85rem var(--mono); color: var(--tape); }
 .syncp__steps code { font: 700 .82rem var(--mono); background: var(--sheet-2); padding: 0 .3rem; border-radius: 3px; }

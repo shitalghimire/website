@@ -12,6 +12,18 @@ import * as vault from './vault.js';
 import { setGlossary } from './markup.js';
 import { createSync } from '../../sync/sync.js';
 
+/* A remembered code that no longer opens the course is an earlier one. Keep it
+   aside so sync can move synced progress across to the new code (see
+   courses/sync/sync.js, which reads this key). Written here rather than
+   imported, so this script still loads beside an older cached sync.js. */
+const retireCode = (c) => {
+  try {
+    const k = 'courses-sync:old-codes';
+    const list = JSON.parse(localStorage.getItem(k) || '[]');
+    if (c && !list.includes(c)) localStorage.setItem(k, JSON.stringify([c, ...list].slice(0, 3)));
+  } catch { /* storage unavailable */ }
+};
+
 import { dashboard } from './views/dashboard.js';
 import { module as moduleView } from './views/module.js';
 import { lesson } from './views/lesson.js';
@@ -78,7 +90,10 @@ function buildGate() {
       } else {
         msg.textContent = err.message;
       }
-      if (silent) vault.forget();
+      if (silent) {
+        if (err.kind === 'bad-code') retireCode(code);
+        vault.forget();
+      }
     }
   }
 

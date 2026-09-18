@@ -14,7 +14,9 @@ AES-256-GCM ciphertext whose key is derived from the access code with
 PBKDF2-SHA-256 (250,000 iterations). Without the code the lessons are not on the
 page in any readable form — viewing source yields base64 and nothing else.
 
-**Current access code: `9742556397`**
+The access code is not kept in this repository. The build reads it from
+`_private/course-code.txt`, a folder next to `website/` that is outside any
+repository (or from `--code`, or the `COURSE_CODE` environment variable).
 
 Requires a secure context — `https://` in production, or `http://localhost`
 during development. Opening `index.html` straight off disk over `file://` gives
@@ -39,11 +41,10 @@ After **any** edit, re-seal the course:
 node tools/build.mjs
 ```
 
-To change the access code:
-
-```bash
-node tools/build.mjs --code 1234567890
-```
+To change the access code, write the new one into `_private/course-code.txt`
+and re-seal **both** gated courses (this one and The Registry, which share the
+code). Devices that had the old code saved move their synced progress to the
+new code by themselves; see `courses/sync/sync.js`.
 
 To validate the sources without writing anything:
 

@@ -297,6 +297,13 @@ function syncPanel() {
       el('span.kicker.kicker--b', 'Sync across your devices'),
       el('p.syncpanel__status', { dataset: { state: st.state } }, [el('i.syncdot', { dataset: { state: st.state } }), describe(st)]),
       ...(on ? [
+        ...(st.kind === 'code' ? [
+          el('p', { style: { fontSize: 'var(--t-xs)' } },
+            'The access code has changed since your progress was last synced. If you have a device that still had the old code saved, open the course there first: it moves the synced progress across by itself. Otherwise, start the cloud copy again from this device. Nothing on this device is lost, and your other devices add their progress back when they next sync.'),
+          el('div.row', [
+            el('button.btn.btn--sm', { type: 'button', onclick: () => { if (confirm('Replace the synced copy with the progress on this device?')) sync.replaceCloudCopy(); } }, 'Start the cloud copy again from this device')
+          ])
+        ] : []),
         el('p.dim', { style: { fontSize: 'var(--t-xs)' } },
           'Lessons, quiz scores, checks, checklists, notes and settings stay the same on every device you connect. Changes sync a few seconds after you make them and whenever you come back to the tab. The Registry course on this device uses the same connection.'),
         el('div.row', [

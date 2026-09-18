@@ -183,6 +183,21 @@
   </div>
 </noscript>
 
+<script>
+/* The access code changed on 18 Sept 2026. Once per device, before any cached
+   script runs, a code remembered from before then is kept aside so sync can
+   move synced progress across to the new code (see courses/sync/sync.js). */
+try {
+  if (localStorage.getItem('courses-sync:gen') !== '2') {
+    var k = 'courses-sync:old-codes', list = JSON.parse(localStorage.getItem(k) || '[]');
+    ['delay-analysis:unlocked', 'registry:unlocked'].forEach(function (key) {
+      [sessionStorage.getItem(key), localStorage.getItem(key)].forEach(function (c) { if (c && list.indexOf(c) < 0) list.unshift(c); });
+    });
+    if (list.length) localStorage.setItem(k, JSON.stringify(list.slice(0, 3)));
+    localStorage.setItem('courses-sync:gen', '2');
+  }
+} catch (e) { /* storage unavailable */ }
+</script>
 <script type="module" src="js/app.js"></script>
 </body>
 </html>

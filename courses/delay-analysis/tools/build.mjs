@@ -9,9 +9,13 @@
    The output, data/content.enc.json, is the only course content
    that ships. Without the code it is base64 and nothing else.
 
-     node tools/build.mjs                 # uses the default code
-     node tools/build.mjs --code 1234567  # sets a different code
+     node tools/build.mjs                 # code from _private/course-code.txt
+     node tools/build.mjs --code <code>   # or give it here
      node tools/build.mjs --check         # validate sources only
+
+   The access code is never written in this repository. It is read from
+   --code, then the COURSE_CODE environment variable, then the file
+   _private/course-code.txt beside the website folder (outside any repo).
 
    Re-run this after editing anything in _src/.
    ═══════════════════════════════════════════════════════════════ */
@@ -28,12 +32,17 @@ const SRC  = join(ROOT, '_src');
 const OUT  = join(ROOT, 'data');
 
 const ITER = 250000;
-const DEFAULT_CODE = '9742556397';
+const CODE_FILE = join(ROOT, '../../../_private/course-code.txt');
 
 const argv = process.argv.slice(2);
 const arg = k => { const i = argv.indexOf(k); return i >= 0 ? argv[i + 1] : null; };
-const CODE = arg('--code') || DEFAULT_CODE;
 const CHECK_ONLY = argv.includes('--check');
+const CODE = arg('--code') || process.env.COURSE_CODE
+  || (existsSync(CODE_FILE) ? (await readFile(CODE_FILE, 'utf8')).trim() : '');
+if (!CODE && !CHECK_ONLY) {
+  console.error('No access code. Pass --code <code>, set COURSE_CODE, or put it in _private/course-code.txt.');
+  process.exit(1);
+}
 // --draft seals what exists and downgrades missing-content errors to warnings,
 // so the course can be run and tested while it is still being written
 const DRAFT = argv.includes('--draft');

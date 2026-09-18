@@ -23,6 +23,14 @@ export function openSync(sync) {
       h(`div.syncp__status.syncp__status--${st.state}`, h('span.sync-dot', { dataset: { state: st.state } }), h('b', describe(st))),
       connected
         ? h('div.syncp__on',
+          st.kind === 'code' ? h('div.syncp__warn',
+            h('p', 'The access code has changed since your progress was last synced. If you have a device that still had the old code saved, open the course there first: it moves the synced progress across by itself. Otherwise, start the cloud copy again from this device.'),
+            h('p.muted.syncp__small', 'Nothing on this device is lost. Your other devices keep their own progress and add it back when they next sync. GitHub also keeps the earlier copy in the gist\'s history.'),
+            h('button.btn', { type: 'button', onclick: async () => {
+              if (!confirm('Replace the synced copy with the progress on this device?')) return;
+              const s = await sync.replaceCloudCopy();
+              if (s.state === 'synced') toast('Synced — the cloud copy now uses the new code');
+            } }, icon('refresh'), 'Start the cloud copy again from this device')) : null,
           h('p', 'Your progress, notes, drafts, clocks and quiz history are kept in step on every device where you have connected. Changes sync a few seconds after you make them, and when you come back to the tab.'),
           h('div.row',
             h('button.btn.btn--stamp', { type: 'button', onclick: async () => { const s = await sync.syncNow(); if (s.state === 'synced') toast('Synced'); } }, icon('refresh'), 'Sync now'),

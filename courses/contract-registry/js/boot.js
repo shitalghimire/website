@@ -2,6 +2,18 @@
 
 import { open, remember, recall, forget, VaultError } from './lib/vault.js';
 
+/* A remembered code that no longer opens the file is an earlier one. Keep it
+   aside so sync can move synced progress across to the new code (see
+   courses/sync/sync.js, which reads this key). Written here rather than
+   imported, so a gate script fresher than the cached modules still loads. */
+const retireCode = (c) => {
+  try {
+    const k = 'courses-sync:old-codes';
+    const list = JSON.parse(localStorage.getItem(k) || '[]');
+    if (c && !list.includes(c)) localStorage.setItem(k, JSON.stringify([c, ...list].slice(0, 3)));
+  } catch { /* storage unavailable */ }
+};
+
 const $ = (s) => document.querySelector(s);
 const gate = $('#gate');
 const form = $('#gateForm');
@@ -26,7 +38,7 @@ async function unseal(code, { silent = false } = {}) {
     }, silent ? 0 : 820);
   } catch (err) {
     go.disabled = false;
-    if (silent) { msg.textContent = ''; msg.className = 'gate__msg'; if (err.kind === 'bad-code') forget(); input.focus(); return; }
+    if (silent) { msg.textContent = ''; msg.className = 'gate__msg'; if (err.kind === 'bad-code') { retireCode(code); forget(); } input.focus(); return; }
     msg.className = 'gate__msg';
     msg.textContent = err instanceof VaultError ? err.message : 'Something went wrong while opening the file.';
     if (err.kind === 'bad-code') {

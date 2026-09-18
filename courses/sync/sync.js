@@ -64,6 +64,35 @@ async function unseal(env, code) {
   return JSON.parse(dec.decode(plain));
 }
 
+/* ── when the access code changes ─────────────────────────────
+   Everything sync keeps is locked with the access code, so a new code
+   cannot read what the old one locked. The gates hand over a remembered
+   code that no longer opens the course; sync tries it once, reads the
+   token and the synced progress, and locks them again with the new code. */
+
+const OLD_KEY = 'courses-sync:old-codes';
+const oldCodes = () => { try { return JSON.parse(localStorage.getItem(OLD_KEY) || '[]'); } catch { return []; } };
+
+export function retireCode(c) {
+  if (!c) return;
+  try {
+    const list = oldCodes();
+    if (!list.includes(c)) localStorage.setItem(OLD_KEY, JSON.stringify([c, ...list].slice(0, 3)));
+  } catch { /* storage unavailable — the device simply reconnects */ }
+}
+
+/* returns { value, old } — old is true when an earlier code opened it */
+async function unsealAny(env, code) {
+  try { return { value: await unseal(env, code), old: false }; }
+  catch (first) {
+    for (const c of oldCodes()) {
+      if (c === code) continue;
+      try { return { value: await unseal(env, c), old: true }; } catch { /* try the next */ }
+    }
+    throw first;
+  }
+}
+
 /* ── units: flatten a progress object into mergeable pieces ─── */
 
 export function toUnits(state, spec = {}) {
@@ -214,6 +243,7 @@ export function createSync({ course, file, template, spec = {}, read, write, sub
   let pollTimer = null;
   let lastPull = 0;
   let envSalt = null;
+  let startFresh = false;
 
   const loadMeta = () => { try { return JSON.parse(localStorage.getItem(META_KEY) || 'null'); } catch { return null; } };
   const saveMeta = (m) => { try { localStorage.setItem(META_KEY, JSON.stringify(m)); } catch { /* storage full */ } };
@@ -264,29 +294,39 @@ export function createSync({ course, file, template, spec = {}, read, write, sub
         }
         const f = gist.files?.[file];
         let remote = { units: {}, stamps: {} };
+        let relock = false;
         if (f) {
           let content = f.content;
           if (f.truncated && f.raw_url) content = await (await fetch(f.raw_url, { cache: 'no-store' })).text();
           const env = JSON.parse(content);
           envSalt = env.salt;
-          try { remote = await unseal(env, code); }
-          catch { throw new SyncError('The synced progress was saved with a different access code. Use the same code on every device.', 'code'); }
+          try {
+            const r = await unsealAny(env, code);
+            remote = r.value;
+            if (r.old) { relock = true; envSalt = newSalt(); }
+          } catch {
+            /* only on request: the cloud copy is replaced by this device's progress.
+               GitHub keeps the gist's earlier revisions, so the old copy is not destroyed. */
+            if (!startFresh) throw new SyncError('The synced progress was saved under an earlier access code, and this device does not know it.', 'code');
+            relock = true; envSalt = newSalt();
+          }
         }
         const local = { units: meta.snap, stamps: meta.stamps };
         const merged = merge(local, remote);
         const localChanged = !sameDoc(merged, local);
         if (localChanged) apply(merged);
-        if (!f || !sameDoc(merged, remote)) {
+        if (!f || relock || !sameDoc(merged, remote)) {
           const env = await seal({ ...merged, at: Date.now() }, code, envSalt || (envSalt = newSalt()));
           await gh(token, `/gists/${readConfig().gistId}`, { method: 'PATCH', body: { files: { [file]: { content: JSON.stringify(env) } } } });
         }
         lastPull = Date.now();
-        setStatus({ state: 'synced', at: Date.now(), message: '', remoteApplied: localChanged });
+        setStatus({ state: 'synced', kind: null, at: Date.now(), message: '', remoteApplied: localChanged });
       } catch (e) {
-        if (e.kind === 'auth') { token = null; setStatus({ state: 'auth', message: e.message }); }
-        else if (e.kind === 'code') setStatus({ state: 'error', message: e.message });
-        else setStatus({ state: e.kind === 'offline' ? 'offline' : 'error', message: e.message === 'not-found' ? 'Could not reach the sync gist.' : e.message });
+        if (e.kind === 'auth') { token = null; setStatus({ state: 'auth', kind: 'auth', message: e.message }); }
+        else if (e.kind === 'code') setStatus({ state: 'error', kind: 'code', message: e.message });
+        else setStatus({ state: e.kind === 'offline' ? 'offline' : 'error', kind: e.kind, message: e.message === 'not-found' ? 'Could not reach the sync gist.' : e.message });
       } finally {
+        startFresh = false; // one attempt per request, never left armed
         const rerun = again;
         busy = null; again = false;
         if (rerun && token) schedulePush(400);
@@ -318,13 +358,16 @@ export function createSync({ course, file, template, spec = {}, read, write, sub
       const cfg = readConfig();
       if (!cfg?.token) { setStatus({ state: 'off' }); return; }
       try {
-        token = await unseal(cfg.token, code);
+        const r = await unsealAny(cfg.token, code);
+        token = r.value;
+        /* connected under an earlier code — lock the token again with this one */
+        if (r.old) writeConfig({ ...cfg, token: await seal(token, code, newSalt()) });
         setStatus({ state: 'syncing', login: cfg.login || null });
         startTimers();
         await syncNow();
       } catch {
         token = null;
-        setStatus({ state: 'auth', message: 'This device was connected with a different access code. Connect again.' });
+        setStatus({ state: 'auth', message: 'This device was connected under an earlier access code. Paste your token once more to reconnect.' });
       }
     },
 
@@ -356,6 +399,15 @@ export function createSync({ course, file, template, spec = {}, read, write, sub
     },
 
     syncNow: () => syncNow(),
+
+    /* the cloud copy was locked with a code this device never knew:
+       replace it with this device's progress (other devices add theirs
+       when they next sync) */
+    async replaceCloudCopy() {
+      if (busy) await busy;
+      startFresh = true;
+      return syncNow();
+    },
   };
   return api;
 }
