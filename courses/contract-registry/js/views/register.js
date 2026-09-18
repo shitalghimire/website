@@ -4,7 +4,7 @@
 import { h, mount, marked, debounce, copy } from '../lib/h.js';
 import { icon } from '../lib/icons.js';
 import C from '../engine/contract.js';
-import { normLetterRef } from '../engine/letters.js';
+import { normLetterRef, registerKey } from '../engine/letters.js';
 import { dirLabel } from '../engine/search.js';
 import { head, refChip } from './ui.js';
 import { openLetter } from './letterreader.js';
@@ -15,7 +15,7 @@ export default function register(view, { ctx, data, params }) {
   ctx.crumbs([{ label: 'Letters' }]);
   const R = data.register;
   const byKey = new Map();
-  R.forEach((r, i) => { const n = normLetterRef(r.n); if (n && (r.c === 'in' || r.c === 'out')) byKey.set(n.key, i); });
+  R.forEach((r, i) => { const k = registerKey(r); if (k) byKey.set(k, i); });
   const years = [...new Set(R.map((r) => (r.d || '').slice(0, 4)).filter((y) => /^20\d\d$/.test(y)))].sort();
   const tags = [...new Set(R.flatMap((r) => r.t || []))].sort();
   const withText = R.filter((r) => r.x).length;
@@ -80,8 +80,8 @@ export default function register(view, { ctx, data, params }) {
       const j = n ? byKey.get(n.key) : undefined;
       return j != null ? h('button.reg-link', { type: 'button', onclick: () => show(j) }, h('span.mono', raw), h('span', R[j].s)) : h('span.reg-link.is-off', h('span.mono', raw));
     };
-    const me = normLetterRef(r.n);
-    const repliedBy = me ? R.map((x, j) => ({ x, j })).filter(({ x }) => (x.r || []).some((ref) => normLetterRef(ref)?.key === me.key)) : [];
+    const me = registerKey(r);
+    const repliedBy = me ? R.map((x, j) => ({ x, j })).filter(({ x }) => (x.r || []).some((ref) => normLetterRef(ref)?.key === me)) : [];
     const clauseRefs = C.findRefs(r.s).filter((c) => c.doc !== 'spec' && c.doc !== 'other');
     mount(detailBox, h('div.reg-card',
       h('p.eyebrow', dirLabel(r.c)),

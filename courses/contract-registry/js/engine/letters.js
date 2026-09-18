@@ -15,17 +15,17 @@ const D = String.raw`[-‐-―−]`;   // any dash
 const SERIES = [
   {
     kind: 'er',
-    re: new RegExp(String.raw`(?:L?\s*OT\s*${D}?\s*[0O]?\s*[1I]\s*\/?\s*)?S\s*[I1T]\s*N\s*[O0]\S{1,3}?D\s*[RY]\s*[O0](?:\s*${D})*\s*KSNS(?:\s*[.]|\s*${D})*\s*(?:JV)?(?:\s*[.]|\s*${D})*\s*\/?\s*[Q0O]?(\d{1,4})(?!\d)`, 'i'),
+    re: new RegExp(String.raw`(?:L?\s*OT\s*${D}?\s*[0O]?\s*[1I]\s*\/?\s*)?S\s*[I1T]\s*N\s*[O0]\S{1,3}?D\s*[RY]\s*[O0](?:\s*${D})*\s*KSNS(?:\s*[.]|\s*${D})*\s*(?:JV)?(?:\s*[.]|\s*${D})*\s*\/?\s*[Q0O]?(\d{1,4})(?![\dA-Z])`, 'i'),
     ref: (m) => ({ key: 'in:' + +m[1], no: +m[1] }),
   },
   {
     kind: 'ours',
-    re: new RegExp(String.raw`TKV\s*[\/-]?\s*I?\s*C\s*[O0]\S{0,3}?\s*[\/-]?\s*(20\d\d|0[12]\d\d)\s*[\/-]?\s*(\d{1,4})(?!\d)`, 'i'),
+    re: new RegExp(String.raw`TKV\s*[\/-]?\s*I?\s*C\s*[O0]\S{0,3}?\s*[\/-]?\s*(20\d\d|0[12]\d\d)\s*[\/-]?\s*(\d{1,4})(?![\dA-Z])`, 'i'),
     ref: (m) => ({ key: 'out:' + +m[2], no: +m[2], ...(/^20/.test(m[1]) ? { year: +m[1] } : {}) }),
   },
   {
     kind: 'er-emp',
-    re: new RegExp(String.raw`DOLSAR(?:\s|${D}|[_\/])*[CG]?S?P?D?R?(?:\s|${D}|_)*(?:J\s*[VC])?\s*(?:${D}|[_\/])+\s*[Q0O]?(\d{1,4})(?!\d)`, 'i'),
+    re: new RegExp(String.raw`DOLSAR(?:\s|${D}|[_\/])*[CG]?S?P?D?R?(?:\s|${D}|_)*(?:J\s*[VC])?\s*(?:${D}|[_\/])+\s*[Q0O]?(\d{1,4})(?![\dA-Z])`, 'i'),
     ref: (m) => ({ key: 'er-emp:' + +m[1], no: +m[1] }),
   },
 ];

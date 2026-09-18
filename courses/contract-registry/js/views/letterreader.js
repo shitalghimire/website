@@ -17,7 +17,7 @@ import { openExtra } from '../lib/vault.js';
 import { still } from '../lib/motion.js';
 import C from '../engine/contract.js';
 import { analyse } from '../engine/reader.js';
-import { normLetterRef } from '../engine/letters.js';
+import { normLetterRef, findLetterRef, registerKey } from '../engine/letters.js';
 import { dirLabel } from '../engine/search.js';
 import { refChip, stamp } from './ui.js';
 
@@ -42,7 +42,7 @@ let lastFocus = null;
 export function openLetter(data, i, { tab = 'summary', list = null, onShow = null } = {}) {
   const R = data.register;
   const byKey = new Map();
-  R.forEach((r, j) => { const n = normLetterRef(r.n); if (n && (r.c === 'in' || r.c === 'out')) byKey.set(n.key, j); });
+  R.forEach((r, j) => { const k = registerKey(r); if (k) byKey.set(k, j); });
   const trail = [];   // letters opened by following a reference, for "Back"
   let cur = i;
   let mode = tab;
@@ -170,8 +170,8 @@ export function openLetter(data, i, { tab = 'summary', list = null, onShow = nul
         ? h('button.lr-link', { type: 'button', onclick: () => go(j, { follow: true }) }, h('span.mono', raw), h('span', R[j].s), R[j].x ? h('i.lr-link__doc', { title: 'Full letter on file' }, icon('doc')) : null)
         : h('span.lr-link.is-off', h('span.mono', raw));
     };
-    const me = normLetterRef(r.n);
-    const citing = me ? R.map((x, j) => ({ x, j })).filter(({ x }) => (x.r || []).some((ref) => normLetterRef(ref)?.key === me.key)) : [];
+    const me = registerKey(r);
+    const citing = me ? R.map((x, j) => ({ x, j })).filter(({ x }) => (x.r || []).some((ref) => normLetterRef(ref)?.key === me)) : [];
     if (!r.r?.length && !r.rp?.length && !citing.length) return null;
     return h('section.lr-card',
       h('h3.lr-card__h', 'The thread'),
@@ -224,11 +224,11 @@ export function openLetter(data, i, { tab = 'summary', list = null, onShow = nul
   }
 
   function refLine(x) {
-    const m = x.match(/\b(LOT-?0?1\s*\/\s*SINOHYDRO\s*-?\s*KSNS\s*-?\s*JV\s*\/\s*\d{1,4}|TKV\s*\/\s*COM\s*\/\s*20\d\d\s*\/\s*\d{1,4})\b/i);
-    const n = m ? normLetterRef(m[0]) : null;
-    const j = n ? byKey.get(n.key) : undefined;
+    const f = findLetterRef(x);
+    const j = f ? byKey.get(f.key) : undefined;
     if (j == null) return x;
-    return [x.slice(0, m.index), h('button.lr-inref', { type: 'button', title: R[j].s, onclick: () => go(j, { follow: true }) }, m[0]), x.slice(m.index + m[0].length)];
+    const end = f.index + f.length;
+    return [x.slice(0, f.index), h('button.lr-inref', { type: 'button', title: R[j].s, onclick: () => go(j, { follow: true }) }, x.slice(f.index, end)), x.slice(end)];
   }
 
   /* one paragraph with its marks: clauses (checked), specs, other letters, [n] references */
