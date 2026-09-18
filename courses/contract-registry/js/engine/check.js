@@ -8,7 +8,7 @@
    · CEES     — Cause, Effect, Entitlement, Substantiation. A claim that
                 is missing one of the four does not stand up.
    · notice   — "it is our intention to issue notice" is not a notice.
-                Letter TKV/COM/2024/058 said exactly that.
+                A real TKV notice said exactly that.
    · subject  — an unlabelled letter was treated as correspondence, not
                 a notice, in the EOT-01 determination.
    · traps    — 63.6 (monsoon access), 34 vs 35.1, deleted GCC text.
@@ -145,13 +145,13 @@ export function preflight(text, reading, { eventDate = null, kind = null } = {})
   /* at notice stage the records can follow with the detailed claim */
   if (stage === 'notice') out.cees[3].optional = true;
 
-  /* notice wording — the Jhamarsi mistake */
+  /* notice wording — a mistake a real TKV notice made */
   const intentOnly = t.match(/\b(it is (the contractor'?s|our) intention to (issue|give|serve|submit)|intend(s)? to (issue|give|serve|submit)|(shall|will) (issue|give|serve|submit) (a |the )?(formal )?notice|reserves? (its|the|our) right to (issue|give) (a )?notice)[^.]{0,60}/i);
   /* present tense counts ("the Contractor gives notice of its dissatisfaction");
      a promise ("will give notice", "intends to give notice") does not */
   const firm = /\b(hereby (gives?|serves?|submits?) (an |formal )*(notice|early warning)|notice is hereby given|this letter (constitutes|is|serves as) (a |the |an )?(formal )?(notice|early warning)|(gives|serves) (an |formal )*(notice|early warning) (under|of|that|pursuant|in accordance)|we (hereby )?give (formal )?notice|(hereby )?warns the (employer|engineer))\b/i.test(t);
   if (intentOnly && !firm) out.issues.push({ sev: 'high', k: 'notice', t: 'This is an intention to give notice — not a notice.',
-    s: `The letter says "${intentOnly[0].trim()}". Promising to give notice later is the wording an Engineer can treat as correspondence. TKV/COM/2024/058 used exactly this. Write "The Contractor hereby gives notice under Sub-Clause …" instead.`, quote: intentOnly[0] });
+    s: `The letter says "${intentOnly[0].trim()}". Promising to give notice later is the wording an Engineer can treat as correspondence. A real TKV notice used exactly this. Write "The Contractor hereby gives notice under Sub-Clause …" instead.`, quote: intentOnly[0] });
   else if (firm && type !== 'letter') out.good.push('Gives notice in so many words, not as an intention.');
   else if (!firm && (type === 'notice' || stage === 'notice')) out.issues.push({ sev: 'medium', k: 'notice', t: 'It never actually says it is giving notice.',
     s: 'Say it outright: "The Contractor hereby gives notice under Sub-Clause 35.1 and Particular Conditions Sub-Clause 42.1 of the following event." One sentence, and the clock question is settled.' });
@@ -168,7 +168,7 @@ export function preflight(text, reading, { eventDate = null, kind = null } = {})
   const cites = (ref) => (reading.citations || []).some((c) => c.ref === ref || c.ref.startsWith(ref + '.') || c.key === ref);
   if (/\b(monsoon|rain(fall|y)?|landslide|flood|road (block|damage|closure|cut)|access road|glof)\b/i.test(t) && /\b(extension of time|delay|additional cost|claim)\b/i.test(t) && !cites('63.6')) {
     out.issues.push({ sev: 'high', k: '63.6', t: 'Expect the Engineer to answer this with Sub-Clause 63.6.',
-      s: 'Rainy-season access problems and running short of stock are the Contractor\'s risk under 63.6, and it applies even when the event meets the Force Majeure test — that is how the Jhamarsi claim was rejected. Meet it in the letter: the stock actually held on the day, the daily consumption, and rainfall against the long-term record.' });
+      s: 'Rainy-season access problems and running short of stock are the Contractor\'s risk under 63.6, and it applies even when the event meets the Force Majeure test — that is how a TKV access-road claim was rejected. Meet it in the letter: the stock actually held on the day, the daily consumption, and rainfall against the long-term record.' });
   }
   if (reading.deletedText) out.issues.push({ sev: 'high', k: 'deleted', t: 'Quotes contract wording that no longer exists.', s: reading.deletedText });
   if (reading.riskNote) out.issues.push({ sev: 'medium', k: 'risk', t: 'Relies on the wrong risk clause.', s: reading.riskNote });

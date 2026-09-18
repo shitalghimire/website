@@ -18,6 +18,7 @@ import clause from './views/clause.js';
 import exchange from './views/exchange.js';
 import baseline from './views/baseline.js';
 import eot from './views/eot.js';
+import { preloadSealed } from './views/sealed.js';
 import clock from './views/clock.js';
 import cases from './views/cases.js';
 import register from './views/register.js';
@@ -100,8 +101,11 @@ export function startApp(data, code) {
     if ((e.key === '/' && !typing) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k')) { e.preventDefault(); openPalette(); }
   });
   addEventListener('scroll', () => $('#topbar').classList.toggle('is-stuck', scrollY > 6), { passive: true });
-  addEventListener('hashchange', route);
-  route();
+  /* the sealed case studies are loaded before the first page is drawn */
+  preloadSealed(data).catch((e) => console.error(e)).finally(() => {
+    addEventListener('hashchange', route);
+    route();
+  });
 }
 
 function theme(t) {

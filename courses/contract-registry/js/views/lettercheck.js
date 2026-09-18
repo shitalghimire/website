@@ -33,7 +33,7 @@ Subject: Engineer's Determination on Contractor's Claim for Delay at Spillway Ou
 
 References:
 1. Contractor's Letter Ref. TKV/COM/2026/9001 dated 21 July 2026
-2. Engineer's Letter Ref. LOT-01/SINOHYDRO-KSNS-JV/716 dated 9 March 2026
+2. Engineer's Letter Ref. LOT-01/SINOHYDRO-KSNS-JV/9000 dated 9 March 2026
 
 Dear Sir,
 
