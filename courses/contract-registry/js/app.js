@@ -51,7 +51,7 @@ const ROUTES = [
   [/^\/register\/?$/, register, 'register'],
   [/^\/learn(?:\/(\w+)(?:\/(\w+))?)?\/?$/, learn, 'learn'],
   [/^\/drill(?:\/([\w-]+))?\/?$/, drill, 'drill'],
-  [/^\/tools(?:\/([\w-]+))?\/?$/, tools, 'tools'],
+  [/^\/tools(?:\/([\w-]+)(?:\/([\w-]+))?)?\/?$/, tools, 'tools'],
   [/^\/words\/?$/, words, 'words'],
 ];
 
@@ -165,8 +165,8 @@ function setCrumbs(list) {
 }
 
 /* ── finder palette ───────────────────────────────────────────── */
-const GROUP = { clause: 'Clauses', text: 'Contract text', pcc: 'PCC changes', plain: 'Plain words', word: 'Words', case: 'Case files', letter: 'TKV letters' };
-const ORDER = ['clause', 'pcc', 'text', 'plain', 'word', 'case', 'letter'];
+const GROUP = { clause: 'Clauses', text: 'Contract text', pcc: 'PCC changes', plain: 'Plain words', word: 'Words', case: 'Case files', template: 'Letter types', letter: 'TKV letters' };
+const ORDER = ['clause', 'pcc', 'text', 'plain', 'word', 'template', 'case', 'letter'];
 
 export function openPalette(initial = '') {
   const pal = $('#palette');
@@ -192,7 +192,7 @@ export function openPalette(initial = '') {
       nodes.push(h('div.palette__group', GROUP[t]));
       for (const r of g) {
         const a = h('a.palette__item', { href: r.href, role: 'option', 'aria-selected': 'false', onmousemove: () => select(items.indexOf(a)) },
-          h('span.palette__no', t === 'letter' ? '✉' : t === 'case' ? r.no : r.no || '·'),
+          h('span.palette__no', t === 'letter' ? '✉' : t === 'template' ? '✎' : t === 'case' ? r.no : r.no || '·'),
           h('span', h('span.palette__t', r.title), h('span.palette__s', marked(S.snippet(r.snippet, r.terms), r.terms))));
         items.push(a); nodes.push(a);
       }

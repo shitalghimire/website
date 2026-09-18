@@ -6,7 +6,7 @@
 const KEY = 'registry:v1';
 const blank = () => ({
   learned: {}, bookmarks: {}, notes: {}, lessons: {}, answers: {}, leitner: {},
-  clocks: [], settings: {}, days: [], opened: {},
+  clocks: [], settings: {}, days: [], opened: {}, drafts: {},
 });
 
 let state = load();

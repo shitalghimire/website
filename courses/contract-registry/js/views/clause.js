@@ -111,7 +111,7 @@ export default function clause(view, { args, params, ctx, data }) {
   if (relCases.length) side.append(h('section.side-card', h('h3.side-card__h', 'In the case files'), h('ul.side-links', relCases.map((k) => h('li', h('a', { href: `#/cases/${k.id}` }, h('b', k.no), ' ', k.title))))));
   if (p.related?.length) side.append(h('section.side-card', h('h3.side-card__h', 'Read with'), h('div.chips', p.related.map((x) => refChip(x, { label: `${x} ${C.titleOf(x) || ''}`.trim() })))));
   const tpls = data.writing.templates.filter((t) => t.clauses.some((x) => x.split(/[.(]/)[0] === c.no));
-  if (tpls.length) side.append(h('section.side-card', h('h3.side-card__h', 'Letters that use it'), h('ul.side-links', tpls.map((t) => h('li', h('a', { href: `#/exchange/${t.id}` }, icon('mail'), t.title))))));
+  if (tpls.length) side.append(h('section.side-card', h('h3.side-card__h', 'Letters that use it'), h('ul.side-links', tpls.map((t) => h('li.side-links__dr', h('a', { href: `#/exchange/${t.id}` }, icon('mail'), t.title), h('a.side-links__pen', { href: `#/tools/draft/${t.id}`, title: `Draft: ${t.title}`, 'aria-label': `Draft: ${t.title}` }, icon('pen')))))));
 
   const qs = Object.entries(data.path.questions).filter(([, q]) => q.ref && q.ref.split(/[.(]/)[0] === c.no).slice(0, 2);
   if (qs.length) side.append(h('section.side-card', h('h3.side-card__h', 'Check yourself'), qs.map(([id, q]) => question(id, q))));

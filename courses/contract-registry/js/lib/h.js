@@ -24,6 +24,8 @@ export function h(tag, props, ...kids) {
       }
       else if (k === 'dataset') Object.assign(el.dataset, v);
       else if (k === 'html') el.innerHTML = v; // icons only
+      // a textarea ignores the value attribute, so set the live value
+      else if (k === 'value' && 'value' in el) el.value = v;
       else if (k.startsWith('on') && typeof v === 'function') el.addEventListener(k.slice(2).toLowerCase(), v);
       else if (k in el && typeof v !== 'string') el[k] = v;
       else el.setAttribute(k, v === true ? '' : v);

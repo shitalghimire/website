@@ -56,6 +56,7 @@ export function build(data) {
   }
   for (const g of data.glossary) add({ type: 'word', no: g.ref || '', title: g.term, href: `#/words?t=${encodeURIComponent(g.term)}`, w: 2.2, text: `${g.term} ${g.term} ${g.text}`, snippet: g.text });
   for (const k of data.cases) add({ type: 'case', no: k.no, title: k.title, href: `#/cases/${k.id}`, w: 1.6, text: `${k.title} ${k.claimed} ${k.result} ${k.story.join(' ')}`, snippet: k.result });
+  for (const t of data.writing.templates) add({ type: 'template', no: '', title: t.title, href: `#/tools/draft/${t.id}`, w: 1.8, text: `${t.title} ${t.when} ${t.clauses.join(' ')}`, snippet: t.when });
   for (const [i, r] of data.register.entries()) add({ type: 'letter', no: r.n, title: r.s, href: `#/register?i=${i}`, w: .9, text: `${r.s} ${r.n} ${(r.t || []).join(' ')}`, snippet: `${r.d || ''} · ${dirLabel(r.c)}` });
 
   inv = new Map();
