@@ -4,10 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "node server.js",
-    "build": "echo 'Build complete'",
+    "build": "cd games/turbo-race-multiplayer && npx vite build --base=/games/turbo-race/ && cd ../.. && cp -r games/turbo-race-multiplayer/dist/* games/turbo-race/",
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "socket.io": "^4.8.4"
   }
 }
