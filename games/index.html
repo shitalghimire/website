@@ -9,14 +9,14 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>Games &amp; Arcade Lab — Shital Ghimire</title>
-<meta name="description" content="Explore custom-built browser games and engineering simulations by Shital Ghimire. Play Descent, or preview upcoming hydropower and physics arcade simulators."/>
+<meta name="description" content="Explore custom-built browser games and arcade simulators by Shital Ghimire. Play Descent and Turbo Race."/>
 <meta name="theme-color" content="#0D0E0A"/>
 <meta name="author" content="Shital Ghimire"/>
 
 <!-- Open Graph / Meta -->
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Games &amp; Arcade Lab — Shital Ghimire"/>
-<meta property="og:description" content="Custom-built browser games, arcade experiments, and engineering simulators."/>
+<meta property="og:description" content="Custom-built browser arcade games and simulators."/>
 <meta property="og:image" content="../assets/og-image.png"/>
 
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
@@ -81,12 +81,8 @@
 
       <div class="hero__stats">
         <div class="stat-item">
-          <span class="stat-item__val stat-item__val--live">01 <span style="font-size:0.9rem;font-weight:500">LIVE</span></span>
-          <span class="stat-item__lbl">Playable Today</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-item__val">03</span>
-          <span class="stat-item__lbl">In Active Laboratory</span>
+          <span class="stat-item__val stat-item__val--live">02 <span style="font-size:0.9rem;font-weight:500">LIVE</span></span>
+          <span class="stat-item__lbl">Playable Games</span>
         </div>
         <div class="stat-item">
           <span class="stat-item__val">60 <span style="font-size:0.9rem;font-weight:500">FPS</span></span>
@@ -104,13 +100,12 @@
     <!-- Filter Controls -->
     <div class="catalogue-controls">
       <div class="filter-group" role="tablist" aria-label="Filter games">
-        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" id="tab-all">All Titles (4)</button>
-        <button class="filter-btn" data-filter="playable" role="tab" aria-selected="false" id="tab-playable">Playable Now (1)</button>
-        <button class="filter-btn" data-filter="development" role="tab" aria-selected="false" id="tab-dev">In Development (3)</button>
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" id="tab-all">All Titles (2)</button>
+        <button class="filter-btn" data-filter="playable" role="tab" aria-selected="false" id="tab-playable">Playable Games (2)</button>
       </div>
 
       <div class="catalogue-counter" id="catalogue-counter">
-        Displaying 4 experiences
+        Displaying 2 experiences
       </div>
     </div>
 
@@ -208,186 +203,97 @@
         </div>
       </article>
 
-      <!-- ══════════ CARD 2: HYDROWATT (COMING SOON) ══════════ -->
-      <article class="game-card game-card--dev" data-category="development">
+      <!-- ══════════ CARD 2: TURBO RACE (PLAYABLE) ══════════ -->
+      <article class="game-card game-card--playable" data-category="playable">
         <div class="game-card__media">
-          <span class="game-card__status game-card__status--dev">
+          <span class="game-card__status game-card__status--live">
             <span class="pulse-dot"></span>
-            In Development
+            Playable Now
           </span>
 
-          <!-- Hydropower Schematic Vector Art -->
-          <svg class="game-card__visual" viewBox="0 0 380 200" aria-label="Hydrowatt game blueprint" preserveAspectRatio="xMidYMid slice">
-            <rect width="380" height="200" fill="#11130D"/>
-            <!-- Contour dam & penstock -->
-            <path d="M20,60 Q80,55 140,80 T260,130 L360,140" fill="none" stroke="#253545" stroke-width="2"/>
-            <path d="M120,40 L160,40 L210,130 L250,130" fill="none" stroke="#388BB0" stroke-width="8" opacity="0.6"/>
-            <!-- Water Flow Arrows -->
-            <path d="M135,40 L145,40" stroke="#C9E82A" stroke-width="2"/>
-            <path d="M185,85 L193,100" stroke="#C9E82A" stroke-width="2"/>
-            <path d="M225,130 L235,130" stroke="#C9E82A" stroke-width="2"/>
-            <!-- Turbine housing -->
-            <circle cx="260" cy="130" r="22" fill="#1C1F15" stroke="#E2AF45" stroke-width="2"/>
-            <circle cx="260" cy="130" r="14" fill="none" stroke="#E2AF45" stroke-dasharray="3 3"/>
-            <circle cx="260" cy="130" r="4" fill="#C9E82A"/>
-            <!-- Power grid sine curves -->
-            <path d="M285,130 C300,105 320,155 340,130 S370,110 380,130" fill="none" stroke="#E2AF45" stroke-width="1.8"/>
-            <!-- Telemetry readout -->
-            <rect x="25" y="145" width="130" height="38" rx="3" fill="#161811" stroke="#262A1D"/>
-            <text x="35" y="160" fill="#E2AF45" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700">HEAD: 420m // 98.4 MW</text>
-            <text x="35" y="174" fill="#6B6D62" font-family="'JetBrains Mono', monospace" font-size="7.5">PENSTOCK PRESSURE: 4.1 MPa</text>
+          <!-- High-Octane Turbo Race Vector Graphic -->
+          <svg class="game-card__visual" viewBox="0 0 380 200" aria-label="Turbo Race artwork" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="race-asphalt" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#1A1C14"/>
+                <stop offset="100%" stop-color="#0E0F0B"/>
+              </linearGradient>
+              <linearGradient id="turbo-boost" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#E04E38"/>
+                <stop offset="50%" stop-color="#E2AF45"/>
+                <stop offset="100%" stop-color="#C9E82A"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Racing Track with Perspective -->
+            <rect width="380" height="200" fill="url(#race-asphalt)"/>
+            <!-- Perspective track borders -->
+            <polygon points="190,40 190,40 20,200 360,200" fill="#151710"/>
+            <polygon points="190,40 190,40 60,200 320,200" fill="#1C1E15"/>
+
+            <!-- Curbs (Kerbs) with red/white segments -->
+            <path d="M190,40 L20,200 L40,200 L190,40 Z" fill="#E04E38" opacity="0.8"/>
+            <path d="M190,40 L360,200 L340,200 L190,40 Z" fill="#E04E38" opacity="0.8"/>
+
+            <!-- Speed grid & motion lines -->
+            <line x1="190" y1="40" x2="190" y2="200" stroke="#C9E82A" stroke-width="2" stroke-dasharray="14 12"/>
+            <line x1="100" y1="120" x2="50" y2="180" stroke="#F2F0EA" stroke-width="1" opacity="0.25"/>
+            <line x1="280" y1="120" x2="330" y2="180" stroke="#F2F0EA" stroke-width="1" opacity="0.25"/>
+
+            <!-- Speed Car Silhouette -->
+            <g transform="translate(190, 140)">
+              <!-- Boost flames -->
+              <polygon points="-8,18 8,18 0,38" fill="url(#turbo-boost)"/>
+              <polygon points="-4,18 4,18 0,30" fill="#C9E82A"/>
+              <!-- Car Body -->
+              <rect x="-14" y="-20" width="28" height="38" rx="6" fill="#C9E82A"/>
+              <!-- Cockpit / Windshield -->
+              <polygon points="-9,-6 9,-6 7,8 -7,8" fill="#141510"/>
+              <!-- Spoiler -->
+              <rect x="-18" y="14" width="36" height="5" rx="1.5" fill="#141510"/>
+              <!-- Wheels -->
+              <rect x="-19" y="-14" width="4" height="10" rx="2" fill="#141510"/>
+              <rect x="15" y="-14" width="4" height="10" rx="2" fill="#141510"/>
+              <rect x="-19" y="6" width="4" height="10" rx="2" fill="#141510"/>
+              <rect x="15" y="6" width="4" height="10" rx="2" fill="#141510"/>
+              <!-- Headlights -->
+              <circle cx="-9" cy="-19" r="2" fill="#F2F0EA"/>
+              <circle cx="9" cy="-19" r="2" fill="#F2F0EA"/>
+            </g>
+
+            <!-- Telemetry overlay -->
+            <text x="25" y="32" fill="#C9E82A" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" letter-spacing="1.5">SPEED // 280 KM/H</text>
+            <text x="280" y="32" fill="#E2AF45" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700">TURBO NITRO</text>
           </svg>
         </div>
 
         <div class="game-card__body">
-          <div class="game-card__kicker">Hydropower Simulation &amp; Grid Strategy</div>
-          <h2 class="game-card__title">Hydrowatt: Grid Dispatcher</h2>
+          <div class="game-card__kicker">High-Speed Arcade Racing</div>
+          <h2 class="game-card__title">Turbo Race</h2>
           <p class="game-card__desc">
-            Assume control of a high-head Himalayan run-of-the-river hydropower facility. Modulate intake gates, manage water hammer shock in surge tanks, mitigate turbine cavitation, and fulfill fluctuating national peak demand.
+            High-octane browser-native multiplayer racing. Burn rubber, hit apex turns with precision drift physics, deploy nitro boost, and compete for fastest lap records.
           </p>
 
           <div class="game-card__specs">
             <span class="spec-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
-              Hydrodynamic Equations
-            </span>
-            <span class="spec-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg>
-              Turbine RPM Telemetry
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
+              High-Speed Drift Physics
             </span>
             <span class="spec-chip">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              Grid Load Balancing
-            </span>
-          </div>
-
-          <div class="game-card__actions">
-            <button class="btn-preview" data-game="hydrowatt" type="button">
-              <span>Preview Brief &amp; Specs &rarr;</span>
-            </button>
-          </div>
-        </div>
-      </article>
-
-      <!-- ══════════ CARD 3: SEISMIC SHAKER (COMING SOON) ══════════ -->
-      <article class="game-card game-card--dev" data-category="development">
-        <div class="game-card__media">
-          <span class="game-card__status game-card__status--dev">
-            <span class="pulse-dot"></span>
-            In Prototyping
-          </span>
-
-          <!-- Structural Truss & Earthquake Waves Art -->
-          <svg class="game-card__visual" viewBox="0 0 380 200" aria-label="Seismic shaker physics blueprint" preserveAspectRatio="xMidYMid slice">
-            <rect width="380" height="200" fill="#13140E"/>
-            <!-- Ground bedrock -->
-            <rect x="0" y="150" width="380" height="50" fill="#1A1C14"/>
-            <line x1="0" y1="150" x2="380" y2="150" stroke="#3A3E2C" stroke-width="2"/>
-            <!-- Truss Bridge Structure -->
-            <g stroke="#C9E82A" stroke-width="1.8" fill="none" opacity="0.9">
-              <line x1="60" y1="150" x2="110" y2="70"/>
-              <line x1="110" y1="70" x2="160" y2="150"/>
-              <line x1="160" y1="150" x2="210" y2="70"/>
-              <line x1="210" y1="70" x2="260" y2="150"/>
-              <line x1="260" y1="150" x2="310" y2="70"/>
-              <line x1="60" y1="150" x2="310" y2="150"/>
-              <line x1="110" y1="70" x2="310" y2="70"/>
-              <line x1="110" y1="70" x2="210" y2="70"/>
-            </g>
-            <!-- Stress Concentrated Node -->
-            <circle cx="160" cy="150" r="6" fill="#E04E38"/>
-            <circle cx="210" cy="70" r="5" fill="#E2AF45"/>
-            <!-- Seismic Harmonic Waveform -->
-            <path d="M0,175 Q40,165 80,175 T160,175 T240,175 T320,175 T380,175" fill="none" stroke="#E04E38" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <text x="25" y="35" fill="#E04E38" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700">RICHTER: 7.2 HARMONIC // RESONANCE ALERT</text>
-            <text x="25" y="50" fill="#6B6D62" font-family="'JetBrains Mono', monospace" font-size="7.5">MODAL FREQ: 3.42 Hz · DAMPING: 0.05</text>
-          </svg>
-        </div>
-
-        <div class="game-card__body">
-          <div class="game-card__kicker">Structural Physics &amp; Harmonic Defense</div>
-          <h2 class="game-card__title">Seismic Shaker</h2>
-          <p class="game-card__desc">
-            Construct earthquake-resilient truss portals, retention dams, and penstock anchors. Subject your civil structures to progressive harmonic wave pulses, analyze real-time shear stress nodes, and prevent catastrophic resonance collapse.
-          </p>
-
-          <div class="game-card__specs">
-            <span class="spec-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
-              Verlet Physics Solver
-            </span>
-            <span class="spec-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-              Seismic Wave Simulator
-            </span>
-            <span class="spec-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M3 12h3M18 12h3M12 3v3M12 18v3"/></svg>
-              Node Stress Mapping
-            </span>
-          </div>
-
-          <div class="game-card__actions">
-            <button class="btn-preview" data-game="seismic" type="button">
-              <span>Preview Brief &amp; Specs &rarr;</span>
-            </button>
-          </div>
-        </div>
-      </article>
-
-      <!-- ══════════ CARD 4: TAMAKOSHI DRIFT (CONCEPT) ══════════ -->
-      <article class="game-card game-card--concept" data-category="development">
-        <div class="game-card__media">
-          <span class="game-card__status game-card__status--concept">
-            <span class="pulse-dot"></span>
-            Concept Stage
-          </span>
-
-          <!-- Himalayan Canyon Rapid Art -->
-          <svg class="game-card__visual" viewBox="0 0 380 200" aria-label="Tamakoshi Drift concept art" preserveAspectRatio="xMidYMid slice">
-            <rect width="380" height="200" fill="#0E1214"/>
-            <!-- Mountain Gorge Contours -->
-            <path d="M0,0 Q90,70 120,200 L0,200 Z" fill="#161B1E"/>
-            <path d="M380,0 Q290,70 260,200 L380,200 Z" fill="#161B1E"/>
-            <!-- River Rapid Streamlines -->
-            <path d="M140,0 Q170,80 180,200" fill="none" stroke="#388BB0" stroke-width="3"/>
-            <path d="M190,0 Q205,70 200,200" fill="none" stroke="#45BFB6" stroke-width="2" opacity="0.8"/>
-            <path d="M230,0 Q240,90 220,200" fill="none" stroke="#388BB0" stroke-width="3"/>
-            <!-- Boulder Obstacles & Spray -->
-            <circle cx="185" cy="110" r="10" fill="#2C3236"/>
-            <path d="M175,100 Q185,85 195,100" fill="none" stroke="#F2F0EA" stroke-width="2" opacity="0.5"/>
-            <!-- Fast Kinetic Trail -->
-            <polygon points="198,150 202,150 206,170 194,170" fill="#C9E82A"/>
-            <text x="25" y="35" fill="#388BB0" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700">GORGE: TAMAKOSHI // RAPID CLASS V</text>
-            <text x="25" y="50" fill="#6B6D62" font-family="'JetBrains Mono', monospace" font-size="7.5">DISCHARGE: 145 m³/s · VELOCITY: 9.8 m/s</text>
-          </svg>
-        </div>
-
-        <div class="game-card__body">
-          <div class="game-card__kicker">Kinetic River Runner &amp; Velocity Trial</div>
-          <h2 class="game-card__title">Tamakoshi Drift</h2>
-          <p class="game-card__desc">
-            A high-speed time-attack runner set along the roaring rapids of the Tamakoshi river gorge. Exploit hydraulic jumps, read eddy currents to maintain peak momentum, and execute split-second rudder maneuvers through boulder fields.
-          </p>
-
-          <div class="game-card__specs">
-            <span class="spec-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              Eddy &amp; Streamline Dynamics
+              Nitro Boost Acceleration
             </span>
             <span class="spec-chip">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              Fast Time-Trial Runs
-            </span>
-            <span class="spec-chip">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              Local Best Records
+              Lap Time Leaderboard
             </span>
           </div>
 
           <div class="game-card__actions">
-            <button class="btn-preview" data-game="tamakoshi" type="button">
-              <span>Preview Brief &amp; Specs &rarr;</span>
-            </button>
+            <a class="btn-play" href="/games/turbo-race/index.html" id="play-turbo-race-btn">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Play Turbo Race</span>
+            </a>
           </div>
         </div>
       </article>
@@ -396,28 +302,6 @@
   </div>
 
 </main>
-
-<!-- ═══════════════════════════════════════════════════════════════
-     PREVIEW MODAL (INTERACTIVE BRIEF FOR FUTURE GAMES)
-     ═══════════════════════════════════════════════════════════════ -->
-<div class="modal-overlay" id="previewModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-card">
-    <header class="modal-header">
-      <h3 class="modal-title" id="modalTitle">Game Specification Brief</h3>
-      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
-    </header>
-
-    <div class="modal-content" id="modalBody">
-      <!-- Injected dynamically via JavaScript -->
-    </div>
-
-    <footer class="modal-footer">
-      <button class="btn-preview" id="modalDismiss" type="button" style="width:auto;padding:0.6rem 1.4rem;">
-        Close Brief
-      </button>
-    </footer>
-  </div>
-</div>
 
 <!-- ═══════════════════════════════════════════════════════════════
      SITE FOOTER
@@ -432,6 +316,7 @@
       <a href="../typing.html">SeHack Typing</a>
       <a href="../courses/index.html">Engineering Courses</a>
       <a href="/games.html">Play Descent</a>
+      <a href="/games/turbo-race/index.html">Play Turbo Race</a>
     </div>
   </div>
 </footer>
@@ -440,49 +325,6 @@
      INTERACTIVE SCRIPT
      ═══════════════════════════════════════════════════════════════ -->
 <script>
-  // Game Specifications Data for Interactive Previews
-  const GAME_DATA = {
-    hydrowatt: {
-      title: "Hydrowatt: Grid Dispatcher",
-      kicker: "Hydropower Operations & Grid Strategy",
-      status: "In Active Development · Phase 01",
-      description: "Hydrowatt places you directly at the control console of a 100 MW run-of-the-river hydropower project in the steep Himalayas. You are responsible for optimizing power output while strictly adhering to safety limits on water hammer pressures and river discharge regulations.",
-      features: [
-        "Head-Loss & Hydraulic Pressure Calculation: Adjust intake gates and observe dynamic changes in penstock pressure and flow velocity.",
-        "Cavitation & Vibration Monitoring: Balance runner blade angles and flow to prevent turbine erosion and emergency tripping.",
-        "Monsoon Flood Surge Response: Divert debris and silt during flood surges through desanding basins without shutting down transmission lines.",
-        "National Grid Dispatch Sync: Supply base-load and ramp up for evening peak tariffs to maximize generation revenue."
-      ],
-      engine: "Pure JavaScript fluid dynamic formulas with Web Audio alarm sirens and tactile meter gauges."
-    },
-    seismic: {
-      title: "Seismic Shaker: Structural Defense",
-      kicker: "Harmonic Physics & Structural Defense",
-      status: "In Prototyping · Physics Core",
-      description: "A physics-based construction and destruction laboratory. Using high-strength steel trusses, concrete piers, and base isolation bearings, design civil infrastructure capable of surviving multi-axis earthquake oscillations.",
-      features: [
-        "Interactive Joint & Member Drafting: Draw nodes, connect structural trusses, and test live dead-loads before shaking.",
-        "Harmonic Wave Pulse Engine: Simulate P-waves, S-waves, and Rayleigh surface waves with tunable frequencies and accelerations.",
-        "Finite Stress Visualizer: Real-time tension and compression stress color gradients (green safe, yellow yield, red failure).",
-        "Destruction Physics: Watch unreinforced structures experience dramatic joint yield, buckling, and progressive collapse."
-      ],
-      engine: "Verlet Integration particle constraint solver rendered on HTML5 Canvas."
-    },
-    tamakoshi: {
-      title: "Tamakoshi Drift",
-      kicker: "Kinetic River Runner & Velocity Trial",
-      status: "Concept Formulation",
-      description: "A high-velocity river navigation arcade challenge based on the real geography of the Tamakoshi River canyon in Dolakha, Nepal. Navigate turbulent waters, avoid hydraulic stoppers, and post the fastest run times down the canyon.",
-      features: [
-        "Vector Streamline Dynamics: Paddle across main currents into calm eddy pools to plan sharp angle turns.",
-        "Boulder Obstacle Patterns: Procedurally placed granite boulders create unpredictable standing waves and whirlpools.",
-        "Momentum Conservation: Time your entry into chutes to slingshot through narrow canyon gates with bonus velocity.",
-        "Ghost Runs & Time Trial: Compete against your personal best ghost vessel stored in browser storage."
-      ],
-      engine: "2D Particle vector field engine with spatial audio effects."
-    }
-  };
-
   // Filter Tabs Handler
   const filterBtns = document.querySelectorAll('.filter-btn');
   const gameCards = document.querySelectorAll('.game-card');
@@ -490,7 +332,6 @@
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // Toggle active states
       filterBtns.forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-selected', 'false');
@@ -513,66 +354,6 @@
 
       counterEl.textContent = `Displaying ${visibleCount} experience${visibleCount === 1 ? '' : 's'}`;
     });
-  });
-
-  // Modal Handling for Future Games
-  const modal = document.getElementById('previewModal');
-  const modalClose = document.getElementById('modalClose');
-  const modalDismiss = document.getElementById('modalDismiss');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalBody = document.getElementById('modalBody');
-
-  function openModal(gameKey) {
-    const data = GAME_DATA[gameKey];
-    if (!data) return;
-
-    modalTitle.textContent = data.title;
-    modalBody.innerHTML = `
-      <div>
-        <h4>Status &amp; Genre</h4>
-        <p><strong>${data.kicker}</strong> &middot; <span style="color:var(--vis);">${data.status}</span></p>
-      </div>
-      <div>
-        <h4>Project Overview</h4>
-        <p>${data.description}</p>
-      </div>
-      <div>
-        <h4>Core Gameplay Mechanics</h4>
-        <ul class="modal-features">
-          ${data.features.map(f => `<li>${f}</li>`).join('')}
-        </ul>
-      </div>
-      <div>
-        <h4>Technical Architecture</h4>
-        <p style="font-family:var(--mono);font-size:0.85rem;color:var(--paper-muted);">${data.engine}</p>
-      </div>
-    `;
-
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  document.querySelectorAll('.btn-preview[data-game]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      openModal(btn.dataset.game);
-    });
-  });
-
-  modalClose.addEventListener('click', closeModal);
-  modalDismiss.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) {
-      closeModal();
-    }
   });
 </script>
 
