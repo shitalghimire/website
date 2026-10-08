@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<!--
+  GAMES & ARCADE LAB — Shital Ghimire
+  Browser-native arcade games, physical simulations, and engineering experiments.
+  © 2026 Shital Ghimire. All rights reserved.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Games &amp; Arcade Lab — Shital Ghimire</title>
+<meta name="description" content="Explore custom-built browser games and engineering simulations by Shital Ghimire. Play Descent, or preview upcoming hydropower and physics arcade simulators."/>
+<meta name="theme-color" content="#0D0E0A"/>
+<meta name="author" content="Shital Ghimire"/>
+
+<!-- Open Graph / Meta -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Games &amp; Arcade Lab — Shital Ghimire"/>
+<meta property="og:description" content="Custom-built browser games, arcade experiments, and engineering simulators."/>
+<meta property="og:image" content="../assets/og-image.png"/>
+
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"/>
+<link rel="apple-touch-icon" href="../assets/icon-180.png"/>
+
+<!-- Typography -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<a class="skip-link" href="#games-main">Skip to game catalogue</a>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     HEADER / TOPBAR
+     ═══════════════════════════════════════════════════════════════ -->
+<header class="topbar">
+  <div class="shell topbar__inner">
+    <a class="brand" href="../index.html" title="Back to Portfolio">
+      <span class="brand__mark">SG</span>
+      <span class="brand__name">Shital Ghimire<i>.</i></span>
+      <span class="brand__sub">/ Arcade</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Main Navigation">
+      <a class="nav-link nav-link--portfolio" href="../index.html">
+        <span>&larr; Portfolio</span>
+      </a>
+      <a class="nav-link" href="../typing.html">
+        <span>⌨ SeHack</span>
+      </a>
+      <a class="nav-link" href="../courses/index.html">
+        <span>▮ Courses</span>
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MAIN HERO & CATALOGUE
+     ═══════════════════════════════════════════════════════════════ -->
+<main id="games-main">
+
+  <section class="hero">
+    <div class="shell">
+      <div class="sheet-tag">
+        <b>ARC-01</b>
+        <span>Interactive Lab &amp; Game Vault</span>
+      </div>
+
+      <h1 class="hero__title">
+        Games &amp; <i>Arcade.</i>
+      </h1>
+
+      <p class="hero__lead">
+        Handcrafted browser games and interactive engineering simulations. Powered by raw HTML5 Canvas, procedural Web Audio synthesis, and custom physical dynamics — zero frameworks, maximum frame rate.
+      </p>
+
+      <div class="hero__stats">
+        <div class="stat-item">
+          <span class="stat-item__val stat-item__val--live">01 <span style="font-size:0.9rem;font-weight:500">LIVE</span></span>
+          <span class="stat-item__lbl">Playable Today</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-item__val">03</span>
+          <span class="stat-item__lbl">In Active Laboratory</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-item__val">60 <span style="font-size:0.9rem;font-weight:500">FPS</span></span>
+          <span class="stat-item__lbl">Target Performance</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-item__val">0.0 <span style="font-size:0.9rem;font-weight:500">MB</span></span>
+          <span class="stat-item__lbl">Heavy Engine Overhead</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="shell">
+    <!-- Filter Controls -->
+    <div class="catalogue-controls">
+      <div class="filter-group" role="tablist" aria-label="Filter games">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true" id="tab-all">All Titles (4)</button>
+        <button class="filter-btn" data-filter="playable" role="tab" aria-selected="false" id="tab-playable">Playable Now (1)</button>
+        <button class="filter-btn" data-filter="development" role="tab" aria-selected="false" id="tab-dev">In Development (3)</button>
+      </div>
+
+      <div class="catalogue-counter" id="catalogue-counter">
+        Displaying 4 experiences
+      </div>
+    </div>
+
+    <!-- Games Grid -->
+    <section class="games-grid" id="games-grid" aria-label="Game catalogue list">
+
+      <!-- ══════════ CARD 1: DESCENT (PLAYABLE) ══════════ -->
+      <article class="game-card game-card--playable" data-category="playable">
+        <div class="game-card__media">
+          <span class="game-card__status game-card__status--live">
+            <span class="pulse-dot"></span>
+            Playable Now
+          </span>
+
+          <!-- Stylized Retro Shaft Illustration -->
+          <svg class="game-card__visual" viewBox="0 0 380 200" aria-label="Descent game artwork" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="bg-shaft" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#141510"/>
+                <stop offset="100%" stop-color="#080806"/>
+              </linearGradient>
+              <linearGradient id="laser-beam" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#C9E82A"/>
+                <stop offset="100%" stop-color="#A6C511"/>
+              </linearGradient>
+            </defs>
+
+            <!-- Background & Subterranean Rock Texture -->
+            <rect width="380" height="200" fill="url(#bg-shaft)"/>
+            <path d="M0,0 L50,40 L35,80 L55,140 L30,200 L0,200 Z" fill="#1C1F15" opacity="0.8"/>
+            <path d="M380,0 L330,35 L345,95 L320,150 L350,200 L380,200 Z" fill="#1C1F15" opacity="0.8"/>
+
+            <!-- Grid depth lines -->
+            <line x1="60" y1="40" x2="320" y2="40" stroke="#252A1C" stroke-width="1" stroke-dasharray="4 6"/>
+            <line x1="60" y1="80" x2="320" y2="80" stroke="#252A1C" stroke-width="1" stroke-dasharray="4 6"/>
+            <line x1="60" y1="120" x2="320" y2="120" stroke="#252A1C" stroke-width="1" stroke-dasharray="4 6"/>
+            <line x1="60" y1="160" x2="320" y2="160" stroke="#252A1C" stroke-width="1" stroke-dasharray="4 6"/>
+
+            <!-- Downward Gunfire Muzzle Recoil -->
+            <polygon points="186,85 194,85 198,150 182,150" fill="url(#laser-beam)" opacity="0.85"/>
+            <circle cx="190" cy="155" r="14" fill="#C9E82A" opacity="0.25"/>
+            <circle cx="190" cy="155" r="7" fill="#C9E82A"/>
+
+            <!-- Hero Character Falling -->
+            <g transform="translate(178, 60)">
+              <!-- Body -->
+              <rect x="5" y="4" width="14" height="16" rx="2" fill="#F2F0EA"/>
+              <!-- Visor -->
+              <rect x="7" y="7" width="10" height="4" rx="1" fill="#141510"/>
+              <!-- Gun Boots -->
+              <rect x="3" y="20" width="6" height="7" rx="1" fill="#C9E82A"/>
+              <rect x="15" y="20" width="6" height="7" rx="1" fill="#C9E82A"/>
+            </g>
+
+            <!-- Scattered Gems -->
+            <polygon points="120,110 125,102 132,107 127,118" fill="#45BFB6"/>
+            <polygon points="260,70 266,62 274,68 268,79" fill="#45BFB6"/>
+            <polygon points="240,140 245,134 252,138 247,146" fill="#F05A36"/>
+
+            <!-- Telemetry overlay -->
+            <text x="70" y="32" fill="#C9E82A" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700" letter-spacing="1.5">DEPTH // 480m</text>
+            <text x="260" y="32" fill="#EAE7DF" opacity="0.6" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700">COMBO x12</text>
+            <text x="70" y="185" fill="#6B6D62" font-family="'JetBrains Mono', monospace" font-size="8">BOOTS ACTIVE · FULL AMMO</text>
+          </svg>
+        </div>
+
+        <div class="game-card__body">
+          <div class="game-card__kicker">Vertical Arcade Shooter · Downwell-Inspired</div>
+          <h2 class="game-card__title">Descent</h2>
+          <p class="game-card__desc">
+            Your boots are the weapon. Plunge down a procedural vertical abyss, blast enemies beneath you to stall gravity and reload recoil, collect gems, unlock combat perks, and conquer deep subterranean bosses.
+          </p>
+
+          <div class="game-card__specs">
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 15 5-3-5-3v6z"/></svg>
+              Raw HTML5 Canvas 60 FPS
+            </span>
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Custom Web Audio Synth
+            </span>
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 12h10M12 7v10"/></svg>
+              Leaderboard &amp; Perks
+            </span>
+          </div>
+
+          <div class="game-card__actions">
+            <a class="btn-play" href="/games.html" id="play-descent-btn">
+              <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              <span>Play Descent Now</span>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- ══════════ CARD 2: HYDROWATT (COMING SOON) ══════════ -->
+      <article class="game-card game-card--dev" data-category="development">
+        <div class="game-card__media">
+          <span class="game-card__status game-card__status--dev">
+            <span class="pulse-dot"></span>
+            In Development
+          </span>
+
+          <!-- Hydropower Schematic Vector Art -->
+          <svg class="game-card__visual" viewBox="0 0 380 200" aria-label="Hydrowatt game blueprint" preserveAspectRatio="xMidYMid slice">
+            <rect width="380" height="200" fill="#11130D"/>
+            <!-- Contour dam & penstock -->
+            <path d="M20,60 Q80,55 140,80 T260,130 L360,140" fill="none" stroke="#253545" stroke-width="2"/>
+            <path d="M120,40 L160,40 L210,130 L250,130" fill="none" stroke="#388BB0" stroke-width="8" opacity="0.6"/>
+            <!-- Water Flow Arrows -->
+            <path d="M135,40 L145,40" stroke="#C9E82A" stroke-width="2"/>
+            <path d="M185,85 L193,100" stroke="#C9E82A" stroke-width="2"/>
+            <path d="M225,130 L235,130" stroke="#C9E82A" stroke-width="2"/>
+            <!-- Turbine housing -->
+            <circle cx="260" cy="130" r="22" fill="#1C1F15" stroke="#E2AF45" stroke-width="2"/>
+            <circle cx="260" cy="130" r="14" fill="none" stroke="#E2AF45" stroke-dasharray="3 3"/>
+            <circle cx="260" cy="130" r="4" fill="#C9E82A"/>
+            <!-- Power grid sine curves -->
+            <path d="M285,130 C300,105 320,155 340,130 S370,110 380,130" fill="none" stroke="#E2AF45" stroke-width="1.8"/>
+            <!-- Telemetry readout -->
+            <rect x="25" y="145" width="130" height="38" rx="3" fill="#161811" stroke="#262A1D"/>
+            <text x="35" y="160" fill="#E2AF45" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700">HEAD: 420m // 98.4 MW</text>
+            <text x="35" y="174" fill="#6B6D62" font-family="'JetBrains Mono', monospace" font-size="7.5">PENSTOCK PRESSURE: 4.1 MPa</text>
+          </svg>
+        </div>
+
+        <div class="game-card__body">
+          <div class="game-card__kicker">Hydropower Simulation &amp; Grid Strategy</div>
+          <h2 class="game-card__title">Hydrowatt: Grid Dispatcher</h2>
+          <p class="game-card__desc">
+            Assume control of a high-head Himalayan run-of-the-river hydropower facility. Modulate intake gates, manage water hammer shock in surge tanks, mitigate turbine cavitation, and fulfill fluctuating national peak demand.
+          </p>
+
+          <div class="game-card__specs">
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg>
+              Hydrodynamic Equations
+            </span>
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg>
+              Turbine RPM Telemetry
+            </span>
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Grid Load Balancing
+            </span>
+          </div>
+
+          <div class="game-card__actions">
+            <button class="btn-preview" data-game="hydrowatt" type="button">
+              <span>Preview Brief &amp; Specs &rarr;</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ══════════ CARD 3: SEISMIC SHAKER (COMING SOON) ══════════ -->
+      <article class="game-card game-card--dev" data-category="development">
+        <div class="game-card__media">
+          <span class="game-card__status game-card__status--dev">
+            <span class="pulse-dot"></span>
+            In Prototyping
+          </span>
+
+          <!-- Structural Truss & Earthquake Waves Art -->
+          <svg class="game-card__visual" viewBox="0 0 380 200" aria-label="Seismic shaker physics blueprint" preserveAspectRatio="xMidYMid slice">
+            <rect width="380" height="200" fill="#13140E"/>
+            <!-- Ground bedrock -->
+            <rect x="0" y="150" width="380" height="50" fill="#1A1C14"/>
+            <line x1="0" y1="150" x2="380" y2="150" stroke="#3A3E2C" stroke-width="2"/>
+            <!-- Truss Bridge Structure -->
+            <g stroke="#C9E82A" stroke-width="1.8" fill="none" opacity="0.9">
+              <line x1="60" y1="150" x2="110" y2="70"/>
+              <line x1="110" y1="70" x2="160" y2="150"/>
+              <line x1="160" y1="150" x2="210" y2="70"/>
+              <line x1="210" y1="70" x2="260" y2="150"/>
+              <line x1="260" y1="150" x2="310" y2="70"/>
+              <line x1="60" y1="150" x2="310" y2="150"/>
+              <line x1="110" y1="70" x2="310" y2="70"/>
+              <line x1="110" y1="70" x2="210" y2="70"/>
+            </g>
+            <!-- Stress Concentrated Node -->
+            <circle cx="160" cy="150" r="6" fill="#E04E38"/>
+            <circle cx="210" cy="70" r="5" fill="#E2AF45"/>
+            <!-- Seismic Harmonic Waveform -->
+            <path d="M0,175 Q40,165 80,175 T160,175 T240,175 T320,175 T380,175" fill="none" stroke="#E04E38" stroke-width="1.5" stroke-dasharray="3 3"/>
+            <text x="25" y="35" fill="#E04E38" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700">RICHTER: 7.2 HARMONIC // RESONANCE ALERT</text>
+            <text x="25" y="50" fill="#6B6D62" font-family="'JetBrains Mono', monospace" font-size="7.5">MODAL FREQ: 3.42 Hz · DAMPING: 0.05</text>
+          </svg>
+        </div>
+
+        <div class="game-card__body">
+          <div class="game-card__kicker">Structural Physics &amp; Harmonic Defense</div>
+          <h2 class="game-card__title">Seismic Shaker</h2>
+          <p class="game-card__desc">
+            Construct earthquake-resilient truss portals, retention dams, and penstock anchors. Subject your civil structures to progressive harmonic wave pulses, analyze real-time shear stress nodes, and prevent catastrophic resonance collapse.
+          </p>
+
+          <div class="game-card__specs">
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+              Verlet Physics Solver
+            </span>
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              Seismic Wave Simulator
+            </span>
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M3 12h3M18 12h3M12 3v3M12 18v3"/></svg>
+              Node Stress Mapping
+            </span>
+          </div>
+
+          <div class="game-card__actions">
+            <button class="btn-preview" data-game="seismic" type="button">
+              <span>Preview Brief &amp; Specs &rarr;</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- ══════════ CARD 4: TAMAKOSHI DRIFT (CONCEPT) ══════════ -->
+      <article class="game-card game-card--concept" data-category="development">
+        <div class="game-card__media">
+          <span class="game-card__status game-card__status--concept">
+            <span class="pulse-dot"></span>
+            Concept Stage
+          </span>
+
+          <!-- Himalayan Canyon Rapid Art -->
+          <svg class="game-card__visual" viewBox="0 0 380 200" aria-label="Tamakoshi Drift concept art" preserveAspectRatio="xMidYMid slice">
+            <rect width="380" height="200" fill="#0E1214"/>
+            <!-- Mountain Gorge Contours -->
+            <path d="M0,0 Q90,70 120,200 L0,200 Z" fill="#161B1E"/>
+            <path d="M380,0 Q290,70 260,200 L380,200 Z" fill="#161B1E"/>
+            <!-- River Rapid Streamlines -->
+            <path d="M140,0 Q170,80 180,200" fill="none" stroke="#388BB0" stroke-width="3"/>
+            <path d="M190,0 Q205,70 200,200" fill="none" stroke="#45BFB6" stroke-width="2" opacity="0.8"/>
+            <path d="M230,0 Q240,90 220,200" fill="none" stroke="#388BB0" stroke-width="3"/>
+            <!-- Boulder Obstacles & Spray -->
+            <circle cx="185" cy="110" r="10" fill="#2C3236"/>
+            <path d="M175,100 Q185,85 195,100" fill="none" stroke="#F2F0EA" stroke-width="2" opacity="0.5"/>
+            <!-- Fast Kinetic Trail -->
+            <polygon points="198,150 202,150 206,170 194,170" fill="#C9E82A"/>
+            <text x="25" y="35" fill="#388BB0" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700">GORGE: TAMAKOSHI // RAPID CLASS V</text>
+            <text x="25" y="50" fill="#6B6D62" font-family="'JetBrains Mono', monospace" font-size="7.5">DISCHARGE: 145 m³/s · VELOCITY: 9.8 m/s</text>
+          </svg>
+        </div>
+
+        <div class="game-card__body">
+          <div class="game-card__kicker">Kinetic River Runner &amp; Velocity Trial</div>
+          <h2 class="game-card__title">Tamakoshi Drift</h2>
+          <p class="game-card__desc">
+            A high-speed time-attack runner set along the roaring rapids of the Tamakoshi river gorge. Exploit hydraulic jumps, read eddy currents to maintain peak momentum, and execute split-second rudder maneuvers through boulder fields.
+          </p>
+
+          <div class="game-card__specs">
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Eddy &amp; Streamline Dynamics
+            </span>
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Fast Time-Trial Runs
+            </span>
+            <span class="spec-chip">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Local Best Records
+            </span>
+          </div>
+
+          <div class="game-card__actions">
+            <button class="btn-preview" data-game="tamakoshi" type="button">
+              <span>Preview Brief &amp; Specs &rarr;</span>
+            </button>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </div>
+
+</main>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PREVIEW MODAL (INTERACTIVE BRIEF FOR FUTURE GAMES)
+     ═══════════════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="previewModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <header class="modal-header">
+      <h3 class="modal-title" id="modalTitle">Game Specification Brief</h3>
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
+    </header>
+
+    <div class="modal-content" id="modalBody">
+      <!-- Injected dynamically via JavaScript -->
+    </div>
+
+    <footer class="modal-footer">
+      <button class="btn-preview" id="modalDismiss" type="button" style="width:auto;padding:0.6rem 1.4rem;">
+        Close Brief
+      </button>
+    </footer>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SITE FOOTER
+     ═══════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="shell site-footer__inner">
+    <div>
+      <b>&copy; 2026 Shital Ghimire</b> &middot; Civil Engineer &amp; Interactive Web Systems
+    </div>
+    <div class="site-footer__links">
+      <a href="../index.html">Portfolio Home</a>
+      <a href="../typing.html">SeHack Typing</a>
+      <a href="../courses/index.html">Engineering Courses</a>
+      <a href="/games.html">Play Descent</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     INTERACTIVE SCRIPT
+     ═══════════════════════════════════════════════════════════════ -->
+<script>
+  // Game Specifications Data for Interactive Previews
+  const GAME_DATA = {
+    hydrowatt: {
+      title: "Hydrowatt: Grid Dispatcher",
+      kicker: "Hydropower Operations & Grid Strategy",
+      status: "In Active Development · Phase 01",
+      description: "Hydrowatt places you directly at the control console of a 100 MW run-of-the-river hydropower project in the steep Himalayas. You are responsible for optimizing power output while strictly adhering to safety limits on water hammer pressures and river discharge regulations.",
+      features: [
+        "Head-Loss & Hydraulic Pressure Calculation: Adjust intake gates and observe dynamic changes in penstock pressure and flow velocity.",
+        "Cavitation & Vibration Monitoring: Balance runner blade angles and flow to prevent turbine erosion and emergency tripping.",
+        "Monsoon Flood Surge Response: Divert debris and silt during flood surges through desanding basins without shutting down transmission lines.",
+        "National Grid Dispatch Sync: Supply base-load and ramp up for evening peak tariffs to maximize generation revenue."
+      ],
+      engine: "Pure JavaScript fluid dynamic formulas with Web Audio alarm sirens and tactile meter gauges."
+    },
+    seismic: {
+      title: "Seismic Shaker: Structural Defense",
+      kicker: "Harmonic Physics & Structural Defense",
+      status: "In Prototyping · Physics Core",
+      description: "A physics-based construction and destruction laboratory. Using high-strength steel trusses, concrete piers, and base isolation bearings, design civil infrastructure capable of surviving multi-axis earthquake oscillations.",
+      features: [
+        "Interactive Joint & Member Drafting: Draw nodes, connect structural trusses, and test live dead-loads before shaking.",
+        "Harmonic Wave Pulse Engine: Simulate P-waves, S-waves, and Rayleigh surface waves with tunable frequencies and accelerations.",
+        "Finite Stress Visualizer: Real-time tension and compression stress color gradients (green safe, yellow yield, red failure).",
+        "Destruction Physics: Watch unreinforced structures experience dramatic joint yield, buckling, and progressive collapse."
+      ],
+      engine: "Verlet Integration particle constraint solver rendered on HTML5 Canvas."
+    },
+    tamakoshi: {
+      title: "Tamakoshi Drift",
+      kicker: "Kinetic River Runner & Velocity Trial",
+      status: "Concept Formulation",
+      description: "A high-velocity river navigation arcade challenge based on the real geography of the Tamakoshi River canyon in Dolakha, Nepal. Navigate turbulent waters, avoid hydraulic stoppers, and post the fastest run times down the canyon.",
+      features: [
+        "Vector Streamline Dynamics: Paddle across main currents into calm eddy pools to plan sharp angle turns.",
+        "Boulder Obstacle Patterns: Procedurally placed granite boulders create unpredictable standing waves and whirlpools.",
+        "Momentum Conservation: Time your entry into chutes to slingshot through narrow canyon gates with bonus velocity.",
+        "Ghost Runs & Time Trial: Compete against your personal best ghost vessel stored in browser storage."
+      ],
+      engine: "2D Particle vector field engine with spatial audio effects."
+    }
+  };
+
+  // Filter Tabs Handler
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const gameCards = document.querySelectorAll('.game-card');
+  const counterEl = document.getElementById('catalogue-counter');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Toggle active states
+      filterBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+
+      const filter = btn.dataset.filter;
+      let visibleCount = 0;
+
+      gameCards.forEach(card => {
+        const category = card.dataset.category;
+        if (filter === 'all' || category === filter) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      counterEl.textContent = `Displaying ${visibleCount} experience${visibleCount === 1 ? '' : 's'}`;
+    });
+  });
+
+  // Modal Handling for Future Games
+  const modal = document.getElementById('previewModal');
+  const modalClose = document.getElementById('modalClose');
+  const modalDismiss = document.getElementById('modalDismiss');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalBody = document.getElementById('modalBody');
+
+  function openModal(gameKey) {
+    const data = GAME_DATA[gameKey];
+    if (!data) return;
+
+    modalTitle.textContent = data.title;
+    modalBody.innerHTML = `
+      <div>
+        <h4>Status &amp; Genre</h4>
+        <p><strong>${data.kicker}</strong> &middot; <span style="color:var(--vis);">${data.status}</span></p>
+      </div>
+      <div>
+        <h4>Project Overview</h4>
+        <p>${data.description}</p>
+      </div>
+      <div>
+        <h4>Core Gameplay Mechanics</h4>
+        <ul class="modal-features">
+          ${data.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+      </div>
+      <div>
+        <h4>Technical Architecture</h4>
+        <p style="font-family:var(--mono);font-size:0.85rem;color:var(--paper-muted);">${data.engine}</p>
+      </div>
+    `;
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.btn-preview[data-game]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      openModal(btn.dataset.game);
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modalDismiss.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeModal();
+    }
+  });
+</script>
+
+</body>
+</html>
