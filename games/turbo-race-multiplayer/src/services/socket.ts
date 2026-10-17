@@ -1,12 +1,18 @@
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
-*/
+ */
 
-import { io, Socket } from 'socket.io-client';
+// Mock socket for single-player mode (no server needed)
+const noop = () => {};
+const mockSocket = {
+  id: 'local-player',
+  connected: false,
+  on: noop,
+  off: noop,
+  emit: noop,
+  connect: noop,
+  disconnect: noop,
+};
 
-// Initialize socket connection
-// We use window.location.origin to connect to the same host/port as the page
-export const socket: Socket = io(window.location.origin, {
-  transports: ['websocket', 'polling'],
-});
+export const socket = mockSocket as any;

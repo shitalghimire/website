@@ -4,7 +4,7 @@
 */
 
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { socket } from '../services/socket';
+// Socket removed - single player mode
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { PerspectiveCamera, Environment, Text, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
@@ -354,7 +354,7 @@ export default function GameCanvas({ initialPlayers }: { initialPlayers?: Record
   }, [initialPlayers]);
 
   const [players, setPlayers] = useState<Record<string, Player>>(sanitizedInitial);
-  const [myId, setMyId] = useState<string | null>(socket.id || null);
+  const [myId, setMyId] = useState<string | null>('local-player');
   const [laps, setLaps] = useState(0);
   const [lastLapTime, setLastLapTime] = useState<number | null>(null);
   const [currentLapStart, setCurrentLapStart] = useState<number>(Date.now());
@@ -413,73 +413,29 @@ export default function GameCanvas({ initialPlayers }: { initialPlayers?: Record
   const [particles, setParticles] = useState<{id: number, x: number, y: number, life: number}[]>([]);
   const particleIdCounter = useRef(0);
 
+  // AI opponent logic
+  const aiStates = useRef<Record<string, {
+    segmentIndex: number;
+    t: number;
+    speed: number;
+    baseSpeed: number;
+    wobble: number;
+  }>>({});
+
+  // Initialize AI states
   useEffect(() => {
-    // Socket event listeners
-    socket.on('connect', () => {
-      setMyId(socket.id || null);
+    Object.keys(sanitizedInitial).forEach(id => {
+      if (id !== 'local-player') {
+        aiStates.current[id] = {
+          segmentIndex: 12, // Start on segment 12 (the finish straight going left)
+          t: 0.3 + Math.random() * 0.2,
+          speed: 0.002 + Math.random() * 0.001,
+          baseSpeed: 0.002 + Math.random() * 0.001,
+          wobble: Math.random() * Math.PI * 2,
+        };
+      }
     });
-
-    // 'currentPlayers' and 'newPlayer' are handled in Lobby now.
-    // We only need game-specific updates here.
-    
-    socket.on('playerJoinedRoom', (player: unknown) => {
-      const p = player as Player;
-      setPlayers((prev) => ({ ...prev, [p.id]: { ...p, bestLapTime: p.bestLapTime || Infinity } }));
-    });
-
-    socket.on('playerMoved', (player: unknown) => {
-      const p = player as Player;
-      setPlayers((prev) => {
-        // Don't update local player from server to avoid jitter
-        if (p.id === socket.id) return prev;
-        return { ...prev, [p.id]: { ...p, bestLapTime: p.bestLapTime || Infinity } };
-      });
-    });
-    
-    socket.on('lapUpdate', (data: {id: string, laps: number, bestLapTime: number}) => {
-        setPlayers(prev => {
-            if (!prev[data.id]) return prev;
-            
-            // If server sends null/0 (from Infinity), treat as Infinity
-            const serverBest = data.bestLapTime || Infinity;
-            
-            // If this is local player, only update if server time is BETTER or EQUAL to local time
-            // This prevents overwriting optimistic update with stale server data
-            if (data.id === socket.id) {
-                 const currentBest = prev[data.id].bestLapTime || Infinity;
-                 if (serverBest > currentBest && currentBest !== Infinity) {
-                     // Server sent worse time than we have locally? Ignore it.
-                     return prev;
-                 }
-            }
-
-            return {
-                ...prev,
-                [data.id]: {
-                    ...prev[data.id],
-                    laps: data.laps,
-                    bestLapTime: serverBest
-                }
-            };
-        });
-    });
-
-    socket.on('playerDisconnected', (id: string) => {
-      setPlayers((prev) => {
-        const next = { ...prev };
-        delete next[id];
-        return next;
-      });
-    });
-
-    return () => {
-      socket.off('connect');
-      socket.off('playerJoinedRoom');
-      socket.off('playerMoved');
-      socket.off('playerDisconnected');
-      socket.off('lapUpdate');
-    };
-  }, []);
+  }, [sanitizedInitial]);
 
   // Input handling
   useEffect(() => {
@@ -676,8 +632,7 @@ export default function GameCanvas({ initialPlayers }: { initialPlayers?: Record
                   return prev;
               });
 
-              // Send to server
-              socket.emit('lapFinished', lapTime);
+              // Single player - no server to send to
           }
           
           // Reset checkpoint for next lap
@@ -714,17 +669,55 @@ export default function GameCanvas({ initialPlayers }: { initialPlayers?: Record
       }
 
 
-      // Send update
-      if (socket.connected) {
-        socket.emit('playerMovement', {
-          x: p.x,
-          y: p.y,
-          angle: p.angle,
-          speed: p.speed,
-          nitro: p.nitro,
-          drifting: p.drifting
+      // Update AI opponents
+      const SEGMENTS = [
+        { start: {x: 150, y: 500}, end: {x: 450, y: 500}, angle: 0 },
+        { start: {x: 450, y: 500}, end: {x: 450, y: 300}, angle: -Math.PI/2 },
+        { start: {x: 450, y: 300}, end: {x: 300, y: 300}, angle: Math.PI },
+        { start: {x: 300, y: 300}, end: {x: 300, y: 100}, angle: -Math.PI/2 },
+        { start: {x: 300, y: 100}, end: {x: 750, y: 100}, angle: 0 },
+        { start: {x: 750, y: 100}, end: {x: 750, y: 400}, angle: Math.PI/2 },
+        { start: {x: 750, y: 400}, end: {x: 600, y: 400}, angle: Math.PI },
+        { start: {x: 600, y: 400}, end: {x: 600, y: 600}, angle: Math.PI/2 },
+        { start: {x: 600, y: 600}, end: {x: 950, y: 600}, angle: 0 },
+        { start: {x: 950, y: 600}, end: {x: 950, y: 150}, angle: -Math.PI/2 },
+        { start: {x: 950, y: 150}, end: {x: 1100, y: 150}, angle: 0 },
+        { start: {x: 1100, y: 150}, end: {x: 1100, y: 750}, angle: Math.PI/2 },
+        { start: {x: 1100, y: 750}, end: {x: 150, y: 750}, angle: Math.PI },
+        { start: {x: 150, y: 750}, end: {x: 150, y: 500}, angle: -Math.PI/2 }
+      ];
+
+      Object.entries(aiStates.current).forEach(([id, ai]) => {
+        // Vary speed slightly over time
+        ai.wobble += 0.01;
+        const speedVar = Math.sin(ai.wobble) * 0.0005;
+        const currentSpeed = ai.baseSpeed + speedVar;
+        ai.t += currentSpeed;
+
+        if (ai.t >= 1) {
+          ai.t -= 1;
+          ai.segmentIndex = (ai.segmentIndex + 1) % SEGMENTS.length;
+        }
+
+        const seg = SEGMENTS[ai.segmentIndex];
+        const aiX = seg.start.x + (seg.end.x - seg.start.x) * ai.t;
+        const aiY = seg.start.y + (seg.end.y - seg.start.y) * ai.t;
+
+        setPlayers(prev => {
+          if (!prev[id]) return prev;
+          return {
+            ...prev,
+            [id]: {
+              ...prev[id],
+              x: aiX,
+              y: aiY,
+              angle: seg.angle,
+              speed: currentSpeed * 500,
+              drifting: Math.abs(speedVar) > 0.0003,
+            }
+          };
         });
-      }
+      });
 
       // Update Timer DOM
       if (timerRef.current) {
@@ -772,7 +765,7 @@ export default function GameCanvas({ initialPlayers }: { initialPlayers?: Record
                     .slice(0, 5)
                     .map((p, i) => (
                       <div key={p.id} className="flex justify-between text-sm">
-                          <span className={`${p.id === socket.id ? 'text-yellow-400 font-bold' : 'text-slate-300'} truncate max-w-[120px]`}>
+                          <span className={`${p.id === myId ? 'text-yellow-400 font-bold' : 'text-slate-300'} truncate max-w-[120px]`}>
                               {i+1}. {p.name}
                           </span>
                           <span className="font-mono text-slate-400">
@@ -797,7 +790,7 @@ export default function GameCanvas({ initialPlayers }: { initialPlayers?: Record
               <div className="text-center">
                   <div className="text-xs text-slate-400 uppercase tracking-wider font-bold">Best</div>
                   <div className="text-2xl font-mono text-slate-300 leading-none">
-                      {players[socket.id || '']?.bestLapTime !== Infinity ? formatTime(players[socket.id || '']?.bestLapTime || 0) : '--:--'}
+                      {players[myId || '']?.bestLapTime !== Infinity ? formatTime(players[myId || '']?.bestLapTime || 0) : '--:--'}
                   </div>
               </div>
               <div className="w-px h-12 bg-white/20"></div>
