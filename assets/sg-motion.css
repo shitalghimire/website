@@ -1,0 +1,143 @@
+/* ==========================================================================
+   SHITAL GHIMIRE — NON-DESTRUCTIVE 3D, MOTION GRAPHICS & ICON UPGRADE LAYER
+   Strictly preserves existing layout, typography, topographic bg & lime palette
+   ========================================================================== */
+
+/* 1. 3D Wireframe Francis Turbine Canvas in Hero */
+#sg-hero-3d-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* 2. 3D Spatial Perspective Tilt on Portrait & Site Photos */
+.sg-tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease !important;
+  will-change: transform;
+}
+.sg-tilt-card:hover {
+  box-shadow: 0 20px 42px -15px rgba(20, 20, 19, 0.22);
+}
+
+/* 3. SHT 02 Capability Cards (2.01 - 2.07) Corner Motion Graphics */
+.sg-cap-card-host {
+  position: relative !important;
+  overflow: hidden !important;
+}
+.sg-corner-motion {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 46px;
+  height: 46px;
+  opacity: 0.55;
+  pointer-events: none;
+  color: currentColor;
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sg-cap-card-host:hover .sg-corner-motion {
+  opacity: 1;
+  transform: scale(1.14);
+}
+
+/* 4. SVG Motion Keyframes */
+@keyframes sgDashFlow {
+  to { stroke-dashoffset: -24; }
+}
+@keyframes sgScanLine {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(22px); }
+}
+@keyframes sgSpinSlow {
+  to { transform: rotate(360deg); }
+}
+.sg-anim-flow {
+  stroke-dasharray: 6 4;
+  animation: sgDashFlow 1.15s linear infinite;
+}
+.sg-anim-scan {
+  animation: sgScanLine 2.2s ease-in-out infinite;
+}
+.sg-anim-spin {
+  transform-origin: 22px 22px;
+  animation: sgSpinSlow 8s linear infinite;
+}
+
+/* 5. Live Radar Pulse on WBS 1.30 IN PROGRESS Badge */
+.sg-live-pulse {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+}
+.sg-live-pulse::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #84cc16;
+  animation: sgRadar 1.8s infinite;
+}
+@keyframes sgRadar {
+  0% { box-shadow: 0 0 0 0 rgba(132, 204, 22, 0.8); }
+  70% { box-shadow: 0 0 0 8px rgba(132, 204, 22, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(132, 204, 22, 0); }
+}
+
+/* 6. Upgraded Vector Icons for 6.01-6.11 & Navbar Apps */
+.sg-inline-icon {
+  width: 15px;
+  height: 15px;
+  vertical-align: -2.5px;
+  margin-right: 6px;
+  display: inline-block;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.2s ease;
+}
+button:hover .sg-inline-icon,
+a:hover .sg-inline-icon {
+  transform: scale(1.16) rotate(-3deg);
+}
+
+/* 7. Live 3D & SVG Visualizer Box inside SHT 06 Calculators */
+.sg-calc-visualizer {
+  width: 100%;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px dashed rgba(20, 20, 19, 0.22);
+  background: rgba(184, 243, 48, 0.08);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.sg-calc-visualizer-label {
+  font-family: monospace;
+  font-size: 10px;
+  opacity: 0.72;
+  margin-bottom: 6px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* 8. Smooth Scroll Reveal & WBS Bar Fill */
+.sg-reveal-ready {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sg-reveal-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
