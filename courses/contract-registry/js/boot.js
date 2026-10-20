@@ -27,6 +27,10 @@ async function unseal(code, { silent = false } = {}) {
   go.disabled = true;
   try {
     const data = await open(code);
+    window.__REGISTRY_DATA__ = data;
+    if (typeof window.mountRegistryHouse === 'function') {
+      try { window.mountRegistryHouse(data); } catch (e) {}
+    }
     remember(code, $('#gateRemember').checked || !!localStorage.getItem('registry:unlocked'));
     msg.textContent = '';
     gate.classList.add('is-open');

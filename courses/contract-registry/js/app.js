@@ -13,6 +13,7 @@ import C from './engine/contract.js';
 import * as S from './engine/search.js';
 
 import desk from './views/desk.js';
+import house from './views/house.js';
 import library from './views/library.js';
 import clause from './views/clause.js';
 import exchange from './views/exchange.js';
@@ -29,6 +30,7 @@ import words from './views/words.js';
 
 export const TABS = [
   { id: 'desk', label: 'Desk', icon: 'desk', href: '#/' },
+  { id: 'house', label: '3D House', icon: '🏛️', href: '#/house' },
   { id: 'read', label: 'Clauses', icon: 'book', href: '#/read' },
   { id: 'clock', label: 'Clocks', icon: 'clock', href: '#/clock' },
   { id: 'cases', label: 'Cases', icon: 'folder', href: '#/cases' },
@@ -42,6 +44,7 @@ export const TABS = [
 
 const ROUTES = [
   [/^\/?$/, desk, 'desk'],
+  [/^\/house\/?$/, house, 'house'],
   [/^\/read\/?$/, library, 'read'],
   [/^\/read\/([\w.]+)$/, clause, 'read'],
   [/^\/clock\/?$/, clock, 'clock'],
@@ -64,6 +67,7 @@ export let sync = null;
 export function startApp(data, code) {
   DATA = data;
   ctx.data = data;
+  window.__REGISTRY_DATA__ = data;
   C.init(data);
   S.build(data);
 
@@ -79,7 +83,7 @@ export function startApp(data, code) {
     theme(store.get().settings.theme);
     const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName);
     const path = location.hash.replace(/^#/, '').split('?')[0];
-    if (!typing && /^\/?(read|clock|learn|drill|cases|exchange|baseline|eot|tools)?\/?$/.test(path) && document.getElementById('palette').hidden) route();
+    if (!typing && /^\/?(house|read|clock|learn|drill|cases|exchange|baseline|eot|tools)?\/?$/.test(path) && document.getElementById('palette').hidden) route();
     toast('Progress updated from your other device');
   });
   sync.unlock(code);
@@ -120,7 +124,7 @@ function buildNav() {
   mount($('#railTabs'), TABS.map((t) => h('a.rail__tab', { href: t.href, dataset: { tab: t.id } }, icon(t.icon), t.label, h('i.rail__mark'))));
   mount($('#lockBtn'), h('span', { html: icons.lock }));
   $('#lockBtn').title = 'Lock the file';
-  const dock = ['desk', 'read', 'exchange', 'cases'].map((id) => TABS.find((t) => t.id === id));
+  const dock = ['desk', 'house', 'read', 'exchange', 'cases'].map((id) => TABS.find((t) => t.id === id));
   mount($('#dock'), dock.map((t) => h('a', { href: t.href, dataset: { tab: t.id } }, icon(t.icon), t.label)),
     h('button', { type: 'button', onclick: () => openMenu() }, icon('menu'), 'More'));
 }
@@ -138,6 +142,7 @@ function route() {
     lastTab = tab;
     setCrumbs([]);
     swap(() => {
+      view.className = 'view';
       mount(view);
       try { fn(view, { params, args: m.slice(1), ctx, data: DATA }); }
       catch (err) { console.error(err); mount(view, h('div.empty', 'Something went wrong drawing this page. ', h('a', { href: '#/' }, 'Back to the desk'))); }

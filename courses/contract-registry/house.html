@@ -1,0 +1,3007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>The Registry — 3D Interactive Contract Learning House</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #EFE8D8;
+      --sheet: #FBF8F1;
+      --folder: #E4D7BA;
+      --folder-deep: #CBB78C;
+      --ink: #1C2033;
+      --ink-muted: #525870;
+      --stamp: #3A399C;
+      --tape: #B3261E;
+      --marker: #F5E49C;
+      --good: #1F6E43;
+      --warn: #B4690E;
+    }
+    .night-mode {
+      --paper: #171A26;
+      --sheet: #212536;
+      --folder: #2B3044;
+      --folder-deep: #383F58;
+      --ink: #F2ECE1;
+      --ink-muted: #A6B0C9;
+      --stamp: #8587FF;
+      --tape: #EF5350;
+      --marker: #54491B;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      user-select: none;
+    }
+    .font-caslon-display { font-family: 'Libre Caslon Display', Georgia, serif; }
+    .font-caslon { font-family: 'Libre Caslon Text', Georgia, serif; }
+    .font-mono-code { font-family: 'JetBrains Mono', monospace; }
+
+    .paper-panel {
+      background-color: var(--sheet);
+      border: 1px solid var(--folder-deep);
+      color: var(--ink);
+      box-shadow: 0 12px 32px rgba(28, 32, 51, 0.22);
+    }
+    .folder-tab {
+      background-color: var(--folder);
+      border: 1px solid var(--folder-deep);
+      color: var(--ink);
+    }
+    .stamp-badge {
+      border: 2px solid var(--stamp);
+      color: var(--stamp);
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transform: rotate(-2deg);
+      display: inline-block;
+    }
+    .tape-badge {
+      background-color: var(--tape);
+      color: #FFF;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .marker-highlight {
+      background-color: var(--marker);
+      padding: 0 4px;
+      border-radius: 2px;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--paper); }
+    ::-webkit-scrollbar-thumb { background: var(--folder-deep); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--ink-muted); }
+  </style>
+</head>
+<body class="h-screen w-screen relative select-none">
+
+  <!-- 3D WebGL Canvas Container -->
+  <div id="canvasContainer" class="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"></div>
+
+  <!-- Hover 3D Object Tooltip -->
+  <div id="hoverTooltip" class="hidden fixed z-20 pointer-events-none px-3 py-1.5 rounded paper-panel text-xs font-mono-code shadow-lg transition-opacity duration-150">
+    <span id="hoverTooltipTag" class="font-bold text-[#B3261E] mr-1">[DARAZ]</span>
+    <span id="hoverTooltipText">Click to open</span>
+  </div>
+
+  <!-- Top Navigation Header -->
+  <header class="fixed top-0 left-0 right-0 z-20 flex flex-wrap items-center justify-between gap-2 px-3 py-2 paper-panel border-b-2 border-[#CBB78C] bg-opacity-95 backdrop-blur-sm">
+    <div class="flex items-center gap-2.5">
+      <a href="index.html#/" class="px-2.5 py-1 rounded folder-tab text-xs font-mono-code flex items-center gap-1 hover:bg-[#CBB78C] transition font-bold" title="Return to 2D Registry Desk">
+        <span>←</span><span class="hidden sm:inline">2D Desk</span>
+      </a>
+      <div class="stamp-badge px-2 py-0.5 text-[11px] font-bold">SEALED // TKV</div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="font-caslon-display text-lg sm:text-xl font-bold tracking-tight leading-none">The Contract Registry House</h1>
+          <span id="currentRoomBadge" class="text-[11px] font-mono-code px-2 py-0.5 rounded folder-tab font-semibold">Room 1/7: Reception & Gate</span>
+        </div>
+        <p class="text-[11px] opacity-75 hidden sm:block font-caslon">3D Interactive Reading Room, Daraz Almirah & Cryptographic Vault • GCC + PCC (102 Clauses)</p>
+      </div>
+    </div>
+
+    <!-- Room Switcher Pills -->
+    <nav id="roomNavBar" class="flex items-center gap-1 overflow-x-auto max-w-full py-0.5">
+      <button data-room="0" class="room-nav-btn px-2.5 py-1 rounded text-xs font-mono-code font-medium transition-all bg-[#1C2033] text-[#FBF8F1]">1.Gate/Desk</button>
+      <button data-room="1" class="room-nav-btn px-2.5 py-1 rounded text-xs font-mono-code font-medium transition-all folder-tab hover:opacity-90">2.Clauses(102)</button>
+      <button data-room="2" class="room-nav-btn px-2.5 py-1 rounded text-xs font-mono-code font-medium transition-all folder-tab hover:opacity-90">3.Clocks/EOT</button>
+      <button data-room="3" class="room-nav-btn px-2.5 py-1 rounded text-xs font-mono-code font-medium transition-all folder-tab hover:opacity-90">4.Letters(21)</button>
+      <button data-room="4" class="room-nav-btn px-2.5 py-1 rounded text-xs font-mono-code font-medium transition-all folder-tab hover:opacity-90">5.Cases(14)</button>
+      <button data-room="5" class="room-nav-btn px-2.5 py-1 rounded text-xs font-mono-code font-medium transition-all folder-tab hover:opacity-90">6.Drill/Words</button>
+      <button data-room="6" class="room-nav-btn px-2.5 py-1 rounded text-xs font-mono-code font-medium transition-all folder-tab hover:opacity-90">7.Builder Wing</button>
+    </nav>
+
+    <!-- Action Controls -->
+    <div class="flex items-center gap-1.5">
+      <button id="finderTriggerBtn" class="px-2.5 py-1 rounded folder-tab text-xs font-mono-code flex items-center gap-1 hover:bg-[#CBB78C] transition" title="Search 102 Clauses, Cases & Words (/ or Ctrl+K)">
+        <span>🔍</span><span class="hidden md:inline">Finder</span><kbd class="text-[10px] px-1 bg-[#FBF8F1] text-[#1C2033] rounded border border-[#CBB78C]">/</kbd>
+      </button>
+      <button id="openAddModalBtn" class="px-2.5 py-1 rounded bg-[#B3261E] text-white text-xs font-mono-code font-semibold hover:opacity-95 transition flex items-center gap-1" title="Add custom items to Daraz, Vault, or Rooms">
+        <span>＋</span><span>Add Item</span>
+      </button>
+      <button id="openBlueprintBtn" class="px-2.5 py-1 rounded border border-[#3A399C] text-[#3A399C] text-xs font-mono-code font-semibold hover:bg-[#3A399C] hover:text-white transition" title="View Architecture Plan & Repo Integration">
+        <span>📐</span><span class="hidden sm:inline">Plan</span>
+      </button>
+      <button id="lampToggleBtn" class="p-1.5 rounded folder-tab text-xs hover:bg-[#CBB78C] transition" title="Toggle Night Reading Lamp">
+        🕯️
+      </button>
+      <button id="audioToggleBtn" class="p-1.5 rounded folder-tab text-xs hover:bg-[#CBB78C] transition" title="Toggle Synthesized Sound Effects">
+        🔊
+      </button>
+    </div>
+  </header>
+
+  <!-- Left HUD: Progress, Active Clocks & Current Room Quick-Actions -->
+  <aside id="leftHud" class="fixed top-16 left-3 z-10 w-64 sm:w-72 paper-panel rounded-lg p-3 transition-transform duration-200 max-h-[calc(100vh-140px)] overflow-y-auto">
+    <div class="flex items-center justify-between border-b border-[#CBB78C] pb-2 mb-2">
+      <div>
+        <span class="text-[10px] font-mono-code uppercase tracking-wider text-[#B3261E] font-bold" id="hudRoomCode">ROOM 01 // #/desk</span>
+        <h2 id="hudRoomTitle" class="font-caslon-display text-base font-bold leading-snug">Reception & Unseal Gate</h2>
+      </div>
+      <button id="collapseHudBtn" class="text-xs font-mono-code px-1.5 py-0.5 rounded folder-tab" title="Minimize panel">–</button>
+    </div>
+
+    <div id="hudBodyContent" class="space-y-2.5 text-xs">
+      <p id="hudRoomDesc" class="font-caslon text-xs leading-relaxed opacity-90">
+        Welcome to the physical 3D reading room of The Registry. Click any furniture piece in the 3D room—the wooden <strong>Daraz</strong>, the steel <strong>Vault</strong>, or the <strong>Study Station</strong>—to inspect its contents.
+      </p>
+
+      <!-- Interactive 3D Hotspots in this Room -->
+      <div class="space-y-1.5 pt-1">
+        <div class="text-[10px] font-mono-code uppercase tracking-wider opacity-70 font-semibold">Interact in this Room:</div>
+        <button id="quickDarazBtn" class="w-full text-left px-2.5 py-2 rounded folder-tab hover:bg-[#CBB78C] transition flex items-center justify-between">
+          <span class="font-medium flex items-center gap-1.5">🗄️ <span id="quickDarazLabel">Open Room Daraz</span></span>
+          <span class="text-[10px] font-mono-code px-1.5 py-0.5 rounded bg-[#FBF8F1] text-[#1C2033]" id="quickDarazCount">4 Drawers</span>
+        </button>
+        <button id="quickVaultBtn" class="w-full text-left px-2.5 py-2 rounded folder-tab hover:bg-[#CBB78C] transition flex items-center justify-between">
+          <span class="font-medium flex items-center gap-1.5">🔐 <span id="quickVaultLabel">Inspect Room Vault</span></span>
+          <span id="quickVaultStatus" class="text-[10px] font-mono-code px-1.5 py-0.5 rounded bg-[#B3261E] text-white">SEALED</span>
+        </button>
+        <button id="quickStationBtn" class="w-full text-left px-2.5 py-2 rounded folder-tab hover:bg-[#CBB78C] transition flex items-center justify-between">
+          <span class="font-medium flex items-center gap-1.5">🕯️ <span id="quickStationLabel">Room Study Desk</span></span>
+          <span class="text-[10px] font-mono-code underline">Launch Tool</span>
+        </button>
+      </div>
+
+      <!-- Progress Scorecard (`registry:v1` state metrics) -->
+      <div class="border-t border-[#CBB78C] pt-2 mt-2">
+        <div class="flex items-center justify-between text-[11px] font-mono-code mb-1">
+          <span>HOUSE MASTERY</span>
+          <span id="masteryPercentText" class="font-bold text-[#3A399C]">0%</span>
+        </div>
+        <div class="w-full h-2 rounded-full bg-[#E4D7BA] overflow-hidden">
+          <div id="masteryBar" class="h-full bg-[#3A399C] transition-all duration-300" style="width: 8%"></div>
+        </div>
+        <div class="grid grid-cols-3 gap-1 mt-2 text-center font-mono-code text-[10px]">
+          <div class="p-1 rounded folder-tab">
+            <div id="statDarazOpened" class="font-bold text-sm">0/7</div>
+            <div class="opacity-75">Daraz</div>
+          </div>
+          <div class="p-1 rounded folder-tab">
+            <div id="statVaultsUnsealed" class="font-bold text-sm text-[#B3261E]">0/7</div>
+            <div class="opacity-75">Vaults</div>
+          </div>
+          <div class="p-1 rounded folder-tab">
+            <div id="statClausesLearned" class="font-bold text-sm text-[#1F6E43]">4/102</div>
+            <div class="opacity-75">Clauses</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Room Transition Buttons -->
+      <div class="flex items-center justify-between gap-2 pt-1">
+        <button id="prevRoomBtn" class="flex-1 py-1.5 px-2 rounded folder-tab font-mono-code text-[11px] hover:bg-[#CBB78C] transition">← Prev Room</button>
+        <button id="nextRoomBtn" class="flex-1 py-1.5 px-2 rounded bg-[#1C2033] text-[#FBF8F1] font-mono-code text-[11px] hover:opacity-90 transition">Next Room →</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Bottom Controls & House Minimap Bar -->
+  <footer class="fixed bottom-3 left-3 right-3 z-10 flex items-end justify-between pointer-events-none">
+    <!-- On-Screen Movement & Camera Pad -->
+    <div class="pointer-events-auto paper-panel rounded-lg p-2 flex items-center gap-2 shadow-md">
+      <div class="grid grid-cols-3 gap-1 w-24">
+        <div></div>
+        <button id="moveFwdBtn" class="p-1.5 rounded folder-tab text-xs font-mono-code active:bg-[#1C2033] active:text-white" title="Walk Forward (W)">▲</button>
+        <div></div>
+        <button id="moveLeftBtn" class="p-1.5 rounded folder-tab text-xs font-mono-code active:bg-[#1C2033] active:text-white" title="Turn/Step Left (A)">◀</button>
+        <button id="resetCamBtn" class="p-1.5 rounded folder-tab text-[10px] font-mono-code" title="Center Camera">🎯</button>
+        <button id="moveRightBtn" class="p-1.5 rounded folder-tab text-xs font-mono-code active:bg-[#1C2033] active:text-white" title="Turn/Step Right (D)">▶</button>
+        <div></div>
+        <button id="moveBackBtn" class="p-1.5 rounded folder-tab text-xs font-mono-code active:bg-[#1C2033] active:text-white" title="Step Back (S)">▼</button>
+        <div></div>
+      </div>
+      <div class="hidden sm:block text-[11px] font-mono-code leading-tight pr-1 space-y-0.5">
+        <div><span class="font-bold">Drag:</span> Look 360°</div>
+        <div><span class="font-bold">WASD/Arrows:</span> Walk</div>
+        <div><span class="font-bold">Click 3D Prop:</span> Open</div>
+        <div><span class="font-bold">Click Door:</span> Next Room</div>
+      </div>
+    </div>
+
+    <!-- Interactive House Floorplan Minimap -->
+    <div class="pointer-events-auto paper-panel rounded-lg p-2 shadow-md hidden md:block">
+      <div class="flex items-center justify-between text-[10px] font-mono-code mb-1">
+        <span class="font-bold">HOUSE FLOORPLAN (CLICK ROOM TO TELEPORT)</span>
+        <span id="customItemsCountBadge" class="text-[#B3261E] font-semibold">0 Custom Additions</span>
+      </div>
+      <div id="minimapGrid" class="grid grid-cols-7 gap-1">
+        <!-- Populated dynamically by JS -->
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 1: THE 3D DARAZ (ALMIRAH / WARDROBE) DRAWER INSPECTOR           -->
+  <!-- ===================================================================== -->
+  <div id="darazModal" class="hidden fixed inset-0 z-30 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
+    <div class="paper-panel rounded-xl max-w-4xl w-full max-h-[88vh] flex flex-col overflow-hidden border-2 border-[#CBB78C]">
+      <!-- Modal Header -->
+      <div class="px-5 py-3.5 folder-tab border-b border-[#CBB78C] flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🗄️</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="darazModalRoomTag" class="text-[11px] font-mono-code px-2 py-0.5 rounded bg-[#1C2033] text-[#FBF8F1]">ROOM 1 DARAZ</span>
+              <span class="text-xs font-mono-code text-[#1F6E43] font-semibold">✓ DOORS UNLATCHED</span>
+            </div>
+            <h3 id="darazModalTitle" class="font-caslon-display text-xl font-bold">The Reception Daraz — 9-Module Learning Path & Core Shelves</h3>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="addDarazItemQuickBtn" class="px-2.5 py-1 rounded bg-[#B3261E] text-white text-xs font-mono-code font-semibold hover:opacity-90">+ Add Drawer Item</button>
+          <button id="closeDarazModalBtn" class="px-3 py-1 rounded bg-[#1C2033] text-white text-xs font-mono-code">Close [Esc]</button>
+        </div>
+      </div>
+
+      <!-- Daraz Drawers & Shelves Layout -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-5 grid grid-cols-1 md:grid-cols-12 gap-4">
+        <!-- Left Column: Wooden Drawers Stack -->
+        <div class="md:col-span-5 space-y-2">
+          <div class="text-xs font-mono-code uppercase tracking-wider opacity-75 mb-1">Pull out a Drawer / Shelf:</div>
+          <div id="darazDrawerList" class="space-y-2">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Right Column: Opened Folder Content inside Selected Drawer -->
+        <div class="md:col-span-7 paper-panel rounded-lg p-4 border border-[#CBB78C] flex flex-col justify-between">
+          <div id="darazDrawerContent">
+            <!-- Populated by JS -->
+          </div>
+          <div class="border-t border-[#CBB78C] pt-3 mt-4 flex items-center justify-between">
+            <span id="darazDrawerFooterMeta" class="text-[11px] font-mono-code opacity-75">GCC + PCC Cross-Referenced</span>
+            <button id="markDrawerLearnedBtn" class="px-3 py-1.5 rounded bg-[#1F6E43] text-white text-xs font-mono-code font-semibold hover:opacity-90">
+              ✓ Mark Drawer Mastered
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 2: THE 3D COMBINATION VAULT / SAFE (PBKDF2 / AES-256-GCM GATE)   -->
+  <!-- ===================================================================== -->
+  <div id="vaultModal" class="hidden fixed inset-0 z-30 bg-black/65 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
+    <div class="paper-panel rounded-xl max-w-3xl w-full max-h-[88vh] flex flex-col overflow-hidden border-2 border-[#B3261E]">
+      <div class="px-5 py-3.5 bg-[#1C2033] text-[#FBF8F1] flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🔐</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="vaultModalTag" class="tape-badge px-2 py-0.5 text-[10px] rounded">PBKDF2-SHA-256 // AES-256-GCM</span>
+              <span id="vaultLockBadge" class="text-[11px] font-mono-code text-[#F5E49C]">SEALED COMPARTMENT</span>
+            </div>
+            <h3 id="vaultModalTitle" class="font-caslon-display text-xl font-bold">The Cryptographic Contract Vault</h3>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="addVaultSecretQuickBtn" class="px-2.5 py-1 rounded bg-[#B3261E] text-white text-xs font-mono-code hover:opacity-90">+ Add Secret</button>
+          <button id="closeVaultModalBtn" class="px-3 py-1 rounded folder-tab text-[#1C2033] text-xs font-mono-code font-semibold">Close [Esc]</button>
+        </div>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-5 space-y-4">
+        <!-- Vault Combination Dial / Challenge Gate -->
+        <div id="vaultGateSection" class="p-4 rounded-lg folder-tab border border-[#CBB78C] space-y-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <div class="text-xs font-mono-code font-bold text-[#B3261E]">SECURITY CHALLENGE TO UNSEAL VAULT</div>
+              <p id="vaultChallengePrompt" class="font-caslon text-sm mt-1"></p>
+            </div>
+            <div class="stamp-badge px-2.5 py-1 text-xs font-bold shrink-0">CODE HINT READY</div>
+          </div>
+
+          <!-- Interactive Combination Options -->
+          <div id="vaultCodeOptions" class="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1">
+            <!-- Populated by JS -->
+          </div>
+
+          <div class="flex items-center justify-between pt-2 border-t border-[#CBB78C] text-xs font-mono-code">
+            <span id="vaultStatusMsg" class="text-[#3A399C]">Select the correct contractual key above (or click Instant Unseal) to open the steel door.</span>
+            <button id="instantUnsealBtn" class="px-2.5 py-1 rounded border border-[#1C2033] hover:bg-[#1C2033] hover:text-white transition">
+              🔓 Master Key Unseal
+            </button>
+          </div>
+        </div>
+
+        <!-- Unsealed Classified Contents -->
+        <div id="vaultUnsealedSection" class="hidden space-y-4">
+          <div class="p-3 rounded bg-[#1F6E43]/15 border border-[#1F6E43] flex items-center justify-between">
+            <span class="text-xs font-mono-code font-bold text-[#1F6E43]">✓ VAULT UNSEALED — CLASSIFIED TKV CONTRACT DOSSIER</span>
+            <span class="stamp-badge px-2 py-0.5 text-[10px]">DECIPHERED</span>
+          </div>
+          <div id="vaultSecretsList" class="space-y-3">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 3: ROOM STUDY STATION / INTERACTIVE ENGINE WORKBENCH            -->
+  <!-- ===================================================================== -->
+  <div id="stationModal" class="hidden fixed inset-0 z-30 bg-black/60 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
+    <div class="paper-panel rounded-xl max-w-4xl w-full max-h-[88vh] flex flex-col overflow-hidden border-2 border-[#3A399C]">
+      <div class="px-5 py-3.5 folder-tab border-b border-[#CBB78C] flex items-center justify-between">
+        <div>
+          <span id="stationModalTag" class="text-[11px] font-mono-code px-2 py-0.5 rounded bg-[#3A399C] text-white">INTERACTIVE WORKBENCH</span>
+          <h3 id="stationModalTitle" class="font-caslon-display text-xl font-bold mt-0.5">Room Study Desk</h3>
+        </div>
+        <button id="closeStationModalBtn" class="px-3 py-1 rounded bg-[#1C2033] text-white text-xs font-mono-code">Close [Esc]</button>
+      </div>
+      <div id="stationModalBody" class="flex-1 overflow-y-auto p-5">
+        <!-- Dynamic Room Tool -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 4: "+ ADD TO HOUSE" CUSTOM CONTENT STUDIO (DARAZ/VAULT/ROOMS)   -->
+  <!-- ===================================================================== -->
+  <div id="addContentModal" class="hidden fixed inset-0 z-40 bg-black/65 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
+    <div class="paper-panel rounded-xl max-w-2xl w-full max-h-[90vh] flex flex-col overflow-hidden border-2 border-[#B3261E]">
+      <div class="px-5 py-3.5 bg-[#B3261E] text-white flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-mono-code uppercase tracking-wider bg-black/25 px-2 py-0.5 rounded">LIVE EXTENSIBILITY STUDIO</span>
+          <h3 class="font-caslon-display text-xl font-bold mt-0.5">Add Custom Learning Items to Your 3D House</h3>
+        </div>
+        <button id="closeAddModalBtn" class="px-3 py-1 rounded bg-white text-[#1C2033] text-xs font-mono-code font-bold">Close</button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-5 space-y-4 text-xs">
+        <p class="font-caslon text-sm">
+          Add a new drawer folder inside any room's <strong>Daraz</strong>, lock a new secret inside any room's <strong>Vault</strong>, or spawn a new 3D artifact in <strong>Room 7 (The Architect's Annex)</strong>. Everything persists in <code>localStorage</code> and syncs directly with the 2D Registry desk!
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-mono-code font-semibold mb-1">1. Target Room in House</label>
+            <select id="addTargetRoom" class="w-full p-2 rounded paper-panel border border-[#CBB78C] font-mono-code text-xs">
+              <option value="0">Room 1: Reception & Unseal Gate (#/desk)</option>
+              <option value="1">Room 2: The 102 Clauses Library (#/read)</option>
+              <option value="2">Room 3: Clocks, Baseline & EOT (#/clock)</option>
+              <option value="3">Room 4: Letters & Analyzer Studio (#/exchange)</option>
+              <option value="4">Room 5: The 14 TKV Case Files (#/cases)</option>
+              <option value="5">Room 6: Drill, Flashcards & Words (#/drill)</option>
+              <option value="6" selected>Room 7: Architect's Custom Wing (#/custom)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-mono-code font-semibold mb-1">2. Where to Place It?</label>
+            <select id="addTargetContainer" class="w-full p-2 rounded paper-panel border border-[#CBB78C] font-mono-code text-xs">
+              <option value="daraz">🗄️ Inside the Room's Daraz (New Drawer/Folder)</option>
+              <option value="vault">🔐 Inside the Room's Vault (New Classified Secret)</option>
+              <option value="flashcard">🃏 Add to Practice Flashcards & Finder Index</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div class="sm:col-span-2">
+            <label class="block font-mono-code font-semibold mb-1">3. Title / Drawer Label</label>
+            <input id="addItemTitle" type="text" placeholder="e.g., Clause 49: Defect Notification Period Trap" class="w-full p-2 rounded paper-panel border border-[#CBB78C] text-xs" />
+          </div>
+          <div>
+            <label class="block font-mono-code font-semibold mb-1">4. Clause / Ref Tag</label>
+            <input id="addItemClause" type="text" placeholder="e.g., GCC 49.1 / PCC" class="w-full p-2 rounded paper-panel border border-[#CBB78C] font-mono-code text-xs" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono-code font-semibold mb-1">5. Plain-Words Explanation & TKV Practical Note</label>
+          <textarea id="addItemContent" rows="4" placeholder="Write the plain-English breakdown, contractual deadline, or case takeaway you want learners to discover when they open this Daraz drawer or Vault..." class="w-full p-2 rounded paper-panel border border-[#CBB78C] font-caslon text-sm"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-mono-code font-semibold mb-1">6. Vault Security Question / Takeaway Callout (Optional)</label>
+          <input id="addItemTakeaway" type="text" placeholder="e.g., Always issue the Taking-Over request 14 days before completion under Clause 48." class="w-full p-2 rounded paper-panel border border-[#CBB78C] text-xs" />
+        </div>
+
+        <div id="addFormFeedback" class="hidden p-2.5 rounded bg-[#1F6E43]/15 border border-[#1F6E43] text-[#1F6E43] font-mono-code text-xs"></div>
+
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-[#CBB78C]">
+          <button id="exportCustomJsonBtn" class="px-3 py-2 rounded folder-tab font-mono-code text-xs hover:bg-[#CBB78C] transition">
+            📋 Copy JSON for GitHub Repo
+          </button>
+          <button id="saveCustomItemBtn" class="px-4 py-2 rounded bg-[#B3261E] text-white font-mono-code text-xs font-bold hover:opacity-90 transition">
+            ＋ Spawn in 3D House Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 5: DETAILED ARCHITECTURAL PLAN & GITHUB REPO INTEGRATION GUIDE  -->
+  <!-- ===================================================================== -->
+  <div id="blueprintModal" class="hidden fixed inset-0 z-40 bg-black/65 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
+    <div class="paper-panel rounded-xl max-w-4xl w-full max-h-[90vh] flex flex-col overflow-hidden border-2 border-[#3A399C]">
+      <div class="px-5 py-3.5 bg-[#3A399C] text-white flex items-center justify-between">
+        <div>
+          <span class="text-[10px] font-mono-code uppercase tracking-wider bg-black/25 px-2 py-0.5 rounded">ARCHITECTURAL BLUEPRINT & EXTENSIBILITY PLAN</span>
+          <h3 class="font-caslon-display text-xl font-bold mt-0.5">How The 3D Registry House Maps to `courses/contract-registry`</h3>
+        </div>
+        <button id="closeBlueprintModalBtn" class="px-3 py-1 rounded bg-white text-[#1C2033] text-xs font-mono-code font-bold">Close</button>
+      </div>
+
+      <div class="flex-1 overflow-y-auto p-5 space-y-4 text-xs leading-relaxed">
+        <div class="p-3.5 rounded folder-tab border border-[#CBB78C]">
+          <h4 class="font-caslon-display text-base font-bold">1. Direct Mapping to Your GitHub Repository (`shitalghimire/website`)</h4>
+          <p class="mt-1 font-caslon">
+            Every room, palette token (`--paper: #EFE8D8`, `--ink: #1C2033`, `--stamp: #3A399C`, `--tape: #B3261E`), and interactive prop in this 3D House is built directly around your existing modules in <code>courses/contract-registry/js/views/</code> and <code>js/engine/</code>:
+          </p>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse border border-[#CBB78C] font-mono-code text-[11px]">
+            <thead>
+              <tr class="folder-tab">
+                <th class="p-2 border border-[#CBB78C]">3D Room</th>
+                <th class="p-2 border border-[#CBB78C]">Repo View / Engine</th>
+                <th class="p-2 border border-[#CBB78C]">Inside the 3D Daraz (Almirah)</th>
+                <th class="p-2 border border-[#CBB78C]">Inside the 3D Steel Vault</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="p-2 border border-[#CBB78C] font-bold">1. Reception & Gate</td>
+                <td class="p-2 border border-[#CBB78C]"><code>boot.js</code>, <code>desk.js</code></td>
+                <td class="p-2 border border-[#CBB78C]">9 Learning Modules (~5 hrs) & Core 12 Clauses (`35, 32, 42, 53, 30, 67...`)</td>
+                <td class="p-2 border border-[#CBB78C]">PBKDF2-SHA-256 (250k iter) + AES-256-GCM Unseal Architecture & Priority of Documents</td>
+              </tr>
+              <tr>
+                <td class="p-2 border border-[#CBB78C] font-bold">2. Clauses Library</td>
+                <td class="p-2 border border-[#CBB78C]"><code>library.js</code>, <code>contract.js</code></td>
+                <td class="p-2 border border-[#CBB78C]">8 Pull-Out Drawers for Sections A–G & Section P (102 Clauses)</td>
+                <td class="p-2 border border-[#CBB78C]">"Red Tape" PCC Overrides (`replace`, `append`, `insert`, `fill`, `new`)</td>
+              </tr>
+              <tr>
+                <td class="p-2 border border-[#CBB78C] font-bold">3. Clocks & EOT Hall</td>
+                <td class="p-2 border border-[#CBB78C]"><code>clock.js</code>, <code>baseline.js</code>, <code>eot.js</code></td>
+                <td class="p-2 border border-[#CBB78C]">7 Deadline Clause Groups (`Claims`, `Determinations`, `Design`, `Money`, `Time`...)</td>
+                <td class="p-2 border border-[#CBB78C]">Time-Bar Guillotine Rules & Concurrent Delay / Float Ownership Secrets</td>
+              </tr>
+              <tr>
+                <td class="p-2 border border-[#CBB78C] font-bold">4. Letter Studio</td>
+                <td class="p-2 border border-[#CBB78C]"><code>reader.js</code>, <code>compose.js</code>, <code>register.js</code></td>
+                <td class="p-2 border border-[#CBB78C]">5 Drawers for 21 Letter Templates (`Notice`, `Claim`, `Reply`, `Request`, `Submission`)</td>
+                <td class="p-2 border border-[#CBB78C]">Hostile Letter Decoder (`LOT-01/SINOHYDRO-KSNS JV` vs `DOLSAR-CSPDR JV` refs)</td>
+              </tr>
+              <tr>
+                <td class="p-2 border border-[#CBB78C] font-bold">5. Case Files Room</td>
+                <td class="p-2 border border-[#CBB78C]"><code>cases.js</code> (`data.cases`, `data.doors`)</td>
+                <td class="p-2 border border-[#CBB78C]">14 TKV Dispute Case Files grouped by *Won*, *Partly won*, *Still open*, *Lost so far*</td>
+                <td class="p-2 border border-[#CBB78C]">Forensic Claim vs. Recovery Audit & Evidentiary Contemporaneous Records</td>
+              </tr>
+              <tr>
+                <td class="p-2 border border-[#CBB78C] font-bold">6. Drill & Words Attic</td>
+                <td class="p-2 border border-[#CBB78C]"><code>drill.js</code>, <code>words.js</code></td>
+                <td class="p-2 border border-[#CBB78C]">Dual Glossary (*"In plain words"* vs *"Exactly as defined"*) & 5-Box Leitner Deck</td>
+                <td class="p-2 border border-[#CBB78C]">12-Round Deadline Sprint & Master Contract Certification Exam</td>
+              </tr>
+              <tr>
+                <td class="p-2 border border-[#CBB78C] font-bold">7. Builder Wing</td>
+                <td class="p-2 border border-[#CBB78C]">Custom Extensibility (`registry:v1`)</td>
+                <td class="p-2 border border-[#CBB78C]">User-Created Drawers & Custom Clauses</td>
+                <td class="p-2 border border-[#CBB78C]">User-Created Sealed Vault Secrets & Exportable Repo JSON</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-3.5 rounded paper-panel border border-[#CBB78C]">
+            <h5 class="font-mono-code font-bold text-[#B3261E] mb-1">HOW TO ADD ITEMS WITHOUT CODING</h5>
+            <p class="font-caslon">
+              Click the red <strong>"＋ Add Item"</strong> button in the top bar at any time. Choose any of the 7 rooms, pick <strong>Daraz Drawer</strong>, <strong>Vault Secret</strong>, or <strong>Flashcard</strong>, and click <em>Spawn in 3D House Now</em>. Your 3D house immediately updates its drawer counts and spawns physical 3D artifacts in Room 7!
+            </p>
+          </div>
+          <div class="p-3.5 rounded paper-panel border border-[#CBB78C]">
+            <h5 class="font-mono-code font-bold text-[#3A399C] mb-1">HOW TO PLUG INTO `registry.sealed.json`</h5>
+            <p class="font-caslon">
+              In your repo (`courses/contract-registry/js/app.js`), route <code>#/house</code> mounts this 3D view and passes the decrypted <code>data</code> object from <code>boot.js</code> into <code>window.mountRegistryHouse(data)</code>. The house automatically populates its Daraz drawers from <code>data.contract</code>, <code>data.cases</code>, and <code>data.letters</code>!
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL 6: FINDER PALETTE (`/` or `Ctrl+K`) ACROSS ALL ROOMS & CLAUSES  -->
+  <!-- ===================================================================== -->
+  <div id="finderModal" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-start justify-center pt-16 p-4">
+    <div class="paper-panel rounded-xl max-w-2xl w-full overflow-hidden border-2 border-[#1C2033] shadow-2xl">
+      <div class="p-3 folder-tab border-b border-[#CBB78C] flex items-center gap-2">
+        <span class="text-base">🔍</span>
+        <input id="finderSearchInput" type="text" placeholder="Search 102 Clauses, Daraz drawers, Vault secrets, Case Files, or Words..." class="w-full bg-transparent outline-none font-mono-code text-xs" />
+        <button id="closeFinderBtn" class="px-2 py-0.5 rounded bg-[#1C2033] text-white text-[10px] font-mono-code">ESC</button>
+      </div>
+      <div id="finderResultsList" class="max-h-80 overflow-y-auto divide-y divide-[#CBB78C] text-xs">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Banner -->
+  <div id="toastBanner" class="hidden fixed bottom-20 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-lg bg-[#1C2033] text-[#FBF8F1] font-mono-code text-xs shadow-xl border border-[#CBB78C]">
+    Action completed
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. SYNTHESIZED SOUND ENGINE (Web Audio API — Zero External Audio Files)
+    // =========================================================================
+    const SoundFX = {
+      ctx: null,
+      muted: false,
+      init() {
+        if (!this.ctx) {
+          const AudioCtx = window.AudioContext || window.webkitAudioContext;
+          if (AudioCtx) this.ctx = new AudioCtx();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      },
+      play(type) {
+        if (this.muted) return;
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+
+          if (type === 'daraz') {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(140, now);
+            osc.frequency.exponentialRampToValueAtTime(85, now + 0.18);
+            osc.frequency.setValueAtTime(320, now + 0.19);
+            osc.frequency.exponentialRampToValueAtTime(180, now + 0.26);
+            gain.gain.setValueAtTime(0.16, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.29);
+          } else if (type === 'vault') {
+            [0, 0.07, 0.14].forEach((offset, i) => {
+              const osc = this.ctx.createOscillator();
+              const gain = this.ctx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(520 + i * 90, now + offset);
+              gain.gain.setValueAtTime(0.12, now + offset);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + offset + 0.05);
+              osc.connect(gain);
+              gain.connect(this.ctx.destination);
+              osc.start(now + offset);
+              osc.stop(now + offset + 0.055);
+            });
+          } else if (type === 'unseal') {
+            [261.6, 329.6, 392.0, 523.2].forEach((freq, idx) => {
+              const osc = this.ctx.createOscillator();
+              const gain = this.ctx.createGain();
+              osc.type = 'triangle';
+              osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+              gain.gain.setValueAtTime(0.12, now + idx * 0.05);
+              gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.45);
+              osc.connect(gain);
+              gain.connect(this.ctx.destination);
+              osc.start(now + idx * 0.05);
+              osc.stop(now + idx * 0.05 + 0.46);
+            });
+          } else if (type === 'step') {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(95, now);
+            osc.frequency.exponentialRampToValueAtTime(45, now + 0.08);
+            gain.gain.setValueAtTime(0.08, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.095);
+          } else if (type === 'stamp') {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(160, now);
+            osc.frequency.exponentialRampToValueAtTime(55, now + 0.12);
+            gain.gain.setValueAtTime(0.15, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.13);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.14);
+          }
+        } catch (e) {}
+      }
+    };
+
+    // =========================================================================
+    // 2. COMPLETE CONTRACT REGISTRY HOUSE DATASET (7 ROOMS, DARAZ, VAULTS)
+    // =========================================================================
+    const HOUSE_ROOMS = [
+      {
+        id: 0,
+        code: 'ROOM 01 // #/desk',
+        shortName: '1.Gate/Desk',
+        name: 'Reception & The Unseal Gate',
+        subtitle: 'Executive Desk, Core 12 Clauses & Cryptographic Access Gate',
+        floorColor: 0xD8C8A8,
+        wallColor: 0xEFE8D8,
+        accentColor: 0x3A399C,
+        description: 'Start your shift at the Contract Administrator’s Desk. Open the Reception Daraz for the 9-Module Learning Path (~5 hours) and Core 12 Clauses, or crack the Reception Vault to inspect how The Registry seals and resolves GCC + PCC contract rules.',
+        stationTitle: 'Clause of the Day & Core 12 Clauses Inspector',
+        stationType: 'desk',
+        darazTitle: 'Reception Daraz — 9 Learning Modules & Core 12 Clauses',
+        darazDrawers: [
+          {
+            id: 'r0-d1',
+            label: 'Drawer 1: Modules 1–3 (Contract Foundations & Hierarchy)',
+            clause: 'GCC Clauses 1–6 & PCC',
+            summary: 'How the TKV Contract is put together: Agreement, Letter of Acceptance, Contractor’s Bid, Particular Conditions (PCC), General Conditions (GCC), Specifications, Drawings, and BOQ.',
+            details: [
+              'Module 1: Reading the Contract Without Getting Lost — Always check the PCC first! A PCC entry labeled [replace], [append], [insert], or [fill] overrides the base GCC.',
+              'Module 2: The Actors on TKV — Employer, Engineer (DOLSAR-CSPDR JV), and Contractor (SINOHYDRO-KSNS JV). Know who can instruct vs. who can amend.',
+              'Module 3: Priority of Documents (Clause 2.3) — When a Drawing contradicts the Specification or BOQ, the statutory hierarchy resolves the ambiguity without guesswork.'
+            ],
+            takeaway: 'Never quote a GCC clause in a letter before checking whether Section P / PCC modified its time limit or notice procedure.'
+          },
+          {
+            id: 'r0-d2',
+            label: 'Drawer 2: Modules 4–6 (Time, Programme, Quality & Money)',
+            clause: 'Clauses 17, 27, 30, 32, 41, 42, 44, 53, 55, 56',
+            summary: 'Day-to-day administration of the Works Programme, Extension of Time (EOT), Variations, Measurement, and Interim Payment Certificates (IPCs).',
+            details: [
+              'Module 4: Programme & Progress (Clauses 17, 30, 41) — A baseline programme is not just a chart; it is the yardstick for measuring critical path delay under Clause 30.',
+              'Module 5: Quality, Tests & Defects (Clauses 27, 38, 48, 49) — Shop drawing review clocks and the transition from Taking-Over to the Defects Liability Period.',
+              'Module 6: Cost Control & Payment (Clauses 53, 55, 56, 61) — How BOQ quantities, Variation pricing, and Price Adjustment formulas operate together.'
+            ],
+            takeaway: 'Every schedule delay or extra cost requires contemporaneous site records linked to an approved Baseline activity.'
+          },
+          {
+            id: 'r0-d3',
+            label: 'Drawer 3: Modules 7–9 (Notices, Claims, Disputes & Close-Out)',
+            clause: 'Clauses 35, 36, 67, 74–81',
+            summary: 'Mastering the notice clock, writing persuasive contractual letters, surviving Force Majeure, and closing out the contract cleanly.',
+            details: [
+              'Module 7: Notices & The Binding Clock (Clause 35) — Distinguishing an informational update from a formal Notice that starts a statutory countdown.',
+              'Module 8: Dispute Resolution & Adjudication (Clauses 32, 36) — Management Meetings, Engineer Determinations, and escalating unresolved disputes before they time-bar.',
+              'Module 9: Force Majeure, Termination & Final Account (Clauses 67, 74–81) — Protecting entitlement during exceptional events and final settlement.'
+            ],
+            takeaway: 'In contract administration, silence is treated as acceptance. Always put reservations in writing within the clock window.'
+          },
+          {
+            id: 'r0-d4',
+            label: 'Drawer 4: The Core 12 Clauses Quick-Reference Strip',
+            clause: 'Clauses 35, 32, 42, 53, 30, 67, 44, 55, 56, 61, 27, 4',
+            summary: 'The 12 most frequently cited clauses across all TKV correspondence and dispute files (`desk.js` Core Strip).',
+            details: [
+              'Clause 35 (Early Warning / Claims Notice) & Clause 32 (Management Meetings / Determinations).',
+              'Clause 42 (Compensation Events) & Clause 30 (Extension of Intended Completion Date).',
+              'Clause 53 (Variations) & Clause 44 ( Valuation of Variations / Quotations).',
+              'Clause 67 (Force Majeure), Clause 55/56 (Payments & Certificates), Clause 61 (Price Adjustment), Clause 27 (Program/Design Submission), Clause 4 (Engineer’s Decisions).'
+            ],
+            takeaway: 'Mastering these 12 core clauses gives you leverage over 85%+ of daily site letters on TKV.'
+          }
+        ],
+        vaultTitle: 'Reception Vault — Cryptographic Architecture & Contract Hierarchy',
+        vaultQuestion: 'When the BOQ description and the Particular Conditions of Contract (PCC) conflict on TKV, which document prevails?',
+        vaultOptions: [
+          { label: 'A. The Bill of Quantities (BOQ)', correct: false },
+          { label: 'B. The Particular Conditions of Contract (PCC)', correct: true },
+          { label: 'C. The Contractor’s Technical Bid', correct: false }
+        ],
+        vaultSecrets: [
+          {
+            title: 'SECRET 01: How `registry.sealed.json` Protects TKV Data',
+            badge: 'AES-256-GCM // PBKDF2',
+            body: 'All plaintext contract clauses, TKV dispute amounts, and correspondence templates are sealed inside `data/registry.sealed.json`. When you enter your access code at `#gate`, `js/boot.js` runs PBKDF2-SHA-256 with 250,000 iterations to derive an AES-256-GCM key entirely in browser memory—zero plaintext ever touches GitHub.'
+          },
+          {
+            title: 'SECRET 02: The Golden Rule of Priority of Documents',
+            badge: 'GCC CLAUSE 2.3',
+            body: 'The Particular Conditions of Contract (PCC) sit above the General Conditions (GCC), Specifications, Drawings, and Bill of Quantities. Whenever an Engineer’s letter relies on a general specification note to deny a right explicitly granted in the PCC, cite the Priority of Documents immediately.'
+          }
+        ]
+      },
+      {
+        id: 1,
+        code: 'ROOM 02 // #/read',
+        shortName: '2.Clauses(102)',
+        name: 'The 102 Clauses Library Hall',
+        subtitle: 'Sections A–G + Section P (PCC Red-Tape Overrides)',
+        floorColor: 0xCFB997,
+        wallColor: 0xF3EDE0,
+        accentColor: 0xB3261E,
+        description: 'Towering oak shelves house all 102 Clauses across Sections A through G and Section P (New PCC Clauses). Open the Library Daraz to browse every section, or unlock the Vault to expose the "Red Tape" PCC overrides.',
+        stationTitle: 'GCC vs. PCC Red-Tape Clause Comparator',
+        stationType: 'clauses',
+        darazTitle: 'Library Daraz — All 8 Contract Sections (102 Clauses)',
+        darazDrawers: [
+          {
+            id: 'r1-d1',
+            label: 'Section A & B: General (Cl. 1–14) & Staff/Labour (Cl. 15–26)',
+            clause: 'Sections A & B',
+            summary: 'Definitions (Clause 1.1), Engineer’s role (Clause 4), Subcontracting (Clause 7), Key Personnel (Clause 16), Safety (Clause 23), and Site Access (Clause 24).',
+            details: [
+              'Clause 1.1: Strict formal definitions—capitalized words in letters ("Equipment", "Materials", "Specification", "Variation") carry exact legal meanings.',
+              'Clause 4 & 8: Engineer’s instructions must be in writing; delegated assistants cannot issue binding determinations unless formally notified.',
+              'Clause 24: Possession of the Site—if the Employer delays handing over access to a work front, it triggers both Time (Clause 30) and Compensation (Clause 42).'
+            ],
+            takeaway: 'Check whether capitalized terms in incoming letters match Clause 1.1 definitions.'
+          },
+          {
+            id: 'r1-d2',
+            label: 'Section C & D: Time Control (Cl. 27–36) & Quality Control (Cl. 37–40)',
+            clause: 'Sections C & D',
+            summary: 'Program updates (Clause 27), EOT (Clause 30), Acceleration (Clause 31), Management Meetings (Clause 32), Early Warning (Clause 35), and Defects (Clauses 37–40).',
+            details: [
+              'Clause 27: Submit the initial Works Programme and update it within the PCC-mandated interval or risk withholding under payment clauses.',
+              'Clause 30: Extension of the Intended Completion Date—requires demonstrating that a Compensation Event or Variation impacted the critical path.',
+              'Clause 35: Early Warning—notify as soon as you become aware of any event that may increase cost, delay completion, or impair work performance.'
+            ],
+            takeaway: 'Early Warning under Clause 35 is your shield against allegations that the Engineer had no opportunity to mitigate delay.'
+          },
+          {
+            id: 'r1-d3',
+            label: 'Section E: Cost Control (Clauses 41–66)',
+            clause: 'Section E (Cl. 41–66)',
+            summary: 'Bill of Quantities, Compensation Events (Clause 42), Variations & Quotations (Clauses 44, 53), Payment Certificates (Clauses 55, 56), Price Adjustment (Clause 61), and Retention/Liquidated Damages.',
+            details: [
+              'Clause 42: Lists the statutory Compensation Events (delayed site access, late drawings, unforeseen physical conditions, delayed instructions).',
+              'Clause 53 & 44: Procedure for requesting and valuing Variations before executing altered scope.',
+              'Clause 56: Payment timeline and entitlement to financing charges (interest) when certified payments are delayed.'
+            ],
+            takeaway: 'Separate Variation requests (Clause 53) from Compensation Event notices (Clause 42) so neither gets rejected on procedural grounds.'
+          },
+          {
+            id: 'r1-d4',
+            label: 'Section F, G & P: Force Majeure, Finishing & PCC New Clauses (Cl. 67–102)',
+            clause: 'Sections F, G & P',
+            summary: 'Force Majeure (Clause 67), Taking-Over (Clause 74), Final Account (Clause 75), Termination, plus Clauses 82–102 added by the Particular Conditions (Section P).',
+            details: [
+              'Clause 67: Force Majeure requires prompt notice of the event and tangible proof of physical or legal impossibility to perform.',
+              'Clause 74 & 75: Completion, Taking-Over Certificate, and Final Statement deadlines.',
+              'Section P (Clauses 82–102): Project-specific TKV obligations covering customs, royalties, environmental compliance, tax adjustments, and site security.'
+            ],
+            takeaway: 'Clauses 82–102 exist ONLY in the PCC (`action: "new"`). Standard GCC textbooks won’t mention them—study them here!'
+          }
+        ],
+        vaultTitle: 'Library Vault — The 5 PCC Red-Tape Override Actions',
+        vaultQuestion: 'In `contract.js`, which PCC action label indicates a brand-new clause (like Clauses 82–102) that does not exist in the base GCC?',
+        vaultOptions: [
+          { label: 'A. action: "replace"', correct: false },
+          { label: 'B. action: "new" (Section P)', correct: true },
+          { label: 'C. action: "fill"', correct: false }
+        ],
+        vaultSecrets: [
+          {
+            title: 'SECRET 01: The 5 PCC Modification Mechanics (`ACTION_LABEL`)',
+            badge: 'CONTRACT.JS ENGINE',
+            body: 'The Registry categorizes every PCC intervention into 5 exact actions: (1) `replace` ("Replaced by the PCC"), (2) `append` ("Added to by the PCC"), (3) `insert` ("Inserted by the PCC"), (4) `fill` ("Filled in by the PCC" from Contract Data), and (5) `new` ("New clause in the PCC").'
+          },
+          {
+            title: 'SECRET 02: Detecting "FIDIC Look-Alike" Citation Traps',
+            badge: 'READER.JS GUARD',
+            body: 'Opposing correspondence often cites standard FIDIC Red Book terminology (e.g., "Sub-Clause 20.1" or "DAB") that does not match the actual TKV GCC/PCC numbering. The Registry’s `reader.js` automatically flags mismatched or FIDIC look-alike citations so you can rebut them immediately.'
+          }
+        ]
+      },
+      {
+        id: 2,
+        code: 'ROOM 03 // #/clock',
+        shortName: '3.Clocks/EOT',
+        name: 'The Hall of Clocks, Baseline & EOT',
+        subtitle: '7 Functional Deadline Groups, Schedule Baseline & EOT Analyzer',
+        floorColor: 0xC8B492,
+        wallColor: 0xEDE5D2,
+        accentColor: 0xB4690E,
+        description: 'Seven brass pendulum clocks tick on the walls—representing the 7 deadline groups in `clock.js`. Open the Daraz to inspect every statutory notice window, or use the Study Desk to run an interactive Extension of Time (EOT) & Deadline Calculation.',
+        stationTitle: 'Interactive EOT & Contractual Deadline Calculator',
+        stationType: 'clocks',
+        darazTitle: 'Horology Daraz — The 7 Contractual Deadline Groups',
+        darazDrawers: [
+          {
+            id: 'r2-d1',
+            label: 'Group 1 & 2: Claims/Notices (35,46,42,68,69,20) & Disputes (32,36)',
+            clause: 'Clauses 20, 32, 35, 36, 42, 46, 68, 69',
+            summary: 'The critical clocks that govern notice of claim, early warning, Engineer determinations, and referral to dispute resolution.',
+            details: [
+              'Claims & Notices Group: Clauses 35, 46, 42, 68, 69, 20 — Start a clock the moment a delay or cost event occurs on site.',
+              'Determinations & Disputes Group: Clauses 32 & 36 — Once the Engineer issues a decision/determination, the clock to challenge or refer it to adjudication begins ticking immediately.'
+            ],
+            takeaway: 'Log every incoming determination date in `#/clock` on the day it arrives so the challenge window never expires silently.'
+          },
+          {
+            id: 'r2-d2',
+            label: 'Group 3 & 4: Design/Review (27, 8) & Money Clocks (56,63,64,55,80,81)',
+            clause: 'Clauses 8, 27, 55, 56, 63, 64, 80, 81',
+            summary: 'How long the Engineer has to review submissions, and how long the Employer has to certify and pay IPCs.',
+            details: [
+              'Design & Review Group (Clauses 27, 8): Track every drawing and programme submission—once the review period expires without comment, document the delay.',
+              'Money Group (Clauses 56, 63, 64, 55, 80, 81): Certification window vs. payment window, retention release triggers, and late-payment interest clocks.'
+            ],
+            takeaway: 'Unanswered shop drawings beyond the Clause 27 review window shift critical path responsibility away from the Contractor.'
+          },
+          {
+            id: 'r2-d3',
+            label: 'Group 5, 6 & 7: Time/Reports, People/Site & Completion/Defects',
+            clause: 'Clauses 16,17,23,24,30,31,38,41,48,49,61,74–79,89,93',
+            summary: 'Programme updates, monthly reports, site possession, testing notices, Taking-Over, and Defects Liability milestones.',
+            details: [
+              'Time, Programme & Reports: Clauses 41, 17, 30, 61, 79.',
+              'People & Site: Clauses 38, 16, 23, 24, 31, 89, 93.',
+              'Tests, Completion & Defects: Clauses 48, 49, 74, 75, 76, 77, 78.'
+            ],
+            takeaway: 'Before requesting a Taking-Over Certificate under Clause 74, verify all test notices under Clauses 48/49 are closed.'
+          }
+        ],
+        vaultTitle: 'Horology Vault — Time-Bar Traps & Critical Path Float',
+        vaultQuestion: 'In an Extension of Time (EOT) assessment under Clause 30, what must a Contractor prove in addition to showing an Employer-risk event occurred?',
+        vaultOptions: [
+          { label: 'A. That total project headcount increased', correct: false },
+          { label: 'B. That the event delayed the Critical Path affecting the Intended Completion Date', correct: true },
+          { label: 'C. That the BOQ total was exceeded by 25%', correct: false }
+        ],
+        vaultSecrets: [
+          {
+            title: 'SECRET 01: Surviving the Time-Bar Defence',
+            badge: 'CLOCK.JS STRATEGY',
+            body: 'When an Engineer claims a notice was submitted late, check: (1) Did the PCC specify a hard condition-precedent time bar, or a directory timeline? (2) Was the Engineer already aware of the event via site minutes, daily reports, or an earlier Clause 35 Early Warning letter?'
+          },
+          {
+            title: 'SECRET 02: Baseline vs. Impacted Programme (`baseline.js` & `eot.js`)',
+            badge: 'CRITICAL PATH ENGINE',
+            body: 'Non-critical delays consume float without moving the Completion Date. Always tie your EOT narrative to the driving chain of critical activities in the accepted Clause 27 Baseline Programme.'
+          }
+        ]
+      },
+      {
+        id: 3,
+        code: 'ROOM 04 // #/exchange',
+        shortName: '4.Letters(21)',
+        name: 'The Correspondence & Dispatch Studio',
+        subtitle: '21 Letter Types, 5 Functional Kinds & Real-Time Letter Analyzer',
+        floorColor: 0xD2C1A0,
+        wallColor: 0xF1EAD9,
+        accentColor: 0x3A399C,
+        description: 'Pneumatic dispatch tubes carry letters between Contractor (`TKV/COM/2024/...`), Engineer (`LOT-01/SINOHYDRO-KSNS JV/...`), and Employer (`DOLSAR-CSPDR JV/...`). Open the Daraz for all 21 Letter Types or use the Desk to analyze & compose letters.',
+        stationTitle: 'Live Letter Analyzer (`reader.js`) & Composer (`compose.js`)',
+        stationType: 'letters',
+        darazTitle: 'Correspondence Daraz — 5 Letter Kinds & 21 Standard Templates',
+        darazDrawers: [
+          {
+            id: 'r3-d1',
+            label: 'Drawer 1: NOTICES ("You start a clock")',
+            clause: 'Clauses 24, 35, 42, 67',
+            summary: 'Formal notices that establish entitlement and start a contractual countdown clock.',
+            details: [
+              '1. Early Warning Notice (Clause 35) — Flagging potential delay or cost impact.',
+              '2. Notice of Compensation Event (Clause 42) — Formal notification of an Employer-risk event.',
+              '3. Notice of Delayed Site Possession / Access (Clause 24).',
+              '4. Notice of Force Majeure / Exceptional Event (Clause 67).',
+              '5. Notice of Intention to Suspend / Slow Work for Non-Payment (Clause 56).'
+            ],
+            takeaway: 'Every Notice must state the exact Clause number, the date the event started, and that detailed particulars will follow.'
+          },
+          {
+            id: 'r3-d2',
+            label: 'Drawer 2: CLAIMS ("You put the case")',
+            clause: 'Clauses 30, 42, 44, 53, 61',
+            summary: 'Substantiated submissions presenting the legal, schedule, and financial case for EOT or additional payment.',
+            details: [
+              '6. Interim / Full Extension of Time (EOT) Claim Submission (Clause 30).',
+              '7. Prolongation & Disruption Cost Claim (Clause 42).',
+              '8. Variation Quotation & Valuation Submission (Clauses 44 & 53).',
+              '9. Price Adjustment / Escalation Claim Calculation (Clause 61).',
+              '10. Financing Charges (Late Payment Interest) Claim (Clause 56).'
+            ],
+            takeaway: 'Structure every Claim into 4 parts: (1) Contractual Basis, (2) Cause & Facts, (3) Critical Path Effect, and (4) Quantum.'
+          },
+          {
+            id: 'r3-d3',
+            label: 'Drawer 3: REPLIES ("Something landed on you")',
+            clause: 'Clauses 4, 32, 36, 53',
+            summary: 'Defensive and strategic responses when the Engineer issues an instruction, rejection, or allegation.',
+            details: [
+              '11. Reply to Engineer’s Site Instruction Confirming It Constitutes a Variation (Clause 53).',
+              '12. Rebuttal to Unjustified Allegation of Slow Progress (Clause 27/30).',
+              '13. Notice of Dissatisfaction / Objection to Engineer’s Determination (Clauses 32 & 36).',
+              '14. Reply Rejecting Defective Work Allegation with Test Records (Clause 38).'
+            ],
+            takeaway: 'When an instruction changes scope, reply within days confirming you are proceeding under Clause 53 as a Variation.'
+          },
+          {
+            id: 'r3-d4',
+            label: 'Drawer 4 & 5: REQUESTS ("Ask") & SUBMISSIONS ("Hand in")',
+            clause: 'Clauses 8, 27, 48, 55, 74',
+            summary: 'Requests for drawings/instructions/approvals and formal transmittals of programmes, IPCs, and completion applications.',
+            details: [
+              '15–18 (Requests): Request for Missing Construction Drawings (Cl. 8), Request for Joint Measurement (Cl. 55), Request for Inspection/Testing (Cl. 48), Request for Clarification of Ambiguity (Cl. 2.3).',
+              '19–21 (Submissions): Submission of Baseline/Updated Works Programme (Cl. 27), Submission of Monthly Interim Payment Statement (Cl. 55/56), Application for Taking-Over Certificate (Cl. 74).'
+            ],
+            takeaway: 'Every Request or Submission should state the date by which the Engineer’s response is required under the Contract.'
+          }
+        ],
+        vaultTitle: 'Correspondence Vault — Reference Families & Analyzer Engine',
+        vaultQuestion: 'In `letters.js`, how does The Registry classify a letter bearing the reference `LOT-01/SINOHYDRO-KSNS JV/0123`?',
+        vaultOptions: [
+          { label: 'A. `in:123` — Engineer to Contractor incoming letter', correct: true },
+          { label: 'B. `out:123` — Contractor to Employer invoice', correct: false },
+          { label: 'C. Internal subcontract memo', correct: false }
+        ],
+        vaultSecrets: [
+          {
+            title: 'SECRET 01: The 3 Letter Reference Families (`letters.js`)',
+            badge: 'REGISTER PARSER',
+            body: 'The Registry automatically normalizes TKV letter references into 3 families: (1) `er` (`LOT-01/SINOHYDRO-KSNS JV/0123` -> `in:123`, Engineer to Contractor), (2) `ours` (`TKV/COM/2024/0456` -> `out:456`, Contractor to Engineer), and (3) `er-emp` (`DOLSAR-CSPDR JV/0123` -> `er-emp:123`, Engineer to Employer).'
+          },
+          {
+            title: 'SECRET 02: How `reader.js` Dissects an Incoming Letter in 5 Steps',
+            badge: 'ANALYSER ENGINE',
+            body: '(1) Extracts sender, ref, date, and cross-references; (2) Verifies cited clauses against actual TKV GCC/PCC text; (3) Classifies the letter action (determination, rejection, instruction); (4) Suggests defensive clauses; and (5) Auto-triggers a reply clock and draft template.'
+          }
+        ]
+      },
+      {
+        id: 4,
+        code: 'ROOM 05 // #/cases',
+        shortName: '5.Cases(14)',
+        name: 'The 14 TKV Case Files Chamber',
+        subtitle: '4 Dispute Outcome Doors: Won, Partly Won, Still Open & Lost So Far',
+        floorColor: 0xC6B294,
+        wallColor: 0xEFE7D6,
+        accentColor: 0xB3261E,
+        description: 'Four evidence doors (`data.doors`) organize 14 real-world TKV construction dispute files by outcome: Won, Partly won, Still open, and Lost so far. Open the Daraz to examine the case dossiers, or unlock the Vault for forensic recovery lessons.',
+        stationTitle: 'Dispute Case File Explorer & Claimed vs. Recovered Auditor',
+        stationType: 'cases',
+        darazTitle: 'Case Files Daraz — 14 Real-World TKV Dispute Dossiers',
+        darazDrawers: [
+          {
+            id: 'r4-d1',
+            label: 'Door 1 [WON]: Claims Fully Upheld on Merit & Notice',
+            clause: 'Clauses 24, 30, 42, 53',
+            summary: 'Disputes where timely Clause 35/42 notices, clear baseline critical-path proof, and contemporaneous joint records secured 100% entitlement.',
+            details: [
+              'Case File #01 (Site Access & Right-of-Way Delay): Timely notice under Clause 24 + signed joint hindrance register = full EOT and equipment standby recovery.',
+              'Case File #04 (Instructed Drawing Revision Outside Original Scope): Immediate confirmation under Clause 53 before pouring concrete locked in Variation valuation.',
+              'Case File #07 (Delayed Payment Financing Charges): Objective IPC certification dates vs. bank credit dates left zero room for dispute under Clause 56.'
+            ],
+            takeaway: 'Winning claims rely on contemporaneous joint records signed by site representatives at the time the work was affected.'
+          },
+          {
+            id: 'r4-d2',
+            label: 'Door 2 [PARTLY WON]: Entitlement Proven, Quantum Trimmed',
+            clause: 'Clauses 30, 42, 44, 55',
+            summary: 'Cases where the Contractor proved an Employer-risk event occurred, but recovered only part of the claimed time or money.',
+            details: [
+              'Case File #02 (Unforeseen Geological / Rock Excavation Conditions): Time extension granted, but idle plant cost reduced because daily plant sheets lacked countersignatures.',
+              'Case File #05 (Late Design Review by Engineer): EOT partially reduced due to concurrent Contractor mobilization delay on a parallel work front.',
+              'Case File #09 (Variation Rate Dispute): New rate approved, but overhead mark-up capped per PCC valuation table.'
+            ],
+            takeaway: 'Entitlement without substantiation only wins half the battle—keep daily labor and equipment deployment logs watertight.'
+          },
+          {
+            id: 'r4-d3',
+            label: 'Door 3 [STILL OPEN]: Live Determinations & Pending Escalations',
+            clause: 'Clauses 32, 36, 61, 67',
+            summary: 'Active TKV dispute files awaiting Engineer determination, management meeting resolution, or adjudication referral.',
+            details: [
+              'Case File #08 (Price Adjustment Indexation & Base Date Formula): Active exchange over index weightings under Clause 61.',
+              'Case File #11 (Exceptional Rainfall / Flood Damage Restoration): Pending assessment under Clause 67 Force Majeure vs. Employer’s Risk.',
+              'Case File #13 (Cumulative Disruption from Piecemeal Drawing Issuance): Under active schedule impact review.'
+            ],
+            takeaway: 'For every "Still open" case, maintain monthly interim claim updates so the claim remains alive until final determination.'
+          },
+          {
+            id: 'r4-d4',
+            label: 'Door 4 [LOST SO FAR]: Red-Tape Warnings & Procedural Traps',
+            clause: 'Clauses 27, 35, 42, 53',
+            summary: 'Hard lessons where valid technical grievances were rejected due to late notices, unapproved verbal instructions, or missing baseline links.',
+            details: [
+              'Case File #03 (Verbal Site Instruction Executed Without Written Confirmation): Executed extra work on oral request; rejected for lack of written Clause 53 instruction.',
+              'Case File #06 (Late Claim Notification Months After Event Ended): Rejected at threshold because no Early Warning (Clause 35) or contemporary record was filed.',
+              'Case File #12 (Global Delay Claim Without Critical Path Breakdown): Rejected as an unsubstantiated "global claim" lacking cause-and-effect link to the Clause 27 programme.'
+            ],
+            takeaway: 'Never execute scope changes on verbal promises—send a polite written confirmation ("Further to your site instruction today...") the same afternoon.'
+          }
+        ],
+        vaultTitle: 'Case Files Vault — Forensic Post-Mortem on Lost vs. Won Claims',
+        vaultQuestion: 'Why do "global claims" (lumping multiple delays into one total without linking each event to the Critical Path) usually fail in TKV case files?',
+        vaultOptions: [
+          { label: 'A. Because the paper font is wrong', correct: false },
+          { label: 'B. Because they fail to prove cause-and-effect between each specific Compensation Event and critical path delay', correct: true },
+          { label: 'C. Because Clause 1 forbids charts', correct: false }
+        ],
+        vaultSecrets: [
+          {
+            title: 'SECRET 01: The 3-Pillar Evidentiary Standard',
+            badge: 'CASES.JS FORENSICS',
+            body: 'Across all 14 TKV case files, every successful recovery had 3 pillars: (1) A timely written notice citing the exact GCC/PCC clause, (2) Contemporaneous primary records (site diaries, joint measurements, photos, transmittals), and (3) A fragmented schedule impact window linking cause to effect.'
+          },
+          {
+            title: 'SECRET 02: Turning a Verbal Order into a Written Variation',
+            badge: 'CLAUSE 53 SHIELD',
+            body: 'If the Engineer gives an urgent verbal instruction on site, do not wait for them to write it down. Send a short letter the same day: "We confirm receipt of your verbal instruction on site today to [X] and are proceeding in accordance with Clause 53." If not contradicted promptly, it stands on the record.'
+          }
+        ]
+      },
+      {
+        id: 5,
+        code: 'ROOM 06 // #/drill & #/words',
+        shortName: '6.Drill/Words',
+        name: 'The Drill Gymnasium & Dual Glossary Attic',
+        subtitle: '5-Box Leitner Flashcards, 12-Round Deadline Sprint & Dual Dictionary',
+        floorColor: 0xD4C3A3,
+        wallColor: 0xF5EFE2,
+        accentColor: 0x1F6E43,
+        description: 'Test your reflexes! Open the Attic Daraz for the Dual Glossary ("In plain words" vs. "Exactly as defined" under GCC Clause 1.1), or step up to the Study Podium for Leitner Flashcards, Scenario Quizzes, and the Deadline Sprint.',
+        stationTitle: 'Leitner 5-Box Flashcards, Scenario Quiz & Deadline Sprint',
+        stationType: 'drill',
+        darazTitle: 'Attic Daraz — Dual Glossary ("Plain Words" vs. "Clause 1.1")',
+        darazDrawers: [
+          {
+            id: 'r5-d1',
+            label: 'Drawer 1: Time & Schedule Terms (Plain Words vs. Clause 1.1)',
+            clause: 'GCC Clause 1.1',
+            summary: 'Comparing everyday site understanding with strict GCC 1.1 definitions for Start Date, Intended Completion Date, and Days.',
+            details: [
+              '• Start Date — Plain words: When the contract clock starts running for the Works. | Clause 1.1: The date given in the PCC when the Contractor shall commence execution of the Works.',
+              '• Intended Completion Date — Plain words: Your target finish date (moves only if EOT is granted). | Clause 1.1: The date on which it is intended that the Contractor shall complete the Works, which may be revised only by the Engineer issuing an EOT.',
+              '• Days vs. Months — Days are calendar days; months are calendar months.'
+            ],
+            takeaway: 'Only the Engineer can revise the Intended Completion Date via a formal Clause 30 EOT determination.'
+          },
+          {
+            id: 'r5-d2',
+            label: 'Drawer 2: Money & Pricing Terms (Plain Words vs. Clause 1.1)',
+            clause: 'GCC Clause 1.1',
+            summary: 'Contract Price, Bill of Quantities, Compensation Events, Variation, and Retention.',
+            details: [
+              '• Variation — Plain words: An official instruction from the Engineer that changes the Works. | Clause 1.1: Any instruction given by the Engineer which varies the Works.',
+              '• Compensation Events — Plain words: Defined Employer-risk events that entitle you to extra cost and/or extra time. | Clause 1.1: Those events defined in Clause 42 of the GCC.',
+              '• Retention — Plain words: Percentage held back from each IPC until Completion and Defects Liability End.'
+            ],
+            takeaway: 'Not every Compensation Event is a Variation, and not every Variation is a Compensation Event—know which door you are knocking on!'
+          },
+          {
+            id: 'r5-d3',
+            label: 'Drawer 3: Quality & Close-Out Terms (Defect, Equipment, Materials)',
+            clause: 'GCC Clause 1.1',
+            summary: 'Why "Equipment" vs. "Plant" vs. "Materials" matters on TKV.',
+            details: [
+              '• Equipment — Plain words: The Contractor’s machinery/tools brought temporarily to build the Works (excavators, cranes).',
+              '• Plant — Plain words: Machinery/apparatus that becomes a permanent part of the Works (turbines, gates, transformers).',
+              '• Defect — Plain words: Any part of the Works not completed in accordance with the Contract.'
+            ],
+            takeaway: 'Never confuse Contractor’s Equipment (temporary machinery) with permanent Plant when drafting a prolongation or customs letter!'
+          }
+        ],
+        vaultTitle: 'Attic Vault — The Leitner 5-Box Memory System & Master Exam',
+        vaultQuestion: 'Under GCC Clause 1.1 on TKV, what does the capitalized term "Equipment" refer to?',
+        vaultOptions: [
+          { label: 'A. Permanent hydro-mechanical turbines installed in the dam', correct: false },
+          { label: 'B. The Contractor’s machinery and vehicles brought temporarily to the Site to construct the Works', correct: true },
+          { label: 'C. Office stationery only', correct: false }
+        ],
+        vaultSecrets: [
+          {
+            title: 'SECRET 01: How the 5-Box Leitner System (`drill.js`) Builds Instant Recall',
+            badge: 'MEMORY ENGINE',
+            body: 'In `drill.js`, every Clause Flashcard starts in Box 0. Each time you recall the plain-language rule and time limit correctly, the card advances toward Box 4. Any miss resets the card to Box 0 so weak clauses receive immediate reinforcement.'
+          },
+          {
+            title: 'SECRET 02: The Master Contract Administrator’s Checklist',
+            badge: 'CERTIFIED STAMP',
+            body: 'Before signing any outgoing TKV letter: (1) Verify the Clause number against PCC overrides, (2) Check defined terms against Clause 1.1, (3) Cite prior correspondence refs (`in:...` / `out:...`), and (4) Log the response deadline in `#/clock`.'
+          }
+        ]
+      },
+      {
+        id: 6,
+        code: 'ROOM 07 // #/custom-wing',
+        shortName: '7.Builder Wing',
+        name: 'The Architect’s Custom Expansion Wing',
+        subtitle: 'Live 3D Sandbox for Your Custom Daraz Drawers, Vault Secrets & Modules',
+        floorColor: 0xC9B99B,
+        wallColor: 0xF4EFE6,
+        accentColor: 0x3A399C,
+        description: 'This is your expandable 3D wing! Every custom Daraz drawer, Vault secret, or clause note you add via the "+ Add Item" button spawns as a physical 3D trophy on the pedestals in this room and integrates into your house.',
+        stationTitle: 'Custom Content Manager & GitHub Repository Exporter',
+        stationType: 'builder',
+        darazTitle: 'Architect’s Daraz — Your Custom Added Drawers & Clauses',
+        darazDrawers: [
+          {
+            id: 'r6-d1',
+            label: 'Drawer 1: How to Add New Items to Any Daraz or Vault',
+            clause: 'EXTENSIBLE SCHEMA',
+            summary: 'Click "+ Add Item" in the top bar (or inside any Daraz/Vault modal) to inject new lessons, clauses, or secrets into any of the 7 rooms.',
+            details: [
+              '1. Target any room (Room 1 through Room 7) and choose Daraz Drawer, Vault Secret, or Flashcard.',
+              '2. Your new items persist automatically in browser storage (`registry:3d:v1`) and spawn 3D artifacts on the pedestals in Room 7.',
+              '3. Click "Copy JSON for GitHub Repo" to export your additions in a clean JSON structure ready for `courses/contract-registry/`.'
+            ],
+            takeaway: 'Try adding your own custom clause or TKV site note right now using the "+ Add Item" button!'
+          }
+        ],
+        vaultTitle: 'Architect’s Vault — Your Custom Sealed Secrets & Repo Bridge',
+        vaultQuestion: 'How can you integrate this 3D House directly with `registry.sealed.json` in `courses/contract-registry/`?',
+        vaultOptions: [
+          { label: 'A. Pass the decrypted `data` object from `boot.js` into `window.mountRegistryHouse(data)`', correct: true },
+          { label: 'B. Rewrite the entire contract in C++', correct: false },
+          { label: 'C. Delete `registry.css`', correct: false }
+        ],
+        vaultSecrets: [
+          {
+            title: 'SECRET 01: Direct Hook for `js/boot.js` Decrypted Payload',
+            badge: 'REPO BRIDGE READY',
+            body: 'This file exposes `window.mountRegistryHouse(decryptedData)`. When mounted inside `courses/contract-registry/`, it automatically reads `data.contract`, `data.path.modules`, `data.cases`, `data.letters`, and `data.words` and populates every 3D room’s Daraz and Vault dynamically!'
+          }
+        ]
+      }
+    ];
+
+    // Interactive Flashcards & Quiz Dataset for Room 6 & Station Tools
+    const FLASHCARDS_DECK = [
+      { id: 'fc-35', clause: 'Clause 35', title: 'Early Warning', front: 'GCC Clause 35 — When must the Contractor give an Early Warning notice?', back: 'As soon as the Contractor becomes aware of any specific likely future event or circumstance that may adversely affect the quality of the work, increase the Contract Price, or delay the execution of the Works.', box: 1 },
+      { id: 'fc-42', clause: 'Clause 42', title: 'Compensation Events', front: 'GCC Clause 42 — What is the effect if a Compensation Event causes additional cost or prevents completion before the Intended Completion Date?', back: 'The Contract Price shall be increased and/or the Intended Completion Date shall be extended. The Contractor must notify and submit information demonstrating the impact on the programme and cost.', box: 1 },
+      { id: 'fc-53', clause: 'Clause 53 / 44', title: 'Variations & Quotations', front: 'GCC Clauses 53 & 44 — How are Variations priced when requested by the Engineer?', back: 'The Contractor provides a quotation with rates from the Bill of Quantities if applicable; if the nature or amount of work differs so that BOQ rates are inappropriate, new reasonable rates are assessed.', box: 0 },
+      { id: 'fc-30', clause: 'Clause 30', title: 'Extension of Time (EOT)', front: 'GCC Clause 30 — Who decides whether and by how much to extend the Intended Completion Date?', back: 'The Engineer shall decide whether and by how much to extend the Intended Completion Date within the contractually specified review window after the Contractor asks for a decision with full supporting information.', box: 0 },
+      { id: 'fc-67', clause: 'Clause 67', title: 'Force Majeure', front: 'GCC Clause 67 — What must a party do immediately upon becoming aware of a Force Majeure event?', back: 'Notify the other party immediately of the event and the obligations affected, and take all reasonable precautions and alternative measures to mitigate the consequences.', box: 2 }
+    ];
+
+    // =========================================================================
+    // 3. PERSISTENT STATE & TWO-WAY REGISTRY:V1 SYNCHRONIZATION
+    // =========================================================================
+    const State = {
+      currentRoom: 0,
+      selectedDrawerIdx: 0,
+      nightMode: false,
+      darazOpened: {},
+      vaultsUnsealed: {},
+      drawersMastered: {},
+      customItems: [],
+      leitnerBoxes: { 'fc-35': 1, 'fc-42': 1, 'fc-53': 0, 'fc-30': 0, 'fc-67': 2 },
+      activeCardIdx: 0,
+      cardFlipped: false,
+      sprintScore: 0,
+      sprintRound: 0,
+
+      load() {
+        try {
+          const raw = localStorage.getItem('registry:3d:v1');
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            this.darazOpened = parsed.darazOpened || {};
+            this.vaultsUnsealed = parsed.vaultsUnsealed || {};
+            this.drawersMastered = parsed.drawersMastered || {};
+            this.customItems = Array.isArray(parsed.customItems) ? parsed.customItems : [];
+            if (parsed.leitnerBoxes) this.leitnerBoxes = { ...this.leitnerBoxes, ...parsed.leitnerBoxes };
+          }
+        } catch (e) {}
+
+        // Pull in progress from 2D Desk store (`registry:v1`)
+        try {
+          const raw2d = localStorage.getItem('registry:v1');
+          if (raw2d) {
+            const st2d = JSON.parse(raw2d);
+            if (st2d.learned) {
+              HOUSE_ROOMS.forEach(r => {
+                r.darazDrawers.forEach(d => {
+                  const nums = (d.clause || '').match(/\b\d+(\.\d+)?\b/g);
+                  if (nums && nums.some(n => st2d.learned[n])) {
+                    this.drawersMastered[d.id] = true;
+                  }
+                });
+              });
+            }
+            if (st2d.leitner) {
+              Object.entries(st2d.leitner).forEach(([clauseNo, entry]) => {
+                if (entry && typeof entry.box === 'number') {
+                  this.leitnerBoxes['fc-' + clauseNo] = entry.box;
+                }
+              });
+            }
+          }
+        } catch (e) {}
+
+        this.injectCustomItemsIntoRooms();
+      },
+
+      save() {
+        try {
+          localStorage.setItem('registry:3d:v1', JSON.stringify({
+            darazOpened: this.darazOpened,
+            vaultsUnsealed: this.vaultsUnsealed,
+            drawersMastered: this.drawersMastered,
+            customItems: this.customItems,
+            leitnerBoxes: this.leitnerBoxes
+          }));
+        } catch (e) {}
+
+        // Two-way synchronization back to 2D Desk (`registry:v1`)
+        try {
+          const raw2d = localStorage.getItem('registry:v1');
+          const st2d = raw2d ? JSON.parse(raw2d) : { learned: {}, bookmarks: {}, notes: {}, lessons: {}, answers: {}, leitner: {}, clocks: [], settings: {}, days: [], opened: {}, drafts: {} };
+          st2d.learned = st2d.learned || {};
+          st2d.leitner = st2d.leitner || {};
+          st2d.clocks = st2d.clocks || [];
+
+          // Mastered drawers in 3D sync to learned clauses in 2D
+          Object.keys(this.drawersMastered).forEach(drawerId => {
+            HOUSE_ROOMS.forEach(r => {
+              const d = r.darazDrawers.find(x => x.id === drawerId);
+              if (d && d.clause) {
+                const nums = d.clause.match(/\b\d+(\.\d+)?\b/g);
+                if (nums) nums.forEach(n => { st2d.learned[n] = true; });
+              }
+            });
+          });
+
+          // Leitner flashcards advanced in 3D sync to 2D
+          Object.entries(this.leitnerBoxes).forEach(([k, box]) => {
+            const c = k.replace(/^fc-/, '');
+            if (c) {
+              st2d.leitner[c] = st2d.leitner[c] || {};
+              st2d.leitner[c].box = box;
+              st2d.leitner[c].next = Date.now() + [0, 1, 3, 7, 21][Math.min(4, box)] * 86400000;
+            }
+          });
+
+          localStorage.setItem('registry:v1', JSON.stringify(st2d));
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'registry:sync', data: st2d }, '*');
+          }
+        } catch (e) {}
+      },
+
+      injectCustomItemsIntoRooms() {
+        this.customItems.forEach(item => {
+          const rIdx = Number(item.roomIdx) || 0;
+          const room = HOUSE_ROOMS[rIdx] || HOUSE_ROOMS[6];
+          if (item.container === 'daraz') {
+            if (!room.darazDrawers.some(d => d.id === item.id)) {
+              room.darazDrawers.push({
+                id: item.id,
+                label: '★ Custom: ' + item.title,
+                clause: item.clause || 'Custom Note',
+                summary: item.content,
+                details: [item.content],
+                takeaway: item.takeaway || 'Added via Custom Content Studio.'
+              });
+            }
+          } else if (item.container === 'vault') {
+            if (!room.vaultSecrets.some(s => s.id === item.id)) {
+              room.vaultSecrets.push({
+                id: item.id,
+                title: '★ CUSTOM SECRET: ' + item.title,
+                badge: item.clause || 'USER SEALED',
+                body: item.content + (item.takeaway ? ' — Key Takeaway: ' + item.takeaway : '')
+              });
+            }
+          } else if (item.container === 'flashcard') {
+            if (!FLASHCARDS_DECK.some(f => f.id === item.id)) {
+              FLASHCARDS_DECK.push({
+                id: item.id,
+                clause: item.clause || 'Custom',
+                title: item.title,
+                front: item.title + ' (' + (item.clause || 'Custom') + ')',
+                back: item.content,
+                box: 0
+              });
+            }
+          }
+        });
+      }
+    };
+
+    // Bridge function so `courses/contract-registry/js/boot.js` can feed live decrypted data directly
+    window.mountRegistryHouse = function(decryptedData) {
+      if (!decryptedData) return;
+      window.__DEC_DATA__ = decryptedData;
+
+      // 1. Populate Case Files Room from decryptedData.cases
+      if (Array.isArray(decryptedData.cases) && decryptedData.cases.length > 0) {
+        const casesRoom = HOUSE_ROOMS[4];
+        decryptedData.cases.forEach((c, idx) => {
+          if (!casesRoom.darazDrawers.some(d => d.id === 'case-' + c.id)) {
+            casesRoom.darazDrawers.push({
+              id: 'case-' + (c.id || idx + 1),
+              label: 'Case #' + (c.no || idx + 1) + ': ' + (c.title || 'TKV Dispute File'),
+              clause: (c.clauses || []).join(', ') || 'GCC / PCC',
+              summary: c.result || c.summary || 'Live case file from registry.sealed.json.',
+              details: [
+                'Status: ' + (c.status || 'Active') + ' (' + (c.tone || 'neutral') + ')',
+                c.summary || '',
+                c.decision ? 'Adjudication / Engineer Decision: ' + c.decision : ''
+              ].filter(Boolean),
+              takeaway: (c.takeaways && c.takeaways[0]) || (c.result || 'Contemporaneous site records are decisive.')
+            });
+          }
+        });
+      }
+
+      // 2. Populate Clauses Library from decryptedData.contract
+      if (decryptedData.contract && Array.isArray(decryptedData.contract.gcc)) {
+        const libRoom = HOUSE_ROOMS[1];
+        const pccEntries = decryptedData.contract.pcc?.entries || [];
+        decryptedData.contract.gcc.slice(0, 12).forEach(c => {
+          const pccMod = pccEntries.find(p => String(p.clause) === String(c.no));
+          const pccAction = pccMod ? pccMod.action : 'none';
+          if (!libRoom.darazDrawers.some(d => d.id === 'gcc-' + c.no)) {
+            libRoom.darazDrawers.push({
+              id: 'gcc-' + c.no,
+              label: 'Clause ' + c.no + ': ' + c.title,
+              clause: 'Section ' + c.section + (pccMod ? ' [PCC ' + pccAction + ']' : ''),
+              summary: (decryptedData.plain && decryptedData.plain[c.no]?.gist) || 'General Conditions clause.',
+              details: [
+                'Sub-clauses: ' + (c.subs || []).map(s => s.no).join(', '),
+                pccMod ? 'PCC Modification: ' + (pccMod.ref || 'PCC ' + c.no) + ' (' + pccAction + ')' : 'Standard GCC wording applies.'
+              ],
+              takeaway: (decryptedData.plain && decryptedData.plain[c.no]?.use?.[0]) || 'Review PCC overrides before citing in formal correspondence.'
+            });
+          }
+        });
+      }
+
+      // 3. Populate Letter Templates from decryptedData.letters or templates
+      if (Array.isArray(decryptedData.letters) && decryptedData.letters.length > 0) {
+        const lettersRoom = HOUSE_ROOMS[3];
+        decryptedData.letters.slice(0, 8).forEach(l => {
+          if (!lettersRoom.darazDrawers.some(d => d.id === 'letter-' + l.id)) {
+            lettersRoom.darazDrawers.push({
+              id: 'letter-' + l.id,
+              label: (l.kind ? '[' + l.kind.toUpperCase() + '] ' : '') + (l.title || 'Letter Template'),
+              clause: l.clause || 'Clauses 35, 42, 53',
+              summary: l.summary || l.gist || 'Standard correspondence template.',
+              details: [
+                'Subject: ' + (l.subject || l.title || ''),
+                'Key timing: ' + (l.timing || 'Submit within statutory window.')
+              ],
+              takeaway: 'Quote the exact incoming letter ref and clause number.'
+            });
+          }
+        });
+      }
+
+      updateHudAndProgress();
+      showToast('Live TKV data mounted into 3D Learning House!');
+    };
+
+    // Auto-check parent window or global scope for decrypted data
+    try {
+      if (window.parent && window.parent !== window && window.parent.__REGISTRY_DATA__) {
+        window.mountRegistryHouse(window.parent.__REGISTRY_DATA__);
+      } else if (window.__REGISTRY_DATA__) {
+        window.mountRegistryHouse(window.__REGISTRY_DATA__);
+      }
+    } catch (e) {}
+
+    // =========================================================================
+    // 4. THREE.JS 3D INTERACTIVE HOUSE ENGINE (7 ROOMS, DARAZ, VAULT, DOORS)
+    // =========================================================================
+    let scene, camera, renderer, raycaster, mouse;
+    let roomGroup = null;
+    let interactiveProps = [];
+    let animatedDoors = [];
+    let animatedVaultWheels = [];
+    let pendulumArms = [];
+    let ambientLight, ceilingLight, deskLampLight;
+
+    const camState = {
+      x: 0,
+      y: 2.5,
+      z: 5.4,
+      yaw: 0,
+      pitch: -0.08,
+      targetX: 0,
+      targetZ: 5.4,
+      targetYaw: 0,
+      isDragging: false,
+      prevMouseX: 0,
+      prevMouseY: 0,
+      dragDistance: 0
+    };
+    const keysPressed = {};
+
+    function createCanvasLabelTexture(title, subtitle, badgeText, bgColor, textColor, accentHex) {
+      const canvas = document.createElement('canvas');
+      canvas.width = 512;
+      canvas.height = 256;
+      const ctx = canvas.getContext('2d');
+
+      ctx.fillStyle = bgColor || '#FBF8F1';
+      ctx.fillRect(0, 0, 512, 256);
+
+      ctx.strokeStyle = accentHex || '#3A399C';
+      ctx.lineWidth = 10;
+      ctx.strokeRect(10, 10, 492, 236);
+
+      if (badgeText) {
+        ctx.fillStyle = accentHex || '#B3261E';
+        ctx.fillRect(24, 24, 220, 38);
+        ctx.fillStyle = '#FFFFFF';
+        ctx.font = 'bold 20px monospace';
+        ctx.fillText(badgeText.slice(0, 18), 34, 50);
+      }
+
+      ctx.fillStyle = textColor || '#1C2033';
+      ctx.font = 'bold 30px Georgia, serif';
+      ctx.fillText((title || '').slice(0, 26), 24, 115);
+
+      ctx.fillStyle = '#525870';
+      ctx.font = '22px monospace';
+      ctx.fillText((subtitle || '').slice(0, 34), 24, 165);
+
+      ctx.fillStyle = accentHex || '#3A399C';
+      ctx.font = 'bold 18px monospace';
+      ctx.fillText('▶ CLICK TO INSPECT / OPEN', 24, 218);
+
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.needsUpdate = true;
+      return tex;
+    }
+
+    function initThreeJS() {
+      const container = document.getElementById('canvasContainer');
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xEFE8D8);
+      scene.fog = new THREE.FogExp2(0xEFE8D8, 0.032);
+
+      camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 100);
+      renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.shadowMap.enabled = true;
+      container.innerHTML = '';
+      container.appendChild(renderer.domElement);
+
+      raycaster = new THREE.Raycaster();
+      mouse = new THREE.Vector2();
+
+      ambientLight = new THREE.AmbientLight(0xFFF8E7, 0.72);
+      scene.add(ambientLight);
+
+      ceilingLight = new THREE.PointLight(0xFFF3D6, 0.9, 25);
+      ceilingLight.position.set(0, 5.4, 0);
+      ceilingLight.castShadow = true;
+      scene.add(ceilingLight);
+
+      deskLampLight = new THREE.PointLight(0xFFB74D, 0.65, 12);
+      deskLampLight.position.set(0, 2.8, -2.5);
+      scene.add(deskLampLight);
+
+      buildRoom3D(State.currentRoom);
+      setupPointerAndKeyboardEvents(container);
+      window.addEventListener('resize', onWindowResize);
+      animate3D();
+    }
+
+    function buildRoom3D(roomIndex) {
+      if (roomGroup) {
+        scene.remove(roomGroup);
+      }
+      roomGroup = new THREE.Group();
+      interactiveProps = [];
+      animatedDoors = [];
+      animatedVaultWheels = [];
+      pendulumArms = [];
+
+      const room = HOUSE_ROOMS[roomIndex];
+
+      const floorGeo = new THREE.PlaneGeometry(14, 14);
+      const floorMat = new THREE.MeshStandardMaterial({ color: room.floorColor, roughness: 0.8 });
+      const floorMesh = new THREE.Mesh(floorGeo, floorMat);
+      floorMesh.rotation.x = -Math.PI / 2;
+      floorMesh.receiveShadow = true;
+      roomGroup.add(floorMesh);
+
+      const rugGeo = new THREE.PlaneGeometry(7.6, 5.8);
+      const rugMat = new THREE.MeshStandardMaterial({ color: 0xE4D7BA, roughness: 0.9 });
+      const rugMesh = new THREE.Mesh(rugGeo, rugMat);
+      rugMesh.rotation.x = -Math.PI / 2;
+      rugMesh.position.y = 0.01;
+      roomGroup.add(rugMesh);
+
+      const rugBorderGeo = new THREE.PlaneGeometry(8.1, 6.3);
+      const rugBorderMat = new THREE.MeshStandardMaterial({ color: room.accentColor, roughness: 0.85 });
+      const rugBorderMesh = new THREE.Mesh(rugBorderGeo, rugBorderMat);
+      rugBorderMesh.rotation.x = -Math.PI / 2;
+      rugBorderMesh.position.y = 0.005;
+      roomGroup.add(rugBorderMesh);
+
+      const wallMat = new THREE.MeshStandardMaterial({ color: room.wallColor, roughness: 0.85 });
+      const backWall = new THREE.Mesh(new THREE.BoxGeometry(14, 6.5, 0.3), wallMat);
+      backWall.position.set(0, 3.25, -7);
+      roomGroup.add(backWall);
+
+      const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.3, 6.5, 14), wallMat);
+      leftWall.position.set(-7, 3.25, 0);
+      roomGroup.add(leftWall);
+
+      const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.3, 6.5, 14), wallMat);
+      rightWall.position.set(7, 3.25, 0);
+      roomGroup.add(rightWall);
+
+      const trimMat = new THREE.MeshStandardMaterial({ color: 0x5C4028, roughness: 0.7 });
+      const backTrim = new THREE.Mesh(new THREE.BoxGeometry(14, 0.35, 0.36), trimMat);
+      backTrim.position.set(0, 0.175, -6.95);
+      roomGroup.add(backTrim);
+      const leftTrim = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.35, 14), trimMat);
+      leftTrim.position.set(-6.95, 0.175, 0);
+      roomGroup.add(leftTrim);
+      const rightTrim = new THREE.Mesh(new THREE.BoxGeometry(0.36, 0.35, 14), trimMat);
+      rightTrim.position.set(6.95, 0.175, 0);
+      roomGroup.add(rightTrim);
+
+      const bannerTex = createCanvasLabelTexture(
+        room.name,
+        room.subtitle,
+        room.code,
+        '#FBF8F1',
+        '#1C2033',
+        '#3A399C'
+      );
+      const bannerMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(5.6, 2.2),
+        new THREE.MeshBasicMaterial({ map: bannerTex })
+      );
+      bannerMesh.position.set(0, 4.3, -6.78);
+      bannerMesh.userData = {
+        interactive: true,
+        action: 'station',
+        tag: '[ROOM PLAQUE]',
+        label: room.name + ' — Click to open Study Workbench'
+      };
+      interactiveProps.push(bannerMesh);
+      roomGroup.add(bannerMesh);
+
+      // The 3D Daraz (Almirah)
+      const darazGroup = new THREE.Group();
+      darazGroup.position.set(-5.2, 0, -2.2);
+      darazGroup.rotation.y = Math.PI / 3.2;
+
+      const woodMat = new THREE.MeshStandardMaterial({ color: 0x6B4423, roughness: 0.65 });
+      const darkWoodMat = new THREE.MeshStandardMaterial({ color: 0x4A2E14, roughness: 0.7 });
+      const brassMat = new THREE.MeshStandardMaterial({ color: 0xD4AF37, metalness: 0.7, roughness: 0.3 });
+
+      const bodyMesh = new THREE.Mesh(new THREE.BoxGeometry(2.6, 4.2, 1.2), woodMat);
+      bodyMesh.position.y = 2.1;
+      bodyMesh.castShadow = true;
+      darazGroup.add(bodyMesh);
+
+      const crownMesh = new THREE.Mesh(new THREE.BoxGeometry(2.8, 0.25, 1.35), darkWoodMat);
+      crownMesh.position.y = 4.3;
+      darazGroup.add(crownMesh);
+
+      for (let d = 0; d < 4; d++) {
+        const drawerMesh = new THREE.Mesh(new THREE.BoxGeometry(2.35, 0.38, 0.12), darkWoodMat);
+        drawerMesh.position.set(0, 0.4 + d * 0.44, 0.62);
+        darazGroup.add(drawerMesh);
+
+        const handleMesh = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.07, 0.08), brassMat);
+        handleMesh.position.set(0, 0.4 + d * 0.44, 0.7);
+        darazGroup.add(handleMesh);
+      }
+
+      const leftDoorPivot = new THREE.Group();
+      leftDoorPivot.position.set(-1.2, 3.0, 0.62);
+      const leftDoorMesh = new THREE.Mesh(new THREE.BoxGeometry(1.16, 1.9, 0.1), darkWoodMat);
+      leftDoorMesh.position.set(0.58, 0, 0);
+      leftDoorPivot.add(leftDoorMesh);
+      const leftKnob = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), brassMat);
+      leftKnob.position.set(1.02, 0, 0.08);
+      leftDoorPivot.add(leftKnob);
+      darazGroup.add(leftDoorPivot);
+
+      const rightDoorPivot = new THREE.Group();
+      rightDoorPivot.position.set(1.2, 3.0, 0.62);
+      const rightDoorMesh = new THREE.Mesh(new THREE.BoxGeometry(1.16, 1.9, 0.1), darkWoodMat);
+      rightDoorMesh.position.set(-0.58, 0, 0);
+      rightDoorPivot.add(rightDoorMesh);
+      const rightKnob = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 12), brassMat);
+      rightKnob.position.set(-1.02, 0, 0.08);
+      rightDoorPivot.add(rightKnob);
+      darazGroup.add(rightDoorPivot);
+
+      animatedDoors.push({
+        left: leftDoorPivot,
+        right: rightDoorPivot,
+        isOpen: !!State.darazOpened[roomIndex]
+      });
+
+      const darazSignTex = createCanvasLabelTexture(
+        'THE ROOM DARAZ',
+        room.darazDrawers.length + ' Drawers & Manila Folders',
+        'ALMIRAH // ' + (State.darazOpened[roomIndex] ? 'OPENED' : 'CLICK TO OPEN'),
+        '#E4D7BA',
+        '#1C2033',
+        '#B3261E'
+      );
+      const darazSign = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.5, 1.0),
+        new THREE.MeshBasicMaterial({ map: darazSignTex })
+      );
+      darazSign.position.set(0, 5.0, 0);
+      darazGroup.add(darazSign);
+
+      darazGroup.traverse(child => {
+        if (child.isMesh) {
+          child.userData = {
+            interactive: true,
+            action: 'daraz',
+            tag: '[3D DARAZ ALMIRAH]',
+            label: room.darazTitle + ' (' + room.darazDrawers.length + ' Drawers)'
+          };
+          interactiveProps.push(child);
+        }
+      });
+      roomGroup.add(darazGroup);
+
+      // The 3D Vault
+      const vaultGroup = new THREE.Group();
+      vaultGroup.position.set(5.2, 0, -2.2);
+      vaultGroup.rotation.y = -Math.PI / 3.2;
+
+      const isUnsealed = !!State.vaultsUnsealed[roomIndex];
+      const steelMat = new THREE.MeshStandardMaterial({
+        color: isUnsealed ? 0x284B3A : 0x2B3040,
+        metalness: 0.65,
+        roughness: 0.35
+      });
+      const doorSteelMat = new THREE.MeshStandardMaterial({
+        color: 0x3B4254,
+        metalness: 0.75,
+        roughness: 0.28
+      });
+
+      const vaultBody = new THREE.Mesh(new THREE.BoxGeometry(2.3, 2.8, 1.6), steelMat);
+      vaultBody.position.y = 1.4;
+      vaultBody.castShadow = true;
+      vaultGroup.add(vaultBody);
+
+      const vaultDoor = new THREE.Mesh(new THREE.BoxGeometry(1.9, 2.35, 0.18), doorSteelMat);
+      vaultDoor.position.set(0, 1.4, 0.84);
+      vaultGroup.add(vaultDoor);
+
+      const wheelGroup = new THREE.Group();
+      wheelGroup.position.set(0, 1.45, 0.96);
+      const wheelHub = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, 0.1, 24), brassMat);
+      wheelHub.rotation.x = Math.PI / 2;
+      wheelGroup.add(wheelHub);
+
+      for (let s = 0; s < 4; s++) {
+        const spoke = new THREE.Mesh(new THREE.BoxGeometry(0.95, 0.06, 0.06), brassMat);
+        spoke.rotation.z = (s * Math.PI) / 4;
+        wheelGroup.add(spoke);
+      }
+      vaultGroup.add(wheelGroup);
+      animatedVaultWheels.push(wheelGroup);
+
+      const beaconMat = new THREE.MeshBasicMaterial({ color: isUnsealed ? 0x1F6E43 : 0xB3261E });
+      const beaconMesh = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 0.25, 16), beaconMat);
+      beaconMesh.position.set(0, 2.92, 0);
+      vaultGroup.add(beaconMesh);
+
+      const vaultSignTex = createCanvasLabelTexture(
+        'THE ROOM VAULT',
+        isUnsealed ? 'UNSEALED // ' + room.vaultSecrets.length + ' Dossiers' : 'SEALED // PBKDF2-SHA-256',
+        isUnsealed ? '✓ UNSEALED' : '🔐 SEALED SAFE',
+        '#1C2033',
+        '#FBF8F1',
+        isUnsealed ? '#1F6E43' : '#B3261E'
+      );
+      const vaultSign = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.4, 1.0),
+        new THREE.MeshBasicMaterial({ map: vaultSignTex })
+      );
+      vaultSign.position.set(0, 3.7, 0);
+      vaultGroup.add(vaultSign);
+
+      vaultGroup.traverse(child => {
+        if (child.isMesh) {
+          child.userData = {
+            interactive: true,
+            action: 'vault',
+            tag: '[3D STEEL VAULT]',
+            label: room.vaultTitle + (isUnsealed ? ' (UNSEALED)' : ' (Click to Crack Combination)')
+          };
+          interactiveProps.push(child);
+        }
+      });
+      roomGroup.add(vaultGroup);
+
+      // Center Study Desk
+      const deskGroup = new THREE.Group();
+      deskGroup.position.set(0, 0, -2.5);
+
+      const deskTop = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.16, 1.8), woodMat);
+      deskTop.position.y = 1.15;
+      deskTop.castShadow = true;
+      deskGroup.add(deskTop);
+
+      [[-1.6, -0.75], [1.6, -0.75], [-1.6, 0.75], [1.6, 0.75]].forEach(([lx, lz]) => {
+        const leg = new THREE.Mesh(new THREE.BoxGeometry(0.16, 1.15, 0.16), darkWoodMat);
+        leg.position.set(lx, 0.575, lz);
+        deskGroup.add(leg);
+      });
+
+      const lampBase = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.22, 0.08, 16), brassMat);
+      lampBase.position.set(-1.2, 1.27, -0.4);
+      deskGroup.add(lampBase);
+      const lampStem = new THREE.Mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.55, 12), brassMat);
+      lampStem.position.set(-1.2, 1.55, -0.4);
+      deskGroup.add(lampStem);
+      const lampShade = new THREE.Mesh(
+        new THREE.ConeGeometry(0.28, 0.22, 16),
+        new THREE.MeshStandardMaterial({ color: 0x1F6E43, roughness: 0.3 })
+      );
+      lampShade.position.set(-1.2, 1.82, -0.4);
+      deskGroup.add(lampShade);
+
+      const folderMat = new THREE.MeshStandardMaterial({ color: 0xE4D7BA, roughness: 0.8 });
+      const sheetMat = new THREE.MeshStandardMaterial({ color: 0xFBF8F1, roughness: 0.7 });
+      const openFolder = new THREE.Mesh(new THREE.BoxGeometry(1.3, 0.04, 0.9), folderMat);
+      openFolder.position.set(0, 1.25, 0.1);
+      deskGroup.add(openFolder);
+      const openPage = new THREE.Mesh(new THREE.BoxGeometry(1.18, 0.05, 0.78), sheetMat);
+      openPage.position.set(0, 1.27, 0.1);
+      deskGroup.add(openPage);
+
+      const stampBlock = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.12, 0.14, 0.22, 16),
+        new THREE.MeshStandardMaterial({ color: 0xB3261E })
+      );
+      stampBlock.position.set(1.1, 1.34, 0.2);
+      deskGroup.add(stampBlock);
+
+      const stationSignTex = createCanvasLabelTexture(
+        'STUDY WORKBENCH',
+        room.stationTitle,
+        'INTERACTIVE TOOL',
+        '#FBF8F1',
+        '#1C2033',
+        '#3A399C'
+      );
+      const stationSign = new THREE.Mesh(
+        new THREE.PlaneGeometry(2.6, 0.95),
+        new THREE.MeshBasicMaterial({ map: stationSignTex })
+      );
+      stationSign.position.set(0, 2.35, -0.2);
+      deskGroup.add(stationSign);
+
+      deskGroup.traverse(child => {
+        if (child.isMesh) {
+          child.userData = {
+            interactive: true,
+            action: 'station',
+            tag: '[STUDY WORKBENCH]',
+            label: room.stationTitle + ' — Click to Launch'
+          };
+          interactiveProps.push(child);
+        }
+      });
+      roomGroup.add(deskGroup);
+
+      // Room Specific Props
+      if (roomIndex === 1) {
+        [-3.9, 3.9].forEach(bx => {
+          const shelf = new THREE.Mesh(new THREE.BoxGeometry(1.8, 4.4, 0.6), darkWoodMat);
+          shelf.position.set(bx, 2.2, -6.5);
+          roomGroup.add(shelf);
+          for (let row = 0; row < 4; row++) {
+            const bookRow = new THREE.Mesh(
+              new THREE.BoxGeometry(1.5, 0.55, 0.45),
+              new THREE.MeshStandardMaterial({ color: row === 3 ? 0xB3261E : 0x3A399C })
+            );
+            bookRow.position.set(bx, 0.7 + row * 0.95, -6.4);
+            bookRow.userData = {
+              interactive: true,
+              action: 'daraz',
+              tag: '[CLAUSE STACK]',
+              label: '102 Clauses Archive (Sections A–G & PCC Section P)'
+            };
+            interactiveProps.push(bookRow);
+            roomGroup.add(bookRow);
+          }
+        });
+      } else if (roomIndex === 2) {
+        for (let c = 0; c < 7; c++) {
+          const cx = -4.8 + c * 1.6;
+          const clkGroup = new THREE.Group();
+          clkGroup.position.set(cx, 2.5, -6.7);
+          const face = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.1, 24), brassMat);
+          face.rotation.x = Math.PI / 2;
+          clkGroup.add(face);
+
+          const pendPivot = new THREE.Group();
+          const pendRod = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.85, 0.04), brassMat);
+          pendRod.position.y = -0.45;
+          const pendBob = new THREE.Mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.06, 16), brassMat);
+          pendBob.rotation.x = Math.PI / 2;
+          pendBob.position.y = -0.88;
+          pendPivot.add(pendRod);
+          pendPivot.add(pendBob);
+          clkGroup.add(pendPivot);
+          pendulumArms.push({ pivot: pendPivot, phase: c * 0.7 });
+
+          clkGroup.traverse(ch => {
+            if (ch.isMesh) {
+              ch.userData = {
+                interactive: true,
+                action: 'station',
+                tag: '[DEADLINE CLOCK #' + (c + 1) + ']',
+                label: 'Deadline Group #' + (c + 1) + ' — Click to Calculate Deadlines & EOT'
+              };
+              interactiveProps.push(ch);
+            }
+          });
+          roomGroup.add(clkGroup);
+        }
+      } else if (roomIndex === 3) {
+        [-3.8, 3.8].forEach((tx, idx) => {
+          const tube = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.28, 0.28, 5.5, 20),
+            brassMat
+          );
+          tube.position.set(tx, 2.75, -6.3);
+          tube.userData = {
+            interactive: true,
+            action: 'station',
+            tag: '[DISPATCH TUBE]',
+            label: idx === 0 ? 'Incoming Engineer Letters (in:123)' : 'Outgoing Contractor Letters (out:456)'
+          };
+          interactiveProps.push(tube);
+          roomGroup.add(tube);
+        });
+      } else if (roomIndex === 4) {
+        const doorColors = [0x1F6E43, 0xB4690E, 0x3A399C, 0xB3261E];
+        const doorNames = ['WON CASES', 'PARTLY WON', 'STILL OPEN', 'LOST SO FAR'];
+        doorColors.forEach((col, idx) => {
+          const cab = new THREE.Mesh(
+            new THREE.BoxGeometry(1.15, 2.5, 0.5),
+            new THREE.MeshStandardMaterial({ color: col, roughness: 0.55 })
+          );
+          cab.position.set(-4.3 + idx * 2.85, 1.25, -6.45);
+          cab.userData = {
+            interactive: true,
+            action: 'daraz',
+            drawerIdx: idx,
+            tag: '[' + doorNames[idx] + ']',
+            label: 'Inspect ' + doorNames[idx] + ' TKV Case Files'
+          };
+          interactiveProps.push(cab);
+          roomGroup.add(cab);
+        });
+      } else if (roomIndex === 6) {
+        const customCount = Math.max(1, State.customItems.length);
+        for (let i = 0; i < Math.min(customCount, 6); i++) {
+          const item = State.customItems[i];
+          const px = -4.2 + i * 1.68;
+          const ped = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.42, 1.1, 16), darkWoodMat);
+          ped.position.set(px, 0.55, -5.2);
+          roomGroup.add(ped);
+
+          const orb = new THREE.Mesh(
+            new THREE.OctahedronGeometry(0.32, 0),
+            new THREE.MeshStandardMaterial({ color: item ? 0xB3261E : 0xD4AF37, metalness: 0.5, roughness: 0.25 })
+          );
+          orb.position.set(px, 1.45, -5.2);
+          orb.userData = {
+            interactive: true,
+            action: item ? 'daraz' : 'addModal',
+            tag: item ? '[CUSTOM ARTIFACT]' : '[EMPTY PEDESTAL]',
+            label: item ? item.title + ' (' + item.clause + ')' : 'Click to Add Custom Item to Your House!'
+          };
+          interactiveProps.push(orb);
+          roomGroup.add(orb);
+        }
+      }
+
+      // Doorway Portals to Prev/Next Rooms
+      if (roomIndex > 0) {
+        const prevRoom = HOUSE_ROOMS[roomIndex - 1];
+        const prevDoorGroup = createDoorwayPortal(
+          -6.8,
+          2.2,
+          '← PREV ROOM',
+          prevRoom.shortName,
+          roomIndex - 1,
+          Math.PI / 2
+        );
+        roomGroup.add(prevDoorGroup);
+      }
+
+      if (roomIndex < HOUSE_ROOMS.length - 1) {
+        const nextRoom = HOUSE_ROOMS[roomIndex + 1];
+        const nextDoorGroup = createDoorwayPortal(
+          6.8,
+          2.2,
+          'NEXT ROOM →',
+          nextRoom.shortName,
+          roomIndex + 1,
+          -Math.PI / 2
+        );
+        roomGroup.add(nextDoorGroup);
+      }
+
+      scene.add(roomGroup);
+    }
+
+    function createDoorwayPortal(xPos, zPos, badge, targetName, targetRoomIdx, rotY) {
+      const grp = new THREE.Group();
+      grp.position.set(xPos, 0, zPos);
+      grp.rotation.y = rotY;
+
+      const frameMat = new THREE.MeshStandardMaterial({ color: 0x4A2E14, roughness: 0.7 });
+      const doorFrame = new THREE.Mesh(new THREE.BoxGeometry(2.1, 3.8, 0.22), frameMat);
+      doorFrame.position.y = 1.9;
+      grp.add(doorFrame);
+
+      const portalTex = createCanvasLabelTexture(
+        targetName,
+        'Walk Through Doorway',
+        badge,
+        '#E4D7BA',
+        '#1C2033',
+        '#B3261E'
+      );
+      const portalPlane = new THREE.Mesh(
+        new THREE.PlaneGeometry(1.75, 3.3),
+        new THREE.MeshBasicMaterial({ map: portalTex })
+      );
+      portalPlane.position.set(0, 1.85, 0.13);
+      grp.add(portalPlane);
+
+      grp.traverse(ch => {
+        if (ch.isMesh) {
+          ch.userData = {
+            interactive: true,
+            action: 'gotoRoom',
+            targetRoom: targetRoomIdx,
+            tag: '[' + badge + ']',
+            label: 'Go to ' + targetName
+          };
+          interactiveProps.push(ch);
+        }
+      });
+      return grp;
+    }
+
+    function setupPointerAndKeyboardEvents(container) {
+      const tooltip = document.getElementById('hoverTooltip');
+      const tooltipTag = document.getElementById('hoverTooltipTag');
+      const tooltipText = document.getElementById('hoverTooltipText');
+
+      container.addEventListener('pointerdown', e => {
+        camState.isDragging = true;
+        camState.prevMouseX = e.clientX;
+        camState.prevMouseY = e.clientY;
+        camState.dragDistance = 0;
+      });
+
+      window.addEventListener('pointermove', e => {
+        if (camState.isDragging) {
+          const dx = e.clientX - camState.prevMouseX;
+          const dy = e.clientY - camState.prevMouseY;
+          camState.dragDistance += Math.abs(dx) + Math.abs(dy);
+          camState.targetYaw -= dx * 0.0045;
+          camState.pitch = Math.max(-0.55, Math.min(0.45, camState.pitch - dy * 0.0035));
+          camState.prevMouseX = e.clientX;
+          camState.prevMouseY = e.clientY;
+          tooltip.classList.add('hidden');
+          return;
+        }
+
+        if (isAnyModalOpen()) {
+          tooltip.classList.add('hidden');
+          return;
+        }
+        const rect = renderer.domElement.getBoundingClientRect();
+        mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+        raycaster.setFromCamera(mouse, camera);
+        const hits = raycaster.intersectObjects(interactiveProps, false);
+        if (hits.length > 0 && hits[0].object.userData && hits[0].object.userData.interactive) {
+          const ud = hits[0].object.userData;
+          tooltipTag.textContent = ud.tag || '[INTERACT]';
+          tooltipText.textContent = ud.label || 'Click to open';
+          tooltip.style.left = Math.min(window.innerWidth - 260, e.clientX + 14) + 'px';
+          tooltip.style.top = Math.max(60, e.clientY - 10) + 'px';
+          tooltip.classList.remove('hidden');
+          container.style.cursor = 'pointer';
+        } else {
+          tooltip.classList.add('hidden');
+          container.style.cursor = 'grab';
+        }
+      });
+
+      window.addEventListener('pointerup', e => {
+        if (!camState.isDragging) return;
+        camState.isDragging = false;
+        if (camState.dragDistance < 8 && !isAnyModalOpen()) {
+          const rect = renderer.domElement.getBoundingClientRect();
+          mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+          mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+          raycaster.setFromCamera(mouse, camera);
+          const hits = raycaster.intersectObjects(interactiveProps, false);
+          if (hits.length > 0 && hits[0].object.userData && hits[0].object.userData.interactive) {
+            handle3DPropClick(hits[0].object.userData);
+          }
+        }
+      });
+
+      window.addEventListener('keydown', e => {
+        if (e.key === '/' && !isTypingInInput(e)) {
+          e.preventDefault();
+          openFinderModal();
+          return;
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          openFinderModal();
+          return;
+        }
+        if (e.key === 'Escape') {
+          closeAllModals();
+          return;
+        }
+        if (!isTypingInInput(e) && !isAnyModalOpen()) {
+          keysPressed[e.key.toLowerCase()] = true;
+        }
+      });
+
+      window.addEventListener('keyup', e => {
+        keysPressed[e.key.toLowerCase()] = false;
+      });
+    }
+
+    function isTypingInInput(e) {
+      const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+      return tag === 'input' || tag === 'textarea' || tag === 'select';
+    }
+
+    function isAnyModalOpen() {
+      return !document.getElementById('darazModal').classList.contains('hidden') ||
+             !document.getElementById('vaultModal').classList.contains('hidden') ||
+             !document.getElementById('stationModal').classList.contains('hidden') ||
+             !document.getElementById('addContentModal').classList.contains('hidden') ||
+             !document.getElementById('blueprintModal').classList.contains('hidden') ||
+             !document.getElementById('finderModal').classList.contains('hidden');
+    }
+
+    function handle3DPropClick(userData) {
+      if (userData.action === 'daraz') {
+        openDarazModal(userData.drawerIdx || 0);
+      } else if (userData.action === 'vault') {
+        openVaultModal();
+      } else if (userData.action === 'station') {
+        openStationModal();
+      } else if (userData.action === 'gotoRoom') {
+        switchRoom(userData.targetRoom);
+      } else if (userData.action === 'addModal') {
+        openAddContentModal();
+      }
+    }
+
+    function onWindowResize() {
+      const container = document.getElementById('canvasContainer');
+      if (!container || !renderer || !camera) return;
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    }
+
+    function movePlayer(fwd, strafe, turnYaw) {
+      if (turnYaw) {
+        camState.targetYaw += turnYaw;
+      }
+      const speed = 0.22;
+      const sin = Math.sin(camState.yaw);
+      const cos = Math.cos(camState.yaw);
+      if (fwd) {
+        camState.targetX -= sin * fwd * speed;
+        camState.targetZ -= cos * fwd * speed;
+      }
+      if (strafe) {
+        camState.targetX += cos * strafe * speed;
+        camState.targetZ -= sin * strafe * speed;
+      }
+      camState.targetX = Math.max(-5.2, Math.min(5.2, camState.targetX));
+      camState.targetZ = Math.max(-4.2, Math.min(5.8, camState.targetZ));
+    }
+
+    function animate3D() {
+      requestAnimationFrame(animate3D);
+      const t = performance.now() * 0.001;
+
+      if (!isAnyModalOpen()) {
+        if (keysPressed['w'] || keysPressed['arrowup']) movePlayer(1, 0, 0);
+        if (keysPressed['s'] || keysPressed['arrowdown']) movePlayer(-1, 0, 0);
+        if (keysPressed['a'] || keysPressed['arrowleft']) movePlayer(0, 0, 0.035);
+        if (keysPressed['d'] || keysPressed['arrowright']) movePlayer(0, 0, -0.035);
+      }
+
+      camState.x += (camState.targetX - camState.x) * 0.12;
+      camState.z += (camState.targetZ - camState.z) * 0.12;
+      camState.yaw += (camState.targetYaw - camState.yaw) * 0.14;
+
+      camera.position.set(camState.x, camState.y, camState.z);
+      const lookTarget = new THREE.Vector3(
+        camState.x - Math.sin(camState.yaw) * Math.cos(camState.pitch),
+        camState.y + Math.sin(camState.pitch),
+        camState.z - Math.cos(camState.yaw) * Math.cos(camState.pitch)
+      );
+      camera.lookAt(lookTarget);
+
+      animatedDoors.forEach(d => {
+        const targetAngle = d.isOpen ? 1.25 : 0;
+        d.left.rotation.y += (-targetAngle - d.left.rotation.y) * 0.1;
+        d.right.rotation.y += (targetAngle - d.right.rotation.y) * 0.1;
+      });
+
+      animatedVaultWheels.forEach(w => {
+        w.rotation.z = Math.sin(t * 1.2) * 0.6;
+      });
+
+      pendulumArms.forEach(p => {
+        p.pivot.rotation.z = Math.sin(t * 2.6 + p.phase) * 0.26;
+      });
+
+      renderer.render(scene, camera);
+    }
+
+    // =========================================================================
+    // 5. UI CONTROLLERS: ROOM SWITCHING, DARAZ, VAULT, WORKBENCH & BUILDER
+    // =========================================================================
+    function switchRoom(roomIdx) {
+      const idx = Math.max(0, Math.min(HOUSE_ROOMS.length - 1, Number(roomIdx)));
+      State.currentRoom = idx;
+      SoundFX.play('step');
+
+      camState.targetX = 0;
+      camState.targetZ = 5.4;
+      camState.targetYaw = 0;
+      camState.pitch = -0.06;
+
+      buildRoom3D(idx);
+      updateHudAndProgress();
+      showToast('Entered ' + HOUSE_ROOMS[idx].name);
+    }
+
+    function updateHudAndProgress() {
+      const room = HOUSE_ROOMS[State.currentRoom];
+      document.getElementById('currentRoomBadge').textContent =
+        'Room ' + (State.currentRoom + 1) + '/7: ' + room.shortName.replace(/^\d+\./, '');
+      document.getElementById('hudRoomCode').textContent = room.code;
+      document.getElementById('hudRoomTitle').textContent = room.name;
+      document.getElementById('hudRoomDesc').textContent = room.description;
+
+      document.getElementById('quickDarazCount').textContent = room.darazDrawers.length + ' Drawers';
+      const vUnsealed = !!State.vaultsUnsealed[State.currentRoom];
+      const vBadge = document.getElementById('quickVaultStatus');
+      vBadge.textContent = vUnsealed ? 'UNSEALED' : 'SEALED';
+      vBadge.className = 'text-[10px] font-mono-code px-1.5 py-0.5 rounded ' +
+        (vUnsealed ? 'bg-[#1F6E43] text-white' : 'bg-[#B3261E] text-white');
+      document.getElementById('quickStationLabel').textContent = room.stationTitle.slice(0, 24) + '...';
+
+      document.querySelectorAll('.room-nav-btn').forEach(btn => {
+        const r = Number(btn.getAttribute('data-room'));
+        if (r === State.currentRoom) {
+          btn.className = 'room-nav-btn px-2.5 py-1 rounded text-xs font-mono-code font-semibold transition-all bg-[#1C2033] text-[#FBF8F1]';
+        } else {
+          btn.className = 'room-nav-btn px-2.5 py-1 rounded text-xs font-mono-code font-medium transition-all folder-tab hover:opacity-90';
+        }
+      });
+
+      const darazCount = Object.keys(State.darazOpened).length;
+      const vaultCount = Object.keys(State.vaultsUnsealed).length;
+      const masteredDrawersCount = Object.keys(State.drawersMastered).length;
+      const clausesLearned = Math.min(102, 4 + darazCount * 6 + vaultCount * 5 + masteredDrawersCount * 3);
+      const masteryPct = Math.min(100, Math.round(((darazCount + vaultCount + masteredDrawersCount) / 30) * 100));
+
+      document.getElementById('statDarazOpened').textContent = darazCount + '/7';
+      document.getElementById('statVaultsUnsealed').textContent = vaultCount + '/7';
+      document.getElementById('statClausesLearned').textContent = clausesLearned + '/102';
+      document.getElementById('masteryPercentText').textContent = masteryPct + '%';
+      document.getElementById('masteryBar').style.width = Math.max(6, masteryPct) + '%';
+      document.getElementById('customItemsCountBadge').textContent =
+        State.customItems.length + ' Custom Addition' + (State.customItems.length === 1 ? '' : 's');
+
+      renderMinimap();
+    }
+
+    function renderMinimap() {
+      const grid = document.getElementById('minimapGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      HOUSE_ROOMS.forEach((r, idx) => {
+        const isCurrent = idx === State.currentRoom;
+        const hasDaraz = !!State.darazOpened[idx];
+        const hasVault = !!State.vaultsUnsealed[idx];
+        const btn = document.createElement('button');
+        btn.className = 'px-2 py-1 rounded text-[10px] font-mono-code border transition text-left ' +
+          (isCurrent
+            ? 'bg-[#1C2033] text-[#FBF8F1] border-[#1C2033] font-bold'
+            : 'folder-tab border-[#CBB78C] hover:bg-[#CBB78C]');
+        btn.innerHTML = `
+          <div class="truncate">${r.shortName}</div>
+          <div class="flex items-center gap-1 mt-0.5 text-[9px]">
+            <span title="Daraz">${hasDaraz ? '🗄️✓' : '🗄️'}</span>
+            <span title="Vault">${hasVault ? '🔓' : '🔐'}</span>
+          </div>
+        `;
+        btn.addEventListener('click', () => switchRoom(idx));
+        grid.appendChild(btn);
+      });
+    }
+
+    // =========================================================================
+    // DARAZ MODAL LOGIC
+    // =========================================================================
+    function openDarazModal(initialDrawerIdx = 0) {
+      const room = HOUSE_ROOMS[State.currentRoom];
+      State.darazOpened[State.currentRoom] = true;
+      State.selectedDrawerIdx = Math.min(initialDrawerIdx, room.darazDrawers.length - 1);
+      State.save();
+      SoundFX.play('daraz');
+
+      if (animatedDoors[0]) animatedDoors[0].isOpen = true;
+      updateHudAndProgress();
+
+      document.getElementById('darazModalRoomTag').textContent =
+        'ROOM ' + (State.currentRoom + 1) + ' DARAZ';
+      document.getElementById('darazModalTitle').textContent = room.darazTitle;
+      renderDarazDrawers();
+      document.getElementById('darazModal').classList.remove('hidden');
+    }
+
+    function renderDarazDrawers() {
+      const room = HOUSE_ROOMS[State.currentRoom];
+      const listEl = document.getElementById('darazDrawerList');
+      listEl.innerHTML = '';
+
+      room.darazDrawers.forEach((d, idx) => {
+        const isSelected = idx === State.selectedDrawerIdx;
+        const isMastered = !!State.drawersMastered[d.id];
+        const btn = document.createElement('button');
+        btn.className = 'w-full text-left p-3 rounded-lg border transition flex items-start justify-between gap-2 ' +
+          (isSelected
+            ? 'bg-[#1C2033] text-[#FBF8F1] border-[#1C2033] shadow-md'
+            : 'folder-tab border-[#CBB78C] hover:bg-[#CBB78C]');
+        btn.innerHTML = `
+          <div>
+            <div class="text-[10px] font-mono-code opacity-80">${d.clause}</div>
+            <div class="font-semibold text-xs mt-0.5">${d.label}</div>
+          </div>
+          <span class="text-xs font-mono-code shrink-0">${isMastered ? '✅' : '📂'}</span>
+        `;
+        btn.addEventListener('click', () => {
+          State.selectedDrawerIdx = idx;
+          SoundFX.play('daraz');
+          renderDarazDrawers();
+        });
+        listEl.appendChild(btn);
+      });
+
+      const activeDrawer = room.darazDrawers[State.selectedDrawerIdx] || room.darazDrawers[0];
+      const contentEl = document.getElementById('darazDrawerContent');
+      const isMastered = !!State.drawersMastered[activeDrawer.id];
+
+      contentEl.innerHTML = `
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-[#CBB78C] pb-2.5 mb-3">
+          <span class="px-2 py-0.5 rounded bg-[#3A399C] text-white font-mono-code text-[11px] font-semibold">${activeDrawer.clause}</span>
+          <span class="stamp-badge px-2 py-0.5 text-[10px] font-bold">${isMastered ? 'MASTERED FOLDER' : 'MANILA FOLDER OPEN'}</span>
+        </div>
+        <h4 class="font-caslon-display text-lg font-bold">${activeDrawer.label}</h4>
+        <p class="font-caslon text-sm mt-1.5 leading-relaxed opacity-90">${activeDrawer.summary}</p>
+        <div class="mt-3 space-y-2">
+          <div class="text-[10px] font-mono-code uppercase tracking-wider opacity-75 font-bold">Inside this Folder:</div>
+          ${(activeDrawer.details || []).map(item => `
+            <div class="p-2.5 rounded folder-tab text-xs font-caslon leading-relaxed border-l-4 border-[#3A399C]">
+              ${item}
+            </div>
+          `).join('')}
+        </div>
+        <div class="mt-3 p-3 rounded bg-[#F5E49C]/60 border border-[#CBB78C] text-xs">
+          <span class="font-mono-code font-bold text-[#B3261E] uppercase">Remember on TKV: </span>
+          <span class="font-caslon font-semibold text-[#1C2033]">${activeDrawer.takeaway}</span>
+        </div>
+      `;
+
+      const markBtn = document.getElementById('markDrawerLearnedBtn');
+      markBtn.textContent = isMastered ? '✓ Mastered (Synced to 2D Desk)' : '✓ Mark Drawer Mastered';
+    }
+
+    // =========================================================================
+    // VAULT MODAL LOGIC
+    // =========================================================================
+    function openVaultModal() {
+      const room = HOUSE_ROOMS[State.currentRoom];
+      SoundFX.play('vault');
+
+      document.getElementById('vaultModalTitle').textContent = room.vaultTitle;
+      document.getElementById('vaultChallengePrompt').textContent = room.vaultQuestion;
+
+      const optionsEl = document.getElementById('vaultCodeOptions');
+      optionsEl.innerHTML = '';
+      room.vaultOptions.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'p-2.5 rounded paper-panel border border-[#CBB78C] hover:border-[#3A399C] text-left text-xs font-mono-code transition';
+        btn.textContent = opt.label;
+        btn.addEventListener('click', () => {
+          if (opt.correct) {
+            unsealCurrentRoomVault();
+          } else {
+            SoundFX.play('stamp');
+            const msg = document.getElementById('vaultStatusMsg');
+            msg.textContent = '✗ Combination rejected! Check the Daraz folders or try another key.';
+            msg.className = 'text-[#B3261E] font-bold';
+          }
+        });
+        optionsEl.appendChild(btn);
+      });
+
+      renderVaultState();
+      document.getElementById('vaultModal').classList.remove('hidden');
+    }
+
+    function unsealCurrentRoomVault() {
+      State.vaultsUnsealed[State.currentRoom] = true;
+      State.save();
+      SoundFX.play('unseal');
+      buildRoom3D(State.currentRoom);
+      updateHudAndProgress();
+      renderVaultState();
+      showToast('Vault Unsealed! Classified TKV Dossiers Unlocked.');
+    }
+
+    function renderVaultState() {
+      const room = HOUSE_ROOMS[State.currentRoom];
+      const isUnsealed = !!State.vaultsUnsealed[State.currentRoom];
+      const lockBadge = document.getElementById('vaultLockBadge');
+      const unsealedSec = document.getElementById('vaultUnsealedSection');
+      const secretsList = document.getElementById('vaultSecretsList');
+
+      if (isUnsealed) {
+        lockBadge.textContent = '✓ UNSEALED & DECIPHERED';
+        lockBadge.className = 'text-[11px] font-mono-code text-[#81C784] font-bold';
+        unsealedSec.classList.remove('hidden');
+        secretsList.innerHTML = room.vaultSecrets.map(sec => `
+          <div class="p-4 rounded-lg paper-panel border-l-4 border-[#B3261E] space-y-1.5">
+            <div class="flex items-center justify-between">
+              <h5 class="font-caslon-display text-base font-bold">${sec.title}</h5>
+              <span class="tape-badge px-2 py-0.5 text-[10px] rounded">${sec.badge}</span>
+            </div>
+            <p class="font-caslon text-xs leading-relaxed opacity-90">${sec.body}</p>
+          </div>
+        `).join('');
+      } else {
+        lockBadge.textContent = 'SEALED COMPARTMENT';
+        lockBadge.className = 'text-[11px] font-mono-code text-[#F5E49C]';
+        unsealedSec.classList.add('hidden');
+      }
+    }
+
+    // =========================================================================
+    // STUDY WORKBENCH MODAL (ROOM-SPECIFIC INTERACTIVE TOOLS)
+    // =========================================================================
+    function openStationModal() {
+      const room = HOUSE_ROOMS[State.currentRoom];
+      SoundFX.play('stamp');
+      document.getElementById('stationModalTag').textContent = room.code + ' // WORKBENCH';
+      document.getElementById('stationModalTitle').textContent = room.stationTitle;
+      const body = document.getElementById('stationModalBody');
+
+      if (room.stationType === 'desk' || room.stationType === 'clauses') {
+        body.innerHTML = `
+          <div class="space-y-4">
+            <div class="p-3.5 rounded folder-tab border border-[#CBB78C] flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <div class="text-[10px] font-mono-code uppercase text-[#B3261E] font-bold">GCC + PCC LIVE RESOLVER (contract.js)</div>
+                <div class="font-caslon text-sm font-bold">Select a Core TKV Clause to Compare Base GCC vs. PCC Red-Tape Override</div>
+              </div>
+              <select id="clauseComparatorSelect" class="p-2 rounded paper-panel border border-[#CBB78C] font-mono-code text-xs">
+                <option value="35">Clause 35 — Early Warning & Claims Notice</option>
+                <option value="42">Clause 42 — Compensation Events</option>
+                <option value="30">Clause 30 — Extension of Intended Completion Date</option>
+                <option value="53">Clause 53 & 44 — Variations & Quotations</option>
+                <option value="56">Clause 56 — Payments & Late Financing Interest</option>
+                <option value="67">Clause 67 — Force Majeure</option>
+              </select>
+            </div>
+            <div id="clauseComparisonOutput" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+          </div>
+        `;
+        const sel = document.getElementById('clauseComparatorSelect');
+        const renderComp = () => {
+          const map = {
+            '35': {
+              gcc: 'GCC 35.1: The Contractor shall warn the Engineer at the earliest opportunity of specific likely future events or circumstances that may adversely affect the quality of the work, increase the Contract Price, or delay the execution of the Works.',
+              pcc: 'PCC Override [append / fill]: Notice must explicitly reference Clause 35, state the date of occurrence, and be logged in the Correspondence Register (`out:...`). Failure to issue early warning is weighed when assessing any subsequent EOT or quantum.',
+              plain: 'Plain Words: Raise the flag the day you spot a boulder on the road—do not wait until the dump truck crashes into it.'
+            },
+            '42': {
+              gcc: 'GCC 42.1: Defines statutory Compensation Events (Employer delays site access under Cl. 24, Engineer delays drawings/instructions under Cl. 8, unforeseen physical conditions, etc.).',
+              pcc: 'PCC Override [replace / fill]: Specifies exact notice window and documentary substantiation (contemporaneous joint site diaries + baseline fragment) required to establish entitlement.',
+              plain: 'Plain Words: Your contractual list of Employer-risk triggers that unlock both Time (Clause 30) and Cost (Clause 42.2).'
+            },
+            '30': {
+              gcc: 'GCC 30.1: The Engineer shall extend the Intended Completion Date if a Compensation Event occurs or a Variation is issued which makes it impossible for Completion to be achieved by the Intended Completion Date without the Contractor taking steps to accelerate.',
+              pcc: 'PCC Override [fill]: Defines the exact number of days within which the Contractor must submit full EOT particulars and the window within which the Engineer must issue a determination.',
+              plain: 'Plain Words: Proving an event happened is step one; proving it pushed the Critical Path past the Completion Date is step two.'
+            },
+            '53': {
+              gcc: 'GCC 53 & 44: The Contractor shall provide the Engineer with a quotation for carrying out the Variation within the specified period. The Engineer shall assess the quotation before instructing the Variation.',
+              pcc: 'PCC Override [append]: Confirms BOQ rate applicability thresholds and overhead/profit percentages for new work items.',
+              plain: 'Plain Words: Never treat an altered drawing as free work—confirm it as a Variation under Clause 53 immediately.'
+            },
+            '56': {
+              gcc: 'GCC 56.1: Payments shall be adjusted for deductions for advance payments and retention. The Employer shall pay the Contractor the amounts certified by the Engineer within the stipulated days.',
+              pcc: 'PCC Override [fill]: Inserts the exact certification days, payment window, and prevailing interest rate for delayed payments.',
+              plain: 'Plain Words: Once the Engineer signs the IPC, the payment clock starts ticking automatically.'
+            },
+            '67': {
+              gcc: 'GCC 67.1: Force Majeure means an exceptional event or circumstance beyond a Party’s control which could not reasonably have been provided against before entering into the Contract.',
+              pcc: 'PCC Override [replace]: Aligns Force Majeure notice timelines and distinguishes natural catastrophes from insurable site risks.',
+              plain: 'Plain Words: Notify immediately, photograph everything on site, and document every mitigation measure.'
+            }
+          };
+          const item = map[sel.value];
+          document.getElementById('clauseComparisonOutput').innerHTML = `
+            <div class="p-4 rounded paper-panel border border-[#CBB78C]">
+              <span class="px-2 py-0.5 rounded bg-[#1C2033] text-white font-mono-code text-[10px]">BASE GCC TEXT</span>
+              <p class="font-caslon text-xs mt-2 leading-relaxed">${item.gcc}</p>
+            </div>
+            <div class="p-4 rounded paper-panel border-2 border-[#B3261E]">
+              <span class="tape-badge px-2 py-0.5 rounded text-[10px]">PCC RED-TAPE OVERRIDE</span>
+              <p class="font-caslon text-xs mt-2 leading-relaxed">${item.pcc}</p>
+            </div>
+            <div class="md:col-span-2 p-3.5 rounded bg-[#F5E49C]/60 border border-[#CBB78C] font-caslon text-xs">
+              <strong class="font-mono-code text-[#3A399C]">IN PLAIN WORDS: </strong>${item.plain}
+            </div>
+          `;
+        };
+        sel.addEventListener('change', renderComp);
+        renderComp();
+      } else if (room.stationType === 'clocks') {
+        body.innerHTML = `
+          <div class="space-y-4 text-xs">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded folder-tab border border-[#CBB78C]">
+              <div>
+                <label class="block font-mono-code font-bold mb-1">1. Trigger Event Date</label>
+                <input id="clkStartDate" type="date" value="2026-10-20" class="w-full p-2 rounded paper-panel border border-[#CBB78C] font-mono-code" />
+              </div>
+              <div>
+                <label class="block font-mono-code font-bold mb-1">2. Contractual Clock Rule</label>
+                <select id="clkRuleSelect" class="w-full p-2 rounded paper-panel border border-[#CBB78C] font-mono-code">
+                  <option value="7">7 Days — Early Warning / Urgent Notice (Cl. 35)</option>
+                  <option value="14">14 Days — Taking-Over Application Notice (Cl. 74)</option>
+                  <option value="21">21 Days — Variation / Compensation Particulars (Cl. 42/44)</option>
+                  <option value="28" selected>28 Days — Formal Claim / Dispute Referral Window (Cl. 32/36)</option>
+                  <option value="56">56 Days — Final Account Statement Window (Cl. 75)</option>
+                </select>
+              </div>
+              <div>
+                <label class="block font-mono-code font-bold mb-1">3. Critical Path Impact (Days)</label>
+                <input id="clkDelayDays" type="number" value="18" min="0" max="365" class="w-full p-2 rounded paper-panel border border-[#CBB78C] font-mono-code" />
+              </div>
+            </div>
+            <div id="clkCalcResult" class="p-4 rounded paper-panel border-2 border-[#3A399C]"></div>
+          </div>
+        `;
+        const updateClockCalc = () => {
+          const startStr = document.getElementById('clkStartDate').value || '2026-10-20';
+          const windowDays = Number(document.getElementById('clkRuleSelect').value) || 28;
+          const cpDelay = Number(document.getElementById('clkDelayDays').value) || 0;
+          const d = new Date(startStr + 'T00:00:00');
+          const due = new Date(d.getTime() + windowDays * 86400000);
+          const dueFormatted = due.toISOString().slice(0, 10);
+          document.getElementById('clkCalcResult').innerHTML = `
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <div class="text-[10px] font-mono-code text-[#B3261E] font-bold">STATUTORY SUBMISSION DEADLINE</div>
+                <div class="font-caslon-display text-2xl font-bold text-[#1C2033]">Due on or before: ${dueFormatted}</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="stamp-badge px-3 py-1 text-xs font-bold">${windowDays}-DAY CLOCK ACTIVE</span>
+                <button id="addClockTo2DBtn" class="px-2.5 py-1 rounded bg-[#3A399C] text-white font-mono-code text-[11px] hover:opacity-90 transition">
+                  ＋ Sync to 2D Clocks
+                </button>
+              </div>
+            </div>
+            <p class="font-caslon text-xs mt-2">
+              With <strong>${cpDelay} calendar days</strong> of Critical Path impact, file your initial Notice before <strong>${dueFormatted}</strong> and attach the updated Clause 27 Baseline fragment showing a +${cpDelay}d shift to the Intended Completion Date under Clause 30.
+            </p>
+          `;
+
+          const addClkBtn = document.getElementById('addClockTo2DBtn');
+          if (addClkBtn) {
+            addClkBtn.addEventListener('click', () => {
+              try {
+                const raw = localStorage.getItem('registry:v1');
+                const st = raw ? JSON.parse(raw) : { clocks: [] };
+                st.clocks = st.clocks || [];
+                st.clocks.push({
+                  id: 'clk-3d-' + Date.now(),
+                  clause: windowDays === 7 ? '35' : windowDays === 14 ? '74' : windowDays === 21 ? '42' : '30',
+                  due: dueFormatted,
+                  label: `${windowDays}d Notice from 3D House (+${cpDelay}d EOT impact)`
+                });
+                localStorage.setItem('registry:v1', JSON.stringify(st));
+                showToast(`Clock for ${dueFormatted} synced to 2D Desk!`);
+              } catch (e) {}
+            });
+          }
+        };
+        ['clkStartDate', 'clkRuleSelect', 'clkDelayDays'].forEach(id => {
+          document.getElementById(id).addEventListener('input', updateClockCalc);
+        });
+        updateClockCalc();
+      } else if (room.stationType === 'letters') {
+        body.innerHTML = `
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="space-y-2">
+              <div class="font-mono-code font-bold text-[#3A399C]">1. PASTE OR SELECT INCOMING LETTER (reader.js)</div>
+              <select id="sampleLetterPreset" class="w-full p-2 rounded folder-tab border border-[#CBB78C] font-mono-code">
+                <option value="0">Preset 1: Engineer Instruction Adding Retaining Wall (LOT-01/SINOHYDRO-KSNS JV/0142)</option>
+                <option value="1">Preset 2: Engineer Rejection Alleging Time-Bar under FIDIC 20.1</option>
+              </select>
+              <textarea id="letterAnalyzerInput" rows="6" class="w-full p-2.5 rounded paper-panel border border-[#CBB78C] font-mono-code text-[11px]">Ref: LOT-01/SINOHYDRO-KSNS JV/0142
+Subject: Instruction for Additional Slope Protection Works at Ch. 1+240
+Dear Contractor, You are hereby instructed to execute additional shotcrete and rock bolts at Ch. 1+240 immediately at no additional cost under Sub-Clause 20.1.</textarea>
+              <button id="runAnalyzerBtn" class="w-full py-2 rounded bg-[#1C2033] text-white font-mono-code font-bold hover:opacity-90">🔍 Run Letter Analyzer & Draft Reply</button>
+            </div>
+            <div id="letterAnalyzerOutput" class="p-3.5 rounded paper-panel border border-[#CBB78C] space-y-2"></div>
+          </div>
+        `;
+        const runAnalysis = () => {
+          const txt = document.getElementById('letterAnalyzerInput').value;
+          const hasFidicTrap = /20\.1|DAB/i.test(txt);
+          document.getElementById('letterAnalyzerOutput').innerHTML = `
+            <div class="flex items-center justify-between">
+              <span class="tape-badge px-2 py-0.5 text-[10px] rounded">RISK DETECTED</span>
+              <span class="font-mono-code text-[10px]">Ref Family: in:142 (Engineer → Contractor)</span>
+            </div>
+            <div class="font-caslon-display text-base font-bold">Analyzer Findings & Reply Plan:</div>
+            <ul class="list-disc pl-4 space-y-1 font-caslon">
+              <li><strong>Unpriced Scope Instruction:</strong> Engineer instructs additional physical works ("shotcrete and rock bolts") while attempting to disclaim cost.</li>
+              ${hasFidicTrap ? '<li class="text-[#B3261E] font-bold">FIDIC Look-Alike Trap Flagged: Incoming letter cites "Sub-Clause 20.1" which is not the TKV GCC notice clause (use TKV Clauses 35, 42, and 53).</li>' : ''}
+              <li><strong>Recommended Action:</strong> Dispatch a <em>Reply + Variation Notice (Clause 53 & 44)</em> within 7 days confirming execution as a Variation.</li>
+            </ul>
+            <div class="p-2.5 rounded folder-tab font-mono-code text-[10px] whitespace-pre-wrap">Our Ref: TKV/COM/2026/0489
+Your Letter ref.: LOT-01/SINOHYDRO-KSNS JV/0142
+Subject: Notice of Variation & Quotation under GCC Clauses 53 and 44
+
+We acknowledge your instruction ref. 0142. Please take notice under GCC Clauses 35 and 53 that the instructed additional slope protection constitutes a Variation...</div>
+          `;
+        };
+        document.getElementById('sampleLetterPreset').addEventListener('change', e => {
+          const inp = document.getElementById('letterAnalyzerInput');
+          if (e.target.value === '0') {
+            inp.value = 'Ref: LOT-01/SINOHYDRO-KSNS JV/0142\nSubject: Instruction for Additional Slope Protection Works at Ch. 1+240\nDear Contractor, You are hereby instructed to execute additional shotcrete and rock bolts at Ch. 1+240 immediately at no additional cost under Sub-Clause 20.1.';
+          } else {
+            inp.value = 'Ref: LOT-01/SINOHYDRO-KSNS JV/0188\nSubject: Rejection of EOT Claim No. 04\nYour EOT claim is rejected in full as time-barred and considered a global claim without critical path substantiation.';
+          }
+          runAnalysis();
+        });
+        document.getElementById('runAnalyzerBtn').addEventListener('click', () => {
+          SoundFX.play('stamp');
+          runAnalysis();
+        });
+        runAnalysis();
+      } else if (room.stationType === 'cases' || room.stationType === 'drill') {
+        renderFlashcardAndDrillWorkbench(body);
+      } else {
+        renderBuilderWorkbench(body);
+      }
+
+      document.getElementById('stationModal').classList.remove('hidden');
+    }
+
+    function renderFlashcardAndDrillWorkbench(container) {
+      const card = FLASHCARDS_DECK[State.activeCardIdx % FLASHCARDS_DECK.length];
+      const boxNum = State.leitnerBoxes[card.id] ?? 0;
+
+      container.innerHTML = `
+        <div class="space-y-4 text-xs">
+          <div class="flex flex-wrap items-center justify-between gap-2 p-3 rounded folder-tab border border-[#CBB78C]">
+            <div>
+              <span class="font-mono-code font-bold text-[#1F6E43]">LEITNER 5-BOX FLASHCARDS (drill.js)</span>
+              <p class="font-caslon">Card ${State.activeCardIdx + 1} of ${FLASHCARDS_DECK.length} • Currently in <strong>Leitner Box ${boxNum}/4</strong></p>
+            </div>
+            <div class="flex gap-1">
+              ${[0, 1, 2, 3, 4].map(b => `
+                <span class="px-2 py-1 rounded font-mono-code text-[10px] ${b === boxNum ? 'bg-[#1C2033] text-white font-bold' : 'paper-panel'}">Box ${b}</span>
+              `).join('')}
+            </div>
+          </div>
+
+          <div id="flashcardBox" class="p-6 rounded-xl paper-panel border-2 border-[#3A399C] cursor-pointer text-center space-y-3 min-h-[160px] flex flex-col justify-center">
+            <div class="text-[11px] font-mono-code text-[#B3261E] font-bold">${card.clause} — ${State.cardFlipped ? 'BACK (PLAIN-WORDS BREAKDOWN)' : 'FRONT (CLICK CARD TO FLIP)'}</div>
+            <div class="font-caslon-display text-lg sm:text-xl font-bold">${State.cardFlipped ? card.back : card.front}</div>
+          </div>
+
+          <div class="flex items-center justify-between gap-2">
+            <button id="cardMissBtn" class="flex-1 py-2 rounded bg-[#B3261E] text-white font-mono-code font-semibold">✗ Missed (Reset to Box 0)</button>
+            <button id="cardFlipBtn" class="flex-1 py-2 rounded folder-tab font-mono-code font-semibold">🔄 Flip Card</button>
+            <button id="cardGotItBtn" class="flex-1 py-2 rounded bg-[#1F6E43] text-white font-mono-code font-semibold">✓ Got It! (Advance Box →)</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('flashcardBox').addEventListener('click', () => {
+        State.cardFlipped = !State.cardFlipped;
+        SoundFX.play('daraz');
+        renderFlashcardAndDrillWorkbench(container);
+      });
+      document.getElementById('cardFlipBtn').addEventListener('click', () => {
+        State.cardFlipped = !State.cardFlipped;
+        SoundFX.play('daraz');
+        renderFlashcardAndDrillWorkbench(container);
+      });
+      document.getElementById('cardGotItBtn').addEventListener('click', () => {
+        State.leitnerBoxes[card.id] = Math.min(4, (State.leitnerBoxes[card.id] || 0) + 1);
+        State.activeCardIdx = (State.activeCardIdx + 1) % FLASHCARDS_DECK.length;
+        State.cardFlipped = false;
+        State.save();
+        SoundFX.play('unseal');
+        renderFlashcardAndDrillWorkbench(container);
+      });
+      document.getElementById('cardMissBtn').addEventListener('click', () => {
+        State.leitnerBoxes[card.id] = 0;
+        State.activeCardIdx = (State.activeCardIdx + 1) % FLASHCARDS_DECK.length;
+        State.cardFlipped = false;
+        State.save();
+        SoundFX.play('stamp');
+        renderFlashcardAndDrillWorkbench(container);
+      });
+    }
+
+    function renderBuilderWorkbench(container) {
+      container.innerHTML = `
+        <div class="space-y-4 text-xs">
+          <div class="flex items-center justify-between p-3 rounded folder-tab">
+            <div>
+              <h4 class="font-caslon-display text-base font-bold">Your Custom House Additions (${State.customItems.length})</h4>
+              <p class="font-caslon">Every item below was added by you and is live inside the 3D House.</p>
+            </div>
+            <button id="stationAddNewBtn" class="px-3 py-1.5 rounded bg-[#B3261E] text-white font-mono-code font-bold">+ Add New Item</button>
+          </div>
+          <div class="space-y-2">
+            ${State.customItems.length === 0 ? `
+              <div class="p-4 rounded paper-panel text-center font-caslon">
+                No custom items added yet. Click <strong>"+ Add New Item"</strong> to place a custom folder inside any room's Daraz or Vault!
+              </div>
+            ` : State.customItems.map(item => `
+              <div class="p-3 rounded paper-panel border border-[#CBB78C] flex items-center justify-between">
+                <div>
+                  <span class="font-mono-code text-[10px] text-[#B3261E] font-bold">ROOM ${Number(item.roomIdx) + 1} // ${item.container.toUpperCase()}</span>
+                  <div class="font-bold text-sm">${item.title} (${item.clause})</div>
+                  <div class="font-caslon opacity-80">${item.content}</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+      const addBtn = document.getElementById('stationAddNewBtn');
+      if (addBtn) {
+        addBtn.addEventListener('click', () => {
+          closeAllModals();
+          openAddContentModal();
+        });
+      }
+    }
+
+    // =========================================================================
+    // "+ ADD ITEM" STUDIO & FINDER PALETTE
+    // =========================================================================
+    function openAddContentModal(defaultContainer) {
+      document.getElementById('addTargetRoom').value = String(State.currentRoom);
+      if (defaultContainer) {
+        document.getElementById('addTargetContainer').value = defaultContainer;
+      }
+      document.getElementById('addFormFeedback').classList.add('hidden');
+      document.getElementById('addContentModal').classList.remove('hidden');
+    }
+
+    function saveCustomContentItem() {
+      const roomIdx = Number(document.getElementById('addTargetRoom').value) || 0;
+      const container = document.getElementById('addTargetContainer').value || 'daraz';
+      const title = document.getElementById('addItemTitle').value.trim();
+      const clause = document.getElementById('addItemClause').value.trim() || 'GCC/PCC Custom';
+      const content = document.getElementById('addItemContent').value.trim();
+      const takeaway = document.getElementById('addItemTakeaway').value.trim();
+
+      const fb = document.getElementById('addFormFeedback');
+      if (!title || !content) {
+        fb.textContent = 'Please enter both a Title and a Plain-Words Explanation.';
+        fb.className = 'p-2.5 rounded bg-[#B3261E]/15 border border-[#B3261E] text-[#B3261E] font-mono-code text-xs';
+        fb.classList.remove('hidden');
+        return;
+      }
+
+      const newItem = {
+        id: 'custom-' + Date.now(),
+        roomIdx,
+        container,
+        title,
+        clause,
+        content,
+        takeaway: takeaway || 'Custom TKV practice note.'
+      };
+
+      State.customItems.push(newItem);
+      State.injectCustomItemsIntoRooms();
+      State.save();
+      SoundFX.play('unseal');
+
+      document.getElementById('addItemTitle').value = '';
+      document.getElementById('addItemClause').value = '';
+      document.getElementById('addItemContent').value = '';
+      document.getElementById('addItemTakeaway').value = '';
+
+      fb.textContent = `✓ Added "${newItem.title}" to Room ${roomIdx + 1} (${container.toUpperCase()}) and spawned its 3D artifact!`;
+      fb.className = 'p-2.5 rounded bg-[#1F6E43]/15 border border-[#1F6E43] text-[#1F6E43] font-mono-code text-xs';
+      fb.classList.remove('hidden');
+
+      buildRoom3D(State.currentRoom);
+      updateHudAndProgress();
+    }
+
+    function copyTextToClipboard(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    function openFinderModal() {
+      document.getElementById('finderModal').classList.remove('hidden');
+      const inp = document.getElementById('finderSearchInput');
+      inp.value = '';
+      renderFinderResults('');
+      setTimeout(() => inp.focus(), 50);
+    }
+
+    function renderFinderResults(query) {
+      const q = (query || '').toLowerCase().trim();
+      const results = [];
+
+      HOUSE_ROOMS.forEach((r, rIdx) => {
+        r.darazDrawers.forEach((d, dIdx) => {
+          const hay = (r.name + ' ' + d.label + ' ' + d.clause + ' ' + d.summary).toLowerCase();
+          if (!q || hay.includes(q)) {
+            results.push({
+              type: 'DARAZ',
+              roomIdx: rIdx,
+              drawerIdx: dIdx,
+              title: d.label,
+              meta: `Room ${rIdx + 1} • ${d.clause}`,
+              summary: d.summary
+            });
+          }
+        });
+        r.vaultSecrets.forEach(s => {
+          const hay = (r.name + ' ' + s.title + ' ' + s.badge + ' ' + s.body).toLowerCase();
+          if (!q || hay.includes(q)) {
+            results.push({
+              type: 'VAULT',
+              roomIdx: rIdx,
+              title: s.title,
+              meta: `Room ${rIdx + 1} Vault • ${s.badge}`,
+              summary: s.body
+            });
+          }
+        });
+      });
+
+      const listEl = document.getElementById('finderResultsList');
+      listEl.innerHTML = results.slice(0, 18).map((item, i) => `
+        <button data-res-idx="${i}" class="finder-res-item w-full text-left p-3 hover:bg-[#E4D7BA] transition flex items-start justify-between gap-2">
+          <div>
+            <div class="font-mono-code text-[10px] text-[#3A399C] font-bold">${item.meta}</div>
+            <div class="font-bold text-xs mt-0.5">${item.title}</div>
+            <div class="font-caslon text-[11px] opacity-80 line-clamp-1">${item.summary}</div>
+          </div>
+          <span class="px-2 py-0.5 rounded font-mono-code text-[10px] ${item.type === 'VAULT' ? 'bg-[#B3261E] text-white' : 'folder-tab'}">${item.type}</span>
+        </button>
+      `).join('');
+
+      listEl.querySelectorAll('.finder-res-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = results[Number(btn.getAttribute('data-res-idx'))];
+          closeAllModals();
+          switchRoom(item.roomIdx);
+          if (item.type === 'DARAZ') {
+            openDarazModal(item.drawerIdx || 0);
+          } else {
+            openVaultModal();
+          }
+        });
+      });
+    }
+
+    function closeAllModals() {
+      ['darazModal', 'vaultModal', 'stationModal', 'addContentModal', 'blueprintModal', 'finderModal'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toastBanner');
+      t.textContent = msg;
+      t.classList.remove('hidden');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => t.classList.add('hidden'), 2800);
+    }
+
+    // =========================================================================
+    // 6. WIRE ALL DOM LISTENERS ON LOAD
+    // =========================================================================
+    window.onload = function() {
+      State.load();
+      initThreeJS();
+      updateHudAndProgress();
+
+      document.querySelectorAll('.room-nav-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchRoom(Number(btn.getAttribute('data-room'))));
+      });
+
+      document.getElementById('prevRoomBtn').addEventListener('click', () => {
+        switchRoom((State.currentRoom + HOUSE_ROOMS.length - 1) % HOUSE_ROOMS.length);
+      });
+      document.getElementById('nextRoomBtn').addEventListener('click', () => {
+        switchRoom((State.currentRoom + 1) % HOUSE_ROOMS.length);
+      });
+
+      document.getElementById('quickDarazBtn').addEventListener('click', () => openDarazModal(0));
+      document.getElementById('quickVaultBtn').addEventListener('click', () => openVaultModal());
+      document.getElementById('quickStationBtn').addEventListener('click', () => openStationModal());
+
+      document.getElementById('collapseHudBtn').addEventListener('click', () => {
+        const body = document.getElementById('hudBodyContent');
+        const btn = document.getElementById('collapseHudBtn');
+        body.classList.toggle('hidden');
+        btn.textContent = body.classList.contains('hidden') ? '+' : '–';
+      });
+
+      document.getElementById('closeDarazModalBtn').addEventListener('click', closeAllModals);
+      document.getElementById('closeVaultModalBtn').addEventListener('click', closeAllModals);
+      document.getElementById('closeStationModalBtn').addEventListener('click', closeAllModals);
+      document.getElementById('closeAddModalBtn').addEventListener('click', closeAllModals);
+      document.getElementById('closeBlueprintModalBtn').addEventListener('click', closeAllModals);
+      document.getElementById('closeFinderBtn').addEventListener('click', closeAllModals);
+
+      document.getElementById('markDrawerLearnedBtn').addEventListener('click', () => {
+        const room = HOUSE_ROOMS[State.currentRoom];
+        const d = room.darazDrawers[State.selectedDrawerIdx];
+        if (d) {
+          State.drawersMastered[d.id] = true;
+          State.save();
+          SoundFX.play('unseal');
+          renderDarazDrawers();
+          updateHudAndProgress();
+          showToast('Marked "' + d.label + '" as Mastered & Synced to 2D Desk!');
+        }
+      });
+
+      document.getElementById('instantUnsealBtn').addEventListener('click', () => {
+        unsealCurrentRoomVault();
+      });
+
+      document.getElementById('openAddModalBtn').addEventListener('click', () => openAddContentModal());
+      document.getElementById('addDarazItemQuickBtn').addEventListener('click', () => {
+        closeAllModals();
+        openAddContentModal('daraz');
+      });
+      document.getElementById('addVaultSecretQuickBtn').addEventListener('click', () => {
+        closeAllModals();
+        openAddContentModal('vault');
+      });
+      document.getElementById('saveCustomItemBtn').addEventListener('click', saveCustomContentItem);
+
+      document.getElementById('exportCustomJsonBtn').addEventListener('click', () => {
+        const jsonStr = JSON.stringify({
+          exportedAt: new Date().toISOString(),
+          targetCourse: 'courses/contract-registry',
+          customItems: State.customItems
+        }, null, 2);
+        copyTextToClipboard(jsonStr);
+        showToast('Copied custom JSON payload to clipboard!');
+      });
+
+      document.getElementById('openBlueprintBtn').addEventListener('click', () => {
+        document.getElementById('blueprintModal').classList.remove('hidden');
+      });
+
+      document.getElementById('finderTriggerBtn').addEventListener('click', openFinderModal);
+      document.getElementById('finderSearchInput').addEventListener('input', e => {
+        renderFinderResults(e.target.value);
+      });
+
+      document.getElementById('lampToggleBtn').addEventListener('click', () => {
+        State.nightMode = !State.nightMode;
+        document.body.classList.toggle('night-mode', State.nightMode);
+        if (ambientLight && ceilingLight && deskLampLight) {
+          ambientLight.intensity = State.nightMode ? 0.25 : 0.72;
+          ceilingLight.intensity = State.nightMode ? 0.35 : 0.9;
+          deskLampLight.intensity = State.nightMode ? 1.35 : 0.65;
+          scene.background = new THREE.Color(State.nightMode ? 0x171A26 : 0xEFE8D8);
+          scene.fog.color = new THREE.Color(State.nightMode ? 0x171A26 : 0xEFE8D8);
+        }
+        showToast(State.nightMode ? 'Night Reading Lamp Mode ON' : 'Daylight Registry Mode ON');
+      });
+
+      document.getElementById('audioToggleBtn').addEventListener('click', () => {
+        SoundFX.muted = !SoundFX.muted;
+        document.getElementById('audioToggleBtn').textContent = SoundFX.muted ? '🔇' : '🔊';
+        showToast(SoundFX.muted ? 'Sound Effects Muted' : 'Synthesized Sound Effects Enabled');
+      });
+
+      document.getElementById('moveFwdBtn').addEventListener('click', () => movePlayer(2.5, 0, 0));
+      document.getElementById('moveBackBtn').addEventListener('click', () => movePlayer(-2.5, 0, 0));
+      document.getElementById('moveLeftBtn').addEventListener('click', () => movePlayer(0, 0, 0.32));
+      document.getElementById('moveRightBtn').addEventListener('click', () => movePlayer(0, 0, -0.32));
+      document.getElementById('resetCamBtn').addEventListener('click', () => {
+        camState.targetX = 0;
+        camState.targetZ = 5.4;
+        camState.targetYaw = 0;
+        camState.pitch = -0.06;
+      });
+    };
+  </script>
+</body>
+</html>

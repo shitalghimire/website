@@ -314,3 +314,237 @@ button.reg-link:hover { border-color: var(--stamp); }
 @media (max-width: 520px) { .syncp__form { flex-direction: column; } }
 .syncp__msg { min-height: 1.2rem; font-size: .88rem; color: var(--tape); }
 .syncp__small { font-size: .8rem; }
+
+/* ═══════════ 3D LEARNING HOUSE INTEGRATION ═══════════ */
+
+/* Top bar prominent launch button */
+.topbar .btn-house-launch {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-left: auto;
+  padding: .42rem .85rem;
+  font: 700 .75rem/1 var(--mono);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #fff;
+  background: var(--stamp);
+  border: 1px solid var(--stamp);
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(58, 57, 156, .28);
+  transition: transform .18s var(--ease), background .18s, border-color .18s, box-shadow .18s;
+  white-space: nowrap;
+  flex: none;
+}
+.topbar .btn-house-launch:hover {
+  background: var(--tape);
+  border-color: var(--tape);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(179, 38, 30, .32);
+}
+.topbar .btn-house-launch:active {
+  transform: translateY(0);
+}
+.topbar .finder {
+  margin-left: 0;
+}
+@media (max-width: 720px) {
+  .topbar .btn-house-launch {
+    padding: .35rem .6rem;
+    font-size: .68rem;
+  }
+}
+
+/* Executive Desk Hero Banner: 3D Contract Registry House Launch Card */
+.house-launch-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(200px, 1fr);
+  gap: 1.6rem;
+  align-items: center;
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 1.8rem;
+  background: var(--sheet);
+  border: 1px solid var(--folder-deep);
+  border-left: 5px solid var(--stamp);
+  border-radius: var(--r-3);
+  box-shadow: var(--shadow-2);
+  position: relative;
+  overflow: hidden;
+}
+.house-launch-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 4px;
+  background: var(--tape);
+}
+.house-launch-card__content {
+  display: grid;
+  gap: .65rem;
+  min-width: 0;
+}
+.house-launch-card__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .6rem;
+}
+.house-launch-card__pill {
+  font: 700 .68rem var(--mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  background: var(--folder);
+  padding: .2rem .55rem;
+  border-radius: 4px;
+  border: 1px solid var(--folder-deep);
+}
+.house-launch-card__title {
+  font: 400 clamp(1.3rem, 2.2vw, 1.7rem)/1.15 var(--display);
+  color: var(--ink);
+  margin: 0;
+}
+.house-launch-card__desc {
+  font: 400 .94rem/1.5 var(--serif);
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 65ch;
+}
+.house-launch-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  align-items: center;
+  padding-top: .4rem;
+}
+.btn-house-primary {
+  background: var(--stamp) !important;
+  color: #fff !important;
+  border-color: var(--stamp) !important;
+  font-weight: 700;
+  letter-spacing: .04em;
+  box-shadow: 0 2px 8px rgba(58, 57, 156, .25);
+  transition: all .2s var(--ease);
+}
+.btn-house-primary:hover {
+  background: var(--tape) !important;
+  border-color: var(--tape) !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(179, 38, 30, .32);
+}
+.house-launch-card__badges {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .6rem;
+  padding: .9rem;
+  background: var(--folder);
+  border: 1px solid var(--folder-deep);
+  border-radius: var(--r-2);
+}
+.house-badge-item {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  font: 600 .75rem var(--mono);
+  color: var(--ink);
+}
+.house-badge-item__icon {
+  font-size: 1.1rem;
+}
+@media (max-width: 960px) {
+  .house-launch-card {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 1.2rem 1.3rem;
+  }
+}
+
+/* Full-Bleed 3D House Stage inside #view */
+.view--house {
+  padding: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  height: calc(100vh - 3.8rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--paper);
+}
+.house-stage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.house-stage__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .8rem;
+  padding: .45rem 1.2rem;
+  background: var(--sheet);
+  border-bottom: 1px solid var(--folder-deep);
+  box-shadow: var(--shadow-1);
+  z-index: 10;
+  flex: none;
+}
+.house-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font: 700 .76rem var(--mono);
+  color: var(--stamp);
+  text-decoration: none;
+  padding: .35rem .7rem;
+  background: var(--folder);
+  border: 1px solid var(--folder-deep);
+  border-radius: var(--r-2);
+  transition: all .18s;
+  white-space: nowrap;
+}
+.house-back-btn:hover {
+  background: var(--stamp);
+  color: #fff;
+  border-color: var(--stamp);
+}
+.house-stage__title-grp {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.house-stage__title-text {
+  font: 700 .92rem var(--display);
+  color: var(--ink);
+}
+.house-stage__sub {
+  font: 400 .74rem var(--mono);
+  color: var(--ink-3);
+  display: none;
+}
+@media (min-width: 900px) {
+  .house-stage__sub { display: inline-block; }
+}
+.house-standalone-btn {
+  white-space: nowrap;
+}
+.house-stage__canvas-wrap {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.house-stage__frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}

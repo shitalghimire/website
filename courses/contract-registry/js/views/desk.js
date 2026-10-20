@@ -23,13 +23,16 @@ export default function desk(view, { data }) {
   const cod = core[dayIdx];
 
   const parts = [
+    houseLaunchCard(),
+
     h('section.hero',
       h('div.hero__text',
         h('p.eyebrow', `${hello} · ${D.fmt(D.today())}`),
         h('h1.hero__title', 'The whole contract,', h('br'), h('em', 'in plain words')),
         h('p.lede', 'Ninety-eight General Conditions with the Particular Conditions laid over them, every deadline in one place, and the real TKV correspondence that shows what each clause does when somebody actually uses it.'),
         h('div.hero__actions',
-          h('a.btn.btn--stamp', { href: '#/read' }, icon('book'), 'Read the clauses'),
+          h('a.btn.btn--stamp', { href: '#/house' }, '🏛️ Enter 3D House'),
+          h('a.btn', { href: '#/read' }, icon('book'), 'Read the clauses'),
           h('a.btn', { href: '#/exchange' }, icon('exchange'), 'How a claim travels'),
           h('button.btn.btn--ghost', { type: 'button', onclick: () => document.getElementById('finderBtn').click() }, icon('search'), 'Look something up'))),
       h('div.hero__art', { 'aria-hidden': 'true' }, heroArt())),
@@ -126,6 +129,29 @@ function usageChart(u) {
       h('span.usage__bars',
         h('span.usage__bar.usage__bar--us', { style: { width: `${(x.us / max) * 100}%` } }, h('i', x.us || '')),
         h('span.usage__bar.usage__bar--er', { style: { width: `${(x.er / max) * 100}%` } }, h('i', x.er || '')))))));
+}
+
+function houseLaunchCard() {
+  return h('section.house-launch-card',
+    h('div.house-launch-card__content',
+      h('div.house-launch-card__header',
+        h('span.stamp.stamp--sm.stamp--good', '3D IMMERSIVE HOUSE'),
+        h('span.house-launch-card__pill', '7 Rooms · 102 Clauses · PBKDF2 Vault')
+      ),
+      h('h2.house-launch-card__title', 'Step Inside The 3D Contract Registry House'),
+      h('p.house-launch-card__desc', 'Walk through 3 floors and 7 rooms (Living Room, Study Library, Kitchen Clocks, Bedroom Letters, Bathroom Case Forensics, Attic Gym & Studio), pull out 3D Daraz drawers, and crack the Combination Vaults.'),
+      h('div.house-launch-card__actions',
+        h('a.btn.btn--stamp.btn-house-primary', { href: '#/house' }, '🏛️ Enter 3D Learning House'),
+        h('a.btn.btn--ghost', { href: 'house.html', target: '_blank', rel: 'noopener' }, 'Open Standalone ↗')
+      )
+    ),
+    h('div.house-launch-card__badges', { 'aria-hidden': 'true' },
+      h('div.house-badge-item', h('span.house-badge-item__icon', '🗄️'), h('span', '3D Daraz Almirah')),
+      h('div.house-badge-item', h('span.house-badge-item__icon', '🔐'), h('span', 'AES-256 Vault')),
+      h('div.house-badge-item', h('span.house-badge-item__icon', '⏱️'), h('span', 'Pendulum Clocks')),
+      h('div.house-badge-item', h('span.house-badge-item__icon', '✉️'), h('span', '21 Dispatch Tubes'))
+    )
+  );
 }
 
 function heroArt() {

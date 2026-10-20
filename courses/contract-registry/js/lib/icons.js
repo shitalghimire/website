@@ -5,6 +5,7 @@ const P = (d, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="curre
 
 export const icons = {
   desk: P('<path d="M3 10.5h18"/><path d="M5 10.5v9M19 10.5v9"/><path d="M8 10.5V6.2c0-.7.5-1.2 1.2-1.2h5.6c.7 0 1.2.5 1.2 1.2v4.3"/><path d="M10.5 7.8h3"/>'),
+  house: P('<path d="M3 9.5 12 3l9 6.5H3zM4 10v9M8 10v9M12 10v9M16 10v9M20 10v9M2 20h20M2 10h20"/>'),
   book: P('<path d="M4 5.2c2.6-.9 5.2-.7 8 1v13c-2.8-1.6-5.4-1.9-8-1z"/><path d="M20 5.2c-2.6-.9-5.2-.7-8 1v13c2.8-1.6 5.4-1.9 8-1z"/><path d="M6.5 9.3c1.3-.2 2.4 0 3.5.6M14 9.9c1.1-.6 2.2-.8 3.5-.6"/>'),
   scan: P('<path d="M6 3.5h8.2l3.8 3.9V20a.5.5 0 0 1-.5.5h-11.5A.5.5 0 0 1 5.5 20V4a.5.5 0 0 1 .5-.5z"/><path d="M14 3.6v4h4"/><path d="M8.5 11h4M8.5 14h7M8.5 17h5"/><circle cx="16.8" cy="16.6" r="2.4"/><path d="m18.6 18.4 1.9 1.9"/>'),
   pen: P('<path d="M15.4 4.6 19.4 8.6 9 19l-4.6 1 1-4.6z"/><path d="m13.6 6.4 4 4"/><path d="M4 21h8"/>'),
@@ -61,4 +62,7 @@ export const icons = {
 };
 
 import { h } from './h.js';
-export const icon = (name, cls) => h('span.ic' + (cls ? '.' + cls : ''), { html: icons[name] || icons.doc, 'aria-hidden': 'true' });
+export const icon = (name, cls) => {
+  if (name === '🏛️') return h('span.ic.ic--emoji' + (cls ? '.' + cls : ''), { 'aria-hidden': 'true', style: { display: 'inline-block', fontStyle: 'normal' } }, '🏛️');
+  return h('span.ic' + (cls ? '.' + cls : ''), { html: icons[name] || icons.doc, 'aria-hidden': 'true' });
+};
