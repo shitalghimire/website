@@ -16,9 +16,9 @@
   var strip = $('#strip');
   if (strip) {
     var words = [
-      'Primavera P6', 'Project Controls', 'Tamakoshi V · 99.8 MW', 'Baseline & Variance',
-      'Hydropower Delivery', 'CPM Scheduling', 'Site Coordination', 'Dolakha, Nepal',
-      'Progress Reporting', 'Civil Engineering'
+      'Civil Engineering', 'Hydropower', 'Tamakoshi V · 99.8 MW', 'Hydraulic Structures',
+      'Construction Supervision', 'Dolakha, Nepal', 'Kathmandu University',
+      'Site Coordination', 'Quality Control', 'Primavera P6'
     ];
     var run = words.concat(words).map(function (w) { return '<span>' + w + '</span>'; }).join('');
     strip.innerHTML = run;

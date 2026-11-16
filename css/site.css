@@ -2,6 +2,25 @@
    DRAWING SET — sections
    ============================================================= */
 
+/* ---- readability: darker greys, bigger labels, sentence-case
+   controls. Overrides base.css for the homepage + course catalogue
+   only; the courses with their own identity don't load this file. */
+:root {
+  --graphite:   #55574D;   /* was #6B6D62 — now ~6.3:1 on paper */
+  --graphite-2: #66685D;   /* was #9B9C92 (2.3:1) — now ~5:1 */
+}
+.t-label, .sheet-id { font-size: 0.75rem; letter-spacing: 0.16em; }
+.field > span { font-size: 0.75rem; letter-spacing: 0.12em; }
+
+.btn {
+  font-family: var(--body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.btn--sm { font-size: 0.8125rem; }
+
 /* ============ SHEET RAIL (fixed left margin of the drawing) === */
 .rail {
   position: fixed;
@@ -32,8 +51,8 @@
   display: grid;
   place-items: center;
   font-family: var(--mono);
-  font-size: 0.625rem;
-  color: var(--graphite-2);
+  font-size: 0.75rem;
+  color: var(--graphite);
   transition: color 0.25s;
 }
 .rail__tick::before {
@@ -51,10 +70,10 @@
 .rail__rev {
   writing-mode: vertical-rl;
   font-family: var(--mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.28em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--graphite-2);
+  color: var(--graphite);
 }
 @media (max-width: 900px) { .rail { display: none; } }
 
@@ -92,11 +111,11 @@
 .nav { display: flex; align-items: center; gap: 0.15rem; }
 .nav a {
   padding: 0.5rem 0.72rem;
-  font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--graphite);
+  font-family: var(--body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--ink-2);
   position: relative;
   transition: color 0.2s;
 }
@@ -121,10 +140,11 @@
   gap: 0.4rem;
   padding: 0.42rem 0.78rem;
   border: 1px solid var(--rule-firm);
-  font-family: var(--mono);
-  font-size: 0.6563rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
   transition: background-color 0.2s, color 0.2s, transform 0.2s;
 }
 .applink:hover { background: var(--ink); color: var(--paper); transform: translateY(-1px); }
@@ -156,6 +176,14 @@
 
 @media (max-width: 900px) {
   .topbar { left: 0; }
+}
+/* the sentence-case nav needs ~1120px; tighten it a little above that
+   and hand over to the burger below it */
+@media (max-width: 1320px) {
+  .nav a { padding-inline: 0.55rem; }
+  .nav a::after { left: 0.55rem; right: 0.55rem; }
+}
+@media (max-width: 1120px) {
   .nav { display: none; }
   .burger { display: block; }
 }
@@ -187,10 +215,10 @@
 .drawer a em {
   font-family: var(--mono);
   font-style: normal;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.16em;
-  color: var(--graphite-2);
+  letter-spacing: 0.12em;
+  color: var(--graphite);
 }
 
 /* ============ HERO ========================================== */
@@ -219,7 +247,13 @@
   align-items: center;
 }
 @media (max-width: 940px) {
-  .hero__grid { grid-template-columns: 1fr; }
+  .hero__grid { grid-template-columns: 1fr; gap: 2.2rem; }
+  /* on phones the face comes first, small, so the first screen isn't all text */
+  .hero .figure {
+    order: -1;
+    width: clamp(150px, 42vw, 230px);
+    margin-left: 14px;   /* room for the offset frame */
+  }
 }
 
 .hero__tag {
@@ -227,8 +261,8 @@
   align-items: center;
   gap: 0.7rem;
   font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.2em;
+  font-size: 0.8125rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--ink);
   margin-bottom: 1.6rem;
@@ -294,8 +328,8 @@
   align-items: center;
   gap: 0.55rem;
   font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--graphite);
 }
@@ -322,10 +356,10 @@
   justify-items: center;
   gap: 0.5rem;
   font-family: var(--mono);
-  font-size: 0.5625rem;
-  letter-spacing: 0.24em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--graphite-2);
+  color: var(--graphite);
 }
 .hero__scroll i {
   display: block; width: 1px; height: 36px;
@@ -361,8 +395,8 @@
 .strip:hover .strip__run { animation-play-state: paused; }
 .strip__run span {
   font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   white-space: nowrap;
   display: flex; align-items: center; gap: 2.6rem;
@@ -407,8 +441,8 @@
   display: block;
   margin-top: 0.4rem;
   font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--graphite);
   line-height: 1.5;
@@ -438,7 +472,7 @@
 .vcard__who h3 { font-size: 1.18rem; letter-spacing: -0.03em; }
 .vcard__who p {
   font-family: var(--mono);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   color: var(--graphite);
   margin-top: 0.28rem;
   line-height: 1.6;
@@ -451,14 +485,14 @@
   padding: 0.72rem 1.2rem;
   border-bottom: 1px solid var(--rule-soft);
   font-family: var(--mono);
-  font-size: 0.7188rem;
+  font-size: 0.8125rem;
   align-items: baseline;
 }
 .vcard__row dt {
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--graphite-2);
+  color: var(--graphite);
 }
 .vcard__row dd a { border-bottom: 1px solid var(--rule-firm); }
 .vcard__row dd a:hover { border-bottom-color: var(--ink); background: var(--vis); }
@@ -482,9 +516,9 @@
 .skill:hover { background: var(--paper-2); }
 .skill__n {
   font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.16em;
-  color: var(--graphite-2);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: var(--graphite);
 }
 .skill h3 {
   font-size: 1.08rem;
@@ -506,10 +540,10 @@
 }
 .skill__tags span {
   font-family: var(--mono);
-  font-size: 0.5938rem;
-  letter-spacing: 0.1em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 0.2rem 0.45rem;
+  padding: 0.25rem 0.5rem;
   border: 1px solid var(--rule);
   color: var(--graphite);
 }
@@ -530,8 +564,8 @@
 .gantt__head > div {
   padding: 0.62rem 0.9rem;
   font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.16em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 .gantt__scale {
@@ -573,8 +607,8 @@
 }
 .gantt__wbs span {
   font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
   color: var(--graphite);
   line-height: 1.5;
 }
@@ -604,7 +638,7 @@
   padding-inline: 0.6rem;
   color: var(--paper);
   font-family: var(--mono);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.08em;
   white-space: nowrap;
   overflow: hidden;
@@ -706,8 +740,8 @@
   padding: 0.5rem 0.7rem;
   border-top: 1px solid var(--rule);
   font-family: var(--mono);
-  font-size: 0.5938rem;
-  letter-spacing: 0.13em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--graphite);
 }
@@ -742,8 +776,8 @@
   display: inline-block;
   margin-bottom: 0.6rem;
   font-family: var(--mono);
-  font-size: 0.5938rem;
-  letter-spacing: 0.16em;
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink);
   background: var(--vis);
@@ -761,7 +795,7 @@
 }
 .project__meta {
   display: grid; gap: 0.3rem; justify-items: end;
-  font-family: var(--mono); font-size: 0.625rem;
+  font-family: var(--mono); font-size: 0.75rem;
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--graphite);
   text-align: right;
 }
@@ -807,8 +841,8 @@
   position: absolute;
   top: 1.1rem; right: 1.2rem;
   font-family: var(--mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
   padding: 0.28rem 0.55rem;
   border: 1px solid var(--plate-rule);
   background: rgba(20,21,15,0.5);
@@ -817,8 +851,8 @@
 .plate h3 { font-size: 1.32rem; letter-spacing: -0.03em; }
 .plate__where {
   font-family: var(--mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
+  font-size: 0.8125rem;
+  letter-spacing: 0.06em;
   color: var(--vis);
   margin: 0.45rem 0 0.6rem;
 }
@@ -840,8 +874,8 @@
 }
 a.contact__line:hover { background: var(--vis); }
 .contact__line dt, .contact__line > span:first-child {
-  font-family: var(--mono); font-size: 0.625rem;
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--graphite);
+  font-family: var(--mono); font-size: 0.75rem;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--graphite);
 }
 .contact__line dd, .contact__line > span:last-child {
   font-family: var(--mono); font-size: 0.8125rem; word-break: break-word;
@@ -851,7 +885,7 @@ a.contact__line:hover { background: var(--vis); }
 .form__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 @media (max-width: 560px) { .form__pair { grid-template-columns: 1fr; } }
 .form__note {
-  font-family: var(--mono); font-size: 0.6875rem;
+  font-family: var(--mono); font-size: 0.8125rem;
   color: var(--graphite); line-height: 1.6;
 }
 #formMsg:not(:empty) {
@@ -882,11 +916,11 @@ a.contact__line:hover { background: var(--vis); }
   gap: 0.35rem;
 }
 .tb dt {
-  font-family: var(--mono); font-size: 0.5625rem;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(242,240,234,0.45);
+  font-family: var(--mono); font-size: 0.6875rem;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(242,240,234,0.66);
 }
-.tb dd { font-family: var(--mono); font-size: 0.75rem; }
+.tb dd { font-family: var(--mono); font-size: 0.875rem; }
 .tb dd a { border-bottom: 1px solid var(--plate-rule); }
 .tb dd a:hover { color: var(--vis); border-bottom-color: var(--vis); }
 .tb--wide { grid-column: span 2; }
@@ -907,8 +941,8 @@ a.contact__line:hover { background: var(--vis); }
 }
 .titleblock__sign h2 i { font-style: normal; color: var(--vis); }
 .titleblock__meta {
-  font-family: var(--mono); font-size: 0.6875rem;
-  letter-spacing: 0.1em; color: rgba(242,240,234,0.5);
+  font-family: var(--mono); font-size: 0.8125rem;
+  letter-spacing: 0.06em; color: rgba(242,240,234,0.68);
   text-align: right; line-height: 1.8;
 }
 @media (max-width: 620px) { .titleblock__meta { text-align: left; } }
@@ -947,15 +981,14 @@ a.contact__line:hover { background: var(--vis); }
 .teaser p { color: var(--on-plate-dim); font-size: 0.9063rem; max-width: 40ch; margin-top: 0.6rem; }
 .teaser__go {
   display: inline-flex; align-items: center; gap: 0.6rem;
-  font-family: var(--mono); font-size: 0.6875rem;
-  letter-spacing: 0.16em; text-transform: uppercase;
+  font-family: var(--body); font-size: 0.9375rem; font-weight: 600;
   color: var(--vis);
 }
 .teaser__go span { transition: transform 0.3s var(--ease); }
 .teaser:hover .teaser__go span { transform: translateX(6px); }
 .teaser__stats {
   display: flex; flex-wrap: wrap; gap: 1.2rem;
-  font-family: var(--mono); font-size: 0.625rem;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: rgba(242,240,234,0.4);
+  font-family: var(--mono); font-size: 0.75rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(242,240,234,0.66);
 }

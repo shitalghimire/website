@@ -46,7 +46,7 @@
 @media (max-width: 860px) { .bay__tab { border-bottom: none; border-right: 1px solid var(--rule-soft); } }
 .bay__tab i {
   font-style: normal;
-  font-size: 0.5938rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.1em;
   color: var(--graphite-2);
   min-width: 1.6rem;
@@ -75,7 +75,7 @@
 .instr__head h3 { font-size: 1.28rem; letter-spacing: -0.03em; }
 .instr__head p {
   font-family: var(--mono);
-  font-size: 0.6563rem;
+  font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--graphite);
@@ -99,10 +99,10 @@
 .readout__hd {
   padding: 0.5rem 0.9rem;
   border-bottom: 1px solid var(--plate-rule);
-  font-size: 0.5938rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(242,240,234,0.5);
+  color: rgba(242,240,234,0.66);
   display: flex; justify-content: space-between; gap: 1rem;
 }
 .readout__bd { padding: 0.9rem; }
@@ -118,8 +118,8 @@
 .readout__note {
   padding: 0.55rem 0.9rem;
   border-top: 1px solid var(--plate-rule);
-  font-size: 0.6563rem;
-  color: rgba(242,240,234,0.45);
+  font-size: 0.75rem;
+  color: rgba(242,240,234,0.62);
   line-height: 1.6;
 }
 .readout--empty { background: var(--paper-2); color: var(--graphite); border-color: var(--rule); }
@@ -177,7 +177,7 @@
 }
 .cal__dow {
   aspect-ratio: auto; padding: 0.4rem 0;
-  font-size: 0.5625rem; letter-spacing: 0.1em;
+  font-size: 0.6875rem; letter-spacing: 0.1em;
   color: var(--graphite-2); background: var(--paper-2);
 }
 .cal__day { cursor: pointer; transition: background-color 0.16s; }
@@ -215,7 +215,7 @@
 .map__pin:hover { background: var(--paper-2); }
 .map__pin[aria-current="true"] { background: var(--vis); }
 .map__pin i { font-style: normal; width: 9px; height: 9px; background: var(--ink); }
-.map__pin em { font-style: normal; font-size: 0.625rem; color: var(--graphite); letter-spacing: 0.1em; }
+.map__pin em { font-style: normal; font-size: 0.6875rem; color: var(--graphite); letter-spacing: 0.1em; }
 
 /* ---- schedule / mini-gantt planner ---- */
 .plan__chart {
@@ -286,7 +286,7 @@
 .timer__track { height: 5px; background: var(--paper-3); overflow: hidden; border: 1px solid var(--rule); }
 .timer__fill { height: 100%; background: var(--vis-deep); width: 0; transition: width 0.35s linear; }
 .timer__mode {
-  text-align: center; font-family: var(--mono); font-size: 0.6563rem;
+  text-align: center; font-family: var(--mono); font-size: 0.75rem;
   letter-spacing: 0.22em; text-transform: uppercase; color: var(--graphite);
   margin-bottom: 0.7rem;
 }
@@ -299,7 +299,7 @@
 .tbl th, .tbl td { padding: 0.5rem 0.6rem; border: 1px solid var(--rule); text-align: right; }
 .tbl th {
   background: var(--paper-2); font-weight: 500;
-  font-size: 0.5938rem; letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--graphite);
 }
 .tbl th:first-child, .tbl td:first-child { text-align: left; }

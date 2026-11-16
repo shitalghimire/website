@@ -105,12 +105,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. SHT 02 CAPABILITY CARDS (2.01 - 2.07) — CORNER MOTION GRAPHICS
   const capabilitySVGs = {
-    '2.01': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="8" width="14" height="6" rx="1"/><rect x="16" y="19" width="16" height="6" rx="1" stroke="${ACCENT}"/><rect x="24" y="30" width="16" height="6" rx="1"/><path class="sg-anim-flow" d="M18 11 H24 V19 M32 22 H36 V30" stroke="${ACCENT}"/></svg>`,
-    '2.02': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="36" x2="38" y2="36" opacity="0.35"/><line x1="6" y1="8" x2="6" y2="36" opacity="0.35"/><path d="M6 34 C16 34, 24 12, 38 10" stroke-dasharray="3 3" opacity="0.5"/><path class="sg-anim-flow" d="M6 34 C14 30, 22 16, 38 8" stroke="${ACCENT}" stroke-width="2.2"/></svg>`,
-    '2.03': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><g class="sg-anim-spin"><circle cx="22" cy="22" r="14" stroke-dasharray="6 4"/><line x1="22" y1="4" x2="22" y2="12"/><line x1="22" y1="32" x2="22" y2="40"/><line x1="4" y1="22" x2="12" y2="22"/><line x1="32" y1="22" x2="40" y2="22"/></g><circle cx="22" cy="22" r="3" fill="${ACCENT}" stroke="none"/></svg>`,
-    '2.04': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="8,12 18,12 24,36 8,36" opacity="0.45"/><path class="sg-anim-flow" d="M4 10 H18 C24 10, 26 32, 38 34" stroke="${ACCENT}" stroke-width="2.2"/></svg>`,
-    '2.05': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 12 H36 M8 22 H36 M8 32 H36 M14 8 V36 M24 8 V36 M34 8 V36" opacity="0.3"/><line class="sg-anim-scan" x1="6" y1="10" x2="38" y2="10" stroke="${ACCENT}" stroke-width="2.2"/></svg>`,
-    '2.06': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="13" y="15" width="18" height="18" rx="1"/><path class="sg-anim-scan" d="M22 4 V13 M18 10 L22 14 L26 10" stroke="${ACCENT}"/><line x1="9" y1="36" x2="35" y2="36"/></svg>`,
+    '2.05': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="8" width="14" height="6" rx="1"/><rect x="16" y="19" width="16" height="6" rx="1" stroke="${ACCENT}"/><rect x="24" y="30" width="16" height="6" rx="1"/><path class="sg-anim-flow" d="M18 11 H24 V19 M32 22 H36 V30" stroke="${ACCENT}"/></svg>`,
+    '2.06': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="36" x2="38" y2="36" opacity="0.35"/><line x1="6" y1="8" x2="6" y2="36" opacity="0.35"/><path d="M6 34 C16 34, 24 12, 38 10" stroke-dasharray="3 3" opacity="0.5"/><path class="sg-anim-flow" d="M6 34 C14 30, 22 16, 38 8" stroke="${ACCENT}" stroke-width="2.2"/></svg>`,
+    '2.04': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.3"><g class="sg-anim-spin"><circle cx="22" cy="22" r="14" stroke-dasharray="6 4"/><line x1="22" y1="4" x2="22" y2="12"/><line x1="22" y1="32" x2="22" y2="40"/><line x1="4" y1="22" x2="12" y2="22"/><line x1="32" y1="22" x2="40" y2="22"/></g><circle cx="22" cy="22" r="3" fill="${ACCENT}" stroke="none"/></svg>`,
+    '2.01': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="8,12 18,12 24,36 8,36" opacity="0.45"/><path class="sg-anim-flow" d="M4 10 H18 C24 10, 26 32, 38 34" stroke="${ACCENT}" stroke-width="2.2"/></svg>`,
+    '2.02': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M8 12 H36 M8 22 H36 M8 32 H36 M14 8 V36 M24 8 V36 M34 8 V36" opacity="0.3"/><line class="sg-anim-scan" x1="6" y1="10" x2="38" y2="10" stroke="${ACCENT}" stroke-width="2.2"/></svg>`,
+    '2.03': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="13" y="15" width="18" height="18" rx="1"/><path class="sg-anim-scan" d="M22 4 V13 M18 10 L22 14 L26 10" stroke="${ACCENT}"/><line x1="9" y1="36" x2="35" y2="36"/></svg>`,
     '2.07': `<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.4"><polygon points="22,7 38,15 22,23 6,15" stroke="${ACCENT}"/><polyline points="6,22 22,30 38,22" opacity="0.7"/><polyline points="6,29 22,37 38,29" opacity="0.4"/></svg>`
   };
 
@@ -213,7 +213,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('section, article').forEach(sec => {
+  // The hero is skipped: it is already on screen, and fading it out after
+  // first paint made the whole first view flash pale grey on load.
+  document.querySelectorAll('section:not(.hero), article').forEach(sec => {
     sec.classList.add('sg-reveal-ready');
     observer.observe(sec);
   });
