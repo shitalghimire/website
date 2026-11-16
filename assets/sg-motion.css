@@ -3,18 +3,6 @@
    Strictly preserves existing layout, typography, topographic bg & lime palette
    ========================================================================== */
 
-/* 1. 3D Wireframe Francis Turbine Canvas in Hero */
-#sg-hero-3d-canvas {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.6;
-}
-
 /* 2. 3D Spatial Perspective Tilt on Portrait & Site Photos */
 .sg-tilt-card {
   transform-style: preserve-3d;

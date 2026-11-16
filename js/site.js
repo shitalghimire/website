@@ -225,9 +225,13 @@
     return v;
   };
 
-  var COLS = 46, ROWS = 30;
-  var field = new Float32Array((COLS + 1) * (ROWS + 1));
-  var W = 0, H = 0, cw = 0, ch = 0, dpr = 1;
+  /* Grid cells are square and sized in pixels, so the survey keeps the
+     same scale on any screen. (A fixed 46×30 grid squeezed a tall phone
+     hero into 8px-wide cells and packed the lines together.) Phones get
+     bigger cells and broader landforms, so fewer lines cross the text. */
+  var COLS = 0, ROWS = 0, NOISE = 9.5;
+  var field = new Float32Array(0);
+  var W = 0, H = 0, cw = 0, ch = 0, dpr = 1, narrow = false;
 
   function size() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -236,6 +240,12 @@
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    narrow = W < 700;
+    var cell = narrow ? 30 : 26;
+    NOISE = narrow ? 12 : 9.5;
+    COLS = Math.max(8, Math.round(W / cell));
+    ROWS = Math.max(8, Math.round(H / cell));
+    field = new Float32Array((COLS + 1) * (ROWS + 1));
     cw = W / COLS;
     ch = H / ROWS;
   }
@@ -243,7 +253,7 @@
   function sample(z) {
     for (var j = 0; j <= ROWS; j++) {
       for (var i = 0; i <= COLS; i++) {
-        field[j * (COLS + 1) + i] = fbm(i / 9.5, j / 9.5, z);
+        field[j * (COLS + 1) + i] = fbm(i / NOISE, j / NOISE, z);
       }
     }
   }
@@ -294,6 +304,8 @@
     ctx.clearRect(0, 0, W, H);
     sample(z);
     for (var k = 0; k < LEVELS.length; k++) {
+      /* phones: keep only every other contour */
+      if (narrow && k % 2) continue;
       var lv = LEVELS[k];
       /* index contours (every 3rd) drawn heavier, like a real survey */
       var isIndex = k % 3 === 0;

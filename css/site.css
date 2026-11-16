@@ -238,6 +238,7 @@
   z-index: 0;
   opacity: 0.5;
 }
+@media (max-width: 700px) { #topo { opacity: 0.38; } }
 .hero__grid {
   position: relative;
   z-index: 2;
