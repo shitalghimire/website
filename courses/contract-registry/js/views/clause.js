@@ -4,7 +4,8 @@ import { h, mount, copy, debounce } from '../lib/h.js';
 import { icon } from '../lib/icons.js';
 import { store } from '../lib/store.js';
 import C, { SECTIONS } from '../engine/contract.js';
-import { rich, refChip, blocks, slip, deadlineChip, question, levelBadge, stamp } from './ui.js';
+import { rich, refChip, blocks, slip, deadlineChip, levelBadge, stamp } from './ui.js';
+import { mcq } from './practice.js';
 
 export default function clause(view, { args, params, ctx, data }) {
   const r = C.resolve(args[0]);
@@ -113,8 +114,11 @@ export default function clause(view, { args, params, ctx, data }) {
   const tpls = data.writing.templates.filter((t) => t.clauses.some((x) => x.split(/[.(]/)[0] === c.no));
   if (tpls.length) side.append(h('section.side-card', h('h3.side-card__h', 'Letters that use it'), h('ul.side-links', tpls.map((t) => h('li.side-links__dr', h('a', { href: `#/exchange/${t.id}` }, icon('mail'), t.title), h('a.side-links__pen', { href: `#/tools/draft/${t.id}`, title: `Draft: ${t.title}`, 'aria-label': `Draft: ${t.title}` }, icon('pen')))))));
 
-  const qs = Object.entries(data.path.questions).filter(([, q]) => q.ref && q.ref.split(/[.(]/)[0] === c.no).slice(0, 2);
-  if (qs.length) side.append(h('section.side-card', h('h3.side-card__h', 'Check yourself'), qs.map(([id, q]) => question(id, q))));
+  const qs = Object.entries(data.path.questions).filter(([, q]) => q.ref && q.ref.split(/[.(]/)[0] === c.no);
+  if (qs.length) main.append(h('section.cl-practice',
+    h('h3', icon('target'), `Practice Clause ${c.no}`),
+    qs.slice(0, 3).map(([id, q]) => mcq(q, { id })),
+    h('div.row', qs.length > 3 ? h('a.btn.btn--sm.btn--stamp', { href: `#/drill/quiz?c=${c.no}` }, `All ${qs.length} questions on this clause`, icon('arrow')) : null, h('a.btn.btn--sm', { href: '#/drill/cards/clauses' }, icon('layers'), 'Clause flashcards'))));
 
   const note = h('textarea.area.notes', { placeholder: 'Your notes on this clause — kept on this device only.', value: st.notes[c.no] || '', oninput: debounce((e) => store.update((s) => { if (e.target.value.trim()) s.notes[c.no] = e.target.value; else delete s.notes[c.no]; }), 400) });
   side.append(h('section.side-card', h('h3.side-card__h', 'My notes'), note));

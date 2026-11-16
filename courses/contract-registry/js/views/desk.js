@@ -1,88 +1,107 @@
-/* The Desk — home */
+/* Home — the front desk of the Registry */
 
 import { h } from '../lib/h.js';
 import { icon } from '../lib/icons.js';
 import { store } from '../lib/store.js';
-import { countWhenSeen, reveal, cascade } from '../lib/motion.js';
+import { reveal, cascade, still } from '../lib/motion.js';
+import { openBin } from '../lib/vault.js';
+import { engrave } from '../lib/guilloche.js';
 import * as D from '../lib/dates.js';
 import C from '../engine/contract.js';
 import { rich, sec } from './ui.js';
 
+const TONE = { lost: 'tape', partial: 'warn', open: '', won: 'ok' };
+
 export default function desk(view, { data }) {
   const st = store.get();
   const all = C.allClauses();
-  const learned = Object.keys(st.learned).length;
-  const lessonsDone = Object.keys(st.lessons).length;
-  const totalLessons = data.path.modules.reduce((a, m) => a + m.lessons.length, 0);
   const hour = new Date().getHours();
   const hello = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+  const claims = data.claims?.list || [];
+  const school = data.school?.lessons || [];
+  const nQ = Object.keys(data.path.questions).length + claims.reduce((a, c) => a + (c.quiz || []).length, 0);
 
-  // clause of the day: a core clause, rotating by date
+  /* clause of the day: a core clause, rotating by date */
   const core = all.filter((c) => c.plain?.level === 'core');
-  const dayIdx = Math.floor(D.today() / 86400000) % core.length;
-  const cod = core[dayIdx];
+  const cod = core[Math.floor(D.today() / 86400000) % core.length];
 
+  view.classList.add('view--home');
+  const art = h('div.hm-hero__art', { 'aria-hidden': 'true' });
   const parts = [
-    houseLaunchCard(),
+    h('section.hm-hero',
+      art,
+      h('div.hm-hero__text',
+        h('p.hm-hero__date', `${hello} · ${D.fmt(D.today())}`),
+        h('h1.hm-hero__t', 'Three real claims,', h('br'), h('em', 'letter by letter'), '.'),
+        h('p.hm-hero__s', claims.length
+          ? `${claims.reduce((a, c) => a + c.letters, 0)} letters, ${claims.reduce((a, c) => a + c.pagesN, 0).toLocaleString()} pages of statements, exhibits and cost sheets. Watch each claim travel between Contractor and Engineer, read every page, and see what won and what lost.`
+          : 'Rebuild the course file to add the claim dossiers.'),
+        h('div.hm-hero__actions',
+          h('a.btn.btn--brass', { href: '#/dossier' }, icon('folder'), 'Open the dossiers'),
+          h('button.btn.hm-hero__find', { type: 'button', onclick: () => document.getElementById('finderBtn').click() }, icon('search'), 'Search everything'))),
+      h('div.hm-files', claims.map((c, i) => miniFolder(c, i, data.claims.vault)))),
 
-    h('section.hero',
-      h('div.hero__text',
-        h('p.eyebrow', `${hello} · ${D.fmt(D.today())}`),
-        h('h1.hero__title', 'The whole contract,', h('br'), h('em', 'in plain words')),
-        h('p.lede', 'Ninety-eight General Conditions with the Particular Conditions laid over them, every deadline in one place, and the real TKV correspondence that shows what each clause does when somebody actually uses it.'),
-        h('div.hero__actions',
-          h('a.btn.btn--stamp', { href: '#/house' }, '🏛️ Enter 3D House'),
-          h('a.btn', { href: '#/read' }, icon('book'), 'Read the clauses'),
-          h('a.btn', { href: '#/exchange' }, icon('exchange'), 'How a claim travels'),
-          h('button.btn.btn--ghost', { type: 'button', onclick: () => document.getElementById('finderBtn').click() }, icon('search'), 'Look something up'))),
-      h('div.hero__art', { 'aria-hidden': 'true' }, heroArt())),
-
-    h('section.stats',
-      stat(learned, `of ${all.length}`, 'clauses marked learned', '#/read'),
-      stat(lessonsDone, `of ${totalLessons}`, 'lessons done', '#/learn'),
-      stat(store.streak(), store.streak() === 1 ? 'day' : 'days', 'reading streak', '#/drill'),
-      stat(st.clocks.filter((k) => D.fromIso(k.due) >= D.today()).length, 'running', 'deadline clocks', '#/clock')),
+    h('section.hm-doors',
+      door('#/drill', 'target', 'tape', 'Practice', `${nQ} questions, flashcards that turn over, and four quick games.`, 'Ten minutes a day'),
+      door('#/school', 'cap', 'warn', 'Claims School', `${school.length} short topics: the notice, the records, the Statement of Claim, the reply.`, 'The basics, in any order'),
+      door('#/learn', 'map', 'stamp', 'Contract course', 'Nine modules on how this Contract works, with a quick check in each lesson.', 'About five hours'),
+      door('#/read', 'book', 'teal', 'Clauses', `All ${all.length} clauses in plain words, with the Particular Conditions laid over them.`, 'Look anything up')),
 
     continueCard(st, all),
 
-    h('section.desk-grid',
-      h('div.folder.cod', { dataset: { tab: 'Clause of the day' } },
-        h('div.cod__no', cod.no),
-        h('h3.cod__title', cod.title),
-        h('p.cod__gist', rich(cod.plain.gist)),
-        cod.plain.use?.[0] ? h('p.cod__use', h('span.eyebrow', 'Use it'), h('span', rich(cod.plain.use[0]))) : null,
-        h('a.btn.btn--sm', { href: `#/read/${cod.no}` }, 'Read clause ', cod.no, icon('arrow'))),
+    h('section.hm-grid',
+      h('div.folder.hm-cod', { dataset: { tab: 'Clause of the day' } },
+        h('div.hm-cod__head', h('span.hm-cod__no', cod.no), h('h3', cod.title)),
+        h('p.hm-cod__gist', h('span', rich(cod.plain.gist))),
+        cod.plain.use?.[0] ? h('p.hm-cod__use', h('b', 'Use it: '), h('span', rich(cod.plain.use[0]))) : null,
+        h('div.row', h('a.btn.btn--sm.btn--stamp', { href: `#/read/${cod.no}` }, 'Read clause ', cod.no, icon('arrow')), h('a.btn.btn--sm', { href: '#/drill/cards/clauses' }, icon('layers'), 'Flashcards'))),
       clocksCard(st),
       rulesCard(data)),
 
     sec('The clauses that decide most letters', 'Start here'),
     h('div.core-strip', cascade(['35', '32', '42', '53', '30', '67', '44', '55', '56', '61', '27', '4'].map((n) => {
       const c = C.getClause(n);
-      return h('a.core', { href: `#/read/${n}` }, h('span.core__no', n), h('span.core__t', c.title), learnedDot(n, st));
+      return h('a.core', { href: `#/read/${n}` }, h('span.core__no', n), h('span.core__t', c.title), st.learned[n] ? h('span.core__done', { title: 'Learned' }, icon('check')) : null);
     }))),
 
-    sec('On TKV, who cites what', 'From 757 letters'),
+    sec('Who cites which clause', 'From 757 project letters'),
     usageChart(data.usage),
 
-    sec('Real disputes, explained', 'Case files'),
+    sec('More disputes, in short', 'Case files'),
     h('div.grid.grid--3', data.cases.slice(0, 6).map((k) => h('a.card.card--link.casecard', { href: `#/cases/${k.id}` },
-      h('div.row', h('span.chip', k.no), h(`span.tone.tone--${k.tone}`, k.status)),
+      h('div.row', h('span.chip', k.no), h(`span.stamp${TONE[k.tone] ? '.stamp--' + TONE[k.tone] : ''}`, k.status)),
       h('h3.casecard__t', k.title),
       h('p.casecard__r', k.result)))),
   ];
   view.append(...parts.filter(Boolean));
+  engrave(art, 'door', 900);
 
+  reveal(view.querySelector('.hm-doors'), { selector: '.hm-door', stagger: 60 });
   reveal(view.querySelector('.core-strip'), { selector: '.core', stagger: 26 });
   reveal(view.querySelector('.usage__rows'), { selector: '.usage__row', stagger: 22 });
 }
 
-function stat(n, of, label, href) {
-  const num = h('span.stat__n');
-  countWhenSeen(num, n);
-  return h('a.stat', { href }, num, h('span.stat__of', of), h('span.stat__l', label));
+/* a claim folder, small: it leans towards the pointer and lets a page slip out */
+function miniFolder(c, i, vault) {
+  const page = h('span.mf__page');
+  if (c.cover) {
+    const img = h('img', { alt: '' });
+    openBin(`p/${c.cover[0]}.bin`, 'image/jpeg', vault).then((u) => { img.src = u; }).catch(() => {});
+    page.append(img);
+  }
+  const box = h('span.mf__box', h('span.mf__tab', `No. ${c.no}`), h('span.mf__back'), page,
+    h('span.mf__front', h('span.mf__kicker', c.kicker), h('b.mf__t', c.short), h('span.mf__m', `${c.letters} letters · ${c.pagesN.toLocaleString()} pages`)));
+  const a = h(`a.mf.mf--${i + 1}`, { href: `#/dossier/${c.id}`, title: c.title, style: { '--i': i } }, box);
+  if (!still()) {
+    a.addEventListener('pointermove', (e) => { const r = a.getBoundingClientRect(); box.style.setProperty('--ry', `${(((e.clientX - r.left) / r.width) - .5) * 22}deg`); box.style.setProperty('--rx', `${-(((e.clientY - r.top) / r.height) - .5) * 18}deg`); });
+    a.addEventListener('pointerleave', () => { box.style.setProperty('--ry', '0deg'); box.style.setProperty('--rx', '0deg'); });
+  }
+  return a;
 }
 
-function learnedDot(n, st) { return st.learned[n] ? h('span.core__done', { title: 'Learned' }, icon('check')) : null; }
+function door(href, ic, tone, title, sub, meta) {
+  return h(`a.hm-door.hm-door--${tone}`, { href }, h('span.hm-door__ic', icon(ic)), h('h3', title), h('p', sub), h('span.hm-door__m', meta, icon('arrow')));
+}
 
 /* Where you left off — the last few clauses you opened. */
 function continueCard(st, all) {
@@ -98,26 +117,26 @@ function continueCard(st, all) {
 
 function clocksCard(st) {
   const list = st.clocks.map((k) => ({ ...k, dueD: D.fromIso(k.due) })).filter((k) => k.dueD >= D.addDays(D.today(), -3)).sort((a, b) => a.dueD - b.dueD).slice(0, 4);
-  return h('div.folder.clocks', { dataset: { tab: 'Clocks running' } },
+  return h('div.folder', { dataset: { tab: 'Deadlines running' } },
     list.length
       ? h('ul.clocklist', list.map((k) => {
         const left = D.diffDays(D.today(), k.dueD);
         return h('li', h(`span.clocklist__d${left <= 3 ? '.is-hot' : ''}`, left < 0 ? 'late' : left === 0 ? 'today' : `${left}d`), h('span', h('b', k.label), h('small', `${k.ref} · due ${D.fmtShort(k.dueD)}`)));
       }))
-      : h('p.muted', 'No deadlines saved yet. When a letter or event starts a notice clock, save it here so it cannot slip.'),
+      : h('p.muted', 'No deadlines saved yet. When a letter or an event starts a notice clock, save it here so it cannot slip.'),
     h('a.btn.btn--sm', { href: '#/clock' }, icon('clock'), 'Start a clock'));
 }
 
 function rulesCard(data) {
   const rules = data.writing.rules.slice(0, 4);
-  return h('div.folder.rulescard', { dataset: { tab: 'Four habits' } },
-    h('ol.rules', rules.map((r) => h('li', h('b', r.title), h('span', rich(r.text))))),
+  return h('div.folder', { dataset: { tab: 'Four habits for every letter' } },
+    h('ol.rules', rules.map((r) => h('li', h('b', r.title), h('span', rich(String(r.text).split(/(?<=\.)\s/)[0]))))),
     h('a.btn.btn--sm', { href: '#/learn/m9/m9l2' }, 'All ten rules', icon('arrow')));
 }
 
 function usageChart(u) {
   const keys = [...new Set([...Object.keys(u.contractor).slice(0, 14), ...Object.keys(u.er).slice(0, 14)])]
-    .map((k) => ({ k, top: k.split('.')[0], us: u.contractor[k] || 0, er: u.er[k] || 0 }))
+    .map((k) => ({ k, us: u.contractor[k] || 0, er: u.er[k] || 0 }))
     .filter((x) => C.resolve(x.k))
     .sort((a, b) => (b.us + b.er) - (a.us + a.er)).slice(0, 16);
   const max = Math.max(...keys.map((x) => Math.max(x.us, x.er)));
@@ -129,55 +148,4 @@ function usageChart(u) {
       h('span.usage__bars',
         h('span.usage__bar.usage__bar--us', { style: { width: `${(x.us / max) * 100}%` } }, h('i', x.us || '')),
         h('span.usage__bar.usage__bar--er', { style: { width: `${(x.er / max) * 100}%` } }, h('i', x.er || '')))))));
-}
-
-function houseLaunchCard() {
-  return h('section.house-launch-card',
-    h('div.house-launch-card__content',
-      h('div.house-launch-card__header',
-        h('span.stamp.stamp--sm.stamp--good', '3D IMMERSIVE HOUSE'),
-        h('span.house-launch-card__pill', '7 Rooms · 102 Clauses · PBKDF2 Vault')
-      ),
-      h('h2.house-launch-card__title', 'Step Inside The 3D Contract Registry House'),
-      h('p.house-launch-card__desc', 'Walk through 3 floors and 7 rooms (Living Room, Study Library, Kitchen Clocks, Bedroom Letters, Bathroom Case Forensics, Attic Gym & Studio), pull out 3D Daraz drawers, and crack the Combination Vaults.'),
-      h('div.house-launch-card__actions',
-        h('a.btn.btn--stamp.btn-house-primary', { href: '#/house' }, '🏛️ Enter 3D Learning House'),
-        h('a.btn.btn--ghost', { href: 'house.html', target: '_blank', rel: 'noopener' }, 'Open Standalone ↗')
-      )
-    ),
-    h('div.house-launch-card__badges', { 'aria-hidden': 'true' },
-      h('div.house-badge-item', h('span.house-badge-item__icon', '🗄️'), h('span', '3D Daraz Almirah')),
-      h('div.house-badge-item', h('span.house-badge-item__icon', '🔐'), h('span', 'AES-256 Vault')),
-      h('div.house-badge-item', h('span.house-badge-item__icon', '⏱️'), h('span', 'Pendulum Clocks')),
-      h('div.house-badge-item', h('span.house-badge-item__icon', '✉️'), h('span', '21 Dispatch Tubes'))
-    )
-  );
-}
-
-function heroArt() {
-  // a stack of letters with a stamp, drawn in SVG
-  const ns = 'http://www.w3.org/2000/svg';
-  const svg = document.createElementNS(ns, 'svg');
-  svg.setAttribute('viewBox', '0 0 360 300');
-  svg.innerHTML = `
-    <g class="art-sheet" transform="rotate(-8 180 150)"><rect x="70" y="40" width="200" height="240" rx="3"/></g>
-    <g class="art-sheet art-sheet--2" transform="rotate(5 180 150)"><rect x="84" y="30" width="200" height="240" rx="3"/></g>
-    <g class="art-letter" transform="rotate(-1.5 180 150)">
-      <rect x="76" y="22" width="206" height="250" rx="3"/>
-      <text x="92" y="48" class="art-mono">Our ref.: TKV/COM/…</text>
-      <text x="92" y="64" class="art-mono">To: The Engineer</text>
-      <rect x="92" y="80" width="150" height="7" rx="2" class="art-line art-line--b"/>
-      <rect x="92" y="100" width="174" height="5" rx="2" class="art-line"/>
-      <rect x="92" y="112" width="160" height="5" rx="2" class="art-line"/>
-      <rect x="92" y="124" width="170" height="5" rx="2" class="art-line"/>
-      <rect x="92" y="136" width="60" height="7" rx="2" class="art-hl"/><text x="95" y="142" class="art-mono art-mono--ref">35.1</text>
-      <rect x="92" y="152" width="174" height="5" rx="2" class="art-line"/>
-      <rect x="92" y="164" width="120" height="5" rx="2" class="art-line"/>
-      <rect x="92" y="184" width="174" height="5" rx="2" class="art-line"/>
-      <rect x="92" y="196" width="140" height="5" rx="2" class="art-line"/>
-      <text x="92" y="236" class="art-mono">Yours sincerely,</text>
-    </g>
-    <g class="art-stamp" transform="rotate(-14 250 210)"><rect x="196" y="186" width="118" height="44" rx="5"/><text x="255" y="214" text-anchor="middle">21 DAYS</text></g>
-    <path class="art-tape" d="M300 0 L326 0 L326 300 L300 300 Z"/>`;
-  return svg;
 }

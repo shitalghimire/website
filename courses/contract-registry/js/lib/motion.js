@@ -21,9 +21,14 @@ export function swap(fn, name = 'page') {
     && document.visibilityState === 'visible' && document.readyState === 'complete';
   if (!ok) { fn(); return Promise.resolve(); }
   document.documentElement.dataset.vt = name;
+  /* A window that is on screen in name only (minimised, covered) never
+     draws the frame the transition waits for. Do the work anyway. */
+  let ran = false;
+  const once = () => { if (ran) return undefined; ran = true; return fn(); };
   let t;
-  try { t = document.startViewTransition(fn); }
-  catch { fn(); delete document.documentElement.dataset.vt; return Promise.resolve(); }
+  try { t = document.startViewTransition(once); }
+  catch { once(); delete document.documentElement.dataset.vt; return Promise.resolve(); }
+  setTimeout(() => { if (!ran) { try { t.skipTransition(); } catch { /* already gone */ } once(); } }, 400);
   t.ready.catch(() => {});
   t.updateCallbackDone.catch(() => {});
   return t.finished.catch(() => {}).finally(() => { delete document.documentElement.dataset.vt; });

@@ -10,7 +10,8 @@ export default function cases(view, { args, ctx, data }) {
   if (args[0]) return detail(view, ctx, data, data.cases.find((k) => k.id === args[0]));
   ctx.crumbs([{ label: 'Case files' }]);
   view.append(
-    head(h('span', 'Case ', h('em', 'files')), 'The real claims and disputes on TKV, from the letters in the Letter Recording and Claims & Variation folders. For each: what happened, which clauses each side used, the result, what worked, what did not — and how to write the next letter.'),
+    head(h('span', 'Case ', h('em', 'files')), 'The real claims and disputes on TKV, from the project letters. For each one: what happened, which clauses each side used, the result, what worked, what did not, and how to write the next letter.',
+      [h('a.btn', { href: '#/school' }, icon('cap'), 'Learn to prepare a claim')]),
 
     /* the doors carry real figures, so their words come from the sealed file */
     h('div.case-doors', (data.doors || []).map((d) => h(`a.door.door--${d.cls}`, { href: d.href },

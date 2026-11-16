@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <!--
-  THE REGISTRY — a private reading room for a construction contract
+  THE REGISTRY — a private course on contract administration and claims
   © 2026 Shital Ghimire. All rights reserved.
 
-  The course content (contract text, explanations, case files, letter
-  register) is encrypted at rest in data/registry.sealed.json and is
-  only readable with the access code. This page, its design system and
-  its source code are the original work of Shital Ghimire and may not
-  be copied or redistributed without permission.
+  The course content (contract text, explanations, claim dossiers, letters
+  and documents) is encrypted at rest in the data/ folder and is only
+  readable with the access code. This page, its design system and its
+  source code are the original work of Shital Ghimire and may not be
+  copied or redistributed without permission.
 -->
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
 <title>The Registry — Shital Ghimire</title>
-<meta name="description" content="A private, code-access reading room for contract administration: every clause in plain words, how a claim travels through the letters, and the deadline clocks that decide it."/>
+<meta name="description" content="A private, code-access course on contract administration: real claim dossiers letter by letter, every clause in plain words, and practice that makes it stick."/>
 <meta name="robots" content="noindex, nofollow"/>
-<meta name="theme-color" content="#EFE8D8"/>
+<meta name="theme-color" content="#123B30"/>
 <meta name="author" content="Shital Ghimire"/>
 <meta name="copyright" content="© 2026 Shital Ghimire. All rights reserved."/>
 
@@ -25,7 +25,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Hanken+Grotesk:ital,wght@0,400..800;1,400..600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400..900;1,400..900&family=Atkinson+Hyperlegible+Next:ital,wght@0,300..800;1,300..800&family=Atkinson+Hyperlegible+Mono:wght@400..700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&display=swap" rel="stylesheet"/>
 
 <link rel="stylesheet" href="css/registry.css"/>
 <link rel="stylesheet" href="css/views.css"/>
@@ -35,6 +35,10 @@
 <link rel="stylesheet" href="css/rooms.css"/>
 <link rel="stylesheet" href="css/letters.css"/>
 <link rel="stylesheet" href="css/reader.css"/>
+<link rel="stylesheet" href="css/pro.css"/>
+<link rel="stylesheet" href="css/school.css"/>
+<link rel="stylesheet" href="css/dossier.css"/>
+<link rel="stylesheet" href="css/practice.css"/>
 </head>
 <body>
 
@@ -42,39 +46,27 @@
 
 <!-- ══════════ THE GATE ══════════ -->
 <section class="gate" id="gate" aria-labelledby="gateTitle">
-  <div class="gate__desk" aria-hidden="true">
-    <div class="gate__folder gate__folder--back"></div>
-    <div class="gate__folder gate__folder--mid"></div>
-  </div>
+  <div class="gate__art" id="gateArt" aria-hidden="true"></div>
 
   <div class="gate__file">
-    <div class="gate__tab">Private file</div>
-    <div class="gate__tape" aria-hidden="true"><span></span></div>
+    <div class="gate__seal" aria-hidden="true"><i>R</i><i>R</i></div>
+    <p class="gate__kicker">Private file · by code only</p>
+    <h1 class="gate__title" id="gateTitle">The Registry</h1>
+    <p class="gate__lede">Real claims, letter by letter. Every clause in plain words. Break the seal to come in.</p>
 
-    <div class="gate__inner">
-      <p class="gate__kicker">Reading room · by code only</p>
-      <h1 class="gate__title" id="gateTitle">The Registry</h1>
-      <p class="gate__lede">
-        Every clause in plain words. How a claim actually travels — letter by
-        letter, both directions. Never miss a notice clock.
-      </p>
-
-      <form class="gate__form" id="gateForm" novalidate>
-        <label class="gate__label" for="gateCode">Access code</label>
-        <div class="gate__row">
-          <input class="gate__input" id="gateCode" type="password" inputmode="numeric"
-                 autocomplete="current-password" spellcheck="false" placeholder="· · · · · · · · · ·"
-                 aria-describedby="gateMsg"/>
-          <button class="btn btn--stamp" id="gateGo" type="submit">Open the file</button>
-        </div>
-        <label class="gate__remember">
-          <input type="checkbox" id="gateRemember"/> <span>Keep it open on this device</span>
-        </label>
-        <p class="gate__msg" id="gateMsg" role="status" aria-live="polite"></p>
-      </form>
-
-      <div class="gate__stamp" id="gateStamp" aria-hidden="true">SEALED</div>
-    </div>
+    <form class="gate__form" id="gateForm" novalidate>
+      <label class="gate__label" for="gateCode">Access code</label>
+      <div class="gate__row">
+        <input class="gate__input" id="gateCode" type="password"
+               autocomplete="current-password" spellcheck="false" placeholder="· · · · · · · ·"
+               aria-describedby="gateMsg"/>
+        <button class="btn" id="gateGo" type="submit">Break the seal</button>
+      </div>
+      <label class="gate__remember">
+        <input type="checkbox" id="gateRemember"/> <span>Keep it open on this device</span>
+      </label>
+      <p class="gate__msg" id="gateMsg" role="status" aria-live="polite"></p>
+    </form>
 
     <footer class="gate__foot">
       <a href="../index.html">← All courses</a>
@@ -87,23 +79,23 @@
 <div class="app" id="app" hidden>
   <aside class="rail" id="rail" aria-label="Sections">
     <a class="rail__brand" href="#/">
-      <span class="rail__seal" aria-hidden="true">R</span>
-      <span class="rail__name">The<br/>Registry</span>
+      <span class="logo" aria-hidden="true">R</span>
+      <span class="rail__name"><b>The Registry</b><small>Contracts and claims</small></span>
     </a>
     <nav class="rail__tabs" id="railTabs"></nav>
     <div class="rail__foot">
+      <a class="rail__btn rail__all" href="../index.html" title="All courses" aria-label="All courses" id="allBtn"></a>
       <button class="rail__btn" id="themeBtn" type="button" aria-label="Switch light or dark"></button>
-      <button class="rail__btn" id="lockBtn" type="button" aria-label="Lock the file"></button>
+      <button class="rail__btn" id="lockBtn" type="button" aria-label="Lock the course"></button>
     </div>
   </aside>
 
   <div class="stage">
     <header class="topbar" id="topbar">
       <div class="crumbs" id="crumbs"></div>
-      <a href="#/house" class="btn-house-launch" title="Enter the 3D Interactive Contract House">🏛️ Enter 3D House</a>
       <button class="finder" id="finderBtn" type="button">
         <span class="finder__icon" aria-hidden="true"></span>
-        <span class="finder__label">Find a clause, word or letter</span>
+        <span class="finder__label">Search clauses, words and letters</span>
         <kbd>/</kbd>
       </button>
     </header>
@@ -116,7 +108,7 @@
 <div class="palette" id="palette" hidden></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<noscript><p class="noscript">This reading room needs JavaScript.</p></noscript>
+<noscript><p class="noscript">This course needs JavaScript.</p></noscript>
 <script>
 /* The access code changed on 18 Sept 2026. Once per device, before any cached
    script runs, a code remembered from before then is kept aside so sync can

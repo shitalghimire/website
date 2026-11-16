@@ -1,6 +1,7 @@
 /* Boot: the gate. Unseal, then hand the payload to the app. */
 
 import { open, remember, recall, forget, VaultError } from './lib/vault.js';
+import { engrave } from './lib/guilloche.js';
 
 /* A remembered code that no longer opens the file is an earlier one. Keep it
    aside so sync can move synced progress across to the new code (see
@@ -16,6 +17,7 @@ const retireCode = (c) => {
 
 const $ = (s) => document.querySelector(s);
 const gate = $('#gate');
+engrave($('#gateArt'), 'door', 1000);
 const form = $('#gateForm');
 const input = $('#gateCode');
 const msg = $('#gateMsg');
@@ -23,14 +25,10 @@ const go = $('#gateGo');
 
 async function unseal(code, { silent = false } = {}) {
   msg.className = 'gate__msg is-busy';
-  msg.textContent = 'Checking the seal…';
+  msg.textContent = 'Breaking the seal…';
   go.disabled = true;
   try {
     const data = await open(code);
-    window.__REGISTRY_DATA__ = data;
-    if (typeof window.mountRegistryHouse === 'function') {
-      try { window.mountRegistryHouse(data); } catch (e) {}
-    }
     remember(code, $('#gateRemember').checked || !!localStorage.getItem('registry:unlocked'));
     msg.textContent = '';
     gate.classList.add('is-open');
@@ -39,12 +37,12 @@ async function unseal(code, { silent = false } = {}) {
       gate.hidden = true;
       $('#app').hidden = false;
       startApp(data, code);
-    }, silent ? 0 : 820);
+    }, silent ? 0 : 900);
   } catch (err) {
     go.disabled = false;
     if (silent) { msg.textContent = ''; msg.className = 'gate__msg'; if (err.kind === 'bad-code') { retireCode(code); forget(); } input.focus(); return; }
     msg.className = 'gate__msg';
-    msg.textContent = err instanceof VaultError ? err.message : 'Something went wrong while opening the file.';
+    msg.textContent = err instanceof VaultError ? err.message : 'Something went wrong while opening the course.';
     if (err.kind === 'bad-code') {
       gate.classList.remove('is-bad'); void gate.offsetWidth; gate.classList.add('is-bad');
       input.select();

@@ -90,7 +90,7 @@ button.lr-link:hover { border-color: var(--stamp); }
 .lr-paper { max-width: 780px; margin: 1rem auto 0; padding: 3rem 3.5rem 3.4rem; background: var(--sheet); border: 1px solid var(--line); border-radius: 3px; box-shadow: var(--shadow-2); font: 400 1.02rem/1.78 var(--serif); color: var(--ink); overflow-wrap: anywhere; }
 .lr-paper p { margin: 0 0 1em; }
 .lr-paper__top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1rem; margin-bottom: 1.8rem; padding-bottom: .9rem; border-bottom: 1px solid var(--line); font: 400 .84rem var(--mono); color: var(--ink-2); }
-.lr-paper__k { display: block; margin-bottom: .15rem; font: 700 .64rem/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.lr-paper__k { display: block; margin-bottom: .15rem; font: 600 0.78rem/1 var(--sans); color: var(--ink-3); }
 .lr-paper__to { font-size: .95rem; color: var(--ink-2); }
 .lr-paper__subj { font-weight: 700; line-height: 1.5; }
 .lr-paper__refs { margin: 0 0 1.4rem; }

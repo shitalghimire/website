@@ -76,6 +76,57 @@ export function openExtra(name) {
   return extras.get(name);
 }
 
+/* ── sealed binaries ──────────────────────────────────────────────
+   Page images and original files are sealed one by one, so a page is
+   only fetched when it is looked at. Layout: 12-byte IV, then the
+   AES-GCM ciphertext. The key comes from the access code and the salt
+   the course file names (data.claims.vault). Results are kept as blob
+   URLs for the rest of the visit. */
+const blobs = new Map();
+export function openBin(path, type, vault) {
+  const id = path;
+  if (!blobs.has(id)) {
+    const p = (async () => {
+      const code = session?.code || recall();
+      if (!code) throw new VaultError('The course is locked.', 'locked');
+      const res = await fetch(new URL(`../../data/${path}`, import.meta.url));
+      if (!res.ok) throw new VaultError('That file could not be loaded.', 'no-file');
+      const buf = new Uint8Array(await res.arrayBuffer());
+      const key = await keyFor(code, vault.salt, vault.iter);
+      let plain;
+      try { plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: buf.subarray(0, 12) }, key, buf.subarray(12)); }
+      catch { throw new VaultError('That file could not be opened.', 'bad-code'); }
+      return URL.createObjectURL(new Blob([plain], { type }));
+    })();
+    p.catch(() => blobs.delete(id));
+    blobs.set(id, p);
+  }
+  return blobs.get(id);
+}
+
+/* a sealed JSON file that sits beside the course file (a claim dossier) */
+export function openSealedJson(name, vault) {
+  const id = 'json:' + name;
+  if (!extras.has(id)) {
+    const p = (async () => {
+      const code = session?.code || recall();
+      if (!code) throw new VaultError('The course is locked.', 'locked');
+      const res = await fetch(new URL(`../../data/${name}`, import.meta.url), { cache: 'no-cache' });
+      if (!res.ok) throw new VaultError('That file could not be loaded.', 'no-file');
+      const buf = new Uint8Array(await res.arrayBuffer());
+      const key = await keyFor(code, vault.salt, vault.iter);
+      let plain;
+      try { plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: buf.subarray(0, 12) }, key, buf.subarray(12)); }
+      catch { throw new VaultError('That file could not be opened.', 'bad-code'); }
+      const raw = await new Response(new Blob([plain]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+      return JSON.parse(new TextDecoder().decode(raw));
+    })();
+    p.catch(() => extras.delete(id));
+    extras.set(id, p);
+  }
+  return extras.get(id);
+}
+
 export function remember(code, forever) {
   try {
     sessionStorage.setItem(KEY, code);

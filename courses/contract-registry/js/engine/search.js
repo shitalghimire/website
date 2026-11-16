@@ -54,6 +54,11 @@ export function build(data) {
     const pl = [...(p.points || []), ...(p.use || []), ...(p.watch || [])].join(' ');
     if (pl) add({ type: 'plain', no: c.no, title: c.title, href: `#/read/${c.no}`, w: 1.2, text: pl, snippet: pl });
   }
+  for (const c of data.claims?.list || []) {
+    add({ type: 'claim', no: `No. ${c.no}`, title: c.title, href: `#/dossier/${c.id}`, w: 3, text: `${c.title} ${c.short} ${c.kicker} ${c.hook} claim ${c.no} dossier`, snippet: c.hook });
+    for (const [ref, date, label, subject, no] of c.index || []) add({ type: 'claim', no: String(ref.split(':')[1]).padStart(3, '0'), title: `${label} · Claim No. ${c.no}`, href: `#/dossier/${c.id}/letters/${ref.replace(':', '-')}`, w: 1.5, text: `${label} ${subject} ${no}`, snippet: `${date} · ${subject}` });
+  }
+  for (const l of data.school?.lessons || []) add({ type: 'lesson', no: '', title: l.title, href: `#/school/${l.id}`, w: 2.4, text: `${l.title} ${l.summary} ${l.blocks.map((b) => b.text || (b.items || []).map((x) => (typeof x === 'string' ? x : '')).join(' ')).join(' ')}`, snippet: l.summary });
   for (const g of data.glossary) add({ type: 'word', no: g.ref || '', title: g.term, href: `#/words?t=${encodeURIComponent(g.term)}`, w: 2.2, text: `${g.term} ${g.term} ${g.text}`, snippet: g.text });
   for (const k of data.cases) add({ type: 'case', no: k.no, title: k.title, href: `#/cases/${k.id}`, w: 1.6, text: `${k.title} ${k.claimed} ${k.result} ${k.story.join(' ')}`, snippet: k.result });
   for (const t of data.writing.templates) add({ type: 'template', no: '', title: t.title, href: `#/tools/draft/${t.id}`, w: 1.8, text: `${t.title} ${t.when} ${t.clauses.join(' ')}`, snippet: t.when });

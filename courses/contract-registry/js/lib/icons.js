@@ -5,7 +5,17 @@ const P = (d, extra = '') => `<svg viewBox="0 0 24 24" fill="none" stroke="curre
 
 export const icons = {
   desk: P('<path d="M3 10.5h18"/><path d="M5 10.5v9M19 10.5v9"/><path d="M8 10.5V6.2c0-.7.5-1.2 1.2-1.2h5.6c.7 0 1.2.5 1.2 1.2v4.3"/><path d="M10.5 7.8h3"/>'),
-  house: P('<path d="M3 9.5 12 3l9 6.5H3zM4 10v9M8 10v9M12 10v9M16 10v9M20 10v9M2 20h20M2 10h20"/>'),
+  home: P('<path d="M4 10.5 12 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H5a1 1 0 0 1-1-1z"/>'),
+  grid: P('<rect x="4" y="4" width="6.5" height="6.5" rx="1.4"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.4"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.4"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.4"/>'),
+  layers: P('<path d="m12 3.5 8.5 4.5L12 12.5 3.5 8z"/><path d="m3.5 12 8.5 4.5 8.5-4.5"/><path d="m3.5 16 8.5 4.5 8.5-4.5"/>'),
+  users: P('<circle cx="9" cy="8.5" r="3.2"/><path d="M3 19.5c.6-3.2 2.9-5 6-5s5.4 1.8 6 5"/><circle cx="17" cy="9.5" r="2.4"/><path d="M17.5 14.6c2 .4 3.2 1.9 3.6 4.4"/>'),
+  truck: P('<path d="M3 6.5h10.5v10H3z"/><path d="M13.5 10h4l3 3.2v3.3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/>'),
+  camera: P('<path d="M4 8h3l1.6-2.2h6.8L17 8h3a1 1 0 0 1 1 1v9.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.4"/>'),
+  calc: P('<rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M8 7.5h8"/><path d="M8.3 12h.4M12 12h.1M15.5 12h.3M8.3 15.5h.4M12 15.5h.1M15.5 15.5h.3" stroke-width="2.4"/>'),
+  route: P('<circle cx="6" cy="18" r="2.2"/><circle cx="18" cy="6" r="2.2"/><path d="M8.2 18H14a3.5 3.5 0 0 0 0-7h-4a3.5 3.5 0 0 1 0-7h5.8"/>'),
+  image: P('<rect x="3.5" y="5" width="17" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m4 17 5-4.5 4 3.2 3-2.4 4.5 3.7"/>'),
+  stairs: P('<path d="M3.5 19.5h5v-4.5h4.5v-4.5H17.5V6h3.5"/>'),
+  reply: P('<path d="M9.5 6 4 11.5 9.5 17"/><path d="M4 11.5h9a7 7 0 0 1 7 7"/>'),
   book: P('<path d="M4 5.2c2.6-.9 5.2-.7 8 1v13c-2.8-1.6-5.4-1.9-8-1z"/><path d="M20 5.2c-2.6-.9-5.2-.7-8 1v13c2.8-1.6 5.4-1.9 8-1z"/><path d="M6.5 9.3c1.3-.2 2.4 0 3.5.6M14 9.9c1.1-.6 2.2-.8 3.5-.6"/>'),
   scan: P('<path d="M6 3.5h8.2l3.8 3.9V20a.5.5 0 0 1-.5.5h-11.5A.5.5 0 0 1 5.5 20V4a.5.5 0 0 1 .5-.5z"/><path d="M14 3.6v4h4"/><path d="M8.5 11h4M8.5 14h7M8.5 17h5"/><circle cx="16.8" cy="16.6" r="2.4"/><path d="m18.6 18.4 1.9 1.9"/>'),
   pen: P('<path d="M15.4 4.6 19.4 8.6 9 19l-4.6 1 1-4.6z"/><path d="m13.6 6.4 4 4"/><path d="M4 21h8"/>'),
@@ -63,6 +73,5 @@ export const icons = {
 
 import { h } from './h.js';
 export const icon = (name, cls) => {
-  if (name === '🏛️') return h('span.ic.ic--emoji' + (cls ? '.' + cls : ''), { 'aria-hidden': 'true', style: { display: 'inline-block', fontStyle: 'normal' } }, '🏛️');
   return h('span.ic' + (cls ? '.' + cls : ''), { html: icons[name] || icons.doc, 'aria-hidden': 'true' });
 };

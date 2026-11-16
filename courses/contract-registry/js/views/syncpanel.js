@@ -31,7 +31,7 @@ export function openSync(sync) {
               const s = await sync.replaceCloudCopy();
               if (s.state === 'synced') toast('Synced — the cloud copy now uses the new code');
             } }, icon('refresh'), 'Start the cloud copy again from this device')) : null,
-          h('p', 'Your progress, notes, drafts, clocks and quiz history are kept in step on every device where you have connected. Changes sync a few seconds after you make them, and when you come back to the tab.'),
+          h('p', 'Your progress, notes, drafts and clocks are kept in step on every device where you have connected. Changes sync a few seconds after you make them, and when you come back to the tab.'),
           h('div.row',
             h('button.btn.btn--stamp', { type: 'button', onclick: async () => { const s = await sync.syncNow(); if (s.state === 'synced') toast('Synced'); } }, icon('refresh'), 'Sync now'),
             h('button.btn.btn--ghost', { type: 'button', onclick: () => { if (confirm('Stop syncing on this device? Progress stays here and in your gist.')) sync.disconnect(); } }, 'Disconnect this device')),

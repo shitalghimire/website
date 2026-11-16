@@ -8,12 +8,14 @@ import { store, BLANK } from './lib/store.js';
 import { createSync } from '../../sync/sync.js';
 import { syncBadge, openSync } from './views/syncpanel.js';
 import { forget } from './lib/vault.js';
-import { swap, reveal, flip, still } from './lib/motion.js';
+import { swap, reveal } from './lib/motion.js';
 import C from './engine/contract.js';
 import * as S from './engine/search.js';
 
 import desk from './views/desk.js';
-import house from './views/house.js';
+import school from './views/school.js';
+import dossier from './views/dossier.js';
+import practice from './views/practice.js';
 import library from './views/library.js';
 import clause from './views/clause.js';
 import exchange from './views/exchange.js';
@@ -24,37 +26,42 @@ import clock from './views/clock.js';
 import cases from './views/cases.js';
 import register from './views/register.js';
 import learn from './views/learn.js';
-import drill from './views/drill.js';
 import tools from './views/tools.js';
 import words from './views/words.js';
 
+/* the sidebar: three groups, eleven pages */
 export const TABS = [
-  { id: 'desk', label: 'Desk', icon: 'desk', href: '#/' },
-  { id: 'house', label: '3D House', icon: '🏛️', href: '#/house' },
+  { group: 'Learn' },
+  { id: 'desk', label: 'Home', icon: 'home', href: '#/' },
+  { id: 'dossier', label: 'Claim dossiers', icon: 'folder', href: '#/dossier', badge: 'New' },
+  { id: 'school', label: 'Claims School', icon: 'cap', href: '#/school' },
+  { id: 'learn', label: 'Contract course', icon: 'map', href: '#/learn' },
+  { id: 'drill', label: 'Practice', icon: 'target', href: '#/drill' },
+  { group: 'Reference' },
   { id: 'read', label: 'Clauses', icon: 'book', href: '#/read' },
-  { id: 'clock', label: 'Clocks', icon: 'clock', href: '#/clock' },
-  { id: 'cases', label: 'Cases', icon: 'folder', href: '#/cases' },
-  { id: 'exchange', label: 'Exchange', icon: 'exchange', href: '#/exchange' },
-  { id: 'register', label: 'Letters', icon: 'list', href: '#/register' },
-  { id: 'learn', label: 'Learn', icon: 'cap', href: '#/learn' },
-  { id: 'drill', label: 'Practice', icon: 'cards', href: '#/drill' },
+  { id: 'cases', label: 'Case files', icon: 'list', href: '#/cases' },
+  { id: 'register', label: 'Letters', icon: 'mail', href: '#/register' },
+  { id: 'words', label: 'Glossary', icon: 'words', href: '#/words' },
+  { group: 'Work' },
+  { id: 'clock', label: 'Deadlines', icon: 'clock', href: '#/clock' },
   { id: 'tools', label: 'Tools', icon: 'tools', href: '#/tools' },
-  { id: 'words', label: 'Words', icon: 'words', href: '#/words' },
 ];
+const PAGES = TABS.filter((t) => t.id);
 
 const ROUTES = [
   [/^\/?$/, desk, 'desk'],
-  [/^\/house\/?$/, house, 'house'],
+  [/^\/school(?:\/([\w-]+))?\/?$/, school, 'school'],
+  [/^\/dossier(?:\/(c\d+)(?:\/([\w-]+)(?:\/([\w.-]+))?)?)?\/?$/, dossier, 'dossier'],
+  [/^\/drill(?:\/([\w-]+)(?:\/([\w-]+))?)?\/?$/, practice, 'drill'],
   [/^\/read\/?$/, library, 'read'],
   [/^\/read\/([\w.]+)$/, clause, 'read'],
   [/^\/clock\/?$/, clock, 'clock'],
   [/^\/cases(?:\/([\w-]+))?\/?$/, cases, 'cases'],
-  [/^\/exchange(?:\/([\w-]+))?\/?$/, exchange, 'exchange'],
-  [/^\/baseline\/?$/, baseline, 'exchange'],
-  [/^\/eot(?:\/(\d))?\/?$/, eot, 'exchange'],
+  [/^\/exchange(?:\/([\w-]+))?\/?$/, exchange, 'cases'],
+  [/^\/baseline\/?$/, baseline, 'cases'],
+  [/^\/eot(?:\/(\d))?\/?$/, eot, 'cases'],
   [/^\/register\/?$/, register, 'register'],
   [/^\/learn(?:\/(\w+)(?:\/(\w+))?)?\/?$/, learn, 'learn'],
-  [/^\/drill(?:\/([\w-]+))?\/?$/, drill, 'drill'],
   [/^\/tools(?:\/([\w-]+)(?:\/([\w-]+))?)?\/?$/, tools, 'tools'],
   [/^\/words\/?$/, words, 'words'],
 ];
@@ -67,7 +74,6 @@ export let sync = null;
 export function startApp(data, code) {
   DATA = data;
   ctx.data = data;
-  window.__REGISTRY_DATA__ = data;
   C.init(data);
   S.build(data);
 
@@ -83,11 +89,10 @@ export function startApp(data, code) {
     theme(store.get().settings.theme);
     const typing = /INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName);
     const path = location.hash.replace(/^#/, '').split('?')[0];
-    if (!typing && /^\/?(house|read|clock|learn|drill|cases|exchange|baseline|eot|tools)?\/?$/.test(path) && document.getElementById('palette').hidden) route();
+    if (!typing && /^\/?(school|read|clock|learn|cases|exchange|baseline|eot|tools|drill)?\/?$/.test(path) && document.getElementById('palette').hidden) route();
     toast('Progress updated from your other device');
   });
   sync.unlock(code);
-  store.touchDay();
 
   buildNav();
   theme(store.get().settings.theme);
@@ -116,20 +121,22 @@ function theme(t) {
   const dark = t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
   mount($('#themeBtn'), h('span', { html: dark ? icons.sun : icons.moon }));
-  $('#themeBtn').title = dark ? 'Light pages' : 'Dark pages';
-  document.querySelector('meta[name="theme-color"]').content = dark ? '#12141B' : '#EFE8D8';
+  $('#themeBtn').title = dark ? 'Light mode' : 'Dark mode';
+  document.querySelector('meta[name="theme-color"]').content = dark ? '#0A1F19' : '#123B30';
 }
 
 function buildNav() {
-  mount($('#railTabs'), TABS.map((t) => h('a.rail__tab', { href: t.href, dataset: { tab: t.id } }, icon(t.icon), t.label, h('i.rail__mark'))));
+  mount($('#railTabs'), TABS.map((t) => t.group
+    ? h('div.rail__group', t.group)
+    : h('a.rail__tab', { href: t.href, dataset: { tab: t.id } }, icon(t.icon), h('span', t.label), t.badge ? h('span.rail__badge', t.badge) : null)));
   mount($('#lockBtn'), h('span', { html: icons.lock }));
-  $('#lockBtn').title = 'Lock the file';
-  const dock = ['desk', 'house', 'read', 'exchange', 'cases'].map((id) => TABS.find((t) => t.id === id));
-  mount($('#dock'), dock.map((t) => h('a', { href: t.href, dataset: { tab: t.id } }, icon(t.icon), t.label)),
+  $('#lockBtn').title = 'Lock the course';
+  mount($('#allBtn'), h('span', { html: icons.grid }));
+  mount(document.querySelector('.finder__icon'), h('span', { html: icons.search }));
+  const dock = ['desk', 'dossier', 'drill', 'read'].map((id) => PAGES.find((t) => t.id === id));
+  mount($('#dock'), dock.map((t) => h('a', { href: t.href, dataset: { tab: t.id } }, icon(t.icon), t.label.replace('Claim dossiers', 'Dossiers'))),
     h('button', { type: 'button', onclick: () => openMenu() }, icon('menu'), 'More'));
 }
-
-let lastTab = null;
 
 function route() {
   const [path, qs] = location.hash.replace(/^#/, '').split('?');
@@ -139,13 +146,12 @@ function route() {
     const m = path.match(re);
     if (!m) continue;
     markTab(tab);
-    lastTab = tab;
     setCrumbs([]);
     swap(() => {
       view.className = 'view';
       mount(view);
       try { fn(view, { params, args: m.slice(1), ctx, data: DATA }); }
-      catch (err) { console.error(err); mount(view, h('div.empty', 'Something went wrong drawing this page. ', h('a', { href: '#/' }, 'Back to the desk'))); }
+      catch (err) { console.error(err); mount(view, h('div.empty', 'Something went wrong drawing this page. ', h('a', { href: '#/' }, 'Back to Home'))); }
       reveal(view);
     });
     if (!params.has('s')) scrollTo({ top: 0 });
@@ -156,30 +162,24 @@ function route() {
   location.hash = '/';
 }
 
-/* The red marker on the rail moves to the new tab rather than blinking
-   out of one and into another — it reads as one object travelling. */
 function markTab(tab) {
-  const railMark = document.querySelector(`.rail__tab[data-tab="${lastTab}"] .rail__mark`);
-  const first = railMark && !still() ? railMark.getBoundingClientRect() : null;
   document.querySelectorAll('[data-tab][aria-current]').forEach((a) => a.removeAttribute('aria-current'));
   document.querySelectorAll(`[data-tab="${tab}"]`).forEach((a) => a.setAttribute('aria-current', 'page'));
-  const next = document.querySelector(`.rail__tab[data-tab="${tab}"] .rail__mark`);
-  if (next && first) flip(next, first);
 }
 
 function setCrumbs(list) {
-  const parts = [h('a', { href: '#/' }, 'Registry')];
+  const parts = [h('a', { href: '#/' }, 'Home')];
   for (const c of list) { parts.push(h('i', '/')); parts.push(c.href ? h('a', { href: c.href }, c.label) : h('span', c.label)); }
   mount($('#crumbs'), parts);
 }
 
 /* ── finder palette ───────────────────────────────────────────── */
-const GROUP = { clause: 'Clauses', text: 'Contract text', pcc: 'PCC changes', plain: 'Plain words', word: 'Words', case: 'Case files', template: 'Letter types', letter: 'TKV letters' };
-const ORDER = ['clause', 'pcc', 'text', 'plain', 'word', 'template', 'case', 'letter'];
+const GROUP = { claim: 'Claim dossiers', lesson: 'Claims School', clause: 'Clauses', text: 'Contract text', pcc: 'PCC changes', plain: 'Plain words', word: 'Words', case: 'Case files', template: 'Letter types', letter: 'TKV letters' };
+const ORDER = ['claim', 'lesson', 'clause', 'pcc', 'text', 'plain', 'word', 'template', 'case', 'letter'];
 
 export function openPalette(initial = '') {
   const pal = $('#palette');
-  const input = h('input', { type: 'search', placeholder: 'Try 35.1, time bar, LD, suspension, Adit-3…', 'aria-label': 'Search', value: initial, autocomplete: 'off', spellcheck: 'false' });
+  const input = h('input', { type: 'search', placeholder: 'Try 35.1, time bar, notice, idle cost, suspension…', 'aria-label': 'Search', value: initial, autocomplete: 'off', spellcheck: 'false' });
   const list = h('div.palette__list', { role: 'listbox' });
   let items = [];
   let sel = 0;
@@ -201,7 +201,7 @@ export function openPalette(initial = '') {
       nodes.push(h('div.palette__group', GROUP[t]));
       for (const r of g) {
         const a = h('a.palette__item', { href: r.href, role: 'option', 'aria-selected': 'false', onmousemove: () => select(items.indexOf(a)) },
-          h('span.palette__no', t === 'letter' ? '✉' : t === 'template' ? '✎' : t === 'case' ? r.no : r.no || '·'),
+          h('span.palette__no', t === 'letter' ? '✉' : t === 'template' ? '✎' : t === 'lesson' ? '◆' : t === 'claim' ? r.no : t === 'case' ? r.no : r.no || '·'),
           h('span', h('span.palette__t', r.title), h('span.palette__s', marked(S.snippet(r.snippet, r.terms), r.terms))));
         items.push(a); nodes.push(a);
       }
@@ -239,7 +239,7 @@ function openMenu() {
   const pal = $('#palette');
   mount(pal, h('div.palette__box', { role: 'dialog', 'aria-label': 'Menu' },
     h('div.palette__group', 'Go to'),
-    h('div.palette__list', TABS.map((t) => h('a.palette__item', { href: t.href, onclick: closePalette }, h('span.palette__no', icon(t.icon)), h('span.palette__t', t.label))),
+    h('div.palette__list', PAGES.map((t) => h('a.palette__item', { href: t.href, onclick: closePalette }, h('span.palette__no', icon(t.icon)), h('span.palette__t', t.label))),
       h('button.palette__item.palette__item--btn', { type: 'button', onclick: () => openSync(sync) }, h('span.palette__no', icon('cloud')), h('span.palette__t', 'Sync across devices')))));
   pal.hidden = false;
   pal.onclick = (e) => { if (e.target === pal) closePalette(); };
