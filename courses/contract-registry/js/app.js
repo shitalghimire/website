@@ -15,6 +15,7 @@ import * as S from './engine/search.js';
 import desk from './views/desk.js';
 import school from './views/school.js';
 import dossier from './views/dossier.js';
+import payments from './views/payments.js';
 import practice from './views/practice.js';
 import library from './views/library.js';
 import clause from './views/clause.js';
@@ -33,7 +34,8 @@ import words from './views/words.js';
 export const TABS = [
   { group: 'Learn' },
   { id: 'desk', label: 'Home', icon: 'home', href: '#/' },
-  { id: 'dossier', label: 'Claim dossiers', icon: 'folder', href: '#/dossier', badge: 'New' },
+  { id: 'dossier', label: 'Claim dossiers', icon: 'folder', href: '#/dossier' },
+  { id: 'pay', label: 'Payments (IPS)', icon: 'coin', href: '#/pay', badge: 'New' },
   { id: 'school', label: 'Claims School', icon: 'cap', href: '#/school' },
   { id: 'learn', label: 'Contract course', icon: 'map', href: '#/learn' },
   { id: 'drill', label: 'Practice', icon: 'target', href: '#/drill' },
@@ -52,6 +54,7 @@ const ROUTES = [
   [/^\/?$/, desk, 'desk'],
   [/^\/school(?:\/([\w-]+))?\/?$/, school, 'school'],
   [/^\/dossier(?:\/(c\d+)(?:\/([\w-]+)(?:\/([\w.-]+))?)?)?\/?$/, dossier, 'dossier'],
+  [/^\/pay(?:\/([\w-]+)(?:\/([\w.-]+))?)?\/?$/, payments, 'pay'],
   [/^\/drill(?:\/([\w-]+)(?:\/([\w-]+))?)?\/?$/, practice, 'drill'],
   [/^\/read\/?$/, library, 'read'],
   [/^\/read\/([\w.]+)$/, clause, 'read'],
