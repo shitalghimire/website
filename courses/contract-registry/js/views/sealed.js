@@ -16,7 +16,7 @@ function load(name, src) {
   const code = src.replace(/(\bfrom\s*|\bimport\s*)(['"])(\.{1,2}\/[^'"]+)\2/g,
     (m, pre, q, spec) => pre + q + new URL(spec, BASE).href + q) + `\n//# sourceURL=sealed/${name}.js\n`;
   const url = URL.createObjectURL(new Blob([code], { type: 'text/javascript' }));
-  return import(url).then((m) => m.default).finally(() => URL.revokeObjectURL(url));
+  return import(url).finally(() => URL.revokeObjectURL(url));
 }
 
 function entry(name, data) {
@@ -25,10 +25,17 @@ function entry(name, data) {
     const src = data?.views?.[name];
     if (!src) return null;
     m = { fn: null };
-    m.ready = load(name, src).then((fn) => (m.fn = fn));
+    m.ready = load(name, src).then((ns) => { m.ns = ns; return (m.fn = ns.default); });
     mods.set(name, m);
   }
   return m;
+}
+
+/* another sealed module's exports, for a sealed page that shares code with
+   one of its siblings (the Price Book borrows the Payments 3D geometry) */
+export function sealedModule(name, data) {
+  const m = entry(name, data);
+  return m ? m.ready.then(() => m.ns) : Promise.resolve(null);
 }
 
 /* called as the app starts, so every sealed page draws at once */

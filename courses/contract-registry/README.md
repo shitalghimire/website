@@ -19,6 +19,8 @@ data/registry.sealed.json   the course, and the pages that quote real figures
 data/letters.sealed.json    letter texts
 data/media.sealed.json      exhibit images
 data/claim-*.bin            one claim dossier each, opened on demand
+data/pay.bin                the Payments study, opened on demand
+data/book.bin               the Price Book (Contract Volume 2.3), opened on demand
 data/p/*.bin                document pages, one file each, opened as they scroll into view
 data/f/*.bin                original Word and Excel files, opened on download
 ```
@@ -41,10 +43,12 @@ js/engine/compose.js  letter composer (text, .doc, print)
 js/views/             desk (home), practice, clauses, clocks, cases, letters,
                       learn, tools, words, charts
 js/views/sealed.js    loader for the sealed pages: dossier, school, exchange,
-                      baseline, eot (their files here are small stubs)
+                      baseline, eot, payments, book (their files here are small stubs)
+js/views/world3d.js   the WebGL stage (three.js, loaded on first use); figure-free
 css/registry.css      tokens + shell ("the Strongroom": ledger paper, green spine, brass, wax red)
 css/pro.css           home, and the look carried into the older rooms
 css/dossier.css       claim dossiers        css/practice.css   quiz, flashcards, games
+css/payments.css      Payments              css/book.css       the Price Book
 css/…                 one sheet per older room
 ```
 
