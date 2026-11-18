@@ -381,7 +381,7 @@ img.is-wait { background: repeating-linear-gradient(45deg, var(--sheet-2) 0 10px
 .py-chip { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--line); background: var(--sheet); border-radius: 999px; padding: .22rem .65rem .22rem .25rem; font: inherit; font-size: .82rem; cursor: pointer; transition: border-color .2s, transform .15s var(--spring); }
 .py-chip i { font-style: normal; font-family: var(--mono); font-weight: 700; font-size: .7rem; color: #fff; background: var(--c); border-radius: 999px; padding: .05rem .4rem; }
 .py-chip:hover { border-color: var(--c); transform: translateY(-1px); }
-.w3 { position: absolute; inset: 0; }
+.w3 { position: absolute; inset: 0; container-type: inline-size; }
 .w3__canvas { width: 100%; height: 100%; display: block; touch-action: none; outline: none; }
 .w3__canvas:focus-visible { box-shadow: inset 0 0 0 3px var(--brass); }
 .w3__labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
@@ -392,6 +392,21 @@ img.is-wait { background: repeating-linear-gradient(45deg, var(--sheet-2) 0 10px
 .w3__label--small b { font-size: .72rem; font-weight: 600; }
 .w3__label--tower { background: var(--spine); color: #fff8e6; border-bottom-color: var(--brass-2); }
 .w3__label.is-on { background: var(--brass); color: #fff; }
+.w3__label--place { background: none; box-shadow: none; border-bottom: 0; padding: 0; pointer-events: none; color: var(--ink-2); text-shadow: 0 0 3px var(--sheet), 0 0 6px var(--sheet); }
+.w3__label--place b { font: italic 500 .8rem/1.1 var(--serif); letter-spacing: .02em; }
+.w3__label--place i { font-size: .6rem; }
+/* the stage's own instruments: compass, scale bar, credit */
+.w3__hud { position: absolute; right: .6rem; bottom: .6rem; display: flex; align-items: flex-end; gap: .5rem; pointer-events: none; }
+.w3__compass { position: relative; width: 38px; height: 38px; border-radius: 50%; background: color-mix(in srgb, var(--sheet) 88%, transparent); box-shadow: var(--shadow-1); border: 1px solid var(--line); }
+.w3__compass i { position: absolute; left: 50%; top: 4px; margin-left: -5px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 13px solid var(--stamp); }
+.w3__compass b { position: absolute; left: 0; right: 0; bottom: 5px; text-align: center; font: 700 .6rem/1 var(--mono); color: var(--ink); }
+.w3__scale { display: grid; gap: 3px; justify-items: start; padding: .28rem .45rem; border-radius: 6px; background: color-mix(in srgb, var(--sheet) 88%, transparent); box-shadow: var(--shadow-1); border: 1px solid var(--line); }
+.w3__scale i { display: block; height: 6px; min-width: 16px; border: 2px solid var(--ink); border-top: 0; }
+.w3__scale span { font: .62rem/1 var(--mono); color: var(--ink-2); }
+.w3__credit { position: absolute; left: .6rem; bottom: .45rem; margin: 0; max-width: min(58%, 30rem); padding: .15rem .4rem; border-radius: 4px; font: .58rem/1.35 var(--mono); color: var(--ink-3); background: color-mix(in srgb, var(--sheet) 72%, transparent); pointer-events: none; }
+@container (max-width: 560px) { .w3__credit { top: .4rem; bottom: auto; max-width: calc(100% - .8rem); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: .52rem; } .w3__compass { width: 32px; height: 32px; } }
+.py-map__tog { display: inline-flex; align-items: center; gap: .35rem; font-size: .8rem; color: var(--ink-2); cursor: pointer; }
+.py-map__tog input { accent-color: var(--brass); }
 .py-drawer { background: var(--sheet); border: 1px solid var(--line); border-radius: var(--r-3); padding: 1rem; box-shadow: var(--shadow-1); max-height: 760px; overflow: auto; display: grid; gap: .8rem; align-content: start; }
 .py-drawer__empty { display: grid; justify-items: center; text-align: center; gap: .4rem; color: var(--ink-3); padding: 2.5rem 1rem; }
 .py-drawer__empty svg { width: 32px; height: 32px; color: var(--brass); }

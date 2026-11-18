@@ -44,7 +44,10 @@ js/views/             desk (home), practice, clauses, clocks, cases, letters,
                       learn, tools, words, charts
 js/views/sealed.js    loader for the sealed pages: dossier, school, exchange,
                       baseline, eot, payments, book (their files here are small stubs)
-js/views/world3d.js   the WebGL stage (three.js, loaded on first use); figure-free
+js/views/world3d.js   the WebGL stage (three.js, loaded on first use); figure-free.
+                      Draws a ground block from sealed heights and textures (terrain:
+                      SRTM via Terrain Tiles, AWS Open Data — keep the on-stage credit),
+                      a river, tunnels grown to stay visible, x-ray view of the works
 css/registry.css      tokens + shell ("the Strongroom": ledger paper, green spine, brass, wax red)
 css/pro.css           home, and the look carried into the older rooms
 css/dossier.css       claim dossiers        css/practice.css   quiz, flashcards, games
